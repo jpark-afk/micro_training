@@ -13,7 +13,7 @@ cd ..
 ```cmd
 %RTIMEHOME%bin\rtiddsgen -example -language C -ppDisable HelloWorld.idl
 
-%RTIMEHOME%resource\scripts\rtime-make.bat --config Debug -A x64 --target self --name %RTIMEARCH% --build --source-dir 
+%RTIMEHOME%\resource\scripts\rtime-make.bat --config Debug -A x64 --target self --name %RTIMEARCH% --build --source-dir .
 ```
 ## Execution
 ```cmd

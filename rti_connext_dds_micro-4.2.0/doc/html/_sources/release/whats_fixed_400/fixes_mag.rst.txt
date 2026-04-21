@@ -1,0 +1,108 @@
+Micro Application Generator
+===========================
+
+:major:`[Major]` NullPointerException when using -outputFinalQoS if QoS Profile did not define each internal QoS
+----------------------------------------------------------------------------------------------------------------
+
+When using MAG with the ``-outputFinalQoS`` option, if the QoS Profile to check did not contain
+a definition of each internal QoS (participant_qos, publisher_qos, etc.) directly or by inheriting
+from another QoS Profile, MAG reported this error:
+
+.. code-block:: console
+
+   Exception in thread "main" java.lang.NullPointerException
+      at com.rti.micro.appgen.utils.QosUtils.removeNullElementsFromList(QosUtils.java:2332)
+      at com.rti.micro.appgen.utils.QosUtils.removeNullElements(QosUtils.java:2256)
+      at com.rti.micro.appgen.MicroAppGen.main(MicroAppGen.java:328)
+
+[RTI Issue ID MAG-121]
+
+:minor:`[Minor]` MAG failed to generate code when qos_profile inherited from individual QoS policies
+----------------------------------------------------------------------------------------------------
+
+MAG failed to generate code when a ``<qos_profile>`` inherited from individual
+QoS policies. For example, running MAG with the following input file caused an
+error:
+
+.. code-block:: XML
+
+   <qos_library name="QosLibrary">
+      <qos_profile name="QosProfile1" is_default_qos="true">
+         <participant_qos name="QosParticipant">
+            ...
+         </participant_qos>
+      </qos_profile>
+      <qos_profile name="QosProfile2" base_name="QosProfile1::QosParticipant">
+      </qos_profile>
+   </qos_library>
+
+The error was:
+
+.. code-block:: console 
+
+   ...
+   11:31:40.548 [main] ERROR com.rti.micro.appgen.MicroAppGen - Failed to calculate the system model.
+   java.lang.Exception: Unable to find QoS library/profile 'QosProfile1::QosParticipant'.
+   ...
+   11:31:40.552 [main] INFO com.rti.micro.appgen.MicroAppGen - Exiting.
+
+Now MAG properly handles this case. 
+
+[RTI Issue ID MAG-105]
+
+:minor:`[Minor]` MAG always used default value for disable_auto_interface_config
+--------------------------------------------------------------------------------
+
+MAG always used the default value for ``disable_auto_interface_config`` in
+the generated code, regardless of the value specified in the XML.
+
+[RTI Issue ID MAG-110]
+
+:minor:`[Minor]` MAG failed if arguments contained whitespace on Linux systems
+------------------------------------------------------------------------------
+
+On Linux systems, MAG failed to run if any arguments contained whitespace.
+It logged an error similar to the following:
+
+.. code-block:: console 
+
+   12:04:55.205 [main] ERROR com.rti.micro.appgen.MicroAppGen - Only 1 input file
+   can be processed.
+   12:04:55.208 [main] INFO  com.rti.micro.appgen.MicroAppGen - Exiting.
+
+[RTI Issue ID MAG-118]
+
+:trivial:`[Trivial]` XSD validation failed if flags used a combination of values
+--------------------------------------------------------------------------------
+
+The XSD validation of an XML application file failed if there was
+a UDPv4 configuration using a combination of values for the ``flags``
+element. For example, this snippet caused an error:
+
+.. code-block:: xml
+
+   <transport_builtin>
+      <udpv4>
+            <interface_table>
+               <element>
+                  <flags>
+                        UDP_INTERFACE_INTERFACE_UP_FLAG|UDP_INTERFACE_INTERFACE_MULTICAST_FLAG
+                  </flags>
+               </element>
+            </interface_table>
+      </udpv4>
+   </transport_builtin>
+
+The error was:
+
+.. code-block:: console
+   
+   ERROR com.rti.micro.appgen.MicroAppGen - cvc-pattern-valid: 
+   Value 'UDP_INTERFACE_INTERFACE_UP_FLAG|UDP_INTERFACE_INTERFACE_MULTICAST_FLAG'
+   is not facet-valid with respect to pattern
+   '(UDP_INTERFACE_INTERFACE_UP_FLAG|UDP_INTERFACE_INTERFACE_MULTICAST_FLAG)'
+   for type 'udpInterfaceFlagMask'.
+
+Now combinations are allowed.
+
+[RTI Issue ID MAG-114]

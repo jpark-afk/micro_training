@@ -1,0 +1,40 @@
+\doxysubsection{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle Struct Reference}
+\hypertarget{structOSAPI__SharedMemorySegmentHandle}{}\label{structOSAPI__SharedMemorySegmentHandle}\index{OSAPI\_SharedMemorySegmentHandle@{OSAPI\_SharedMemorySegmentHandle}}
+
+
+{\ttfamily \#include $<$netio\+\_\+zcopy\+\_\+shm\+\_\+segment.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHeader}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Header}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle_af9f3f5fa492f55457516738d992326d0}{ptr\+\_\+header}}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle_a5b1956fc2c1d5f89fa69447e908bea2b}{ptr\+\_\+user\+\_\+data}}
+\item 
+\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE}} \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle_add1be051043fa96720374c7eb4197946}{mode}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Opaque handle initialized by the create and attach methods and used to interact with a shared memory segment. 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structOSAPI__SharedMemorySegmentHandle_af9f3f5fa492f55457516738d992326d0}\index{OSAPI\_SharedMemorySegmentHandle@{OSAPI\_SharedMemorySegmentHandle}!ptr\_header@{ptr\_header}}
+\index{ptr\_header@{ptr\_header}!OSAPI\_SharedMemorySegmentHandle@{OSAPI\_SharedMemorySegmentHandle}}
+\doxyparagraph{\texorpdfstring{ptr\_header}{ptr\_header}}
+{\footnotesize\ttfamily \label{structOSAPI__SharedMemorySegmentHandle_af9f3f5fa492f55457516738d992326d0} 
+struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHeader}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Header}}\texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle\+::ptr\+\_\+header}
+
+Pointer to segment header in shared memory \Hypertarget{structOSAPI__SharedMemorySegmentHandle_a5b1956fc2c1d5f89fa69447e908bea2b}\index{OSAPI\_SharedMemorySegmentHandle@{OSAPI\_SharedMemorySegmentHandle}!ptr\_user\_data@{ptr\_user\_data}}
+\index{ptr\_user\_data@{ptr\_user\_data}!OSAPI\_SharedMemorySegmentHandle@{OSAPI\_SharedMemorySegmentHandle}}
+\doxyparagraph{\texorpdfstring{ptr\_user\_data}{ptr\_user\_data}}
+{\footnotesize\ttfamily \label{structOSAPI__SharedMemorySegmentHandle_a5b1956fc2c1d5f89fa69447e908bea2b} 
+void\texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle\+::ptr\+\_\+user\+\_\+data}
+
+Pointer to where user data can be stored in shared memory \Hypertarget{structOSAPI__SharedMemorySegmentHandle_add1be051043fa96720374c7eb4197946}\index{OSAPI\_SharedMemorySegmentHandle@{OSAPI\_SharedMemorySegmentHandle}!mode@{mode}}
+\index{mode@{mode}!OSAPI\_SharedMemorySegmentHandle@{OSAPI\_SharedMemorySegmentHandle}}
+\doxyparagraph{\texorpdfstring{mode}{mode}}
+{\footnotesize\ttfamily \label{structOSAPI__SharedMemorySegmentHandle_add1be051043fa96720374c7eb4197946} 
+\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE}} OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle\+::mode}
+
+Mode requested by the caller of create or attach 

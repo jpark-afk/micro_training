@@ -1,0 +1,630 @@
+.. raw:: latex
+
+  \newpage
+  \begin{landscape}
+
+FreeRTOS Platforms
+==================
+
+The following table shows the currently supported FreeRTOS platforms.
+
+.. list-table:: Supported FreeRTOS Platforms
+   :widths: 10 8 12 10 10 23 27
+   :header-rows: 1
+   :class: longtable
+
+   * - OS
+     - Version
+     - CPU
+     - Network Stack
+     - Toolchain
+     - Architecture PIL
+     - Architecture PSL
+   * - FreeRTOS
+     - 10.0.0
+     - ARMv7E-M
+     - LWiP 2.0.0
+     - GCC 10.3.1
+     - armv7emleElfgcc10.3.1
+
+       armv7emleElfgcc10.3.1CERT
+     - armv7emleElfgcc10.3.1-FreeRTOS10.0
+
+       armv7emleElfgcc10.3.1CERT-FreeRTOS10.0
+
+Port overview
+-------------
+
+RTI ported |me| to run on the FreeRTOS operating system with the lwIP protocol 
+stack. This section contains some additional information on the hardware and
+software used.
+
+RTI used S32G-VNP-RDB2 as the reference hardware. This reference kit 
+has a S32G274A processor with 3x Arm Cortex-M7 LS pairs and 8MB system RAM.
+For a full description, please refer to the microcontroller 
+documentation `here <https://www.nxp.com/docs/en/fact-sheet/SG32VNPRDB2FS.pdf>`_.
+
+NXP provides a comprehensive software ecosystem for its S32G platform. 
+For development on the M7 core, NXP offers the S32 Design Studio (S32DS)—a free, 
+Eclipse-based integrated development environment (IDE) that supports the full S32G family.
+S32DS includes a GCC-based C/C++ compiler, GDB debugger integration, 
+and tools for flashing and debugging the M7 core.
+
+To simplify embedded software development,
+NXP provides the Real-Time Drivers (RTD) 4.0 package.
+RTD includes all necessary low-level drivers and middleware components to build 
+applications for the M7 core on S32G platforms. 
+It is fully compliant with AUTOSAR 4.x and integrates with FreeRTOS and other lightweight RTOS environments.
+RTI used the following versions of the different components:
+
+- RTD version V4.0.0
+- S32 Design Studio V3.6.0
+- FreeRTOS Kernel V10.4.6
+- lwIP version V2.0.0
+
+How to configure lwIP and FreeRTOS
+----------------------------------
+
+RTI ported |me| to FreeRTOS using the following lwIP and FreeRTOS 
+configurations. These can be tuned according to your needs by 
+modifying the examples below. Details about how to configure these 
+third-party components can also be found in the 
+`FreeRTOS documentation <https://freertos.org/Documentation/00-Overview>`_ and 
+`lwIP documentation <https://www.nongnu.org/lwip/2_0_x/index.html>`_.
+
+.. tabs::
+
+   .. group-tab:: lwIP
+
+      .. code-block:: c
+
+        #ifndef LWIP_OPTS_H
+        #define LWIP_OPTS_H
+        
+        /**
+        * @page misra_violations MISRA-C:2012 violations
+        *
+        * @section [global]
+        * Violates MISRA 2012 Advisory Rule 2.5, Global macro not referenced.
+        * The global macro will be used in function call of the module.
+        */
+        
+        /* ---------- Application APIs ---------- */
+        #define NO_SYS                     0
+        #define LWIP_RAW                   1
+        #define LWIP_SOCKET                (NO_SYS==0)
+        #define LWIP_NETCONN               (NO_SYS==0)
+        
+        /* ---------- ARP options ---------- */
+        #define LWIP_ARP                   1
+        #define ARP_TABLE_SIZE             10
+        #define ARP_QUEUEING               1
+        
+        /* ---------- IP options ---------- */
+        #define LWIP_IPV6                  0
+        
+        /* ---------- DHCP options ---------- */
+        /* Define LWIP_DHCP to 1 if you want DHCP configuration of interfaces */
+        #define LWIP_DHCP                  0
+        /* 1 if you want to do an ARP check on the offered address (recommended) */
+        #define DHCP_DOES_ARP_CHECK        (LWIP_DHCP)
+        
+        /* ---------- AUTOIP options ---------- */
+        #define LWIP_AUTOIP                    0
+        #define LWIP_DHCP_AUTOIP_COOP          (LWIP_DHCP && LWIP_AUTOIP)
+        #define LWIP_DHCP_AUTOIP_COOP_TRIES    3
+        
+        /* Define IP_FORWARD to 1 if you wish to have the ability to forward
+           IP packets across network interfaces. If you are going to run lwIP
+           on a device with only one network interface, define this to 0. */
+        #define IP_FORWARD                     0
+        
+        /* IP reassembly and segmentation.These are orthogonal even
+        * if they both deal with IP fragments */
+        #define IP_REASSEMBLY                  1
+        #define IP_REASS_MAX_PBUFS             10
+        #define MEMP_NUM_REASSDATA             10
+        #define IP_FRAG                        1
+        
+        /* ---------- IP options ---------- */
+        #define LWIP_IPV4                      1
+        #define ICMP_TTL                       255
+        #define LWIP_ICMP                      1
+        #define LWIP_IGMP                      1
+        
+        /* ---------- TCP options ---------- */
+        #define LWIP_TCP                1
+        #define TCP_TTL                 255
+        
+        /* Controls if TCP should queue segments that arrive out of
+           order. Define to 0 if your device is low on memory. */
+        #define TCP_QUEUE_OOSEQ         0
+        
+        /* TCP Maximum segment size. */
+        #define TCP_MSS                 1536
+        
+        /* TCP sender buffer space (bytes). */
+        #define TCP_SND_BUF             TCP_MSS * 4
+        
+        /* TCP sender buffer space (pbufs). This must be at least = 2 *
+           TCP_SND_BUF/TCP_MSS for things to work. */
+        #define TCP_SND_QUEUELEN       (4 * TCP_SND_BUF/TCP_MSS)
+        
+        /* TCP writable space (bytes). This must be less than or equal
+           to TCP_SND_BUF. It is the amount of space which must be
+           available in the tcp snd_buf for select to return writable */
+        #define TCP_SNDLOWAT           (TCP_SND_BUF/2)
+        
+        /* TCP receive window. */
+        #define TCP_WND                 4096
+        
+        /* Maximum number of retransmissions of data segments. */
+        #define TCP_MAXRTX              2
+        
+        /* Maximum number of retransmissions of SYN segments. */
+        #define TCP_SYNMAXRTX           2
+        
+        /* ---------- UDP options ---------- */
+        #define LWIP_UDP                1
+        #define LWIP_UDPLITE            LWIP_UDP
+        #define UDP_TTL                 255
+        
+        /* ---------- Memory options ---------- */
+        /* MEM_ALIGNMENT: should be set to the alignment of the CPU for which
+           lwIP is compiled. 4 byte alignment -> define MEM_ALIGNMENT to 4, 2
+           byte alignment -> define MEM_ALIGNMENT to 2. */
+        /* MSVC port: intel processors do not need 4-byte alignment,
+           but are faster that way! */
+        
+        /*!
+         * @brief Custom memcpy function used to optimize and improve the lwip copy speed process.
+         *
+         * This function copies len characters from memory area src to memory area dest using 64 bit alignment.
+         */
+        void memcpy_64(uint64_t *dst, uint64_t * src, unsigned int len);
+        
+        /*!
+         * @brief Custom memcpy function used to optimize and improve the lwip copy speed process.
+         *
+         * This function copies len characters from memory area src to memory area dest.
+         */
+        void memcpy_custom(void *dst, const void * src, unsigned int len);
+        
+        #define MEMCPY(dst,src,len)         memcpy(dst,src,len)
+        
+        /* Memory alignment must match your architecture - for ARM Cortex M7, 8-byte alignment is required */
+        #define MEM_ALIGNMENT               8
+        
+        /* MEM_SIZE: the size of the heap memory. If the application will send
+        a lot of data that needs to be copied, this should be set high. */
+        #define MEM_SIZE                    128*1024
+        
+        /* MEMP_NUM_PBUF: the number of memp struct pbufs. If the application
+           sends a lot of data out of ROM (or other static memory), this
+           should be set high. */
+        #define MEMP_NUM_PBUF               8
+        
+        /* MEMP_NUM_RAW_PCB: the number of UDP protocol control blocks. One
+           per active RAW connection. */
+        #define MEMP_NUM_RAW_PCB            4
+        
+        /* MEMP_NUM_UDP_PCB: the number of UDP protocol control blocks. One
+           per active UDP connection. */
+        #define MEMP_NUM_UDP_PCB            4
+        
+        /* MEMP_NUM_TCP_PCB: the number of simultaneously active TCP connections. */
+        #define MEMP_NUM_TCP_PCB            4
+        
+        /* MEMP_NUM_TCP_PCB_LISTEN: the number of listening TCP connections. */
+        #define MEMP_NUM_TCP_PCB_LISTEN     4
+        
+        /* MEMP_NUM_TCP_SEG: the number of simultaneously queued TCP segments.*/
+        #define MEMP_NUM_TCP_SEG            64
+        
+        /* MEMP_NUM_SYS_TIMEOUT: the number of simultaneously active timeouts. */
+        #define MEMP_NUM_SYS_TIMEOUT        15
+        
+        /* The following four are used only with the sequential API and can be
+           set to 0 if the application only will use the raw API. */
+        /* MEMP_NUM_NETBUF: the number of struct netbufs. */
+        #define MEMP_NUM_NETBUF             16
+        
+        /* MEMP_NUM_NETCONN: the number of struct netconns. */
+        #define MEMP_NUM_NETCONN            32
+        
+        /* MEMP_NUM_TCPIP_MSG_*: the number of struct tcpip_msg, which is used
+           for sequential API communication and incoming packets. Used in
+           src/api/tcpip.c. */
+        #define MEMP_NUM_TCPIP_MSG_API      40  /* Increased from 20 */
+        #define MEMP_NUM_TCPIP_MSG_INPKT    30  /* Increased from 20 */
+        
+        /* MEM_USE_POOLS==1: Use an alternative to malloc()
+           To use this, MEMP_USE_CUSTOM_POOLS also has to be enabled. */
+        #define MEM_USE_POOLS               0
+        #define MEMP_USE_CUSTOM_POOLS       0
+        
+        /* ---------- Pbuf options ---------- */
+        /* PBUF_POOL_SIZE: the number of buffers in the pbuf pool. */
+        #define PBUF_POOL_SIZE              32
+        #define PBUF_POOL_BUFSIZE           1536
+        
+        /** SYS_LIGHTWEIGHT_PROT
+        * define SYS_LIGHTWEIGHT_PROT in lwipopts.h if you want inter-task protection
+        * for certain critical regions during buffer allocation, deallocation and memory
+        * allocation and deallocation. */
+        #define SYS_LIGHTWEIGHT_PROT        (NO_SYS==0)
+        
+        /* ---------- Statistics options ---------- */
+        #define LWIP_STATS                      1
+        #define LWIP_STATS_DISPLAY              1
+        
+        #if LWIP_STATS
+        #define LINK_STATS                      1
+        #define IP_STATS                        1
+        #define ICMP_STATS                      1
+        #define IGMP_STATS                      1
+        #define IPFRAG_STATS                    1
+        #define UDP_STATS                       1
+        #define TCP_STATS                       1
+        #define MEM_STATS                       1
+        #define MEMP_STATS                      1
+        #define PBUF_STATS                      1
+        #define SYS_STATS                       1
+        #endif /* LWIP_STATS */
+        
+        /* ---------- PPP options ---------- */
+        #define PPP_SUPPORT                     0
+        
+        /* ---------- Other options ---------- */
+        
+        /* (LWIP_ETHERNET == 1) Enable ETHERNET support even though ARP might be disabled */
+        #define LWIP_ETHERNET                   1
+        
+        #define TCPIP_MBOX_SIZE                 24
+        
+        #define DEFAULT_UDP_RECVMBOX_SIZE       1500
+        #define DEFAULT_TCP_RECVMBOX_SIZE       1500
+        #define DEFAULT_RAW_RECVMBOX_SIZE       1500
+        #define DEFAULT_ACCEPTMBOX_SIZE         1500
+        #define LWIP_NETIF_TX_SINGLE_PBUF       1
+        
+        #define LWIP_SUPPORT_CUSTOM_PBUF        1
+        
+        #define LWIP_SNMP                       LWIP_UDP
+        #define MIB2_STATS                      LWIP_SNMP
+        
+        #define LWIP_DNS                        LWIP_UDP
+        #define LWIP_MDNS_RESPONDER             LWIP_UDP
+        
+        #define LWIP_NUM_NETIF_CLIENT_DATA      (LWIP_MDNS_RESPONDER)
+        
+        #define LWIP_HAVE_LOOPIF                0
+        #define LWIP_NETIF_LOOPBACK             0
+        
+        #define TCP_LISTEN_BACKLOG              1
+        
+        #define LWIP_COMPAT_SOCKETS             1
+        #define LWIP_SO_RCVTIMEO                1
+        #define LWIP_SO_RCVBUF                  1
+        
+        #define LWIP_TCPIP_CORE_LOCKING         1
+        
+        #define LWIP_NETIF_LINK_CALLBACK        1
+        #define LWIP_NETIF_STATUS_CALLBACK      1
+        
+        #define LWIP_NETCONN_SEM_PER_THREAD     0
+        
+        #define LWIP_SOCKET_SET_ERRNO           1
+        
+        #define LWIP_NETIF_HOSTNAME             1
+        
+        /* ---------- TIMEVAL options ---------- */
+        #define LWIP_TIMEVAL_PRIVATE            0
+        
+        /* ---------- Thread options ---------- */
+        #define TCPIP_THREAD_NAME               "tcpip_thread"
+        #define TCPIP_THREAD_STACKSIZE          1024*64
+        #define TCPIP_THREAD_PRIO               4
+        #define DEFAULT_THREAD_STACKSIZE        4096
+        #define DEFAULT_THREAD_PRIO             3
+        
+        /**
+         * LWIP_SO_RCVBUF==1: Enable SO_RCVBUF processing.
+         */
+        #define LWIP_SO_RCVBUF                  1
+
+        #define LWIP_SOCKET_SELECT              0
+        
+        #endif /* LWIP_OPTS_H */
+
+   .. group-tab:: FreeRTOS
+
+      .. code-block:: c
+
+         #ifndef FREERTOS_CONFIG_H
+         #define FREERTOS_CONFIG_H
+         
+         /*-----------------------------------------------------------
+          * Application specific definitions.
+          *
+          * These definitions should be adjusted for your particular hardware and
+          * application requirements.
+          *
+          * THESE PARAMETERS ARE DESCRIBED WITHIN THE 'CONFIGURATION' SECTION OF THE
+          * FreeRTOS API DOCUMENTATION AVAILABLE ON THE FreeRTOS.org WEB SITE.
+          *
+          * See http://www.freertos.org/a00110.html.
+          *----------------------------------------------------------*/
+         
+         #define configUSE_PREEMPTION                        1
+         #define configCPU_CLOCK_HZ                          ( 400000000UL )
+         #define configTICK_RATE_HZ                          ((TickType_t) 1000 )
+         #define configMAX_PRIORITIES                        10
+         #define configMINIMAL_STACK_SIZE                    RTI_configMINIMAL_STACK_SIZE
+         #define configMAX_TASK_NAME_LEN                     16
+         #define configUSE_16_BIT_TICKS                      0
+         #define configIDLE_SHOULD_YIELD                     1
+         #define configUSE_PREEMPTION                        1
+         #define configNUM_THREAD_LOCAL_STORAGE_POINTERS     2
+         #define configUSE_PORT_OPTIMISED_TASK_SELECTION     0
+         #define configUSE_TASK_NOTIFICATIONS                1
+         #define configUSE_TIME_SLICING                      0
+         #define configUSE_NEWLIB_REENTRANT                  0
+         #define configENABLE_BACKWARD_COMPATIBILITY         1
+         #define configUSE_POSIX_ERRNO                       0
+         #define configUSE_APPLICATION_TASK_TAG              0
+         #define configRECORD_STACK_HIGH_ADDRESS             1
+         
+         /* Definition assert() function. */
+         #define configASSERT(x)                             if((x)==0) { taskDISABLE_INTERRUPTS(); __asm__ volatile ("bkpt #0"); for( ;; ); }
+         
+         /* The highest interrupt priority that can be used by any interrupt service
+         routine that makes calls to interrupt safe FreeRTOS API functions.  DO NOT CALL
+         INTERRUPT SAFE FREERTOS API FUNCTIONS FROM ANY INTERRUPT THAT HAS A HIGHER
+         PRIORITY THAN THIS! (higher priorities are lower numeric values. */
+         #define configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY ( 2 )
+         
+         /* Memory allocation related definitions. */
+         #define configSUPPORT_STATIC_ALLOCATION             0
+         #define configSUPPORT_DYNAMIC_ALLOCATION            1
+         #define configTOTAL_HEAP_SIZE                       (( size_t ) (__heap_size__) )
+         #define configAPPLICATION_ALLOCATED_HEAP            4
+         
+         /* Hook function related definitions. */
+         #define configUSE_IDLE_HOOK                         0
+         #define configUSE_TICK_HOOK                         0
+         #define configUSE_MALLOC_FAILED_HOOK                1
+         #define configCHECK_FOR_STACK_OVERFLOW              1
+         #define configUSE_DAEMON_TASK_STARTUP_HOOK          0
+         
+         /* Run time and task stats gathering related definitions. */
+         #define configGENERATE_RUN_TIME_STATS               1
+         #define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS()    
+         #define portGET_RUN_TIME_COUNTER_VALUE()            xTaskGetTickCount()
+         #define configUSE_TRACE_FACILITY                    1
+         #define configUSE_STATS_FORMATTING_FUNCTIONS        1
+         
+         /* Co-routine related definitions. */
+         #define configUSE_CO_ROUTINES                       0
+         #define configMAX_CO_ROUTINE_PRIORITIES             2
+         
+         /* SEMAPHORES and MUTEXS */
+         #define configUSE_MUTEXES                           1
+         #define configUSE_RECURSIVE_MUTEXES                 1
+         #define configUSE_COUNTING_SEMAPHORES               1
+         
+         /* Software timer related definitions. */
+         /* Software timer related definitions. */
+         #define configUSE_TIMERS                            1
+         #define configTIMER_TASK_PRIORITY                   6
+         #define configTIMER_QUEUE_LENGTH                    16
+         #define configTIMER_TASK_STACK_DEPTH                (1024*2)
+         
+         /* Tickless Idle Mode */
+         #define configUSE_TICKLESS_IDLE                     0
+         
+         /* QUEUE */
+         #define configQUEUE_REGISTRY_SIZE                   8
+         #define configUSE_QUEUE_SETS                        0
+         
+         /* Optional functions - most linkers will remove unused functions anyway. */
+         #define INCLUDE_vTaskPrioritySet                    1
+         #define INCLUDE_uxTaskPriorityGet                   1
+         #define INCLUDE_vTaskDelete                         1
+         #define INCLUDE_vTaskSuspend                        1
+         #define INCLUDE_vTaskDelayUntil                     1
+         #define INCLUDE_vTaskDelay                          1
+         #define INCLUDE_xTaskGetSchedulerState              1
+         #define INCLUDE_xTaskGetCurrentTaskHandle           1
+         #define INCLUDE_uxTaskGetStackHighWaterMark         1
+         #define INCLUDE_uxTaskGetStackHighWaterMark2        0
+         #define INCLUDE_xTaskGetIdleTaskHandle              0
+         #define INCLUDE_eTaskGetState                       1
+         #define INCLUDE_xEventGroupSetBitFromISR            1
+         #define INCLUDE_xTimerPendFunctionCall              1
+         #define INCLUDE_xTaskAbortDelay                     1
+         #define INCLUDE_xTaskGetHandle                      1
+         #define INCLUDE_xTaskResumeFromISR                  1
+         #define INCLUDE_xQueueGetMutexHolder                1
+         
+         /* Run time stats gathering definitions. */
+         #ifdef __GNUC__
+             /* The #ifdef just prevents this C specific syntax from being included in
+             assembly files. */
+             void vMainConfigureTimerForRunTimeStats( void );
+             unsigned long ulMainGetRunTimeCounterValue( void );
+         #endif
+         
+         /* Cortex-M specific definitions. */
+         #ifdef __NVIC_PRIO_BITS
+           #define configPRIO_BITS                         __NVIC_PRIO_BITS
+         #else
+           #define configPRIO_BITS                         4
+         #endif
+         
+         /* The lowest interrupt priority that can be used in a call to a "set priority"
+         function. */
+         #define configLIBRARY_LOWEST_INTERRUPT_PRIORITY  (0x0F)
+         
+         /* Interrupt priorities used by the kernel port layer itself.  These are generic
+         to all Cortex-M ports, and do not rely on any particular library functions. */
+         #ifndef configKERNEL_INTERRUPT_PRIORITY
+           #define configKERNEL_INTERRUPT_PRIORITY         (configLIBRARY_LOWEST_INTERRUPT_PRIORITY << (8-configPRIO_BITS))
+         #endif
+         
+         /* !!!! configMAX_SYSCALL_INTERRUPT_PRIORITY must not be set to zero !!!!
+         See http://www.FreeRTOS.org/RTOS-Cortex-M3-M4.html. */
+         #ifndef configMAX_SYSCALL_INTERRUPT_PRIORITY
+           #define configMAX_SYSCALL_INTERRUPT_PRIORITY    (configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY << (8-configPRIO_BITS))
+         #endif
+         
+         /* Definitions that map the FreeRTOS port interrupt handlers to their CMSIS
+         standard names. */
+         #define vPortSVCHandler                             SVC_Handler
+         #define xPortPendSVHandler                          PendSV_Handler
+         #define xPortSysTickHandler                         SysTick_Handler
+         
+         
+         #endif /* FREERTOS_CONFIG_H */
+
+How the PIL was built for FreeRTOS
+----------------------------------
+
+This section describes how RTI built the Platform Independent Library (PIL)
+for FreeRTOS. 
+
+The following table shows the compiler flags RTI used to create
+the PIL for FreeRTOS platforms:
+
+.. list-table:: PIL Compiler Flags for FreeRTOS Platforms
+   :name: FreertosRequiredFlags
+   :widths: 30 20 50
+   :header-rows: 1
+   :class: longtable
+
+   * - Architecture PIL
+     - Library Format
+     - Compiler Flags Used by RTI
+   * - armv7emleElfgcc10.3.1
+     - Static Release
+     - --specs=nosys.specs --specs=nano.specs -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_stubs.h -DRTIME_TARGET_NAME=\"armv7emleElfgcc10.3.1\" -DRTI_PIL=1 -D__freertos__
+       -std=c99 -nostdinc  -fstrict-aliasing -fsigned-char -O -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums -DNDEBUG
+   * - 
+     - Static Debug
+     - --specs=nosys.specs --specs=nano.specs -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_stubs.h -DRTIME_TARGET_NAME=\"armv7emleElfgcc10.3.1\" -DRTI_PIL=1 -D__freertos__
+       -std=c99 -nostdinc  -fstrict-aliasing -fsigned-char -O0 -g -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums
+   * - armv7emleElfgcc10.3.1CERT
+     - Static Release
+     - --specs=nosys.specs --specs=nano.specs -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_stubs.h -DRTIME_TARGET_NAME=\"armv7emleElfgcc10.3.1CERT\" -DRTI_CERT -DRTI_PIL=1 -D__freertos__
+       -std=c99 -nostdinc -fstrict-aliasing -fsigned-char -O -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums -DNDEBUG
+   * - 
+     - Static Debug
+     - -specs=nosys.specs --specs=nano.specs -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_stubs.h -DRTIME_TARGET_NAME=\"armv7emleElfgcc10.3.1CERT\" -DRTI_CERT -DRTI_PIL=1 -D__freertos__
+       -std=c99 -nostdinc  -fstrict-aliasing -fsigned-char  -O0 -g -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums
+
+Building the PSL from source for FreeRTOS platforms
+---------------------------------------------------
+
+This section describes how to build your own PSL for FreeRTOS.
+
+|me| includes support to compile Platform Support Libraries (PSL) for 
+FreeRTOS using `CMake <https://cmake.org/>`_. 
+Refer to :ref:`section-set-up-build-environment` before continuing with 
+the following instructions.
+
+#. Make sure CMake is in the path.
+#. Define the following environment variables:
+   
+   * ``CONFIG_PATH``: Path to where the ``FreeRTOSConfig.h`` and ``lwipopts.h`` 
+     files are located.
+   * ``FREERTOS_PATH``: Path to the FreeRTOS source code and header files.
+   * ``LWIP_PATH``: Path to the lwIP source code and header files.
+   * ``LWIP_PORTS_PATH``: Path to the lwIP ports folder that contains cc.h.
+   * ``RTD_PATH``: Path to the folder that contains the eclipse plugins of RTD.
+   * ``PATH``: Update your path with the location of the C and C++ compiler. By 
+     default, ``arm-none-eabi-gcc`` and ``arm-none-eabi-g++`` are used as C and C++ compilers.
+
+#. Enter the following command:
+
+   .. code-block:: console
+
+      RTIMEHOME/resource/scripts/rtime-make --target armv7emleElfgcc10.3.1-FreeRTOS10.0 \ 
+                            -G "Unix Makefiles" --build
+
+   .. note::
+      
+      ``rtime-make`` uses the architecture specified with ``--target`` to 
+      determine a few settings needed by |me|. Please refer to 
+      :ref:`prepare-psl` for details.
+
+#. The |me| PSL is available in:
+
+   .. code-block:: console
+
+      RTIMEHOME/lib/armv7emleElfgcc10.3.1-FreeRTOS10.0
+
+Building FreeRTOS applications with |me_h|
+------------------------------------------
+
+This section describes how RTI built the Platform Support Library (PSL) for
+FreeRTOS platforms. You must build applications with compatible flags to the PIL 
+and PSL in order to operate with |me|. The PSL must also be binary compatible 
+with the PIL. Applications must not specify the ``RTI_PSL`` or ``RTI_PIL``
+preprocessor definitions. 
+
+The following table shows the compiler flags and required options that RTI 
+used to build the PSL for FreeRTOS platforms. When you build the PSL with 
+``rtime-make``, the ``--target`` argument automatically adds all the necessary
+flags for the specified architecture. 
+
+.. list-table:: PSL Compiler Flags for FreeRTOS Platforms
+   :widths: 30 20 50
+   :header-rows: 1
+   :class: longtable
+
+   * - Architecture PSL
+     - Library Format
+     - Compiler Flags Used by RTI
+   * - armv7emleElfgcc10.3.1-FreeRTOS10.0
+     - Static Release
+     - --specs=nosys.specs --specs=nano.specs   -DNDEBUG  -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h  -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_freertos.h    -DRTIME_TARGET_NAME=\"armv7emleElfgcc10.3.1-FreeRTOS10.0\"  -DRTI_PSL=1   -DUSING_RTD=1 -D_TIMEVAL_DEFINED=0 -D__freertos__
+       -std=c99 -fstrict-aliasing  -fsigned-char -O -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums -DNDEBUG
+   * - 
+     - Static Debug
+     - --specs=nosys.specs --specs=nano.specs    -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h  -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_freertos.h    -DRTIME_TARGET_NAME=\"armv7emleElfgcc10.3.1-FreeRTOS10.0\"  -DRTI_PSL=1   -DUSING_RTD=1 -D_TIMEVAL_DEFINED=0 -D__freertos__
+       -std=c99 -fstrict-aliasing  -fsigned-char -O0 -g -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums
+   * - armv7emleElfgcc10.3.1CERT-FreeRTOS10.0
+     - Static Release
+     - --specs=nosys.specs --specs=nano.specs   -DNDEBUG  -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_freertos.h  -DRTIME_TARGET_NAME=\"armv7emleElfgcc10.3.1CERT-FreeRTOS10.0\"  -DRTI_CERT -DRTI_PSL=1  -DUSING_RTD=1 -D_TIMEVAL_DEFINED=0 -D__freertos__
+       -std=c99 -fstrict-aliasing  -fsigned-char -O -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums -DNDEBUG
+   * - 
+     - Static Debug
+     - --specs=nosys.specs --specs=nano.specs    -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h  -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_freertos.h  -DRTIME_TARGET_NAME=\"armv7emleElfgcc10.3.1CERT-FreeRTOS10.0\"  -DRTI_CERT -DRTI_PSL=1  -DUSING_RTD=1 -D_TIMEVAL_DEFINED=0 -D__freertos__
+       -std=c99 -fstrict-aliasing  -fsigned-char -O0 -g -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums
+
+System tick rollovers
+---------------------
+
+The `OMG standard <https://www.omg.org/spec>`_ does not specify how an
+implementation of DDS should handle counter rollover. By default, |me| does not
+check for rollover of the system tick count on FreeRTOS platforms. 
+
+The :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemFreeRTOS_get_time <structOSAPI__SystemI.html>`
+function uses the system tick count to calculate the time in milliseconds
+since the system started. It does so by multiplying the number of ticks since
+the system started by the FreeRTOS-defined constant ``portTICK_RATE_MS``. |me|
+stores the result in an unsigned 32-bit variable. 
+
+Two conditions can result from this calculation: the tick count can rollover, and
+the resulting calculation can be greater than the size of an ``unsigned int``
+(2^32). This can cause an overflow, which would result in time appearing to go
+backwards.
+
+If you need to change or mitigate this behavior, you can alter the source code
+for the reference implementation of :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemFreeRTOS_get_time <structOSAPI__SystemI.html>`
+(or provide your own implementation) and rebuild the PSL.
+
+.. raw:: latex
+
+  \end{landscape}
+  \newpage

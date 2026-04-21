@@ -1,0 +1,17 @@
+Interoperability
+================
+
+.. Release Notes from this point.
+
+:critical:`[Critical]` Incorrect handling of RTPS messages with submessages from different participants
+-------------------------------------------------------------------------------------------------------
+When an RTPS message that contained submessages from multiple
+participants was received, |me| incorrectly treated each submessage
+as though it was from the participant whose GUID prefix was in the RTPS
+header. |me| does not send RTPS messages with submessages from
+different participants, but other DDS vendors may do this, which would
+have led to various communication issues and a lack of interoperability.
+
+[RTI Issue ID MICRO-5984]
+
+

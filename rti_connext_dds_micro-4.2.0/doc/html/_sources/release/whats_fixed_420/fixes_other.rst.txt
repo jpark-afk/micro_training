@@ -1,0 +1,76 @@
+Other
+=====
+
+.. Release Notes from this point.
+
+:critical:`[Critical]` Potential loss of queued samples when using asynchronous communication
+---------------------------------------------------------------------------------------------
+If a sample was removed from a *DataWriter*'s history while the sample was
+queued for asynchronous publication, |me| would not properly reacquire the
+network lock. This could result in losing queued samples while using
+``BEST_EFFORT`` communication, or when resending samples with ``RELIABLE``
+communication.
+
+[RTI Issue ID MICRO-10947]
+
+:critical:`[Critical]` Missed DATA_FRAG messages with multiple fragments
+------------------------------------------------------------------------
+Under specific conditions, |me| incorrectly processed RTPS messages that
+contained more than one DATA_FRAG submessage, resulting in missed messages.
+
+[RTI Issue ID MICRO-9018]
+
+:major:`[Major]` Micro Application Generator (MAG) failed to start on macOS platforms
+-------------------------------------------------------------------------------------
+The ``rtiddsmag`` script failed to start on macOS platforms if ``java`` was not
+available in the ``PATH`` or ``JAVA_HOME``. ``rtiddsmag`` will now use the JRE
+available with the host if ``java`` is not available in the ``PATH`` or
+``JAVA_HOME``.
+
+[RTI Issue ID MAG-188]
+
+:major:`[Major]` DataWriter with finite timestamp failed to send data if date exceeded January 2038
+---------------------------------------------------------------------------------------------------
+A *DataWriter* configured with a finite source timestamp tolerance and
+DDS_BY_SOURCE_TIMESTAMP_DESTINATIONORDER_QOS would fail to send data
+after 03:14:07 UTC 19 January 2038.
+
+[RTI Issue ID MICRO-5858]
+
+:major:`[Major]` |me_h| failed to parse malformed DATA_FRAG submessages
+-----------------------------------------------------------------------
+|me| could enter an infinite loop when receiving a DATA_FRAG
+submessage with malformed inline QoS parameters.
+
+[RTI Issue ID MICRO-10288]
+
+:major:`[Major]` |me_h| would not work if year exceeded 2038
+------------------------------------------------------------
+If the date was set beyond the year 2038, |me| would not work. This was because
+the date is reported as a 32-bit unsigned integer; however, |me| expects a
+signed 32-bit value and would therefore interpret the "wrap around" value as a
+negative number, causing an error.
+
+[RTI Issue ID MICRO-2295]
+
+:minor:`[Minor]` Multiple endpoints did not match properly when using Zero Copy transfer
+----------------------------------------------------------------------------------------
+When using the Zero Copy v2 transport, multiple endpoints would not
+match properly if both *DomainParticipants* were enabled before creating
+*DataReaders* or *DataWriters.*
+
+[RTI Issue ID MICRO-10162]
+
+:minor:`[Minor]` SYSTEM_RESOURCE_LIMITS.max_components could not be changed
+---------------------------------------------------------------------------
+|me| applications could not change the ``SYSTEM_RESOURCE_LIMITS.max_components``.
+
+[RTI Issue ID MICRO-3571]
+
+:trivial:`[Trivial]` rtime-make did not support building multiple targets on Windows systems and failed to report some CMake errors
+-----------------------------------------------------------------------------------------------------------------------------------
+The rtime-make batch script would fail to build additional targets after the
+first ``--`` parameter in the command line on Windows systems. Additionally, the
+rtime-make batch and shell scripts failed to report some CMake errors correctly.
+
+[RTI Issue ID MICRO-10913]

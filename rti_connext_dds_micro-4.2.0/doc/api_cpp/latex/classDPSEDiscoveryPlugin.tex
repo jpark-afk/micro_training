@@ -1,0 +1,63 @@
+\doxysubsection{DPSEDiscovery\+Plugin Class Reference}
+\hypertarget{classDPSEDiscoveryPlugin}{}\label{classDPSEDiscoveryPlugin}\index{DPSEDiscoveryPlugin@{DPSEDiscoveryPlugin}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Discovery plug-\/in used for asserting remote entities.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+dpse.\+hxx$>$}
+
+\doxysubsubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDPSEDiscoveryPlugin_ae94de214fc741d5e13d51e261b489da4}{Remote\+Participant\+\_\+assert}} (\mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*}const participant, const char \texorpdfstring{$\ast$}{*}rem\+\_\+participant\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Assert remote participant by passing in the name of that participant. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDPSEDiscoveryPlugin_a25749241fc5e4b0424830fc86e9d47a1}{Remote\+Publication\+\_\+assert}} (\mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*}const participant, const char \texorpdfstring{$\ast$}{*}const rem\+\_\+participant\+\_\+name, const struct \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}const data, \mbox{\hyperlink{group__DDSMicroTypesModule_gad4a84f934521ca2bbf1649c8898cb1c6}{NDDS\+\_\+\+Type\+Plugin\+Key\+Kind}} key\+\_\+kind)
+\begin{DoxyCompactList}\small\item\em Assert remote publication by passing in the builtin data that describes the type, topic, and QoS of that remote publication. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDPSEDiscoveryPlugin_aa9ecd8df96a33d76dbe2c15376a3d73c}{Remote\+Subscription\+\_\+assert}} (\mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*}const participant, const char \texorpdfstring{$\ast$}{*}const rem\+\_\+participant\+\_\+name, const struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}const data, \mbox{\hyperlink{group__DDSMicroTypesModule_gad4a84f934521ca2bbf1649c8898cb1c6}{NDDS\+\_\+\+Type\+Plugin\+Key\+Kind}} key\+\_\+kind)
+\begin{DoxyCompactList}\small\item\em Assert remote subscription by passing in the builtin data that describes the type, topic, and QoS of that remote subscription. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Discovery plug-\/in used for asserting remote entities. 
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classDPSEDiscoveryPlugin_ae94de214fc741d5e13d51e261b489da4}\index{DPSEDiscoveryPlugin@{DPSEDiscoveryPlugin}!RemoteParticipant\_assert@{RemoteParticipant\_assert}}
+\index{RemoteParticipant\_assert@{RemoteParticipant\_assert}!DPSEDiscoveryPlugin@{DPSEDiscoveryPlugin}}
+\doxyparagraph{\texorpdfstring{RemoteParticipant\_assert()}{RemoteParticipant\_assert()}}
+{\footnotesize\ttfamily \label{classDPSEDiscoveryPlugin_ae94de214fc741d5e13d51e261b489da4} 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DPSEDiscovery\+Plugin\+::\+Remote\+Participant\+\_\+assert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*}const}]{participant}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{rem\+\_\+participant\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Assert remote participant by passing in the name of that participant. 
+
+DPSE discovery requires that you pre-\/configure your application with information about any remote participants that you intend to discover. The only information that needs to be pre-\/configured is the name of the remote \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} that your application intends to discover. \Hypertarget{classDPSEDiscoveryPlugin_a25749241fc5e4b0424830fc86e9d47a1}\index{DPSEDiscoveryPlugin@{DPSEDiscoveryPlugin}!RemotePublication\_assert@{RemotePublication\_assert}}
+\index{RemotePublication\_assert@{RemotePublication\_assert}!DPSEDiscoveryPlugin@{DPSEDiscoveryPlugin}}
+\doxyparagraph{\texorpdfstring{RemotePublication\_assert()}{RemotePublication\_assert()}}
+{\footnotesize\ttfamily \label{classDPSEDiscoveryPlugin_a25749241fc5e4b0424830fc86e9d47a1} 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DPSEDiscovery\+Plugin\+::\+Remote\+Publication\+\_\+assert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*}const}]{participant}{, }\item[{const char \texorpdfstring{$\ast$}{*}const}]{rem\+\_\+participant\+\_\+name}{, }\item[{const struct \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}const}]{data}{, }\item[{\mbox{\hyperlink{group__DDSMicroTypesModule_gad4a84f934521ca2bbf1649c8898cb1c6}{NDDS\+\_\+\+Type\+Plugin\+Key\+Kind}}}]{key\+\_\+kind}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Assert remote publication by passing in the builtin data that describes the type, topic, and QoS of that remote publication. 
+
+DPSE discovery requires that you pre-\/configure your application with information about any remote publications that you intend to discover and receive data from. The \doxylink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data} field must include the topic name, type name, and QoS of the remote \doxylink{classDDSDataWriter}{DDSData\+Writer} that you intend to receive communications from. 
+
+Additionally, this method takes a key\+\_\+kind argument that must match the key kind returned by the type plugin. \Hypertarget{classDPSEDiscoveryPlugin_aa9ecd8df96a33d76dbe2c15376a3d73c}\index{DPSEDiscoveryPlugin@{DPSEDiscoveryPlugin}!RemoteSubscription\_assert@{RemoteSubscription\_assert}}
+\index{RemoteSubscription\_assert@{RemoteSubscription\_assert}!DPSEDiscoveryPlugin@{DPSEDiscoveryPlugin}}
+\doxyparagraph{\texorpdfstring{RemoteSubscription\_assert()}{RemoteSubscription\_assert()}}
+{\footnotesize\ttfamily \label{classDPSEDiscoveryPlugin_aa9ecd8df96a33d76dbe2c15376a3d73c} 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DPSEDiscovery\+Plugin\+::\+Remote\+Subscription\+\_\+assert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*}const}]{participant}{, }\item[{const char \texorpdfstring{$\ast$}{*}const}]{rem\+\_\+participant\+\_\+name}{, }\item[{const struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}const}]{data}{, }\item[{\mbox{\hyperlink{group__DDSMicroTypesModule_gad4a84f934521ca2bbf1649c8898cb1c6}{NDDS\+\_\+\+Type\+Plugin\+Key\+Kind}}}]{key\+\_\+kind}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Assert remote subscription by passing in the builtin data that describes the type, topic, and QoS of that remote subscription. 
+
+DPSE discovery requires that you pre-\/configure your application with information about any remote subscriptions that you intend to discover and send data to. The \doxylink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data} parameter must include the topic name, type name, and QoS of the remote \doxylink{classDDSDataReader}{DDSData\+Reader} that your application intends to send data to. Additionally, if the remote \doxylink{classDDSDataReader}{DDSData\+Reader} is listening on a non-\/default port, you must set the remote locator (including the non-\/default port) in the \doxylink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data} that you intend to use to contact the remote \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+Additionally, this method takes a key\+\_\+kind argument that must match the key kind returned by the type plugin. 

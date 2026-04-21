@@ -1,0 +1,1712 @@
+\doxysubsubsection{NETIO}
+\hypertarget{group__NETIOLogCodesClass}{}\label{group__NETIOLogCodesClass}\index{NETIO@{NETIO}}
+
+
+Network I/O. Module\+ID = 4.  
+
+
+\doxysubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga77ce9a2d75108ec7b79b592404d998e0}{NETIO\+\_\+\+LOG\+\_\+\+GETHOST\+\_\+\+BYNAME\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 1)
+\begin{DoxyCompactList}\small\item\em Failed to get host address from a string representation. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaa9ce4c8355ac16791bb8ca5fdffebddb}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+NEW\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 2)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for a bind-\/resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gad16b8a5346d8cd0fa15cf22a56d6e07e}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+NEW\+\_\+\+RTABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 3)
+\begin{DoxyCompactList}\small\item\em Failed to create a database table for routes of a bind-\/resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga5b2707fda1cea131c3eecc936fe1bbc9}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+CREATE\+\_\+\+RTABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 4)
+\begin{DoxyCompactList}\small\item\em Failed to create route record. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gabbf1877486196eab1d85034a7649dee8}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+DELETE\+\_\+\+RTABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 5)
+\begin{DoxyCompactList}\small\item\em Failed to delete a database table for routes of a bind\+\_\+resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga6c21c697a456ec76f6e4c5e54547d62b}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+SET\+\_\+\+LENGTH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 6)
+\begin{DoxyCompactList}\small\item\em Failed to set the length for a sequence of resolved addresses. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga01eda6db98f13ad7658e4c517b9cc37b}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+SET\+\_\+\+MAX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 7)
+\begin{DoxyCompactList}\small\item\em Failed to set the maximum length of an internal sequence of addresses. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga42d455f68f67659b9bf882cc6e616911}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+EXTERNAL\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 8)
+\begin{DoxyCompactList}\small\item\em An interface failed on bind\+\_\+external. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga92f9b74f12f59ef6f3c130659731bff3}{NETIO\+\_\+\+LOG\+\_\+\+UNBIND\+\_\+\+EXTERNAL\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 10)
+\begin{DoxyCompactList}\small\item\em An interface failed on unbind\+\_\+external. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga025c111a60632e37b736b01aa0e4c381}{NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 11)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for a route resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga20e726db8fde2346c3ec7b106748fcb0}{NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 12)
+\begin{DoxyCompactList}\small\item\em Failed to create a database table for routes of a route-\/resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga1a2a1430853fa7c8745eac35e35b04e4}{NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+DELETE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 13)
+\begin{DoxyCompactList}\small\item\em Failed to delete a database table for routes of a route-\/resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gab9dc3dd08424d73eadd10d4c1f220c4a}{NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+ADD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 14)
+\begin{DoxyCompactList}\small\item\em Failed to create route resolver record. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga0dfdf9e50ae3b39e933bd1436ab4e403}{NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+UPDATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 15)
+\begin{DoxyCompactList}\small\item\em Failed to find routes to update for a route-\/resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gab1cc390844340a0cd809dd6c7f75a64b}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+ALLOC\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 16)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for address resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga43dac9005dc74671049faa9e7eff661b}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+ADD\+\_\+\+INVALID\+\_\+\+INTERFACE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 17)
+\begin{DoxyCompactList}\small\item\em An attempt was made to add an existing interface with a different port resolver to the address resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga1a3045e070283a954dd835c7884ef258}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+ADDRESS\+\_\+\+RESOLVE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 18)
+\begin{DoxyCompactList}\small\item\em An interface failed to resolve an address. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gad4fc01695262799ed092d15cd8bf6a61}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+PORT\+\_\+\+RESOLVE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 19)
+\begin{DoxyCompactList}\small\item\em An interface failed to resolve a port. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga785060b5ae982b15d40d7844f28b29e9}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+CONTEXT\+\_\+\+UNINITIALIZED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 21)
+\begin{DoxyCompactList}\small\item\em NETIO\+\_\+\+Address\+Resolver\+\_\+resolve/get\+\_\+next was called with an uninitialized context. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga51aac87e7d271bd4b2a7008892bf07e3}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+INVALID\+\_\+\+TOKEN\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 22)
+\begin{DoxyCompactList}\small\item\em An invalid token was encountered in the address string. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga8b0a55bfabb4c57b7759778cd44c686b}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+ADDRESS\+\_\+\+STRING\+\_\+\+EXCEEDED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 23)
+\begin{DoxyCompactList}\small\item\em The length of the address exceeded the address buffer passed in. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gab1f03f6fb3c100ce84bd33b43617ef22}{NETIO\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+ADDRESS\+\_\+\+INDEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 24)
+\begin{DoxyCompactList}\small\item\em An address index was not parsed correctly. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga95744429aeec74bd98bae0d4cf8cf213}{NETIO\+\_\+\+LOG\+\_\+\+ILLEGAL\+\_\+\+ROUTE\+\_\+\+OPERATION\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 25)
+\begin{DoxyCompactList}\small\item\em Illegal route operation attempted. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaecc5ba4d283e1e5a59dd0acae3de0636}{NETIO\+\_\+\+LOG\+\_\+\+SET\+\_\+\+NAME\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 26)
+\begin{DoxyCompactList}\small\item\em Failed to set the name of a runtime component interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac8ec2cb2631ca69e47d51215f9265246}{NETIO\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+SET\+\_\+\+HEAD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 27)
+\begin{DoxyCompactList}\small\item\em Failed to set packet\textquotesingle{}s head. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga191eee9e00588f32447e90ce27258112}{NETIO\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+SET\+\_\+\+TAIL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 28)
+\begin{DoxyCompactList}\small\item\em Failed to set packet\textquotesingle{}s tail. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gacb4e1da7eb8f78b421bbdca5ee4fed8c}{NETIO\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+INITIALIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 29)
+\begin{DoxyCompactList}\small\item\em Failed to initialize packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaf38cc7d678d82b6a51ba2f5187025d76}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+DELETE\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 100)
+\begin{DoxyCompactList}\small\item\em Failed to delete a database table for a NETIO loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac8137ca59a339a020681ecbef6aad78a}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+CREATE\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 101)
+\begin{DoxyCompactList}\small\item\em Failed to create a database table for a NETIO loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga4cf9c039f2cd9b9ba5ec7dffbbab6998}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+SELECT\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 102)
+\begin{DoxyCompactList}\small\item\em Failed to select a valid record when sending with the NETIO loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gae3c71e66c4a24fd81d7e794e990bf292}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+FWD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 103)
+\begin{DoxyCompactList}\small\item\em Failed to send forward with the NETIO loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac381ff7cc9a5908ce5bd55be09412c9b}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+BINDX\+\_\+\+DB\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 104)
+\begin{DoxyCompactList}\small\item\em Failed to bind an external interface with the NETIO loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga98352e1758b0cd611a0cd0cf15ee96b9}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+UNBINDX\+\_\+\+DB\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 105)
+\begin{DoxyCompactList}\small\item\em Failed to unbind an external interface with the NETIO loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac2ffb32528002ee8181e0994d9980834}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+SET\+\_\+\+LENGTH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 106)
+\begin{DoxyCompactList}\small\item\em Failed to set the length of an address sequence. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga9486423d0b9f21f1701d02f0d4aa436d}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+INVALID\+\_\+\+PROPERTY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 107)
+\begin{DoxyCompactList}\small\item\em Invalid property passed in when creating a loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga9fc4e812b78e59b9702d942f5af81795}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+INITIALIZE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 108)
+\begin{DoxyCompactList}\small\item\em Failed to initialize the loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gafd073c7ef3329cb5e9ac28c705bff846}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+CURSOR\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 109)
+\begin{DoxyCompactList}\small\item\em An error occurred with a cursor while iterating over a table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga9d6aade19e06bbad0b8fa5a908c4e966}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+INVALID\+\_\+\+FACTORY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 110)
+\begin{DoxyCompactList}\small\item\em An invalid factory was passed in to create a loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga09b7950855d16a11ceea31fa7d8b6798}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+INVALID\+\_\+\+COMPONENT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 111)
+\begin{DoxyCompactList}\small\item\em An invalid component was passed in to delete a loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gadf6b1f5e816b28973cb739c0c1e4010e}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 200)
+\begin{DoxyCompactList}\small\item\em Failed to initialize use of sockets. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga5dd6d67bc45044ad9b8d2d2bb0f18f10}{UDP\+\_\+\+LOG\+\_\+\+GETHOSTNAME\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 201)
+\begin{DoxyCompactList}\small\item\em Failed to get the host address given the host name. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga719b176d9e39acfb1ef27f019d97995f}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+SET\+\_\+\+MCAST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 202)
+\begin{DoxyCompactList}\small\item\em Failed to set a socket for multicast loopback. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga2afedbe97f94b6ce4d466da13bcefb18}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+SET\+\_\+\+MCASTIF\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 203)
+\begin{DoxyCompactList}\small\item\em Failed to set a socket for multicast bound to a specific interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga824cec52662480800db825b8501c59a2}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 204)
+\begin{DoxyCompactList}\small\item\em Failed to create a new socket, the sysrc code is the OS return code and reason for failure. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga2c84715ac5256e28357e9f9dad6b66cc}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+SETFD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 205)
+\begin{DoxyCompactList}\small\item\em Failed to set the close-\/on-\/exec flag for a socket. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga0d449cc514dc83ced32aa2c1551471b8}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+SNDBUF\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 206)
+\begin{DoxyCompactList}\small\item\em Failed to set the socket send buffer size. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga86592dc504df876be9dac75558f9ecb0}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+TTL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 207)
+\begin{DoxyCompactList}\small\item\em Failed to set multicast TTL for a socket. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac0b0a00a8746dab0d32880f9297beca3}{UDP\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 208)
+\begin{DoxyCompactList}\small\item\em Failed to initialize a receive packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga9468d203f63fc8cb8d9b7bea68f56841}{UDP\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+HEAD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 209)
+\begin{DoxyCompactList}\small\item\em Failed to set the head of a receive packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga6475340304f4b2373d9a6b8bf12e9de3}{UDP\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+FWD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 210)
+\begin{DoxyCompactList}\small\item\em Failed reception upstream for a received packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga9a4619f336a544e3e3e847617a7fd885}{UDP\+\_\+\+LOG\+\_\+\+NAT\+\_\+\+DELETE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 211)
+\begin{DoxyCompactList}\small\item\em Failed to delete a database record or index from an internal NAT. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga15df1f2862cc3a66b40cf4db351dccda}{UDP\+\_\+\+LOG\+\_\+\+FINALIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 212)
+\begin{DoxyCompactList}\small\item\em Failed to finalize the parent NETIO interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga05f216d894378d3a39b91316ae4f6ccc}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+REUSE\+\_\+\+PORT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 213)
+\begin{DoxyCompactList}\small\item\em Failed to set socket to reuse a port or address. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gab8330253758dbf2fa0e6b810695c5bee}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+BIND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 214)
+\begin{DoxyCompactList}\small\item\em Failed a socket bind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac98a1c6cf1eaaa1ca2ed3fd46df7ddc8}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+ADDGRP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 215)
+\begin{DoxyCompactList}\small\item\em Failed to add membership to a multicast group for a socket. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga39d4bb0a9381c74bb0814ec529744b6c}{UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 216)
+\begin{DoxyCompactList}\small\item\em Failed to create a bind entry for a receive port. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga820535bb01dc4e87dd3d6a0e71634f5a}{UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 217)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for a receive buffer of a specific port. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac2a53d2eb8976b79a0f6986389a8403c}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+RXBUF\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 218)
+\begin{DoxyCompactList}\small\item\em Failed to set the receive buffer size of a socket. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga07c10fe597ea98c80ebbaa2f314f6fa5}{UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+ADD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 219)
+\begin{DoxyCompactList}\small\item\em Failed to add a port entry record to a database table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaa56ec93614b92acf6330516a6cb4ce0e}{UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+THREAD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 220)
+\begin{DoxyCompactList}\small\item\em Failed to create a receive thread for a receive port. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac5ba6479fe29c69d81728eca20edb00c}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+IFLIST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 221)
+\begin{DoxyCompactList}\small\item\em Failed to get a list of interface addresses. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga87e49e869521add32672247dc3fee32d}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+IFFLAGS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 222)
+\begin{DoxyCompactList}\small\item\em Failed to get the network interface flags or mask of a socket. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaea86bccfdb840043b8b029963dbefd41}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+CLOSE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 223)
+\begin{DoxyCompactList}\small\item\em Failed to close a socket. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga4d6f7dfc0621a5ae2a881a8453c0f941}{UDP\+\_\+\+LOG\+\_\+\+LOADLIB\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 224)
+\begin{DoxyCompactList}\small\item\em Failed to load a dynamic library. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaae410ad8331ee9e07bc0f408dba182be}{UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+BUF\+\_\+\+SIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 225)
+\begin{DoxyCompactList}\small\item\em Failed to get interface buffer size. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga8894956f10a83497b8ff0a45d75cec8c}{UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+BUF\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 226)
+\begin{DoxyCompactList}\small\item\em Out of memory to allocate interface buffer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gacfd1d20f384851e854108db9be0fd3f5}{UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+IFLIST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 227)
+\begin{DoxyCompactList}\small\item\em Failed to get an interface list. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga6426b39e896766f87cde556b9442be79}{UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+NAMEINFO\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 228)
+\begin{DoxyCompactList}\small\item\em Failed getnameinfo() \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gade46214cda6d812c47e965cfadc881f0}{UDP\+\_\+\+LOG\+\_\+\+MULTICAST\+\_\+\+ENABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 229)
+\begin{DoxyCompactList}\small\item\em Failed to enable multicast loopback. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gafd217b67bf26c5d60983bab6aed04699}{UDP\+\_\+\+LOG\+\_\+\+UDP\+\_\+\+CREATE\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 230)
+\begin{DoxyCompactList}\small\item\em Failed to create a database table for a UDP interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga470afb8ea2474eb7d3516318e011fd70}{UDP\+\_\+\+LOG\+\_\+\+UDP\+\_\+\+CREATE\+\_\+\+INDEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 231)
+\begin{DoxyCompactList}\small\item\em Failed to create an index for a UDP interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga786c3f3f29b87b0db014719a2eba1823}{UDP\+\_\+\+LOG\+\_\+\+RECORD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 232)
+\begin{DoxyCompactList}\small\item\em Failed to create or insert a database record for a UDP interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga9f68715747ba0a9e875066e614404d3f}{UDP\+\_\+\+LOG\+\_\+\+PROPERTY\+\_\+\+FINALIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 233)
+\begin{DoxyCompactList}\small\item\em Failed to finalize UDP interface factory property. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac0fe2ffba65fba968ea5e4d154918a30}{UDP\+\_\+\+LOG\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 234)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for a UDP interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaafc62ddd664011d637597c9b66970c40}{UDP\+\_\+\+LOG\+\_\+\+SEND\+\_\+\+PING\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 235)
+\begin{DoxyCompactList}\small\item\em Failed sending a ping message, upon adding a route or waking up a receive thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga7008ee18d8672a3b496024fa6486619f}{UDP\+\_\+\+LOG\+\_\+\+DROPGRP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 236)
+\begin{DoxyCompactList}\small\item\em Failed to drop membership from a multicast group. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gad9f08df2ca8254ac01f357fe6293d07e}{UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+LENGTH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 237)
+\begin{DoxyCompactList}\small\item\em Length of address sequence exceeds its maximum. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga2ae4837d27bafd759d749f1cc0753ab0}{UDP\+\_\+\+LOG\+\_\+\+SET\+\_\+\+LENGTH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 240)
+\begin{DoxyCompactList}\small\item\em Failed to set the length of an address sequence. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga0a4c56cea8df1c6d5cdc0e42926cb8c3}{UDP\+\_\+\+LOG\+\_\+\+WSA\+\_\+\+STARTUP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 241)
+\begin{DoxyCompactList}\small\item\em Failed WSAStartup() \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga71ab52acfd29711af25ae89a38ba9f94}{UDP\+\_\+\+LOG\+\_\+\+WINSOCK\+\_\+\+INCOMPATIBLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 242)
+\begin{DoxyCompactList}\small\item\em Incompatible version of Winsock, must not be older than 2.\+0. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga5807757c7976f4e2d7d00573265fbb0f}{UDP\+\_\+\+LOG\+\_\+\+INCONSISTENT\+\_\+\+MAX\+\_\+\+MESSSAGE\+\_\+\+SIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 243)
+\begin{DoxyCompactList}\small\item\em Inconsistent max\+\_\+message\+\_\+size. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga4dd2a29ed2fe2df3c7d7eb41cb50fc1d}{UDP\+\_\+\+LOG\+\_\+\+INITIALIZE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 244)
+\begin{DoxyCompactList}\small\item\em Failed to initialized the loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga8ea5f9ab06a7e9653b53927421bd5899}{UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+NOT\+\_\+\+FOUND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 245)
+\begin{DoxyCompactList}\small\item\em Did not find the specified thread port. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga60b5ccbdf5c2c594d90a0093adb3083c}{UDP\+\_\+\+LOG\+\_\+\+CURSOR\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 246)
+\begin{DoxyCompactList}\small\item\em An error occurred while iterating over a cursor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga24401d1af6600c299c6010cf938780c6}{UDP\+\_\+\+LOG\+\_\+\+SEND\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 247)
+\begin{DoxyCompactList}\small\item\em Failed to send message. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac61c63a51439b6dd5126e9e0fa7a49bb}{UDP\+\_\+\+LOG\+\_\+\+MULTICAST\+\_\+\+NOT\+\_\+\+ENABLED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 248)
+\begin{DoxyCompactList}\small\item\em Multicast address ignored because multicast supported is not compiled in. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaf759dee2a13b55fa1672c91cfbacefea}{UDP\+\_\+\+LOG\+\_\+\+TRANSPORT\+\_\+\+NO\+\_\+\+INTERFACES\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 249)
+\begin{DoxyCompactList}\small\item\em Transport does not have any interfaces. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gad3d1e5e0a64119b57e12b38c127991cc}{UDP\+\_\+\+LOG\+\_\+\+RECV\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 250)
+\begin{DoxyCompactList}\small\item\em Failed to receive message. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaa590989c56fd1cfa77de4a2b2f38c7a4}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+FACTORY\+\_\+\+REFERENCE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 300)
+\begin{DoxyCompactList}\small\item\em The returned factory reference is NULL. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga24ebc0d0e13a46e919de50abe785492d}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+FACTORY\+\_\+\+NOT\+\_\+\+FOUND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 301)
+\begin{DoxyCompactList}\small\item\em Could not find the factory used as part of a transform rule. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaeaab8d1029bc0b20827a6b480b28b340}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 302)
+\begin{DoxyCompactList}\small\item\em Failed to allocate entry of the specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga6bd934069d56d6c86a3660541bcbcfcc}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 303)
+\begin{DoxyCompactList}\small\item\em Failed to create a transformation of the specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga475b1897267ecd88bbc0fc18e46a29d8}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+ADD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 304)
+\begin{DoxyCompactList}\small\item\em Failed to add object of specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga97fcc88719d72a30b2c0742ab9bb706a}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+FIND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 305)
+\begin{DoxyCompactList}\small\item\em Failed to find a transformation. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga34a3104aff5f676c4bd1cb96a7510d2f}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+DUPLICATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 306)
+\begin{DoxyCompactList}\small\item\em Duplicate object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga441d6a6209ebfd282162d57c51d10558}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+TRANSFORM\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 307)
+\begin{DoxyCompactList}\small\item\em Source or destination transformation function failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaf9a361314b2a28d4123cfcbc962caf42}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+UDP\+\_\+\+MODE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 308)
+\begin{DoxyCompactList}\small\item\em Invalid UDP mode specified. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gab9866482862d9ecf56cc2ea617c4f3ae}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+TUDP\+\_\+\+LOCATOR\+\_\+\+KIND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 309)
+\begin{DoxyCompactList}\small\item\em Invalid transformation UDP locator kind specified. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gabace77d416160432344410a6dacf1605}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 1)
+\begin{DoxyCompactList}\small\item\em Failed to delete a database table for a NETIO shared memory interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga036521b23e02c4f3290328fcd16e8438}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} +  2)
+\begin{DoxyCompactList}\small\item\em Failed to create a database table for a NETIO shared memory interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac0809b3258ee19b1e9b70af94e35fdde}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+SELECT\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 3)
+\begin{DoxyCompactList}\small\item\em Failed to select a valid record when sending with the NETIO shared memory. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga02062c26e4fe3d256cd3f4e8509541d5}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FWD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 4)
+\begin{DoxyCompactList}\small\item\em Failed to send forward with the NETIO shared memory interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga4076386011796d1bcecbca555a8dbf8c}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+BINDX\+\_\+\+DB\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 5)
+\begin{DoxyCompactList}\small\item\em Failed to bind an external interface with the NETIO shared memory interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga21a88bb21186a9365c44f655f944116b}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+UNBINDX\+\_\+\+DB\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 6)
+\begin{DoxyCompactList}\small\item\em Failed to unbind an external interface with the NETIO shared memory interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga9b7a6d376ba25ada69c4350aaafa4518}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+SET\+\_\+\+LENGTH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 7)
+\begin{DoxyCompactList}\small\item\em Failed to set the length of an address sequence. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga3414267dc48ac288ed3bcd0cde3a06c5}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+PROPERTY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 8)
+\begin{DoxyCompactList}\small\item\em Invalid property passed in when creating a shared memory interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga8799f5fdf20d211b1fb6ef3731a05e43}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INITIALIZE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 9)
+\begin{DoxyCompactList}\small\item\em Failed to initialize the shared memory interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gadbe9f1fbd61209b6fdcd917bc62e7e93}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+CURSOR\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 10)
+\begin{DoxyCompactList}\small\item\em An error occurred with a cursor while iterating over a table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga0a0ec800cf97dbb0e60ef95156016f07}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+FACTORY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 11)
+\begin{DoxyCompactList}\small\item\em An invalid factory was passed in to create a shared memory interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gab2149b3d4ea9c7ca1a2cf7770cbb9b53}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+COMPONENT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 12)
+\begin{DoxyCompactList}\small\item\em An invalid component was passed in to delete a shared memory interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga2894129607ffea9efe5aef5297be2e80}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INCOMPATIBLE\+\_\+\+COOKIE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 13)
+\begin{DoxyCompactList}\small\item\em Found incompatible cookie in shared memory header. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac318af1b78e33d29e108d01888a22add}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INCOMPATIBLE\+\_\+\+VERSION\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 14)
+\begin{DoxyCompactList}\small\item\em Found incompatible major version in shared memory header. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga976234cb2fdcc71393fcfd8c639ff361}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INCOMPATIBLE\+\_\+\+HEADER\+\_\+\+SIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 15)
+\begin{DoxyCompactList}\small\item\em Found incompatible header size in shared memory header. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gae2108898d7fd1619036f8d2460aec25b}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INCOMPATIBLE\+\_\+\+HEADER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 16)
+\begin{DoxyCompactList}\small\item\em Attempted to attach to shared memory header transport concurrent queue that is incompatible. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gafb3a48d9fbc77635d7576b15874aaf20}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+ADDRESS\+\_\+\+IN\+\_\+\+USE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 17)
+\begin{DoxyCompactList}\small\item\em Failed to create or attach to a shared memory segment. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga06e2e40fe38061e3a5c72fb4d26e7dcd}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+CHECK\+\_\+\+SYSTEM\+\_\+\+SETTINGS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 18)
+\begin{DoxyCompactList}\small\item\em Possible failure due to misconfigured system settings on Darwin operating systems. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga378f33ba7ce954033743ce5384472d47}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+MUTEX\+\_\+\+LOCK\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 19)
+\begin{DoxyCompactList}\small\item\em Failed to lock shared memory mutex protecting the shared memory segment. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gacf630a5dc39a57a3df3936bacd5add25}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+MUTEX\+\_\+\+UNLOCK\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 20)
+\begin{DoxyCompactList}\small\item\em Failed to unlock shared memory mutex protecting the shared memory segment. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gabfd21233b69519d13156bb57d617958e}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+ALLOCATE\+\_\+\+STRUCT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 21)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory needed by shared memory transport. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga64c5bb827b913c995964e3913b6c1bca}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+INITIALIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 22)
+\begin{DoxyCompactList}\small\item\em Failed to initialize shared memory transport. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga7db40c6169e192740a89c0c356b531c9}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+ATTACH\+\_\+\+INFINITE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 23)
+\begin{DoxyCompactList}\small\item\em Failed to create or attach. Possible shared memory key conflict. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaaaf7eb0eb502d0ce5e2f93fe69c3ccc4}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+INIT\+\_\+\+MUTEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 24)
+\begin{DoxyCompactList}\small\item\em Failed to create a new shared memory mutex or failed to attach to an existing one. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga2b1fc35129398b1e99b0220f2ad63452}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+INIT\+\_\+\+SIG\+\_\+\+SEM\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 25)
+\begin{DoxyCompactList}\small\item\em Failed to create signaling semaphore. A Domain Participant\textquotesingle{}s shared memory transport blocks on a signaling semaphore when waiting for data. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gadc8650e2ec236157aa368985d9ec38e2}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TAKE\+\_\+\+SIGN\+\_\+\+SEM\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 27)
+\begin{DoxyCompactList}\small\item\em Failed to take a shared memory signaling semaphore. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga914150b0af52595e3531aedc19f18597}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+SIG\+\_\+\+SEM\+\_\+\+SIGNAL\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 28)
+\begin{DoxyCompactList}\small\item\em Failed to give a shared memory signaling semaphore. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga12288e6d68187c689771c000262a10ee}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+INIT\+\_\+\+SEGMENT\+\_\+\+ADDR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 29)
+\begin{DoxyCompactList}\small\item\em Failed to attach to a shared memory segment because it doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga7d50ae456d8b4072d41a9458d31a6b44}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 30)
+\begin{DoxyCompactList}\small\item\em Failed to initialize a receive packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga356617a6f2f44ff6e000c048efabb3f8}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+INIT\+\_\+\+CONCURRENT\+\_\+\+Q\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 31)
+\begin{DoxyCompactList}\small\item\em Failed to create a concurrent queue. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga44a6c3c696071e4f5668686d932aa2a0}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+ATTACH\+\_\+\+CONCURRENT\+\_\+\+Q\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 32)
+\begin{DoxyCompactList}\small\item\em Failed to attach to a concurrent queue. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga8d3e4922aeb056b5068c094286958833}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INCOMPATIBLE\+\_\+\+CONCURRENT\+\_\+\+Q\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 33)
+\begin{DoxyCompactList}\small\item\em Attempting to attach to an incompatible concurrent queue with incompatible message\+\_\+size\+\_\+max. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga52ff0d1d15db70e1e8464d11120c6475}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+GET\+\_\+\+TIMESTAMP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 33)
+\begin{DoxyCompactList}\small\item\em Failed to get timestamp. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga4ed3fd82b77878511da395bec7e43167}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+NONFATAL\+\_\+\+SIG\+\_\+\+SEM\+\_\+\+RC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 34)
+\begin{DoxyCompactList}\small\item\em Failed to unlock shared memory mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga541660ea72f0e8a608ea5ca0008b15a5}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INCONSISTENT\+\_\+\+MESSAGE\+\_\+\+SIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 35)
+\begin{DoxyCompactList}\small\item\em Failed to unlock shared memory mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaf30da220d8c699ad69c36217438eb4c2}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+RECORD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 36)
+\begin{DoxyCompactList}\small\item\em Database operation on record failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaf80a7939956b8eb28c8a228e7bc3974b}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+HEAD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 37)
+\begin{DoxyCompactList}\small\item\em Failed to set packet head. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gad67bd1103d968b6ad6e190bf3cd60b6a}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+FWD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 38)
+\begin{DoxyCompactList}\small\item\em Failed reception upstream for a received packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga1b6146b4d9b1f98528e5797258d1341b}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+QUEUE\+\_\+\+FULL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 39)
+\begin{DoxyCompactList}\small\item\em Failed reception upstream for a received packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga5efd78ad484ebcf7d240d9b0669cb435}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+LOOKUP\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 40)
+\begin{DoxyCompactList}\small\item\em Failed to evict find an entry in the route table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga624b6d2f04a466729a226e1cae668d3b}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+DELETE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 41)
+\begin{DoxyCompactList}\small\item\em Failed to delete an entry from the route table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga31988df16e4aaec86690e74986be6b42}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+IGNORE\+\_\+\+TRANSPORT\+\_\+\+COMPATIBILITY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 42)
+\begin{DoxyCompactList}\small\item\em The shared memory transport is ignoring the requested transport minimum compatibility version because it cannot be backward compatible. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaeca3995f574d76fdf88ba0c9d45a9492}{NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+UNSUPPORTED\+\_\+\+TRANSPORT\+\_\+\+COMPATIBILITY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 43)
+\begin{DoxyCompactList}\small\item\em Unsupported minimum compatibility version because it requires a version of the shared memory transport which is not supported. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Network I/O. Module\+ID = 4. 
+
+
+
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__NETIOLogCodesClass_ga77ce9a2d75108ec7b79b592404d998e0}\index{NETIO@{NETIO}!NETIO\_LOG\_GETHOST\_BYNAME\_EC@{NETIO\_LOG\_GETHOST\_BYNAME\_EC}}
+\index{NETIO\_LOG\_GETHOST\_BYNAME\_EC@{NETIO\_LOG\_GETHOST\_BYNAME\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_GETHOST\_BYNAME\_EC}{NETIO\_LOG\_GETHOST\_BYNAME\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga77ce9a2d75108ec7b79b592404d998e0} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+GETHOST\+\_\+\+BYNAME\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 1)}
+
+
+
+Failed to get host address from a string representation. 
+
+\Hypertarget{group__NETIOLogCodesClass_gaa9ce4c8355ac16791bb8ca5fdffebddb}\index{NETIO@{NETIO}!NETIO\_LOG\_BIND\_NEW\_EC@{NETIO\_LOG\_BIND\_NEW\_EC}}
+\index{NETIO\_LOG\_BIND\_NEW\_EC@{NETIO\_LOG\_BIND\_NEW\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_BIND\_NEW\_EC}{NETIO\_LOG\_BIND\_NEW\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaa9ce4c8355ac16791bb8ca5fdffebddb} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+NEW\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 2)}
+
+
+
+Failed to allocate memory for a bind-\/resolver. 
+
+\Hypertarget{group__NETIOLogCodesClass_gad16b8a5346d8cd0fa15cf22a56d6e07e}\index{NETIO@{NETIO}!NETIO\_LOG\_BIND\_NEW\_RTABLE\_EC@{NETIO\_LOG\_BIND\_NEW\_RTABLE\_EC}}
+\index{NETIO\_LOG\_BIND\_NEW\_RTABLE\_EC@{NETIO\_LOG\_BIND\_NEW\_RTABLE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_BIND\_NEW\_RTABLE\_EC}{NETIO\_LOG\_BIND\_NEW\_RTABLE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gad16b8a5346d8cd0fa15cf22a56d6e07e} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+NEW\+\_\+\+RTABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 3)}
+
+
+
+Failed to create a database table for routes of a bind-\/resolver. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga5b2707fda1cea131c3eecc936fe1bbc9}\index{NETIO@{NETIO}!NETIO\_LOG\_BIND\_CREATE\_RTABLE\_EC@{NETIO\_LOG\_BIND\_CREATE\_RTABLE\_EC}}
+\index{NETIO\_LOG\_BIND\_CREATE\_RTABLE\_EC@{NETIO\_LOG\_BIND\_CREATE\_RTABLE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_BIND\_CREATE\_RTABLE\_EC}{NETIO\_LOG\_BIND\_CREATE\_RTABLE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga5b2707fda1cea131c3eecc936fe1bbc9} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+CREATE\+\_\+\+RTABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 4)}
+
+
+
+Failed to create route record. 
+
+May have exceeded Domain\+Participant\+Qos.\+resource\+\_\+limits.\+max\+\_\+receive\+\_\+ports or Domain\+Participant\+Qos.\+resource\+\_\+limits.\+local\+\_\+writer\+\_\+allocation \Hypertarget{group__NETIOLogCodesClass_gabbf1877486196eab1d85034a7649dee8}\index{NETIO@{NETIO}!NETIO\_LOG\_BIND\_DELETE\_RTABLE\_EC@{NETIO\_LOG\_BIND\_DELETE\_RTABLE\_EC}}
+\index{NETIO\_LOG\_BIND\_DELETE\_RTABLE\_EC@{NETIO\_LOG\_BIND\_DELETE\_RTABLE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_BIND\_DELETE\_RTABLE\_EC}{NETIO\_LOG\_BIND\_DELETE\_RTABLE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gabbf1877486196eab1d85034a7649dee8} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+DELETE\+\_\+\+RTABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 5)}
+
+
+
+Failed to delete a database table for routes of a bind\+\_\+resolver. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga6c21c697a456ec76f6e4c5e54547d62b}\index{NETIO@{NETIO}!NETIO\_LOG\_BIND\_SET\_LENGTH\_EC@{NETIO\_LOG\_BIND\_SET\_LENGTH\_EC}}
+\index{NETIO\_LOG\_BIND\_SET\_LENGTH\_EC@{NETIO\_LOG\_BIND\_SET\_LENGTH\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_BIND\_SET\_LENGTH\_EC}{NETIO\_LOG\_BIND\_SET\_LENGTH\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga6c21c697a456ec76f6e4c5e54547d62b} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+SET\+\_\+\+LENGTH\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 6)}
+
+
+
+Failed to set the length for a sequence of resolved addresses. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga01eda6db98f13ad7658e4c517b9cc37b}\index{NETIO@{NETIO}!NETIO\_LOG\_BIND\_SET\_MAX\_EC@{NETIO\_LOG\_BIND\_SET\_MAX\_EC}}
+\index{NETIO\_LOG\_BIND\_SET\_MAX\_EC@{NETIO\_LOG\_BIND\_SET\_MAX\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_BIND\_SET\_MAX\_EC}{NETIO\_LOG\_BIND\_SET\_MAX\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga01eda6db98f13ad7658e4c517b9cc37b} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+SET\+\_\+\+MAX\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 7)}
+
+
+
+Failed to set the maximum length of an internal sequence of addresses. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga42d455f68f67659b9bf882cc6e616911}\index{NETIO@{NETIO}!NETIO\_LOG\_BIND\_EXTERNAL\_FAILED\_EC@{NETIO\_LOG\_BIND\_EXTERNAL\_FAILED\_EC}}
+\index{NETIO\_LOG\_BIND\_EXTERNAL\_FAILED\_EC@{NETIO\_LOG\_BIND\_EXTERNAL\_FAILED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_BIND\_EXTERNAL\_FAILED\_EC}{NETIO\_LOG\_BIND\_EXTERNAL\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga42d455f68f67659b9bf882cc6e616911} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+EXTERNAL\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 8)}
+
+
+
+An interface failed on bind\+\_\+external. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga92f9b74f12f59ef6f3c130659731bff3}\index{NETIO@{NETIO}!NETIO\_LOG\_UNBIND\_EXTERNAL\_FAILED\_EC@{NETIO\_LOG\_UNBIND\_EXTERNAL\_FAILED\_EC}}
+\index{NETIO\_LOG\_UNBIND\_EXTERNAL\_FAILED\_EC@{NETIO\_LOG\_UNBIND\_EXTERNAL\_FAILED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_UNBIND\_EXTERNAL\_FAILED\_EC}{NETIO\_LOG\_UNBIND\_EXTERNAL\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga92f9b74f12f59ef6f3c130659731bff3} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+UNBIND\+\_\+\+EXTERNAL\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 10)}
+
+
+
+An interface failed on unbind\+\_\+external. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga025c111a60632e37b736b01aa0e4c381}\index{NETIO@{NETIO}!NETIO\_LOG\_ROUTE\_RTABLE\_ALLOC\_EC@{NETIO\_LOG\_ROUTE\_RTABLE\_ALLOC\_EC}}
+\index{NETIO\_LOG\_ROUTE\_RTABLE\_ALLOC\_EC@{NETIO\_LOG\_ROUTE\_RTABLE\_ALLOC\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_ROUTE\_RTABLE\_ALLOC\_EC}{NETIO\_LOG\_ROUTE\_RTABLE\_ALLOC\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga025c111a60632e37b736b01aa0e4c381} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+ALLOC\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 11)}
+
+
+
+Failed to allocate memory for a route resolver. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga20e726db8fde2346c3ec7b106748fcb0}\index{NETIO@{NETIO}!NETIO\_LOG\_ROUTE\_RTABLE\_CREATE\_EC@{NETIO\_LOG\_ROUTE\_RTABLE\_CREATE\_EC}}
+\index{NETIO\_LOG\_ROUTE\_RTABLE\_CREATE\_EC@{NETIO\_LOG\_ROUTE\_RTABLE\_CREATE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_ROUTE\_RTABLE\_CREATE\_EC}{NETIO\_LOG\_ROUTE\_RTABLE\_CREATE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga20e726db8fde2346c3ec7b106748fcb0} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+CREATE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 12)}
+
+
+
+Failed to create a database table for routes of a route-\/resolver. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga1a2a1430853fa7c8745eac35e35b04e4}\index{NETIO@{NETIO}!NETIO\_LOG\_ROUTE\_RTABLE\_DELETE\_EC@{NETIO\_LOG\_ROUTE\_RTABLE\_DELETE\_EC}}
+\index{NETIO\_LOG\_ROUTE\_RTABLE\_DELETE\_EC@{NETIO\_LOG\_ROUTE\_RTABLE\_DELETE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_ROUTE\_RTABLE\_DELETE\_EC}{NETIO\_LOG\_ROUTE\_RTABLE\_DELETE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga1a2a1430853fa7c8745eac35e35b04e4} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+DELETE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 13)}
+
+
+
+Failed to delete a database table for routes of a route-\/resolver. 
+
+\Hypertarget{group__NETIOLogCodesClass_gab9dc3dd08424d73eadd10d4c1f220c4a}\index{NETIO@{NETIO}!NETIO\_LOG\_ROUTE\_RTABLE\_ADD\_EC@{NETIO\_LOG\_ROUTE\_RTABLE\_ADD\_EC}}
+\index{NETIO\_LOG\_ROUTE\_RTABLE\_ADD\_EC@{NETIO\_LOG\_ROUTE\_RTABLE\_ADD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_ROUTE\_RTABLE\_ADD\_EC}{NETIO\_LOG\_ROUTE\_RTABLE\_ADD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gab9dc3dd08424d73eadd10d4c1f220c4a} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+ADD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 14)}
+
+
+
+Failed to create route resolver record. 
+
+May have exceeded Domain\+Participant\+Qos.\+resource\+\_\+limits.\+max\+\_\+destination\+\_\+ports \Hypertarget{group__NETIOLogCodesClass_ga0dfdf9e50ae3b39e933bd1436ab4e403}\index{NETIO@{NETIO}!NETIO\_LOG\_ROUTE\_RTABLE\_UPDATE\_EC@{NETIO\_LOG\_ROUTE\_RTABLE\_UPDATE\_EC}}
+\index{NETIO\_LOG\_ROUTE\_RTABLE\_UPDATE\_EC@{NETIO\_LOG\_ROUTE\_RTABLE\_UPDATE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_ROUTE\_RTABLE\_UPDATE\_EC}{NETIO\_LOG\_ROUTE\_RTABLE\_UPDATE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga0dfdf9e50ae3b39e933bd1436ab4e403} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+UPDATE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 15)}
+
+
+
+Failed to find routes to update for a route-\/resolver. 
+
+\Hypertarget{group__NETIOLogCodesClass_gab1cc390844340a0cd809dd6c7f75a64b}\index{NETIO@{NETIO}!NETIO\_LOG\_AR\_ALLOC\_FAILED\_EC@{NETIO\_LOG\_AR\_ALLOC\_FAILED\_EC}}
+\index{NETIO\_LOG\_AR\_ALLOC\_FAILED\_EC@{NETIO\_LOG\_AR\_ALLOC\_FAILED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_AR\_ALLOC\_FAILED\_EC}{NETIO\_LOG\_AR\_ALLOC\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gab1cc390844340a0cd809dd6c7f75a64b} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+ALLOC\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 16)}
+
+
+
+Failed to allocate memory for address resolver. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga43dac9005dc74671049faa9e7eff661b}\index{NETIO@{NETIO}!NETIO\_LOG\_AR\_ADD\_INVALID\_INTERFACE\_EC@{NETIO\_LOG\_AR\_ADD\_INVALID\_INTERFACE\_EC}}
+\index{NETIO\_LOG\_AR\_ADD\_INVALID\_INTERFACE\_EC@{NETIO\_LOG\_AR\_ADD\_INVALID\_INTERFACE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_AR\_ADD\_INVALID\_INTERFACE\_EC}{NETIO\_LOG\_AR\_ADD\_INVALID\_INTERFACE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga43dac9005dc74671049faa9e7eff661b} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+ADD\+\_\+\+INVALID\+\_\+\+INTERFACE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 17)}
+
+
+
+An attempt was made to add an existing interface with a different port resolver to the address resolver. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga1a3045e070283a954dd835c7884ef258}\index{NETIO@{NETIO}!NETIO\_LOG\_AR\_ADDRESS\_RESOLVE\_FAILED\_EC@{NETIO\_LOG\_AR\_ADDRESS\_RESOLVE\_FAILED\_EC}}
+\index{NETIO\_LOG\_AR\_ADDRESS\_RESOLVE\_FAILED\_EC@{NETIO\_LOG\_AR\_ADDRESS\_RESOLVE\_FAILED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_AR\_ADDRESS\_RESOLVE\_FAILED\_EC}{NETIO\_LOG\_AR\_ADDRESS\_RESOLVE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga1a3045e070283a954dd835c7884ef258} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+ADDRESS\+\_\+\+RESOLVE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 18)}
+
+
+
+An interface failed to resolve an address. 
+
+\Hypertarget{group__NETIOLogCodesClass_gad4fc01695262799ed092d15cd8bf6a61}\index{NETIO@{NETIO}!NETIO\_LOG\_AR\_PORT\_RESOLVE\_FAILED\_EC@{NETIO\_LOG\_AR\_PORT\_RESOLVE\_FAILED\_EC}}
+\index{NETIO\_LOG\_AR\_PORT\_RESOLVE\_FAILED\_EC@{NETIO\_LOG\_AR\_PORT\_RESOLVE\_FAILED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_AR\_PORT\_RESOLVE\_FAILED\_EC}{NETIO\_LOG\_AR\_PORT\_RESOLVE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gad4fc01695262799ed092d15cd8bf6a61} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+PORT\+\_\+\+RESOLVE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 19)}
+
+
+
+An interface failed to resolve a port. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga785060b5ae982b15d40d7844f28b29e9}\index{NETIO@{NETIO}!NETIO\_LOG\_AR\_CONTEXT\_UNINITIALIZED\_EC@{NETIO\_LOG\_AR\_CONTEXT\_UNINITIALIZED\_EC}}
+\index{NETIO\_LOG\_AR\_CONTEXT\_UNINITIALIZED\_EC@{NETIO\_LOG\_AR\_CONTEXT\_UNINITIALIZED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_AR\_CONTEXT\_UNINITIALIZED\_EC}{NETIO\_LOG\_AR\_CONTEXT\_UNINITIALIZED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga785060b5ae982b15d40d7844f28b29e9} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+CONTEXT\+\_\+\+UNINITIALIZED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 21)}
+
+
+
+NETIO\+\_\+\+Address\+Resolver\+\_\+resolve/get\+\_\+next was called with an uninitialized context. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga51aac87e7d271bd4b2a7008892bf07e3}\index{NETIO@{NETIO}!NETIO\_LOG\_AR\_INVALID\_TOKEN\_EC@{NETIO\_LOG\_AR\_INVALID\_TOKEN\_EC}}
+\index{NETIO\_LOG\_AR\_INVALID\_TOKEN\_EC@{NETIO\_LOG\_AR\_INVALID\_TOKEN\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_AR\_INVALID\_TOKEN\_EC}{NETIO\_LOG\_AR\_INVALID\_TOKEN\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga51aac87e7d271bd4b2a7008892bf07e3} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+INVALID\+\_\+\+TOKEN\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 22)}
+
+
+
+An invalid token was encountered in the address string. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga8b0a55bfabb4c57b7759778cd44c686b}\index{NETIO@{NETIO}!NETIO\_LOG\_AR\_ADDRESS\_STRING\_EXCEEDED\_EC@{NETIO\_LOG\_AR\_ADDRESS\_STRING\_EXCEEDED\_EC}}
+\index{NETIO\_LOG\_AR\_ADDRESS\_STRING\_EXCEEDED\_EC@{NETIO\_LOG\_AR\_ADDRESS\_STRING\_EXCEEDED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_AR\_ADDRESS\_STRING\_EXCEEDED\_EC}{NETIO\_LOG\_AR\_ADDRESS\_STRING\_EXCEEDED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga8b0a55bfabb4c57b7759778cd44c686b} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+ADDRESS\+\_\+\+STRING\+\_\+\+EXCEEDED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 23)}
+
+
+
+The length of the address exceeded the address buffer passed in. 
+
+\Hypertarget{group__NETIOLogCodesClass_gab1f03f6fb3c100ce84bd33b43617ef22}\index{NETIO@{NETIO}!NETIO\_LOG\_INVALID\_ADDRESS\_INDEX\_EC@{NETIO\_LOG\_INVALID\_ADDRESS\_INDEX\_EC}}
+\index{NETIO\_LOG\_INVALID\_ADDRESS\_INDEX\_EC@{NETIO\_LOG\_INVALID\_ADDRESS\_INDEX\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_INVALID\_ADDRESS\_INDEX\_EC}{NETIO\_LOG\_INVALID\_ADDRESS\_INDEX\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gab1f03f6fb3c100ce84bd33b43617ef22} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+ADDRESS\+\_\+\+INDEX\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 24)}
+
+
+
+An address index was not parsed correctly. 
+
+When parsing an address string the index was not specified correctly. Legal formats are\+: N@ \mbox{[},N\mbox{]}@ \mbox{[}N\mbox{]}@ \mbox{[}M,N\mbox{]}@
+
+Where N and M are integers \texorpdfstring{$>$}{>}= 0 \Hypertarget{group__NETIOLogCodesClass_ga95744429aeec74bd98bae0d4cf8cf213}\index{NETIO@{NETIO}!NETIO\_LOG\_ILLEGAL\_ROUTE\_OPERATION\_EC@{NETIO\_LOG\_ILLEGAL\_ROUTE\_OPERATION\_EC}}
+\index{NETIO\_LOG\_ILLEGAL\_ROUTE\_OPERATION\_EC@{NETIO\_LOG\_ILLEGAL\_ROUTE\_OPERATION\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_ILLEGAL\_ROUTE\_OPERATION\_EC}{NETIO\_LOG\_ILLEGAL\_ROUTE\_OPERATION\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga95744429aeec74bd98bae0d4cf8cf213} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+ILLEGAL\+\_\+\+ROUTE\+\_\+\+OPERATION\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 25)}
+
+
+
+Illegal route operation attempted. 
+
+\Hypertarget{group__NETIOLogCodesClass_gaecc5ba4d283e1e5a59dd0acae3de0636}\index{NETIO@{NETIO}!NETIO\_LOG\_SET\_NAME\_EC@{NETIO\_LOG\_SET\_NAME\_EC}}
+\index{NETIO\_LOG\_SET\_NAME\_EC@{NETIO\_LOG\_SET\_NAME\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_SET\_NAME\_EC}{NETIO\_LOG\_SET\_NAME\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaecc5ba4d283e1e5a59dd0acae3de0636} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+SET\+\_\+\+NAME\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 26)}
+
+
+
+Failed to set the name of a runtime component interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_gac8ec2cb2631ca69e47d51215f9265246}\index{NETIO@{NETIO}!NETIO\_LOG\_PACKET\_SET\_HEAD\_EC@{NETIO\_LOG\_PACKET\_SET\_HEAD\_EC}}
+\index{NETIO\_LOG\_PACKET\_SET\_HEAD\_EC@{NETIO\_LOG\_PACKET\_SET\_HEAD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_PACKET\_SET\_HEAD\_EC}{NETIO\_LOG\_PACKET\_SET\_HEAD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gac8ec2cb2631ca69e47d51215f9265246} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+SET\+\_\+\+HEAD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 27)}
+
+
+
+Failed to set packet\textquotesingle{}s head. 
+
+NETIO\+\_\+\+Packet\+\_\+set\+\_\+head() failed, due to an invalid delta that would have moved the head position out-\/of-\/bounds of the packet. \Hypertarget{group__NETIOLogCodesClass_ga191eee9e00588f32447e90ce27258112}\index{NETIO@{NETIO}!NETIO\_LOG\_PACKET\_SET\_TAIL\_EC@{NETIO\_LOG\_PACKET\_SET\_TAIL\_EC}}
+\index{NETIO\_LOG\_PACKET\_SET\_TAIL\_EC@{NETIO\_LOG\_PACKET\_SET\_TAIL\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_PACKET\_SET\_TAIL\_EC}{NETIO\_LOG\_PACKET\_SET\_TAIL\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga191eee9e00588f32447e90ce27258112} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+SET\+\_\+\+TAIL\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 28)}
+
+
+
+Failed to set packet\textquotesingle{}s tail. 
+
+NETIO\+\_\+\+Packet\+\_\+set\+\_\+tail() failed, due to an invalid delta that would have moved the tail position out-\/of-\/bounds of the packet. \Hypertarget{group__NETIOLogCodesClass_gacb4e1da7eb8f78b421bbdca5ee4fed8c}\index{NETIO@{NETIO}!NETIO\_LOG\_PACKET\_INITIALIZE\_EC@{NETIO\_LOG\_PACKET\_INITIALIZE\_EC}}
+\index{NETIO\_LOG\_PACKET\_INITIALIZE\_EC@{NETIO\_LOG\_PACKET\_INITIALIZE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_PACKET\_INITIALIZE\_EC}{NETIO\_LOG\_PACKET\_INITIALIZE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gacb4e1da7eb8f78b421bbdca5ee4fed8c} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+INITIALIZE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 29)}
+
+
+
+Failed to initialize packet. 
+
+NETIO\+\_\+\+Packet\+\_\+initialize() failed due to invalid arguments \Hypertarget{group__NETIOLogCodesClass_gaf38cc7d678d82b6a51ba2f5187025d76}\index{NETIO@{NETIO}!NETIO\_LOG\_LOOP\_DELETE\_TABLE\_EC@{NETIO\_LOG\_LOOP\_DELETE\_TABLE\_EC}}
+\index{NETIO\_LOG\_LOOP\_DELETE\_TABLE\_EC@{NETIO\_LOG\_LOOP\_DELETE\_TABLE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_LOOP\_DELETE\_TABLE\_EC}{NETIO\_LOG\_LOOP\_DELETE\_TABLE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaf38cc7d678d82b6a51ba2f5187025d76} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+DELETE\+\_\+\+TABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 100)}
+
+
+
+Failed to delete a database table for a NETIO loopback interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_gac8137ca59a339a020681ecbef6aad78a}\index{NETIO@{NETIO}!NETIO\_LOG\_LOOP\_CREATE\_TABLE\_EC@{NETIO\_LOG\_LOOP\_CREATE\_TABLE\_EC}}
+\index{NETIO\_LOG\_LOOP\_CREATE\_TABLE\_EC@{NETIO\_LOG\_LOOP\_CREATE\_TABLE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_LOOP\_CREATE\_TABLE\_EC}{NETIO\_LOG\_LOOP\_CREATE\_TABLE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gac8137ca59a339a020681ecbef6aad78a} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+CREATE\+\_\+\+TABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 101)}
+
+
+
+Failed to create a database table for a NETIO loopback interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga4cf9c039f2cd9b9ba5ec7dffbbab6998}\index{NETIO@{NETIO}!NETIO\_LOG\_LOOP\_SELECT\_TABLE\_EC@{NETIO\_LOG\_LOOP\_SELECT\_TABLE\_EC}}
+\index{NETIO\_LOG\_LOOP\_SELECT\_TABLE\_EC@{NETIO\_LOG\_LOOP\_SELECT\_TABLE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_LOOP\_SELECT\_TABLE\_EC}{NETIO\_LOG\_LOOP\_SELECT\_TABLE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga4cf9c039f2cd9b9ba5ec7dffbbab6998} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+SELECT\+\_\+\+TABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 102)}
+
+
+
+Failed to select a valid record when sending with the NETIO loopback interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_gae3c71e66c4a24fd81d7e794e990bf292}\index{NETIO@{NETIO}!NETIO\_LOG\_LOOP\_FWD\_EC@{NETIO\_LOG\_LOOP\_FWD\_EC}}
+\index{NETIO\_LOG\_LOOP\_FWD\_EC@{NETIO\_LOG\_LOOP\_FWD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_LOOP\_FWD\_EC}{NETIO\_LOG\_LOOP\_FWD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gae3c71e66c4a24fd81d7e794e990bf292} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+FWD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 103)}
+
+
+
+Failed to send forward with the NETIO loopback interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_gac381ff7cc9a5908ce5bd55be09412c9b}\index{NETIO@{NETIO}!NETIO\_LOG\_LOOP\_BINDX\_DB\_EC@{NETIO\_LOG\_LOOP\_BINDX\_DB\_EC}}
+\index{NETIO\_LOG\_LOOP\_BINDX\_DB\_EC@{NETIO\_LOG\_LOOP\_BINDX\_DB\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_LOOP\_BINDX\_DB\_EC}{NETIO\_LOG\_LOOP\_BINDX\_DB\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gac381ff7cc9a5908ce5bd55be09412c9b} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+BINDX\+\_\+\+DB\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 104)}
+
+
+
+Failed to bind an external interface with the NETIO loopback interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga98352e1758b0cd611a0cd0cf15ee96b9}\index{NETIO@{NETIO}!NETIO\_LOG\_LOOP\_UNBINDX\_DB\_EC@{NETIO\_LOG\_LOOP\_UNBINDX\_DB\_EC}}
+\index{NETIO\_LOG\_LOOP\_UNBINDX\_DB\_EC@{NETIO\_LOG\_LOOP\_UNBINDX\_DB\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_LOOP\_UNBINDX\_DB\_EC}{NETIO\_LOG\_LOOP\_UNBINDX\_DB\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga98352e1758b0cd611a0cd0cf15ee96b9} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+UNBINDX\+\_\+\+DB\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 105)}
+
+
+
+Failed to unbind an external interface with the NETIO loopback interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_gac2ffb32528002ee8181e0994d9980834}\index{NETIO@{NETIO}!NETIO\_LOG\_LOOP\_SET\_LENGTH\_EC@{NETIO\_LOG\_LOOP\_SET\_LENGTH\_EC}}
+\index{NETIO\_LOG\_LOOP\_SET\_LENGTH\_EC@{NETIO\_LOG\_LOOP\_SET\_LENGTH\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_LOOP\_SET\_LENGTH\_EC}{NETIO\_LOG\_LOOP\_SET\_LENGTH\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gac2ffb32528002ee8181e0994d9980834} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+SET\+\_\+\+LENGTH\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 106)}
+
+
+
+Failed to set the length of an address sequence. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga9486423d0b9f21f1701d02f0d4aa436d}\index{NETIO@{NETIO}!NETIO\_LOG\_LOOP\_INVALID\_PROPERTY\_EC@{NETIO\_LOG\_LOOP\_INVALID\_PROPERTY\_EC}}
+\index{NETIO\_LOG\_LOOP\_INVALID\_PROPERTY\_EC@{NETIO\_LOG\_LOOP\_INVALID\_PROPERTY\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_LOOP\_INVALID\_PROPERTY\_EC}{NETIO\_LOG\_LOOP\_INVALID\_PROPERTY\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga9486423d0b9f21f1701d02f0d4aa436d} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+INVALID\+\_\+\+PROPERTY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 107)}
+
+
+
+Invalid property passed in when creating a loopback interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga9fc4e812b78e59b9702d942f5af81795}\index{NETIO@{NETIO}!NETIO\_LOG\_LOOP\_INITIALIZE\_FAILED\_EC@{NETIO\_LOG\_LOOP\_INITIALIZE\_FAILED\_EC}}
+\index{NETIO\_LOG\_LOOP\_INITIALIZE\_FAILED\_EC@{NETIO\_LOG\_LOOP\_INITIALIZE\_FAILED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_LOOP\_INITIALIZE\_FAILED\_EC}{NETIO\_LOG\_LOOP\_INITIALIZE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga9fc4e812b78e59b9702d942f5af81795} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+INITIALIZE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 108)}
+
+
+
+Failed to initialize the loopback interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_gafd073c7ef3329cb5e9ac28c705bff846}\index{NETIO@{NETIO}!NETIO\_LOG\_LOOP\_CURSOR\_ERROR\_EC@{NETIO\_LOG\_LOOP\_CURSOR\_ERROR\_EC}}
+\index{NETIO\_LOG\_LOOP\_CURSOR\_ERROR\_EC@{NETIO\_LOG\_LOOP\_CURSOR\_ERROR\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_LOOP\_CURSOR\_ERROR\_EC}{NETIO\_LOG\_LOOP\_CURSOR\_ERROR\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gafd073c7ef3329cb5e9ac28c705bff846} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+CURSOR\+\_\+\+ERROR\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 109)}
+
+
+
+An error occurred with a cursor while iterating over a table. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga9d6aade19e06bbad0b8fa5a908c4e966}\index{NETIO@{NETIO}!NETIO\_LOG\_LOOP\_INVALID\_FACTORY\_EC@{NETIO\_LOG\_LOOP\_INVALID\_FACTORY\_EC}}
+\index{NETIO\_LOG\_LOOP\_INVALID\_FACTORY\_EC@{NETIO\_LOG\_LOOP\_INVALID\_FACTORY\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_LOOP\_INVALID\_FACTORY\_EC}{NETIO\_LOG\_LOOP\_INVALID\_FACTORY\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga9d6aade19e06bbad0b8fa5a908c4e966} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+INVALID\+\_\+\+FACTORY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 110)}
+
+
+
+An invalid factory was passed in to create a loopback interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga09b7950855d16a11ceea31fa7d8b6798}\index{NETIO@{NETIO}!NETIO\_LOG\_LOOP\_INVALID\_COMPONENT\_EC@{NETIO\_LOG\_LOOP\_INVALID\_COMPONENT\_EC}}
+\index{NETIO\_LOG\_LOOP\_INVALID\_COMPONENT\_EC@{NETIO\_LOG\_LOOP\_INVALID\_COMPONENT\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_LOOP\_INVALID\_COMPONENT\_EC}{NETIO\_LOG\_LOOP\_INVALID\_COMPONENT\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga09b7950855d16a11ceea31fa7d8b6798} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+INVALID\+\_\+\+COMPONENT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 111)}
+
+
+
+An invalid component was passed in to delete a loopback interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_gadf6b1f5e816b28973cb739c0c1e4010e}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_INIT\_EC@{UDP\_LOG\_SOCKET\_INIT\_EC}}
+\index{UDP\_LOG\_SOCKET\_INIT\_EC@{UDP\_LOG\_SOCKET\_INIT\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_INIT\_EC}{UDP\_LOG\_SOCKET\_INIT\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gadf6b1f5e816b28973cb739c0c1e4010e} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+INIT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 200)}
+
+
+
+Failed to initialize use of sockets. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga5dd6d67bc45044ad9b8d2d2bb0f18f10}\index{NETIO@{NETIO}!UDP\_LOG\_GETHOSTNAME\_EC@{UDP\_LOG\_GETHOSTNAME\_EC}}
+\index{UDP\_LOG\_GETHOSTNAME\_EC@{UDP\_LOG\_GETHOSTNAME\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_GETHOSTNAME\_EC}{UDP\_LOG\_GETHOSTNAME\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga5dd6d67bc45044ad9b8d2d2bb0f18f10} 
+\#define UDP\+\_\+\+LOG\+\_\+\+GETHOSTNAME\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 201)}
+
+
+
+Failed to get the host address given the host name. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga719b176d9e39acfb1ef27f019d97995f}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_SET\_MCAST\_EC@{UDP\_LOG\_SOCKET\_SET\_MCAST\_EC}}
+\index{UDP\_LOG\_SOCKET\_SET\_MCAST\_EC@{UDP\_LOG\_SOCKET\_SET\_MCAST\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_SET\_MCAST\_EC}{UDP\_LOG\_SOCKET\_SET\_MCAST\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga719b176d9e39acfb1ef27f019d97995f} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+SET\+\_\+\+MCAST\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 202)}
+
+
+
+Failed to set a socket for multicast loopback. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga2afedbe97f94b6ce4d466da13bcefb18}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_SET\_MCASTIF\_EC@{UDP\_LOG\_SOCKET\_SET\_MCASTIF\_EC}}
+\index{UDP\_LOG\_SOCKET\_SET\_MCASTIF\_EC@{UDP\_LOG\_SOCKET\_SET\_MCASTIF\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_SET\_MCASTIF\_EC}{UDP\_LOG\_SOCKET\_SET\_MCASTIF\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga2afedbe97f94b6ce4d466da13bcefb18} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+SET\+\_\+\+MCASTIF\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 203)}
+
+
+
+Failed to set a socket for multicast bound to a specific interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga824cec52662480800db825b8501c59a2}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_CREATE\_EC@{UDP\_LOG\_SOCKET\_CREATE\_EC}}
+\index{UDP\_LOG\_SOCKET\_CREATE\_EC@{UDP\_LOG\_SOCKET\_CREATE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_CREATE\_EC}{UDP\_LOG\_SOCKET\_CREATE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga824cec52662480800db825b8501c59a2} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+CREATE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 204)}
+
+
+
+Failed to create a new socket, the sysrc code is the OS return code and reason for failure. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga2c84715ac5256e28357e9f9dad6b66cc}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_SETFD\_EC@{UDP\_LOG\_SOCKET\_SETFD\_EC}}
+\index{UDP\_LOG\_SOCKET\_SETFD\_EC@{UDP\_LOG\_SOCKET\_SETFD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_SETFD\_EC}{UDP\_LOG\_SOCKET\_SETFD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga2c84715ac5256e28357e9f9dad6b66cc} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+SETFD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 205)}
+
+
+
+Failed to set the close-\/on-\/exec flag for a socket. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga0d449cc514dc83ced32aa2c1551471b8}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_SNDBUF\_EC@{UDP\_LOG\_SOCKET\_SNDBUF\_EC}}
+\index{UDP\_LOG\_SOCKET\_SNDBUF\_EC@{UDP\_LOG\_SOCKET\_SNDBUF\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_SNDBUF\_EC}{UDP\_LOG\_SOCKET\_SNDBUF\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga0d449cc514dc83ced32aa2c1551471b8} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+SNDBUF\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 206)}
+
+
+
+Failed to set the socket send buffer size. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga86592dc504df876be9dac75558f9ecb0}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_TTL\_EC@{UDP\_LOG\_SOCKET\_TTL\_EC}}
+\index{UDP\_LOG\_SOCKET\_TTL\_EC@{UDP\_LOG\_SOCKET\_TTL\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_TTL\_EC}{UDP\_LOG\_SOCKET\_TTL\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga86592dc504df876be9dac75558f9ecb0} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+TTL\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 207)}
+
+
+
+Failed to set multicast TTL for a socket. 
+
+\Hypertarget{group__NETIOLogCodesClass_gac0b0a00a8746dab0d32880f9297beca3}\index{NETIO@{NETIO}!UDP\_LOG\_PACKET\_INIT\_EC@{UDP\_LOG\_PACKET\_INIT\_EC}}
+\index{UDP\_LOG\_PACKET\_INIT\_EC@{UDP\_LOG\_PACKET\_INIT\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_PACKET\_INIT\_EC}{UDP\_LOG\_PACKET\_INIT\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gac0b0a00a8746dab0d32880f9297beca3} 
+\#define UDP\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+INIT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 208)}
+
+
+
+Failed to initialize a receive packet. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga9468d203f63fc8cb8d9b7bea68f56841}\index{NETIO@{NETIO}!UDP\_LOG\_PACKET\_HEAD\_EC@{UDP\_LOG\_PACKET\_HEAD\_EC}}
+\index{UDP\_LOG\_PACKET\_HEAD\_EC@{UDP\_LOG\_PACKET\_HEAD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_PACKET\_HEAD\_EC}{UDP\_LOG\_PACKET\_HEAD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga9468d203f63fc8cb8d9b7bea68f56841} 
+\#define UDP\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+HEAD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 209)}
+
+
+
+Failed to set the head of a receive packet. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga6475340304f4b2373d9a6b8bf12e9de3}\index{NETIO@{NETIO}!UDP\_LOG\_PACKET\_FWD\_EC@{UDP\_LOG\_PACKET\_FWD\_EC}}
+\index{UDP\_LOG\_PACKET\_FWD\_EC@{UDP\_LOG\_PACKET\_FWD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_PACKET\_FWD\_EC}{UDP\_LOG\_PACKET\_FWD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga6475340304f4b2373d9a6b8bf12e9de3} 
+\#define UDP\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+FWD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 210)}
+
+
+
+Failed reception upstream for a received packet. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga9a4619f336a544e3e3e847617a7fd885}\index{NETIO@{NETIO}!UDP\_LOG\_NAT\_DELETE\_EC@{UDP\_LOG\_NAT\_DELETE\_EC}}
+\index{UDP\_LOG\_NAT\_DELETE\_EC@{UDP\_LOG\_NAT\_DELETE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_NAT\_DELETE\_EC}{UDP\_LOG\_NAT\_DELETE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga9a4619f336a544e3e3e847617a7fd885} 
+\#define UDP\+\_\+\+LOG\+\_\+\+NAT\+\_\+\+DELETE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 211)}
+
+
+
+Failed to delete a database record or index from an internal NAT. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga15df1f2862cc3a66b40cf4db351dccda}\index{NETIO@{NETIO}!UDP\_LOG\_FINALIZE\_EC@{UDP\_LOG\_FINALIZE\_EC}}
+\index{UDP\_LOG\_FINALIZE\_EC@{UDP\_LOG\_FINALIZE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_FINALIZE\_EC}{UDP\_LOG\_FINALIZE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga15df1f2862cc3a66b40cf4db351dccda} 
+\#define UDP\+\_\+\+LOG\+\_\+\+FINALIZE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 212)}
+
+
+
+Failed to finalize the parent NETIO interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga05f216d894378d3a39b91316ae4f6ccc}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_REUSE\_PORT\_EC@{UDP\_LOG\_SOCKET\_REUSE\_PORT\_EC}}
+\index{UDP\_LOG\_SOCKET\_REUSE\_PORT\_EC@{UDP\_LOG\_SOCKET\_REUSE\_PORT\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_REUSE\_PORT\_EC}{UDP\_LOG\_SOCKET\_REUSE\_PORT\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga05f216d894378d3a39b91316ae4f6ccc} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+REUSE\+\_\+\+PORT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 213)}
+
+
+
+Failed to set socket to reuse a port or address. 
+
+\Hypertarget{group__NETIOLogCodesClass_gab8330253758dbf2fa0e6b810695c5bee}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_BIND\_EC@{UDP\_LOG\_SOCKET\_BIND\_EC}}
+\index{UDP\_LOG\_SOCKET\_BIND\_EC@{UDP\_LOG\_SOCKET\_BIND\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_BIND\_EC}{UDP\_LOG\_SOCKET\_BIND\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gab8330253758dbf2fa0e6b810695c5bee} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+BIND\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 214)}
+
+
+
+Failed a socket bind. 
+
+\Hypertarget{group__NETIOLogCodesClass_gac98a1c6cf1eaaa1ca2ed3fd46df7ddc8}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_ADDGRP\_EC@{UDP\_LOG\_SOCKET\_ADDGRP\_EC}}
+\index{UDP\_LOG\_SOCKET\_ADDGRP\_EC@{UDP\_LOG\_SOCKET\_ADDGRP\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_ADDGRP\_EC}{UDP\_LOG\_SOCKET\_ADDGRP\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gac98a1c6cf1eaaa1ca2ed3fd46df7ddc8} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+ADDGRP\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 215)}
+
+
+
+Failed to add membership to a multicast group for a socket. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga39d4bb0a9381c74bb0814ec529744b6c}\index{NETIO@{NETIO}!UDP\_LOG\_PORT\_ENTRY\_EC@{UDP\_LOG\_PORT\_ENTRY\_EC}}
+\index{UDP\_LOG\_PORT\_ENTRY\_EC@{UDP\_LOG\_PORT\_ENTRY\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_PORT\_ENTRY\_EC}{UDP\_LOG\_PORT\_ENTRY\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga39d4bb0a9381c74bb0814ec529744b6c} 
+\#define UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+ENTRY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 216)}
+
+
+
+Failed to create a bind entry for a receive port. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga820535bb01dc4e87dd3d6a0e71634f5a}\index{NETIO@{NETIO}!UDP\_LOG\_PORT\_ALLOC\_EC@{UDP\_LOG\_PORT\_ALLOC\_EC}}
+\index{UDP\_LOG\_PORT\_ALLOC\_EC@{UDP\_LOG\_PORT\_ALLOC\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_PORT\_ALLOC\_EC}{UDP\_LOG\_PORT\_ALLOC\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga820535bb01dc4e87dd3d6a0e71634f5a} 
+\#define UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+ALLOC\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 217)}
+
+
+
+Failed to allocate memory for a receive buffer of a specific port. 
+
+\Hypertarget{group__NETIOLogCodesClass_gac2a53d2eb8976b79a0f6986389a8403c}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_RXBUF\_EC@{UDP\_LOG\_SOCKET\_RXBUF\_EC}}
+\index{UDP\_LOG\_SOCKET\_RXBUF\_EC@{UDP\_LOG\_SOCKET\_RXBUF\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_RXBUF\_EC}{UDP\_LOG\_SOCKET\_RXBUF\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gac2a53d2eb8976b79a0f6986389a8403c} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+RXBUF\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 218)}
+
+
+
+Failed to set the receive buffer size of a socket. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga07c10fe597ea98c80ebbaa2f314f6fa5}\index{NETIO@{NETIO}!UDP\_LOG\_PORT\_ADD\_EC@{UDP\_LOG\_PORT\_ADD\_EC}}
+\index{UDP\_LOG\_PORT\_ADD\_EC@{UDP\_LOG\_PORT\_ADD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_PORT\_ADD\_EC}{UDP\_LOG\_PORT\_ADD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga07c10fe597ea98c80ebbaa2f314f6fa5} 
+\#define UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+ADD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 219)}
+
+
+
+Failed to add a port entry record to a database table. 
+
+\Hypertarget{group__NETIOLogCodesClass_gaa56ec93614b92acf6330516a6cb4ce0e}\index{NETIO@{NETIO}!UDP\_LOG\_PORT\_THREAD\_EC@{UDP\_LOG\_PORT\_THREAD\_EC}}
+\index{UDP\_LOG\_PORT\_THREAD\_EC@{UDP\_LOG\_PORT\_THREAD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_PORT\_THREAD\_EC}{UDP\_LOG\_PORT\_THREAD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaa56ec93614b92acf6330516a6cb4ce0e} 
+\#define UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+THREAD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 220)}
+
+
+
+Failed to create a receive thread for a receive port. 
+
+\Hypertarget{group__NETIOLogCodesClass_gac5ba6479fe29c69d81728eca20edb00c}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_IFLIST\_EC@{UDP\_LOG\_SOCKET\_IFLIST\_EC}}
+\index{UDP\_LOG\_SOCKET\_IFLIST\_EC@{UDP\_LOG\_SOCKET\_IFLIST\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_IFLIST\_EC}{UDP\_LOG\_SOCKET\_IFLIST\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gac5ba6479fe29c69d81728eca20edb00c} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+IFLIST\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 221)}
+
+
+
+Failed to get a list of interface addresses. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga87e49e869521add32672247dc3fee32d}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_IFFLAGS\_EC@{UDP\_LOG\_SOCKET\_IFFLAGS\_EC}}
+\index{UDP\_LOG\_SOCKET\_IFFLAGS\_EC@{UDP\_LOG\_SOCKET\_IFFLAGS\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_IFFLAGS\_EC}{UDP\_LOG\_SOCKET\_IFFLAGS\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga87e49e869521add32672247dc3fee32d} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+IFFLAGS\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 222)}
+
+
+
+Failed to get the network interface flags or mask of a socket. 
+
+\Hypertarget{group__NETIOLogCodesClass_gaea86bccfdb840043b8b029963dbefd41}\index{NETIO@{NETIO}!UDP\_LOG\_SOCKET\_CLOSE\_EC@{UDP\_LOG\_SOCKET\_CLOSE\_EC}}
+\index{UDP\_LOG\_SOCKET\_CLOSE\_EC@{UDP\_LOG\_SOCKET\_CLOSE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SOCKET\_CLOSE\_EC}{UDP\_LOG\_SOCKET\_CLOSE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaea86bccfdb840043b8b029963dbefd41} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+CLOSE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 223)}
+
+
+
+Failed to close a socket. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga4d6f7dfc0621a5ae2a881a8453c0f941}\index{NETIO@{NETIO}!UDP\_LOG\_LOADLIB\_EC@{UDP\_LOG\_LOADLIB\_EC}}
+\index{UDP\_LOG\_LOADLIB\_EC@{UDP\_LOG\_LOADLIB\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_LOADLIB\_EC}{UDP\_LOG\_LOADLIB\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga4d6f7dfc0621a5ae2a881a8453c0f941} 
+\#define UDP\+\_\+\+LOG\+\_\+\+LOADLIB\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 224)}
+
+
+
+Failed to load a dynamic library. 
+
+\Hypertarget{group__NETIOLogCodesClass_gaae410ad8331ee9e07bc0f408dba182be}\index{NETIO@{NETIO}!UDP\_LOG\_GET\_BUF\_SIZE\_EC@{UDP\_LOG\_GET\_BUF\_SIZE\_EC}}
+\index{UDP\_LOG\_GET\_BUF\_SIZE\_EC@{UDP\_LOG\_GET\_BUF\_SIZE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_GET\_BUF\_SIZE\_EC}{UDP\_LOG\_GET\_BUF\_SIZE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaae410ad8331ee9e07bc0f408dba182be} 
+\#define UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+BUF\+\_\+\+SIZE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 225)}
+
+
+
+Failed to get interface buffer size. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga8894956f10a83497b8ff0a45d75cec8c}\index{NETIO@{NETIO}!UDP\_LOG\_GET\_BUF\_ALLOC\_EC@{UDP\_LOG\_GET\_BUF\_ALLOC\_EC}}
+\index{UDP\_LOG\_GET\_BUF\_ALLOC\_EC@{UDP\_LOG\_GET\_BUF\_ALLOC\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_GET\_BUF\_ALLOC\_EC}{UDP\_LOG\_GET\_BUF\_ALLOC\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga8894956f10a83497b8ff0a45d75cec8c} 
+\#define UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+BUF\+\_\+\+ALLOC\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 226)}
+
+
+
+Out of memory to allocate interface buffer. 
+
+\Hypertarget{group__NETIOLogCodesClass_gacfd1d20f384851e854108db9be0fd3f5}\index{NETIO@{NETIO}!UDP\_LOG\_GET\_IFLIST\_EC@{UDP\_LOG\_GET\_IFLIST\_EC}}
+\index{UDP\_LOG\_GET\_IFLIST\_EC@{UDP\_LOG\_GET\_IFLIST\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_GET\_IFLIST\_EC}{UDP\_LOG\_GET\_IFLIST\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gacfd1d20f384851e854108db9be0fd3f5} 
+\#define UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+IFLIST\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 227)}
+
+
+
+Failed to get an interface list. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga6426b39e896766f87cde556b9442be79}\index{NETIO@{NETIO}!UDP\_LOG\_GET\_NAMEINFO\_EC@{UDP\_LOG\_GET\_NAMEINFO\_EC}}
+\index{UDP\_LOG\_GET\_NAMEINFO\_EC@{UDP\_LOG\_GET\_NAMEINFO\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_GET\_NAMEINFO\_EC}{UDP\_LOG\_GET\_NAMEINFO\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga6426b39e896766f87cde556b9442be79} 
+\#define UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+NAMEINFO\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 228)}
+
+
+
+Failed getnameinfo() 
+
+\Hypertarget{group__NETIOLogCodesClass_gade46214cda6d812c47e965cfadc881f0}\index{NETIO@{NETIO}!UDP\_LOG\_MULTICAST\_ENABLE\_EC@{UDP\_LOG\_MULTICAST\_ENABLE\_EC}}
+\index{UDP\_LOG\_MULTICAST\_ENABLE\_EC@{UDP\_LOG\_MULTICAST\_ENABLE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_MULTICAST\_ENABLE\_EC}{UDP\_LOG\_MULTICAST\_ENABLE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gade46214cda6d812c47e965cfadc881f0} 
+\#define UDP\+\_\+\+LOG\+\_\+\+MULTICAST\+\_\+\+ENABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 229)}
+
+
+
+Failed to enable multicast loopback. 
+
+\Hypertarget{group__NETIOLogCodesClass_gafd217b67bf26c5d60983bab6aed04699}\index{NETIO@{NETIO}!UDP\_LOG\_UDP\_CREATE\_TABLE\_EC@{UDP\_LOG\_UDP\_CREATE\_TABLE\_EC}}
+\index{UDP\_LOG\_UDP\_CREATE\_TABLE\_EC@{UDP\_LOG\_UDP\_CREATE\_TABLE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_UDP\_CREATE\_TABLE\_EC}{UDP\_LOG\_UDP\_CREATE\_TABLE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gafd217b67bf26c5d60983bab6aed04699} 
+\#define UDP\+\_\+\+LOG\+\_\+\+UDP\+\_\+\+CREATE\+\_\+\+TABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 230)}
+
+
+
+Failed to create a database table for a UDP interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga470afb8ea2474eb7d3516318e011fd70}\index{NETIO@{NETIO}!UDP\_LOG\_UDP\_CREATE\_INDEX\_EC@{UDP\_LOG\_UDP\_CREATE\_INDEX\_EC}}
+\index{UDP\_LOG\_UDP\_CREATE\_INDEX\_EC@{UDP\_LOG\_UDP\_CREATE\_INDEX\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_UDP\_CREATE\_INDEX\_EC}{UDP\_LOG\_UDP\_CREATE\_INDEX\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga470afb8ea2474eb7d3516318e011fd70} 
+\#define UDP\+\_\+\+LOG\+\_\+\+UDP\+\_\+\+CREATE\+\_\+\+INDEX\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 231)}
+
+
+
+Failed to create an index for a UDP interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga786c3f3f29b87b0db014719a2eba1823}\index{NETIO@{NETIO}!UDP\_LOG\_RECORD\_EC@{UDP\_LOG\_RECORD\_EC}}
+\index{UDP\_LOG\_RECORD\_EC@{UDP\_LOG\_RECORD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_RECORD\_EC}{UDP\_LOG\_RECORD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga786c3f3f29b87b0db014719a2eba1823} 
+\#define UDP\+\_\+\+LOG\+\_\+\+RECORD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 232)}
+
+
+
+Failed to create or insert a database record for a UDP interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga9f68715747ba0a9e875066e614404d3f}\index{NETIO@{NETIO}!UDP\_LOG\_PROPERTY\_FINALIZE\_EC@{UDP\_LOG\_PROPERTY\_FINALIZE\_EC}}
+\index{UDP\_LOG\_PROPERTY\_FINALIZE\_EC@{UDP\_LOG\_PROPERTY\_FINALIZE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_PROPERTY\_FINALIZE\_EC}{UDP\_LOG\_PROPERTY\_FINALIZE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga9f68715747ba0a9e875066e614404d3f} 
+\#define UDP\+\_\+\+LOG\+\_\+\+PROPERTY\+\_\+\+FINALIZE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 233)}
+
+
+
+Failed to finalize UDP interface factory property. 
+
+\Hypertarget{group__NETIOLogCodesClass_gac0fe2ffba65fba968ea5e4d154918a30}\index{NETIO@{NETIO}!UDP\_LOG\_ALLOC\_EC@{UDP\_LOG\_ALLOC\_EC}}
+\index{UDP\_LOG\_ALLOC\_EC@{UDP\_LOG\_ALLOC\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_ALLOC\_EC}{UDP\_LOG\_ALLOC\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gac0fe2ffba65fba968ea5e4d154918a30} 
+\#define UDP\+\_\+\+LOG\+\_\+\+ALLOC\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 234)}
+
+
+
+Failed to allocate memory for a UDP interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_gaafc62ddd664011d637597c9b66970c40}\index{NETIO@{NETIO}!UDP\_LOG\_SEND\_PING\_EC@{UDP\_LOG\_SEND\_PING\_EC}}
+\index{UDP\_LOG\_SEND\_PING\_EC@{UDP\_LOG\_SEND\_PING\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SEND\_PING\_EC}{UDP\_LOG\_SEND\_PING\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaafc62ddd664011d637597c9b66970c40} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SEND\+\_\+\+PING\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 235)}
+
+
+
+Failed sending a ping message, upon adding a route or waking up a receive thread. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga7008ee18d8672a3b496024fa6486619f}\index{NETIO@{NETIO}!UDP\_LOG\_DROPGRP\_EC@{UDP\_LOG\_DROPGRP\_EC}}
+\index{UDP\_LOG\_DROPGRP\_EC@{UDP\_LOG\_DROPGRP\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_DROPGRP\_EC}{UDP\_LOG\_DROPGRP\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga7008ee18d8672a3b496024fa6486619f} 
+\#define UDP\+\_\+\+LOG\+\_\+\+DROPGRP\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 236)}
+
+
+
+Failed to drop membership from a multicast group. 
+
+\Hypertarget{group__NETIOLogCodesClass_gad9f08df2ca8254ac01f357fe6293d07e}\index{NETIO@{NETIO}!UDP\_LOG\_GET\_LENGTH\_EC@{UDP\_LOG\_GET\_LENGTH\_EC}}
+\index{UDP\_LOG\_GET\_LENGTH\_EC@{UDP\_LOG\_GET\_LENGTH\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_GET\_LENGTH\_EC}{UDP\_LOG\_GET\_LENGTH\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gad9f08df2ca8254ac01f357fe6293d07e} 
+\#define UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+LENGTH\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 237)}
+
+
+
+Length of address sequence exceeds its maximum. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga2ae4837d27bafd759d749f1cc0753ab0}\index{NETIO@{NETIO}!UDP\_LOG\_SET\_LENGTH\_EC@{UDP\_LOG\_SET\_LENGTH\_EC}}
+\index{UDP\_LOG\_SET\_LENGTH\_EC@{UDP\_LOG\_SET\_LENGTH\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SET\_LENGTH\_EC}{UDP\_LOG\_SET\_LENGTH\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga2ae4837d27bafd759d749f1cc0753ab0} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SET\+\_\+\+LENGTH\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 240)}
+
+
+
+Failed to set the length of an address sequence. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga0a4c56cea8df1c6d5cdc0e42926cb8c3}\index{NETIO@{NETIO}!UDP\_LOG\_WSA\_STARTUP\_EC@{UDP\_LOG\_WSA\_STARTUP\_EC}}
+\index{UDP\_LOG\_WSA\_STARTUP\_EC@{UDP\_LOG\_WSA\_STARTUP\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_WSA\_STARTUP\_EC}{UDP\_LOG\_WSA\_STARTUP\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga0a4c56cea8df1c6d5cdc0e42926cb8c3} 
+\#define UDP\+\_\+\+LOG\+\_\+\+WSA\+\_\+\+STARTUP\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 241)}
+
+
+
+Failed WSAStartup() 
+
+\Hypertarget{group__NETIOLogCodesClass_ga71ab52acfd29711af25ae89a38ba9f94}\index{NETIO@{NETIO}!UDP\_LOG\_WINSOCK\_INCOMPATIBLE\_EC@{UDP\_LOG\_WINSOCK\_INCOMPATIBLE\_EC}}
+\index{UDP\_LOG\_WINSOCK\_INCOMPATIBLE\_EC@{UDP\_LOG\_WINSOCK\_INCOMPATIBLE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_WINSOCK\_INCOMPATIBLE\_EC}{UDP\_LOG\_WINSOCK\_INCOMPATIBLE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga71ab52acfd29711af25ae89a38ba9f94} 
+\#define UDP\+\_\+\+LOG\+\_\+\+WINSOCK\+\_\+\+INCOMPATIBLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 242)}
+
+
+
+Incompatible version of Winsock, must not be older than 2.\+0. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga5807757c7976f4e2d7d00573265fbb0f}\index{NETIO@{NETIO}!UDP\_LOG\_INCONSISTENT\_MAX\_MESSSAGE\_SIZE\_EC@{UDP\_LOG\_INCONSISTENT\_MAX\_MESSSAGE\_SIZE\_EC}}
+\index{UDP\_LOG\_INCONSISTENT\_MAX\_MESSSAGE\_SIZE\_EC@{UDP\_LOG\_INCONSISTENT\_MAX\_MESSSAGE\_SIZE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_INCONSISTENT\_MAX\_MESSSAGE\_SIZE\_EC}{UDP\_LOG\_INCONSISTENT\_MAX\_MESSSAGE\_SIZE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga5807757c7976f4e2d7d00573265fbb0f} 
+\#define UDP\+\_\+\+LOG\+\_\+\+INCONSISTENT\+\_\+\+MAX\+\_\+\+MESSSAGE\+\_\+\+SIZE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 243)}
+
+
+
+Inconsistent max\+\_\+message\+\_\+size. 
+
+UDP\+\_\+\+Interface\+Property.\+max\+\_\+message\+\_\+size is set to an inconsistent value, larger than UDP\+\_\+\+Interface\+Property.\+max\+\_\+send\+\_\+buffer\+\_\+size and/or larger than UDP\+\_\+\+Interface\+Property.\+max\+\_\+receive\+\_\+buffer\+\_\+size . \Hypertarget{group__NETIOLogCodesClass_ga4dd2a29ed2fe2df3c7d7eb41cb50fc1d}\index{NETIO@{NETIO}!UDP\_LOG\_INITIALIZE\_FAILED\_EC@{UDP\_LOG\_INITIALIZE\_FAILED\_EC}}
+\index{UDP\_LOG\_INITIALIZE\_FAILED\_EC@{UDP\_LOG\_INITIALIZE\_FAILED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_INITIALIZE\_FAILED\_EC}{UDP\_LOG\_INITIALIZE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga4dd2a29ed2fe2df3c7d7eb41cb50fc1d} 
+\#define UDP\+\_\+\+LOG\+\_\+\+INITIALIZE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 244)}
+
+
+
+Failed to initialized the loopback interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga8ea5f9ab06a7e9653b53927421bd5899}\index{NETIO@{NETIO}!UDP\_LOG\_PORT\_NOT\_FOUND\_EC@{UDP\_LOG\_PORT\_NOT\_FOUND\_EC}}
+\index{UDP\_LOG\_PORT\_NOT\_FOUND\_EC@{UDP\_LOG\_PORT\_NOT\_FOUND\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_PORT\_NOT\_FOUND\_EC}{UDP\_LOG\_PORT\_NOT\_FOUND\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga8ea5f9ab06a7e9653b53927421bd5899} 
+\#define UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+NOT\+\_\+\+FOUND\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 245)}
+
+
+
+Did not find the specified thread port. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga60b5ccbdf5c2c594d90a0093adb3083c}\index{NETIO@{NETIO}!UDP\_LOG\_CURSOR\_ERROR\_EC@{UDP\_LOG\_CURSOR\_ERROR\_EC}}
+\index{UDP\_LOG\_CURSOR\_ERROR\_EC@{UDP\_LOG\_CURSOR\_ERROR\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_CURSOR\_ERROR\_EC}{UDP\_LOG\_CURSOR\_ERROR\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga60b5ccbdf5c2c594d90a0093adb3083c} 
+\#define UDP\+\_\+\+LOG\+\_\+\+CURSOR\+\_\+\+ERROR\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 246)}
+
+
+
+An error occurred while iterating over a cursor. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga24401d1af6600c299c6010cf938780c6}\index{NETIO@{NETIO}!UDP\_LOG\_SEND\_ERROR\_EC@{UDP\_LOG\_SEND\_ERROR\_EC}}
+\index{UDP\_LOG\_SEND\_ERROR\_EC@{UDP\_LOG\_SEND\_ERROR\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_SEND\_ERROR\_EC}{UDP\_LOG\_SEND\_ERROR\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga24401d1af6600c299c6010cf938780c6} 
+\#define UDP\+\_\+\+LOG\+\_\+\+SEND\+\_\+\+ERROR\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 247)}
+
+
+
+Failed to send message. 
+
+A message could not be sent due to system error \Hypertarget{group__NETIOLogCodesClass_gac61c63a51439b6dd5126e9e0fa7a49bb}\index{NETIO@{NETIO}!UDP\_LOG\_MULTICAST\_NOT\_ENABLED\_EC@{UDP\_LOG\_MULTICAST\_NOT\_ENABLED\_EC}}
+\index{UDP\_LOG\_MULTICAST\_NOT\_ENABLED\_EC@{UDP\_LOG\_MULTICAST\_NOT\_ENABLED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_MULTICAST\_NOT\_ENABLED\_EC}{UDP\_LOG\_MULTICAST\_NOT\_ENABLED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gac61c63a51439b6dd5126e9e0fa7a49bb} 
+\#define UDP\+\_\+\+LOG\+\_\+\+MULTICAST\+\_\+\+NOT\+\_\+\+ENABLED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 248)}
+
+
+
+Multicast address ignored because multicast supported is not compiled in. 
+
+A multicast address was specified as an address, but multicast support has not been enabled with NETIO\+\_\+\+CONFIG\+\_\+\+ENABLE\+\_\+\+MULTICAST in \doxylink{netio__config_8h}{netio\+\_\+config.\+h} \Hypertarget{group__NETIOLogCodesClass_gaf759dee2a13b55fa1672c91cfbacefea}\index{NETIO@{NETIO}!UDP\_LOG\_TRANSPORT\_NO\_INTERFACES\_EC@{UDP\_LOG\_TRANSPORT\_NO\_INTERFACES\_EC}}
+\index{UDP\_LOG\_TRANSPORT\_NO\_INTERFACES\_EC@{UDP\_LOG\_TRANSPORT\_NO\_INTERFACES\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_TRANSPORT\_NO\_INTERFACES\_EC}{UDP\_LOG\_TRANSPORT\_NO\_INTERFACES\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaf759dee2a13b55fa1672c91cfbacefea} 
+\#define UDP\+\_\+\+LOG\+\_\+\+TRANSPORT\+\_\+\+NO\+\_\+\+INTERFACES\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 249)}
+
+
+
+Transport does not have any interfaces. 
+
+UDP configuration might be wrong. \Hypertarget{group__NETIOLogCodesClass_gad3d1e5e0a64119b57e12b38c127991cc}\index{NETIO@{NETIO}!UDP\_LOG\_RECV\_ERROR\_EC@{UDP\_LOG\_RECV\_ERROR\_EC}}
+\index{UDP\_LOG\_RECV\_ERROR\_EC@{UDP\_LOG\_RECV\_ERROR\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_RECV\_ERROR\_EC}{UDP\_LOG\_RECV\_ERROR\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gad3d1e5e0a64119b57e12b38c127991cc} 
+\#define UDP\+\_\+\+LOG\+\_\+\+RECV\+\_\+\+ERROR\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 250)}
+
+
+
+Failed to receive message. 
+
+A message could not be received due to system error \Hypertarget{group__NETIOLogCodesClass_gaa590989c56fd1cfa77de4a2b2f38c7a4}\index{NETIO@{NETIO}!UDP\_TRANSFORM\_LOG\_INVALID\_FACTORY\_REFERENCE\_EC@{UDP\_TRANSFORM\_LOG\_INVALID\_FACTORY\_REFERENCE\_EC}}
+\index{UDP\_TRANSFORM\_LOG\_INVALID\_FACTORY\_REFERENCE\_EC@{UDP\_TRANSFORM\_LOG\_INVALID\_FACTORY\_REFERENCE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_INVALID\_FACTORY\_REFERENCE\_EC}{UDP\_TRANSFORM\_LOG\_INVALID\_FACTORY\_REFERENCE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaa590989c56fd1cfa77de4a2b2f38c7a4} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+FACTORY\+\_\+\+REFERENCE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 300)}
+
+
+
+The returned factory reference is NULL. 
+
+This error indicates that the system has run out of memory \Hypertarget{group__NETIOLogCodesClass_ga24ebc0d0e13a46e919de50abe785492d}\index{NETIO@{NETIO}!UDP\_TRANSFORM\_LOG\_FACTORY\_NOT\_FOUND\_EC@{UDP\_TRANSFORM\_LOG\_FACTORY\_NOT\_FOUND\_EC}}
+\index{UDP\_TRANSFORM\_LOG\_FACTORY\_NOT\_FOUND\_EC@{UDP\_TRANSFORM\_LOG\_FACTORY\_NOT\_FOUND\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_FACTORY\_NOT\_FOUND\_EC}{UDP\_TRANSFORM\_LOG\_FACTORY\_NOT\_FOUND\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga24ebc0d0e13a46e919de50abe785492d} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+FACTORY\+\_\+\+NOT\+\_\+\+FOUND\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 301)}
+
+
+
+Could not find the factory used as part of a transform rule. 
+
+This error indicates that a factory for the specified rule has not been registered before the UDP transport is registered. \Hypertarget{group__NETIOLogCodesClass_gaeaab8d1029bc0b20827a6b480b28b340}\index{NETIO@{NETIO}!UDP\_TRANSFORM\_LOG\_ALLOC\_EC@{UDP\_TRANSFORM\_LOG\_ALLOC\_EC}}
+\index{UDP\_TRANSFORM\_LOG\_ALLOC\_EC@{UDP\_TRANSFORM\_LOG\_ALLOC\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_ALLOC\_EC}{UDP\_TRANSFORM\_LOG\_ALLOC\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaeaab8d1029bc0b20827a6b480b28b340} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+ALLOC\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 302)}
+
+
+
+Failed to allocate entry of the specified kind. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga6bd934069d56d6c86a3660541bcbcfcc}\index{NETIO@{NETIO}!UDP\_TRANSFORM\_LOG\_CREATE\_EC@{UDP\_TRANSFORM\_LOG\_CREATE\_EC}}
+\index{UDP\_TRANSFORM\_LOG\_CREATE\_EC@{UDP\_TRANSFORM\_LOG\_CREATE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_CREATE\_EC}{UDP\_TRANSFORM\_LOG\_CREATE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga6bd934069d56d6c86a3660541bcbcfcc} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 303)}
+
+
+
+Failed to create a transformation of the specified kind. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga475b1897267ecd88bbc0fc18e46a29d8}\index{NETIO@{NETIO}!UDP\_TRANSFORM\_LOG\_ADD\_EC@{UDP\_TRANSFORM\_LOG\_ADD\_EC}}
+\index{UDP\_TRANSFORM\_LOG\_ADD\_EC@{UDP\_TRANSFORM\_LOG\_ADD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_ADD\_EC}{UDP\_TRANSFORM\_LOG\_ADD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga475b1897267ecd88bbc0fc18e46a29d8} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+ADD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 304)}
+
+
+
+Failed to add object of specified kind. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga97fcc88719d72a30b2c0742ab9bb706a}\index{NETIO@{NETIO}!UDP\_TRANSFORM\_LOG\_FIND\_EC@{UDP\_TRANSFORM\_LOG\_FIND\_EC}}
+\index{UDP\_TRANSFORM\_LOG\_FIND\_EC@{UDP\_TRANSFORM\_LOG\_FIND\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_FIND\_EC}{UDP\_TRANSFORM\_LOG\_FIND\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga97fcc88719d72a30b2c0742ab9bb706a} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+FIND\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 305)}
+
+
+
+Failed to find a transformation. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga34a3104aff5f676c4bd1cb96a7510d2f}\index{NETIO@{NETIO}!UDP\_TRANSFORM\_LOG\_DUPLICATE\_EC@{UDP\_TRANSFORM\_LOG\_DUPLICATE\_EC}}
+\index{UDP\_TRANSFORM\_LOG\_DUPLICATE\_EC@{UDP\_TRANSFORM\_LOG\_DUPLICATE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_DUPLICATE\_EC}{UDP\_TRANSFORM\_LOG\_DUPLICATE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga34a3104aff5f676c4bd1cb96a7510d2f} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+DUPLICATE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 306)}
+
+
+
+Duplicate object. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga441d6a6209ebfd282162d57c51d10558}\index{NETIO@{NETIO}!UDP\_TRANSFORM\_LOG\_TRANSFORM\_EC@{UDP\_TRANSFORM\_LOG\_TRANSFORM\_EC}}
+\index{UDP\_TRANSFORM\_LOG\_TRANSFORM\_EC@{UDP\_TRANSFORM\_LOG\_TRANSFORM\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_TRANSFORM\_EC}{UDP\_TRANSFORM\_LOG\_TRANSFORM\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga441d6a6209ebfd282162d57c51d10558} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+TRANSFORM\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 307)}
+
+
+
+Source or destination transformation function failed. 
+
+\Hypertarget{group__NETIOLogCodesClass_gaf9a361314b2a28d4123cfcbc962caf42}\index{NETIO@{NETIO}!UDP\_TRANSFORM\_LOG\_INVALID\_UDP\_MODE\_EC@{UDP\_TRANSFORM\_LOG\_INVALID\_UDP\_MODE\_EC}}
+\index{UDP\_TRANSFORM\_LOG\_INVALID\_UDP\_MODE\_EC@{UDP\_TRANSFORM\_LOG\_INVALID\_UDP\_MODE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_INVALID\_UDP\_MODE\_EC}{UDP\_TRANSFORM\_LOG\_INVALID\_UDP\_MODE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaf9a361314b2a28d4123cfcbc962caf42} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+UDP\+\_\+\+MODE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 308)}
+
+
+
+Invalid UDP mode specified. 
+
+\Hypertarget{group__NETIOLogCodesClass_gab9866482862d9ecf56cc2ea617c4f3ae}\index{NETIO@{NETIO}!UDP\_TRANSFORM\_LOG\_INVALID\_TUDP\_LOCATOR\_KIND\_EC@{UDP\_TRANSFORM\_LOG\_INVALID\_TUDP\_LOCATOR\_KIND\_EC}}
+\index{UDP\_TRANSFORM\_LOG\_INVALID\_TUDP\_LOCATOR\_KIND\_EC@{UDP\_TRANSFORM\_LOG\_INVALID\_TUDP\_LOCATOR\_KIND\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_INVALID\_TUDP\_LOCATOR\_KIND\_EC}{UDP\_TRANSFORM\_LOG\_INVALID\_TUDP\_LOCATOR\_KIND\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gab9866482862d9ecf56cc2ea617c4f3ae} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+TUDP\+\_\+\+LOCATOR\+\_\+\+KIND\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 309)}
+
+
+
+Invalid transformation UDP locator kind specified. 
+
+\doxylink{structUDP__InterfaceFactoryProperty_a1a24458fd34244c7b163579096b5fb5a}{UDP\+\_\+\+Interface\+Factory\+Property\+::transform\+\_\+locator\+\_\+kind} must be greater or equal than NETIO\+\_\+\+ADDRESS\+\_\+\+KIND\+\_\+\+USER and not equal to NETIO\+\_\+\+ADDRESS\+\_\+\+KIND\+\_\+\+SHMEM or NETIO\+\_\+\+ADDRESS\+\_\+\+KIND\+\_\+\+INTRA. \Hypertarget{group__NETIOLogCodesClass_gabace77d416160432344410a6dacf1605}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_DELETE\_TABLE\_EC@{NETIO\_SHMEM\_LOG\_DELETE\_TABLE\_EC}}
+\index{NETIO\_SHMEM\_LOG\_DELETE\_TABLE\_EC@{NETIO\_SHMEM\_LOG\_DELETE\_TABLE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_DELETE\_TABLE\_EC}{NETIO\_SHMEM\_LOG\_DELETE\_TABLE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gabace77d416160432344410a6dacf1605} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+TABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 1)}
+
+
+
+Failed to delete a database table for a NETIO shared memory interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga036521b23e02c4f3290328fcd16e8438}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_CREATE\_TABLE\_EC@{NETIO\_SHMEM\_LOG\_CREATE\_TABLE\_EC}}
+\index{NETIO\_SHMEM\_LOG\_CREATE\_TABLE\_EC@{NETIO\_SHMEM\_LOG\_CREATE\_TABLE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_CREATE\_TABLE\_EC}{NETIO\_SHMEM\_LOG\_CREATE\_TABLE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga036521b23e02c4f3290328fcd16e8438} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+TABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} +  2)}
+
+
+
+Failed to create a database table for a NETIO shared memory interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_gac0809b3258ee19b1e9b70af94e35fdde}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_SELECT\_TABLE\_EC@{NETIO\_SHMEM\_LOG\_SELECT\_TABLE\_EC}}
+\index{NETIO\_SHMEM\_LOG\_SELECT\_TABLE\_EC@{NETIO\_SHMEM\_LOG\_SELECT\_TABLE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_SELECT\_TABLE\_EC}{NETIO\_SHMEM\_LOG\_SELECT\_TABLE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gac0809b3258ee19b1e9b70af94e35fdde} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+SELECT\+\_\+\+TABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 3)}
+
+
+
+Failed to select a valid record when sending with the NETIO shared memory. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga02062c26e4fe3d256cd3f4e8509541d5}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_FWD\_EC@{NETIO\_SHMEM\_LOG\_FWD\_EC}}
+\index{NETIO\_SHMEM\_LOG\_FWD\_EC@{NETIO\_SHMEM\_LOG\_FWD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_FWD\_EC}{NETIO\_SHMEM\_LOG\_FWD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga02062c26e4fe3d256cd3f4e8509541d5} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FWD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 4)}
+
+
+
+Failed to send forward with the NETIO shared memory interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga4076386011796d1bcecbca555a8dbf8c}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_BINDX\_DB\_EC@{NETIO\_SHMEM\_LOG\_BINDX\_DB\_EC}}
+\index{NETIO\_SHMEM\_LOG\_BINDX\_DB\_EC@{NETIO\_SHMEM\_LOG\_BINDX\_DB\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_BINDX\_DB\_EC}{NETIO\_SHMEM\_LOG\_BINDX\_DB\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga4076386011796d1bcecbca555a8dbf8c} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+BINDX\+\_\+\+DB\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 5)}
+
+
+
+Failed to bind an external interface with the NETIO shared memory interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga21a88bb21186a9365c44f655f944116b}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_UNBINDX\_DB\_EC@{NETIO\_SHMEM\_LOG\_UNBINDX\_DB\_EC}}
+\index{NETIO\_SHMEM\_LOG\_UNBINDX\_DB\_EC@{NETIO\_SHMEM\_LOG\_UNBINDX\_DB\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_UNBINDX\_DB\_EC}{NETIO\_SHMEM\_LOG\_UNBINDX\_DB\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga21a88bb21186a9365c44f655f944116b} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+UNBINDX\+\_\+\+DB\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 6)}
+
+
+
+Failed to unbind an external interface with the NETIO shared memory interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga9b7a6d376ba25ada69c4350aaafa4518}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_SET\_LENGTH\_EC@{NETIO\_SHMEM\_LOG\_SET\_LENGTH\_EC}}
+\index{NETIO\_SHMEM\_LOG\_SET\_LENGTH\_EC@{NETIO\_SHMEM\_LOG\_SET\_LENGTH\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_SET\_LENGTH\_EC}{NETIO\_SHMEM\_LOG\_SET\_LENGTH\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga9b7a6d376ba25ada69c4350aaafa4518} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+SET\+\_\+\+LENGTH\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 7)}
+
+
+
+Failed to set the length of an address sequence. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga3414267dc48ac288ed3bcd0cde3a06c5}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_INVALID\_PROPERTY\_EC@{NETIO\_SHMEM\_LOG\_INVALID\_PROPERTY\_EC}}
+\index{NETIO\_SHMEM\_LOG\_INVALID\_PROPERTY\_EC@{NETIO\_SHMEM\_LOG\_INVALID\_PROPERTY\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_INVALID\_PROPERTY\_EC}{NETIO\_SHMEM\_LOG\_INVALID\_PROPERTY\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga3414267dc48ac288ed3bcd0cde3a06c5} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+PROPERTY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 8)}
+
+
+
+Invalid property passed in when creating a shared memory interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga8799f5fdf20d211b1fb6ef3731a05e43}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_INITIALIZE\_FAILED\_EC@{NETIO\_SHMEM\_LOG\_INITIALIZE\_FAILED\_EC}}
+\index{NETIO\_SHMEM\_LOG\_INITIALIZE\_FAILED\_EC@{NETIO\_SHMEM\_LOG\_INITIALIZE\_FAILED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_INITIALIZE\_FAILED\_EC}{NETIO\_SHMEM\_LOG\_INITIALIZE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga8799f5fdf20d211b1fb6ef3731a05e43} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INITIALIZE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 9)}
+
+
+
+Failed to initialize the shared memory interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_gadbe9f1fbd61209b6fdcd917bc62e7e93}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_CURSOR\_ERROR\_EC@{NETIO\_SHMEM\_LOG\_CURSOR\_ERROR\_EC}}
+\index{NETIO\_SHMEM\_LOG\_CURSOR\_ERROR\_EC@{NETIO\_SHMEM\_LOG\_CURSOR\_ERROR\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_CURSOR\_ERROR\_EC}{NETIO\_SHMEM\_LOG\_CURSOR\_ERROR\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gadbe9f1fbd61209b6fdcd917bc62e7e93} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+CURSOR\+\_\+\+ERROR\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 10)}
+
+
+
+An error occurred with a cursor while iterating over a table. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga0a0ec800cf97dbb0e60ef95156016f07}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_INVALID\_FACTORY\_EC@{NETIO\_SHMEM\_LOG\_INVALID\_FACTORY\_EC}}
+\index{NETIO\_SHMEM\_LOG\_INVALID\_FACTORY\_EC@{NETIO\_SHMEM\_LOG\_INVALID\_FACTORY\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_INVALID\_FACTORY\_EC}{NETIO\_SHMEM\_LOG\_INVALID\_FACTORY\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga0a0ec800cf97dbb0e60ef95156016f07} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+FACTORY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 11)}
+
+
+
+An invalid factory was passed in to create a shared memory interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_gab2149b3d4ea9c7ca1a2cf7770cbb9b53}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_INVALID\_COMPONENT\_EC@{NETIO\_SHMEM\_LOG\_INVALID\_COMPONENT\_EC}}
+\index{NETIO\_SHMEM\_LOG\_INVALID\_COMPONENT\_EC@{NETIO\_SHMEM\_LOG\_INVALID\_COMPONENT\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_INVALID\_COMPONENT\_EC}{NETIO\_SHMEM\_LOG\_INVALID\_COMPONENT\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gab2149b3d4ea9c7ca1a2cf7770cbb9b53} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+COMPONENT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 12)}
+
+
+
+An invalid component was passed in to delete a shared memory interface. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga2894129607ffea9efe5aef5297be2e80}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_COOKIE\_EC@{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_COOKIE\_EC}}
+\index{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_COOKIE\_EC@{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_COOKIE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_COOKIE\_EC}{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_COOKIE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga2894129607ffea9efe5aef5297be2e80} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INCOMPATIBLE\+\_\+\+COOKIE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 13)}
+
+
+
+Found incompatible cookie in shared memory header. 
+
+\Hypertarget{group__NETIOLogCodesClass_gac318af1b78e33d29e108d01888a22add}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_VERSION\_EC@{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_VERSION\_EC}}
+\index{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_VERSION\_EC@{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_VERSION\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_VERSION\_EC}{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_VERSION\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gac318af1b78e33d29e108d01888a22add} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INCOMPATIBLE\+\_\+\+VERSION\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 14)}
+
+
+
+Found incompatible major version in shared memory header. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga976234cb2fdcc71393fcfd8c639ff361}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_HEADER\_SIZE\_EC@{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_HEADER\_SIZE\_EC}}
+\index{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_HEADER\_SIZE\_EC@{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_HEADER\_SIZE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_HEADER\_SIZE\_EC}{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_HEADER\_SIZE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga976234cb2fdcc71393fcfd8c639ff361} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INCOMPATIBLE\+\_\+\+HEADER\+\_\+\+SIZE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 15)}
+
+
+
+Found incompatible header size in shared memory header. 
+
+\Hypertarget{group__NETIOLogCodesClass_gae2108898d7fd1619036f8d2460aec25b}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_HEADER\_EC@{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_HEADER\_EC}}
+\index{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_HEADER\_EC@{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_HEADER\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_HEADER\_EC}{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_HEADER\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gae2108898d7fd1619036f8d2460aec25b} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INCOMPATIBLE\+\_\+\+HEADER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 16)}
+
+
+
+Attempted to attach to shared memory header transport concurrent queue that is incompatible. 
+
+\Hypertarget{group__NETIOLogCodesClass_gafb3a48d9fbc77635d7576b15874aaf20}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_ADDRESS\_IN\_USE\_EC@{NETIO\_SHMEM\_LOG\_ADDRESS\_IN\_USE\_EC}}
+\index{NETIO\_SHMEM\_LOG\_ADDRESS\_IN\_USE\_EC@{NETIO\_SHMEM\_LOG\_ADDRESS\_IN\_USE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_ADDRESS\_IN\_USE\_EC}{NETIO\_SHMEM\_LOG\_ADDRESS\_IN\_USE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gafb3a48d9fbc77635d7576b15874aaf20} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+ADDRESS\+\_\+\+IN\+\_\+\+USE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 17)}
+
+
+
+Failed to create or attach to a shared memory segment. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga06e2e40fe38061e3a5c72fb4d26e7dcd}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_CHECK\_SYSTEM\_SETTINGS\_EC@{NETIO\_SHMEM\_LOG\_CHECK\_SYSTEM\_SETTINGS\_EC}}
+\index{NETIO\_SHMEM\_LOG\_CHECK\_SYSTEM\_SETTINGS\_EC@{NETIO\_SHMEM\_LOG\_CHECK\_SYSTEM\_SETTINGS\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_CHECK\_SYSTEM\_SETTINGS\_EC}{NETIO\_SHMEM\_LOG\_CHECK\_SYSTEM\_SETTINGS\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga06e2e40fe38061e3a5c72fb4d26e7dcd} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+CHECK\+\_\+\+SYSTEM\+\_\+\+SETTINGS\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 18)}
+
+
+
+Possible failure due to misconfigured system settings on Darwin operating systems. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga378f33ba7ce954033743ce5384472d47}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_SHMEM\_MUTEX\_LOCK\_FAILED\_EC@{NETIO\_SHMEM\_LOG\_SHMEM\_MUTEX\_LOCK\_FAILED\_EC}}
+\index{NETIO\_SHMEM\_LOG\_SHMEM\_MUTEX\_LOCK\_FAILED\_EC@{NETIO\_SHMEM\_LOG\_SHMEM\_MUTEX\_LOCK\_FAILED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_SHMEM\_MUTEX\_LOCK\_FAILED\_EC}{NETIO\_SHMEM\_LOG\_SHMEM\_MUTEX\_LOCK\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga378f33ba7ce954033743ce5384472d47} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+MUTEX\+\_\+\+LOCK\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 19)}
+
+
+
+Failed to lock shared memory mutex protecting the shared memory segment. 
+
+\Hypertarget{group__NETIOLogCodesClass_gacf630a5dc39a57a3df3936bacd5add25}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_SHMEM\_MUTEX\_UNLOCK\_FAILED\_EC@{NETIO\_SHMEM\_LOG\_SHMEM\_MUTEX\_UNLOCK\_FAILED\_EC}}
+\index{NETIO\_SHMEM\_LOG\_SHMEM\_MUTEX\_UNLOCK\_FAILED\_EC@{NETIO\_SHMEM\_LOG\_SHMEM\_MUTEX\_UNLOCK\_FAILED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_SHMEM\_MUTEX\_UNLOCK\_FAILED\_EC}{NETIO\_SHMEM\_LOG\_SHMEM\_MUTEX\_UNLOCK\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gacf630a5dc39a57a3df3936bacd5add25} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+MUTEX\+\_\+\+UNLOCK\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 20)}
+
+
+
+Failed to unlock shared memory mutex protecting the shared memory segment. 
+
+\Hypertarget{group__NETIOLogCodesClass_gabfd21233b69519d13156bb57d617958e}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_FAILED\_TO\_ALLOCATE\_STRUCT\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_ALLOCATE\_STRUCT\_EC}}
+\index{NETIO\_SHMEM\_LOG\_FAILED\_TO\_ALLOCATE\_STRUCT\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_ALLOCATE\_STRUCT\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_FAILED\_TO\_ALLOCATE\_STRUCT\_EC}{NETIO\_SHMEM\_LOG\_FAILED\_TO\_ALLOCATE\_STRUCT\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gabfd21233b69519d13156bb57d617958e} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+ALLOCATE\+\_\+\+STRUCT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 21)}
+
+
+
+Failed to allocate memory needed by shared memory transport. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga64c5bb827b913c995964e3913b6c1bca}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_FAILED\_TO\_INITIALIZE\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INITIALIZE\_EC}}
+\index{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INITIALIZE\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INITIALIZE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INITIALIZE\_EC}{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INITIALIZE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga64c5bb827b913c995964e3913b6c1bca} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+INITIALIZE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 22)}
+
+
+
+Failed to initialize shared memory transport. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga7db40c6169e192740a89c0c356b531c9}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_CREATE\_ATTACH\_INFINITE\_EC@{NETIO\_SHMEM\_LOG\_CREATE\_ATTACH\_INFINITE\_EC}}
+\index{NETIO\_SHMEM\_LOG\_CREATE\_ATTACH\_INFINITE\_EC@{NETIO\_SHMEM\_LOG\_CREATE\_ATTACH\_INFINITE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_CREATE\_ATTACH\_INFINITE\_EC}{NETIO\_SHMEM\_LOG\_CREATE\_ATTACH\_INFINITE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga7db40c6169e192740a89c0c356b531c9} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+ATTACH\+\_\+\+INFINITE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 23)}
+
+
+
+Failed to create or attach. Possible shared memory key conflict. 
+
+\Hypertarget{group__NETIOLogCodesClass_gaaaf7eb0eb502d0ce5e2f93fe69c3ccc4}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_MUTEX\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_MUTEX\_EC}}
+\index{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_MUTEX\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_MUTEX\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_MUTEX\_EC}{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_MUTEX\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaaaf7eb0eb502d0ce5e2f93fe69c3ccc4} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+INIT\+\_\+\+MUTEX\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 24)}
+
+
+
+Failed to create a new shared memory mutex or failed to attach to an existing one. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga2b1fc35129398b1e99b0220f2ad63452}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_SIG\_SEM\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_SIG\_SEM\_EC}}
+\index{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_SIG\_SEM\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_SIG\_SEM\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_SIG\_SEM\_EC}{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_SIG\_SEM\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga2b1fc35129398b1e99b0220f2ad63452} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+INIT\+\_\+\+SIG\+\_\+\+SEM\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 25)}
+
+
+
+Failed to create signaling semaphore. A Domain Participant\textquotesingle{}s shared memory transport blocks on a signaling semaphore when waiting for data. 
+
+\Hypertarget{group__NETIOLogCodesClass_gadc8650e2ec236157aa368985d9ec38e2}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_FAILED\_TAKE\_SIGN\_SEM\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TAKE\_SIGN\_SEM\_EC}}
+\index{NETIO\_SHMEM\_LOG\_FAILED\_TAKE\_SIGN\_SEM\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TAKE\_SIGN\_SEM\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_FAILED\_TAKE\_SIGN\_SEM\_EC}{NETIO\_SHMEM\_LOG\_FAILED\_TAKE\_SIGN\_SEM\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gadc8650e2ec236157aa368985d9ec38e2} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TAKE\+\_\+\+SIGN\+\_\+\+SEM\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 27)}
+
+
+
+Failed to take a shared memory signaling semaphore. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga914150b0af52595e3531aedc19f18597}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_SIG\_SEM\_SIGNAL\_FAILED\_EC@{NETIO\_SHMEM\_LOG\_SIG\_SEM\_SIGNAL\_FAILED\_EC}}
+\index{NETIO\_SHMEM\_LOG\_SIG\_SEM\_SIGNAL\_FAILED\_EC@{NETIO\_SHMEM\_LOG\_SIG\_SEM\_SIGNAL\_FAILED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_SIG\_SEM\_SIGNAL\_FAILED\_EC}{NETIO\_SHMEM\_LOG\_SIG\_SEM\_SIGNAL\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga914150b0af52595e3531aedc19f18597} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+SIG\+\_\+\+SEM\+\_\+\+SIGNAL\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 28)}
+
+
+
+Failed to give a shared memory signaling semaphore. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga12288e6d68187c689771c000262a10ee}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_SEGMENT\_ADDR\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_SEGMENT\_ADDR\_EC}}
+\index{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_SEGMENT\_ADDR\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_SEGMENT\_ADDR\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_SEGMENT\_ADDR\_EC}{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_SEGMENT\_ADDR\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga12288e6d68187c689771c000262a10ee} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+INIT\+\_\+\+SEGMENT\+\_\+\+ADDR\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 29)}
+
+
+
+Failed to attach to a shared memory segment because it doesn\textquotesingle{}t exist. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga7d50ae456d8b4072d41a9458d31a6b44}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_PACKET\_INIT\_EC@{NETIO\_SHMEM\_LOG\_PACKET\_INIT\_EC}}
+\index{NETIO\_SHMEM\_LOG\_PACKET\_INIT\_EC@{NETIO\_SHMEM\_LOG\_PACKET\_INIT\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_PACKET\_INIT\_EC}{NETIO\_SHMEM\_LOG\_PACKET\_INIT\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga7d50ae456d8b4072d41a9458d31a6b44} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+INIT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 30)}
+
+
+
+Failed to initialize a receive packet. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga356617a6f2f44ff6e000c048efabb3f8}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_CONCURRENT\_Q\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_CONCURRENT\_Q\_EC}}
+\index{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_CONCURRENT\_Q\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_CONCURRENT\_Q\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_CONCURRENT\_Q\_EC}{NETIO\_SHMEM\_LOG\_FAILED\_TO\_INIT\_CONCURRENT\_Q\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga356617a6f2f44ff6e000c048efabb3f8} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+INIT\+\_\+\+CONCURRENT\+\_\+\+Q\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 31)}
+
+
+
+Failed to create a concurrent queue. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga44a6c3c696071e4f5668686d932aa2a0}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_FAILED\_TO\_ATTACH\_CONCURRENT\_Q\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_ATTACH\_CONCURRENT\_Q\_EC}}
+\index{NETIO\_SHMEM\_LOG\_FAILED\_TO\_ATTACH\_CONCURRENT\_Q\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_ATTACH\_CONCURRENT\_Q\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_FAILED\_TO\_ATTACH\_CONCURRENT\_Q\_EC}{NETIO\_SHMEM\_LOG\_FAILED\_TO\_ATTACH\_CONCURRENT\_Q\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga44a6c3c696071e4f5668686d932aa2a0} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+ATTACH\+\_\+\+CONCURRENT\+\_\+\+Q\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 32)}
+
+
+
+Failed to attach to a concurrent queue. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga8d3e4922aeb056b5068c094286958833}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_CONCURRENT\_Q\_EC@{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_CONCURRENT\_Q\_EC}}
+\index{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_CONCURRENT\_Q\_EC@{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_CONCURRENT\_Q\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_CONCURRENT\_Q\_EC}{NETIO\_SHMEM\_LOG\_INCOMPATIBLE\_CONCURRENT\_Q\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga8d3e4922aeb056b5068c094286958833} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INCOMPATIBLE\+\_\+\+CONCURRENT\+\_\+\+Q\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 33)}
+
+
+
+Attempting to attach to an incompatible concurrent queue with incompatible message\+\_\+size\+\_\+max. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga52ff0d1d15db70e1e8464d11120c6475}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_FAILED\_TO\_GET\_TIMESTAMP\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_GET\_TIMESTAMP\_EC}}
+\index{NETIO\_SHMEM\_LOG\_FAILED\_TO\_GET\_TIMESTAMP\_EC@{NETIO\_SHMEM\_LOG\_FAILED\_TO\_GET\_TIMESTAMP\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_FAILED\_TO\_GET\_TIMESTAMP\_EC}{NETIO\_SHMEM\_LOG\_FAILED\_TO\_GET\_TIMESTAMP\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga52ff0d1d15db70e1e8464d11120c6475} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+FAILED\+\_\+\+TO\+\_\+\+GET\+\_\+\+TIMESTAMP\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 33)}
+
+
+
+Failed to get timestamp. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga4ed3fd82b77878511da395bec7e43167}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_NONFATAL\_SIG\_SEM\_RC\_EC@{NETIO\_SHMEM\_LOG\_NONFATAL\_SIG\_SEM\_RC\_EC}}
+\index{NETIO\_SHMEM\_LOG\_NONFATAL\_SIG\_SEM\_RC\_EC@{NETIO\_SHMEM\_LOG\_NONFATAL\_SIG\_SEM\_RC\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_NONFATAL\_SIG\_SEM\_RC\_EC}{NETIO\_SHMEM\_LOG\_NONFATAL\_SIG\_SEM\_RC\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga4ed3fd82b77878511da395bec7e43167} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+NONFATAL\+\_\+\+SIG\+\_\+\+SEM\+\_\+\+RC\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 34)}
+
+
+
+Failed to unlock shared memory mutex. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga541660ea72f0e8a608ea5ca0008b15a5}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_INCONSISTENT\_MESSAGE\_SIZE\_EC@{NETIO\_SHMEM\_LOG\_INCONSISTENT\_MESSAGE\_SIZE\_EC}}
+\index{NETIO\_SHMEM\_LOG\_INCONSISTENT\_MESSAGE\_SIZE\_EC@{NETIO\_SHMEM\_LOG\_INCONSISTENT\_MESSAGE\_SIZE\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_INCONSISTENT\_MESSAGE\_SIZE\_EC}{NETIO\_SHMEM\_LOG\_INCONSISTENT\_MESSAGE\_SIZE\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga541660ea72f0e8a608ea5ca0008b15a5} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+INCONSISTENT\+\_\+\+MESSAGE\+\_\+\+SIZE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 35)}
+
+
+
+Failed to unlock shared memory mutex. 
+
+\Hypertarget{group__NETIOLogCodesClass_gaf30da220d8c699ad69c36217438eb4c2}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_RECORD\_EC@{NETIO\_SHMEM\_LOG\_RECORD\_EC}}
+\index{NETIO\_SHMEM\_LOG\_RECORD\_EC@{NETIO\_SHMEM\_LOG\_RECORD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_RECORD\_EC}{NETIO\_SHMEM\_LOG\_RECORD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaf30da220d8c699ad69c36217438eb4c2} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+RECORD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 36)}
+
+
+
+Database operation on record failed. 
+
+\Hypertarget{group__NETIOLogCodesClass_gaf80a7939956b8eb28c8a228e7bc3974b}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_PACKET\_HEAD\_EC@{NETIO\_SHMEM\_LOG\_PACKET\_HEAD\_EC}}
+\index{NETIO\_SHMEM\_LOG\_PACKET\_HEAD\_EC@{NETIO\_SHMEM\_LOG\_PACKET\_HEAD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_PACKET\_HEAD\_EC}{NETIO\_SHMEM\_LOG\_PACKET\_HEAD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaf80a7939956b8eb28c8a228e7bc3974b} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+HEAD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 37)}
+
+
+
+Failed to set packet head. 
+
+\Hypertarget{group__NETIOLogCodesClass_gad67bd1103d968b6ad6e190bf3cd60b6a}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_PACKET\_FWD\_EC@{NETIO\_SHMEM\_LOG\_PACKET\_FWD\_EC}}
+\index{NETIO\_SHMEM\_LOG\_PACKET\_FWD\_EC@{NETIO\_SHMEM\_LOG\_PACKET\_FWD\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_PACKET\_FWD\_EC}{NETIO\_SHMEM\_LOG\_PACKET\_FWD\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gad67bd1103d968b6ad6e190bf3cd60b6a} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+FWD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 38)}
+
+
+
+Failed reception upstream for a received packet. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga1b6146b4d9b1f98528e5797258d1341b}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_QUEUE\_FULL\_EC@{NETIO\_SHMEM\_LOG\_QUEUE\_FULL\_EC}}
+\index{NETIO\_SHMEM\_LOG\_QUEUE\_FULL\_EC@{NETIO\_SHMEM\_LOG\_QUEUE\_FULL\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_QUEUE\_FULL\_EC}{NETIO\_SHMEM\_LOG\_QUEUE\_FULL\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga1b6146b4d9b1f98528e5797258d1341b} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+QUEUE\+\_\+\+FULL\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 39)}
+
+
+
+Failed reception upstream for a received packet. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga5efd78ad484ebcf7d240d9b0669cb435}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_ROUTE\_LOOKUP\_FAILED\_EC@{NETIO\_SHMEM\_LOG\_ROUTE\_LOOKUP\_FAILED\_EC}}
+\index{NETIO\_SHMEM\_LOG\_ROUTE\_LOOKUP\_FAILED\_EC@{NETIO\_SHMEM\_LOG\_ROUTE\_LOOKUP\_FAILED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_ROUTE\_LOOKUP\_FAILED\_EC}{NETIO\_SHMEM\_LOG\_ROUTE\_LOOKUP\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga5efd78ad484ebcf7d240d9b0669cb435} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+LOOKUP\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 40)}
+
+
+
+Failed to evict find an entry in the route table. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga624b6d2f04a466729a226e1cae668d3b}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_ROUTE\_DELETE\_FAILED\_EC@{NETIO\_SHMEM\_LOG\_ROUTE\_DELETE\_FAILED\_EC}}
+\index{NETIO\_SHMEM\_LOG\_ROUTE\_DELETE\_FAILED\_EC@{NETIO\_SHMEM\_LOG\_ROUTE\_DELETE\_FAILED\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_ROUTE\_DELETE\_FAILED\_EC}{NETIO\_SHMEM\_LOG\_ROUTE\_DELETE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga624b6d2f04a466729a226e1cae668d3b} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+DELETE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 41)}
+
+
+
+Failed to delete an entry from the route table. 
+
+\Hypertarget{group__NETIOLogCodesClass_ga31988df16e4aaec86690e74986be6b42}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_IGNORE\_TRANSPORT\_COMPATIBILITY\_EC@{NETIO\_SHMEM\_LOG\_IGNORE\_TRANSPORT\_COMPATIBILITY\_EC}}
+\index{NETIO\_SHMEM\_LOG\_IGNORE\_TRANSPORT\_COMPATIBILITY\_EC@{NETIO\_SHMEM\_LOG\_IGNORE\_TRANSPORT\_COMPATIBILITY\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_IGNORE\_TRANSPORT\_COMPATIBILITY\_EC}{NETIO\_SHMEM\_LOG\_IGNORE\_TRANSPORT\_COMPATIBILITY\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_ga31988df16e4aaec86690e74986be6b42} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+IGNORE\+\_\+\+TRANSPORT\+\_\+\+COMPATIBILITY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 42)}
+
+
+
+The shared memory transport is ignoring the requested transport minimum compatibility version because it cannot be backward compatible. 
+
+\Hypertarget{group__NETIOLogCodesClass_gaeca3995f574d76fdf88ba0c9d45a9492}\index{NETIO@{NETIO}!NETIO\_SHMEM\_LOG\_UNSUPPORTED\_TRANSPORT\_COMPATIBILITY\_EC@{NETIO\_SHMEM\_LOG\_UNSUPPORTED\_TRANSPORT\_COMPATIBILITY\_EC}}
+\index{NETIO\_SHMEM\_LOG\_UNSUPPORTED\_TRANSPORT\_COMPATIBILITY\_EC@{NETIO\_SHMEM\_LOG\_UNSUPPORTED\_TRANSPORT\_COMPATIBILITY\_EC}!NETIO@{NETIO}}
+\doxyparagraph{\texorpdfstring{NETIO\_SHMEM\_LOG\_UNSUPPORTED\_TRANSPORT\_COMPATIBILITY\_EC}{NETIO\_SHMEM\_LOG\_UNSUPPORTED\_TRANSPORT\_COMPATIBILITY\_EC}}
+{\footnotesize\ttfamily \label{group__NETIOLogCodesClass_gaeca3995f574d76fdf88ba0c9d45a9492} 
+\#define NETIO\+\_\+\+SHMEM\+\_\+\+LOG\+\_\+\+UNSUPPORTED\+\_\+\+TRANSPORT\+\_\+\+COMPATIBILITY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}} + 43)}
+
+
+
+Unsupported minimum compatibility version because it requires a version of the shared memory transport which is not supported. 
+

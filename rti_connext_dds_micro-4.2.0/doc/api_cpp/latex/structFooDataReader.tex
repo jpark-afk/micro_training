@@ -1,0 +1,468 @@
+\doxysubsection{Foo\+Data\+Reader Class Reference}
+\hypertarget{structFooDataReader}{}\label{structFooDataReader}\index{FooDataReader@{FooDataReader}}
+
+
+Declares the interface required to support a user data type-\/specific data reader.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+data.\+hxx$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{return\+\_\+loan}} (\mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \&received\+\_\+data, \mbox{\hyperlink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq}} \&info\+\_\+seq)
+\begin{DoxyCompactList}\small\item\em Indicates to the \doxylink{classDDSDataReader}{DDSData\+Reader} that the application is done accessing the collection of {\ttfamily received\+\_\+data} and {\ttfamily info\+\_\+seq} obtained by some earlier invocation of read or take on the \doxylink{classDDSDataReader}{DDSData\+Reader}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooDataReader_a74c15a01f765327c1b05c87950f64f4e}{read\+\_\+next\+\_\+sample}} (Foo \&received\+\_\+data, \mbox{\hyperlink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}} \&sample\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Copies the next not-\/previously-\/accessed data value from the \doxylink{classDDSDataReader}{DDSData\+Reader}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooDataReader_a95aad2ef7e94736c234b8071dfb29996}{take\+\_\+next\+\_\+sample}} (Foo \&received\+\_\+data, \mbox{\hyperlink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}} \&sample\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Copies the next not-\/previously-\/accessed data value from the \doxylink{classDDSDataReader}{DDSData\+Reader}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooDataReader_a609495a4932f84f968291878df6fea01}{read}} (\mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \&received\+\_\+data, \mbox{\hyperlink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq}} \&info\+\_\+seq, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} max\+\_\+samples, \mbox{\hyperlink{group__DDSSampleStateModule_ga00cf17a2dec95fc16ffd02c57ef356f5}{DDS\+\_\+\+Sample\+State\+Mask}} sample\+\_\+states, \mbox{\hyperlink{group__DDSViewStateModule_gac6c18247f611af71486839446604e18c}{DDS\+\_\+\+View\+State\+Mask}} view\+\_\+states, \mbox{\hyperlink{group__DDSInstanceStateModule_ga4ded4022b3281636f4fbee19aab2844f}{DDS\+\_\+\+Instance\+State\+Mask}} instance\+\_\+states)
+\begin{DoxyCompactList}\small\item\em Access a collection of data samples from the \doxylink{classDDSDataReader}{DDSData\+Reader}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{take}} (\mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \&received\+\_\+data, \mbox{\hyperlink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq}} \&info\+\_\+seq, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} max\+\_\+samples, \mbox{\hyperlink{group__DDSSampleStateModule_ga00cf17a2dec95fc16ffd02c57ef356f5}{DDS\+\_\+\+Sample\+State\+Mask}} sample\+\_\+states, \mbox{\hyperlink{group__DDSViewStateModule_gac6c18247f611af71486839446604e18c}{DDS\+\_\+\+View\+State\+Mask}} view\+\_\+states, \mbox{\hyperlink{group__DDSInstanceStateModule_ga4ded4022b3281636f4fbee19aab2844f}{DDS\+\_\+\+Instance\+State\+Mask}} instance\+\_\+states)
+\begin{DoxyCompactList}\small\item\em Access a collection of data-\/samples from the \doxylink{classDDSDataReader}{DDSData\+Reader}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooDataReader_aa3802393fbd2cbb6617955cf8de166a0}{read\+\_\+instance}} (\mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \&received\+\_\+data, \mbox{\hyperlink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq}} \&info\+\_\+seq, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} max\+\_\+samples, const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&a\+\_\+handle, \mbox{\hyperlink{group__DDSSampleStateModule_ga00cf17a2dec95fc16ffd02c57ef356f5}{DDS\+\_\+\+Sample\+State\+Mask}} sample\+\_\+states, \mbox{\hyperlink{group__DDSViewStateModule_gac6c18247f611af71486839446604e18c}{DDS\+\_\+\+View\+State\+Mask}} view\+\_\+states, \mbox{\hyperlink{group__DDSInstanceStateModule_ga4ded4022b3281636f4fbee19aab2844f}{DDS\+\_\+\+Instance\+State\+Mask}} instance\+\_\+states)
+\begin{DoxyCompactList}\small\item\em Access a collection of data samples from the \doxylink{classDDSDataReader}{DDSData\+Reader}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooDataReader_abec489cf7e6f19468d19c632688c978f}{take\+\_\+instance}} (\mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \&received\+\_\+data, \mbox{\hyperlink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq}} \&info\+\_\+seq, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} max\+\_\+samples, const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&a\+\_\+handle, \mbox{\hyperlink{group__DDSSampleStateModule_ga00cf17a2dec95fc16ffd02c57ef356f5}{DDS\+\_\+\+Sample\+State\+Mask}} sample\+\_\+states, \mbox{\hyperlink{group__DDSViewStateModule_gac6c18247f611af71486839446604e18c}{DDS\+\_\+\+View\+State\+Mask}} view\+\_\+states, \mbox{\hyperlink{group__DDSInstanceStateModule_ga4ded4022b3281636f4fbee19aab2844f}{DDS\+\_\+\+Instance\+State\+Mask}} instance\+\_\+states)
+\begin{DoxyCompactList}\small\item\em Access a collection of data samples from the \doxylink{classDDSDataReader}{DDSData\+Reader}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{structFooDataReader_acc2a58c7f1eee79a6491965e69283721}{lookup\+\_\+instance}} (const Foo \&key\+\_\+holder)
+\begin{DoxyCompactList}\small\item\em Retrieve the instance {\ttfamily handle} that corresponds to an instance {\ttfamily key\+\_\+holder}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooDataReader_ab14ac46cc38d0ff25543a02c0a09fcfb}{is\+\_\+data\+\_\+consistent}} (\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \&is\+\_\+data\+\_\+consistent, const Foo \&sample, const struct \mbox{\hyperlink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}} \&sample\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Checks if the sample has been overwritten by the Data\+Writer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structFooDataReader}{Foo\+Data\+Reader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structFooDataReader_aa13004ca375d5ec85d3f8f86da336434}{narrow}} (\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*}reader)
+\begin{DoxyCompactList}\small\item\em Narrow the given \doxylink{classDDSDataReader}{DDSData\+Reader} pointer to a \doxylink{structFooDataReader}{Foo\+Data\+Reader} pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Declares the interface required to support a user data type-\/specific data reader. 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{structFooDataReader_aa13004ca375d5ec85d3f8f86da336434}\index{FooDataReader@{FooDataReader}!narrow@{narrow}}
+\index{narrow@{narrow}!FooDataReader@{FooDataReader}}
+\doxyparagraph{\texorpdfstring{narrow()}{narrow()}}
+{\footnotesize\ttfamily \label{structFooDataReader_aa13004ca375d5ec85d3f8f86da336434} 
+static \mbox{\hyperlink{structFooDataReader}{Foo\+Data\+Reader}} \texorpdfstring{$\ast$}{*} Foo\+Data\+Reader\+::narrow (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*}}]{reader}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Narrow the given \doxylink{classDDSDataReader}{DDSData\+Reader} pointer to a \doxylink{structFooDataReader}{Foo\+Data\+Reader} pointer. 
+
+\Hypertarget{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}\index{FooDataReader@{FooDataReader}!return\_loan@{return\_loan}}
+\index{return\_loan@{return\_loan}!FooDataReader@{FooDataReader}}
+\doxyparagraph{\texorpdfstring{return\_loan()}{return\_loan()}}
+{\footnotesize\ttfamily \label{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Data\+Reader\+::return\+\_\+loan (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \&}]{received\+\_\+data}{, }\item[{\mbox{\hyperlink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq}} \&}]{info\+\_\+seq}{}\end{DoxyParamCaption})}
+
+
+
+Indicates to the \doxylink{classDDSDataReader}{DDSData\+Reader} that the application is done accessing the collection of {\ttfamily received\+\_\+data} and {\ttfamily info\+\_\+seq} obtained by some earlier invocation of read or take on the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+This operation indicates to the \doxylink{classDDSDataReader}{DDSData\+Reader} that the application is done accessing the collection of {\ttfamily received\+\_\+data} and {\ttfamily info\+\_\+seq} obtained by some earlier invocation of read or take on the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+The {\ttfamily received\+\_\+data} and {\ttfamily info\+\_\+seq} must belong to a single related "{}pair"{}; that is, they should correspond to a pair returned from a single call to read or take. The {\ttfamily received\+\_\+data} and {\ttfamily info\+\_\+seq} must also have been obtained from the same \doxylink{classDDSDataReader}{DDSData\+Reader} to which they are returned. If either of these conditions is not met, the operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+
+The operation \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan} allows implementations of the read and take operations to "{}loan"{} buffers from the \doxylink{classDDSDataReader}{DDSData\+Reader} to the application and in this manner provide "{}zerocopy"{} access to the data. During the loan, the \doxylink{classDDSDataReader}{DDSData\+Reader} will guarantee that the data and sample-\/information are not modified. 
+
+It is not necessary for an application to return the loans immediately after the read or take calls. However, as these buffers correspond to internal resources inside the \doxylink{classDDSDataReader}{DDSData\+Reader}, the application should not retain them indefinitely. 
+
+The use of \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan} is only necessary if the read or take calls "{}loaned"{} buffers to the application. This only occurs if the {\ttfamily received\+\_\+data} and {\ttfamily info\+\_\+\+Seq} collections had {\ttfamily max\+\_\+len=0} at the time read or take was called. 
+
+The application may also examine the "{}owns"{} property of the collection to determine where there is an outstanding loan. However, calling \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan} on a collection that does not have a loan is safe and has no side effects.  
+
+If the collections had a loan, upon completion of \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan}, the collections will have {\ttfamily max\+\_\+len=0}. 
+
+Similar to read, this operation must be provided on the specialized class that is generated for the particular application data-\/type that is being taken. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em received\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} user data type-\/specific \doxylink{structFooSeq}{Foo\+Seq} object where the received data samples was obtained from earlier invocation of read or take on the \doxylink{classDDSDataReader}{DDSData\+Reader}.  \\
+\hline
+\end{DoxyParams}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em info\+\_\+seq} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} a \doxylink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq} object where the received sample info was obtained from earlier invocation of read or take on the \doxylink{classDDSDataReader}{DDSData\+Reader}.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED}. 
+\end{DoxyReturn}
+\Hypertarget{structFooDataReader_a74c15a01f765327c1b05c87950f64f4e}\index{FooDataReader@{FooDataReader}!read\_next\_sample@{read\_next\_sample}}
+\index{read\_next\_sample@{read\_next\_sample}!FooDataReader@{FooDataReader}}
+\doxyparagraph{\texorpdfstring{read\_next\_sample()}{read\_next\_sample()}}
+{\footnotesize\ttfamily \label{structFooDataReader_a74c15a01f765327c1b05c87950f64f4e} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Data\+Reader\+::read\+\_\+next\+\_\+sample (\begin{DoxyParamCaption}\item[{Foo \&}]{received\+\_\+data}{, }\item[{\mbox{\hyperlink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}} \&}]{sample\+\_\+info}{}\end{DoxyParamCaption})}
+
+
+
+Copies the next not-\/previously-\/accessed data value from the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+This operation copies the next not-\/previously-\/accessed data value from the \doxylink{classDDSDataReader}{DDSData\+Reader}. This operation also copies the corresponding \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}. The implied order among the samples stored in the \doxylink{classDDSDataReader}{DDSData\+Reader} is the same as for the \doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read} operation. 
+
+The \doxylink{structFooDataReader_a74c15a01f765327c1b05c87950f64f4e}{Foo\+Data\+Reader\+::read\+\_\+next\+\_\+sample} operation is semantically equivalent to the \doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read} operation, where the input data sequences has max\+\_\+len=1, the sample\+\_\+states=NOT\+\_\+\+READ, the view\+\_\+states=ANY\+\_\+\+VIEW\+\_\+\+STATE, and the instance\+\_\+states=ANY\+\_\+\+INSTANCE\+\_\+\+STATE. 
+
+The \doxylink{structFooDataReader_a74c15a01f765327c1b05c87950f64f4e}{Foo\+Data\+Reader\+::read\+\_\+next\+\_\+sample} operation provides a simplified API to \textquotesingle{}read\textquotesingle{} samples, avoiding the need for the application to manage sequences and specify states. 
+
+If there is no unread data in the \doxylink{classDDSDataReader}{DDSData\+Reader}, the operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91aa8e69444ae8a8efa65bde05556818669}{DDS\+\_\+\+RETCODE\+\_\+\+NO\+\_\+\+DATA} and nothing is copied. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em received\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} user data type-\/specific Foo object where the next received data sample will be returned. The received\+\_\+data must have been fully allocated. Otherwise, this operation may fail.  \\
+\hline
+{\em sample\+\_\+info} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} a \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} object where the next received sample info will be returned.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91aa8e69444ae8a8efa65bde05556818669}{DDS\+\_\+\+RETCODE\+\_\+\+NO\+\_\+\+DATA} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read} 
+\end{DoxySeeAlso}
+\Hypertarget{structFooDataReader_a95aad2ef7e94736c234b8071dfb29996}\index{FooDataReader@{FooDataReader}!take\_next\_sample@{take\_next\_sample}}
+\index{take\_next\_sample@{take\_next\_sample}!FooDataReader@{FooDataReader}}
+\doxyparagraph{\texorpdfstring{take\_next\_sample()}{take\_next\_sample()}}
+{\footnotesize\ttfamily \label{structFooDataReader_a95aad2ef7e94736c234b8071dfb29996} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Data\+Reader\+::take\+\_\+next\+\_\+sample (\begin{DoxyParamCaption}\item[{Foo \&}]{received\+\_\+data}{, }\item[{\mbox{\hyperlink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}} \&}]{sample\+\_\+info}{}\end{DoxyParamCaption})}
+
+
+
+Copies the next not-\/previously-\/accessed data value from the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+This operation copies the next not-\/previously-\/accessed data value from the \doxylink{classDDSDataReader}{DDSData\+Reader} and \textquotesingle{}removes\textquotesingle{} it from the \doxylink{classDDSDataReader}{DDSData\+Reader} so that it is no longer accessible. This operation also copies the corresponding \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}. This operation is analogous to the \doxylink{structFooDataReader_a74c15a01f765327c1b05c87950f64f4e}{Foo\+Data\+Reader\+::read\+\_\+next\+\_\+sample} except for the fact that the sample is removed from the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+The \doxylink{structFooDataReader_a95aad2ef7e94736c234b8071dfb29996}{Foo\+Data\+Reader\+::take\+\_\+next\+\_\+sample} operation is semantically equivalent to the \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take} operation, where the input data sequences has max\+\_\+len=1, the sample\+\_\+states=NOT\+\_\+\+READ, the view\+\_\+states=ANY\+\_\+\+VIEW\+\_\+\+STATE, and the instance\+\_\+states=ANY\+\_\+\+INSTANCE\+\_\+\+STATE. 
+
+The \doxylink{structFooDataReader_a74c15a01f765327c1b05c87950f64f4e}{Foo\+Data\+Reader\+::read\+\_\+next\+\_\+sample} operation provides a simplified API to \textquotesingle{}take\textquotesingle{} samples, avoiding the need for the application to manage sequences and specify states. 
+
+If there is no unread data in the \doxylink{classDDSDataReader}{DDSData\+Reader}, the operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91aa8e69444ae8a8efa65bde05556818669}{DDS\+\_\+\+RETCODE\+\_\+\+NO\+\_\+\+DATA} and nothing is copied. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em received\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} user data type-\/specific Foo object where the next received data sample will be returned. The received\+\_\+data must have been fully allocated. Otherwise, this operation may fail.  \\
+\hline
+{\em sample\+\_\+info} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} a \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} object where the next received sample info will be returned.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91aa8e69444ae8a8efa65bde05556818669}{DDS\+\_\+\+RETCODE\+\_\+\+NO\+\_\+\+DATA} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take} 
+\end{DoxySeeAlso}
+\Hypertarget{structFooDataReader_a609495a4932f84f968291878df6fea01}\index{FooDataReader@{FooDataReader}!read@{read}}
+\index{read@{read}!FooDataReader@{FooDataReader}}
+\doxyparagraph{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{structFooDataReader_a609495a4932f84f968291878df6fea01} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Data\+Reader\+::read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \&}]{received\+\_\+data}{, }\item[{\mbox{\hyperlink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq}} \&}]{info\+\_\+seq}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{max\+\_\+samples}{, }\item[{\mbox{\hyperlink{group__DDSSampleStateModule_ga00cf17a2dec95fc16ffd02c57ef356f5}{DDS\+\_\+\+Sample\+State\+Mask}}}]{sample\+\_\+states}{, }\item[{\mbox{\hyperlink{group__DDSViewStateModule_gac6c18247f611af71486839446604e18c}{DDS\+\_\+\+View\+State\+Mask}}}]{view\+\_\+states}{, }\item[{\mbox{\hyperlink{group__DDSInstanceStateModule_ga4ded4022b3281636f4fbee19aab2844f}{DDS\+\_\+\+Instance\+State\+Mask}}}]{instance\+\_\+states}{}\end{DoxyParamCaption})}
+
+
+
+Access a collection of data samples from the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+This operation offers the same functionality and API as \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take} except that the samples returned remain in the \doxylink{classDDSDataReader}{DDSData\+Reader} such that they can be retrieved again by means of a read or take operation. 
+
+Please refer to the documentation of \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take()} for details on the number of samples returned within the received\+\_\+data and info\+\_\+seq as well as the order in which the samples appear in these sequences. 
+
+The act of reading a sample changes its {\ttfamily sample\+\_\+state} to \doxylink{group__DDSSampleStateModule_ggadb6d36e7c796da27519b6bf7f8f187e5a4435d5fd0a36806ebd1c67210345a70b}{DDS\+\_\+\+READ\+\_\+\+SAMPLE\+\_\+\+STATE}. If the sample belongs to the most recent generation of the instance, it will also set the {\ttfamily view\+\_\+state} of the instance to be \doxylink{group__DDSViewStateModule_ggab7a8a4ae44a2c00f411a4461135b45f1ad0a3502068e5e66e20a873a0aaa881be}{DDS\+\_\+\+NOT\+\_\+\+NEW\+\_\+\+VIEW\+\_\+\+STATE}. It will not affect the {\ttfamily instance\+\_\+state} of the instance. 
+
+{\itshape Important\+:} If the samples "{}returned"{} by this method are loaned from RTI Connext DDS Micro (see \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take} for more information on memory loaning), it is important that their contents not be changed. Because the memory in which the data is stored belongs to the middleware, any modifications made to the data will be seen the next time the same samples are read or taken; the samples will no longer reflect the state that was received from the network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em received\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} User data type-\/specific \doxylink{structFooSeq}{Foo\+Seq} object where the received data samples will be returned.  \\
+\hline
+{\em info\+\_\+seq} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} A \doxylink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq} object where the received sample info will be returned.  \\
+\hline
+{\em max\+\_\+samples} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The maximum number of samples to be returned. If the special value DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED is provided, as many samples will be returned as are available. \\
+\hline
+{\em sample\+\_\+states} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Data samples matching one of these {\ttfamily sample\+\_\+states} are returned. \\
+\hline
+{\em view\+\_\+states} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Data samples matching one of these {\ttfamily view\+\_\+state} are returned. \\
+\hline
+{\em instance\+\_\+states} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Data samples matching ones of these {\ttfamily instance\+\_\+state} are returned. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91aa8e69444ae8a8efa65bde05556818669}{DDS\+\_\+\+RETCODE\+\_\+\+NO\+\_\+\+DATA} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take}, 
+
+DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+\end{DoxySeeAlso}
+\Hypertarget{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}\index{FooDataReader@{FooDataReader}!take@{take}}
+\index{take@{take}!FooDataReader@{FooDataReader}}
+\doxyparagraph{\texorpdfstring{take()}{take()}}
+{\footnotesize\ttfamily \label{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Data\+Reader\+::take (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \&}]{received\+\_\+data}{, }\item[{\mbox{\hyperlink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq}} \&}]{info\+\_\+seq}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{max\+\_\+samples}{, }\item[{\mbox{\hyperlink{group__DDSSampleStateModule_ga00cf17a2dec95fc16ffd02c57ef356f5}{DDS\+\_\+\+Sample\+State\+Mask}}}]{sample\+\_\+states}{, }\item[{\mbox{\hyperlink{group__DDSViewStateModule_gac6c18247f611af71486839446604e18c}{DDS\+\_\+\+View\+State\+Mask}}}]{view\+\_\+states}{, }\item[{\mbox{\hyperlink{group__DDSInstanceStateModule_ga4ded4022b3281636f4fbee19aab2844f}{DDS\+\_\+\+Instance\+State\+Mask}}}]{instance\+\_\+states}{}\end{DoxyParamCaption})}
+
+
+
+Access a collection of data-\/samples from the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+The operation will return the list of samples received by the \doxylink{classDDSDataReader}{DDSData\+Reader} since the last \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take} operation that match the specified \doxylink{group__DDSSampleStateModule_ga00cf17a2dec95fc16ffd02c57ef356f5}{DDS\+\_\+\+Sample\+State\+Mask}, \doxylink{group__DDSViewStateModule_gac6c18247f611af71486839446604e18c}{DDS\+\_\+\+View\+State\+Mask}, and \doxylink{group__DDSInstanceStateModule_ga4ded4022b3281636f4fbee19aab2844f}{DDS\+\_\+\+Instance\+State\+Mask}. 
+
+This operation may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ac47a8e813f6e5d652f67dbc551b9f62e}{DDS\+\_\+\+RETCODE\+\_\+\+ERROR} if the \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_a82873fd35e4159bce6c23cc0de5fcca9}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+outstanding\+\_\+reads} limit has been exceeded. 
+
+The actual number of samples returned depends on the information that has been received by the middleware as well as the \doxylink{structDDS__HistoryQosPolicy}{DDS\+\_\+\+History\+Qos\+Policy}, \doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy}, \doxylink{structDDS__DataReaderResourceLimitsQosPolicy}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy}, and the characteristics of the data-\/type that is associated with the \doxylink{classDDSDataReader}{DDSData\+Reader}\+: 
+
+\begin{DoxyItemize}
+\item When the \doxylink{structDDS__HistoryQosPolicy_a3cb2743cd13a81614bcc4f314cd640ab}{DDS\+\_\+\+History\+Qos\+Policy\+::kind} is \doxylink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a993d3120b7bbb347ce11e0e6f68b29ff}{DDS\+\_\+\+KEEP\+\_\+\+LAST\+\_\+\+HISTORY\+\_\+\+QOS}, the call will return a maximum of \doxylink{structDDS__HistoryQosPolicy_aef0fb3fd3579866be17d1a936f5e3729}{DDS\+\_\+\+History\+Qos\+Policy\+::depth} samples for each ALIVE instance and \doxylink{structDDS__HistoryQosPolicy_aef0fb3fd3579866be17d1a936f5e3729}{DDS\+\_\+\+History\+Qos\+Policy\+::depth} + 1 samples for each NOT\+\_\+\+ALIVE instance. The extra sample is an invalid sample that indicates the instance state transition from ALIVE to NOT\+\_\+\+ALIVE. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item When the \doxylink{structDDS__HistoryQosPolicy_a3cb2743cd13a81614bcc4f314cd640ab}{DDS\+\_\+\+History\+Qos\+Policy\+::kind} is \doxylink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a9e526d876dae232aa083125c72135f5b}{DDS\+\_\+\+KEEP\+\_\+\+ALL\+\_\+\+HISTORY\+\_\+\+QOS}, the maximum number of samples returned is limited to \doxylink{structDDS__ResourceLimitsQosPolicy_a90db906a3958146c5e22557db648e7ff}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+samples} + 1 for each NOT\+\_\+\+ALIVE instance. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item When max\+\_\+samples\+\_\+per\+\_\+instance is not DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED, the number of samples returned is also limited by the product (\doxylink{structDDS__ResourceLimitsQosPolicy_ae3d9339bebf4c7163cf6dff82882cbef}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+samples\+\_\+per\+\_\+instance} \texorpdfstring{$\ast$}{*} \doxylink{structDDS__ResourceLimitsQosPolicy_ab7339605f314f50c7cb658426ff64cdb}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+instances} ). \end{DoxyItemize}
+If the read or take succeeds, and the number of samples returned has been limited (by means of a maximum limit, as listed above, or insufficient \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} resources), the call will complete successfully and provide those samples the reader is able to return. The user may need to make additional calls, or return outstanding loaned buffers in the case of insuffificient resources, in order to access remaining samples. 
+
+Note that when the \doxylink{classDDSTopic}{DDSTopic} associated with the \doxylink{classDDSDataReader}{DDSData\+Reader} is bound to a data-\/type that has no key definition, then there will be at most one instance in the \doxylink{classDDSDataReader}{DDSData\+Reader}. So the per-\/sample limits will apply. 
+
+The act of {\itshape taking} a sample removes it from RTI Connext DDS Micro so it cannot be read or taken again. If the sample belongs to the most recent generation of the instance, it will also set the {\ttfamily view\+\_\+state} of the sample\textquotesingle{}s instance to \doxylink{group__DDSViewStateModule_ggab7a8a4ae44a2c00f411a4461135b45f1ad0a3502068e5e66e20a873a0aaa881be}{DDS\+\_\+\+NOT\+\_\+\+NEW\+\_\+\+VIEW\+\_\+\+STATE}. It will not affect the {\ttfamily instance\+\_\+state} of the sample\textquotesingle{}s instance. 
+
+After \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take} completes, {\ttfamily received\+\_\+data} and {\ttfamily info\+\_\+seq} will be of the same length and contain the received data. 
+
+If the sequences are empty (maximum size equal 0) when the \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take} is called, the samples returned in the {\ttfamily received\+\_\+data} and the corresponding {\ttfamily info\+\_\+seq} are \textquotesingle{}loaned\textquotesingle{} to the application from buffers provided by the \doxylink{classDDSDataReader}{DDSData\+Reader}. The application can use them as desired and has guaranteed exclusive access to them. 
+
+Once the application completes its use of the samples it must \textquotesingle{}return the loan\textquotesingle{} to the \doxylink{classDDSDataReader}{DDSData\+Reader} by calling the \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan} operation. 
+
+{\itshape Note\+:} While you must call \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan} at some point, you do {\itshape not} have to do so before the next \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take} call. However, failure to return the loan will eventually deplete the \doxylink{classDDSDataReader}{DDSData\+Reader} of the buffers it needs to receive new samples and eventually samples will start to be lost. The total number of buffers available to the \doxylink{classDDSDataReader}{DDSData\+Reader} is specified by the \doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy}. 
+
+If the sequences are not empty (maximum size not equal 0) when the \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take} is called, samples are copied to received\+\_\+data and info\+\_\+seq. The application will not need to call \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan}. 
+
+The samples returned to the caller is a list where samples belonging to the same data instance are consecutive (i.\+e. instance access scope). 
+
+Samples belonging to the same instance will appear in the relative order in which there were received (i.\+e. reception timestamp destination order, where earlier samples are ahead of later samples). 
+
+If the \doxylink{classDDSDataReader}{DDSData\+Reader} has no samples that meet the constraints, the method will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91aa8e69444ae8a8efa65bde05556818669}{DDS\+\_\+\+RETCODE\+\_\+\+NO\+\_\+\+DATA}. 
+
+In addition to the collection of samples, the read and take operations also use a collection of \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} structures. \hypertarget{structFooDataReader_Data_and_sampleinfo_sequence}{}\doxysubsubsection{\texorpdfstring{SEQUENCES USAGE IN TAKE AND READ}{SEQUENCES USAGE IN TAKE AND READ}}\label{structFooDataReader_Data_and_sampleinfo_sequence}
+The initial (input) properties of the {\ttfamily received\+\_\+data} and {\ttfamily info\+\_\+seq} collections will determine the precise behavior of the read or take operation. For the purposes of this description, the collections are modeled as having these properties\+:  \begin{DoxyItemize}
+\item whether the collection container owns the memory of the elements within ({\ttfamily owns}, see \+::\+Foo\+Seq\+::has\+\_\+ownership)  \item the current-\/length ({\ttfamily len}, see \+::\+Foo\+Seq\+::length()) \item the maximum length ({\ttfamily max\+\_\+len}, see \+::\+Foo\+Seq\+::maximum()) \end{DoxyItemize}
+The initial values of the  {\ttfamily owns},  {\ttfamily len} and {\ttfamily max\+\_\+len} properties for the {\ttfamily received\+\_\+data} and {\ttfamily info\+\_\+seq} collections govern the behavior of the read and take operations as specified by the following rules\+: 
+
+
+\begin{DoxyEnumerate}
+\item The values of  {\ttfamily owns},  {\ttfamily len} and {\ttfamily max\+\_\+len} properties for the two collections must be identical. Otherwise read/take will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+
+
+\item On successful output, the values of  {\ttfamily owns},  {\ttfamily len} and {\ttfamily max\+\_\+len} will be the same for both collections. 
+
+
+\item If the initial {\ttfamily max\+\_\+len==0}, then the {\ttfamily received\+\_\+data} and {\ttfamily info\+\_\+seq} collections will be filled with elements that are loaned by the \doxylink{classDDSDataReader}{DDSData\+Reader}. On output,  {\ttfamily owns} will be FALSE,  {\ttfamily len} will be set to the number of values returned, and {\ttfamily max\+\_\+len} will be set to a value verifying {\ttfamily max\+\_\+len} \texorpdfstring{$>$}{>}= {\ttfamily len}. The use of this variant allows for zero-\/copy access to the data and the application will need to return the loan to the \doxylink{classDDSDataWriter}{DDSData\+Writer} using \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan}. 
+
+
+\item If the initial {\ttfamily max\+\_\+len\texorpdfstring{$>$}{>}0}  and {\ttfamily owns==FALSE},  then the read or take operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. This avoids the potential hard-\/to-\/detect memory leaks caused by an application forgetting to return the loan. 
+
+
+\item If initial {\ttfamily max\+\_\+len\texorpdfstring{$>$}{>}0}  and {\ttfamily owns==TRUE},  then the read or take operation will copy the {\ttfamily received\+\_\+data} values and \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} values into the elements already inside the collections. On output,  {\ttfamily owns} will be TRUE,  {\ttfamily len} will be set to the number of values copied and {\ttfamily max\+\_\+len} will remain unchanged. The use of this variant forces a copy but the application can control where the copy is placed and the application will not need to return the loan. The number of samples copied depends on the relative values of {\ttfamily max\+\_\+len} and {\ttfamily max\+\_\+samples\+:} 
+
+
+\begin{DoxyItemize}
+\item If {\ttfamily max\+\_\+samples} == LENGTH\+\_\+\+UNLIMITED, then at most {\ttfamily max\+\_\+len} values will be copied. The use of this variant lets the application limit the number of samples returned to what the sequence can accommodate. 
+
+
+\item If {\ttfamily max\+\_\+samples} \texorpdfstring{$<$}{<}= {\ttfamily max\+\_\+len}, then at most {\ttfamily max\+\_\+samples} values will be copied. The use of this variant lets the application limit the number of samples returned to fewer that what the sequence can accommodate.  
+
+
+\item If {\ttfamily max\+\_\+samples} \texorpdfstring{$>$}{>} {\ttfamily max\+\_\+len}, then the read or take operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. This avoids the potential confusion where the application expects to be able to access up to {\ttfamily max\+\_\+samples}, but that number can never be returned, even if they are available in the \doxylink{classDDSDataReader}{DDSData\+Reader}, because the output sequence cannot accommodate them. 
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+As described above, upon completion, the {\ttfamily received\+\_\+data} and {\ttfamily info\+\_\+seq} collections may contain elements loaned from the \doxylink{classDDSDataReader}{DDSData\+Reader}. If this is the case, the application will need to use \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan} to return the loan once it is no longer using the {\ttfamily received\+\_\+data} in the collection. When \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan} completes, the collection will have  {\ttfamily owns=FALSE} and  {\ttfamily max\+\_\+len=0}. The application can determine whether it is necessary to return the loan or not based on how the state of the collections when the read/take operation was called  or by accessing the {\ttfamily owns} property.  However, in many cases it may be simpler to always call \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan}, as this operation is harmless (i.\+e., it leaves all elements unchanged) if the collection does not have a loan. 
+
+To avoid potential memory leaks, the implementation of the Foo and \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} collections should disallow changing the length of a collection for which {\ttfamily owns==FALSE}. Furthermore, deleting a collection for which {\ttfamily owns==FALSE} should be considered an error.  
+
+On output, the collection of Foo values and the collection of \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} structures are of the same length and are in a one-\/to-\/one correspondence. Each \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} provides information, such as the source\+\_\+timestamp, the sample\+\_\+state, view\+\_\+state, and instance\+\_\+state, etc., about the corresponding sample. 
+
+Some elements in the returned collection may not have valid data. If the instance\+\_\+state in the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} is \doxylink{group__DDSInstanceStateModule_ggaf2264cae1aa8cd66490debfdc5e0c360a51e7b0651e135e656327002e41787dbf}{DDS\+\_\+\+NOT\+\_\+\+ALIVE\+\_\+\+DISPOSED\+\_\+\+INSTANCE\+\_\+\+STATE} or \doxylink{group__DDSInstanceStateModule_ggaf2264cae1aa8cd66490debfdc5e0c360a72ebdc6f53c9a7588458b48e3ea66507}{DDS\+\_\+\+NOT\+\_\+\+ALIVE\+\_\+\+NO\+\_\+\+WRITERS\+\_\+\+INSTANCE\+\_\+\+STATE}, then the last sample for that instance in the collection (that is, the one whose \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} has sample\+\_\+rank==0) does not contain valid data. 
+
+Samples that contain no data do not count towards the limits imposed by the \doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy}. The act of reading/taking a sample sets its sample\+\_\+state to \doxylink{group__DDSSampleStateModule_ggadb6d36e7c796da27519b6bf7f8f187e5a4435d5fd0a36806ebd1c67210345a70b}{DDS\+\_\+\+READ\+\_\+\+SAMPLE\+\_\+\+STATE}. 
+
+If the sample belongs to the most recent generation of the instance, it will also set the view\+\_\+state of the instance to \doxylink{group__DDSViewStateModule_ggab7a8a4ae44a2c00f411a4461135b45f1ad0a3502068e5e66e20a873a0aaa881be}{DDS\+\_\+\+NOT\+\_\+\+NEW\+\_\+\+VIEW\+\_\+\+STATE}. It will not affect the instance\+\_\+state of the instance. 
+
+This operation must be provided on the specialized class that is generated for the particular application data-\/type that is being read (Foo). If the \doxylink{classDDSDataReader}{DDSData\+Reader} has no samples that meet the constraints, the operations fails with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91aa8e69444ae8a8efa65bde05556818669}{DDS\+\_\+\+RETCODE\+\_\+\+NO\+\_\+\+DATA}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em received\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} User data type-\/specific \doxylink{structFooSeq}{Foo\+Seq} object where the received data samples will be returned.  \\
+\hline
+\end{DoxyParams}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em info\+\_\+seq} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} A \doxylink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq} object where the received sample info will be returned.  \\
+\hline
+{\em max\+\_\+samples} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The maximum number of samples to be returned. If the special value DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED is provided, as many samples will be returned as are available. \\
+\hline
+{\em sample\+\_\+states} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Data samples matching one of these {\ttfamily sample\+\_\+states} are returned. \\
+\hline
+{\em view\+\_\+states} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Data samples matching one of these {\ttfamily view\+\_\+state} are returned. \\
+\hline
+{\em instance\+\_\+states} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Data samples matching one of these {\ttfamily instance\+\_\+state} are returned. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91aa8e69444ae8a8efa65bde05556818669}{DDS\+\_\+\+RETCODE\+\_\+\+NO\+\_\+\+DATA} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read} 
+
+DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+\end{DoxySeeAlso}
+\Hypertarget{structFooDataReader_aa3802393fbd2cbb6617955cf8de166a0}\index{FooDataReader@{FooDataReader}!read\_instance@{read\_instance}}
+\index{read\_instance@{read\_instance}!FooDataReader@{FooDataReader}}
+\doxyparagraph{\texorpdfstring{read\_instance()}{read\_instance()}}
+{\footnotesize\ttfamily \label{structFooDataReader_aa3802393fbd2cbb6617955cf8de166a0} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Data\+Reader\+::read\+\_\+instance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \&}]{received\+\_\+data}{, }\item[{\mbox{\hyperlink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq}} \&}]{info\+\_\+seq}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{max\+\_\+samples}{, }\item[{const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&}]{a\+\_\+handle}{, }\item[{\mbox{\hyperlink{group__DDSSampleStateModule_ga00cf17a2dec95fc16ffd02c57ef356f5}{DDS\+\_\+\+Sample\+State\+Mask}}}]{sample\+\_\+states}{, }\item[{\mbox{\hyperlink{group__DDSViewStateModule_gac6c18247f611af71486839446604e18c}{DDS\+\_\+\+View\+State\+Mask}}}]{view\+\_\+states}{, }\item[{\mbox{\hyperlink{group__DDSInstanceStateModule_ga4ded4022b3281636f4fbee19aab2844f}{DDS\+\_\+\+Instance\+State\+Mask}}}]{instance\+\_\+states}{}\end{DoxyParamCaption})}
+
+
+
+Access a collection of data samples from the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+This operation accesses a collection of data values from the \doxylink{classDDSDataReader}{DDSData\+Reader}. The behavior is identical to \doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read}, except that all samples returned belong to the single specified instance whose handle is {\ttfamily a\+\_\+handle}. 
+
+Upon successful completion, the data collection will contain samples all belonging to the same instance. The corresponding \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} verifies \doxylink{structDDS__SampleInfo_a38bca53647cd2be8c1dff9054126f360}{DDS\+\_\+\+Sample\+Info\+::instance\+\_\+handle} == {\ttfamily a\+\_\+handle}. 
+
+The \doxylink{structFooDataReader_aa3802393fbd2cbb6617955cf8de166a0}{Foo\+Data\+Reader\+::read\+\_\+instance} operation is semantically equivalent to the \doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read} operation, except in building the collection, the \doxylink{classDDSDataReader}{DDSData\+Reader} will check that the sample belongs to the specified instance and otherwise it will not place the sample in the returned collection. 
+
+The behavior of the \doxylink{structFooDataReader_aa3802393fbd2cbb6617955cf8de166a0}{Foo\+Data\+Reader\+::read\+\_\+instance} operation follows the same rules as the \doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read} operation regarding the pre-\/conditions and post-\/conditions for the {\ttfamily received\+\_\+data} and {\ttfamily sample\+\_\+info}. Similar to the \doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read}, the \doxylink{structFooDataReader_aa3802393fbd2cbb6617955cf8de166a0}{Foo\+Data\+Reader\+::read\+\_\+instance} operation may \textquotesingle{}loan\textquotesingle{} elements to the output collections, which must then be returned by means of \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan}. 
+
+Similar to the \doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read}, this operation must be provided on the specialized class that is generated for the particular application data-\/type that is being taken. 
+
+If the \doxylink{classDDSDataReader}{DDSData\+Reader} has no samples that meet the constraints, the method will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91aa8e69444ae8a8efa65bde05556818669}{DDS\+\_\+\+RETCODE\+\_\+\+NO\+\_\+\+DATA}. 
+
+This operation may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER} if the \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} {\ttfamily a\+\_\+handle} does not correspond to an existing data-\/object known to the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em received\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} user data type-\/specific \doxylink{structFooSeq}{Foo\+Seq} object where the received data samples will be returned.  \\
+\hline
+{\em info\+\_\+seq} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} a \doxylink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq} object where the received sample info will be returned.  \\
+\hline
+{\em max\+\_\+samples} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The maximum number of samples to be returned. If the special value DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED is provided, as many samples will be returned as are available. \\
+\hline
+{\em a\+\_\+handle} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The specified instance to return samples for.  The method will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER} if the {\ttfamily handle} does not correspond to an existing data-\/object known to the \doxylink{classDDSDataReader}{DDSData\+Reader}. \\
+\hline
+{\em sample\+\_\+states} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} data samples matching ones of these {\ttfamily sample\+\_\+states} are returned \\
+\hline
+{\em view\+\_\+states} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} data samples matching ones of these {\ttfamily view\+\_\+state} are returned \\
+\hline
+{\em instance\+\_\+states} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} data samples matching ones of these {\ttfamily instance\+\_\+state} are returned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91aa8e69444ae8a8efa65bde05556818669}{DDS\+\_\+\+RETCODE\+\_\+\+NO\+\_\+\+DATA} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read} 
+
+DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+\end{DoxySeeAlso}
+\Hypertarget{structFooDataReader_abec489cf7e6f19468d19c632688c978f}\index{FooDataReader@{FooDataReader}!take\_instance@{take\_instance}}
+\index{take\_instance@{take\_instance}!FooDataReader@{FooDataReader}}
+\doxyparagraph{\texorpdfstring{take\_instance()}{take\_instance()}}
+{\footnotesize\ttfamily \label{structFooDataReader_abec489cf7e6f19468d19c632688c978f} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Data\+Reader\+::take\+\_\+instance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \&}]{received\+\_\+data}{, }\item[{\mbox{\hyperlink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq}} \&}]{info\+\_\+seq}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{max\+\_\+samples}{, }\item[{const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&}]{a\+\_\+handle}{, }\item[{\mbox{\hyperlink{group__DDSSampleStateModule_ga00cf17a2dec95fc16ffd02c57ef356f5}{DDS\+\_\+\+Sample\+State\+Mask}}}]{sample\+\_\+states}{, }\item[{\mbox{\hyperlink{group__DDSViewStateModule_gac6c18247f611af71486839446604e18c}{DDS\+\_\+\+View\+State\+Mask}}}]{view\+\_\+states}{, }\item[{\mbox{\hyperlink{group__DDSInstanceStateModule_ga4ded4022b3281636f4fbee19aab2844f}{DDS\+\_\+\+Instance\+State\+Mask}}}]{instance\+\_\+states}{}\end{DoxyParamCaption})}
+
+
+
+Access a collection of data samples from the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+This operation accesses a collection of data values from the \doxylink{classDDSDataReader}{DDSData\+Reader}. The behavior is identical to \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take}, except for that all samples returned belong to the single specified instance whose handle is {\ttfamily a\+\_\+handle}. 
+
+The semantics are the same for the \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take} operation, except in building the collection, the \doxylink{classDDSDataReader}{DDSData\+Reader} will check that the sample belongs to the specified instance, and otherwise it will not place the sample in the returned collection. 
+
+The behavior of the \doxylink{structFooDataReader_abec489cf7e6f19468d19c632688c978f}{Foo\+Data\+Reader\+::take\+\_\+instance} operation follows the same rules as the \doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read} operation regarding the pre-\/conditions and post-\/conditions for the {\ttfamily received\+\_\+data} and {\ttfamily sample\+\_\+info}. Similar to the \doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read}, the \doxylink{structFooDataReader_abec489cf7e6f19468d19c632688c978f}{Foo\+Data\+Reader\+::take\+\_\+instance} operation may \textquotesingle{}loan\textquotesingle{} elements to the output collections, which must then be returned by means of \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan}. 
+
+Similar to the \doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read}, this operation must be provided on the specialized class that is generated for the particular application data-\/type that is being taken. 
+
+If the \doxylink{classDDSDataReader}{DDSData\+Reader} has no samples that meet the constraints, the method fails with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91aa8e69444ae8a8efa65bde05556818669}{DDS\+\_\+\+RETCODE\+\_\+\+NO\+\_\+\+DATA}. 
+
+This operation may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER} if the \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} {\ttfamily a\+\_\+handle} does not correspond to an existing data-\/object known to the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em received\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} user data type-\/specific \doxylink{structFooSeq}{Foo\+Seq} object where the received data samples will be returned.  \\
+\hline
+{\em info\+\_\+seq} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} a \doxylink{structDDS__SampleInfoSeq}{DDS\+\_\+\+Sample\+Info\+Seq} object where the received sample info will be returned.  \\
+\hline
+{\em max\+\_\+samples} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The maximum number of samples to be returned. If the special value DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED is provided, as many samples will be returned as are available. \\
+\hline
+{\em a\+\_\+handle} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The specified instance to return samples for.  The method will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER} if the {\ttfamily handle} does not correspond to an existing data-\/object known to the \doxylink{classDDSDataReader}{DDSData\+Reader}. \\
+\hline
+{\em sample\+\_\+states} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} data samples matching ones of these {\ttfamily sample\+\_\+states} are returned \\
+\hline
+{\em view\+\_\+states} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} data samples matching ones of these {\ttfamily view\+\_\+state} are returned \\
+\hline
+{\em instance\+\_\+states} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} data samples matching ones of these {\ttfamily instance\+\_\+state} are returned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91aa8e69444ae8a8efa65bde05556818669}{DDS\+\_\+\+RETCODE\+\_\+\+NO\+\_\+\+DATA} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take} 
+
+DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+\end{DoxySeeAlso}
+\Hypertarget{structFooDataReader_acc2a58c7f1eee79a6491965e69283721}\index{FooDataReader@{FooDataReader}!lookup\_instance@{lookup\_instance}}
+\index{lookup\_instance@{lookup\_instance}!FooDataReader@{FooDataReader}}
+\doxyparagraph{\texorpdfstring{lookup\_instance()}{lookup\_instance()}}
+{\footnotesize\ttfamily \label{structFooDataReader_acc2a58c7f1eee79a6491965e69283721} 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} Foo\+Data\+Reader\+::lookup\+\_\+instance (\begin{DoxyParamCaption}\item[{const Foo \&}]{key\+\_\+holder}{}\end{DoxyParamCaption})}
+
+
+
+Retrieve the instance {\ttfamily handle} that corresponds to an instance {\ttfamily key\+\_\+holder}. 
+
+Useful for keyed data types. 
+
+This operation takes as a parameter an instance and returns a handle that can be used in subsequent operations that accept an instance handle as an argument. The instance parameter is only used for the purpose of examining the fields that define the key. This operation does not register the instance in question. If the instance has not been previously registered, or if for any other reason the Service is unable to provide an instance handle, the Service will return the special value HANDLE\+\_\+\+NIL. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+\_\+holder} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} a user data type specific key holder. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the instance handle associated with this instance. If Foo has no key, this method has no effect and returns \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL} 
+\end{DoxyReturn}
+\Hypertarget{structFooDataReader_ab14ac46cc38d0ff25543a02c0a09fcfb}\index{FooDataReader@{FooDataReader}!is\_data\_consistent@{is\_data\_consistent}}
+\index{is\_data\_consistent@{is\_data\_consistent}!FooDataReader@{FooDataReader}}
+\doxyparagraph{\texorpdfstring{is\_data\_consistent()}{is\_data\_consistent()}}
+{\footnotesize\ttfamily \label{structFooDataReader_ab14ac46cc38d0ff25543a02c0a09fcfb} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Data\+Reader\+::is\+\_\+data\+\_\+consistent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \&}]{is\+\_\+data\+\_\+consistent}{, }\item[{const Foo \&}]{sample}{, }\item[{const struct \mbox{\hyperlink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}} \&}]{sample\+\_\+info}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the sample has been overwritten by the Data\+Writer. 
+
+When a sample is received via Zero Copy transfer over shared memory, the sample can be reused by the Data\+Writer once it is removed from the Data\+Writer\textquotesingle{}s send queue. Since there is no synchronization between the Data\+Reader and the Data\+Writer, the sample could be overwritten by the Data\+Writer before it is processed by the Data\+Reader. The \doxylink{structFooDataReader_ab14ac46cc38d0ff25543a02c0a09fcfb}{Foo\+Data\+Reader\+::is\+\_\+data\+\_\+consistent} operation can be used after processing the sample to check if it was overwritten by the Data\+Writer. 
+
+A precondition for using this operation is to set \doxylink{structDDS__DataWriterShmemRefTransferModeSettings_af4766de78ad7d0787d1c073576c0eae4}{DDS\+\_\+\+Data\+Writer\+Shmem\+Ref\+Transfer\+Mode\+Settings\+::enable\+\_\+data\+\_\+consistency\+\_\+check} to true. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+\_\+data\+\_\+consistent} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Set to true if the sample is consistent (i.\+e., the sample has not been overwritten by the Data\+Writer)  \\
+\hline
+{\em sample} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Sample to be validated  \\
+\hline
+{\em sample\+\_\+info} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} object received with the sample    \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{structFooDataReader_ab14ac46cc38d0ff25543a02c0a09fcfb}{is\+\_\+data\+\_\+consistent()}}.
+
+
+
+Referenced by \mbox{\hyperlink{structFooDataReader_ab14ac46cc38d0ff25543a02c0a09fcfb}{is\+\_\+data\+\_\+consistent()}}.
+

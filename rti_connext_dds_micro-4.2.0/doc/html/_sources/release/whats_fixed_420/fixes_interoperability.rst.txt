@@ -1,0 +1,20 @@
+Interoperability
+================
+
+.. Release Notes from this point.
+
+:major:`[Major]` Zero Copy communication failed when applications were started from different directories
+---------------------------------------------------------------------------------------------------------
+When two applications were started from different working directories,
+they would fail to communicate when using the Zero Copy v2 transport.
+
+.. note::
+    
+  As a result of this fix, applications using Zero Copy transfer
+  are not backwards compatible with previous versions of |me|.
+
+  Refer to the `Migration Guide <https://community.rti.com/static/documentation/connext-micro/current/doc/mg/html/index.html>`__
+  for more information.
+
+[RTI Issue ID MICRO-10391]
+

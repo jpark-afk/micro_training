@@ -1,0 +1,94 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# FACE options file
+
+# Modification History
+# --------------------
+# 12sep2016 tk Written
+################################################################################
+IF (RTIME_PRINT_CONFIG)
+    RETURN()
+ENDIF()
+
+IF (NOT DEFINED(CMAKE_C_FLAGS_ORIGINAL))
+	SET(CMAKE_C_FLAGS_ORIGINAL ${CMAKE_C_FLAGS})
+ENDIF()
+
+#== FACE profile
+SET(FACE_DOC             "Enable FACE compliance?")
+SET(FACE_GOLDENLIBS_DOCS "Link with FACE golden libraries (must already exist)?") 
+SET(FACE_PROFILE_NONE          "None")
+SET(FACE_PROFILE_GENERAL       "General")
+SET(FACE_PROFILE_SAFETY_EXT    "Safety Extended")
+SET(FACE_PROFILE_SAFETY        "Safety")
+SET(FACE_PROFILE_SECURITY      "Security")
+
+IF (${RTIME_TARGET_NAME} MATCHES "_face")
+    IF (${RTIME_TARGET_NAME} MATCHES "_faceSB")
+        SET(RTIME_ENABLE_FACE_COMPLIANCE ${FACE_PROFILE_SAFETY} CACHE STRING ${FACE_DOC})
+    ELSE()    
+        SET(RTIME_ENABLE_FACE_COMPLIANCE ${FACE_PROFILE_NONE} CACHE STRING ${FACE_DOC})
+    ENDIF()    
+ELSE()
+    SET(RTIME_ENABLE_FACE_COMPLIANCE ${FACE_PROFILE_NONE} CACHE STRING ${FACE_DOC})
+ENDIF()   
+
+SET_PROPERTY(CACHE RTIME_ENABLE_FACE_COMPLIANCE PROPERTY STRINGS 
+                 ${FACE_PROFILE_NONE} 
+                 ${FACE_PROFILE_GENERAL} 
+                 ${FACE_PROFILE_SAFETY_EXT} 
+                 ${FACE_PROFILE_SAFETY}
+)
+
+IF (NOT ${RTIME_ENABLE_FACE_COMPLIANCE} STREQUAL ${FACE_PROFILE_NONE})
+    SET(RTIME_LINK_FACE_GOLDENLIBS OFF CACHE BOOL ${FACE_GOLDENLIBS_DOCS})
+
+    IF (${RTIME_ENABLE_FACE_COMPLIANCE} STREQUAL ${FACE_PROFILE_SECURITY})
+        ADD_DEFINITIONS(-DENABLE_FACE_COMPLIANCE=FACE_COMPLIANCE_LEVEL_SECURITY -DRTI_CERT)
+        SET(FACE_LIBPREFIX "Security")
+        SET(FACE_INCLUDE "security")
+        SET(RTIME_CERT TRUE)
+        SET(RTI_BUILD_UNITTESTS FALSE)
+    ELSEIF (${RTIME_ENABLE_FACE_COMPLIANCE} STREQUAL ${FACE_PROFILE_SAFETY})
+        ADD_DEFINITIONS(-DENABLE_FACE_COMPLIANCE=FACE_COMPLIANCE_LEVEL_SAFETY_BASE -DRTI_CERT)
+        SET(FACE_LIBPREFIX "SafetyBase")
+        SET(FACE_INCLUDE "safetyBase")
+        SET(RTIME_CERT TRUE)
+        SET(RTI_BUILD_UNITTESTS FALSE)
+    ELSEIF (${RTIME_ENABLE_FACE_COMPLIANCE} STREQUAL ${FACE_PROFILE_SAFETY_EXT})
+        ADD_DEFINITIONS(-DENABLE_FACE_COMPLIANCE=FACE_COMPLIANCE_LEVEL_SAFETY_EXTENDED)
+        SET(FACE_LIBPREFIX "SafetyExt")
+        SET(FACE_INCLUDE "safetyExt")
+    ELSEIF(${RTIME_ENABLE_FACE_COMPLIANCE} STREQUAL ${FACE_PROFILE_GENERAL})
+        ADD_DEFINITIONS(-DENABLE_FACE_COMPLIANCE=FACE_COMPLIANCE_LEVEL_GENERAL)
+        SET(FACE_LIBPREFIX "General")
+        SET(FACE_INCLUDE "general")
+    ENDIF()
+
+    IF (${RTIME_LINK_FACE_GOLDENLIBS})
+        INCLUDE_DIRECTORIES(${RTIME_FACE_ROOT}/compilerSpecific/C/systemLibraryDefinitions) 
+        SET(PLATFORM_LIBS ${RTIME_FACE_ROOT}/compilerSpecific/C/compilerSpecificGoldLib.a) 
+
+        SET(RTIME_FACE_ROOT "path to FACE libraries" CACHE PATH "Where is the FACE conformance test-suite located?")
+        SET(CMAKE_C_FLAGS "-fno-builtin -nostdinc -nodefaultlibs -nostartfiles ${CMAKE_C_FLAGS}" CACHE INTERNAL "CMAKE_C_FLAGS" FORCE)
+    
+        INCLUDE_DIRECTORIES(${RTIME_FACE_ROOT}/goldStandardLibraries/C/src/OSS/POSIX/${FACE_INCLUDE})
+        LIST(APPEND PLATFORM_LIBS "${RTIME_FACE_ROOT}/goldStandardLibraries/C/posix${FACE_LIBPREFIX}GoldLib.a")        
+    ELSE()
+        UNSET(RTIME_FACE_ROOT CACHE)
+        SET(CMAKE_C_FLAGS ${CMAKE_C_FLAGS_ORIGINAL} CACHE INTERNAL "CMAKE_C_FLAGS")
+    ENDIF()
+ELSE()
+    UNSET(RTIME_LINK_FACE_GOLDENLIBS CACHE)
+    SET(CMAKE_C_FLAGS ${CMAKE_C_FLAGS_ORIGINAL} CACHE INTERNAL "CMAKE_C_FLAGS")
+    ADD_DEFINITIONS(-DENABLE_FACE_COMPLIANCE=FACE_COMPLIANCE_LEVEL_NONE)   
+ENDIF()

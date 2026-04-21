@@ -1,0 +1,84 @@
+\doxysubsection{DDS\+\_\+\+Subscription\+Matched\+Status Struct Reference}
+\hypertarget{structDDS__SubscriptionMatchedStatus}{}\label{structDDS__SubscriptionMatchedStatus}\index{DDS\_SubscriptionMatchedStatus@{DDS\_SubscriptionMatchedStatus}}
+
+
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26faceedf0fda6d695b4fabd8ac0af807bb1}{DDS\+\_\+\+SUBSCRIPTION\+\_\+\+MATCHED\+\_\+\+STATUS}  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+subscription.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__SubscriptionMatchedStatus_a8e10280adf89dfe5bc7a68865a33463d}{total\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em The total cumulative number of times the concerned \doxylink{classDDSDataReader}{DDSData\+Reader} discovered a "{}match"{} with a \doxylink{classDDSDataWriter}{DDSData\+Writer}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__SubscriptionMatchedStatus_ada65f66c8299f83bf27e25b11e095f17}{total\+\_\+count\+\_\+change}}
+\begin{DoxyCompactList}\small\item\em The change in total\+\_\+count since the last time the listener was called or the status was read. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__SubscriptionMatchedStatus_a122d93087f163acf05228e72c7205a12}{current\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em The current number of writers with which the \doxylink{classDDSDataReader}{DDSData\+Reader} is matched. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__SubscriptionMatchedStatus_a9e107e1857634eb3eafa4c7a5c1b98df}{current\+\_\+count\+\_\+change}}
+\begin{DoxyCompactList}\small\item\em The change in current\+\_\+count since the last time the listener was called or the status was read. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{structDDS__SubscriptionMatchedStatus_a86f6ab482b31e9404ac762dde237af68}{last\+\_\+publication\+\_\+handle}}
+\begin{DoxyCompactList}\small\item\em A handle to the last \doxylink{classDDSDataWriter}{DDSData\+Writer} that caused the status to change. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26faceedf0fda6d695b4fabd8ac0af807bb1}{DDS\+\_\+\+SUBSCRIPTION\+\_\+\+MATCHED\+\_\+\+STATUS} 
+
+A "{}match"{} happens when the \doxylink{classDDSDataReader}{DDSData\+Reader} finds a \doxylink{classDDSDataWriter}{DDSData\+Writer} for the same \doxylink{classDDSTopic}{DDSTopic} with an offered QoS that is compatible with that requested by the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+This status is also changed (and the listener, if any, called) when a match is ended. A local \doxylink{classDDSDataReader}{DDSData\+Reader} will become "{}unmatched"{} from a remote \doxylink{classDDSDataWriter}{DDSData\+Writer} when that \doxylink{classDDSDataWriter}{DDSData\+Writer} goes away for any reason. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__SubscriptionMatchedStatus_a8e10280adf89dfe5bc7a68865a33463d}\index{DDS\_SubscriptionMatchedStatus@{DDS\_SubscriptionMatchedStatus}!total\_count@{total\_count}}
+\index{total\_count@{total\_count}!DDS\_SubscriptionMatchedStatus@{DDS\_SubscriptionMatchedStatus}}
+\doxyparagraph{\texorpdfstring{total\_count}{total\_count}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionMatchedStatus_a8e10280adf89dfe5bc7a68865a33463d} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Subscription\+Matched\+Status\+::total\+\_\+count}
+
+
+
+The total cumulative number of times the concerned \doxylink{classDDSDataReader}{DDSData\+Reader} discovered a "{}match"{} with a \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+
+This number increases whenever a new match is discovered. It does not change when an existing match goes away. \Hypertarget{structDDS__SubscriptionMatchedStatus_ada65f66c8299f83bf27e25b11e095f17}\index{DDS\_SubscriptionMatchedStatus@{DDS\_SubscriptionMatchedStatus}!total\_count\_change@{total\_count\_change}}
+\index{total\_count\_change@{total\_count\_change}!DDS\_SubscriptionMatchedStatus@{DDS\_SubscriptionMatchedStatus}}
+\doxyparagraph{\texorpdfstring{total\_count\_change}{total\_count\_change}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionMatchedStatus_ada65f66c8299f83bf27e25b11e095f17} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Subscription\+Matched\+Status\+::total\+\_\+count\+\_\+change}
+
+
+
+The change in total\+\_\+count since the last time the listener was called or the status was read. 
+
+\Hypertarget{structDDS__SubscriptionMatchedStatus_a122d93087f163acf05228e72c7205a12}\index{DDS\_SubscriptionMatchedStatus@{DDS\_SubscriptionMatchedStatus}!current\_count@{current\_count}}
+\index{current\_count@{current\_count}!DDS\_SubscriptionMatchedStatus@{DDS\_SubscriptionMatchedStatus}}
+\doxyparagraph{\texorpdfstring{current\_count}{current\_count}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionMatchedStatus_a122d93087f163acf05228e72c7205a12} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Subscription\+Matched\+Status\+::current\+\_\+count}
+
+
+
+The current number of writers with which the \doxylink{classDDSDataReader}{DDSData\+Reader} is matched. 
+
+This number increases when a new match is discovered and decreases when an existing match goes away. \Hypertarget{structDDS__SubscriptionMatchedStatus_a9e107e1857634eb3eafa4c7a5c1b98df}\index{DDS\_SubscriptionMatchedStatus@{DDS\_SubscriptionMatchedStatus}!current\_count\_change@{current\_count\_change}}
+\index{current\_count\_change@{current\_count\_change}!DDS\_SubscriptionMatchedStatus@{DDS\_SubscriptionMatchedStatus}}
+\doxyparagraph{\texorpdfstring{current\_count\_change}{current\_count\_change}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionMatchedStatus_a9e107e1857634eb3eafa4c7a5c1b98df} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Subscription\+Matched\+Status\+::current\+\_\+count\+\_\+change}
+
+
+
+The change in current\+\_\+count since the last time the listener was called or the status was read. 
+
+\Hypertarget{structDDS__SubscriptionMatchedStatus_a86f6ab482b31e9404ac762dde237af68}\index{DDS\_SubscriptionMatchedStatus@{DDS\_SubscriptionMatchedStatus}!last\_publication\_handle@{last\_publication\_handle}}
+\index{last\_publication\_handle@{last\_publication\_handle}!DDS\_SubscriptionMatchedStatus@{DDS\_SubscriptionMatchedStatus}}
+\doxyparagraph{\texorpdfstring{last\_publication\_handle}{last\_publication\_handle}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionMatchedStatus_a86f6ab482b31e9404ac762dde237af68} 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} DDS\+\_\+\+Subscription\+Matched\+Status\+::last\+\_\+publication\+\_\+handle}
+
+
+
+A handle to the last \doxylink{classDDSDataWriter}{DDSData\+Writer} that caused the status to change. 
+

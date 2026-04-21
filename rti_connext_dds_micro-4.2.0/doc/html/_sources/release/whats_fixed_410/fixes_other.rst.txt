@@ -1,0 +1,97 @@
+Other
+=====
+
+.. Release Notes from this point.
+
+:critical:`[Critical]` Lost samples or fragments not repaired when using a flow controller
+------------------------------------------------------------------------------------------
+When using a flow controller, repair packets may not have been sent by a 
+*DataWriter* to a *DataReader* to replace lost fragments or samples. The 
+writer would only send repair packets when a new sample was written, 
+resulting in repairs never being sent if another sample was not written. 
+Repair packets will now be sent by the flow controller as soon as they 
+are required.
+
+[RTI Issue ID MICRO-7403]
+
+:major:`[Major]` Enabling asynchronous publication on DataWriter caused RTPS messages to fail
+---------------------------------------------------------------------------------------------
+If the ``publish_mode.kind`` of a *DataWriter*'s QoS was configured to
+be ``ASYNCHRONOUS_PUBLISH_MODE_QOS``, RTPS messages from that
+*DataWriter* may have failed to send. This condition occurred
+specifically if asynchronous publication was enabled AND the sample type
+did not require RTPS fragmentation.
+
+[RTI Issue ID MICRO-7219]
+
+:major:`[Major]` Finalizing a participant might have failed when using DPSE
+---------------------------------------------------------------------------
+``DDS_DomainParticipant_finalize()`` may have failed if the participant was 
+using the DPSE discovery plugin. This issue was most likely to occur on macOS® 
+platforms.
+
+[RTI Issue ID MICRO-7870]
+
+:major:`[Major]` Samples with meta-information were not delivered to the user if they arrived when history cache was full
+-------------------------------------------------------------------------------------------------------------------------
+When a *DataReader*’s history cache was full, samples containing 
+meta-information from matched *DataWriters* were not delivered to the user.
+
+[RTI Issue ID MICRO-8063]
+
+:minor:`[Minor]` Flow controllers incorrectly delayed sending packets
+---------------------------------------------------------------------
+The token-bucket flow controller may have waited to send packets until its 
+next period, even if more tokens were available during the current period.
+
+[RTI Issue ID MICRO-8024]
+
+:minor:`[Minor]` DataWriters with KEEP_ALL History may not have sent all historical samples
+-------------------------------------------------------------------------------------------
+*DataWriters* with :link_connextmicro_dds_api_c_up_two:`History kind <structDDS__HistoryQosPolicy.html>`
+set to ``DDS_KEEP_ALL_HISTORY_QOS`` and :link_connextmicro_dds_api_c_up_two:`Durability kind <structDDS__DurabilityQosPolicy.html>`
+set to ``DDS_TRANSIENT_LOCAL_DURABILITY_QOS`` would send historical samples only up to the
+:link_connextmicro_dds_api_c_up_two:`History depth <structDDS__HistoryQosPolicy.html>`.
+*DataWriters* now send historical samples up to :link_connextmicro_dds_api_c_up_two:`max_samples_per_instance <structDDS__ResourceLimitsQosPolicy.html>`.
+
+[RTI Issue ID MICRO-8505]
+
+:trivial:`[Trivial]` Illegal reflective access warning when running MAG with OpenJDK™ 11
+----------------------------------------------------------------------------------------
+*This issue was fixed in 4.0.1, but not documented at that time.*
+
+Running Micro Application Generator (MAG) with OpenJDK 11 generated the following warning:
+
+.. code-block:: none
+
+   WARNING: An illegal reflective access operation has occurred
+
+   WARNING: Illegal reflective access by com.rti.micro.appgen.utils.QosUtils (file:/.../rti_connext_dds_micro-4.0.0/rtiddsmag/class/rtiddsmag.jar) to field java.lang.String.value
+
+   WARNING: Please consider reporting this to the maintainers of com.rti.micro.appgen.utils.QosUtils
+
+   WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+
+   WARNING: All illegal access operations will be denied in a future release
+
+MAG has been updated to use OpenJDK 17, which does not generate this warning.
+
+[RTI Issue ID MAG-172]
+
+:trivial:`[Trivial]` Incorrect example instructions in the User's Manual
+------------------------------------------------------------------------
+
+:ref:`section-appgen-helloworld-example` in the User’s Manual stated 
+incorrectly that the files for the example were included with |me|. The 
+instructions have been updated to reflect that the files are generated 
+with ``rtiddsmag``.
+
+[RTI Issue ID MICRO-7376]
+
+:trivial:`[Trivial]` Micro transformation example failed to compile
+-------------------------------------------------------------------
+|me| failed to compile with the Visual Studio® 2010 solution files included 
+in the transformation example. The build process has been updated to compile 
+with a new CMake file.
+
+[RTI Issue ID MICRO-7171]

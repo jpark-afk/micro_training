@@ -1,0 +1,89 @@
+\doxysubsection{Documentation Guide}
+\hypertarget{group__DDSDocGuideModule}{}\label{group__DDSDocGuideModule}\index{Documentation Guide@{Documentation Guide}}
+This section describes the conventions used in the API documentation.\hypertarget{group__DDSDocGuideModule_doc_guide_support}{}\doxysubsubsection{\texorpdfstring{Unsupported Features}{Unsupported Features}}\label{group__DDSDocGuideModule_doc_guide_support}
+\mbox{[}{\bfseries{Not supported.}}\mbox{]} This note means that the feature from the DDS specification is not supported in the current release.\hypertarget{group__DDSDocGuideModule_doc_guide_naming}{}\doxysubsubsection{\texorpdfstring{API Naming Conventions}{API Naming Conventions}}\label{group__DDSDocGuideModule_doc_guide_naming}
+\hypertarget{group__DDSDocGuideModule_doc_guide_naming_structs}{}\doxysubsubsubsection{\texorpdfstring{Structure \& Class Names}{Structure \& Class Names}}\label{group__DDSDocGuideModule_doc_guide_naming_structs}
+RTI Connext DDS Micro makes a distinction between {\itshape value types} and {\itshape interface types}. Value types are types such as primitives, enumerations, strings, and structures whose identity and equality are determined solely by explicit state. Interface types are those abstract opaque data types that conceptually have an identity apart from their explicit state. Examples include all of the \doxylink{classDDSEntity}{DDSEntity} subtypes. Instances of value types are frequently transitory and are declared on the stack. Instances of interface types typically have longer lifecycles, are accessible by pointer only, and may be managed by a factory object.
+
+Value type structures are made more explicit through the use of C\textquotesingle{}s structure tag syntax. For example, a \doxylink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t} object must be declared as being of type "{}struct DDS\+\_\+\+Duration\+\_\+t,"{} not simply "{}\+DDS\+\_\+\+Duration\+\_\+t."{} Interface types, by contrast, are always of typedef\textquotesingle{}ed types; their underlying representations are opaque.\hypertarget{group__DDSDocGuideModule_doc_guide_doxygen}{}\doxysubsubsection{\texorpdfstring{API Documentation Terms}{API Documentation Terms}}\label{group__DDSDocGuideModule_doc_guide_doxygen}
+In the API documentation, the term module refers to a logical grouping of documentation and elements in the API.
+
+At this time, typedefs that occur in the API, such as \doxylink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t} do not show up in the compound list or indices. This is a known limitation in the generated HTML.\hypertarget{group__DDSDocGuideModule_doc_guide_stereotypes}{}\doxysubsubsection{\texorpdfstring{Stereotypes}{Stereotypes}}\label{group__DDSDocGuideModule_doc_guide_stereotypes}
+Commonly used stereotypes in the API documentation include the following.\hypertarget{group__DDSDocGuideModule_doc_guide_stereotypes_Extensions}{}\doxysubsubsubsection{\texorpdfstring{Extensions}{Extensions}}\label{group__DDSDocGuideModule_doc_guide_stereotypes_Extensions}
+
+\begin{DoxyItemize}
+\item {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}\label{group__DDSDocGuideModule_a_st_ext}%
+\Hypertarget{group__DDSDocGuideModule_a_st_ext}%
+
+\begin{DoxyItemize}
+\item An RTI Connext DDS Micro product extension to the DDS standard specification.
+\item The extension APIs complement the standard APIs specified by the OMG DDS specification. They are provided to improve product usability and enable access to product-\/specific features.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{group__DDSDocGuideModule_doc_guide_stereotypes_Experimental}{}\doxysubsubsubsection{\texorpdfstring{Experimental}{Experimental}}\label{group__DDSDocGuideModule_doc_guide_stereotypes_Experimental}
+
+\begin{DoxyItemize}
+\item {\itshape \doxylink{group__DDSDocGuideModule_a_st_experimental}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}experimental\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}\label{group__DDSDocGuideModule_a_st_experimental}%
+\Hypertarget{group__DDSDocGuideModule_a_st_experimental}%
+
+\begin{DoxyItemize}
+\item This software may contain experimental features. These are used to evaluate potential new features and obtain customer feedback.
+\item Experimental APIs are marked as {\itshape \doxylink{group__DDSDocGuideModule_a_st_experimental}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}experimental\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} in this documentation.
+\item Experimental features may be only available in a subset of the supported languages and for a subset of the supported platforms.
+\item Experimental features may change in the future.
+\item Experimental features may or may not appear in future product releases.
+\item Experimental features should not be used in production.
+\item Please submit your comments and suggestions about experimental features to {\itshape \href{mailto:support@rti.com}{\texttt{ support@rti.\+com}}} or via the RTI Customer Portal (\href{https://support.rti.com/}{\texttt{ https\+://support.\+rti.\+com/}}).
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{group__DDSDocGuideModule_doc_guide_stereotypes_Types}{}\doxysubsubsubsection{\texorpdfstring{Types}{Types}}\label{group__DDSDocGuideModule_doc_guide_stereotypes_Types}
+
+\begin{DoxyItemize}
+\item {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}\label{group__DDSDocGuideModule_a_st_interface}%
+\Hypertarget{group__DDSDocGuideModule_a_st_interface}%
+
+\begin{DoxyItemize}
+\item Pure interface type with {\itshape no state}.
+\end{DoxyItemize}
+\item {\itshape \doxylink{group__DDSDocGuideModule_a_st_generic}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}generic\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}\label{group__DDSDocGuideModule_a_st_generic}%
+\Hypertarget{group__DDSDocGuideModule_a_st_generic}%
+
+\begin{DoxyItemize}
+\item A {\itshape generic} type is a {\itshape skeleton} class written in terms of generic parameters. Type-\/specific instantiations of such types are conventionally referred to in this documentation in terms of the hypothetical type "{}\+Foo"{}; for example\+: \doxylink{structFooSeq}{Foo\+Seq}, Foo\+Data\+Type, \doxylink{structFooDataWriter}{Foo\+Data\+Writer}, and \doxylink{structFooDataReader}{Foo\+Data\+Reader}.
+\end{DoxyItemize}
+\item {\itshape \doxylink{group__DDSDocGuideModule_a_st_singleton}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}singleton\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}\label{group__DDSDocGuideModule_a_st_singleton}%
+\Hypertarget{group__DDSDocGuideModule_a_st_singleton}%
+
+\begin{DoxyItemize}
+\item Singleton class. There is a single instance of the class.
+\item Generally acccessed via a {\ttfamily get\+\_\+instance()} static method.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{group__DDSDocGuideModule_doc_guide_stereotypes_methods}{}\doxysubsubsubsection{\texorpdfstring{Method Parameters}{Method Parameters}}\label{group__DDSDocGuideModule_doc_guide_stereotypes_methods}
+
+\begin{DoxyItemize}
+\item {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}\label{group__DDSDocGuideModule_a_st_in}%
+\Hypertarget{group__DDSDocGuideModule_a_st_in}%
+
+\begin{DoxyItemize}
+\item An {\itshape input} parameter.
+\end{DoxyItemize}
+\item {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}\label{group__DDSDocGuideModule_a_st_out}%
+\Hypertarget{group__DDSDocGuideModule_a_st_out}%
+
+\begin{DoxyItemize}
+\item An {\itshape output} parameter.
+\end{DoxyItemize}
+\item {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}\label{group__DDSDocGuideModule_a_st_inout}%
+\Hypertarget{group__DDSDocGuideModule_a_st_inout}%
+
+\begin{DoxyItemize}
+\item An {\itshape input} and {\itshape output} parameter.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{group__DDSDocGuideModule_doc_guide_stereotypes_noncert}{}\doxysubsubsubsection{\texorpdfstring{Cert API}{Cert API}}\label{group__DDSDocGuideModule_doc_guide_stereotypes_noncert}
+
+\begin{DoxyItemize}
+\item \label{group__DDSDocGuideModule_a_st_cert}%
+\Hypertarget{group__DDSDocGuideModule_a_st_cert}%
+
+\begin{DoxyItemize}
+\item Supported in safety certified version of RTI Connext DDS Micro. Note, specific fields of  data structures may not be supported and will be described in documentation as unsupported. 
+\end{DoxyItemize}
+\end{DoxyItemize}

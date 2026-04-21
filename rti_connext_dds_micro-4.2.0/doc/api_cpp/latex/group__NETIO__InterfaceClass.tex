@@ -1,0 +1,80 @@
+\doxysubsubsection{NETIO Interface API}
+\hypertarget{group__NETIO__InterfaceClass}{}\label{group__NETIO__InterfaceClass}\index{NETIO Interface API@{NETIO Interface API}}
+\doxysubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structNETIO__Interface}{NETIO\+\_\+\+Interface}}
+\begin{DoxyCompactList}\small\item\em Base-\/class definition for all NETIO interfaces. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNETIO__InterfaceI}{NETIO\+\_\+\+InterfaceI}}
+\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structNETIO__Interface}{NETIO\+\_\+\+Interface}} \mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}}
+\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__NETIO__InterfaceClass_ga7747d3d4869c1cf9a474c9cbf8e52bbb}{NETIO\+\_\+\+Interface\+\_\+receive\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}netio\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}src\+\_\+addr, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}dst\+\_\+addr, \mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Definition of the \+::\+DDSNETIO\+\_\+\+InterfaceI receive method. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__NETIO__InterfaceClass_ga625186913a83d6fd19ba951dfee35b7b}{NETIO\+\_\+\+Interface\+\_\+reserve\+\_\+address\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structNETIO__AddressSeq}{NETIO\+\_\+\+Address\+Seq}} \texorpdfstring{$\ast$}{*}req\+\_\+address, struct \mbox{\hyperlink{structNETIO__AddressSeq}{NETIO\+\_\+\+Address\+Seq}} \texorpdfstring{$\ast$}{*}rsvd\+\_\+address, struct NETIOBind\+Property \texorpdfstring{$\ast$}{*}property)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Definition of the \+::\+DDSNETIO\+\_\+\+InterfaceI reserve\+\_\+address method \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+
+
+\doxysubsubsubsection{Typedef Documentation}
+\Hypertarget{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}\index{NETIO Interface API@{NETIO Interface API}!NETIO\_Interface\_T@{NETIO\_Interface\_T}}
+\index{NETIO\_Interface\_T@{NETIO\_Interface\_T}!NETIO Interface API@{NETIO Interface API}}
+\doxyparagraph{\texorpdfstring{NETIO\_Interface\_T}{NETIO\_Interface\_T}}
+{\footnotesize\ttfamily \label{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a} 
+typedef struct \mbox{\hyperlink{structNETIO__Interface}{NETIO\+\_\+\+Interface}} \mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}}}
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Abstract NETIO Interface type. \Hypertarget{group__NETIO__InterfaceClass_ga7747d3d4869c1cf9a474c9cbf8e52bbb}\index{NETIO Interface API@{NETIO Interface API}!NETIO\_Interface\_receiveFunc@{NETIO\_Interface\_receiveFunc}}
+\index{NETIO\_Interface\_receiveFunc@{NETIO\_Interface\_receiveFunc}!NETIO Interface API@{NETIO Interface API}}
+\doxyparagraph{\texorpdfstring{NETIO\_Interface\_receiveFunc}{NETIO\_Interface\_receiveFunc}}
+{\footnotesize\ttfamily \label{group__NETIO__InterfaceClass_ga7747d3d4869c1cf9a474c9cbf8e52bbb} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} NETIO\+\_\+\+Interface\+\_\+receive\+Func) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}netio\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}src\+\_\+addr, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}dst\+\_\+addr, \mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}} \texorpdfstring{$\ast$}{*}packet)}
+
+
+
+Definition of the \+::\+DDSNETIO\+\_\+\+InterfaceI receive method. 
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{structNETIO__Interface}{NETIO\+\_\+\+Interface} send function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em netio\+\_\+intf} & NETIO interface to receive in \\
+\hline
+\mbox{\texttt{ in}}  & {\em src\+\_\+addr} & The source address of the packet \\
+\hline
+\mbox{\texttt{ in}}  & {\em dst\+\_\+addr} & The destination address for the packet \\
+\hline
+\mbox{\texttt{ in}}  & {\em packet} & The forwarded packet from downstream\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure
+\end{DoxyReturn}
+See Also \+::\+DDSNETIO\+\_\+\+Interface\+::receive, \+::\+DDSNETIO\+\_\+\+InterfaceI \Hypertarget{group__NETIO__InterfaceClass_ga625186913a83d6fd19ba951dfee35b7b}\index{NETIO Interface API@{NETIO Interface API}!NETIO\_Interface\_reserve\_addressFunc@{NETIO\_Interface\_reserve\_addressFunc}}
+\index{NETIO\_Interface\_reserve\_addressFunc@{NETIO\_Interface\_reserve\_addressFunc}!NETIO Interface API@{NETIO Interface API}}
+\doxyparagraph{\texorpdfstring{NETIO\_Interface\_reserve\_addressFunc}{NETIO\_Interface\_reserve\_addressFunc}}
+{\footnotesize\ttfamily \label{group__NETIO__InterfaceClass_ga625186913a83d6fd19ba951dfee35b7b} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} NETIO\+\_\+\+Interface\+\_\+reserve\+\_\+address\+Func) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structNETIO__AddressSeq}{NETIO\+\_\+\+Address\+Seq}} \texorpdfstring{$\ast$}{*}req\+\_\+address, struct \mbox{\hyperlink{structNETIO__AddressSeq}{NETIO\+\_\+\+Address\+Seq}} \texorpdfstring{$\ast$}{*}rsvd\+\_\+address, struct NETIOBind\+Property \texorpdfstring{$\ast$}{*}property)}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Definition of the \+::\+DDSNETIO\+\_\+\+InterfaceI reserve\+\_\+address method 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em self} & NETIO interface to reserve addresses on\\
+\hline
+\mbox{\texttt{ in}}  & {\em req\+\_\+address} & List of requested addresses\\
+\hline
+\mbox{\texttt{ in,out}}  & {\em rsvd\+\_\+address} & The downstream interface\\
+\hline
+\mbox{\texttt{ in}}  & {\em property} & Properties to use to listen on the reserved addresses \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}

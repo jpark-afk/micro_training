@@ -1,0 +1,271 @@
+\doxysubsubsubsection{Shared Memory Mutex API}
+\hypertarget{group__NETIO__SharedMemoryMutexClass}{}\label{group__NETIO__SharedMemoryMutexClass}\index{Shared Memory Mutex API@{Shared Memory Mutex API}}
+\doxysubsubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+RTIBool \mbox{\hyperlink{group__NETIO__SharedMemoryMutexClass_gad8a6951691ccf5e21612a561c40f617c}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+create}} (struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}status\+\_\+out, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} key)
+\begin{DoxyCompactList}\small\item\em Create a shared memory mutex. \end{DoxyCompactList}\item 
+RTIBool \mbox{\hyperlink{group__NETIO__SharedMemoryMutexClass_ga30672c6a804367e34e6ef35077480ca4}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+attach}} (struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}status\+\_\+out, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} key)
+\begin{DoxyCompactList}\small\item\em Attach to an existing shared memory binary semaphore with the provided key and sets up the handle to access it. \end{DoxyCompactList}\item 
+RTIBool \mbox{\hyperlink{group__NETIO__SharedMemoryMutexClass_ga23439281d807a2ec0f6d9234f846d07e}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+create\+\_\+or\+\_\+attach}} (struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}status\+\_\+out, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} key)
+\begin{DoxyCompactList}\small\item\em Attempts to create a new binary semaphore with the provided key and if the semaphore already exist, attach to it. \end{DoxyCompactList}\item 
+RTIBool \mbox{\hyperlink{group__NETIO__SharedMemoryMutexClass_ga61a1e049ecfb9fe68919fc0b550e2e51}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+unlock}} (struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}status\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Give the semaphore. \end{DoxyCompactList}\item 
+RTIBool \mbox{\hyperlink{group__NETIO__SharedMemoryMutexClass_ga5aada14c5d64942d30d83aa6929488f1}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+lock}} (struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}status\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Take the semaphore. \end{DoxyCompactList}\item 
+RTIBool \mbox{\hyperlink{group__NETIO__SharedMemoryMutexClass_gaaa0be93f922ce875f6d0310a92e37ec8}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+detach}} (struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em Detach from the shared memory binary semaphore. \end{DoxyCompactList}\item 
+RTIBool \mbox{\hyperlink{group__NETIO__SharedMemoryMutexClass_ga3f37a22660061ff31f32d22eec1a126f}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+delete}} (struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em Detach from the shared memory semaphore and deletes it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+
+
+\doxysubsubsubsubsection{Function Documentation}
+\Hypertarget{group__NETIO__SharedMemoryMutexClass_gad8a6951691ccf5e21612a561c40f617c}\index{Shared Memory Mutex API@{Shared Memory Mutex API}!NETIO\_SharedMemoryMutex\_create@{NETIO\_SharedMemoryMutex\_create}}
+\index{NETIO\_SharedMemoryMutex\_create@{NETIO\_SharedMemoryMutex\_create}!Shared Memory Mutex API@{Shared Memory Mutex API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemoryMutex\_create()}{NETIO\_SharedMemoryMutex\_create()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemoryMutexClass_gad8a6951691ccf5e21612a561c40f617c} 
+RTIBool NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+create (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}}]{status\+\_\+out}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Create a shared memory mutex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & out Pointer to handle on successful return \\
+\hline
+{\em status\+\_\+out} & {\bfseries{out}}. Optional\+: if not NULL is set to the reason why the call has succeeded or failed. In particular\+: 
+\begin{DoxyItemize}
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+PRECONDITION}} = precondition check failed. 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+UNKNOWN}} = an error occurred in the os-\/specific shared memory implementation (see error log for details). 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+NO\+\_\+\+ENTRY}}= this error should never happen and is caused by a failed create() followed by a failed attach(). 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+CREATED}} = the semaphore has been successfully created. 
+\end{DoxyItemize}\\
+\hline
+{\em key} & {\bfseries{in}}. Key to identify the shared memory semaphore across processes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE on error. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__NETIO__SharedMemoryMutexClass_ga30672c6a804367e34e6ef35077480ca4}\index{Shared Memory Mutex API@{Shared Memory Mutex API}!NETIO\_SharedMemoryMutex\_attach@{NETIO\_SharedMemoryMutex\_attach}}
+\index{NETIO\_SharedMemoryMutex\_attach@{NETIO\_SharedMemoryMutex\_attach}!Shared Memory Mutex API@{Shared Memory Mutex API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemoryMutex\_attach()}{NETIO\_SharedMemoryMutex\_attach()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemoryMutexClass_ga30672c6a804367e34e6ef35077480ca4} 
+RTIBool NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+attach (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}}]{status\+\_\+out}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Attach to an existing shared memory binary semaphore with the provided key and sets up the handle to access it. 
+
+\begin{DoxyPrecond}{Precondition}
+Handle in the DETACHED state. Signaling semaphore in the CREATED state. Some other process has called \doxylink{group__NETIO__SharedMemoryMutexClass_gad8a6951691ccf5e21612a561c40f617c}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+create} using the same key in the shared memory semaphore
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+handle in the ATTACHED state, Semaphore exists and is ready to be used.
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & {\bfseries{out}}. The shared memory semaphore handle to initialize.\\
+\hline
+{\em status\+\_\+out} & {\bfseries{out}}. Optional. If not NULL, will be set to\+: 
+\begin{DoxyItemize}
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+PRECONDITION}} = precondition check failed. 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+UNKNOWN}} = an error occurred in the os-\/specific shared memory implementation (see error log for details). 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+NO\+\_\+\+ENTRY}} = no such a semaphore. 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+ATTACHED}} = semaphore attached successfully. 
+\end{DoxyItemize}\\
+\hline
+{\em key} & {\bfseries{in}}. Key to identify the shared memory semaphore across processes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+On some platforms this method makes sure that the given key represent a shared memory semaphore object (to avoid situations like the same key is used to create a mutex and then used to attach it as a semaphore). If such a situation is detected, the function will fail and set status\+\_\+out to\+: OSAPI\+\_\+\+SHARED\+\_\+\+MEMORYFAIL\+\_\+\+REASON\+\_\+\+NO\+\_\+\+ENTRY. Not all the platforms support this feature.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__NETIO__SharedMemoryMutexClass_gaaa0be93f922ce875f6d0310a92e37ec8}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+detach} 
+\end{DoxySeeAlso}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__NETIO__SharedMemoryMutexClass_ga23439281d807a2ec0f6d9234f846d07e}\index{Shared Memory Mutex API@{Shared Memory Mutex API}!NETIO\_SharedMemoryMutex\_create\_or\_attach@{NETIO\_SharedMemoryMutex\_create\_or\_attach}}
+\index{NETIO\_SharedMemoryMutex\_create\_or\_attach@{NETIO\_SharedMemoryMutex\_create\_or\_attach}!Shared Memory Mutex API@{Shared Memory Mutex API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemoryMutex\_create\_or\_attach()}{NETIO\_SharedMemoryMutex\_create\_or\_attach()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemoryMutexClass_ga23439281d807a2ec0f6d9234f846d07e} 
+RTIBool NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+create\+\_\+or\+\_\+attach (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}}]{status\+\_\+out}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Attempts to create a new binary semaphore with the provided key and if the semaphore already exist, attach to it. 
+
+\begin{DoxyPrecond}{Precondition}
+Handle in the DETACHED state. Signaling semaphore in the INITIAL, that is, Nobody has called create() before with that same key.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+handle in the ATTACHED state, Semaphore is in the CREATED state and ready to be used.
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & {\bfseries{in\+Out}}. The shared memory semaphore handle to initialize.\\
+\hline
+{\em status\+\_\+out} & {\bfseries{out}}. Optional\+: if not NULL is set to the reason why the call has succeeded or failed. In particular\+: 
+\begin{DoxyItemize}
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+PRECONDITION}} = precondition check failed. 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+UNKNOWN}} = an error occurred in the os-\/specific shared memory implementation (see error log for details). 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+NO\+\_\+\+ENTRY}}= this error should never happen and is caused by a failed create() followed by a failed attach(). 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+CREATED}} = the semaphore has been successfully created. 
+\end{DoxyItemize}\\
+\hline
+{\em key} & {\bfseries{in}}. Key to identify the shared memory binary semaphore across processes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE on error. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__NETIO__SharedMemoryMutexClass_ga61a1e049ecfb9fe68919fc0b550e2e51}\index{Shared Memory Mutex API@{Shared Memory Mutex API}!NETIO\_SharedMemoryMutex\_unlock@{NETIO\_SharedMemoryMutex\_unlock}}
+\index{NETIO\_SharedMemoryMutex\_unlock@{NETIO\_SharedMemoryMutex\_unlock}!Shared Memory Mutex API@{Shared Memory Mutex API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemoryMutex\_unlock()}{NETIO\_SharedMemoryMutex\_unlock()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemoryMutexClass_ga61a1e049ecfb9fe68919fc0b550e2e51} 
+RTIBool NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+unlock (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}}]{status\+\_\+out}{}\end{DoxyParamCaption})}
+
+
+
+Give the semaphore. 
+
+\begin{DoxyPrecond}{Precondition}
+Handle in the ATTACHED state.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Semaphore count is set to 1 and any thread blocked on this semaphore is awaken.
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & {\bfseries{in}}. Handle to the semaphore. Must match the one returned by \doxylink{group__NETIO__SharedMemoryMutexClass_gad8a6951691ccf5e21612a561c40f617c}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+create}\\
+\hline
+{\em status\+\_\+out} & {\bfseries{out}}. Optional\+: if not NULL, will be set to\+: 
+\begin{DoxyItemize}
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+UNKNOWN}} = an error occurred in the os-\/specific shared memory implementation (see error log for details). 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+NO\+\_\+\+ENTRY}} = the creator of the mutex has shutdown and removed this mutex. This is expected to happen routinely. 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+SUCCESS}} = Generic no error condition. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE if the semaphore is given. RTI\+\_\+\+FALSE if an error occurs. If an error occurs the handle should not be used anymore. In particular detach() should not be called either. An error may occur in certain OSs if the handle that created the semaphore calls \doxylink{group__NETIO__SharedMemoryMutexClass_gaaa0be93f922ce875f6d0310a92e37ec8}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+detach}.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__NETIO__SharedMemorySignalingSemaphoreClass_ga2dda7edf9e1f39ca68510a3c52429d26}{NETIO\+\_\+\+Shared\+Memory\+Signaling\+Semaphore\+\_\+wait} 
+\end{DoxySeeAlso}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__NETIO__SharedMemoryMutexClass_ga5aada14c5d64942d30d83aa6929488f1}\index{Shared Memory Mutex API@{Shared Memory Mutex API}!NETIO\_SharedMemoryMutex\_lock@{NETIO\_SharedMemoryMutex\_lock}}
+\index{NETIO\_SharedMemoryMutex\_lock@{NETIO\_SharedMemoryMutex\_lock}!Shared Memory Mutex API@{Shared Memory Mutex API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemoryMutex\_lock()}{NETIO\_SharedMemoryMutex\_lock()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemoryMutexClass_ga5aada14c5d64942d30d83aa6929488f1} 
+RTIBool NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+lock (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}}]{status\+\_\+out}{}\end{DoxyParamCaption})}
+
+
+
+Take the semaphore. 
+
+\begin{DoxyPrecond}{Precondition}
+Handle in the ATTACHED state.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Semaphore count is decremented.
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & {\bfseries{in}}. Handle to the semaphore. Must match the one returned by \doxylink{group__NETIO__SharedMemoryMutexClass_gad8a6951691ccf5e21612a561c40f617c}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+create}\\
+\hline
+{\em status\+\_\+out} & {\bfseries{out}}. Optional\+: if not NULL, will be set to\+: 
+\begin{DoxyItemize}
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+UNKNOWN}} = an error occurred in the os-\/specific shared memory implementation (see error log for details). 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+NO\+\_\+\+ENTRY}} = the creator of the mutex has shutdown and removed this mutex. This is expected to happen routinely. 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+SUCCESS}} = Generic no error condition. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE if the semaphore is taken. RTI\+\_\+\+FALSE if an error occurs. If an error occurs the handle should not be used anymore. In particular \doxylink{group__NETIO__SharedMemoryMutexClass_gaaa0be93f922ce875f6d0310a92e37ec8}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+detach} should not be called either.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__NETIO__SharedMemorySignalingSemaphoreClass_gae5cd64e1136b34eb62da0f9348d4ae57}{NETIO\+\_\+\+Shared\+Memory\+Signaling\+Semaphore\+\_\+signal} 
+\end{DoxySeeAlso}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__NETIO__SharedMemoryMutexClass_gaaa0be93f922ce875f6d0310a92e37ec8}\index{Shared Memory Mutex API@{Shared Memory Mutex API}!NETIO\_SharedMemoryMutex\_detach@{NETIO\_SharedMemoryMutex\_detach}}
+\index{NETIO\_SharedMemoryMutex\_detach@{NETIO\_SharedMemoryMutex\_detach}!Shared Memory Mutex API@{Shared Memory Mutex API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemoryMutex\_detach()}{NETIO\_SharedMemoryMutex\_detach()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemoryMutexClass_gaaa0be93f922ce875f6d0310a92e37ec8} 
+RTIBool NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+detach (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+Detach from the shared memory binary semaphore. 
+
+\begin{DoxyPrecond}{Precondition}
+Handle in the ATTACHED state.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+handle in the DETACHED state.
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & {\bfseries{in}} handle. Handle to the shared memory semaphore obtained from \doxylink{group__NETIO__SharedMemoryMutexClass_ga30672c6a804367e34e6ef35077480ca4}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+attach}\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__NETIO__SharedMemoryMutexClass_ga30672c6a804367e34e6ef35077480ca4}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+attach} 
+\end{DoxySeeAlso}
+\Hypertarget{group__NETIO__SharedMemoryMutexClass_ga3f37a22660061ff31f32d22eec1a126f}\index{Shared Memory Mutex API@{Shared Memory Mutex API}!NETIO\_SharedMemoryMutex\_delete@{NETIO\_SharedMemoryMutex\_delete}}
+\index{NETIO\_SharedMemoryMutex\_delete@{NETIO\_SharedMemoryMutex\_delete}!Shared Memory Mutex API@{Shared Memory Mutex API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemoryMutex\_delete()}{NETIO\_SharedMemoryMutex\_delete()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemoryMutexClass_ga3f37a22660061ff31f32d22eec1a126f} 
+RTIBool NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+delete (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Mutex\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+Detach from the shared memory semaphore and deletes it. 
+
+The exact behavior of this may be OS dependent. In some OSs calling this will immediately cause the semaphore to be removed, and other threads waiting on it to be woken up. This is the typical behavior on Unix. In other OSs (windows) this call just requests the semaphore to be removed but delay the removal until all handles are detached.
+
+The only way to ensure the same behavior across multiple OSs is to only call this method on the handle that created the semaphore after all the other handles have been closed. In this scenario no handles will get an error. Alternatively the code could be written to always expect the \doxylink{group__NETIO__SharedMemorySignalingSemaphoreClass_ga2dda7edf9e1f39ca68510a3c52429d26}{NETIO\+\_\+\+Shared\+Memory\+Signaling\+Semaphore\+\_\+wait} or \doxylink{group__NETIO__SharedMemorySignalingSemaphoreClass_gae5cd64e1136b34eb62da0f9348d4ae57}{NETIO\+\_\+\+Shared\+Memory\+Signaling\+Semaphore\+\_\+signal} call to fail and when that occurs close the handle.
+
+\begin{DoxyPrecond}{Precondition}
+Handle in the ATTACHED state.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+handle in the DETACHED state. The num\+Handles to the semaphore is decremented. When the last handle is detached, the semaphore is removed by the OS.
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & {\bfseries{in}} handle. Handle to the shared memory semaphore obtained from \doxylink{group__NETIO__SharedMemoryMutexClass_gad8a6951691ccf5e21612a561c40f617c}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+create}\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__NETIO__SharedMemoryMutexClass_gad8a6951691ccf5e21612a561c40f617c}{NETIO\+\_\+\+Shared\+Memory\+Mutex\+\_\+create} 
+\end{DoxySeeAlso}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+

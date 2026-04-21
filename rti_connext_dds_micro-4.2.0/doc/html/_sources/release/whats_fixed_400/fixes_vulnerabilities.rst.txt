@@ -1,0 +1,46 @@
+Vulnerabilities
+===============
+
+:critical:`[Critical]` Vulnerabilities in RTI Micro Application Generator (MAG)
+-------------------------------------------------------------------------------
+
+This release fixes vulnerabilities in Log4j known as "log4shell". 
+You can find further details in RTI's **Security Notice 2021-12-log4j** at 
+https://community.rti.com/kb/apache-log4j-vulnerability-cve-2021-44228cve-2021-45046-impact-rti-connext-products.
+
+RTI Micro Application Generator uses Apache Log4j version 2.17.1 in this 
+release.
+
+[RTI Issue ID MAG-147]
+
+:critical:`[Critical]` Illegal memory access when failing to generate interpreter programs
+------------------------------------------------------------------------------------------
+
+Receiving malicious endpoint discovery information might have resulted (very 
+rarely) in an arbitrary read from the thread stack.
+
+User impact with or without security was as follows:
+
+- Remotely exploitable
+- Crash application
+- Potentially impacting confidentiality of Connext application
+- CVSS Base Score: 6.5 MEDIUM
+- CVSS v3.1 Vector: `AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:H <https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:H>`__
+
+[RTI Issue ID MICRO-3219]
+
+:critical:`[Critical]` Potential crash when receiving a malformed sample using DDS_XCDR2_DATA_REPRESENTATION
+------------------------------------------------------------------------------------------------------------
+
+A |me| application could have crashed if a *DataReader* received a malformed 
+serialized sample using DDS_XCDR2_DATA_REPRESENTATION. The issue only affected 
+appendable or mutable types.
+
+User impact with or without security was as follows:
+
+- Remotely exploitable through malicious RTPS messages
+- Connext application could crash or potentially leak sensitive information
+- CVSS Base Score: 6.5 MEDIUM
+- CVSS v3.1 Vector: `AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:H <https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:H>`__
+
+[RTI Issue ID MICRO-3118]

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+     xsi:noNamespaceSchemaLocation="http://www.omg.org/spec/DDS-SECURITY/20170901/omg_shared_ca_governance.xsd">
+    <!--
+    A governance file is composed of 1 or more domain_rule elements, inside a
+    parent domain_access_rules element.
+    -->
+    <domain_access_rules>
+        <!--
+        A domain_rule defines which security protections should be enforced on
+        a set of DDS domains and their contained topics.
+        -->
+        <domain_rule>
+            <!--
+            The domains element specifies the range of domains affected by
+            the parent domain_rule.
+            -->
+            <domains>
+                <!-- 
+                Domains can be specified individually with the id element 
+                -->
+                <id>0</id>
+                <!--
+                A range of domains can be specified with the id_range element.
+                -->
+                <id_range>
+                    <min>1</min>
+                    <max>10</max>
+                </id_range>
+            </domains>
+            <!-- 
+            allow_unauthenticated_participants can be set to "true" to enable
+            communication on "unsecure topics" (i.e. topics with all 
+            protections disabled and all protection kinds set to NONE) even
+            when a participant fails to authenticate (or it doesn't support
+            DDS Security at all).
+            
+            If set to "false", any participant who fails to complete the
+            authentication handshake will be ignored.
+            
+            When this property is enabled, rtps_protection_kind must be set to
+            NONE, or it would be impossible for unauthenticated participants to
+            properly decode received RTPS messages.
+            -->
+            <allow_unauthenticated_participants>false</allow_unauthenticated_participants>
+            <!--
+            enable_join_access_control can be set to "false" to disable access
+            control checks during creation of local participants, and discovery 
+            of remote ones. When access control is disabled, the secure 
+            discovery endpoints will also be discoverable by remote participants
+            regardless of their permissions.
+            -->
+            <enable_join_access_control>true</enable_join_access_control>
+            <!--
+            discovery_protection_kind controls the type of protection to be 
+            applied on data exchanged by the secure discovery endpoints.
+            -->
+            <discovery_protection_kind>ENCRYPT</discovery_protection_kind>
+            <!--
+            liveliness_protection_kind controls the type of protection to be 
+            applied on messages exchanged on the ParticipantMessage 
+            inter-participant channel to maintain liveliness between 
+            participants and endpoints.
+            
+            Since RTI Connext DDS Micro does not support this inter-participant
+            channel, this setting is currently ignored, but the XML element
+            must be included to maintain conformance with the XSD definition.
+            -->
+            <liveliness_protection_kind>NONE</liveliness_protection_kind>
+            <!--
+            rtps_protection_kind controls the type of protection to be applied
+            on RTPS messages produced by the participant.
+            -->
+            <rtps_protection_kind>SIGN</rtps_protection_kind>
+            <!--
+            The topic_access_rules section must contain 1 or more topic_rule
+            elements to define security properties of each topic in the domain.
+            -->
+            <topic_access_rules>
+                <!--
+                A topic_rule defines a set of security properties for one
+                or more topics identified by the topic_expression.
+                -->
+                <topic_rule>
+                    <!--
+                    A topic_expression can use the '*' character to perform
+                    simple matching on the suffix part of the topic name 
+                    -->
+                    <topic_expression>Example *</topic_expression>
+                    <!--
+                    If enable_discovery_protection is "true", the topic will 
+                    be announced on the secure discovery endpoints, and 
+                    matchable only by authenticated participants.
+                    -->
+                    <enable_discovery_protection>true</enable_discovery_protection>
+                    <!--
+                    RTI Connext DDS Micro does not support endpoint-level
+                    liveliness assertion, which can be made secure using this
+                    property.
+                    
+                    This setting is currently ignored, but the XML element must
+                    be included to maintain conformance with the XSD.
+                    -->
+                    <enable_liveliness_protection>false</enable_liveliness_protection>
+                    <!--
+                    If enable_read_access_control is set to "false", the 
+                    middleware will not perform access control checks when
+                    creating and/or discovering DataReaders on this topic
+                    -->
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <!--
+                    If enable_write_access_control is set to "false", the 
+                    middleware will not perform access control checks when
+                    creating and/or discovering DataWriters on this topic
+                    -->
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <!--
+                    metadata_protection_kind controls the type of protection to
+                    be applied on RTPS Submessages exchanged by endpoints for
+                    this topic.
+                    -->
+                    <metadata_protection_kind>SIGN</metadata_protection_kind>
+                    <!--
+                    metadata_protection_kind controls the type of protection to
+                    be applied on data samples exchanged by endpoints for
+                    this topic.
+                    -->
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+            </topic_access_rules>
+        </domain_rule>
+    </domain_access_rules>
+</dds>

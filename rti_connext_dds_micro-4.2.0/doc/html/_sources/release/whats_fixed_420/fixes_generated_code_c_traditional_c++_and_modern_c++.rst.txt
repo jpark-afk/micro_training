@@ -1,0 +1,19 @@
+Generated Code (C, Traditional C++, and Modern C++)
+===================================================
+
+.. Release Notes from this point.
+
+:major:`[Major]` Failed to serialize a union with only a default label
+----------------------------------------------------------------------
+A union with only a default label could not be serialized. For example,
+the following union would fail to be serialized:
+
+.. code-block:: c
+
+   union Foo switch(int32) {
+     default: long x; 
+   };
+
+[RTI Issue ID MICRO-9079]
+
+

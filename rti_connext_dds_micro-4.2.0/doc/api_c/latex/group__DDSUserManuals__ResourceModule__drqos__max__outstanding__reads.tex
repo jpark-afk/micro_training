@@ -1,0 +1,11 @@
+\doxysubsubsubsection{max\+\_\+outstanding\+\_\+reads}
+\hypertarget{group__DDSUserManuals__ResourceModule__drqos__max__outstanding__reads}{}\label{group__DDSUserManuals__ResourceModule__drqos__max__outstanding__reads}\index{max\_outstanding\_reads@{max\_outstanding\_reads}}
+\begin{DoxyParagraph}{NAME}
+\doxylink{structDDS__DataReaderResourceLimitsQosPolicy_a82873fd35e4159bce6c23cc0de5fcca9}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+outstanding\+\_\+reads}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{DESCRIPTION}
+\doxylink{structDDS__DataReaderResourceLimitsQosPolicy_a82873fd35e4159bce6c23cc0de5fcca9}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+outstanding\+\_\+reads} limits the maximum number of simultaneous loans an application can make at any given time using the \doxylink{group__DDSReaderModule_ga84f8ad6ee21fb024234034bbcce6d812}{Foo\+Data\+Reader\+\_\+read()} and \doxylink{group__DDSReaderModule_gafa56233023b6c95f89a9df48d16a4659}{Foo\+Data\+Reader\+\_\+take()} APIs.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Typically a value of 1 is sufficient. It is only necessary to increase this value if an application thread will access the same cache before another thread has returned the loan. 
+\end{DoxyParagraph}

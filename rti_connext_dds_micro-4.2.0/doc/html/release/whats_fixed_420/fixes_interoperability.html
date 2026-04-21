@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.4.9. Interoperability &mdash; RTI Connext Micro 4.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/custom.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="8.4.10. Other" href="fixes_other.html" />
+    <link rel="prev" title="8.4.8. Shipped Examples" href="fixes_shipped_examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usersmanual/index.html">3. User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../platformnotes/index.html">4. Platform Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building/index.html">5. Building Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usersmanual/micro_core.html">6. Working with Connext Micro and Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">8. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../compatibility.html">8.1. Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported_platforms.html">8.2. Supported Platforms and Programming Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whats_new_420.html">8.3. What’s New in 4.2.0</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="whats_fixed_420_index.html">8.4. What’s Fixed in 4.2.0</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="fixes_discovery.html">8.4.1. Discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_reliability_protocol_and_wire_representation.html">8.4.2. Reliability Protocol and Wire Representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_apis_c_or_traditional_c.html">8.4.3. APIs (C or Traditional C++)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_generated_code_c_traditional_c%2B%2B_and_modern_c%2B%2B.html">8.4.4. Generated Code (C, Traditional C++, and Modern C++)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_hangs.html">8.4.5. Hangs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_memory_leaks_growth.html">8.4.6. Memory Leaks/Growth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_platform_and_build_changes.html">8.4.7. Platform and Build Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_shipped_examples.html">8.4.8. Shipped Examples</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">8.4.9. Interoperability</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#major-zero-copy-communication-failed-when-applications-were-started-from-different-directories">8.4.9.1. <span class="major">[Major]</span> Zero Copy communication failed when applications were started from different directories</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_other.html">8.4.10. Other</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../previous_release.html">8.5. Previous Releases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../known_issues.html">8.6. Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../experimental_features.html">8.7. Experimental Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3rdparty/index.html">11. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">12. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html"><span class="section-number">8. </span>Release Notes</a> &raquo;</li>
+        
+          <li><a href="whats_fixed_420_index.html"><span class="section-number">8.4. </span>What’s Fixed in 4.2.0</a> &raquo;</li>
+        
+      <li><span class="section-number">8.4.9. </span>Interoperability</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/release/whats_fixed_420/fixes_interoperability.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="interoperability">
+<h1><span class="section-number">8.4.9. </span>Interoperability<a class="headerlink" href="#interoperability" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="major-zero-copy-communication-failed-when-applications-were-started-from-different-directories">
+<h2><span class="section-number">8.4.9.1. </span><span class="major">[Major]</span> Zero Copy communication failed when applications were started from different directories<a class="headerlink" href="#major-zero-copy-communication-failed-when-applications-were-started-from-different-directories" title="Permalink to this headline">¶</a></h2>
+<p>When two applications were started from different working directories,
+they would fail to communicate when using the Zero Copy v2 transport.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As a result of this fix, applications using Zero Copy transfer
+are not backwards compatible with previous versions of <em>Connext Micro</em>.</p>
+<p>Refer to the <a class="reference external" href="https://community.rti.com/static/documentation/connext-micro/current/doc/mg/html/index.html">Migration Guide</a>
+for more information.</p>
+</div>
+<p>[RTI Issue ID MICRO-10391]</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fixes_other.html" class="btn btn-neutral float-right" title="8.4.10. Other" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fixes_shipped_examples.html" class="btn btn-neutral float-left" title="8.4.8. Shipped Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2025, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

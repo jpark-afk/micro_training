@@ -1,0 +1,15 @@
+Data Corruption
+===============
+
+.. Release Notes from this point.
+
+:critical:`[Critical]` Potential data corruption from race condition when using KEEP_LAST and publishing asynchronously
+-----------------------------------------------------------------------------------------------------------------------
+Data samples may have been corrupted if both of the following were true:
+
+* A race condition occurred while sending fragmented samples.
+* The fragmented samples were sent while a ``HISTORY.kind`` of
+  :link_connextmicro_dds_api_c_up_two:`DDS_KEEP_LAST_HISTORY_QOS <group__DDSHistoryQosModule.html>`
+  caused samples to be removed and reused.
+
+[RTI Issue ID MICRO-8314]

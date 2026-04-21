@@ -1,0 +1,156 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2018-2018
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+# For MICRO 4.0-F1 security is disabled
+
+SET(RTIME_TRUST_INCLUDE_BUILTIN false)
+SET(RTIME_TRUST_INCLUDE_INTERFACES false)
+
+SET(RTIME_TRUST_INCLUDE_BUILTIN_DOC 
+"Check this option to build the RTI Security plugin")
+
+SET(RTIME_TRUST_INCLUDE_INTERFACES_DOC
+"Check this option to include Security interfaces")
+
+SET(RTIME_INCLUDE_LIBXML2_DOC
+"Check this option to compile the LibXml2 included with the source")
+
+IF (NOT DEFINED RTIME_TRUST_INCLUDE_BUILTIN)
+    SET(RTIME_TRUST_INCLUDE_BUILTIN TRUE CACHE BOOL ${RTIME_TRUST_INCLUDE_BUILTIN_DOC})
+    SET(RTIME_INCLUDE_LIBXML2 TRUE CACHE BOOL ${RTIME_INCLUDE_LIBXML2_DOC})
+ENDIF()
+
+IF (NOT DEFINED RTIME_TRUST_INCLUDE_INTERFACES)
+    SET(RTIME_TRUST_INCLUDE_INTERFACES TRUE CACHE BOOL ${RTIME_TRUST_INCLUDE_INTERFACES_DOC})
+ENDIF()
+
+SET(RTIME_HAVE_LIBXML2 false CACHE INTERNAL "" )
+SET(RTIME_HAVE_OPENSSL false CACHE INTERNAL "" )
+
+IF (${RTIME_TRUST_INCLUDE_INTERFACES})
+    ADD_DEFINITIONS(-DDDS_ENABLE_TRUST=1)
+ELSE()
+    ADD_DEFINITIONS(-DDDS_ENABLE_TRUST=0)
+ENDIF()
+
+
+IF (NOT ${RTIME_TRUST_INCLUDE_BUILTIN})
+    ADD_DEFINITIONS(-DRTIME_TRUST_INCLUDE_BUILTIN=0)
+    RETURN()
+ELSEIF(NOT ${RTIME_TRUST_INCLUDE_INTERFACES})
+    RTI_MESSAGE_FATAL("Trust Interfaces are required to build builtin trust plugin")  
+ENDIF()    
+    
+
+
+# The Trust feature requires openssl and libxml2.
+RTI_MESSAGE_STATUS("Looking for OpenSSL")
+IF ((DEFINED RTIME_OPENSSL_INCLUDE_DIR) AND (DEFINED RTIME_OPENSSL_LIBRARY_DIR))
+    RTI_MESSAGE_STATUS("Using openssl from RTIME_OPENSSL_INCLUDE_DIR and RTIME_OPENSSL_INCLUDE_DIR")
+    SET(RTIME_HAVE_OPENSSL true CACHE INTERNAL "")
+ELSEIF(DEFINED OPENSSLHOME)
+    RTI_MESSAGE_STATUS("OPENSSLHOME defined using openssl from ${OPENSSLHOME}")        
+    SET(RTIME_OPENSSL_INCLUDE_DIR ${OPENSSLHOME}/include CACHE STRING "")
+    SET(RTIME_OPENSSL_LIBRARY_DIR "${OPENSSLHOME}/lib" CACHE STRING  "")    
+    SET(RTIME_HAVE_OPENSSL true CACHE INTERNAL "")
+    IF (NOT ${OPENSSL_VERSION} VERSION_GREATER "1.0")
+        RTI_MESSAGE_STATUS("RTI Connext Micro requires OpenSSL comptabile with version 1.1.1")
+    ENDIF()
+ELSE()
+    FIND_PACKAGE(OpenSSL 1.1.1)
+    IF (OPENSSL_FOUND)
+        IF (NOT ${OPENSSL_VERSION} VERSION_GREATER "1.0")
+            RTI_MESSAGE_STATUS("RTI Connext Micro requires OpenSSL comptabile with version 1.1.1, looking for RTIME_OPENSSL_INCLUDE_DIR and RTIME_OPENSSL_LIBRARY_DIR")
+        ELSE()
+            RTI_MESSAGE_STATUS("Using locally installed openssl")
+            GET_DIRECTORY(dir ${OPENSSL_CRYPTO_LIBRARY})
+            SET(RTIME_OPENSSL_LIBRARY_DIR ${dir} CACHE STRING "")
+            SET(RTIME_OPENSSL_INCLUDE_DIR ${OPENSSL_INCLUDE_DIR} CACHE STRING  "")
+            SET(RTIME_HAVE_OPENSSL true CACHE INTERNAL "")
+        ENDIF()
+    ENDIF()    
+ENDIF()
+
+IF (NOT ${RTIME_HAVE_OPENSSL})
+    RTI_MESSAGE_FATAL("Did find openssl")        
+ENDIF()
+
+RTI_MESSAGE_STATUS("RTIME_OPENSSL_LIBRARY_DIR ..........: ${RTIME_OPENSSL_LIBRARY_DIR}")        
+RTI_MESSAGE_STATUS("RTIME_OPENSSL_INCLUDE_DIR ..........: ${RTIME_OPENSSL_INCLUDE_DIR}")        
+
+# LIBXML2
+RTI_MESSAGE_STATUS("Looking for LibXml2")
+IF (RTIME_INCLUDE_LIBXML2)
+        RTI_MESSAGE_STATUS("Compiling LibXml2 included in RTI ConnextMicro (2.9.7)")
+        SET(RTIME_LIBXML_INCLUDE_DIR "sec_core/srcC/libxml" CACHE STRING "")
+        SET(RTIME_LIBXML_LIBRARY_DIR "N/A"  CACHE STRING "")
+        SET(RTIME_HAVE_LIBXML2 true CACHE INTERNAL "")
+        SET(RTIME_INCLUDE_LIBXML2 true CACHE INTERNAL "")
+ELSEIF((DEFINED RTIME_LIBXML_INCLUDE_DIR) AND (DEFINED RTIME_LIBXML_LIBRARY_DIR))
+    RTI_MESSAGE_STATUS("Using LibXml2 from RTIME_LIBXML_INCLUDE_DIR and RTIME_LIBXML_LIBRARY_DIR")
+    SET(RTIME_HAVE_LIBXML2 true CACHE INTERNAL "")
+ELSE()
+    FIND_PACKAGE(LibXml2 2.9)
+    IF (LIBXML2_FOUND)
+        IF (NOT ${LIBXML2_VERSION_STRING} VERSION_GREATER "2.9")
+            RTI_MESSAGE_STATUS("RTI Connext Micro requires LibXml2 2.9 and higher")
+            SET(RTIME_HAVE_LIBXML2 false CACHE INTERNAL "")
+        ELSE()
+            RTI_MESSAGE_STATUS("Using locally installed LibXml2")
+            GET_DIRECTORY(dir ${LIBXML2_LIBRARIES})
+            SET(RTIME_LIBXML_LIBRARY_DIR "${dir}"  CACHE STRING "")
+            SET(RTIME_LIBXML_INCLUDE_DIR "${LIBXML2_INCLUDE_DIR}" CACHE STRING "")
+            SET(RTIME_HAVE_LIBXML2 true CACHE INTERNAL "")
+        ENDIF()
+    ELSE()
+        RTI_MESSAGE_STATUS("Compiling LibXml2 included in RTI ConnextMicro (2.9.7)")
+        SET(RTIME_LIBXML_INCLUDE_DIR "sec_core/srcC/libxml" CACHE STRING "")
+        SET(RTIME_LIBXML_LIBRARY_DIR "N/A"  CACHE STRING "")
+        SET(RTIME_HAVE_LIBXML2 true CACHE INTERNAL "")
+        SET(RTIME_INCLUDE_LIBXML2 true CACHE INTERNAL "")    
+    ENDIF()
+ENDIF()
+
+IF (NOT ${RTIME_HAVE_LIBXML2})
+    RTI_MESSAGE_FATAL("Did not find LibXml2")        
+ENDIF()
+
+RTI_MESSAGE_STATUS("LIBXML LIBRARY PATH ................: ${RTIME_LIBXML_LIBRARY_DIR}")
+RTI_MESSAGE_STATUS("LIBXML INCLUDE PATH ................: ${RTIME_LIBXML_INCLUDE_DIR}")
+
+# Ideally this would be in the platform files, but since the options are parsed
+# after all the toolchain specifics have been configured it is necessary to
+# do it here.
+INCLUDE_DIRECTORIES(${RTIME_OPENSSL_INCLUDE_DIR})
+LINK_DIRECTORIES(${RTIME_OPENSSL_LIBRARY_DIR})
+IF(NOT RTIME_INCLUDE_LIBXML2)
+    INCLUDE_DIRECTORIES(${RTIME_LIBXML_INCLUDE_DIR})
+    LINK_DIRECTORIES(${RTIME_LIBXML_LIBRARY_DIR})
+ELSE()
+    IF (${RTIME_DEVTREE})
+        INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/sec_core.2.0/srcC)
+    ELSE()
+        INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/src/sec_core)
+    ENDIF()
+ENDIF()
+
+IF (${RTIME_TARGET_NAME} MATCHES "Win")
+    IF (NOT ${OPENSSL_VERSION} VERSION_GREATER "1.0")
+        LIST(INSERT PLATFORM_LIBS 0 ssleay32 libeay32)
+    ELSE()
+        LIST(INSERT PLATFORM_LIBS 0 libssl libcrypto)
+    ENDIF()
+ELSE() 
+    LIST(APPEND PLATFORM_LIBS ssl crypto)
+    IF (NOT RTIME_INCLUDE_LIBXML2)
+        LIST(APPEND PLATFORM_LIBS xml2)
+    ENDIF()    
+ENDIF()

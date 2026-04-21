@@ -1,0 +1,104 @@
+\doxysubsection{NETIO\+\_\+\+DGRAM\+\_\+\+Interface\+Table\+Entry Struct Reference}
+\hypertarget{structNETIO__DGRAM__InterfaceTableEntry}{}\label{structNETIO__DGRAM__InterfaceTableEntry}\index{NETIO\_DGRAM\_InterfaceTableEntry@{NETIO\_DGRAM\_InterfaceTableEntry}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Definition of an interface.  
+
+
+
+
+{\ttfamily \#include $<$netio\+\_\+dgram.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{structNETIO__DGRAM__InterfaceTableEntry_a502c7305267159e113de1528808cbf7d}{locator\+\_\+kind}}
+\begin{DoxyCompactList}\small\item\em Locator type supported by the interface, such as UDPv4. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} \mbox{\hyperlink{structNETIO__DGRAM__InterfaceTableEntry_aabf086b7a4891524b6c0449cfbf86449}{flags}}
+\begin{DoxyCompactList}\small\item\em The flags attribute is a bitmap used to indicate capabilities of the transport. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} \mbox{\hyperlink{structNETIO__DGRAM__InterfaceTableEntry_ab2e1a10bab3291dc9ce6dff1cd79d82c}{mtu}}
+\begin{DoxyCompactList}\small\item\em The maximum message size that can be sent and received by the transport. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \mbox{\hyperlink{structNETIO__DGRAM__InterfaceTableEntry_a11173e4bbc2d0bb70bc9a31f7d4250bf}{address}}
+\begin{DoxyCompactList}\small\item\em The address of the interface. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNETIO__DGRAM__InterfaceMultiCastGroup}{NETIO\+\_\+\+DGRAM\+\_\+\+Interface\+Multi\+Cast\+Group}} \mbox{\hyperlink{structNETIO__DGRAM__InterfaceTableEntry_a26880d20c786b706d2c3f025dbc6969d}{multicast\+\_\+group}}
+\begin{DoxyCompactList}\small\item\em An optional multicast group for the interface. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structNETIO__DGRAM__InterfaceTableEntry_a1ded21215be7937c61c7d6ce06178258}{ifname}}
+\begin{DoxyCompactList}\small\item\em The interface name is not used by RTI Connext DDS Micro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Definition of an interface. 
+
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structNETIO__DGRAM__InterfaceTableEntry_a502c7305267159e113de1528808cbf7d}\index{NETIO\_DGRAM\_InterfaceTableEntry@{NETIO\_DGRAM\_InterfaceTableEntry}!locator\_kind@{locator\_kind}}
+\index{locator\_kind@{locator\_kind}!NETIO\_DGRAM\_InterfaceTableEntry@{NETIO\_DGRAM\_InterfaceTableEntry}}
+\doxyparagraph{\texorpdfstring{locator\_kind}{locator\_kind}}
+{\footnotesize\ttfamily \label{structNETIO__DGRAM__InterfaceTableEntry_a502c7305267159e113de1528808cbf7d} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} NETIO\+\_\+\+DGRAM\+\_\+\+Interface\+Table\+Entry\+::locator\+\_\+kind}
+
+
+
+Locator type supported by the interface, such as UDPv4. 
+
+The locator\+\_\+kind describes the transport protocol. For example, a locator\+\_\+kind equal to 1 is reserved for DDS UDPv4 transport. Note the locator\+\_\+kind is used discovery and if a locator\+\_\+kind is discovered, but unsupported, no communication will take place using locators of that kind. 
+
+Note that the locator\+\_\+kind must be less than \doxylink{group__NETIOAddressClass_ga2006c8a9bc75874863de97804039a20a}{NETIO\+\_\+\+ADDRESS\+\_\+\+RTPS\+\_\+\+RESERVED\+\_\+\+LOW} and greater than \doxylink{group__NETIOAddressClass_ga0ec75e1f2502beb13857c92cd4562bf5}{NETIO\+\_\+\+ADDRESS\+\_\+\+RTPS\+\_\+\+RESERVED\+\_\+\+HIGH}. \Hypertarget{structNETIO__DGRAM__InterfaceTableEntry_aabf086b7a4891524b6c0449cfbf86449}\index{NETIO\_DGRAM\_InterfaceTableEntry@{NETIO\_DGRAM\_InterfaceTableEntry}!flags@{flags}}
+\index{flags@{flags}!NETIO\_DGRAM\_InterfaceTableEntry@{NETIO\_DGRAM\_InterfaceTableEntry}}
+\doxyparagraph{\texorpdfstring{flags}{flags}}
+{\footnotesize\ttfamily \label{structNETIO__DGRAM__InterfaceTableEntry_aabf086b7a4891524b6c0449cfbf86449} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} NETIO\+\_\+\+DGRAM\+\_\+\+Interface\+Table\+Entry\+::flags}
+
+
+
+The flags attribute is a bitmap used to indicate capabilities of the transport. 
+
+\Hypertarget{structNETIO__DGRAM__InterfaceTableEntry_ab2e1a10bab3291dc9ce6dff1cd79d82c}\index{NETIO\_DGRAM\_InterfaceTableEntry@{NETIO\_DGRAM\_InterfaceTableEntry}!mtu@{mtu}}
+\index{mtu@{mtu}!NETIO\_DGRAM\_InterfaceTableEntry@{NETIO\_DGRAM\_InterfaceTableEntry}}
+\doxyparagraph{\texorpdfstring{mtu}{mtu}}
+{\footnotesize\ttfamily \label{structNETIO__DGRAM__InterfaceTableEntry_ab2e1a10bab3291dc9ce6dff1cd79d82c} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} NETIO\+\_\+\+DGRAM\+\_\+\+Interface\+Table\+Entry\+::mtu}
+
+
+
+The maximum message size that can be sent and received by the transport. 
+
+The mtu should be set to the maximum number of octets that can be sent and received in a message over the transport, excluding overhead required by the transport. RTI Connext DDS Micro uses the smallest mtu across all available transports to determine the maximum numher of octets that can be sent in a single message. \Hypertarget{structNETIO__DGRAM__InterfaceTableEntry_a11173e4bbc2d0bb70bc9a31f7d4250bf}\index{NETIO\_DGRAM\_InterfaceTableEntry@{NETIO\_DGRAM\_InterfaceTableEntry}!address@{address}}
+\index{address@{address}!NETIO\_DGRAM\_InterfaceTableEntry@{NETIO\_DGRAM\_InterfaceTableEntry}}
+\doxyparagraph{\texorpdfstring{address}{address}}
+{\footnotesize\ttfamily \label{structNETIO__DGRAM__InterfaceTableEntry_a11173e4bbc2d0bb70bc9a31f7d4250bf} 
+struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} NETIO\+\_\+\+DGRAM\+\_\+\+Interface\+Table\+Entry\+::address}
+
+
+
+The address of the interface. 
+
+This is the address that is announced to other DDS Domain\+Participants that this transport can receive messages on. 
+
+Note\+: This address must not be within the multicast group. \Hypertarget{structNETIO__DGRAM__InterfaceTableEntry_a26880d20c786b706d2c3f025dbc6969d}\index{NETIO\_DGRAM\_InterfaceTableEntry@{NETIO\_DGRAM\_InterfaceTableEntry}!multicast\_group@{multicast\_group}}
+\index{multicast\_group@{multicast\_group}!NETIO\_DGRAM\_InterfaceTableEntry@{NETIO\_DGRAM\_InterfaceTableEntry}}
+\doxyparagraph{\texorpdfstring{multicast\_group}{multicast\_group}}
+{\footnotesize\ttfamily \label{structNETIO__DGRAM__InterfaceTableEntry_a26880d20c786b706d2c3f025dbc6969d} 
+struct \mbox{\hyperlink{structNETIO__DGRAM__InterfaceMultiCastGroup}{NETIO\+\_\+\+DGRAM\+\_\+\+Interface\+Multi\+Cast\+Group}} NETIO\+\_\+\+DGRAM\+\_\+\+Interface\+Table\+Entry\+::multicast\+\_\+group}
+
+
+
+An optional multicast group for the interface. 
+
+This attribute can be used to specify a group of addresses that should be considered multicast addresses. Multicast addresses are address that is sent to once, but received by many and can be a more efficient mechanism to distribute data. RTI Connext DDS Micro will prioritize sending to multicast addresses over unciast addresses. 
+
+Note the following restrictions\+: 
+
+\begin{DoxyItemize}
+\item All the multicast\+\_\+group.\+netmask.\+mask array elements must be 0 \item The multicast\+\_\+group.\+netmask.\+bits must be in the range \mbox{[}0,128\mbox{]} \end{DoxyItemize}
+\Hypertarget{structNETIO__DGRAM__InterfaceTableEntry_a1ded21215be7937c61c7d6ce06178258}\index{NETIO\_DGRAM\_InterfaceTableEntry@{NETIO\_DGRAM\_InterfaceTableEntry}!ifname@{ifname}}
+\index{ifname@{ifname}!NETIO\_DGRAM\_InterfaceTableEntry@{NETIO\_DGRAM\_InterfaceTableEntry}}
+\doxyparagraph{\texorpdfstring{ifname}{ifname}}
+{\footnotesize\ttfamily \label{structNETIO__DGRAM__InterfaceTableEntry_a1ded21215be7937c61c7d6ce06178258} 
+const char\texorpdfstring{$\ast$}{*} NETIO\+\_\+\+DGRAM\+\_\+\+Interface\+Table\+Entry\+::ifname}
+
+
+
+The interface name is not used by RTI Connext DDS Micro. 
+

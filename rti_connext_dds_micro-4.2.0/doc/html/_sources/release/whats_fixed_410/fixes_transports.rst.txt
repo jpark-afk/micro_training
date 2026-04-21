@@ -1,0 +1,23 @@
+Transports
+==========
+
+:major:`[Major]` Multicast sockets always bound to the multicast address on non-Windows platforms
+-------------------------------------------------------------------------------------------------
+
+|me| always bound multicast receive sockets to the multicast address upon
+creation, even if :link_connextmicro_dds_api_c_up_two:`enable_interface_bind <structUDP__InterfaceFactoryProperty.html>`
+had not been set. This only occurred on non-Windows platforms. 
+
+Now, :link_connextmicro_dds_api_c_up_two:`disable_multicast_bind <structUDP__InterfaceFactoryProperty.html>`
+can optionally disable binding a multicast receive socket to its multicast
+receive address.
+
+See :ref:`MICRO-5852` for more information on :link_connextmicro_dds_api_c_up_two:`disable_multicast_bind <structUDP__InterfaceFactoryProperty.html>`.
+
+.. note::
+   
+   On some platforms, you may need to set :link_connextmicro_dds_api_c_up_two:`disable_multicast_bind <structUDP__InterfaceFactoryProperty.html>`
+   to 1 to interoperate |me| with |core_pro| because |core_pro| does not bind
+   multicast receive sockets to the multicast address.
+
+[RTI Issue ID MICRO-8451]

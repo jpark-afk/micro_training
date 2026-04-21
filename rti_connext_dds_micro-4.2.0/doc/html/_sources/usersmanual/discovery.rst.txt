@@ -1,0 +1,465 @@
+.. _section-discovery:
+
+Discovery
+=========
+
+This section discusses the implementation of discovery plugins in |rti_me|. For a general
+overview of discovery in |rti_me|, see :ref:`what_is_discovery`.
+
+|me| discovery traffic is conducted through transports. Please see the :doc:`transports/index`
+section for more information about registering and configuring transports.
+
+.. _what_is_discovery:
+
+What is Discovery?
+------------------
+
+Discovery is the behind-the-scenes way in which |rti_me| objects (*DomainParticipants*,
+*DataWriters*, and *DataReaders*) on different nodes find out about each other. Each
+*DomainParticipant* maintains a database of information about all the active *DataReaders* and
+*DataWriters* that are in the same DDS domain. This database is what makes it possible for
+*DataWriters* and *DataReaders* to communicate. To create and refresh the database, each
+application follows a common discovery process.
+
+This section describes the default discovery mechanism known as the Simple Discovery Protocol,
+which includes two phases: `Simple Participant Discovery`_ and `Simple Endpoint Discovery`_.
+
+The goal of these two phases is to build, for each *DomainParticipant*, a complete picture of
+all the entities that belong to the remote participants that are in its peers list. The peers
+list is the list of nodes with which a participant may communicate. It starts out the same as
+the *initial_peers* list that you configure in the
+:link_connextmicro_dds_api_c_up_one:`DISCOVERY <group__DDSDiscoveryQosModule.html>` QosPolicy.
+If the :link_connextmicro_dds_api_c_up_one:`accept_unknown_peers <structDDS__DiscoveryQosPolicy.html>`
+flag in that same QosPolicy is TRUE, then other nodes may also be
+added as they are discovered; if it is FALSE, then the peers list will match the
+:link_connextmicro_dds_api_c_up_one:`initial_peers <structDDS__DiscoveryQosPolicy.html>`
+list, plus any peers added using the *DomainParticipant’s* ``add_peer()`` operation.
+
+The following section discusses how |me| objects on different nodes find out about each
+other using the default Simple Discovery Protocol (SDP). It describes the sequence of
+messages that are passed between |me| on the sending and receiving sides.
+
+The discovery process occurs automatically, so you do not have to implement any special code.
+For more information about advanced topics related to Discovery, please refer to
+:link_external_community_doc_pro_um:`the Discovery chapter <index.htm#users_manual/Discovery.htm>` in the :link_external_community_doc_pro_um:`RTI Connext DDS Core Libraries User's Manual <index.htm>`
+(available :link_external_community_doc_pro_um:`here <index.htm#users_manual/Discovery.htm>` if you have Internet access).
+
+Simple Participant Discovery
+............................
+
+This phase of the Simple Discovery Protocol is performed by the Simple Participant Discovery
+Protocol (SPDP).
+
+During the Participant Discovery phase, *DomainParticipants* learn about each other. The
+*DomainParticipant*’s details are communicated to all other *DomainParticipants* in the same
+DDS domain by sending participant declaration messages, also known as participant *DATA*
+submessages. The details include the *DomainParticipant*’s unique identifying key (GUID or
+Globally Unique ID described below), transport locators (addresses and port numbers), and QoS.
+These messages are sent on a periodic basis using best-effort communication.
+
+*Participant DATAs* are sent periodically to maintain the liveliness of the *DomainParticipant*.
+They are also used to communicate changes in the *DomainParticipant*’s QoS. Only changes to
+QosPolicies that are part of the *DomainParticipant*’s built-in data need to be propagated.
+
+When receiving remote participant discovery information, |rti_me| determines if the local
+participant matches the remote one. A ‘match’ between the local and remote participant occurs
+only if the local and remote participant have the same Domain ID and Domain Tag. This matching
+process occurs as soon as the local participant receives discovery information from the remote
+one. If there is no match, the discovery DATA is ignored, resulting in the remote participant
+(and all its associated entities) not being discovered.
+
+When a *DomainParticipant* is deleted, a participant *DATA (delete)* submessage with the
+*DomainParticipant*'s identifying GUID is sent.
+
+The GUID is a unique reference to an entity. It is composed of a GUID prefix and an Entity ID.
+By default, the GUID prefix is calculated from the IP address and the process ID.
+The entityID is set by |me| (you may be able to change it in a future version).
+
+Once a pair of remote participants have discovered each other, they can move on to the Endpoint
+Discovery phase, which is how *DataWriters* and *DataReaders* find each other.
+
+.. _section-simple-endpoint-discovery:
+
+Simple Endpoint Discovery
+.........................
+
+This phase of the Simple Discovery Protocol is performed by the Simple Endpoint Discovery
+Protocol (SEDP).
+
+During the Endpoint Discovery phase, |rti_me| matches *DataWriters* and *DataReaders*.
+Information (GUID, QoS, etc.) about your application’s *DataReaders* and *DataWriters* is
+exchanged by sending publication/subscription declarations in DATA messages that we will refer
+to as *publication DATAs* and *subscription DATAs*. The Endpoint Discovery phase uses reliable
+communication.
+
+These declaration or DATA messages are exchanged
+until each *DomainParticipant* has a complete database of information about the participants in
+its peers list and their entities. Then the discovery process is complete and the system switches
+to a steady state. During steady state, *participant DATAs* are still sent periodically to
+maintain the liveliness status of participants. They may also be sent to communicate QoS changes
+or the deletion of a *DomainParticipant*.
+
+When a remote *DataWriter/DataReader* is discovered, |me| determines if the local application
+has a matching *DataReader/DataWriter*. A ‘match’ between the local and remote entities occurs
+only if the *DataReader* and *DataWriter* have the same *Topic*, same data type, and compatible
+QosPolicies. Furthermore, if the *DomainParticipant* has been set up to ignore certain
+*DataWriters/DataReaders*, those entities will not be considered during the matching process.
+
+This ‘matching’ process occurs as soon as a remote entity is discovered, even if the entire
+database is not yet complete: that is, the application may still be discovering other remote
+entities.
+
+A *DataReader* and *DataWriter* can only communicate with each other if each one’s application
+has hooked up its local entity with the matching remote entity. That is, both sides must agree
+to the connection.
+
+Please refer to :link_external_community_doc_pro_um:`the section on Discovery Implementation <index.htm#users_manual/Discovery_Implementation.htm>`
+in the :link_external_community_doc_pro_um:`RTI Connext DDS Core Libraries User's Manual <index.htm>` for more
+details about the discovery process (available :link_external_community_doc_pro_um:`here <index.htm#users_manual/Discovery_Implementation.htm>` if
+you have Internet access).
+
+Configuring Participant Discovery Peers
+---------------------------------------
+
+An |rti_me| *DomainParticipant* must be able to send participant discovery
+announcement messages for other *DomainParticipants* to discover itself, and it
+must receive announcements from other *DomainParticipants* to discover them.
+
+To do so, each *DomainParticipant* will send its discovery announcements to a
+set of locators known as its peer list, where a peer is the transport locator of
+one or more potential other *DomainParticipants* to discover.
+
+peer_desc_string
+................
+
+A peer descriptor string of the
+:link_connextmicro_dds_api_c_up_one:`initial_peers <structDDS__DiscoveryQosPolicy.html>`
+string sequence conveys the interface and
+address of the locator to which to send, as well as the indices of participants
+to which to send.  For example::
+
+    DDS_StringSeq_set_maximum(&dp_qos.discovery.initial_peers, 3);
+    DDS_StringSeq_set_length(&dp_qos.discovery.initial_peers, 3);
+
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.initial_peers, 0) =
+         DDS_String_dup("_udp://239.255.0.1");
+
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.initial_peers, 1) =
+         DDS_String_dup("[1-4]@_udp://10.10.30.101");
+
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.initial_peers, 2) =
+         DDS_String_dup("[2]@_udp://10.10.30.102");
+
+The peer descriptor format is:
+
+::
+
+    [index@][interface://]address
+
+Remember that every *DomainParticipant* has a participant index that is unique within
+a DDS domain.  The participant index (also referred to as the participant ID),
+together with the DDS domain ID, is used to calculate the network port on which
+*DataReaders* of that participant will receive messages.  Thus, by
+specifying the participant index, or a range of indices, for a peer locator, that
+locator becomes a port to which messages will be sent only if addressed to the
+entities of a particular *DomainParticipant*.  Specifying indices restricts the
+number of participant announcements sent to a locator where other *DomainParticipants*
+exist and, thus, should be considered to minimize network bandwidth usage.
+
+In the above example, the first peer, "_udp://239.255.0.1," has the default UDPv4
+multicast peer locator. Note that there is no [index@] associated with a multicast locator.
+
+The second peer, "[1-4]@_udp://10.10.30.101," has a unicast address.  It also
+has indices in brackets, [1-4].  These represent a range of participant indices, 1 through 4,
+to which participant discovery messages will be sent.
+
+Lastly, the third peer, "[2]@_udp://10.10.30.102," is a unicast locator to a
+single participant with index 2.
+
+Configuring Initial Peers and Adding Peers
+------------------------------------------
+
+:link_connextmicro_dds_api_c_up_one:`DiscoveryQosPolicy_initial_peers <structDDS__DiscoveryQosPolicy.html>`
+is the list of peers a *DomainParticipant*
+sends its participant announcement messages, when it is enabled, as part of the
+discovery process.
+
+:link_connextmicro_dds_api_c_up_one:`DiscoveryQosPolicy_initial_peers <structDDS__DiscoveryQosPolicy.html>`
+is an empty sequence by default, so while
+:link_connextmicro_dds_api_c_up_one:`DiscoveryQosPolicy_enabled_transports <structDDS__DiscoveryQosPolicy.html>`
+by default includes the DDS default
+loopback and multicast (239.255.0.1) addresses, :link_connextmicro_dds_api_c_up_one:`initial_peers <structDDS__DiscoveryQosPolicy.html>`
+must be configured to include them.
+
+Peers can also be added to the list, before and after a *DomainParticipant* has
+been enabled, by using :link_connextmicro_dds_api_c_up_one:`DomainParticipant_add_peer <group__DDSDomainParticipantModule.html>`.
+
+The *DomainParticipant* will start sending participant announcement messages to the
+new peer as soon as it is enabled.
+
+Discovery Plugins
+-----------------
+
+When a *DomainParticipant* receives a participant discovery message from
+another *DomainParticipant*, it will engage in the process of exchanging information
+of user-created *DataWriter* and *DataReader* endpoints.
+
+|rti_me| provides two ways of determinig endpoint information of other *DomainParticipants*:
+:ref:`dynamic_endpoint_disc` and :ref:`static_endpoint_disc`.
+
+.. _dynamic_endpoint_disc:
+
+Dynamic Discovery Plugin
+........................
+
+Dynamic endpoint discovery uses builtin discovery *DataWriters* and *DataReader*
+to exchange messages about user created *DataWriter* and *DataReaders*. A *DomainParticipant*
+using dynamic participant, dynamic endpoint
+(:link_connextmicro_dds_api_c_up_one:`DPDE <group__DPDEModule.html>`)
+discovery will have a pair of builtin
+*DataWriters* for sending messages about its own user created *DataWriters* and *DataReaders*, and
+a pair of builtin *DataReaders* for receiving messages from other *DomainParticipants* about
+their user created *DataWriters* and *DataReaders*.
+
+Given a *DomainParticipant* with a user *DataWriter*, receiving an
+endpoint discovery message for a user *DataReader* allows the
+*DomainParticipant* to get the type, topic, and QoS of the *DataReader*
+that determine whether the *DataReader* is a match.  When a
+matching *DataReader* is discovered, the *DataWriter* will include
+that *DataReader* and its locators as destinations for its subsequent
+writes.
+
+.. note::
+
+  |rti_core| uses the acronyms SPDP and SEDP to distinguish between the
+  two phases of Simple Discovery: participant and endpoint phases (see
+  :link_external_community_doc_pro_um:`Discovery in the Core Libraries User's Manual <index.htm#users_manual/Discovery.htm>`).
+  |rti_me| uses the acronyms DPSE and DPDE to distinguish between the
+  static and dynamic endpoint discovery plugins available in |rti_me|.
+  The DPSE plugin implements the SPDP protocol and DPDE implements the
+  SPDP and SEDP protocol.
+
+.. _static_endpoint_disc:
+
+Static Discovery Plugin
+.......................
+
+Static endpoint discovery uses function calls to statically assert information
+about remote endpoints belonging to remote *DomainParticipants*. An application with a
+*DomainParticipant* using dynamic participant, static endpoint
+(:link_connextmicro_dds_api_c_up_one:`DPSE <group__DPSEModule.html>`) discovery has
+control over which endpoints belonging to particular remote *DomainParticipants*
+are discoverable.
+
+Whereas dynamic endpoint-discovery can establish matches for all endpoint-discovery
+messages it receives, static endpoint-discovery establishes matches only for the
+endpoint that have been asserted programmatically.
+
+With :link_connextmicro_dds_api_c_up_one:`DPSE <group__DPSEModule.html>`, a user
+needs to know *a priori* the configuration of the entities that
+will need to be discovered by its application.
+The user must know the names of all *DomainParticipants* within the DDS domain and
+the exact QoS of the remote *DataWriters* and *DataReaders*.
+
+.. note::
+
+  |rti_core| uses the acronyms SPDP and SEDP to distinguish between the
+  two phases of Simple Discovery: participant and endpoint phases (see
+  :link_external_community_doc_pro_um:`Discovery in the Core Libraries User's Manual <index.htm#users_manual/Discovery.htm>`).
+  |rti_me| uses the acronyms DPSE and DPDE to distinguish between the
+  static and dynamic endpoint discovery plugins available in |rti_me|.
+  The DPSE plugin implements the SPDP protocol and DPDE implements the
+  SPDP and SEDP protocol.
+
+Please refer to the :link_connextmicro_dds_api_c_up_one:`C API Reference <index.html>`
+and :link_connextmicro_dds_api_cpp_up_one:`C++ API Reference <index.html>` for the
+following remote entity assertion APIs:
+
+- :link_connextmicro_dds_api_c_up_one:`DPSE_RemoteParticipant_assert <group__DPSEModule.html>`
+- :link_connextmicro_dds_api_c_up_one:`DPSE_RemotePublication_assert <group__DPSEModule.html>`
+- :link_connextmicro_dds_api_c_up_one:`DPSE_RemoteSubscription_assert <group__DPSEModule.html>`
+
+Remote Participant Assertion
+''''''''''''''''''''''''''''
+
+Given a local *DomainParticipant*, static discovery requires first the names
+of remote *DomainParticipants* to be asserted, in order for endpoints on them to
+match.  This is done by calling
+:link_connextmicro_dds_api_c_up_one:`DPSE_RemoteParticipant_assert <group__DPSEModule.html>`
+with the name of a remote *DomainParticipant*. The name must match the name
+contained in the participant discovery announcement produced by that
+*DomainParticipant*. This has to be done reciprocally between two
+*DomainParticipants* so that they may discover one another.
+
+For example, a *DomainParticipant* has entity name "participant_1", while
+another *DomainParticipant* has name "participant_2."  participant_1 should call
+DPSE_RemoteParticipant_assert("participant_2") in order to discover participant_2.
+Similarly, participant_2 must also assert participant_1 for discovery between
+the two to succeed.
+
+::
+
+    /* participant_1 is asserting (remote) participant_2 */
+    retcode = DPSE_RemoteParticipant_assert(participant_1,
+                                            "participant_2");
+    if (retcode != DDS_RETCODE_OK) {
+        printf("participant_1 failed to assert participant_2\n");
+        goto done;
+    }
+
+Remote Publication and Subscription Assertion
+'''''''''''''''''''''''''''''''''''''''''''''
+
+Next, a *DomainParticipant* needs to assert the remote endpoints it wants to match
+that belong to an already asserted remote *DomainParticipant*. The endpoint
+assertion function is used, specifying an argument which contains all the QoS
+and configuration of the remote endpoint.
+Where :link_connextmicro_dds_api_c_up_one:`DPDE <group__DPDEModule.html>` gets
+remote endpoint QoS information from received endpoint-discovery
+messages, in :link_connextmicro_dds_api_c_up_one:`DPSE <group__DPSEModule.html>`,
+the remote endpoint's QoS must be configured locally.
+With remote endpoints asserted, the *DomainParticipant* then waits until it receives
+a participant discovery announcement from an asserted remote *DomainParticipant*.
+Once received that, all endpoints that have been asserted for that remote
+*DomainParticipant* are considered discovered and ready to be matched with local
+endpoints.
+
+Assume participant_1 contains a *DataWriter*, and participant_2 has a *DataReader*,
+both communicating on topic HelloWorld. participant_1 needs to assert the *DataReader*
+in participant_2 as a remote subscription. The remote subscription data passed
+to the operation must match exactly the QoS actually used by the remote *DataReader*::
+
+    /* Set participant_2's reader's QoS in remote subscription data  */
+    rem_subscription_data.key.value[DDS_BUILTIN_TOPIC_KEY_OBJECT_ID] = 200;
+    rem_subscription_data.topic_name = DDS_String_dup("Example HelloWorld");
+    rem_subscription_data.type_name = DDS_String_dup("HelloWorld");
+    rem_subscription_data.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;
+
+    /* Assert reader as a remote subscription belonging to (remote) participant_2 */
+    retcode = DPSE_RemoteSubscription_assert(participant_1,
+                                             "participant_2",
+                                             &rem_subscription_data,
+                                             HelloWorld_get_key_kind(HelloWorldTypePlugin_get(), NULL));
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to assert remote subscription\n");
+        goto done;
+    }
+
+Reciprocally, participant_2 must assert participant_1's *DataWriter* as a remote
+publication, also specifying matching QoS parameters::
+
+    /* Set participant_1's writer's QoS in remote publication data  */
+    rem_publication_data.key.value[DDS_BUILTIN_TOPIC_KEY_OBJECT_ID] = 100;
+    rem_publication_data.key.value.topic_name = DDS_String_dup("Example HelloWorld");
+    rem_publication_data.key.value.type_name = DDS_String_dup("HelloWorld");
+    rem_publication_data.key.value.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;
+
+    /* Assert writer as a remote publication belonging to (remote) participant_1 */
+    retcode = DPSE_RemotePublication_assert(participant_2,
+                                            "participant_1",
+                                            &rem_publication_data,
+                                            HelloWorld_get_key_kind(HelloWorldTypePlugin_get(), NULL));
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to assert remote publication\n");
+        goto done;
+    }
+
+When participant_1 receives a participant discovery message from participant_2,
+it is aware of participant_2, based on its previous assertion, and it knows
+participant_2 has a matching *DataReader*, also based on the previous assertion of
+the remote endpoint.  It therefore establishes a match between
+its *DataWriter* and participant_2's *DataReader*.  Likewise, participant_2 will match
+participant_1's *DataWriter* with its local *DataRead*, upon receiving one of
+participant_1's participant discovery messages.
+
+Note, with :link_connextmicro_dds_api_c_up_one:`DPSE <group__DPSEModule.html>`, there is
+no runtime check of QoS consistency between *DataWriters*
+and *DataReaders*, because no endpoint discovery messages are exchanged. This makes it
+extremely important that users of :link_connextmicro_dds_api_c_up_one:`DPSE <group__DPSEModule.html>`
+ensure that the QoS set for a local *DataWriter*
+and *DataReader* is the same QoS being used by another *DomainParticipant* to assert
+it as a remote *DataWriter* or *DataReader*.
+
+.. _section-domainparticipant-rediscovery:
+
+DomainParticipant Discovery by Name
+-----------------------------------
+
+If a *DomainParticipant* is restarted after an ungraceful shutown, other
+*DomainParticipants* will not remove the *DomainParticipant*'s
+discovery information until its
+``lease_duration`` has expired. Typically, you can reduce the ``lease_duration``
+or increase the resource limits to avoid running out of resources to discover
+restarted *DomainParticipants*. However, this may not be a feasible solution,
+since it increases network load and memory usage.
+
+To mitigate these issues, |me| can be configured to discover
+*DomainParticipants* by name instead of by GUID. This speeds up the discovery
+process because the restarted *DomainParticipant* can immediately replace the
+old *DomainParticipant* without waiting for the old one's ``lease_duration`` to
+expire.
+
+To enable discovery by name for a *DomainParticipant*, do the following:
+
+#. Set a globally unique ``participant_name`` in the *DomainParticipant*'s
+   :link_connextmicro_dds_api_c_up_one:`DomainParticipantQos <structDDS__DomainParticipantQos.html>`.
+
+#. Set the ``enable_participant_discovery_by_name`` property to
+   ``DDS_BOOLEAN_TRUE`` in the *DomainParticipant*'s
+   :link_connextmicro_dds_api_c_up_one:`DISCOVERY <structDDS__DiscoveryQosPolicy.html>`
+   QosPolicy.
+
+The *DomainParticipant* can now be rediscovered smoothly by other remote
+*DomainParticipants* after a restart.
+
+.. attention::
+
+    When using discovery by name, a *DomainParticipant* must be restarted with a
+    different GUID from its previous GUID.
+
+.. attention::
+
+  To avoid undefined behavior while using discovery by name, make sure that each
+  *DomainParticipant* in a given domain has a unique ``participant_name``.
+
+Queueing Discovery Messages
+---------------------------
+
+During a system restart or partial restart, the discovery process also restarts
+as *DomainParticipants* come back up. During this period, it is possible
+that each *DomainParticipant* is in a different phase. For example:
+
+- Some *DomainParticipants* may have terminated gracefully,
+  but have not started up again.
+- Some *DomainParticipants* may have been abruptly taken off-line;
+  e.g., during a power cycle.
+- Some *DomainParticipants* may have already restarted.
+- Some *DomainParticipants* may not have restarted yet, or will not restart.
+
+During this period it is possible for a *DomainParticipant* to temporarily
+exceed its resource limits. For example, a *DomainParticipant* that was not
+restarted may store discovery information for a *DomainParticipant* that was
+ungracefully shut down because its lease duration has not expired,
+and **also** discover the restarted *DomainParticipant*.
+
+|me| will normally discard a discovery message if it receives an endpoint
+discovery message and lacks sufficient resources to store the
+endpoint. |me| will (by default) acknowledge the message as received,
+but discard the discovery information. This can lead to a mismatch in
+discovery states between *DomainParticipants*. However, as lease
+durations expire on restarted *DomainParticipants*, resources become
+available to discover new *DomainParticipants*.
+
+To mitigate this temporary lack of resources, you can set the
+``DomainParticipantQos.discovery.enable_endpoint_discovery_queue`` property
+can be set to ``DDS_BOOLEAN_TRUE``. Endpoint discovery messages will then
+instead be queued for later processing when resources become available.
+
+.. attention::
+
+  This new field assumes that there are sufficient resources available for
+  discovery information and that the lack of resources is temporary (such as
+  during a system restart). Setting this value to ``DDS_BOOLEAN_TRUE`` without
+  sufficient resources may cause undefined behavior.

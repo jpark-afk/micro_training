@@ -1,8 +1,9 @@
+#include "rti_me_c.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "rti_me_c.h"
 #include "wh_sm/wh_sm_history.h"
 #include "rh_sm/rh_sm_history.h"
 
@@ -133,11 +134,11 @@ publisher_main_w_args(
         if (retcode != DDS_RETCODE_OK)
         {
             printf("Failed to write sample\n");
-        } 
+        }
         else
         {
-            printf("Written sample %d\n",(i+1));
-        } 
+            printf("Wrote sample #%d\n",(i+1));
+        }
 
         OSAPI_Thread_sleep((RTI_UINT32)application->sleep_time);
     }

@@ -1,0 +1,40 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+# This architecture is expected to be compiled on a native machine with the
+# default compiler
+SET(CMAKE_SYSTEM_NAME Windows)
+
+IF (${TARGET_HELP})
+    MESSAGE("TARGET\n\n Windows\n")
+    MESSAGE("DESCRIPTION\n")
+    MESSAGE(" The Windows target supports self-hosted builds on windows")
+    MESSAGE(" targets.")
+    MESSAGE("\nARGUMENTS\n")
+    MESSAGE(" MSVC compiler is always assumed.")
+    MESSAGE("\nEXAMPLES\n")
+    MESSAGE(" --target x64Win64VS2017\n")
+ENDIF()
+
+SET(RTIME_OSAPI_PLATFORM windows)
+get_filename_component(tc ${CMAKE_CURRENT_LIST_FILE} NAME)
+STRING(REGEX MATCH "(.*)-(.*)" pil_match ${tc})
+IF(pil_match)
+    SET(RTIME_PIL_ARCH ${CMAKE_MATCH_1})
+ELSE()
+    MESSAGE(FATAL_ERROR "No PIL found")
+ENDIF()
+SET(RTIME_PSL TRUE)
+ADD_DEFINITIONS(-DRTI_PSL=1)
+SET(RTIME_INCLUDE_PSL_PSK_SUPPORT TRUE CACHE BOOL "Enable PSL PSK")
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Platform/windows.tc)
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/vscc.tc)

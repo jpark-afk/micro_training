@@ -1,0 +1,199 @@
+\doxysubsubsubsection{Flow Controllers}
+\hypertarget{group__DDSFlowControllerModule}{}\label{group__DDSFlowControllerModule}\index{Flow Controllers@{Flow Controllers}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{classDDSFlowController}{DDSFlow\+Controller} and associated elements  
+
+
+\doxysubsubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__FlowControllerTokenBucketProperty__t}{DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classDDSFlowController}{DDSFlow\+Controller} uses the popular token bucket approach for open loop network flow control. The flow control characteristics are determined by the token bucket properties. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Determines the flow control characteristics of the \doxylink{classDDSFlowController}{DDSFlow\+Controller}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classDDSFlowController}{DDSFlow\+Controller}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} A flow controller is the object responsible for shaping the network traffic by determining when attached asynchronous \doxylink{classDDSDataWriter}{DDSData\+Writer} instances are allowed to write data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__DDSFlowControllerModule_gacdd2356baadedf00457c9ce32f5ca115}{DDS\+\_\+\+Flow\+Controller\+Scheduling\+Policy}} \{ \mbox{\hyperlink{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115a22b0cb68305116cc3a5978084685c1cd}{DDS\+\_\+\+RR\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY}}
+, \mbox{\hyperlink{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115afb77daa170cc951b2387ca9e24003a38}{DDS\+\_\+\+EDF\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY}}
+, \mbox{\hyperlink{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115abcc07438223e2fe71c0bff710b3ef020}{DDS\+\_\+\+HPF\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY}}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of flow controller scheduling policy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{group__DDSFlowControllerModule_ga8d70ffa29103edde8717472c79a239d2}{DDS\+\_\+\+DEFAULT\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME}}
+\begin{DoxyCompactList}\small\item\em {\bfseries{\mbox{[}default\mbox{]}}} Special value of \doxylink{structDDS__PublishModeQosPolicy_ae1d0fe3d8d81f5f0a207709a9fc51bac}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::flow\+\_\+controller\+\_\+name} that refers to the built-\/in default flow controller. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{group__DDSFlowControllerModule_gabc34ec170f1c54ddbe002e510cfef8c6}{DDS\+\_\+\+FIXED\+\_\+\+RATE\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME}}
+\begin{DoxyCompactList}\small\item\em Special value of \doxylink{structDDS__PublishModeQosPolicy_ae1d0fe3d8d81f5f0a207709a9fc51bac}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::flow\+\_\+controller\+\_\+name} that refers to the built-\/in fixed-\/rate flow controller. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{group__DDSFlowControllerModule_ga2172a524dbc9cebfeb844408505193ac}{DDS\+\_\+\+ON\+\_\+\+DEMAND\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME}}
+\begin{DoxyCompactList}\small\item\em Special value of \doxylink{structDDS__PublishModeQosPolicy_ae1d0fe3d8d81f5f0a207709a9fc51bac}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::flow\+\_\+controller\+\_\+name} that refers to the built-\/in on-\/demand flow controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{classDDSFlowController}{DDSFlow\+Controller} and associated elements 
+
+\doxylink{classDDSFlowController}{DDSFlow\+Controller} provides the network traffic shaping capability to asynchronous \doxylink{classDDSDataWriter}{DDSData\+Writer} instances. For use cases and advantages of publishing asnychronously, please refer to \doxylink{structDDS__PublishModeQosPolicy}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy} of \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__PublishModeQosPolicy}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy} 
+
+\doxylink{structDDS__DataWriterQos_ac37f1fe53d755fc7d6b372b5159ce353}{DDS\+\_\+\+Data\+Writer\+Qos\+::publish\+\_\+mode}
+\end{DoxySeeAlso}
+
+
+\doxysubsubsubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__DDSFlowControllerModule_gacdd2356baadedf00457c9ce32f5ca115}\index{Flow Controllers@{Flow Controllers}!DDS\_FlowControllerSchedulingPolicy@{DDS\_FlowControllerSchedulingPolicy}}
+\index{DDS\_FlowControllerSchedulingPolicy@{DDS\_FlowControllerSchedulingPolicy}!Flow Controllers@{Flow Controllers}}
+\doxyparagraph{\texorpdfstring{DDS\_FlowControllerSchedulingPolicy}{DDS\_FlowControllerSchedulingPolicy}}
+{\footnotesize\ttfamily \label{group__DDSFlowControllerModule_gacdd2356baadedf00457c9ce32f5ca115} 
+enum \mbox{\hyperlink{group__DDSFlowControllerModule_gacdd2356baadedf00457c9ce32f5ca115}{DDS\+\_\+\+Flow\+Controller\+Scheduling\+Policy}}}
+
+
+
+Kinds of flow controller scheduling policy. 
+
+\begin{DoxyParagraph}{QoS\+:}
+\doxylink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t} 
+\end{DoxyParagraph}
+Samples written by an asynchronous \doxylink{classDDSDataWriter}{DDSData\+Writer} are not sent in the context of the \doxylink{structFooDataWriter_ab2c44dd15f5daf7eddf3773239101478}{Foo\+Data\+Writer\+::write} call. Instead, the middleware puts the samples in a queue for future processing. The \doxylink{classDDSFlowController}{DDSFlow\+Controller} associated with each asynchronous Data\+Writer instance determines when the samples are actually sent. 
+
+Each \doxylink{classDDSFlowController}{DDSFlow\+Controller} maintains a separate FIFO queue for each unique destination (remote application). Samples written by asynchronous \doxylink{classDDSDataWriter}{DDSData\+Writer} instances associated with the flow controller, are placed in the queues that correspond to the intended destinations of the sample. 
+
+When tokens become available, a flow controller must decide which queue(s) to grant tokens first. This is determined by the flow controller\textquotesingle{}s scheduling policy. Once a queue has been granted tokens, it is serviced by the asynchronous publishing thread. The queued up samples will be coalesced and sent to the corresponding destination. The number of samples sent depends on the data size and the number of tokens granted. \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_RR\_FLOW\_CONTROLLER\_SCHED\_POLICY@{DDS\_RR\_FLOW\_CONTROLLER\_SCHED\_POLICY}!Flow Controllers@{Flow Controllers}}\index{Flow Controllers@{Flow Controllers}!DDS\_RR\_FLOW\_CONTROLLER\_SCHED\_POLICY@{DDS\_RR\_FLOW\_CONTROLLER\_SCHED\_POLICY}}}\Hypertarget{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115a22b0cb68305116cc3a5978084685c1cd}\label{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115a22b0cb68305116cc3a5978084685c1cd} 
+DDS\+\_\+\+RR\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY&Indicates to flow control in a round-\/robin fashion. Whenever tokens become available, the flow controller distributes the tokens uniformly across all of its (non-\/empty) destination queues. No destinations are prioritized. Instead, all destinations are treated equally and are serviced in a round-\/robin fashion. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_EDF\_FLOW\_CONTROLLER\_SCHED\_POLICY@{DDS\_EDF\_FLOW\_CONTROLLER\_SCHED\_POLICY}!Flow Controllers@{Flow Controllers}}\index{Flow Controllers@{Flow Controllers}!DDS\_EDF\_FLOW\_CONTROLLER\_SCHED\_POLICY@{DDS\_EDF\_FLOW\_CONTROLLER\_SCHED\_POLICY}}}\Hypertarget{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115afb77daa170cc951b2387ca9e24003a38}\label{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115afb77daa170cc951b2387ca9e24003a38} 
+DDS\+\_\+\+EDF\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY&Indicates to flow control in an earliest-\/deadline-\/first fashion. A sample\textquotesingle{}s deadline is determined by the time it was written plus the latency budget of the Data\+Writer at the time of the write call (as specified in the \doxylink{structDDS__LatencyBudgetQosPolicy}{DDS\+\_\+\+Latency\+Budget\+Qos\+Policy}). The relative priority of a flow controller\textquotesingle{}s destination queue is determined by the earliest deadline across all samples it contains. 
+
+When tokens become available, the \doxylink{classDDSFlowController}{DDSFlow\+Controller} distributes tokens to the destination queues in order of their deadline priority. In other words, the queue containing the sample with the earliest deadline is serviced first. The number of tokens granted equals the number of tokens required to send the first sample in the queue. Note that the priority of a queue may change as samples are sent (i.\+e. removed from the queue). If a sample must be sent to multiple destinations or two samples have an equal deadline value, the corresponding destination queues are serviced in a round-\/robin fashion. 
+
+Hence, under the default \doxylink{structDDS__LatencyBudgetQosPolicy_a28d7a05d6a5559f3e174c5bebe0852b4}{DDS\+\_\+\+Latency\+Budget\+Qos\+Policy\+::duration} setting, an {\ttfamily EDF\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY} \doxylink{classDDSFlowController}{DDSFlow\+Controller} preserves the order in which the user calls \doxylink{structFooDataWriter_ab2c44dd15f5daf7eddf3773239101478}{Foo\+Data\+Writer\+::write} across the Data\+Writers associated with the flow controller. 
+
+In other words, the priority of a destination queue is always determined by the earliest deadline among all samples contained in the queue. This priority inheritance approach is required in order to both honor the updated \doxylink{structDDS__LatencyBudgetQosPolicy_a28d7a05d6a5559f3e174c5bebe0852b4}{DDS\+\_\+\+Latency\+Budget\+Qos\+Policy\+::duration} and adhere to the \doxylink{classDDSDataWriter}{DDSData\+Writer} in-\/order data delivery guarantee. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} for \doxylink{classDDSDataWriter}{DDSData\+Writer} \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_HPF\_FLOW\_CONTROLLER\_SCHED\_POLICY@{DDS\_HPF\_FLOW\_CONTROLLER\_SCHED\_POLICY}!Flow Controllers@{Flow Controllers}}\index{Flow Controllers@{Flow Controllers}!DDS\_HPF\_FLOW\_CONTROLLER\_SCHED\_POLICY@{DDS\_HPF\_FLOW\_CONTROLLER\_SCHED\_POLICY}}}\Hypertarget{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115abcc07438223e2fe71c0bff710b3ef020}\label{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115abcc07438223e2fe71c0bff710b3ef020} 
+DDS\+\_\+\+HPF\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY&Indicates to flow control in a highest-\/priority-\/first fashion. Determines the next destination queue to service as determined by the publication priority of the \doxylink{classDDSDataWriter}{DDSData\+Writer}, channel of multi-\/channel Data\+Writer, or individual sample. 
+
+The relative priority of a flow controller\textquotesingle{}s destination queue is determined by the highest publication priority of all samples it contains. 
+
+When tokens become available, the \doxylink{classDDSFlowController}{DDSFlow\+Controller} distributes tokens to the destination queues in order of their publication priority. In other words, the queue containing the sample with the highest publication priority is serviced first. The number of tokens granted equals the number of tokens required to send the first sample in the queue. Note that the priority of a queue may change as samples are sent (i.\+e. removed from the queue). If a sample must be sent to multiple destinations or two samples have an equal publication priority, the corresponding destination queues are serviced in a round-\/robin fashion. 
+
+This priority inheritance approach is required in order to both honor the designated publication priority and adhere to the \doxylink{classDDSDataWriter}{DDSData\+Writer} in-\/order data delivery guarantee. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsubsubsubsection{Variable Documentation}
+\Hypertarget{group__DDSFlowControllerModule_ga8d70ffa29103edde8717472c79a239d2}\index{Flow Controllers@{Flow Controllers}!DDS\_DEFAULT\_FLOW\_CONTROLLER\_NAME@{DDS\_DEFAULT\_FLOW\_CONTROLLER\_NAME}}
+\index{DDS\_DEFAULT\_FLOW\_CONTROLLER\_NAME@{DDS\_DEFAULT\_FLOW\_CONTROLLER\_NAME}!Flow Controllers@{Flow Controllers}}
+\doxyparagraph{\texorpdfstring{DDS\_DEFAULT\_FLOW\_CONTROLLER\_NAME}{DDS\_DEFAULT\_FLOW\_CONTROLLER\_NAME}}
+{\footnotesize\ttfamily \label{group__DDSFlowControllerModule_ga8d70ffa29103edde8717472c79a239d2} 
+const char\texorpdfstring{$\ast$}{*} const DDS\+\_\+\+DEFAULT\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+{\bfseries{\mbox{[}default\mbox{]}}} Special value of \doxylink{structDDS__PublishModeQosPolicy_ae1d0fe3d8d81f5f0a207709a9fc51bac}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::flow\+\_\+controller\+\_\+name} that refers to the built-\/in default flow controller. 
+
+RTI Connext DDS Micro provides several built-\/in \doxylink{classDDSFlowController}{DDSFlow\+Controller} for use with an asynchronous \doxylink{classDDSDataWriter}{DDSData\+Writer}. The user can choose to use the built-\/in flow controllers and optionally modify their properties or can create a custom flow controller. 
+
+By default, flow control is disabled. That is, the built-\/in \doxylink{group__DDSFlowControllerModule_ga8d70ffa29103edde8717472c79a239d2}{DDS\+\_\+\+DEFAULT\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME} flow controller does not apply any flow control. Instead, it allows data to be sent asynchronously as soon as it is written by the \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+
+Essentially, this is equivalent to a user-\/created \doxylink{classDDSFlowController}{DDSFlow\+Controller} with the following \doxylink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t} settings\+: 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a97ba75a849dfbdb62fedc501f72188d7}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::scheduling\+\_\+policy} = \doxylink{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115afb77daa170cc951b2387ca9e24003a38}{DDS\+\_\+\+EDF\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY} 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily max\+\_\+tokens} = DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily tokens\+\_\+added\+\_\+per\+\_\+period} = DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily tokens\+\_\+leaked\+\_\+per\+\_\+period} = 0 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily period} = 1 second 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily bytes\+\_\+per\+\_\+token} = DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDomainParticipant_aa0a414744e3b66495d58408c7ab70c57}{DDSDomain\+Participant\+::lookup\+\_\+flowcontroller} 
+
+\doxylink{classDDSFlowController_ac9b8d6e278211b59cb6a72a04a774866}{DDSFlow\+Controller\+::set\+\_\+property} 
+
+\doxylink{structDDS__PublishModeQosPolicy}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSFlowControllerModule_gabc34ec170f1c54ddbe002e510cfef8c6}\index{Flow Controllers@{Flow Controllers}!DDS\_FIXED\_RATE\_FLOW\_CONTROLLER\_NAME@{DDS\_FIXED\_RATE\_FLOW\_CONTROLLER\_NAME}}
+\index{DDS\_FIXED\_RATE\_FLOW\_CONTROLLER\_NAME@{DDS\_FIXED\_RATE\_FLOW\_CONTROLLER\_NAME}!Flow Controllers@{Flow Controllers}}
+\doxyparagraph{\texorpdfstring{DDS\_FIXED\_RATE\_FLOW\_CONTROLLER\_NAME}{DDS\_FIXED\_RATE\_FLOW\_CONTROLLER\_NAME}}
+{\footnotesize\ttfamily \label{group__DDSFlowControllerModule_gabc34ec170f1c54ddbe002e510cfef8c6} 
+const char\texorpdfstring{$\ast$}{*} const DDS\+\_\+\+FIXED\+\_\+\+RATE\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Special value of \doxylink{structDDS__PublishModeQosPolicy_ae1d0fe3d8d81f5f0a207709a9fc51bac}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::flow\+\_\+controller\+\_\+name} that refers to the built-\/in fixed-\/rate flow controller. 
+
+RTI Connext DDS Micro provides several builtin \doxylink{classDDSFlowController}{DDSFlow\+Controller} for use with an asynchronous \doxylink{classDDSDataWriter}{DDSData\+Writer}. The user can choose to use the built-\/in flow controllers and optionally modify their properties or can create a custom flow controller. 
+
+The built-\/in \doxylink{group__DDSFlowControllerModule_gabc34ec170f1c54ddbe002e510cfef8c6}{DDS\+\_\+\+FIXED\+\_\+\+RATE\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME} flow controller shapes the network traffic by allowing data to be sent only once every second. Any accumulated samples destined for the same destination are coalesced into as few network packets as possible. 
+
+Essentially, this is equivalent to a user-\/created \doxylink{classDDSFlowController}{DDSFlow\+Controller} with the following \doxylink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t} settings\+: 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a97ba75a849dfbdb62fedc501f72188d7}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::scheduling\+\_\+policy} = \doxylink{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115afb77daa170cc951b2387ca9e24003a38}{DDS\+\_\+\+EDF\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY} 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily max\+\_\+tokens} = DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily tokens\+\_\+added\+\_\+per\+\_\+period} = DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily tokens\+\_\+leaked\+\_\+per\+\_\+period} = DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily period} = 1 second 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily bytes\+\_\+per\+\_\+token} = DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDomainParticipant_aa0a414744e3b66495d58408c7ab70c57}{DDSDomain\+Participant\+::lookup\+\_\+flowcontroller} 
+
+\doxylink{classDDSFlowController_ac9b8d6e278211b59cb6a72a04a774866}{DDSFlow\+Controller\+::set\+\_\+property} 
+
+\doxylink{structDDS__PublishModeQosPolicy}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSFlowControllerModule_ga2172a524dbc9cebfeb844408505193ac}\index{Flow Controllers@{Flow Controllers}!DDS\_ON\_DEMAND\_FLOW\_CONTROLLER\_NAME@{DDS\_ON\_DEMAND\_FLOW\_CONTROLLER\_NAME}}
+\index{DDS\_ON\_DEMAND\_FLOW\_CONTROLLER\_NAME@{DDS\_ON\_DEMAND\_FLOW\_CONTROLLER\_NAME}!Flow Controllers@{Flow Controllers}}
+\doxyparagraph{\texorpdfstring{DDS\_ON\_DEMAND\_FLOW\_CONTROLLER\_NAME}{DDS\_ON\_DEMAND\_FLOW\_CONTROLLER\_NAME}}
+{\footnotesize\ttfamily \label{group__DDSFlowControllerModule_ga2172a524dbc9cebfeb844408505193ac} 
+const char\texorpdfstring{$\ast$}{*} const DDS\+\_\+\+ON\+\_\+\+DEMAND\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Special value of \doxylink{structDDS__PublishModeQosPolicy_ae1d0fe3d8d81f5f0a207709a9fc51bac}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::flow\+\_\+controller\+\_\+name} that refers to the built-\/in on-\/demand flow controller. 
+
+RTI Connext DDS Micro provides several builtin \doxylink{classDDSFlowController}{DDSFlow\+Controller} for use with an asynchronous \doxylink{classDDSDataWriter}{DDSData\+Writer}. The user can choose to use the built-\/in flow controllers and optionally modify their properties or can create a custom flow controller. 
+
+The built-\/in \doxylink{group__DDSFlowControllerModule_ga2172a524dbc9cebfeb844408505193ac}{DDS\+\_\+\+ON\+\_\+\+DEMAND\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME} allows data to be sent only when the user calls \doxylink{classDDSFlowController_a88a1c99b465f67756855de3a07924b4e}{DDSFlow\+Controller\+::trigger\+\_\+flow}. With each trigger, all accumulated data since the previous trigger is sent (across all \doxylink{classDDSPublisher}{DDSPublisher} or \doxylink{classDDSDataWriter}{DDSData\+Writer} instances). In other words, the network traffic shape is fully controlled by the user. Any accumulated samples destined for the same destination are coalesced into as few network packets as possible. 
+
+Essentially, this is equivalent to a user-\/created \doxylink{classDDSFlowController}{DDSFlow\+Controller} with the following \doxylink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t} settings\+: 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a97ba75a849dfbdb62fedc501f72188d7}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::scheduling\+\_\+policy} = \doxylink{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115afb77daa170cc951b2387ca9e24003a38}{DDS\+\_\+\+EDF\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY} 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily max\+\_\+tokens} = DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily tokens\+\_\+added\+\_\+per\+\_\+period} = DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily tokens\+\_\+leaked\+\_\+per\+\_\+period} = DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED -\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily period} = \doxylink{group__DDSTimeSupportModule_ga2b315f7f0887aa9dd6bfc2008eda0780}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE} 
+
+-\/ \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket} {\ttfamily bytes\+\_\+per\+\_\+token} = DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDomainParticipant_aa0a414744e3b66495d58408c7ab70c57}{DDSDomain\+Participant\+::lookup\+\_\+flowcontroller} 
+
+\doxylink{classDDSFlowController_ac9b8d6e278211b59cb6a72a04a774866}{DDSFlow\+Controller\+::set\+\_\+property} 
+
+\doxylink{structDDS__PublishModeQosPolicy}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy}; 
+\end{DoxySeeAlso}

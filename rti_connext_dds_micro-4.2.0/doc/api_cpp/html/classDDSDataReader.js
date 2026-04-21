@@ -1,0 +1,28 @@
+var classDDSDataReader =
+[
+    [ "as_entity", "classDDSDataReader.html#af937847107bceea9f698e6c107a5b40c", null ],
+    [ "get_topicdescription", "classDDSDataReader.html#a82a2b316ce5f8a8c160dba709d3907a5", null ],
+    [ "get_subscriber", "classDDSDataReader.html#a12897287a3ecd697df5fcd536883d4e3", null ],
+    [ "set_qos", "classDDSDataReader.html#a91a17e21e34bdd5f3dd41c5053e3bf12", null ],
+    [ "get_qos", "classDDSDataReader.html#a40c57c6e35f2048e1b84b123b7114fe6", null ],
+    [ "set_listener", "classDDSDataReader.html#a12b6d1d36db4cb3c272bff034dd3d0d7", null ],
+    [ "get_listener", "classDDSDataReader.html#af1cd4557db60c1581161c4e4f30eeb27", null ],
+    [ "read_untyped", "classDDSDataReader.html#adfea9e412e4093c9d93ebfaf42771f7f", null ],
+    [ "take_untyped", "classDDSDataReader.html#a924c8a8e10df47c5597ca01533e5a640", null ],
+    [ "read_instance_untyped", "classDDSDataReader.html#a267358dc1092055cae87c02be5a4d741", null ],
+    [ "take_instance_untyped", "classDDSDataReader.html#ac3321d466abd32951cb382c804df4ecd", null ],
+    [ "read_next_sample_untyped", "classDDSDataReader.html#ab5a1db255d527290193d88d234e342b2", null ],
+    [ "take_next_sample_untyped", "classDDSDataReader.html#a2f15733cc93dd72bd8c355ec19d05a24", null ],
+    [ "lookup_instance_untyped", "classDDSDataReader.html#a6ed57cb53674b3ca85925cc8e47dd374", null ],
+    [ "is_data_consistent_untyped", "classDDSDataReader.html#aaaa680e7a2601fb2e958d79dc04e7de8", null ],
+    [ "return_loan_untyped", "classDDSDataReader.html#a7532ba67aded9911329c34fe3e3af1cd", null ],
+    [ "get_subscription_matched_status", "classDDSDataReader.html#a0e19af5ed63c5761b59fa9afc1e7320b", null ],
+    [ "get_liveliness_changed_status", "classDDSDataReader.html#ab4a53175d92c2af727a1cb92a2357674", null ],
+    [ "get_matched_publications", "classDDSDataReader.html#a85feacfce731d56f7ce645d198d72ae1", null ],
+    [ "get_matched_publication_data", "classDDSDataReader.html#a837a33324170b27d8087f95404bfdd5c", null ],
+    [ "get_sample_rejected_status", "classDDSDataReader.html#a637af445a55851e146d8020e21d57bbe", null ],
+    [ "get_sample_lost_status", "classDDSDataReader.html#a9669068e435b7cbb4c4235afef976bb3", null ],
+    [ "get_requested_deadline_missed_status", "classDDSDataReader.html#acb987ff4da61ff95963fc3917bedcc84", null ],
+    [ "get_requested_incompatible_qos_status", "classDDSDataReader.html#abee37ccd6866979768865eee8ca45c49", null ],
+    [ "get_instance_replaced_missed_status", "classDDSDataReader.html#ac4adf1278a439c7f062a4cb33a6236cf", null ]
+];

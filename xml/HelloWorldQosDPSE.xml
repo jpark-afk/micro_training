@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/current/rti_dds_profiles.xsd">
+
+    <qos_library name="QosLibrary">
+
+        <qos_profile name="DefaultProfile"
+                     is_default_participant_factory_profile="true">
+
+            <participant_factory_qos>
+                <entity_factory>
+                    <autoenable_created_entities>false</autoenable_created_entities>
+                </entity_factory>
+            </participant_factory_qos>
+
+            <domain_participant_qos>
+                <discovery>
+                    <accept_unknown_peers>false</accept_unknown_peers>
+                    <initial_peers>
+                        <element>127.0.0.1</element>
+                        <element>239.255.0.1</element>
+                    </initial_peers>
+                    <enabled_transports>
+                        <element>udpv4</element>
+                    </enabled_transports>
+                    <multicast_receive_addresses>
+                        <element>udpv4://127.0.0.1</element>
+                        <element>udpv4://239.255.0.1</element>
+                    </multicast_receive_addresses>
+                </discovery>
+
+                <default_unicast>
+                    <value>
+                        <element>
+                            <transports>
+                                <element>udpv4</element>
+                            </transports>
+                        </element>
+                    </value>
+                </default_unicast>
+
+                <transport_builtin>
+                    <mask>UDPv4</mask>
+                </transport_builtin>
+
+                <resource_limits>
+                    <local_writer_allocation>
+                        <max_count>1</max_count>
+                    </local_writer_allocation>
+                    <local_reader_allocation>
+                        <max_count>1</max_count>
+                    </local_reader_allocation>
+                    <local_publisher_allocation>
+                        <max_count>1</max_count>
+                    </local_publisher_allocation>
+                    <local_subscriber_allocation>
+                        <max_count>1</max_count>
+                    </local_subscriber_allocation>
+                    <local_topic_allocation>
+                        <max_count>1</max_count>
+                    </local_topic_allocation>
+                    <local_type_allocation>
+                        <max_count>1</max_count>
+                    </local_type_allocation>
+                    <remote_participant_allocation>
+                        <max_count>8</max_count>
+                    </remote_participant_allocation>
+                    <remote_writer_allocation>
+                        <max_count>8</max_count>
+                    </remote_writer_allocation>
+                    <remote_reader_allocation>
+                        <max_count>8</max_count>
+                    </remote_reader_allocation>
+                    <max_receive_ports>32</max_receive_ports>
+                    <max_destination_ports>32</max_destination_ports>
+                </resource_limits>
+            </domain_participant_qos>
+
+            <datawriter_qos>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>1</depth>
+                </history>
+                <resource_limits>
+                    <max_instances>1</max_instances>
+                    <max_samples>1</max_samples>
+                    <max_samples_per_instance>1</max_samples_per_instance>
+                </resource_limits>
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <protocol>
+                    <rtps_reliable_writer>
+                        <heartbeat_period>
+                            <sec>0</sec>
+                            <nanosec>250000000</nanosec>
+                        </heartbeat_period>
+                    </rtps_reliable_writer>
+                </protocol>
+                <unicast>
+                    <value>
+                        <element>
+                            <transports>
+                                <element>udpv4</element>
+                            </transports>
+                        </element>
+                    </value>
+                </unicast>
+            </datawriter_qos>
+
+            <datareader_qos>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>1</depth>
+                </history>
+                <resource_limits>
+                    <max_instances>1</max_instances>
+                    <max_samples>1</max_samples>
+                    <max_samples_per_instance>1</max_samples_per_instance>
+                </resource_limits>
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <reader_resource_limits>
+                    <max_remote_writers>8</max_remote_writers>
+                    <max_remote_writers_per_instance>8</max_remote_writers_per_instance>
+                </reader_resource_limits>
+                <unicast>
+                    <value>
+                        <element>
+                            <transports>
+                                <element>udpv4</element>
+                            </transports>
+                        </element>
+                    </value>
+                </unicast>
+                <multicast>
+                    <value>
+                        <element>
+                            <receive_address>127.0.0.1</receive_address>
+                            <transports>
+                                <element>udpv4</element>
+                            </transports>
+                        </element>
+                    </value>
+                </multicast>
+            </datareader_qos>
+        </qos_profile>
+
+        <qos_profile name="DPSEProfile" base_name="DefaultProfile">
+            <domain_participant_qos>
+                <discovery_config>
+                    <builtin_discovery_plugins>DPSE</builtin_discovery_plugins>
+                </discovery_config>
+            </domain_participant_qos>
+        </qos_profile>
+
+    </qos_library>
+
+</dds>

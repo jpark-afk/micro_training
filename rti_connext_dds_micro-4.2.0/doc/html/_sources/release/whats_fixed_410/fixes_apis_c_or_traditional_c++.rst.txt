@@ -1,0 +1,52 @@
+APIs (C or Traditional C++)
+===========================
+
+.. Release Notes from this point.
+
+:major:`[Major]` DDS_DomainParticipantFactory_delete_participant was not thread-safe
+------------------------------------------------------------------------------------
+:link_connextmicro_dds_api_c_up_two:`DDS_DomainParticipantFactory_delete_participant <group__DDSDomainParticipantFactoryModule.html>`
+was not thread-safe. A race condition could occur if multiple 
+*DomainParticipants* were deleted at the same time in the same process space.
+
+[RTI Issue ID MICRO-8055]
+
+
+:minor:`[Minor]` C++ constructor did not allocate memory for Topic and Type names
+---------------------------------------------------------------------------------
+The C++ constructor for :link_connextmicro_dds_api_c_up_two:`DDS_PublicationBuiltinTopicData <structDDS__PublicationBuiltinTopicData.html>` 
+and :link_connextmicro_dds_api_c_up_two:`DDS_SubscriptionBuiltinTopicData <structDDS__SubscriptionBuiltinTopicData.html>` 
+did not allocate memory for the **topic_name** and **type_name** attributes.
+
+Please refer to the API Reference for more information on these APIs.
+
+[RTI Issue ID MICRO-7110]
+
+
+:trivial:`[Trivial]` C++ API Reference contained incorrect <<cert>> references
+------------------------------------------------------------------------------
+The C++ API Reference contained ``<<cert>>`` references, but |me_cert| does 
+not support the C++ API.
+
+[RTI Issue MICRO-3216]
+
+
+:trivial:`[Trivial]` Non-descriptive API failure messages
+---------------------------------------------------------
+The following APIs have updated failure messages:
+
+- :link_connextmicro_dds_api_c_up_two:`FooDataWriter_get_loan <group__DDSWriterModule.html>`
+  failed with ``UNSUPPORTED`` if your type was annotated with
+  ``@transfer_mode(SHMEM_REF)`` and no transports that support Zero Copy
+  transfer were enabled. It now fails with ``PRECONDITION_NOT_MET``.
+
+- :link_connextmicro_dds_api_c_up_two:`FooDataWriter_discard_loan <group__DDSWriterModule.html>`
+  failed with ``UNSUPPORTED`` if your type was annotated with
+  ``@transfer_mode(SHMEM_REF)`` and no transports that support Zero Copy
+  transfer were enabled. It now fails with ``PRECONDITION_NOT_MET``. 
+
+- :link_connextmicro_dds_api_c_up_two:`FooDataWriter_get_loan <group__DDSWriterModule.html>`
+  failed with ``ERROR`` if all samples had been loaned to your application.
+  It now fails with ``OUT_OF_RESOURCES``.
+
+[RTI Issue ID MICRO-7929]

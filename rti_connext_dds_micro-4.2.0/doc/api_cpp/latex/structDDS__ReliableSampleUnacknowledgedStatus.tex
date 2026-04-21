@@ -1,0 +1,64 @@
+\doxysubsection{DDS\+\_\+\+Reliable\+Sample\+Unacknowledged\+Status Struct Reference}
+\hypertarget{structDDS__ReliableSampleUnacknowledgedStatus}{}\label{structDDS__ReliableSampleUnacknowledgedStatus}\index{DDS\_ReliableSampleUnacknowledgedStatus@{DDS\_ReliableSampleUnacknowledgedStatus}}
+
+
+Status about an unacknowledged sample that is removed from the \doxylink{classDDSDataWriter}{DDSData\+Writer} cache before being acknowledged by all matched \doxylink{classDDSDataReader}{DDSData\+Reader} entities.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+publication.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__SequenceNumber__t}{DDS\+\_\+\+Sequence\+Number\+\_\+t}} \mbox{\hyperlink{structDDS__ReliableSampleUnacknowledgedStatus_a422272d58291e351b9de4e867090b8ba}{sequence\+\_\+number}}
+\begin{DoxyCompactList}\small\item\em The sequence number of the unacknowledged sample. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__ReliableSampleUnacknowledgedStatus_aee5296d204958f7895d326bc4d1ed52f}{unacknowledged\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em The number of matched \doxylink{classDDSDataReader}{DDSData\+Reader} entities that did not acknowledge the sample before it was removed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{structDDS__ReliableSampleUnacknowledgedStatus_a3d8f17e10ea2d64e9b351bac9ffe9569}{instance\+\_\+handle}}
+\begin{DoxyCompactList}\small\item\em The instance\+\_\+handle for the sample. If the \doxylink{classDDSDataWriter}{DDSData\+Writer} is not keyed the value is DDS\+\_\+\+HANDLE\+\_\+\+NIL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Status about an unacknowledged sample that is removed from the \doxylink{classDDSDataWriter}{DDSData\+Writer} cache before being acknowledged by all matched \doxylink{classDDSDataReader}{DDSData\+Reader} entities. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSDataWriter}{DDSData\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Listener\+:}
+\doxylink{classDDSDataWriterListener}{DDSData\+Writer\+Listener} 
+\end{DoxyParagraph}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__ReliableSampleUnacknowledgedStatus_a422272d58291e351b9de4e867090b8ba}\index{DDS\_ReliableSampleUnacknowledgedStatus@{DDS\_ReliableSampleUnacknowledgedStatus}!sequence\_number@{sequence\_number}}
+\index{sequence\_number@{sequence\_number}!DDS\_ReliableSampleUnacknowledgedStatus@{DDS\_ReliableSampleUnacknowledgedStatus}}
+\doxyparagraph{\texorpdfstring{sequence\_number}{sequence\_number}}
+{\footnotesize\ttfamily \label{structDDS__ReliableSampleUnacknowledgedStatus_a422272d58291e351b9de4e867090b8ba} 
+struct \mbox{\hyperlink{structDDS__SequenceNumber__t}{DDS\+\_\+\+Sequence\+Number\+\_\+t}} DDS\+\_\+\+Reliable\+Sample\+Unacknowledged\+Status\+::sequence\+\_\+number}
+
+
+
+The sequence number of the unacknowledged sample. 
+
+\Hypertarget{structDDS__ReliableSampleUnacknowledgedStatus_aee5296d204958f7895d326bc4d1ed52f}\index{DDS\_ReliableSampleUnacknowledgedStatus@{DDS\_ReliableSampleUnacknowledgedStatus}!unacknowledged\_count@{unacknowledged\_count}}
+\index{unacknowledged\_count@{unacknowledged\_count}!DDS\_ReliableSampleUnacknowledgedStatus@{DDS\_ReliableSampleUnacknowledgedStatus}}
+\doxyparagraph{\texorpdfstring{unacknowledged\_count}{unacknowledged\_count}}
+{\footnotesize\ttfamily \label{structDDS__ReliableSampleUnacknowledgedStatus_aee5296d204958f7895d326bc4d1ed52f} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Reliable\+Sample\+Unacknowledged\+Status\+::unacknowledged\+\_\+count}
+
+
+
+The number of matched \doxylink{classDDSDataReader}{DDSData\+Reader} entities that did not acknowledge the sample before it was removed. 
+
+\Hypertarget{structDDS__ReliableSampleUnacknowledgedStatus_a3d8f17e10ea2d64e9b351bac9ffe9569}\index{DDS\_ReliableSampleUnacknowledgedStatus@{DDS\_ReliableSampleUnacknowledgedStatus}!instance\_handle@{instance\_handle}}
+\index{instance\_handle@{instance\_handle}!DDS\_ReliableSampleUnacknowledgedStatus@{DDS\_ReliableSampleUnacknowledgedStatus}}
+\doxyparagraph{\texorpdfstring{instance\_handle}{instance\_handle}}
+{\footnotesize\ttfamily \label{structDDS__ReliableSampleUnacknowledgedStatus_a3d8f17e10ea2d64e9b351bac9ffe9569} 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} DDS\+\_\+\+Reliable\+Sample\+Unacknowledged\+Status\+::instance\+\_\+handle}
+
+
+
+The instance\+\_\+handle for the sample. If the \doxylink{classDDSDataWriter}{DDSData\+Writer} is not keyed the value is DDS\+\_\+\+HANDLE\+\_\+\+NIL. 
+

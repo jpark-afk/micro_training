@@ -1,0 +1,168 @@
+.. _section-before-you-get-started:
+
+Before You Get Started
+======================
+
+What is |rti_me_h|?
+-------------------
+
+.. figure:: /images/what_is_micro.png
+    :figwidth: 80 %
+    :alt: What Is Connext
+    :name: FigureWhatIs
+    :align: center
+
+|br|
+
+*RTI® Connext® Micro®* is part of the *RTI® Connext®* connectivity framework for
+building distributed applications using a shared databus. |me| provides C and
+C++ libraries and tools for resource-constrained embedded systems
+(that is, systems with limited memory and CPU power) to connect to the |core|
+databus, allowing them to exchange data without compromising performance or
+reliability. It interoperates seamlessly with other |core| applications,
+tools, and infrastructure services (with some exceptions as noted in this
+documentation).
+
+RTI also offers |me_cert|, which provides C libraries and tools for
+safety-critical systems. |me| includes C libraries that are comparable to
+|me_cert|'s feature set; you can use these to develop applications that can be
+migrated to |me_cert| with minimal changes. We describe this in detail in
+:ref:`section-cert-compatibility`. For more information on |me_cert|, please
+contact RTI.
+
+.. warning::
+
+  Note that |me| is **not** safety certifiable. The |me_cert|-comparable C
+  libraries included with |me| are intended for development purposes **only**.
+   
+Downloading |me_h|
+------------------
+
+Once you have purchased |me|, you can download the package files from 
+`support.rti.com <https://support.rti.com/>`__. |me| is provided in the
+following RTI package files (``.rtipkg``): 
+
+- ``rti_connext_dds_micro-<version>-host.rtipkg``
+- ``rti_connext_dds_micro-<version>-target-<architecture>.rtipkg``
+
+Download the host package with ``<version>`` |version|, and a target package
+with ``<version>`` |version| and ``<architecture>`` matching your CPU and
+compiler. If you are unsure which ``<architecture>`` package to download
+for your platform, refer to the :ref:`rl_supported` section and consult the
+**RTI Architecture Abbreviations** column in the Supported Platforms (PIL)
+table.
+
+.. tip::
+
+   On the **Downloads** page, the **Info** button lists which versions of
+   |core_pro| and *Connext Drive* are compatible with your |me| release. See 
+   also the :ref:`rl_compatibility` section.
+
+.. _section-installing-connext-micro:
+
+Installing |me_h|
+-----------------
+
+You can install |me| from either the *RTI Launcher* GUI or a command line.
+
+.. note::
+
+   You must first install |core_pro| or *Connext Drive* before installing
+   |me| packages. Check the :ref:`rl_compatibility` section for the right
+   versions of these products to use, then refer to the :link_external_community_doc_pro_ig:`RTI Connext Installation Guide <installation_guide/Installation_Title.htm>`
+   or :link_external_community_doc_drive_gsg:`Installing Connext Drive <getting_started/install.html>`
+   for installation instructions.
+
+Installing with a GUI
+.....................
+
+After you install |core_pro|, you'll see an ``rti_connext_dds-<version>`` directory.
+In that directory, you'll have a tool called *RTI Launcher*. 
+
+To install the |me| packages from the *Launcher* tool, open the Configuration
+tab, and select “Install RTI Packages.” This will open a dialog that allows you
+to select one or more **.rtipkg** files that you would like to install.
+
+.. figure:: /images/install_rti_pkg.png
+    :figwidth: 80 %
+    :alt: Install RTI Packages
+    :name: FigureInstallPackages
+    :align: center
+
+|br|
+
+.. figure:: /images/pkg_installer.png
+    :figwidth: 80 %
+    :alt: RTI Package Installer
+    :name: FigurePackageInstaller
+    :align: center
+
+|br|
+
+Select the host and target packages in the dialog, then click **Install**.
+
+Once installed, you will find a directory called
+``rti_connext_dds_micro-<version>`` in the ``rti_connext_dds-<version>``
+directory.
+
+Installing from a command line
+..............................
+
+To install |me| from the command line, type:
+
+.. tabs::
+
+   .. group-tab:: Linux
+
+      .. code-block:: console 
+
+         $ rti_connext_dds-<version>/bin/rtipkginstall <path to rtipkg>
+
+   .. group-tab:: macOS
+
+      .. code-block:: console 
+
+         $ rti_connext_dds-<version>/bin/rtipkginstall <path to rtipkg>
+
+   .. group-tab:: Windows 
+
+      .. code-block:: doscon 
+
+         > rti_connext_dds-<version>\bin\rtipkginstall.bat <path to rtipkg>
+
+Run this command for both the host and target ``.rtipkg`` files.
+
+.. _section-paths-mentioned:
+
+Paths mentioned in documentation
+................................
+
+.. include:: /paths_gsg.txt
+
+.. _section-checking-what-is-installed:
+
+Checking what is installed
+--------------------------
+
+To confirm that you have installed |me|, you can use the *Launcher* tool. Once
+in *Launcher*, open the Configuration tab:
+
+.. figure:: /images/check_installed.png
+    :figwidth: 80 %
+    :alt: Check What Is Installed
+    :name: FigureCheckInstall
+    :align: center
+
+|br|
+
+If you do not see both the |me| host and target listed, you are missing one of
+the |me| packages in your installation.
+
+Where do I get more help?
+-------------------------
+
+Additional documentation and user forums can be found
+on `community.rti.com <https://community.rti.com/>`__.
+
+Continue to :ref:`section-helloworld-pubsub` to start learning about 
+the capabilities and features of |me|.

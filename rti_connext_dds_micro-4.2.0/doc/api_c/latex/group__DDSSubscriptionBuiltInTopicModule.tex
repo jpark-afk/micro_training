@@ -1,0 +1,146 @@
+\doxysubsubsubsubsection{Subscription Built-\/in Topic}
+\hypertarget{group__DDSSubscriptionBuiltInTopicModule}{}\label{group__DDSSubscriptionBuiltInTopicModule}\index{Subscription Built-\/in Topic@{Subscription Built-\/in Topic}}
+
+
+Builtin topic for configuring information about the Subscriptions to be discovered by RTI Connext DDS Micro.  
+
+
+\doxysubsubsubsubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}}
+\begin{DoxyCompactList}\small\item\em Entry created when a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} is discovered in association with its Subscriber. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DDSSubscriptionBuiltInTopicModule_ga8ec8298fd7aeca2884745db2c94e7aa8}{DDS\+\_\+\+SUBSCRIPTION\+\_\+\+TOPIC\+\_\+\+NAME}}~DDS\+\_\+\+SUBSCRIPTION\+\_\+\+BUILTIN\+\_\+\+TOPIC\+\_\+\+NAME
+\begin{DoxyCompactList}\small\item\em Subscription topic name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSubscriptionBuiltInTopicModule_ga9259fa7887c4ee40754e4313715ff1ef}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+\_\+initialize\+\_\+from\+\_\+qos}} (struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \texorpdfstring{$\ast$}{*}dp\+\_\+qos)
+\begin{DoxyCompactList}\small\item\em Initialize the contents of this Subscription\+Builtin\+Topic\+Data using the resource limits specified in the given QoS. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSubscriptionBuiltInTopicModule_ga0d444e6c852411b5307e43fd42c43d3f}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+\_\+finalize}} (struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Finalize the contents of this Subscription\+Builtin\+Topic\+Data. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSubscriptionBuiltInTopicModule_ga2cdc6114d8d71d49c2f325a9096a916f}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+\_\+copy}} (struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}source)
+\begin{DoxyCompactList}\small\item\em Copy the contents of the given Subscription\+Builtin\+Topic\+Data into this Subscription\+Builtin\+Topic\+Data. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSubscriptionBuiltInTopicModule_ga66f93d9bf2f7aa4fd8d906f8de8a20ce}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+\_\+is\+\_\+equal}} (const struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}left, const struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}right)
+\begin{DoxyCompactList}\small\item\em Compare two Subscription\+Builtin\+Topic\+Data structures for equality. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsubsection{Detailed Description}
+Builtin topic for configuring information about the Subscriptions to be discovered by RTI Connext DDS Micro. 
+
+
+
+\doxysubsubsubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__DDSSubscriptionBuiltInTopicModule_ga8ec8298fd7aeca2884745db2c94e7aa8}\index{Subscription Built-\/in Topic@{Subscription Built-\/in Topic}!DDS\_SUBSCRIPTION\_TOPIC\_NAME@{DDS\_SUBSCRIPTION\_TOPIC\_NAME}}
+\index{DDS\_SUBSCRIPTION\_TOPIC\_NAME@{DDS\_SUBSCRIPTION\_TOPIC\_NAME}!Subscription Built-\/in Topic@{Subscription Built-\/in Topic}}
+\doxyparagraph{\texorpdfstring{DDS\_SUBSCRIPTION\_TOPIC\_NAME}{DDS\_SUBSCRIPTION\_TOPIC\_NAME}}
+{\footnotesize\ttfamily \label{group__DDSSubscriptionBuiltInTopicModule_ga8ec8298fd7aeca2884745db2c94e7aa8} 
+\#define DDS\+\_\+\+SUBSCRIPTION\+\_\+\+TOPIC\+\_\+\+NAME~DDS\+\_\+\+SUBSCRIPTION\+\_\+\+BUILTIN\+\_\+\+TOPIC\+\_\+\+NAME}
+
+
+
+Subscription topic name. 
+
+Topic name of subscription builtin topic data Data\+Reader. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsubsubsubsection{Function Documentation}
+\Hypertarget{group__DDSSubscriptionBuiltInTopicModule_ga9259fa7887c4ee40754e4313715ff1ef}\index{Subscription Built-\/in Topic@{Subscription Built-\/in Topic}!DDS\_SubscriptionBuiltinTopicData\_initialize\_from\_qos@{DDS\_SubscriptionBuiltinTopicData\_initialize\_from\_qos}}
+\index{DDS\_SubscriptionBuiltinTopicData\_initialize\_from\_qos@{DDS\_SubscriptionBuiltinTopicData\_initialize\_from\_qos}!Subscription Built-\/in Topic@{Subscription Built-\/in Topic}}
+\doxyparagraph{\texorpdfstring{DDS\_SubscriptionBuiltinTopicData\_initialize\_from\_qos()}{DDS\_SubscriptionBuiltinTopicData\_initialize\_from\_qos()}}
+{\footnotesize\ttfamily \label{group__DDSSubscriptionBuiltInTopicModule_ga9259fa7887c4ee40754e4313715ff1ef} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+\_\+initialize\+\_\+from\+\_\+qos (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const struct \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \texorpdfstring{$\ast$}{*}}]{dp\+\_\+qos}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the contents of this Subscription\+Builtin\+Topic\+Data using the resource limits specified in the given QoS. 
+
+Pre-\/allocate memory for the sequences contained in the Subscription\+Builtin\+Topic\+Data using the resource limits specified in the given QoS. 
+
+C++ accepts the the QoS resource limits as an argument for the constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em dp\+\_\+qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Domain\+Participant\+QoS to be used for initialization. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\Hypertarget{group__DDSSubscriptionBuiltInTopicModule_ga0d444e6c852411b5307e43fd42c43d3f}\index{Subscription Built-\/in Topic@{Subscription Built-\/in Topic}!DDS\_SubscriptionBuiltinTopicData\_finalize@{DDS\_SubscriptionBuiltinTopicData\_finalize}}
+\index{DDS\_SubscriptionBuiltinTopicData\_finalize@{DDS\_SubscriptionBuiltinTopicData\_finalize}!Subscription Built-\/in Topic@{Subscription Built-\/in Topic}}
+\doxyparagraph{\texorpdfstring{DDS\_SubscriptionBuiltinTopicData\_finalize()}{DDS\_SubscriptionBuiltinTopicData\_finalize()}}
+{\footnotesize\ttfamily \label{group__DDSSubscriptionBuiltInTopicModule_ga0d444e6c852411b5307e43fd42c43d3f} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+\_\+finalize (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Finalize the contents of this Subscription\+Builtin\+Topic\+Data. 
+
+Frees all memory owned by the Subscription\+Builtin\+Topic\+Data which was allocated through the standard DDS APIs, such as initialize\+\_\+from\+\_\+qos, copy, or sequence set\+\_\+maximum. If you have allocated memory for any attribute in this object using non-\/standard APIs, then the attribute must be returned to its initialized state before calling finalize. Any memory allocated using non-\/standard APIs is the responsibility of the user to manage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\Hypertarget{group__DDSSubscriptionBuiltInTopicModule_ga2cdc6114d8d71d49c2f325a9096a916f}\index{Subscription Built-\/in Topic@{Subscription Built-\/in Topic}!DDS\_SubscriptionBuiltinTopicData\_copy@{DDS\_SubscriptionBuiltinTopicData\_copy}}
+\index{DDS\_SubscriptionBuiltinTopicData\_copy@{DDS\_SubscriptionBuiltinTopicData\_copy}!Subscription Built-\/in Topic@{Subscription Built-\/in Topic}}
+\doxyparagraph{\texorpdfstring{DDS\_SubscriptionBuiltinTopicData\_copy()}{DDS\_SubscriptionBuiltinTopicData\_copy()}}
+{\footnotesize\ttfamily \label{group__DDSSubscriptionBuiltInTopicModule_ga2cdc6114d8d71d49c2f325a9096a916f} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+\_\+copy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}}]{source}{}\end{DoxyParamCaption})}
+
+
+
+Copy the contents of the given Subscription\+Builtin\+Topic\+Data into this Subscription\+Builtin\+Topic\+Data. 
+
+Creates a deep copy of the source into the destiantion. May allocate memory for the sequences contained in the Subscription\+Builtin\+Topic\+Data if the destination does not have enough memory allocated. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em source} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Subscription\+Builtin\+Topic\+Data to be copied from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\Hypertarget{group__DDSSubscriptionBuiltInTopicModule_ga66f93d9bf2f7aa4fd8d906f8de8a20ce}\index{Subscription Built-\/in Topic@{Subscription Built-\/in Topic}!DDS\_SubscriptionBuiltinTopicData\_is\_equal@{DDS\_SubscriptionBuiltinTopicData\_is\_equal}}
+\index{DDS\_SubscriptionBuiltinTopicData\_is\_equal@{DDS\_SubscriptionBuiltinTopicData\_is\_equal}!Subscription Built-\/in Topic@{Subscription Built-\/in Topic}}
+\doxyparagraph{\texorpdfstring{DDS\_SubscriptionBuiltinTopicData\_is\_equal()}{DDS\_SubscriptionBuiltinTopicData\_is\_equal()}}
+{\footnotesize\ttfamily \label{group__DDSSubscriptionBuiltInTopicModule_ga66f93d9bf2f7aa4fd8d906f8de8a20ce} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+\_\+is\+\_\+equal (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}}]{left}{, }\item[{const struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}}]{right}{}\end{DoxyParamCaption})}
+
+
+
+Compare two Subscription\+Builtin\+Topic\+Data structures for equality. 
+
+This function compares two Subscription\+Builtin\+Topic\+Data structures for equality. The comparison is performed field by field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. The left side of the comparison.\\
+\hline
+{\em right} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. The right side of the comparison. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE if the two structures are equal, DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE otherwise. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__DDSMicroTypesModule_ga6f5ca49b164662e7e4dc23795570d770}{NDDS\+\_\+\+Type\+\_\+\+Plugin}}, and \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+

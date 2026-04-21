@@ -1,0 +1,31 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+# This architecture is expected to be compiled on a native machine with the
+# default compiler
+SET(CMAKE_SYSTEM_NAME Windows)
+
+IF (${TARGET_HELP})
+    MESSAGE("TARGET\n\n Windows\n")
+    MESSAGE("DESCRIPTION\n")
+    MESSAGE(" The Windows target supports self-hosted builds on windows")
+    MESSAGE(" targets.")
+    MESSAGE("\nARGUMENTS\n")
+    MESSAGE(" MSVC compiler is always assumed.")
+    MESSAGE("\nEXAMPLES\n")
+    MESSAGE(" --target x64Win64VS2017CERT\n")
+ENDIF()
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Platform/windows.tc)
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/vscc.tc)
+
+SET(RTIME_OSAPI_PLATFORM windows)
+SET(RTIME_CERT TRUE)

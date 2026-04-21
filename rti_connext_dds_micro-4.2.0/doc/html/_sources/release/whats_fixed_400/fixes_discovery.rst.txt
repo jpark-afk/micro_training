@@ -1,0 +1,19 @@
+Discovery
+=========
+
+:critical:`[Critical]` Failure to interoperate with other DDS implementations if default multicast locator specified
+--------------------------------------------------------------------------------------------------------------------
+*Connext Micro* did not interoperate with other DDS implementations when the
+default multicast locator was specified.
+
+[RTI Issue ID MICRO-5148]
+
+:major:`[Major]` Incorrect lease_duration may have been used for a discovered participant.
+------------------------------------------------------------------------------------------
+
+In previous releases, if the **lease_duration** was not sent by a remote 
+*DomainParticipant*, a previously received value was used instead.
+
+Note that RTI's DDS implementations send the **lease_duration**.
+
+[RTI Issue ID MICRO-3254]

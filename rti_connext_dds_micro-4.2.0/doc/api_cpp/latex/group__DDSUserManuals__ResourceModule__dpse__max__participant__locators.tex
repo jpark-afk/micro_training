@@ -1,0 +1,17 @@
+\doxysubsubsubsection{max\+\_\+participant\+\_\+locators}
+\hypertarget{group__DDSUserManuals__ResourceModule__dpse__max__participant__locators}{}\label{group__DDSUserManuals__ResourceModule__dpse__max__participant__locators}\index{max\_participant\_locators@{max\_participant\_locators}}
+\begin{DoxyParagraph}{NAME}
+\doxylink{structDPSE__DiscoveryPluginProperty_af897931880331019a7f4e19cf3b987b9}{DPSE\+\_\+\+Discovery\+Plugin\+Property\+::max\+\_\+participant\+\_\+locators}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{DESCRIPTION}
+The DPSE builtin participant topic Data\+Writer allocates max\+\_\+participant\+\_\+locators to send participant announcements to. The default value DDS\+\_\+\+LENGTH\+\_\+\+AUTO calculates max\+\_\+participant\+\_\+locators as remote\+\_\+participant\+\_\+allocation + (DPSE\+\_\+\+MAX\+\_\+\+ANON\+\_\+\+PARTICIPANT \texorpdfstring{$\ast$}{*} (peer\+\_\+length + 1)) where the constant DPSE\+\_\+\+MAX\+\_\+\+ANON\+\_\+\+PARTICIPANT = 6.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+A participant locator is defined as a unique index@address to send to where index is an integer \texorpdfstring{$>$}{>}= 0 and only applies to unicast addresses. For multicast address the index is 0. This index is the highest participant\+\_\+id that will receive participant announcements at the address.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+The maximum number of addresses to send to is defined by the peer list (either specified in \doxylink{structDDS__DiscoveryQosPolicy_a7f767e8bb620e6ae873479d9975accbf}{DDS\+\_\+\+Discovery\+Qos\+Policy\+::initial\+\_\+peers} or by calling \doxylink{classDDSDomainParticipant_ad035618f6542b3ff088656f221686ef9}{DDSDomain\+Participant\+::add\+\_\+peer}. The maximum number of addresses needed is determined by adding all indices for all unicast addresses and adding one for each multicast address.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+If memory is limited it is advised to set this value as low as possible. 
+\end{DoxyParagraph}

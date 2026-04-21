@@ -1,0 +1,35 @@
+\doxysubsubsubsection{max\+\_\+destination\+\_\+ports}
+\hypertarget{group__DDSUserManuals__ResourceModule__dp__max__destination__ports}{}\label{group__DDSUserManuals__ResourceModule__dp__max__destination__ports}\index{max\_destination\_ports@{max\_destination\_ports}}
+\begin{DoxyParagraph}{NAME}
+\doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_a2fc1088713bb81d4a8515747230dd34c}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+destination\+\_\+ports}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{DESCRIPTION}
+RTI Connext DDS Micro maintains a table of destination addresses which it can send to based on information queried from the registered transports. The \doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_a2fc1088713bb81d4a8515747230dd34c}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+destination\+\_\+ports} resource-\/limit is unfortunately difficult to give a precise rule for how to determine since it is transport dependent. However, as a rule of thumb the following is true\+:
+\begin{DoxyItemize}
+\item Each network that can be reached directly by the transport requires 1 resource.
+\item If multicast is supported, it counts as 1 resource.
+\item If the transport is the default transport (by default UDP is), it counts as 1 resource.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{EXAMPLES}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Consider a typical Linux computer with 2 network interfaces, eth0 and lo, with support for multicast. \begin{DoxyItemize}
+\item 1 for the eth0 network. \item 1 for the lo network. \item 1 for multicast. \item 1 for being the default transport.\end{DoxyItemize}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+This requires 4 resources.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Consider a typical embedded computer with 1 network interface, eth0, with no support for multicast\+: \begin{DoxyItemize}
+\item 1 for the eth0 network. \item 1 for being the default transport.\end{DoxyItemize}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+This requires 2 resources.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{NOTES}
+The default value has been set to cover most cases. This resource-\/limit should only be changed if a lot of interfaces are supported (increase it) or if memory is extremely limited (decrease it). 
+\end{DoxyParagraph}

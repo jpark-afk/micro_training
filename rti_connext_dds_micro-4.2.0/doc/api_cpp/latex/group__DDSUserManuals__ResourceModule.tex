@@ -1,0 +1,38 @@
+\doxysubsection{Resource Limits}
+\hypertarget{group__DDSUserManuals__ResourceModule}{}\label{group__DDSUserManuals__ResourceModule}\index{Resource Limits@{Resource Limits}}
+\doxysubsubsubsection*{Topics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSUserManuals__ResourceModule__dpf}{Domain\+Participant\+Factory\+Qos}}
+\item 
+\mbox{\hyperlink{group__DDSUserManuals__ResourceModule__dp}{Domain\+Participant\+Qos}}
+\item 
+\mbox{\hyperlink{group__DDSUserManuals__ResourceModule__drqos}{Data\+Reader\+Qos}}
+\item 
+\mbox{\hyperlink{group__DDSUserManuals__ResourceModule__dwqos}{Data\+Writer\+Qos}}
+\item 
+\mbox{\hyperlink{group__DDSUserManuals__ResourceModule__osapi}{OSAPI}}
+\item 
+\mbox{\hyperlink{group__DDSUserManuals__ResourceModule__udp}{UDP Transport}}
+\item 
+\mbox{\hyperlink{group__DDSUserManuals__ResourceModule__dpse}{Dynamic Participant Static Endpoint (\+DPSE)}}
+\item 
+\mbox{\hyperlink{group__DDSUserManuals__ResourceModule__dpde}{Dynamic Participant Dynamic Endpoint (\+DPDE)}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\hypertarget{group__DDSUserManuals__ResourceModule_resources_intro}{}\doxysubsubsection{\texorpdfstring{Introduction}{Introduction}}\label{group__DDSUserManuals__ResourceModule_resources_intro}
+RTI Connext DDS Micro is designed for use in real-\/time systems and uses a predictable and deterministic memory manager to ensure that memory growth is not unbounded, OS memory fragmentation is eliminated and memory usage can be determined a-\/priori. The advantage with this design is that proper operation is ensured as soon as steady state has been reached. However, it also places an additional burden on the system designer to properly configure each resource-\/limit. This section describes all the resource limits in RTI Connext DDS Micro and how they impact RTI Connext DDS Micro’s behavior and memory usage.\hypertarget{group__DDSUserManuals__ResourceModule_resources_ram}{}\doxysubsubsection{\texorpdfstring{Dynamic Memory Allocation}{Dynamic Memory Allocation}}\label{group__DDSUserManuals__ResourceModule_resources_ram}
+RTI Connext DDS Micro allocates heap memory to create internal data-\/structures. It is important to know that RTI Connext DDS Micro manages memory allocated from the system heap using its own internal memory management, and only returns memory allocated from the system back to the system when something is deleted. That is, if an application never deletes anything, no memory is returned to the system.
+
+As a rule of thumb, in RTI Connext DDS Micro only APIs that end in \+\_\+create() or \+\_\+new() allocate heap memory and APIs that end in \+\_\+delete() or \+\_\+free() frees memory. An exception to this rule is dynamic discovery which allocates memory at run-\/time for the topic and type names.
+
+RTI Connext DDS Micro does not support dynamically allocating resources beyond the initial configuration. That is, all resource limits must be finite. This restriction may be removed in a future version. \input{group__DDSUserManuals__ResourceModule__dpf}
+\input{group__DDSUserManuals__ResourceModule__dp}
+\input{group__DDSUserManuals__ResourceModule__drqos}
+\input{group__DDSUserManuals__ResourceModule__dwqos}
+\input{group__DDSUserManuals__ResourceModule__osapi}
+\input{group__DDSUserManuals__ResourceModule__udp}
+\input{group__DDSUserManuals__ResourceModule__dpse}
+\input{group__DDSUserManuals__ResourceModule__dpde}

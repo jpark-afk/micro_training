@@ -1,0 +1,360 @@
+\doxysubsubsection{OSAPI\+\_\+\+Shared\+Memory\+Segment}
+\hypertarget{group__OSAPI__SharedMemorySegmentClass}{}\label{group__OSAPI__SharedMemorySegmentClass}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+
+
+Allow access to a shared memory segment (memory block) so that multiple processes can read-\/and write a common memory area.  
+
+
+\doxysubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHeader}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Header}}
+\item 
+struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}}
+\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE}} \{ \newline
+\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914a126efa61abda1f49fd9c1d6243128694}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+UNKNOWN}}
+, \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914adc0cd079c6cf11125e053fee16091326}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+READ}}
+, \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914a40f23f1d9df46ed1bdc5add6482a97fb}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+WRITE}}
+, \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914a11ff88648388c7f220ef40070eac9b59}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+LOCKABLE}}
+, \newline
+\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914afdc109603218cd16b8eace109ea8d9e3}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+ROBUST}}
+ \}
+\item 
+enum \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga884eac2ae783af9e47a34f30da11d64f}{OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS}} \{ \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gga884eac2ae783af9e47a34f30da11d64fabc2c751a901a2c669018b9051e60b943}{OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS\+\_\+\+OK}}
+, \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gga884eac2ae783af9e47a34f30da11d64fafa8f6f9845ea7d52f3f9de3111fbc460}{OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS\+\_\+\+OWNER\+\_\+\+DEAD}}
+ \}
+\item 
+enum \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gadf28d237de78948c39a7225d0c3e3f28}{OSAPI\+\_\+\+SHMEM\+\_\+\+ATTACH\+\_\+\+STATUS}} \{ \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ggadf28d237de78948c39a7225d0c3e3f28a56c7ca6699197a147b34bb7a0020df41}{OSAPI\+\_\+\+SHMEM\+\_\+\+ATTACH\+\_\+\+STATUS\+\_\+\+OK}}
+, \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ggadf28d237de78948c39a7225d0c3e3f28a3878616b991ee545149278a022ebf1da}{OSAPI\+\_\+\+SHMEM\+\_\+\+ATTACH\+\_\+\+STATUS\+\_\+\+SEGMENT\+\_\+\+NOT\+\_\+\+FOUND}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gab16fb7dc9a66b96996009f5d724d3c4f}{RTI\+\_\+\+UINT64}} \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga408084c3b49bbfd07cc97e45c51e7e06}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+get\+\_\+max\+\_\+size}} (void)
+\begin{DoxyCompactList}\small\item\em Get maximum size of a shared memory segment on the current platform. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga7ae652dedf95e4424a2a2c9df1b58911}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+is\+\_\+owner\+\_\+alive}} (struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \texorpdfstring{$\ast$}{*}alive)
+\begin{DoxyCompactList}\small\item\em Check if the process which created the shared memory segment is still alive. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gac39583eda93bb8db23773daee5bb6bfd}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle\+\_\+get\+\_\+size}} (\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE}} mode)
+\begin{DoxyCompactList}\small\item\em Get the amount of memory required to store a \doxylink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle} on the current platform for a given mode. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga13dea343afc10cc2d0382b139cee76c8}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Header\+\_\+get\+\_\+size}} (\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE}} mode)
+\begin{DoxyCompactList}\small\item\em Get the amount of memory, aligned to the maximum alignment, required to store a \doxylink{structOSAPI__SharedMemorySegmentHeader}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Header} on the current platform for a given mode. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga800df9204f52a4c33797bc9140b060c5}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+create\+\_\+impl}} (struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}handle, const char \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{group__OSAPI__TypeClass_gab16fb7dc9a66b96996009f5d724d3c4f}{RTI\+\_\+\+UINT64}} size, \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE}} mode, \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \texorpdfstring{$\ast$}{*}exists)
+\begin{DoxyCompactList}\small\item\em Creates a new shared memory segment with the provided key and initialize a handle to it. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga33a0e458287596a1ddb50ac7656c0b1d}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+delete\+\_\+impl}} (struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em Delete a shared memory segment. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gad2f6aa0ef628e4fd073eb497b04731a4}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+attach\+\_\+impl}} (struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}handle, const char \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE}} mode, \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gadf28d237de78948c39a7225d0c3e3f28}{OSAPI\+\_\+\+SHMEM\+\_\+\+ATTACH\+\_\+\+STATUS}} \texorpdfstring{$\ast$}{*}status\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Attach to the shared memory and initialize a handle to it. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gac397603f1ced7a5b51fbe9f40e9b5dfc}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+detach\+\_\+impl}} (struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em detach the shared memory segment. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga97865f28c7518de2163fca0b54281b35}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+lock\+\_\+impl}} (struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga884eac2ae783af9e47a34f30da11d64f}{OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS}} \texorpdfstring{$\ast$}{*}status\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Lock a shared memory segment. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gae6e39d94770991e80c2689026a3ebc77}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+unlock\+\_\+impl}} (struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em Unlock a shared memory segment previously locked with \doxylink{group__OSAPI__SharedMemorySegmentClass_ga97865f28c7518de2163fca0b54281b35}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+lock\+\_\+impl}. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gaa73f387a88b71306db161ad9a2a20493}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+mark\+\_\+consistent\+\_\+impl}} (struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em Mark a shared memory segment as consistent. This function can only be called if a previous call to \doxylink{group__OSAPI__SharedMemorySegmentClass_ga97865f28c7518de2163fca0b54281b35}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+lock\+\_\+impl} returned OSAPI\+\_\+\+SHMEM\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+OWNER\+\_\+\+DEAD. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga540ece53d6db4cac4a558efae1e6b21a}{OSAPI\+\_\+\+Shared\+Memory\+\_\+is\+\_\+robust\+\_\+mutex\+\_\+supported}} (void)
+\begin{DoxyCompactList}\small\item\em Checks wether robust mutex is supported or not . \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Allow access to a shared memory segment (memory block) so that multiple processes can read-\/and write a common memory area. 
+
+
+
+\doxysubsubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SHMEM\_MODE@{OSAPI\_SHMEM\_MODE}}
+\index{OSAPI\_SHMEM\_MODE@{OSAPI\_SHMEM\_MODE}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SHMEM\_MODE}{OSAPI\_SHMEM\_MODE}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914} 
+enum \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE}}}
+
+Mode used to create or attach to a shared memory segment. Each mode defines specific capabilities of the segment. \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OSAPI\_SHMEM\_MODE\_UNKNOWN@{OSAPI\_SHMEM\_MODE\_UNKNOWN}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SHMEM\_MODE\_UNKNOWN@{OSAPI\_SHMEM\_MODE\_UNKNOWN}}}\Hypertarget{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914a126efa61abda1f49fd9c1d6243128694}\label{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914a126efa61abda1f49fd9c1d6243128694} 
+OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+UNKNOWN&Invalid mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OSAPI\_SHMEM\_MODE\_READ@{OSAPI\_SHMEM\_MODE\_READ}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SHMEM\_MODE\_READ@{OSAPI\_SHMEM\_MODE\_READ}}}\Hypertarget{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914adc0cd079c6cf11125e053fee16091326}\label{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914adc0cd079c6cf11125e053fee16091326} 
+OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+READ&Read permission \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OSAPI\_SHMEM\_MODE\_WRITE@{OSAPI\_SHMEM\_MODE\_WRITE}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SHMEM\_MODE\_WRITE@{OSAPI\_SHMEM\_MODE\_WRITE}}}\Hypertarget{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914a40f23f1d9df46ed1bdc5add6482a97fb}\label{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914a40f23f1d9df46ed1bdc5add6482a97fb} 
+OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+WRITE&Write permission, implies \doxylink{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914adc0cd079c6cf11125e053fee16091326}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+READ} \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OSAPI\_SHMEM\_MODE\_LOCKABLE@{OSAPI\_SHMEM\_MODE\_LOCKABLE}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SHMEM\_MODE\_LOCKABLE@{OSAPI\_SHMEM\_MODE\_LOCKABLE}}}\Hypertarget{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914a11ff88648388c7f220ef40070eac9b59}\label{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914a11ff88648388c7f220ef40070eac9b59} 
+OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+LOCKABLE&Locking capability, implies \doxylink{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914a40f23f1d9df46ed1bdc5add6482a97fb}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+WRITE} \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OSAPI\_SHMEM\_MODE\_ROBUST@{OSAPI\_SHMEM\_MODE\_ROBUST}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SHMEM\_MODE\_ROBUST@{OSAPI\_SHMEM\_MODE\_ROBUST}}}\Hypertarget{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914afdc109603218cd16b8eace109ea8d9e3}\label{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914afdc109603218cd16b8eace109ea8d9e3} 
+OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+ROBUST&Robust locking capability, implies \doxylink{group__OSAPI__SharedMemorySegmentClass_ggafedc3277ca9173f1626bb92d1c520914a11ff88648388c7f220ef40070eac9b59}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+LOCKABLE} \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{group__OSAPI__SharedMemorySegmentClass_ga884eac2ae783af9e47a34f30da11d64f}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SHMEM\_STATUS@{OSAPI\_SHMEM\_STATUS}}
+\index{OSAPI\_SHMEM\_STATUS@{OSAPI\_SHMEM\_STATUS}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SHMEM\_STATUS}{OSAPI\_SHMEM\_STATUS}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_ga884eac2ae783af9e47a34f30da11d64f} 
+enum \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga884eac2ae783af9e47a34f30da11d64f}{OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS}}}
+
+Status used to convey the state of a shared memory object. \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OSAPI\_SHMEM\_STATUS\_OK@{OSAPI\_SHMEM\_STATUS\_OK}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SHMEM\_STATUS\_OK@{OSAPI\_SHMEM\_STATUS\_OK}}}\Hypertarget{group__OSAPI__SharedMemorySegmentClass_gga884eac2ae783af9e47a34f30da11d64fabc2c751a901a2c669018b9051e60b943}\label{group__OSAPI__SharedMemorySegmentClass_gga884eac2ae783af9e47a34f30da11d64fabc2c751a901a2c669018b9051e60b943} 
+OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS\+\_\+\+OK&Success \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OSAPI\_SHMEM\_STATUS\_OWNER\_DEAD@{OSAPI\_SHMEM\_STATUS\_OWNER\_DEAD}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SHMEM\_STATUS\_OWNER\_DEAD@{OSAPI\_SHMEM\_STATUS\_OWNER\_DEAD}}}\Hypertarget{group__OSAPI__SharedMemorySegmentClass_gga884eac2ae783af9e47a34f30da11d64fafa8f6f9845ea7d52f3f9de3111fbc460}\label{group__OSAPI__SharedMemorySegmentClass_gga884eac2ae783af9e47a34f30da11d64fafa8f6f9845ea7d52f3f9de3111fbc460} 
+OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS\+\_\+\+OWNER\+\_\+\+DEAD&Previous owner of lock died while holding it \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{group__OSAPI__SharedMemorySegmentClass_gadf28d237de78948c39a7225d0c3e3f28}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SHMEM\_ATTACH\_STATUS@{OSAPI\_SHMEM\_ATTACH\_STATUS}}
+\index{OSAPI\_SHMEM\_ATTACH\_STATUS@{OSAPI\_SHMEM\_ATTACH\_STATUS}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SHMEM\_ATTACH\_STATUS}{OSAPI\_SHMEM\_ATTACH\_STATUS}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_gadf28d237de78948c39a7225d0c3e3f28} 
+enum \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gadf28d237de78948c39a7225d0c3e3f28}{OSAPI\+\_\+\+SHMEM\+\_\+\+ATTACH\+\_\+\+STATUS}}}
+
+Status used to convey the state of a shared memory object\textquotesingle{}s attachment to a shared memory segment. \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OSAPI\_SHMEM\_ATTACH\_STATUS\_OK@{OSAPI\_SHMEM\_ATTACH\_STATUS\_OK}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SHMEM\_ATTACH\_STATUS\_OK@{OSAPI\_SHMEM\_ATTACH\_STATUS\_OK}}}\Hypertarget{group__OSAPI__SharedMemorySegmentClass_ggadf28d237de78948c39a7225d0c3e3f28a56c7ca6699197a147b34bb7a0020df41}\label{group__OSAPI__SharedMemorySegmentClass_ggadf28d237de78948c39a7225d0c3e3f28a56c7ca6699197a147b34bb7a0020df41} 
+OSAPI\+\_\+\+SHMEM\+\_\+\+ATTACH\+\_\+\+STATUS\+\_\+\+OK&Success \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OSAPI\_SHMEM\_ATTACH\_STATUS\_SEGMENT\_NOT\_FOUND@{OSAPI\_SHMEM\_ATTACH\_STATUS\_SEGMENT\_NOT\_FOUND}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SHMEM\_ATTACH\_STATUS\_SEGMENT\_NOT\_FOUND@{OSAPI\_SHMEM\_ATTACH\_STATUS\_SEGMENT\_NOT\_FOUND}}}\Hypertarget{group__OSAPI__SharedMemorySegmentClass_ggadf28d237de78948c39a7225d0c3e3f28a3878616b991ee545149278a022ebf1da}\label{group__OSAPI__SharedMemorySegmentClass_ggadf28d237de78948c39a7225d0c3e3f28a3878616b991ee545149278a022ebf1da} 
+OSAPI\+\_\+\+SHMEM\+\_\+\+ATTACH\+\_\+\+STATUS\+\_\+\+SEGMENT\+\_\+\+NOT\+\_\+\+FOUND&Segment was not found when trying to attach \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__OSAPI__SharedMemorySegmentClass_ga408084c3b49bbfd07cc97e45c51e7e06}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SharedMemorySegment\_get\_max\_size@{OSAPI\_SharedMemorySegment\_get\_max\_size}}
+\index{OSAPI\_SharedMemorySegment\_get\_max\_size@{OSAPI\_SharedMemorySegment\_get\_max\_size}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemorySegment\_get\_max\_size()}{OSAPI\_SharedMemorySegment\_get\_max\_size()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_ga408084c3b49bbfd07cc97e45c51e7e06} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gab16fb7dc9a66b96996009f5d724d3c4f}{RTI\+\_\+\+UINT64}} OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+get\+\_\+max\+\_\+size (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get maximum size of a shared memory segment on the current platform. 
+
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SharedMemorySegmentClass_ga7ae652dedf95e4424a2a2c9df1b58911}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SharedMemorySegment\_is\_owner\_alive@{OSAPI\_SharedMemorySegment\_is\_owner\_alive}}
+\index{OSAPI\_SharedMemorySegment\_is\_owner\_alive@{OSAPI\_SharedMemorySegment\_is\_owner\_alive}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemorySegment\_is\_owner\_alive()}{OSAPI\_SharedMemorySegment\_is\_owner\_alive()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_ga7ae652dedf95e4424a2a2c9df1b58911} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+is\+\_\+owner\+\_\+alive (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \texorpdfstring{$\ast$}{*}}]{alive}{}\end{DoxyParamCaption})}
+
+
+
+Check if the process which created the shared memory segment is still alive. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & The shared memory segment handle identifying the segment. \\
+\hline
+\mbox{\texttt{ out}}  & {\em alive} & If the process is alive.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred.
+\end{DoxyReturn}
+The behavior or this function is undefined if the segment is not currently attached. \Hypertarget{group__OSAPI__SharedMemorySegmentClass_gac39583eda93bb8db23773daee5bb6bfd}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SharedMemorySegmentHandle\_get\_size@{OSAPI\_SharedMemorySegmentHandle\_get\_size}}
+\index{OSAPI\_SharedMemorySegmentHandle\_get\_size@{OSAPI\_SharedMemorySegmentHandle\_get\_size}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemorySegmentHandle\_get\_size()}{OSAPI\_SharedMemorySegmentHandle\_get\_size()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_gac39583eda93bb8db23773daee5bb6bfd} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE}}}]{mode}{}\end{DoxyParamCaption})}
+
+
+
+Get the amount of memory required to store a \doxylink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle} on the current platform for a given mode. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mode} & The creation or attachment mode of the handle.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes required to store a handle. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SharedMemorySegmentClass_ga13dea343afc10cc2d0382b139cee76c8}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SharedMemorySegmentHeader\_get\_size@{OSAPI\_SharedMemorySegmentHeader\_get\_size}}
+\index{OSAPI\_SharedMemorySegmentHeader\_get\_size@{OSAPI\_SharedMemorySegmentHeader\_get\_size}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemorySegmentHeader\_get\_size()}{OSAPI\_SharedMemorySegmentHeader\_get\_size()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_ga13dea343afc10cc2d0382b139cee76c8} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} OSAPI\+\_\+\+Shared\+Memory\+Segment\+Header\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE}}}]{mode}{}\end{DoxyParamCaption})}
+
+
+
+Get the amount of memory, aligned to the maximum alignment, required to store a \doxylink{structOSAPI__SharedMemorySegmentHeader}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Header} on the current platform for a given mode. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mode} & The creation mode of the segment containing the header.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes required to store a header.
+\end{DoxyReturn}
+The number of bytes returned by this function shall be aligned to the maximum alignment of the platform. \Hypertarget{group__OSAPI__SharedMemorySegmentClass_ga800df9204f52a4c33797bc9140b060c5}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SharedMemorySegment\_create\_impl@{OSAPI\_SharedMemorySegment\_create\_impl}}
+\index{OSAPI\_SharedMemorySegment\_create\_impl@{OSAPI\_SharedMemorySegment\_create\_impl}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemorySegment\_create\_impl()}{OSAPI\_SharedMemorySegment\_create\_impl()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_ga800df9204f52a4c33797bc9140b060c5} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+create\+\_\+impl (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gab16fb7dc9a66b96996009f5d724d3c4f}{RTI\+\_\+\+UINT64}}}]{size}{, }\item[{\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE}}}]{mode}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \texorpdfstring{$\ast$}{*}}]{exists}{}\end{DoxyParamCaption})}
+
+
+
+Creates a new shared memory segment with the provided key and initialize a handle to it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em handle} & Handle to be initialized.\\
+\hline
+\mbox{\texttt{ in}}  & {\em name} & Name to identify the shared memory segment.\\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & Size of memory to be allocated.\\
+\hline
+\mbox{\texttt{ in}}  & {\em mode} & Mode used to create the shared memory segment. The mode determines the capabilities of the segment. The mode must be \texorpdfstring{$>$}{>}= OSAPI\+\_\+\+SHMEM\+\_\+\+MODE\+\_\+\+WRITE.\\
+\hline
+\mbox{\texttt{ out}}  & {\em exists} & If the segment already exists\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred.
+\end{DoxyReturn}
+The new shared memory segment shall be initialized with null bytes (\textquotesingle{}\textbackslash{}0\textquotesingle{}). 
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_gab16fb7dc9a66b96996009f5d724d3c4f}{RTI\+\_\+\+UINT64}}.
+
+\Hypertarget{group__OSAPI__SharedMemorySegmentClass_ga33a0e458287596a1ddb50ac7656c0b1d}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SharedMemorySegment\_delete\_impl@{OSAPI\_SharedMemorySegment\_delete\_impl}}
+\index{OSAPI\_SharedMemorySegment\_delete\_impl@{OSAPI\_SharedMemorySegment\_delete\_impl}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemorySegment\_delete\_impl()}{OSAPI\_SharedMemorySegment\_delete\_impl()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_ga33a0e458287596a1ddb50ac7656c0b1d} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+delete\+\_\+impl (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+Delete a shared memory segment. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & The shared memory segment handle identifying the segment to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if either the precondition was not met or the shared memory segment could not be deleted.
+\end{DoxyReturn}
+Once this function is called (even if it returns RTI\+\_\+\+FALSE) you can no longer use this shared memory segment. \Hypertarget{group__OSAPI__SharedMemorySegmentClass_gad2f6aa0ef628e4fd073eb497b04731a4}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SharedMemorySegment\_attach\_impl@{OSAPI\_SharedMemorySegment\_attach\_impl}}
+\index{OSAPI\_SharedMemorySegment\_attach\_impl@{OSAPI\_SharedMemorySegment\_attach\_impl}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemorySegment\_attach\_impl()}{OSAPI\_SharedMemorySegment\_attach\_impl()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_gad2f6aa0ef628e4fd073eb497b04731a4} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+attach\+\_\+impl (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gafedc3277ca9173f1626bb92d1c520914}{OSAPI\+\_\+\+SHMEM\+\_\+\+MODE}}}]{mode}{, }\item[{\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_gadf28d237de78948c39a7225d0c3e3f28}{OSAPI\+\_\+\+SHMEM\+\_\+\+ATTACH\+\_\+\+STATUS}} \texorpdfstring{$\ast$}{*}}]{status\+\_\+out}{}\end{DoxyParamCaption})}
+
+
+
+Attach to the shared memory and initialize a handle to it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em handle} & Handle to be initialized.\\
+\hline
+\mbox{\texttt{ in}}  & {\em name} & Name to identify the shared memory segment.\\
+\hline
+\mbox{\texttt{ in}}  & {\em mode} & Mode used to attach the shared memory segment.\\
+\hline
+\mbox{\texttt{ out}}  & {\em status\+\_\+out} & If successful, the attachment status of the shared memory segment.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. Note that the attachment status may still be different from OK, so checking the value of status\+\_\+out is mandatory. RTI\+\_\+\+FALSE if an error occurred. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SharedMemorySegmentClass_gac397603f1ced7a5b51fbe9f40e9b5dfc}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SharedMemorySegment\_detach\_impl@{OSAPI\_SharedMemorySegment\_detach\_impl}}
+\index{OSAPI\_SharedMemorySegment\_detach\_impl@{OSAPI\_SharedMemorySegment\_detach\_impl}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemorySegment\_detach\_impl()}{OSAPI\_SharedMemorySegment\_detach\_impl()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_gac397603f1ced7a5b51fbe9f40e9b5dfc} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+detach\+\_\+impl (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+detach the shared memory segment. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & The shared memory segment handle identifying the segment to detach.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if either the precondition was not met or the shared memory segment could not be detached.
+\end{DoxyReturn}
+Once this function is called (even if it returns RTI\+\_\+\+FALSE) you can no longer use this shared memory segment handle. \Hypertarget{group__OSAPI__SharedMemorySegmentClass_ga97865f28c7518de2163fca0b54281b35}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SharedMemorySegment\_lock\_impl@{OSAPI\_SharedMemorySegment\_lock\_impl}}
+\index{OSAPI\_SharedMemorySegment\_lock\_impl@{OSAPI\_SharedMemorySegment\_lock\_impl}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemorySegment\_lock\_impl()}{OSAPI\_SharedMemorySegment\_lock\_impl()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_ga97865f28c7518de2163fca0b54281b35} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+lock\+\_\+impl (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga884eac2ae783af9e47a34f30da11d64f}{OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS}} \texorpdfstring{$\ast$}{*}}]{status\+\_\+out}{}\end{DoxyParamCaption})}
+
+
+
+Lock a shared memory segment. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & The shared memory segment handle identifying the segment to lock.\\
+\hline
+\mbox{\texttt{ out}}  & {\em status\+\_\+out} & Success or failure reason of acquiring the lock.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SharedMemorySegmentClass_gae6e39d94770991e80c2689026a3ebc77}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SharedMemorySegment\_unlock\_impl@{OSAPI\_SharedMemorySegment\_unlock\_impl}}
+\index{OSAPI\_SharedMemorySegment\_unlock\_impl@{OSAPI\_SharedMemorySegment\_unlock\_impl}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemorySegment\_unlock\_impl()}{OSAPI\_SharedMemorySegment\_unlock\_impl()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_gae6e39d94770991e80c2689026a3ebc77} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+unlock\+\_\+impl (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+Unlock a shared memory segment previously locked with \doxylink{group__OSAPI__SharedMemorySegmentClass_ga97865f28c7518de2163fca0b54281b35}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+lock\+\_\+impl}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & The shared memory segment handle identifying the segment to unlock.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred.
+\end{DoxyReturn}
+The behavior of this method is undefined if the calling process has not previously acquired the lock with \doxylink{group__OSAPI__SharedMemorySegmentClass_ga97865f28c7518de2163fca0b54281b35}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+lock\+\_\+impl}. \Hypertarget{group__OSAPI__SharedMemorySegmentClass_gaa73f387a88b71306db161ad9a2a20493}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SharedMemorySegment\_mark\_consistent\_impl@{OSAPI\_SharedMemorySegment\_mark\_consistent\_impl}}
+\index{OSAPI\_SharedMemorySegment\_mark\_consistent\_impl@{OSAPI\_SharedMemorySegment\_mark\_consistent\_impl}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemorySegment\_mark\_consistent\_impl()}{OSAPI\_SharedMemorySegment\_mark\_consistent\_impl()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_gaa73f387a88b71306db161ad9a2a20493} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+mark\+\_\+consistent\+\_\+impl (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structOSAPI__SharedMemorySegmentHandle}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+Handle}} \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+Mark a shared memory segment as consistent. This function can only be called if a previous call to \doxylink{group__OSAPI__SharedMemorySegmentClass_ga97865f28c7518de2163fca0b54281b35}{OSAPI\+\_\+\+Shared\+Memory\+Segment\+\_\+lock\+\_\+impl} returned OSAPI\+\_\+\+SHMEM\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+OWNER\+\_\+\+DEAD. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & The shared memory segment handle identifying the segment to mark consistent.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SharedMemorySegmentClass_ga540ece53d6db4cac4a558efae1e6b21a}\index{OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}!OSAPI\_SharedMemory\_is\_robust\_mutex\_supported@{OSAPI\_SharedMemory\_is\_robust\_mutex\_supported}}
+\index{OSAPI\_SharedMemory\_is\_robust\_mutex\_supported@{OSAPI\_SharedMemory\_is\_robust\_mutex\_supported}!OSAPI\_SharedMemorySegment@{OSAPI\_SharedMemorySegment}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemory\_is\_robust\_mutex\_supported()}{OSAPI\_SharedMemory\_is\_robust\_mutex\_supported()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemorySegmentClass_ga540ece53d6db4cac4a558efae1e6b21a} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+\_\+is\+\_\+robust\+\_\+mutex\+\_\+supported (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Checks wether robust mutex is supported or not . 
+
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE is supported. RTI\+\_\+\+FALSE if not supported. 
+\end{DoxyReturn}

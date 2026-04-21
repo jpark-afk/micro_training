@@ -1,0 +1,60 @@
+\doxysubsection{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t Struct Reference}
+\hypertarget{structDDS__FlowControllerProperty__t}{}\label{structDDS__FlowControllerProperty__t}\index{DDS\_FlowControllerProperty\_t@{DDS\_FlowControllerProperty\_t}}
+
+
+Determines the flow control characteristics of the \doxylink{classDDSFlowController}{DDSFlow\+Controller}.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+flowcontroller.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSFlowControllerModule_gacdd2356baadedf00457c9ce32f5ca115}{DDS\+\_\+\+Flow\+Controller\+Scheduling\+Policy}} \mbox{\hyperlink{structDDS__FlowControllerProperty__t_a97ba75a849dfbdb62fedc501f72188d7}{scheduling\+\_\+policy}}
+\begin{DoxyCompactList}\small\item\em Scheduling policy. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__FlowControllerTokenBucketProperty__t}{DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t}} \mbox{\hyperlink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{token\+\_\+bucket}}
+\begin{DoxyCompactList}\small\item\em Settings for the token bucket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Determines the flow control characteristics of the \doxylink{classDDSFlowController}{DDSFlow\+Controller}. 
+
+The flow control characteristics shape the network traffic by determining how often and in what order associated asynchronous \doxylink{classDDSDataWriter}{DDSData\+Writer} instances are serviced and how much data they are allowed to send. 
+
+Note that these settings apply directly to the \doxylink{classDDSFlowController}{DDSFlow\+Controller}, and do not depend on the number of \doxylink{classDDSDataWriter}{DDSData\+Writer} instances the \doxylink{classDDSFlowController}{DDSFlow\+Controller} is servicing. For instance, the specified flow rate does {\itshape not} double simply because two \doxylink{classDDSDataWriter}{DDSData\+Writer} instances are waiting to write. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSFlowController}{DDSFlow\+Controller} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = N/A~\newline
+ 
+\end{DoxyParagraph}
+\doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} for \doxylink{structDDS__FlowControllerProperty__t_a97ba75a849dfbdb62fedc501f72188d7}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::scheduling\+\_\+policy}, \doxylink{group__DDSQosTypesModule_a_prop_changeable_yes}{YES} for \doxylink{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket}. However, the special value of \doxylink{group__DDSTimeSupportModule_ga2b315f7f0887aa9dd6bfc2008eda0780}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE} as \doxylink{structDDS__FlowControllerTokenBucketProperty__t_a6dc56f20c740970edbe778ece872824d}{DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t\+::period} is strictly used to create an {\itshape on-\/demand} \doxylink{classDDSFlowController}{DDSFlow\+Controller}. The token period cannot toggle from an infinite to finite value (or vice versa). It can, however, change from one finite value to another.~\newline
+ 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__FlowControllerProperty__t_a97ba75a849dfbdb62fedc501f72188d7}\index{DDS\_FlowControllerProperty\_t@{DDS\_FlowControllerProperty\_t}!scheduling\_policy@{scheduling\_policy}}
+\index{scheduling\_policy@{scheduling\_policy}!DDS\_FlowControllerProperty\_t@{DDS\_FlowControllerProperty\_t}}
+\doxyparagraph{\texorpdfstring{scheduling\_policy}{scheduling\_policy}}
+{\footnotesize\ttfamily \label{structDDS__FlowControllerProperty__t_a97ba75a849dfbdb62fedc501f72188d7} 
+\mbox{\hyperlink{group__DDSFlowControllerModule_gacdd2356baadedf00457c9ce32f5ca115}{DDS\+\_\+\+Flow\+Controller\+Scheduling\+Policy}} DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::scheduling\+\_\+policy}
+
+
+
+Scheduling policy. 
+
+Determines the scheduling policy for servicing the \doxylink{classDDSDataWriter}{DDSData\+Writer} instances associated with the \doxylink{classDDSFlowController}{DDSFlow\+Controller}. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115afb77daa170cc951b2387ca9e24003a38}{DDS\+\_\+\+EDF\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY} \Hypertarget{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e}\index{DDS\_FlowControllerProperty\_t@{DDS\_FlowControllerProperty\_t}!token\_bucket@{token\_bucket}}
+\index{token\_bucket@{token\_bucket}!DDS\_FlowControllerProperty\_t@{DDS\_FlowControllerProperty\_t}}
+\doxyparagraph{\texorpdfstring{token\_bucket}{token\_bucket}}
+{\footnotesize\ttfamily \label{structDDS__FlowControllerProperty__t_a8eb65d1b99a39daf5a1521bb31603f3e} 
+struct \mbox{\hyperlink{structDDS__FlowControllerTokenBucketProperty__t}{DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t}} DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::token\+\_\+bucket}
+
+
+
+Settings for the token bucket. 
+

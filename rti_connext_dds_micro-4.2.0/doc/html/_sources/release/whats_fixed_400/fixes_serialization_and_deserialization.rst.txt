@@ -1,0 +1,160 @@
+Serialization and Deserialization
+=================================
+
+:critical:`[Critical]` DataReader on a Topic using an appendable type may receive samples with incorrect value
+--------------------------------------------------------------------------------------------------------------
+
+A *DataReader* subscribing to a *Topic* on an appendable type may have 
+received incorrect samples from a matching *DataWriter*. 
+
+The problem only occurred when the *DataWriter* published a type with 
+fewer members than the *DataReader* type. For example, consider a 
+*DataWriter* on FooBase and a *DataReader* on FooDerived:
+
+.. code-block:: idl
+
+  @appendable struct FooBase {
+      sequence<uint8,1024>base_value;
+  };
+
+  @appendable struct FooDerived {
+      sequence<uint8,1024> base_value;
+      @default(12) uint8 derived_value;
+  };
+
+In this case, the serialized sample stream would be padded with extra 
+bytes to align the stream to 4 bytes as required by the OMG `Extensible 
+and Dynamic Topic Types for DDS <https://www.omg.org/spec/DDS-XTypes/1.3>`_ 
+specification, version 1.3. However, the additional padding bytes were 
+incorrectly interpreted as part of the data and ``derived_value`` may 
+have been set to a random value.
+
+For example, in the case above, when the *DataWriter* published a sample 
+with type FooBase, in some cases the *DataReader* received a sample in 
+which the field ``derived_value`` was set to 0 instead of 12.
+
+.. note::
+  
+  |me| does not support the ``@default`` annotation.
+
+[RTI Issue ID MICRO-6402]
+
+:critical:`[Critical]` Malformed samples with invalid strings not dropped by DataReader
+---------------------------------------------------------------------------------------
+
+A *DataReader* may have provided the application a malformed sample containing 
+an invalid value (not Null-terminated) for a string member. The string member 
+may not have been Null-terminated, resulting in undefined behavior if the 
+application tried to access it.
+
+Now, the *DataReader* will not deserialize the sample and the sample will not 
+be provided to the application.
+
+[RTI Issue ID MICRO-3039]
+
+:major:`[Major]` Float and double ranges may not have been enforced correctly
+-----------------------------------------------------------------------------
+
+Float and double ranges may not have been enforced correctly. Float and double member 
+values that should not have passed the check ended up passing it.
+
+This issue only occurred under any of the following conditions:
+
+For "float":
+
+- When @min was set to -3.4E38 for a member, a value smaller than @min passed the 
+  check when it should not have.
+- When @max was set to 3.4E38 for a member, a value greater than @max passed the 
+  check when it should not have.
+
+For "double":
+
+- When @min was set to -1.7E+308 for a member, a value smaller than @min passed 
+  the check when it should not have.
+- When @max was set to 1.7E+308 for a member, a value greater than @max passed the 
+  check when it should not have.
+
+For "float" and "double":
+
+- When the member value was set to INFINITY, samples passed the range check when 
+  they should not have.
+- When the member value was set to NaN, samples passed the range check when they 
+  should not have.
+
+[RTI Issue ID MICRO-3280]
+
+:major:`[Major]` Deserialization of tampered/corrupted samples may have unexpectedly succeeded
+----------------------------------------------------------------------------------------------
+
+A *DataReader* may not have detected that a truncated sample due to corruption 
+or tampering was invalid. As a result, the application may have received 
+samples with invalid content.
+
+Now, the deserialization of corrupted samples 
+fails, and they are not provided to the application.
+
+[RTI Issue ID MICRO-3057]
+
+:major:`[Major]` Invalid serialization of samples with types containing nested structures with primitive members that require padding
+-------------------------------------------------------------------------------------------------------------------------------------
+
+In *Connext DDS* 6.0.1 and earlier, the serialization of samples with a type 
+containing two or more levels of nested complex types, where the nested types 
+have primitive members that require padding, may have failed. This means that 
+a *DataReader* may have received an invalid value for a sample. Example:
+
+.. code-block::
+
+   // Level-2 Nested type
+      struct Struct1 {
+         uint8 m1;
+         uint8 m2;
+         int32 m3;
+      };
+
+      // Level-1 Nested type
+      struct Struct2 {
+         int32 m1;
+         int32 m2;
+         uint8 m3;
+         uint8 m4;
+         Struct1 m5;
+      };
+
+      struct Struct3 {
+         Struct2 m1;
+      };
+
+In the above example, Struct2 and Struct1 are nested, and there is padding 
+between Struct1::m2 (1-byte aligned) and Struct1::m3 (4-byte aligned) of 2
+bytes.
+
+This issue only applied to nested types that are appendable or final for 
+XCDR1 data representation or final for XCDR2 data representation.
+
+This problem affected DynamicData and the generated code for the following 
+languages: C, C++, C++03, and C++11.
+
+For generated code, a potential workaround to this problem was to generate 
+code with a value of 1 or 0 for the -optimization, but this may have had 
+performance implications.
+
+[RTI Issue ID MICRO-2744]
+
+:minor:`[Minor]` Serialization of string members did not check for null-terminated strings in C, traditional C++, and modern C++
+--------------------------------------------------------------------------------------------------------------------------------
+
+The code executed by a *DataWriter* that serializes string members in a Topic 
+type did not check that the strings are null-terminated. This may have led to 
+undefined behavior, because the serialization code calls strlen.
+
+This problem has been fixed. The serialization code now checks for 
+null-terminated strings with the maximum allowed length and reports the 
+following error if the string is not well-formed:
+
+::
+
+   RTIXCdrInterpreter_serializeString:StrStruct:member2 serialization error. String length (at least 6) is larger than maximum 5
+
+[RTI Issue ID MICRO-3040]
+

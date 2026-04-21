@@ -1,0 +1,55 @@
+\doxysubsubsubsubsection{HISTORY}
+\hypertarget{group__DDSHistoryQosModule}{}\label{group__DDSHistoryQosModule}\index{HISTORY@{HISTORY}}
+
+
+Specifies the behavior of RTI Connext DDS Micro in the case where the value of an instance changes (one or more times) before it can be successfully communicated to one or more existing subscribers.  
+
+
+\doxysubsubsubsubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__HistoryQosPolicy}{DDS\+\_\+\+History\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Specifies the behavior of RTI Connext DDS Micro in the case where the value of a sample changes (one or more times) before it can be successfully communicated to one or more existing subscribers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__DDSHistoryQosModule_ga96c54dadb2beb87b23776e766e282185}{DDS\+\_\+\+History\+Qos\+Policy\+Kind}} \{ \mbox{\hyperlink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a993d3120b7bbb347ce11e0e6f68b29ff}{DDS\+\_\+\+KEEP\+\_\+\+LAST\+\_\+\+HISTORY\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a9e526d876dae232aa083125c72135f5b}{DDS\+\_\+\+KEEP\+\_\+\+ALL\+\_\+\+HISTORY\+\_\+\+QOS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of history. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsubsection{Detailed Description}
+Specifies the behavior of RTI Connext DDS Micro in the case where the value of an instance changes (one or more times) before it can be successfully communicated to one or more existing subscribers. 
+
+
+
+\doxysubsubsubsubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__DDSHistoryQosModule_ga96c54dadb2beb87b23776e766e282185}\index{HISTORY@{HISTORY}!DDS\_HistoryQosPolicyKind@{DDS\_HistoryQosPolicyKind}}
+\index{DDS\_HistoryQosPolicyKind@{DDS\_HistoryQosPolicyKind}!HISTORY@{HISTORY}}
+\doxyparagraph{\texorpdfstring{DDS\_HistoryQosPolicyKind}{DDS\_HistoryQosPolicyKind}}
+{\footnotesize\ttfamily \label{group__DDSHistoryQosModule_ga96c54dadb2beb87b23776e766e282185} 
+enum \mbox{\hyperlink{group__DDSHistoryQosModule_ga96c54dadb2beb87b23776e766e282185}{DDS\+\_\+\+History\+Qos\+Policy\+Kind}}}
+
+
+
+Kinds of history. 
+
+\begin{DoxyParagraph}{QoS\+:}
+\doxylink{structDDS__HistoryQosPolicy}{DDS\+\_\+\+History\+Qos\+Policy} 
+\end{DoxyParagraph}
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_KEEP\_LAST\_HISTORY\_QOS@{DDS\_KEEP\_LAST\_HISTORY\_QOS}!HISTORY@{HISTORY}}\index{HISTORY@{HISTORY}!DDS\_KEEP\_LAST\_HISTORY\_QOS@{DDS\_KEEP\_LAST\_HISTORY\_QOS}}}\Hypertarget{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a993d3120b7bbb347ce11e0e6f68b29ff}\label{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a993d3120b7bbb347ce11e0e6f68b29ff} 
+DDS\+\_\+\+KEEP\+\_\+\+LAST\+\_\+\+HISTORY\+\_\+\+QOS&{\bfseries{\mbox{[}default\mbox{]}}} Keep the last {\ttfamily depth} samples. On the publishing side, RTI Connext DDS Micro will only attempt to keep the most recent {\ttfamily depth} samples of each instance of data (identified by its key) managed by the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. 
+
+On the subscribing side, the \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} will only attempt to keep the most recent {\ttfamily depth} samples received for each instance (identified by its key) until the application takes them via the \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} \textquotesingle{}s {\bfseries{take()}} operation.~\newline
+ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_KEEP\_ALL\_HISTORY\_QOS@{DDS\_KEEP\_ALL\_HISTORY\_QOS}!HISTORY@{HISTORY}}\index{HISTORY@{HISTORY}!DDS\_KEEP\_ALL\_HISTORY\_QOS@{DDS\_KEEP\_ALL\_HISTORY\_QOS}}}\Hypertarget{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a9e526d876dae232aa083125c72135f5b}\label{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a9e526d876dae232aa083125c72135f5b} 
+DDS\+\_\+\+KEEP\+\_\+\+ALL\+\_\+\+HISTORY\+\_\+\+QOS&Keep {\itshape all} the samples. On the publishing side, RTI Connext DDS Micro will attempt to keep all samples (representing each value written) of each instance of data (identified by its key) managed by the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} until they can be delivered to all subscribers. 
+
+On the subscribing side, RTI Connext DDS Micro will attempt to keep all samples of each instance of data (identified by its key) managed by the \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. These samples are kept until the application takes them from RTI Connext DDS Micro via the {\bfseries{take()}} operation. \\
+\hline
+
+\end{DoxyEnumFields}

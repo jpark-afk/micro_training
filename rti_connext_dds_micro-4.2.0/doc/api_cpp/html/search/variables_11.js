@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['sample_5finfo_0',['sample_info',['../structDDS__SampleLostStatus.html#ab2072b3218d0bb7d88fe9717ce77d066',1,'DDS_SampleLostStatus']]],
+  ['sample_5fstate_1',['sample_state',['../structDDS__SampleInfo.html#adfe9c2c74b14f914e5b7da022b07cb86',1,'DDS_SampleInfo']]],
+  ['scheduling_5fpolicy_2',['scheduling_policy',['../structDDS__FlowControllerProperty__t.html#a97ba75a849dfbdb62fedc501f72188d7',1,'DDS_FlowControllerProperty_t']]],
+  ['sec_3',['sec',['../structOSAPI__SystemTime.html#aff7bdc773bc404d8e02c335c272f5aa0',1,'OSAPI_SystemTime::sec'],['../structDDS__Time__t.html#a208319be09581623f565e0666dc922b3',1,'DDS_Time_t::sec'],['../structDDS__Duration__t.html#a657203cce563e66c0114daed408ccc3c',1,'DDS_Duration_t::sec']]],
+  ['send_4',['send',['../structZCOPY__NotifUserInterfaceI.html#a76fd0ca723a3a5033ff5e30fa56a6ffc',1,'ZCOPY_NotifUserInterfaceI::send'],['../structNETIO__DGRAM__InterfaceI.html#a5f2260567a306b296ce0b287d5a855b4',1,'NETIO_DGRAM_InterfaceI::send']]],
+  ['sequence_5fnumber_5',['sequence_number',['../structDDS__SampleIdentity__t.html#ab784a7f40efde9c165e60d94c49309a8',1,'DDS_SampleIdentity_t::sequence_number'],['../structDDS__ReliableSampleUnacknowledgedStatus.html#a422272d58291e351b9de4e867090b8ba',1,'DDS_ReliableSampleUnacknowledgedStatus::sequence_number']]],
+  ['serialize_5fon_5fwrite_6',['serialize_on_write',['../structDDS__DataWriterProtocolQosPolicy.html#a8ac6cfea4d4490ce190fceb95ae5c0a9',1,'DDS_DataWriterProtocolQosPolicy']]],
+  ['service_5fname_7',['service_name',['../structDDS__PskServiceFactoryProperty.html#a349b789de844e6e37bf78aa798b34408',1,'DDS_PskServiceFactoryProperty']]],
+  ['shmem_5fref_5fsettings_8',['shmem_ref_settings',['../structDDS__DataWriterTransferModeQosPolicy.html#ab9feec6092f457de737dddf93b71a077',1,'DDS_DataWriterTransferModeQosPolicy']]],
+  ['shmem_5fref_5ftransfer_5fmode_5fattached_5fsegment_5fallocation_9',['shmem_ref_transfer_mode_attached_segment_allocation',['../structDDS__DataReaderResourceLimitsQosPolicy.html#ac1fd6a45e4766ce1e1a2488fbff41b23',1,'DDS_DataReaderResourceLimitsQosPolicy']]],
+  ['shmem_5fref_5ftransfer_5fmode_5fmax_5fsegments_10',['shmem_ref_transfer_mode_max_segments',['../structDDS__DomainParticipantResourceLimitsQosPolicy.html#a945798e73443fd49a48b5087895bd7d6',1,'DDS_DomainParticipantResourceLimitsQosPolicy']]],
+  ['size_11',['size',['../structOSAPI__SharedMemorySegmentHeader.html#a68d134f0be767aab2bf15d02422277d2',1,'OSAPI_SharedMemorySegmentHeader']]],
+  ['source_5frules_12',['source_rules',['../structUDP__InterfaceFactoryProperty.html#ada54a383e944642e7c3cb93a45cac2f8',1,'UDP_InterfaceFactoryProperty']]],
+  ['source_5ftimestamp_13',['source_timestamp',['../structDDS__WriteParams__t.html#a2f79abac4bf7b21bf9d7c17765b689d0',1,'DDS_WriteParams_t::source_timestamp'],['../structDDS__SampleInfo.html#a70566edcc3c48c0d7ee42962ffb81150',1,'DDS_SampleInfo::source_timestamp']]],
+  ['source_5ftimestamp_5ftolerance_14',['source_timestamp_tolerance',['../structDDS__DestinationOrderQosPolicy.html#a692d1a1f1117dbb9eadb980a41f8a156',1,'DDS_DestinationOrderQosPolicy']]],
+  ['sql_5fpredicate_5fmax_5fcount_5fper_5fexpression_15',['sql_predicate_max_count_per_expression',['../structDDS__FilterResourceLimits.html#a3d844f061db6d796460ec15a7fcf03d7',1,'DDS_FilterResourceLimits']]],
+  ['stack_5fsize_16',['stack_size',['../structOSAPI__ThreadProperty.html#abb88a95476bfc60213bcb0b14bb6aded',1,'OSAPI_ThreadProperty']]],
+  ['start_5ftimer_17',['start_timer',['../structOSAPI__SystemI.html#a83ec3c07f33b83d00c5e1d7659a130f0',1,'OSAPI_SystemI']]],
+  ['subscriber_5fgroup_5fdata_5fmax_5fcount_18',['subscriber_group_data_max_count',['../structDDS__DomainParticipantResourceLimitsQosPolicy.html#accb268f1adb0cc6b18d9dad729e92f08',1,'DDS_DomainParticipantResourceLimitsQosPolicy']]],
+  ['subscriber_5fgroup_5fdata_5fmax_5flength_19',['subscriber_group_data_max_length',['../structDDS__DomainParticipantResourceLimitsQosPolicy.html#a50f86f3bdb0f394befd4abe1611efdf5',1,'DDS_DomainParticipantResourceLimitsQosPolicy']]],
+  ['subscriber_5fname_20',['subscriber_name',['../structDDS__SubscriberQos.html#a1eed731765cd5e173a7188f6d42fc68b',1,'DDS_SubscriberQos']]],
+  ['subscription_5fname_21',['subscription_name',['../structDDS__DataReaderQos.html#a5e49f4b0b3fda24a86ab70e05be5ae08',1,'DDS_DataReaderQos']]]
+];

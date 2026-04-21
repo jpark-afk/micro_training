@@ -1,0 +1,56 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may16 tk Written
+################################################################################
+
+IF (${RTIME_TARGET_NAME} MATCHES "_sloc")
+    set(CMAKE_C_CREATE_PREPROCESSED_SOURCE 
+            "<CMAKE_C_COMPILER> <DEFINES> <INCLUDES> <FLAGS> \
+            -C -E <SOURCE> > <PREPROCESSED_SOURCE>" 
+        CACHE INTERNAL "CMAKE_C_CREATE_PREPROCESSED_SOURCE" FORCE
+    )
+    set(CMAKE_CXX_CREATE_PREPROCESSED_SOURCE 
+            "<CMAKE_CXX_COMPILER> <DEFINES> <INCLUDES> <FLAGS> \
+            -C -E <SOURCE> > <PREPROCESSED_SOURCE>" 
+        CACHE INTERNAL "CMAKE_CXX_CREATE_PREPROCESSED_SOURCE"  FORCE
+    )
+ENDIF()
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wstrict-prototypes")
+
+SET(RTIME_OBJDUMP objdump)
+SET(RTIME_OBJDUMP_OPT --no-symbolic-operands;--non-verbose;--no-leading-addr;--no-leading-headers;-disassemble-all)
+SET(RTIME_OBJDUMPCHKSUM objdump)
+SET(RTIME_OBJDUMPCHKSUM_OPT --section __TEXT,__DATA --no-symbolic-operands;--non-verbose;--no-leading-addr;--no-leading-headers;-disassemble-all)
+SET(RTIME_OBJ_SUFFIX o)
+SET(RTIME_AR_EXRACT -x)
+SET(RTIME_AR ${CMAKE_AR})
+
+IF (${TARGET_HELP})
+    MESSAGE("COMPILER NOTES\n")
+    MESSAGE(" The following clang specific flags are used based on RTIME_TARGET_NAME\n")        
+    MESSAGE(" - If x64 is part of the name 64 bit is used")
+    MESSAGE(" - If i86 is part of the name 32 bit is used")
+    MESSAGE(" - If i86 or x64 is not found, the default is used\n")
+    MESSAGE(" The following flags are added:")
+    MESSAGE(" - For C Debug libraries:  ${CC_DEBUG}")
+    MESSAGE(" - For C++ Debug libraries:  ${CXX_DEBUG}")
+    MESSAGE(" - For C Release libraries:  ${CC_RELEASE}")
+    MESSAGE(" - For C++ Release libraries:  ${CXX_RELEASE}\n\n")
+    RETURN()
+ENDIF()
+
+SET(_RTIME_CC stdc)

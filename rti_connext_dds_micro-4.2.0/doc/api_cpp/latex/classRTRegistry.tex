@@ -1,0 +1,84 @@
+\doxysubsection{RTRegistry Class Reference}
+\hypertarget{classRTRegistry}{}\label{classRTRegistry}\index{RTRegistry@{RTRegistry}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} A run-\/time component factory.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+rt.\+hxx$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classRTRegistry_a0a9b0360f1efca5304c46cc1402c64f0}{register\+\_\+component}} (const char \texorpdfstring{$\ast$}{*}name, RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*}intf, RT\+\_\+\+Component\+Factory\+Property \texorpdfstring{$\ast$}{*}property, RT\+\_\+\+Component\+Factory\+Listener \texorpdfstring{$\ast$}{*}listener)
+\begin{DoxyCompactList}\small\item\em Register a factory of RT components \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classRTRegistry_a464a0f0858d2a88fe66669ea3d9c4203}{unregister}} (const char \texorpdfstring{$\ast$}{*}name, RT\+\_\+\+Component\+Factory\+Property \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}property, RT\+\_\+\+Component\+Factory\+Listener \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}listener)
+\begin{DoxyCompactList}\small\item\em Remove a component factory from the registry \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} A run-\/time component factory. 
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classRTRegistry_a0a9b0360f1efca5304c46cc1402c64f0}\index{RTRegistry@{RTRegistry}!register\_component@{register\_component}}
+\index{register\_component@{register\_component}!RTRegistry@{RTRegistry}}
+\doxyparagraph{\texorpdfstring{register\_component()}{register\_component()}}
+{\footnotesize\ttfamily \label{classRTRegistry_a0a9b0360f1efca5304c46cc1402c64f0} 
+bool RTRegistry\+::register\+\_\+component (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*}}]{intf}{, }\item[{RT\+\_\+\+Component\+Factory\+Property \texorpdfstring{$\ast$}{*}}]{property}{, }\item[{RT\+\_\+\+Component\+Factory\+Listener \texorpdfstring{$\ast$}{*}}]{listener}{}\end{DoxyParamCaption})}
+
+
+
+Register a factory of RT components 
+
+In order to make a component available, it is necessary to register a factory for the components. The factory is responsible for creating and deleting components. 
+
+The name of the factory must be unique. Otherwise, if a factory already exists with the the same name, the registration will fail. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name of the component factory \\
+\hline
+{\em intf} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Pointer to the implementation of the factory interface \\
+\hline
+{\em property} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Properties with which to create the factory \\
+\hline
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The listener to install with the factory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classRTRegistry_a464a0f0858d2a88fe66669ea3d9c4203}{RTRegistry\+::unregister} 
+\end{DoxySeeAlso}
+\Hypertarget{classRTRegistry_a464a0f0858d2a88fe66669ea3d9c4203}\index{RTRegistry@{RTRegistry}!unregister@{unregister}}
+\index{unregister@{unregister}!RTRegistry@{RTRegistry}}
+\doxyparagraph{\texorpdfstring{unregister()}{unregister()}}
+{\footnotesize\ttfamily \label{classRTRegistry_a464a0f0858d2a88fe66669ea3d9c4203} 
+bool RTRegistry\+::unregister (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{RT\+\_\+\+Component\+Factory\+Property \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{property}{, }\item[{RT\+\_\+\+Component\+Factory\+Listener \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{listener}{}\end{DoxyParamCaption})}
+
+
+
+Remove a component factory from the registry 
+
+After a component factory is unregistered, it will no longer be possible to create or delete components with the factory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name of the component factory \\
+\hline
+{\em property} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Properties with which the factory was created \\
+\hline
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The listener installed with the factory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classRTRegistry_a0a9b0360f1efca5304c46cc1402c64f0}{RTRegistry\+::register\+\_\+component} 
+\end{DoxySeeAlso}

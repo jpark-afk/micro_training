@@ -1,0 +1,41 @@
+Interoperability
+================
+
+:critical:`[Critical]` Failure to deserialize fragmented samples sent by Connext Professional 7
+-----------------------------------------------------------------------------------------------
+Due to incorrect processing of an inline QoS in a fragmented sample,
+*Connext Micro* failed to deserialize fragmented samples sent by
+*Connext Professional 7*, or other implementations that set the length of the
+PID_SENTINEL to a value different than 1.
+
+[RTI Issue ID MICRO-4095]
+
+:critical:`[Critical]` Inline QoS offset non-compliant with DDSI-RTPS standard
+------------------------------------------------------------------------------
+The inline QoS offset in DATA was set to 0 instead of the offset to the next
+field after the inline QoS. This may have caused DDS implementations from other
+vendors to fail to receive data. 
+
+[RTI Issue ID MICRO-4160]
+
+:critical:`[Critical]` |me_h| may have repeated requesting a sample that was no longer available from a DataWriter
+------------------------------------------------------------------------------------------------------------------
+
+If |me| detects a missing sample when using DDS_RELIABLE_RELIABILITY_QOS 
+reliability, it will request the sample to be resent, but if the sample is no 
+longer available from the *DataWriter*, the *DataWriter* may send a GAP 
+message to indicate the sample is not longer available. 
+
+|me| failed to interpret the GAP message correctly if the first 
+sequence number in the GAP message was equal to the bitmap base of the GAP 
+message. In this case, |me| failed to ignore the no-longer-available sample 
+and kept sending a request for the sample.
+
+[RTI Issue ID MICRO-4668]
+
+:critical:`[Critical]` Failure to deserialize a fragmented sample with multiple fragments in a DATA_FRAG submessage
+-------------------------------------------------------------------------------------------------------------------
+A deserialization error occurred when deserializing a sample that was 
+fragmented into multiple fragments in a single RTPS DATA_FRAG submessage.
+
+[RTI Issue ID MICRO-2958]

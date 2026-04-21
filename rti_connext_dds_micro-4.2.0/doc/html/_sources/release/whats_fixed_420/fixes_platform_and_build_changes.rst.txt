@@ -1,0 +1,15 @@
+Platform and Build Changes
+==========================
+
+.. Release Notes from this point.
+
+:minor:`[Minor]` Linker errors occurred when compiling HelloWorld examples for Windows systems
+----------------------------------------------------------------------------------------------
+Compiling the HelloWorld examples for Windows systems in Release mode or with
+shared libraries resulted in linker errors. The build system will now correctly
+include the appropriate C runtime libraries and dynamic link libraries (DLLs)
+based on the Debug/Release configuration and whether static or dynamic linking
+is used.
+
+[RTI Issue ID MICRO-8701]
+

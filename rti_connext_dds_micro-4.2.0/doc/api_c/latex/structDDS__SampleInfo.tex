@@ -1,0 +1,181 @@
+\doxysubsection{DDS\+\_\+\+Sample\+Info Struct Reference}
+\hypertarget{structDDS__SampleInfo}{}\label{structDDS__SampleInfo}\index{DDS\_SampleInfo@{DDS\_SampleInfo}}
+
+
+Information that accompanies each sample that is {\ttfamily read} or {\ttfamily taken}.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+subscription.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSSampleStateModule_gadb6d36e7c796da27519b6bf7f8f187e5}{DDS\+\_\+\+Sample\+State\+Kind}} \mbox{\hyperlink{structDDS__SampleInfo_adfe9c2c74b14f914e5b7da022b07cb86}{sample\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em The sample state of the sample. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSViewStateModule_gab7a8a4ae44a2c00f411a4461135b45f1}{DDS\+\_\+\+View\+State\+Kind}} \mbox{\hyperlink{structDDS__SampleInfo_a99c0b7558c3ebcc94ee9d2b5b7129243}{view\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em The view state of the instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSInstanceStateModule_gaf2264cae1aa8cd66490debfdc5e0c360}{DDS\+\_\+\+Instance\+State\+Kind}} \mbox{\hyperlink{structDDS__SampleInfo_af09b886ca0145a110b58440d455b7eae}{instance\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em The instance state of the instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{structDDS__SampleInfo_a38bca53647cd2be8c1dff9054126f360}{instance\+\_\+handle}}
+\begin{DoxyCompactList}\small\item\em Identifies locally the corresponding instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{structDDS__SampleInfo_a596e409a28afd612c83f2b4964ac4e76}{publication\+\_\+handle}}
+\begin{DoxyCompactList}\small\item\em Identifies locally the Data\+Writer that modified the instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{structDDS__SampleInfo_aa0c5177864ed1aeeb85544fee45904da}{valid\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Indicates whether the {\ttfamily Data\+Sample} contains data or else it is only used to communicate a change in the {\ttfamily instance\+\_\+state} of the instance. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \mbox{\hyperlink{structDDS__SampleInfo_a70566edcc3c48c0d7ee42962ffb81150}{source\+\_\+timestamp}}
+\begin{DoxyCompactList}\small\item\em The timestamp when the sample was written by a Data\+Writer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \mbox{\hyperlink{structDDS__SampleInfo_aae99d28717a46008a5bcb7d6319b771f}{reception\+\_\+timestamp}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The timestamp when the sample was committed by a Data\+Reader. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__SequenceNumber__t}{DDS\+\_\+\+Sequence\+Number\+\_\+t}} \mbox{\hyperlink{structDDS__SampleInfo_a81fffe4da7837199659ed3658bc4d937}{publication\+\_\+sequence\+\_\+number}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The publication sequence number. \end{DoxyCompactList}\item 
+DDS\+\_\+\+Encapsulation\+Id\+\_\+t \mbox{\hyperlink{structDDS__SampleInfo_a6610e6c24e8bfbdefa0ec5a07b47832b}{encapsulation\+\_\+id}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Information that accompanies each sample that is {\ttfamily read} or {\ttfamily taken}. 
+
+\hypertarget{structDDS__SampleInfo_Interpretation_SampleInfo}{}\doxysubsubsection{\texorpdfstring{Interpretation of the Sample\+Info}{Interpretation of the Sample\+Info}}\label{structDDS__SampleInfo_Interpretation_SampleInfo}
+The \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} contains information pertaining to the associated {\ttfamily Data} instance sample including\+: 
+
+
+\begin{DoxyItemize}
+\item the {\ttfamily sample\+\_\+state} of the {\ttfamily Data} value (i.\+e., if it has already been read or not)  
+
+
+\item the {\ttfamily view\+\_\+state} of the related instance (i.\+e., if the instance is new or not)  
+
+
+\item the {\ttfamily instance\+\_\+state} of the related instance (i.\+e., if the instance is alive or not)  
+
+
+\item the {\ttfamily valid\+\_\+data} flag. This flag indicates whether there is data associated with the sample. Some samples do not contain data indicating only a change on the {\ttfamily instance\+\_\+state} of the corresponding instance.  
+
+
+\item The {\ttfamily source\+\_\+timestamp} of the sample. This is the timestamp provided by the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} at the time the sample was produced.  
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSSampleStateModule_gadb6d36e7c796da27519b6bf7f8f187e5}{DDS\+\_\+\+Sample\+State\+Kind}, \doxylink{group__DDSInstanceStateModule_gaf2264cae1aa8cd66490debfdc5e0c360}{DDS\+\_\+\+Instance\+State\+Kind}, \doxylink{group__DDSViewStateModule_gab7a8a4ae44a2c00f411a4461135b45f1}{DDS\+\_\+\+View\+State\+Kind}, \doxylink{structDDS__SampleInfo_aa0c5177864ed1aeeb85544fee45904da}{DDS\+\_\+\+Sample\+Info\+::valid\+\_\+data} 
+\end{DoxySeeAlso}
+ 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__SampleInfo_adfe9c2c74b14f914e5b7da022b07cb86}\index{DDS\_SampleInfo@{DDS\_SampleInfo}!sample\_state@{sample\_state}}
+\index{sample\_state@{sample\_state}!DDS\_SampleInfo@{DDS\_SampleInfo}}
+\doxyparagraph{\texorpdfstring{sample\_state}{sample\_state}}
+{\footnotesize\ttfamily \label{structDDS__SampleInfo_adfe9c2c74b14f914e5b7da022b07cb86} 
+\mbox{\hyperlink{group__DDSSampleStateModule_gadb6d36e7c796da27519b6bf7f8f187e5}{DDS\+\_\+\+Sample\+State\+Kind}} DDS\+\_\+\+Sample\+Info\+::sample\+\_\+state}
+
+
+
+The sample state of the sample. 
+
+Indicates whether or not the corresponding data sample has already been read. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSSampleStateModule_gadb6d36e7c796da27519b6bf7f8f187e5}{DDS\+\_\+\+Sample\+State\+Kind} 
+\end{DoxySeeAlso}
+\Hypertarget{structDDS__SampleInfo_a99c0b7558c3ebcc94ee9d2b5b7129243}\index{DDS\_SampleInfo@{DDS\_SampleInfo}!view\_state@{view\_state}}
+\index{view\_state@{view\_state}!DDS\_SampleInfo@{DDS\_SampleInfo}}
+\doxyparagraph{\texorpdfstring{view\_state}{view\_state}}
+{\footnotesize\ttfamily \label{structDDS__SampleInfo_a99c0b7558c3ebcc94ee9d2b5b7129243} 
+\mbox{\hyperlink{group__DDSViewStateModule_gab7a8a4ae44a2c00f411a4461135b45f1}{DDS\+\_\+\+View\+State\+Kind}} DDS\+\_\+\+Sample\+Info\+::view\+\_\+state}
+
+
+
+The view state of the instance. 
+
+Indicates whether the \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} has already seen samples for the most-\/current generation of the related instance. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSViewStateModule_gab7a8a4ae44a2c00f411a4461135b45f1}{DDS\+\_\+\+View\+State\+Kind} 
+\end{DoxySeeAlso}
+\Hypertarget{structDDS__SampleInfo_af09b886ca0145a110b58440d455b7eae}\index{DDS\_SampleInfo@{DDS\_SampleInfo}!instance\_state@{instance\_state}}
+\index{instance\_state@{instance\_state}!DDS\_SampleInfo@{DDS\_SampleInfo}}
+\doxyparagraph{\texorpdfstring{instance\_state}{instance\_state}}
+{\footnotesize\ttfamily \label{structDDS__SampleInfo_af09b886ca0145a110b58440d455b7eae} 
+\mbox{\hyperlink{group__DDSInstanceStateModule_gaf2264cae1aa8cd66490debfdc5e0c360}{DDS\+\_\+\+Instance\+State\+Kind}} DDS\+\_\+\+Sample\+Info\+::instance\+\_\+state}
+
+
+
+The instance state of the instance. 
+
+Indicates whether the instance is currently in existence or, if it has been disposed, the reason why it was disposed. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSInstanceStateModule_gaf2264cae1aa8cd66490debfdc5e0c360}{DDS\+\_\+\+Instance\+State\+Kind} 
+\end{DoxySeeAlso}
+\Hypertarget{structDDS__SampleInfo_a38bca53647cd2be8c1dff9054126f360}\index{DDS\_SampleInfo@{DDS\_SampleInfo}!instance\_handle@{instance\_handle}}
+\index{instance\_handle@{instance\_handle}!DDS\_SampleInfo@{DDS\_SampleInfo}}
+\doxyparagraph{\texorpdfstring{instance\_handle}{instance\_handle}}
+{\footnotesize\ttfamily \label{structDDS__SampleInfo_a38bca53647cd2be8c1dff9054126f360} 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} DDS\+\_\+\+Sample\+Info\+::instance\+\_\+handle}
+
+
+
+Identifies locally the corresponding instance. 
+
+\Hypertarget{structDDS__SampleInfo_a596e409a28afd612c83f2b4964ac4e76}\index{DDS\_SampleInfo@{DDS\_SampleInfo}!publication\_handle@{publication\_handle}}
+\index{publication\_handle@{publication\_handle}!DDS\_SampleInfo@{DDS\_SampleInfo}}
+\doxyparagraph{\texorpdfstring{publication\_handle}{publication\_handle}}
+{\footnotesize\ttfamily \label{structDDS__SampleInfo_a596e409a28afd612c83f2b4964ac4e76} 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} DDS\+\_\+\+Sample\+Info\+::publication\+\_\+handle}
+
+
+
+Identifies locally the Data\+Writer that modified the instance. 
+
+\Hypertarget{structDDS__SampleInfo_aa0c5177864ed1aeeb85544fee45904da}\index{DDS\_SampleInfo@{DDS\_SampleInfo}!valid\_data@{valid\_data}}
+\index{valid\_data@{valid\_data}!DDS\_SampleInfo@{DDS\_SampleInfo}}
+\doxyparagraph{\texorpdfstring{valid\_data}{valid\_data}}
+{\footnotesize\ttfamily \label{structDDS__SampleInfo_aa0c5177864ed1aeeb85544fee45904da} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Sample\+Info\+::valid\+\_\+data}
+
+
+
+Indicates whether the {\ttfamily Data\+Sample} contains data or else it is only used to communicate a change in the {\ttfamily instance\+\_\+state} of the instance. 
+
+Normally each {\ttfamily Data\+Sample} contains both a \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} and some Data. However there are situations where a {\ttfamily Data\+Sample} contains only the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} and does not have any associated data. This occurs when the RTI Connext DDS Micro notifies the application of a change of state for an instance that was caused by some internal mechanism (such as a timeout) for which there is no associated data. An example of this situation is when the RTI Connext DDS Micro detects that an instance has no writers and changes the corresponding instance\+\_\+state to \doxylink{group__DDSInstanceStateModule_ggaf2264cae1aa8cd66490debfdc5e0c360a72ebdc6f53c9a7588458b48e3ea66507}{DDS\+\_\+\+NOT\+\_\+\+ALIVE\+\_\+\+NO\+\_\+\+WRITERS\+\_\+\+INSTANCE\+\_\+\+STATE}. 
+
+The application can distinguish whether a particular {\ttfamily Data\+Sample} has data by examining the value of the {\ttfamily valid\+\_\+data} flag. If this flag is set to \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}, then the {\ttfamily Data\+Sample} contains valid Data. If the flag is set to \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE}, the {\ttfamily Data\+Sample} contains no Data. 
+
+To ensure correctness and portability, the {\ttfamily valid\+\_\+data} flag must be examined by the application prior to accessing the Data associated with the {\ttfamily Data\+Sample} and if the flag is set to \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE}, the application should not access the Data associated with the {\ttfamily Data\+Sample}, that is, the application should access only the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}. \Hypertarget{structDDS__SampleInfo_a70566edcc3c48c0d7ee42962ffb81150}\index{DDS\_SampleInfo@{DDS\_SampleInfo}!source\_timestamp@{source\_timestamp}}
+\index{source\_timestamp@{source\_timestamp}!DDS\_SampleInfo@{DDS\_SampleInfo}}
+\doxyparagraph{\texorpdfstring{source\_timestamp}{source\_timestamp}}
+{\footnotesize\ttfamily \label{structDDS__SampleInfo_a70566edcc3c48c0d7ee42962ffb81150} 
+struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} DDS\+\_\+\+Sample\+Info\+::source\+\_\+timestamp}
+
+
+
+The timestamp when the sample was written by a Data\+Writer. 
+
+\Hypertarget{structDDS__SampleInfo_aae99d28717a46008a5bcb7d6319b771f}\index{DDS\_SampleInfo@{DDS\_SampleInfo}!reception\_timestamp@{reception\_timestamp}}
+\index{reception\_timestamp@{reception\_timestamp}!DDS\_SampleInfo@{DDS\_SampleInfo}}
+\doxyparagraph{\texorpdfstring{reception\_timestamp}{reception\_timestamp}}
+{\footnotesize\ttfamily \label{structDDS__SampleInfo_aae99d28717a46008a5bcb7d6319b771f} 
+struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} DDS\+\_\+\+Sample\+Info\+::reception\+\_\+timestamp}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The timestamp when the sample was committed by a Data\+Reader. 
+
+\Hypertarget{structDDS__SampleInfo_a81fffe4da7837199659ed3658bc4d937}\index{DDS\_SampleInfo@{DDS\_SampleInfo}!publication\_sequence\_number@{publication\_sequence\_number}}
+\index{publication\_sequence\_number@{publication\_sequence\_number}!DDS\_SampleInfo@{DDS\_SampleInfo}}
+\doxyparagraph{\texorpdfstring{publication\_sequence\_number}{publication\_sequence\_number}}
+{\footnotesize\ttfamily \label{structDDS__SampleInfo_a81fffe4da7837199659ed3658bc4d937} 
+struct \mbox{\hyperlink{structDDS__SequenceNumber__t}{DDS\+\_\+\+Sequence\+Number\+\_\+t}} DDS\+\_\+\+Sample\+Info\+::publication\+\_\+sequence\+\_\+number}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The publication sequence number. 
+
+\Hypertarget{structDDS__SampleInfo_a6610e6c24e8bfbdefa0ec5a07b47832b}\index{DDS\_SampleInfo@{DDS\_SampleInfo}!encapsulation\_id@{encapsulation\_id}}
+\index{encapsulation\_id@{encapsulation\_id}!DDS\_SampleInfo@{DDS\_SampleInfo}}
+\doxyparagraph{\texorpdfstring{encapsulation\_id}{encapsulation\_id}}
+{\footnotesize\ttfamily \label{structDDS__SampleInfo_a6610e6c24e8bfbdefa0ec5a07b47832b} 
+DDS\+\_\+\+Encapsulation\+Id\+\_\+t DDS\+\_\+\+Sample\+Info\+::encapsulation\+\_\+id}
+
+The transport encapsulation the sample was received as 

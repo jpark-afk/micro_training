@@ -1,0 +1,19 @@
+﻿OMG Specification Compliance
+============================
+
+.. include:: /release/severity_levels.txt
+
+:major:`[Major]` DDS_StatusCondition_set_enabled_statuses did not trigger if an active condition was enabled and had incorrect default value
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+In previous releases, if a StatusCondition enabled by a call to 
+``DDS_StatusCondition_set_enabled_statuses`` was already active,
+the StatusCondition did not trigger.
+
+The default enabled status list was incorrectly set to 
+DDS_STATUS_MASK_NONE, but is now set to DDS_STATUS_MASK_ALL until 
+the first successful call to 
+``DDS_StatusCondition_set_enabled_statuses``.
+
+[RTI Issue ID MICRO-3308]
+

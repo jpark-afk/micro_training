@@ -1,0 +1,94 @@
+\doxysubsection{DDS\+\_\+\+Data\+Reader\+Instance\+Replaced\+Status Struct Reference}
+\hypertarget{structDDS__DataReaderInstanceReplacedStatus}{}\label{structDDS__DataReaderInstanceReplacedStatus}\index{DDS\_DataReaderInstanceReplacedStatus@{DDS\_DataReaderInstanceReplacedStatus}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26faed26723fdb41d795e19992939b893de3}{DDS\+\_\+\+INSTANCE\+\_\+\+REPLACED\+\_\+\+STATUS}.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+subscription.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataReaderInstanceReplacedStatus_a11f5ac1a911f567603b749064f6b83a3}{total\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em The total number of instances that have been replaced during the life-\/span of the \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataReaderInstanceReplacedStatus_a31e557d80456cd15e938eab4a61a2367}{total\+\_\+count\+\_\+change}}
+\begin{DoxyCompactList}\small\item\em The incremental number of instances replaced since the last time the listener was called or the status was read. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{structDDS__DataReaderInstanceReplacedStatus_a3d4fbf26159113a33130d2c5c47295f4}{last\+\_\+instance\+\_\+handle}}
+\begin{DoxyCompactList}\small\item\em The instance that is being replaced. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{structDDS__DataReaderInstanceReplacedStatus_ae4e7f438036c70d6b45f9caaf1f904bf}{last\+\_\+replacement\+\_\+instance}}
+\begin{DoxyCompactList}\small\item\em Handle to the instance which last replaced an instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{structDDS__DataReaderInstanceReplacedStatus_adf20ba9e985212334239efd824da532a}{publication\+\_\+handle}}
+\begin{DoxyCompactList}\small\item\em Handle to the publisher which last replaced an instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataReaderInstanceReplacedStatus_a269fcaac4de51f703028d75b750f5295}{lost\+\_\+samples}}
+\begin{DoxyCompactList}\small\item\em The number of samples which where lost due to the instance being replaced. Note that this number is an approximation because the middleware does not keep track of how many samples were removed prior to the instance being replaced (or the state of the samples being replaced). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26faed26723fdb41d795e19992939b893de3}{DDS\+\_\+\+INSTANCE\+\_\+\+REPLACED\+\_\+\+STATUS}. 
+
+A status structure describing the current instance replacement status for the reader. 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__DataReaderInstanceReplacedStatus_a11f5ac1a911f567603b749064f6b83a3}\index{DDS\_DataReaderInstanceReplacedStatus@{DDS\_DataReaderInstanceReplacedStatus}!total\_count@{total\_count}}
+\index{total\_count@{total\_count}!DDS\_DataReaderInstanceReplacedStatus@{DDS\_DataReaderInstanceReplacedStatus}}
+\doxyparagraph{\texorpdfstring{total\_count}{total\_count}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderInstanceReplacedStatus_a11f5ac1a911f567603b749064f6b83a3} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Reader\+Instance\+Replaced\+Status\+::total\+\_\+count}
+
+
+
+The total number of instances that have been replaced during the life-\/span of the \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. 
+
+\Hypertarget{structDDS__DataReaderInstanceReplacedStatus_a31e557d80456cd15e938eab4a61a2367}\index{DDS\_DataReaderInstanceReplacedStatus@{DDS\_DataReaderInstanceReplacedStatus}!total\_count\_change@{total\_count\_change}}
+\index{total\_count\_change@{total\_count\_change}!DDS\_DataReaderInstanceReplacedStatus@{DDS\_DataReaderInstanceReplacedStatus}}
+\doxyparagraph{\texorpdfstring{total\_count\_change}{total\_count\_change}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderInstanceReplacedStatus_a31e557d80456cd15e938eab4a61a2367} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Reader\+Instance\+Replaced\+Status\+::total\+\_\+count\+\_\+change}
+
+
+
+The incremental number of instances replaced since the last time the listener was called or the status was read. 
+
+\Hypertarget{structDDS__DataReaderInstanceReplacedStatus_a3d4fbf26159113a33130d2c5c47295f4}\index{DDS\_DataReaderInstanceReplacedStatus@{DDS\_DataReaderInstanceReplacedStatus}!last\_instance\_handle@{last\_instance\_handle}}
+\index{last\_instance\_handle@{last\_instance\_handle}!DDS\_DataReaderInstanceReplacedStatus@{DDS\_DataReaderInstanceReplacedStatus}}
+\doxyparagraph{\texorpdfstring{last\_instance\_handle}{last\_instance\_handle}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderInstanceReplacedStatus_a3d4fbf26159113a33130d2c5c47295f4} 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} DDS\+\_\+\+Data\+Reader\+Instance\+Replaced\+Status\+::last\+\_\+instance\+\_\+handle}
+
+
+
+The instance that is being replaced. 
+
+\Hypertarget{structDDS__DataReaderInstanceReplacedStatus_ae4e7f438036c70d6b45f9caaf1f904bf}\index{DDS\_DataReaderInstanceReplacedStatus@{DDS\_DataReaderInstanceReplacedStatus}!last\_replacement\_instance@{last\_replacement\_instance}}
+\index{last\_replacement\_instance@{last\_replacement\_instance}!DDS\_DataReaderInstanceReplacedStatus@{DDS\_DataReaderInstanceReplacedStatus}}
+\doxyparagraph{\texorpdfstring{last\_replacement\_instance}{last\_replacement\_instance}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderInstanceReplacedStatus_ae4e7f438036c70d6b45f9caaf1f904bf} 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} DDS\+\_\+\+Data\+Reader\+Instance\+Replaced\+Status\+::last\+\_\+replacement\+\_\+instance}
+
+
+
+Handle to the instance which last replaced an instance. 
+
+\Hypertarget{structDDS__DataReaderInstanceReplacedStatus_adf20ba9e985212334239efd824da532a}\index{DDS\_DataReaderInstanceReplacedStatus@{DDS\_DataReaderInstanceReplacedStatus}!publication\_handle@{publication\_handle}}
+\index{publication\_handle@{publication\_handle}!DDS\_DataReaderInstanceReplacedStatus@{DDS\_DataReaderInstanceReplacedStatus}}
+\doxyparagraph{\texorpdfstring{publication\_handle}{publication\_handle}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderInstanceReplacedStatus_adf20ba9e985212334239efd824da532a} 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} DDS\+\_\+\+Data\+Reader\+Instance\+Replaced\+Status\+::publication\+\_\+handle}
+
+
+
+Handle to the publisher which last replaced an instance. 
+
+\Hypertarget{structDDS__DataReaderInstanceReplacedStatus_a269fcaac4de51f703028d75b750f5295}\index{DDS\_DataReaderInstanceReplacedStatus@{DDS\_DataReaderInstanceReplacedStatus}!lost\_samples@{lost\_samples}}
+\index{lost\_samples@{lost\_samples}!DDS\_DataReaderInstanceReplacedStatus@{DDS\_DataReaderInstanceReplacedStatus}}
+\doxyparagraph{\texorpdfstring{lost\_samples}{lost\_samples}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderInstanceReplacedStatus_a269fcaac4de51f703028d75b750f5295} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Reader\+Instance\+Replaced\+Status\+::lost\+\_\+samples}
+
+
+
+The number of samples which where lost due to the instance being replaced. Note that this number is an approximation because the middleware does not keep track of how many samples were removed prior to the instance being replaced (or the state of the samples being replaced). 
+

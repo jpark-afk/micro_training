@@ -1,0 +1,15 @@
+Hangs
+=====
+
+.. Release Notes from this point.
+
+:critical:`[Critical]` Application may have frozen during discovery of a remote participant
+-------------------------------------------------------------------------------------------
+An application may have frozen during discovery of a remote participant when the
+built-in participant announcement *DataWriter* used asynchronous publishing.
+This was due to a race condition caused by the flow controller. Now, the
+built-in participant announcement *DataWriter* will only use synchronous
+publishing.
+
+[RTI Issue ID MICRO-8901]
+

@@ -1,0 +1,145 @@
+.. _whats-new-420:
+
+What's New in 4.2.0
+===================
+
+|rti_me| 4.2.0 is a feature release. See the 
+`Connext Releases <https://www.rti.com/products/connext-releases>`_ 
+page on the RTI website for more information on RTI's software release model.
+
+The following features are new since |me| 4.1.0.
+
+.. MICRO-9026
+
+Reduced core library size
+-------------------------
+
+This release separates the Extensible Types (XTypes) module from the
+core library, ``rti_me``, into a separate library, ``rti_me_ddsxtypes``. This
+change reduces the size of ``rti_me``. The XTypes module is now
+optional and can be omitted if your application does not use its functionality.
+
+Refer to the `Migration Guide <https://community.rti.com/static/documentation/connext-micro/current/doc/mg/html/index.html>`__
+(if you have internet access) for more information on how this change affects
+existing |me| applications.
+
+.. MICRO-10732
+
+Secure RTPS communication with the Lightweight Security Plugin
+--------------------------------------------------------------
+
+This release introduces the *Lightweight Security Plugin* for |me|, a module
+that enables you to secure your application's RTPS messages with pre-shared key
+(PSK) encryption. The *Lightweight Security Plugin* includes a Platform
+Independent Library (PIL) and a Transform Platform Support Library (PSL) for
+interfacing with `OpenSSL 3.5 <https://github.com/openssl/openssl/tree/openssl-3.5.0>`__.
+
+For more information on this feature, refer to the :ref:`section-psk` section.
+
+.. MICRO-10733
+
+Optimize network bandwidth usage with content filtering
+-------------------------------------------------------
+
+.. attention::
+
+  This is an experimental feature in |me| 4.2.0. It is not guaranteed to be
+  consistent or supported and should not be used in production.
+
+  Refer to :ref:`section-experimental-features` for more information.
+
+This release introduces content filtering to |me|, enabling *DataReaders*
+to filter incoming sample data. This can reduce the network bandwidth usage in
+your application, since matching *DataWriters* can be configured to only send
+samples that pass the *DataReader*'s filter.
+
+For more information on this feature, consult the
+:ref:`section-content-filtering` section.
+
+.. MICRO-9108
+
+Improve system robustness with DomainParticipant rediscovery
+------------------------------------------------------------
+
+This release adds the ability for a *DomainParticipant* with its
+``DomainParticipantQos.participant_name.name`` set to a non-empty value to be
+rediscovered if it is restarted before its ``lease_duration`` expires. You can
+enable this feature by setting the
+``DomainParticipantQos.discovery.enable_participant_discovery_by_name`` property
+to ``DDS_BOOLEAN_TRUE``.
+
+For more information on this feature, refer to the
+:ref:`section-domainparticipant-rediscovery` section.
+
+.. MAG-185
+
+Develop secure applications in XML with MAG
+-------------------------------------------
+
+This release allows you to enable and configure the *Lightweight Security
+Plugin* while defining an application in XML format. Micro Application Generator
+(MAG) will then create the necessary code for |me|.
+
+For more details, refer to the :ref:`section-appgen-psk` section of
+:ref:`section-appgen`. 
+
+.. MAG-186
+
+Develop applications with content filtering in XML with MAG
+-----------------------------------------------------------
+
+This release allows you to enable and configure content filtering while defining
+an application in XML format. Micro Application Generator (MAG) will then create
+the necessary code for |me|.
+
+For more details, refer to the :ref:`section-appgen-content-filtering` section
+of :ref:`section-appgen`.
+
+.. MAG-193
+
+Enable DomainParticipant rediscovery in XML with MAG
+----------------------------------------------------
+
+This release allows you to enable *DomainParticipant* rediscovery while defining
+an application in XML format. Micro Application Generator (MAG) will then create
+the necessary code for |me|.
+
+For more information on this feature, see
+:ref:`section-domainparticipant-rediscovery`. You can enable *DomainParticipant*
+rediscovery via the ``enable_participant_discovery_by_name`` field in the
+:link_connextmicro_dds_api_c_up_one:`PROPERTY <structDDS__PropertyQosPolicy.html>`
+QoS policy, as described in :ref:`section-appgen-discovery-config`.
+
+.. MAG-199
+
+Enable endpoint discovery message queueing in XML with MAG
+----------------------------------------------------------
+
+This release allows you to enable endpoint discovery message queueing while
+defining an application in XML format. Micro Application Generator (MAG) will
+then create the necessary code for |me|.
+
+This feature is included as a fix for a potential discovery issue; see
+:ref:`MICRO-10044` for more information. You can enable discovery message
+queueing via the ``enable_endpoint_discovery_queue`` field in the
+:link_connextmicro_dds_api_c_up_one:`PROPERTY <structDDS__PropertyQosPolicy.html>`
+QoS policy, as described in :ref:`section-appgen-discovery-config`.
+
+.. THIRDPARTY-323
+
+Third-party and open source software changes
+--------------------------------------------
+
+This release adds the following open source software as part of the
+:ref:`Lightweight Security Plugin <section-psk>`:
+
+.. list-table:: Open Source Software Additions
+    :widths: 50 50
+    :header-rows: 1
+
+    * - Software
+      - Version
+    * - OpenSSL
+      - 3.5.0
+
+For more information, see the :ref:`section-3rd-party` section.

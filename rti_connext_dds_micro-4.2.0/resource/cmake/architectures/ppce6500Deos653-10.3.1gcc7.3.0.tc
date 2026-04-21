@@ -1,0 +1,128 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2020
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+set(CMAKE_SYSTEM_NAME Generic)
+INCLUDE(CMakeForceCompiler)
+
+SET(TARGET_SUPPORTS_SHARED_LIBS TRUE)
+
+# Default install paths
+IF(NOT DEFINED RTIME_DDCI_ROOT)
+    IF(DEFINED ENV{DESKHOME})
+        STRING(REPLACE "\\" "/" DESKHOME $ENV{DESKHOME})
+        SET(RTIME_DDCI_ROOT "${DESKHOME}/..")
+    ELSE()
+        MESSAGE(FATAL_ERROR "Deos 653 must either be built from inside the DESK environment or RTIME_DDCI_ROOT specified")
+    ENDIF()
+ENDIF()
+SET(DDCI_COMPILER_PATH "${RTIME_DDCI_ROOT}/usr/local/cross-compilers/gcc-7.3.0/bin")
+SET(DDCI_COMPILER_PREFIX "powerpc-motorola-elf")
+
+IF(UNIX)
+    SET(DDCI_COMPILER_SUFFIX "")
+ELSE()
+    SET(DDCI_COMPILER_SUFFIX ".exe")
+ENDIF()
+
+FOREACH(language C CXX)
+    SET(CMAKE_${language}_COMPILER_WORKS 1)
+    SET(CMAKE_${language}_ABI_COMPILED 1)
+ENDFOREACH()
+
+INCLUDE_DIRECTORIES(${RTIME_DDCI_ROOT}/desk/ppc/include)
+INCLUDE_DIRECTORIES(${RTIME_DDCI_ROOT}/desk/include)
+
+# From DDC-I GCC User Guide, 2.3.1
+# To help ensure potentially unverified header files are excluded from a Deos™ 
+# application, use these compile switches: -nostdinc -nostdinc++ -nostdlib 
+# -fno-builtin -fno-exceptions -fno-rtti
+#
+# -fno-threadsafe-statics is not supported on C
+# -fno-use-cxa-atexit is not supported on C++
+
+set(CMAKE_C_FLAGS "-MP -MMD -gdwarf-2 -fno-builtin -nostdinc -nostdlib -G0 -O3 -fno-inline -fstrict-aliasing -Wmissing-declarations -Wall -Wextra -Wpedantic -Wshadow -Wcast-align -Wunused -Wconversion -Wsign-conversion -fno-ipa-cp -fno-ipa-sra -fno-toplevel-reorder")
+set(CMAKE_C_FLAGS_RELEASE "-DNDEBUG")
+set(CMAKE_C_FLAGS_DEBUG "-g")
+
+set(CMAKE_CXX_FLAGS "-MP -MMD -fno-builtin -nostdinc++  -G0 -O3 -fno-inline -fno-exceptions -gdwarf-2 -nostdlib -fno-threadsafe-statics -fno-use-cxa-atexit -Winit-self -fstrict-aliasing -Wmissing-declarations -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor  -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wlogical-op -Wdouble-promotion -fno-rtti -fno-ipa-cp -fno-ipa-sra -fno-toplevel-reorder")
+set(CMAKE_CXX_FLAGS_RELEASE "-DNDEBUG")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+
+ADD_DEFINITIONS(-DDIAGNOSTIC)
+ADD_DEFINITIONS(-DDEOS653P1)
+ADD_DEFINITIONS(-DRTI_ARINC653=1)
+ADD_DEFINITIONS(-DRTI_DEOS)
+
+SET(CMAKE_AR "${DDCI_COMPILER_PATH}/${DDCI_COMPILER_PREFIX}-ar${DDCI_COMPILER_SUFFIX}")
+
+SET(LINKER_PATH "/desk/bin/link_deos")
+SET(LINKER_FULL_PATH "${RTIME_DDCI_ROOT}/desk/bin/link_deos")
+
+IF(EXISTS "${LINKER_PATH}")
+    SET(CMAKE_LINKER "${LINKER_PATH}")
+ELSE()
+    SET(CMAKE_LINKER "${LINKER_FULL_PATH}")
+ENDIF()
+
+SET(CMAKE_SHARED_LINKER_FLAGS "--show-command --no-deos-lib -shared -L/desk/ppc/appbin -l kernel -l ansi -l deos653p1 -l deos653pal -l gcc-so")
+SET(CMAKE_INSTALL_RPATH "")
+
+FOREACH(language C CXX)
+    SET(CMAKE_${language}_COMPILER "${DDCI_COMPILER_PATH}/${DDCI_COMPILER_PREFIX}-gcc${DDCI_COMPILER_SUFFIX}")
+    SET(CMAKE_${language}_COMPILE_OBJECT "<CMAKE_${language}_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -o <OBJECT> -c <SOURCE>")
+    # This command has been commented out because it causes an error like this:
+    # C:/DDC-I/desk/../usr/local/cross-compilers/gcc-7.3.0/bin/powerpc-motorola-elf-ar
+    # : creating lib/librti_me_rhsmz.a
+    # C:/DDC-I/desk/../usr/local/cross-compilers/gcc-7.3.0/bin/powerpc-motorola-elf-ar
+    # : CMakeFiles/rti_me_rhsmz.dir/rh_sm.1.0/srcC/history/ReaderHistory.c.obj
+    # CMakeFiles/rti_me_rhsmz.dir/rh_sm.1.0/srcC/history/ReaderVersion.c.obj : No such file or directory
+    # gmake.exe[2]: *** [CMakeFiles/rti_me_rhsmz.dir/build.make:99: lib/librti_me_rhsmz.a] Error 1
+    # The issue seems to be related to building the archive directly from
+    # files instead of from a file with a list of files.
+    # It works correctly without this command (on Windows)
+    # On Unix we need this command.
+    IF(UNIX)
+        SET(CMAKE_${language}_CREATE_STATIC_LIBRARY "${CMAKE_AR} -r <TARGET> <OBJECTS>")
+    ENDIF()
+    SET(CMAKE_${language}_CREATE_SHARED_LIBRARY "${CMAKE_LINKER} ${DDCI_COMPILER_PATH}/.. ppc so -Map <TARGET>.map <LINK_FLAGS> -o <TARGET> <OBJECTS> <LINK_LIBRARIES> ")
+    SET(CMAKE_${language}_CREATE_PREPROCESSED_SOURCE "<CMAKE_C_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -C -E <SOURCE> > <PREPROCESSED_SOURCE>" CACHE INTERNAL "CMAKE_C_CREATE_PREPROCESSED_SOURCE" FORCE)    
+ENDFOREACH()
+
+SET(RTIME_OBJDUMP_OPT --disassemble-all)
+SET(RTIME_OBJDUMPCHKSUM ${DDCI_COMPILER_PATH}/${DDCI_COMPILER_PREFIX}-objdump${DDCI_COMPILER_SUFFIX})
+SET(RTIME_OBJDUMP ${DDCI_COMPILER_PATH}/${DDCI_COMPILER_PREFIX}-objdump${DDCI_COMPILER_SUFFIX})
+SET(RTIME_AR ${DDCI_COMPILER_PATH}/${DDCI_COMPILER_PREFIX}-ar${DDCI_COMPILER_SUFFIX})
+SET(RTIME_OBJDUMPCHKSUM_OPT --section=.text --section=.data --section=.rodata --disassemble-all)
+SET(RTIME_OBJ_SUFFIX obj)
+SET(RTIME_AR_EXRACT -x)
+
+SET(RTI_DEOS TRUE)
+SET(RTI_ENDIAN_BIG TRUE)
+SET(RTIME_NO_SHARED_LIB FALSE)
+SET(RTIME_EXCLUDE_STATIC_LIB_COPY TRUE)
+SET(RTIME_INCLUDE_ARINC TRUE)
+
+# UDP is not currently supported on Deos 653
+SET(RTIME_UDP_EXCLUDE_BUILTIN TRUE)
+
+SET(_RTIME_OSAPI_PLATFORM "arinc653:deos653")
+
+SET(RTIME_OUTPUT_LIBDIR_PREFIX ppc/appbin)
+SET(RTIME_HAS_DLL_MANIFEST_INPUT 
+   ${RTIME_RESOURCE_ROOT}/cmake/architectures/Platform/Deos653/rti_dll_manifest.cd.xml)
+   
+# This path is relative to the target's output directory
+SET(RTIME_HAS_DLL_MANIFEST_OUTPUT etc/PRODUCT-LIBRARY.cd.xml)
+
+SET(RTIME_HAS_DLL_MANIFEST_DEPEND_PATTERN "<depend>PRODUCT-LIBRARY</depend>")
+SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+SET(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)

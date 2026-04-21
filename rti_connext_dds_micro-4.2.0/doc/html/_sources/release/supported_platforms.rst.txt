@@ -1,0 +1,188 @@
+.. _rl_supported:
+
+Supported Platforms and Programming Languages
+=============================================
+
+|me| supports the C and traditional C++ language bindings.
+
+Note that RTI only tests on a subset of the possible combinations of OSs and 
+CPUs. Please refer to the following table for a list of specific platforms 
+and the specific configurations that are tested by RTI.
+
+For more information on the library types (PIL, PSL, and integrated) that RTI provides, 
+refer to :ref:`section-libraries`.
+
+.. tabs::
+
+    .. group-tab:: PIL
+
+        RTI provides PILs for the platforms listed below. Architecture 
+        abbreviations utilize the following format:
+        
+        .. code-block:: none
+
+          {cpu}{compiler}{profile}
+
+        - ``{cpu}``: the CPU that the library was compiled for.
+        - ``{compiler}``: the compiler used to build the library.
+        - ``{profile}``: CERT if the library was built to be Cert-compatible; 
+          otherwise empty.
+
+        .. list-table:: Supported Platforms (PIL)
+            :widths: 25 15 20 40
+            :header-rows: 1
+            :class: longtable
+
+            * - OS
+              - CPU
+              - Compiler
+              - RTI Architecture Abbreviations
+            * - Windows® 10
+              - x64
+              - VS 2017
+              - x86_64lePEvs2017
+
+                x86_64lePEvs2017CERT
+            * - macOS® 14
+              - x64
+              - clang 15.0
+              - x86_64leMachOclang15.0
+
+                x86_64leMachOclang15.0CERT
+            * - macOS® 14
+              - arm64
+              - clang 15.0
+              - armv8leMachOclang15.0
+
+                armv8leMachOclang15.0CERT
+            * - Ubuntu® 22.04 LTS
+              - x64
+              - gcc 12.3.0
+              - x86_64leElfgcc12.3.0
+
+                x86_64leElfgcc12.3.0CERT
+            * - Ubuntu® 18.04 LTS
+              - ARMv8 (64-bit)
+              - gcc 7.3.0
+              - armv8leElfgcc7.3.0
+
+                armv8leElfgcc7.3.0CERT
+            * - Yocto 5.15.96
+              - ARMv8-A (64-bit) 
+              - gcc 11.3.1
+              - armv8aleElfgcc11.3.1
+
+                armv8aleElfgcc11.3.1CERT
+            * - QNX® 7.1
+              - ARMv8 (64-bit)
+              - qcc_gpp8.3.0
+              - armv8leElfqnx_qcc8.3.0
+
+                armv8leElfqnx_qcc8.3.0CERT
+            * - QOS 2.2.1 (QNX OS for Safety)
+              - ARMv8 (64-bit)
+              - qcc_gpp8.3.0
+              - armv8leElfqcc8.3.0
+              
+                armv8leElfqcc8.3.0CERT
+            * - FreeRTOS® 10.0.0
+              - Armv7E-M
+              - gcc 10.3.1
+              - armv7emleElfgcc10.3.1
+
+                armv7emleElfgcc10.3.1CERT
+
+    .. group-tab:: PSL
+
+        RTI provides PSLs for the platforms listed below. Architecture 
+        abbreviations utilize the following format:
+
+        .. code-block:: none
+
+          {cpu}{compiler}{profile}-{OS}
+
+        - ``{cpu}``: the CPU that the library was compiled for.
+        - ``{compiler}``: the compiler used to build the library.
+        - ``{profile}``: CERT if the library was built to be Cert-compatible;
+          otherwise empty.
+        - ``{OS}``: The operating system that the PSL was compiled for.
+
+        .. list-table:: Supported Platforms (PSL)
+            :widths: 25 15 20 40
+            :header-rows: 1
+            :class: longtable
+
+            * - OS
+              - CPU
+              - Compiler
+              - RTI Architecture Abbreviations
+            * - Windows® 10
+              - x64
+              - VS 2017
+              - x86_64lePEvs2017-Win10
+
+                x86_64lePEvs2017CERT-Win10
+            * - macOS® 14
+              - x64
+              - clang 15.0
+              - x86_64leMachOclang15.0-Darwin23
+
+                x86_64leMachOclang15.0CERT-Darwin23 
+            * - macOS® 14
+              - arm64
+              - clang 15.0
+              - armv8leMachOclang15.0-Darwin23
+
+                armv8leMachOclang15.0CERT-Darwin23 
+            * - Ubuntu® 22.04 LTS
+              - x64
+              - gcc 12.3.0
+              - x86_64leElfgcc12.3.0-Linux5
+
+                x86_64leElfgcc12.3.0CERT-Linux5
+            * - Ubuntu® 18.04 LTS
+              - ARMv8 (64-bit)
+              - gcc 7.3.0
+              - armv8leElfgcc7.3.0-Linux4
+
+                armv8leElfgcc7.3.0CERT-Linux4
+            * - Yocto 5.15.96
+              - ARMv8-A (64-bit)
+              - gcc 11.3.1
+              - armv8aleElfgcc11.3.1-Linux5
+
+                armv8aleElfgcc11.3.1CERT-Linux5
+            * - QNX® 7.1
+              - ARMv8 (64-bit)
+              - qcc_gpp8.3.0
+              - armv8leElfqnx_qcc8.3.0-QNX7.1
+
+                armv8leElfqnx_qcc8.3.0CERT-QNX7.1
+            * - QOS 2.2.1 (QNX OS for Safety)
+              - ARMv8 (64-bit)
+              - qcc_gpp8.3.0
+              - armv8leElfqcc8.3.0-QOS2.2.1
+              
+                armv8leElfqcc8.3.0CERT-QOS2.2.1
+            * - FreeRTOS® 10.0.0
+              - Armv7E-M
+              - gcc 10.3.1
+              - armv7emleElfgcc10.3.1-FreeRTOS10.0
+
+                armv7emleElfgcc10.3.1CERT-FreeRTOS10.0
+
+    .. group-tab:: Integrated
+
+        RTI does not provide integrated libraries for this release. 
+
+.. Architecture abbreviations utilize the following format:
+
+  .. code-block:: none
+
+    {cpu}{OS}{compiler}{profile}
+
+  - ``{cpu}``: the CPU that the library was compiled for.
+  - ``{compiler}``: the compiler used to build the library.
+  - ``{profile}``: CERT if the library was built to be Cert-compatible; 
+    otherwise empty.
+  - ``{OS}``: The operating system that the PSL was compiled for.

@@ -1,0 +1,22 @@
+Discovery
+=========
+
+.. Release Notes from this point.
+
+:major:`[Major]` Participants did not perform discovery correctly when on_data_on_readers callback was set
+----------------------------------------------------------------------------------------------------------
+When the ``on_data_on_readers`` callback was enabled on participants,
+the participants would not perform discovery correctly.
+
+[RTI Issue ID MICRO-7412]
+
+:minor:`[Minor]` Incorrect data fragmentation of discovery messages for DomainParticipant built-in topic 
+--------------------------------------------------------------------------------------------------------
+|me| incorrectly fragmented *DomainParticipant* discovery messages if the 
+Maximum Transmission Unit (MTU) was set to a value lower than the 
+*DomainParticipant* built-in data. Fragmentation of the *DomainParticipant* 
+built-in topic is not supported. The system now ensures that the creation of 
+a *DomainParticipant* will fail if the minimum MTU across all transports used 
+for discovery is less than the size of the *DomainParticipant* discovery message.
+
+[RTI Issue ID MICRO-7545]

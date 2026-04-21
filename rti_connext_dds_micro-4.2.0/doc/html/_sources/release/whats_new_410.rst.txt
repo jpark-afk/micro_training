@@ -1,0 +1,205 @@
+.. _whats-new-410:
+
+What's New in 4.1.0
+===================
+
+|rti_me| 4.1.0 is a feature release. See the 
+`Connext Releases <https://www.rti.com/products/connext-releases>`_ 
+page on the RTI website for more information on RTI's software release model.
+
+The following features are new since |me| 4.0.1.
+
+.. MICRO-6198 and MICRO-7383:
+
+Platform-independent code is now separate from OS and network stack integration
+-------------------------------------------------------------------------------
+
+This release includes precompiled |me| binaries in two formats:
+
+- Platform Independent Libraries (PIL): binaries that support the basic 
+  features of |me|.
+- Platform Support Libraries (PSL): binaries that support OS and network stack 
+  integration.
+
+This split allows for different platform-specific PSLs to be written for the 
+same PIL without needing to recompile the |me| code. Previous releases of |me| 
+were delivered as integrated libraries with the OS and network stack 
+code included, which could not be changed without recompiling the entire library.
+See the :ref:`section-libraries` section for more information on this change.
+
+Since these split libraries are provided precompiled, |me| can be used 
+out-of-the-box without building the source code first; see 
+:ref:`section-getting-started` and :ref:`section-developing-applications`. 
+However, RTI also provides the source code for the PSL with supported 
+architectures. Refer to :ref:`psl_compiling` for instructions on how to build 
+your own PSL from source.
+
+.. warning::
+
+    Split libraries **do not** automatically register the 
+    UDP transport. This is because |me| makes no assumptions
+    about which transports are available when using split libraries. 
+    In order to use the UDP transport included in the PSL, add the
+    following code before creating a *DomainParticipant*:
+
+    .. code-block:: c 
+
+      /* Register the UDP transport */
+      struct UDP_InterfaceFactoryProperty *udp_property;
+
+      /* allocate and set udp_property */
+
+      RT_Registry_register(registry,NETIO_DEFAULT_UDP_NAME,
+               UDP_InterfaceFactory_get_interface(),
+               (struct RT_ComponentFactoryProperty*)udp_property,NULL),
+
+      DDS_StringSeq_set_maximum(&participant_qos.transports.enabled_transports,1);
+      DDS_StringSeq_set_length(&participant_qos.transports.enabled_transports,1);
+      *DDS_StringSeq_get_reference(&participant_qos.transports.enabled_transports,0) = DDS_String_dup("_udp");
+
+      DDS_StringSeq_set_maximum(&participant_qos.discovery.enabled_transports,1);
+      DDS_StringSeq_set_length(&participant_qos.discovery.enabled_transports,1);
+      *DDS_StringSeq_get_reference(&participant_qos.discovery.enabled_transports,0) = DDS_String_dup("_udp://");
+
+      DDS_StringSeq_set_maximum(&participant_qos.user_traffic.enabled_transports,1);
+      DDS_StringSeq_set_length(&participant_qos.user_traffic.enabled_transports,1);
+      *DDS_StringSeq_get_reference(&participant_qos.user_traffic.enabled_transports,0)
+      = DDS_String_dup("_udp://");
+
+.. MICRO-6200:
+
+Transfer large data samples quickly with Zero Copy v2
+-----------------------------------------------------
+
+This release adds a new transport, Zero Copy v2, which can perform Zero Copy
+data transfer. Zero Copy transfer allows you to move large data samples without
+copying them, which increases throughput and reduces latency.
+
+You can now set up Zero Copy transfer to use either the Shared Memory Transport
+(which was available in previous versions of |me|) or the new Zero Copy v2 
+transport. The main difference between the two transports is that the Shared
+Memory Transport is interoperable with |core_pro| and the Zero Copy v2 transport
+is interoperable with select versions of |me_cert|.
+
+For more details, refer to :ref:`section-zero-copy-transfer` and 
+:ref:`section-zero-copy-v2-transport`.
+
+.. MAG-173:
+
+Enable and configure Zero Copy transfer with MAG
+------------------------------------------------
+
+This release allows you to enable and configure the 
+:ref:`section-zero-copy-v2-transport` while 
+defining an application in XML format. Micro Application Generator (MAG) will 
+then create the necessary code to enable and configure the Zero Copy transport 
+in |me|.
+
+For details on how to enable Zero Copy v2 with MAG, refer to :ref:`section-command-line-options`
+and :ref:`section-transport-and-discovery-configuration`.
+ 
+.. _MICRO-6201:
+
+Enhance data reliability by detecting and discarding corrupted RTPS messages
+----------------------------------------------------------------------------
+This release adds support for detecting and discarding corrupted RTPS messages.
+This improves data reliability and provides basic security by ensuring 
+that the data has not been modified in transit.
+
+A Cyclic Redundancy Check (CRC) is computed over the DDS RTPS message 
+(including the RTPS Header), which is sent as a new RTPS submessage. The 
+subscribing application can detect this new submessage and validate the 
+contained CRC. Optionally, when a corrupted RTPS message is detected, the 
+message can be dropped.
+
+To enable the use of CRC in a *DomainParticipant*, there are three new fields 
+in the :link_connextmicro_dds_api_c_up_one:`WireProtocolQoSPolicy <structDDS__WireProtocolQosPolicy.html>`: 
+
+* ``compute_crc``: when enabled at the sending application, sends the CRC.
+* ``check_crc``: when enabled, drops corrupted messages.
+* ``require_crc``: when enabled, ignores participants with ``compute_crc`` set to false.
+
+Refer to :ref:`msgintegrity` for details.
+
+.. MAG-113:
+
+Develop more reliable applications with MAG
+-------------------------------------------
+This release adds support to Micro Application Generator (MAG) for the
+Cyclic Redundancy Check feature (see :ref:`MICRO-6201`). This allows 
+you to develop applications with MAG that have improved data reliability 
+and basic security.
+
+MAG now supports the following fields in the 
+:link_connextmicro_dds_api_c_up_one:`WireProtocolQosPolicy <structDDS__WireProtocolQosPolicy.html>`: 
+
+* ``compute_crc``
+* ``check_crc``
+* ``require_crc``
+* ``computed_crc_kind`` 
+* ``allowed_crc_mask``
+
+Refer to :ref:`msgintegrity` for details.
+
+.. MAG-179:
+
+Guarantee compatibility with |core_pro_h| with MAG when using the Shared Memory Transport
+-----------------------------------------------------------------------------------------
+This release adds support to Micro Application Generator (MAG) for the 
+``dds.transport.minimum_compatibility_version`` property, which you can set 
+via the :link_connextmicro_dds_api_c_up_one:`PROPERTY <group__DDSPropertyQosModule.html>` 
+QoS policy for the *DomainParticipant*.
+
+``dds.transport.minimum_compatibility_version`` changes the value of the new 
+field :link_connextmicro_dds_api_c_up_one:`pro_minimum_compatibility_version <structNETIO__SHMEMInterfaceFactoryProperty.html>` 
+that has been added to the shared memory interface factory property. This 
+property sets the minimum version of |core_pro| to be compatible with when 
+using shared memory.
+
+The default value for this field is ``DDS_PRODUCTVERSION_UNKNOWN``.
+
+Refer to :ref:`section-shmem-configuration` for details.
+
+.. _MICRO-5852:
+
+Improve control of data distribution to multicast addresses with new UDP transport options
+------------------------------------------------------------------------------------------
+This release adds the following new options to the UDP transport to further
+control how |me| sends data to multicast addresses:
+
+- :link_connextmicro_dds_api_c_up_one:`disable_multicast_bind <structUDP__InterfaceFactoryProperty.html>`: controls
+  whether |me| will bind to a multicast address receive address (if set to 0)
+  or bind to ANY multicast address (if set to 1).
+
+- :link_connextmicro_dds_api_c_up_one:`multicast_loopback_disable <structUDP__InterfaceFactoryProperty.html>`: controls
+  whether |me| puts multicast packets onto the loopback interface.
+
+- :link_connextmicro_dds_api_c_up_one:`disable_multicast_interface_select <structUDP__InterfaceFactoryProperty.html>`:
+  controls whether |me| will use ``multicast_interface`` or
+  ``allow_interface``/``deny_interface`` to select the interface for sending
+  to multicast addresses.
+
+Refer to :ref:`section-udp-transport` for more information on these options.
+
+.. MAG-181:
+
+Develop applications with new UDP transport options with MAG
+------------------------------------------------------------
+This release adds support to Micro Application Generator (MAG) for the
+following new fields when configuring the UDP transport:
+
+- :link_connextmicro_dds_api_c_up_one:`disable_multicast_bind <structUDP__InterfaceFactoryProperty.html>`
+- :link_connextmicro_dds_api_c_up_one:`multicast_loopback_disable <structUDP__InterfaceFactoryProperty.html>`
+- :link_connextmicro_dds_api_c_up_one:`disable_multicast_interface_select <structUDP__InterfaceFactoryProperty.html>`
+
+Refer to :ref:`section-udp-configuration` for more information on these properties.
+
+.. MICRO-7202:
+
+Build |me_h| libraries conveniently with symlinks
+-------------------------------------------------
+This release adds support for using the ``cmake --install`` command with
+symbolic links (symlinks) as well as full paths. 
+
+Refer to :ref:`section-building-source` for more information on how to use
+CMake build commands.

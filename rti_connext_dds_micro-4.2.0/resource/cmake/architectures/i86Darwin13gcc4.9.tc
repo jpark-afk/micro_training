@@ -1,0 +1,23 @@
+################################################################################
+#
+# Copyright (c) 2016-2024 Real-Time Innovations, Inc. All rights reserved.
+#
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+INCLUDE(CMakeForceCompiler)
+SET(CMAKE_SYSTEM_NAME Darwin)
+
+SET(CMAKE_CXX_COMPILER /opt/local/bin/g++-mp-4.9)
+SET(CMAKE_C_COMPILER /opt/local/bin/gcc-mp-4.9) 
+
+SET(CC_ARCH     "-arch i386 -m32")
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Platform/darwin.tc)
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/gcc.tc)
+
+SET(RTIME_OSAPI_PLATFORM posix)

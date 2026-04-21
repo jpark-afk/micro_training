@@ -1,0 +1,40 @@
+\doxysubsection{WHSM Writer History API}
+\hypertarget{group__WHSMModule}{}\label{group__WHSMModule}\index{WHSM Writer History API@{WHSM Writer History API}}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+WHSMDll\+Export struct RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__WHSMModule_ga5cab1e0395cb962d35468364256c0b6f}{WHSM\+\_\+\+History\+Factory\+\_\+get\+\_\+interface}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the singleton instance of the WHSM writer history factory. \end{DoxyCompactList}\item 
+WHSMDll\+Export const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__WHSMModule_ga293c397a9c1d406e25086cb2d8defc3f}{WHSM\+\_\+\+History\+Factory\+\_\+get\+\_\+version}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the version string for the WHSM library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+The WHSM plugin is an implementation of the RTI Connext DDS Micro Writer\+History plugin interface and implements the Data\+Writer writer cache as supported by RTI Connext DDS Micro. RTI Connext DDS Micro requires that a Writer\+History plugin is registered with the name "{}wh"{} in the Domain\+Participant\+Factory before a Data\+Writer can be created. Each instance of a Data\+Writer creates its own instance of the Writer\+History plugin. Please refer to User Manual for an example on how to register the writer history factory. 
+
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__WHSMModule_ga5cab1e0395cb962d35468364256c0b6f}\index{WHSM Writer History API@{WHSM Writer History API}!WHSM\_HistoryFactory\_get\_interface@{WHSM\_HistoryFactory\_get\_interface}}
+\index{WHSM\_HistoryFactory\_get\_interface@{WHSM\_HistoryFactory\_get\_interface}!WHSM Writer History API@{WHSM Writer History API}}
+\doxyparagraph{\texorpdfstring{WHSM\_HistoryFactory\_get\_interface()}{WHSM\_HistoryFactory\_get\_interface()}}
+{\footnotesize\ttfamily \label{group__WHSMModule_ga5cab1e0395cb962d35468364256c0b6f} 
+WHSMDll\+Export struct RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*} WHSM\+\_\+\+History\+Factory\+\_\+get\+\_\+interface (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the singleton instance of the WHSM writer history factory. 
+
+This function gets the singleton instance of the WHSM history plugin factory that is used by the middleware to create a Writer\+History plugin. The singleton instance of the factory must be registered with the name "{}wh"{} in the Domain\+Participant\+Factory. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to WHSM history plugin factory 
+\end{DoxyReturn}
+\Hypertarget{group__WHSMModule_ga293c397a9c1d406e25086cb2d8defc3f}\index{WHSM Writer History API@{WHSM Writer History API}!WHSM\_HistoryFactory\_get\_version@{WHSM\_HistoryFactory\_get\_version}}
+\index{WHSM\_HistoryFactory\_get\_version@{WHSM\_HistoryFactory\_get\_version}!WHSM Writer History API@{WHSM Writer History API}}
+\doxyparagraph{\texorpdfstring{WHSM\_HistoryFactory\_get\_version()}{WHSM\_HistoryFactory\_get\_version()}}
+{\footnotesize\ttfamily \label{group__WHSMModule_ga293c397a9c1d406e25086cb2d8defc3f} 
+WHSMDll\+Export const char \texorpdfstring{$\ast$}{*} WHSM\+\_\+\+History\+Factory\+\_\+get\+\_\+version (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the version string for the WHSM library. 
+

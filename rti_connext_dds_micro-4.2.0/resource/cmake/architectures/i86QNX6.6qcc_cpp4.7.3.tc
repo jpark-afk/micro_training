@@ -1,0 +1,27 @@
+################################################################################
+#
+# Copyright (c) 2019-2024 Real-Time Innovations, Inc. All rights reserved.
+#
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+SET(CMAKE_SYSTEM_NAME QNX)
+
+SET(PLATFORM_LIBS m socket)
+
+SET(CMAKE_CXX_COMPILER $ENV{QNX_HOST}/usr/bin/ntox86-g++)
+SET(CMAKE_C_COMPILER $ENV{QNX_HOST}/usr/bin/ntox86-gcc)
+
+SET(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS}  -DNDEBUG" CACHE INTERNAL "CMAKE_C_FLAGS_RELEASE" FORCE)
+SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -DNDEBUG" CACHE INTERNAL "CMAKE_CXX_FLAGS_RELEASE" FORCE)
+
+SET(RTIME_OSAPI_PLATFORM posix)
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)

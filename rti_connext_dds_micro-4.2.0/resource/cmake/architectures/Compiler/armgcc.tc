@@ -1,0 +1,53 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2020-2025
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03apr2020 fmt Written
+################################################################################
+
+SET(CC_COMMON   "-std=c99  -Wextra -Wall -Winit-self  -fstrict-aliasing -Wmissing-declarations -Wstrict-prototypes -fsigned-char")
+SET(CXX_COMMON   "-Wextra -Wall -Winit-self ")
+
+SET(CC_DEBUG    "${CC_COMMON}  -O0 -g")
+SET(CC_RELEASE  "${CC_COMMON} -O ")
+SET(CXX_DEBUG    "${CXX_COMMON} -O0 -g")
+SET(CXX_RELEASE  "${CXX_COMMON} -O ")
+
+IF (${RTIME_TARGET_NAME} MATCHES "cortexm7")
+    SET(CC_ARCH "-mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums")
+ELSEIF (${RTIME_TARGET_NAME} MATCHES "cortexm4")
+    SET(CC_ARCH "-mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections")
+ELSEIF (${RTIME_TARGET_NAME} MATCHES "armv7em")
+    SET(CC_ARCH "-mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums")
+ENDIF()
+
+SET(_RTIME_CC stdc)
+
+SET(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} ${CC_DEBUG} ${CC_ARCH}" CACHE INTERNAL "CMAKE_C_FLAGS_DEBUG" FORCE)
+SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} ${CXX_DEBUG} ${CC_ARCH}" CACHE INTERNAL "CMAKE_CXX_FLAGS_DEBUG" FORCE)
+SET(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS} ${CC_RELEASE} ${CC_ARCH} -DNDEBUG" CACHE INTERNAL "CMAKE_C_FLAGS_RELEASE" FORCE)
+SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} ${CXX_RELEASE} ${CC_ARCH} -DNDEBUG" CACHE INTERNAL "CMAKE_CXX_FLAGS_RELEASE" FORCE)
+
+IF (${TARGET_HELP})
+    MESSAGE("COMPILER NOTES\n")
+    MESSAGE(" The following GCC specific flags are used based on RTIME_TARGET_NAME\n")
+    MESSAGE(" - If cortexm7 is part of the name -mcpu=cortex-m7 is used")
+    MESSAGE(" - If cortexm4 is part of the name -mcpu=cortex-m4 is used")
+    MESSAGE(" The following flags are added:")
+    MESSAGE(" - For C Debug libraries:  ${CC_DEBUG}")
+    MESSAGE(" - For C++ Debug libraries:  ${CXX_DEBUG}")
+    MESSAGE(" - For C Release libraries:  ${CC_RELEASE}")
+    MESSAGE(" - For C++ Release libraries:  ${CXX_RELEASE}\n\n")
+    RETURN()
+ENDIF()

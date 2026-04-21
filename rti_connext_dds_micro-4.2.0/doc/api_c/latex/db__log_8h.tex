@@ -1,0 +1,73 @@
+\doxysubsection{db\+\_\+log.\+h File Reference}
+\hypertarget{db__log_8h}{}\label{db__log_8h}\index{db\_log.h@{db\_log.h}}
+
+
+DB module log codes.  
+
+
+{\ttfamily \#include "{}osapi/osapi\+\_\+log.\+h"{}}\newline
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_gacaff65d8d1bd0b2f2da0b55a142d7735}{DB\+\_\+\+LOG\+\_\+\+SORTED\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 1)
+\begin{DoxyCompactList}\small\item\em Not sufficient memory to allocate sorted list for an index. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga7c517645c14deaede1e33cf5ea742eaa}{DB\+\_\+\+LOG\+\_\+\+NAME\+\_\+\+TOO\+\_\+\+LONG\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 2)
+\begin{DoxyCompactList}\small\item\em The specified database name is too long. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga6958c2f6793d6767b188f50071781d6e}{DB\+\_\+\+LOG\+\_\+\+ILLEGAL\+\_\+\+TABLE\+\_\+\+SIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 3)
+\begin{DoxyCompactList}\small\item\em Illegal table size specified. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_gaf7573a6ec285bbf77b9d5272d4701b4c}{DB\+\_\+\+LOG\+\_\+\+ILLEGAL\+\_\+\+LOCK\+\_\+\+MODE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 4)
+\begin{DoxyCompactList}\small\item\em Illegal combination of lock mode and mutex given. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_gaf81ed11d071b58c439355cc68ee86b92}{DB\+\_\+\+LOG\+\_\+\+MUTEX\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 5)
+\begin{DoxyCompactList}\small\item\em Failed to allocate database mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga41b5581dbe42a3211e8095be9f340dcc}{DB\+\_\+\+LOG\+\_\+\+ALLOC\+\_\+\+TABLE\+\_\+\+POOL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 6)
+\begin{DoxyCompactList}\small\item\em Failed to allocate buffer pool. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga2308acb2512207442cc08d51ff5599c4}{DB\+\_\+\+LOG\+\_\+\+TABLES\+\_\+\+INUSE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 7)
+\begin{DoxyCompactList}\small\item\em Table is in use. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga66325529a5d2a4e44a662e7d439d3a1e}{DB\+\_\+\+LOG\+\_\+\+TABLE\+\_\+\+NAME\+\_\+\+TOO\+\_\+\+LONG\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 8)
+\begin{DoxyCompactList}\small\item\em Specified table name too long. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_gae917dd58cee7248b9e966eb580f474ca}{DB\+\_\+\+LOG\+\_\+\+ILLEGAL\+\_\+\+RECORD\+\_\+\+COUNT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 9)
+\begin{DoxyCompactList}\small\item\em Illegal record count specified. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga28d793f8af14242608040c92b9d73f5f}{DB\+\_\+\+LOG\+\_\+\+TABLE\+\_\+\+EXISTS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 10)
+\begin{DoxyCompactList}\small\item\em Specified table already exists. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_gabaf4f40f57bfa0cd165811deb59b9b1f}{DB\+\_\+\+LOG\+\_\+\+OUT\+\_\+\+OF\+\_\+\+TABLES\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 11)
+\begin{DoxyCompactList}\small\item\em Table resources exceeded. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga8715519eb384ce72f7f73a4118c7db91}{DB\+\_\+\+LOG\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RECORDS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 12)
+\begin{DoxyCompactList}\small\item\em Table record resources exceeded. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga93e3846ab30f75379e02cacf39d6f7a4}{DB\+\_\+\+LOG\+\_\+\+OUT\+\_\+\+OF\+\_\+\+INDICES\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 13)
+\begin{DoxyCompactList}\small\item\em Table index resources exceeded. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga55f58ba4c0617d1af47873bb59af760c}{DB\+\_\+\+LOG\+\_\+\+OUT\+\_\+\+OF\+\_\+\+CURSORS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 14)
+\begin{DoxyCompactList}\small\item\em Table cursor resources exceeded. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_gac9ba1cc497002c788c8e8f00456dc39a}{DB\+\_\+\+LOG\+\_\+\+RECORDS\+\_\+\+INUSE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 15)
+\begin{DoxyCompactList}\small\item\em Cannot delete table, records are still in table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_gaa8f12ab9d62b3e8652ec2421b0a3a011}{DB\+\_\+\+LOG\+\_\+\+CURSORS\+\_\+\+INUSE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 16)
+\begin{DoxyCompactList}\small\item\em Cannot delete table, cursors are still in use. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga0cc33bcd6df1d550d24ebff5b8eca0d6}{DB\+\_\+\+LOG\+\_\+\+INDEX\+\_\+\+INUSE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 17)
+\begin{DoxyCompactList}\small\item\em Cannot delete table, indices are still in use. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga364030ff75a55c260a0220217b7f74ed}{DB\+\_\+\+LOG\+\_\+\+ALLOC\+\_\+\+CURSOR\+\_\+\+POOL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 18)
+\begin{DoxyCompactList}\small\item\em Failed to allocate cursor buffer pool. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_gaa2368e81eeb4e65b9d31d9c51ea4f8cc}{DB\+\_\+\+LOG\+\_\+\+ALLOC\+\_\+\+INDEX\+\_\+\+POOL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 19)
+\begin{DoxyCompactList}\small\item\em Failed to allocate index buffer pool. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga7593dabb74be32fc43b96eca919f70a1}{DB\+\_\+\+LOG\+\_\+\+ALLOC\+\_\+\+RECORD\+\_\+\+POOL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 20)
+\begin{DoxyCompactList}\small\item\em Failed to allocate record buffer pool. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga8a940a53e5697d3ae80f70d17137ddcb}{DB\+\_\+\+LOG\+\_\+\+ALLOC\+\_\+\+DATABASE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 21)
+\begin{DoxyCompactList}\small\item\em Failed to allocate database. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_gab0b08400071739477ddf8032b78561bb}{DB\+\_\+\+LOG\+\_\+\+TABLE\+\_\+\+NOT\+\_\+\+INUSE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 22)
+\begin{DoxyCompactList}\small\item\em An attempt was made to delete a table not in use. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga77bd8c60e6d6941ec99bb58310c8ca5d}{DB\+\_\+\+LOG\+\_\+\+RECORD\+\_\+\+ALREADY\+\_\+\+EXISTS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 23)
+\begin{DoxyCompactList}\small\item\em An attempt was made to insert an already existing record. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga25f8d68ce8664b38e22b8ad116ea54f2}{DB\+\_\+\+LOG\+\_\+\+RECORD\+\_\+\+DOES\+\_\+\+NOT\+\_\+\+EXIST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 24)
+\begin{DoxyCompactList}\small\item\em An attempt was made to delete a record that does not exist. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga38239bb01e26316d5726bf1394baa9d4}{DB\+\_\+\+LOG\+\_\+\+CURSOR\+\_\+\+INVALIDATED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 25)
+\begin{DoxyCompactList}\small\item\em An attempt was made to use a cursor that has been invalidated. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_ga8cc42b8ad1be9aff16e79598b059a0bb}{DB\+\_\+\+LOG\+\_\+\+LOCK\+\_\+\+FAILURE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 26)
+\begin{DoxyCompactList}\small\item\em Failed to lock the database. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_gaa46bf9fe2d6fea356776457e4f7e024b}{DB\+\_\+\+LOG\+\_\+\+UNLOCK\+\_\+\+FAILURE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 27)
+\begin{DoxyCompactList}\small\item\em Failed to unlock the database. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DBLogCodesClass_gaee4cdd4c5eb69d40ec577ba5a4550147}{DB\+\_\+\+LOG\+\_\+\+OUT\+\_\+\+OF\+\_\+\+CTORDTOR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}} + 28)
+\begin{DoxyCompactList}\small\item\em Constructor/\+Destructor memory could not be allocated. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+DB module log codes. 
+
+This file defines log codes for all messages logged by the database modules. All the log codes in this file are publicly documented. 

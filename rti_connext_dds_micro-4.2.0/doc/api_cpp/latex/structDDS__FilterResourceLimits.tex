@@ -1,0 +1,129 @@
+\doxysubsection{DDS\+\_\+\+Filter\+Resource\+Limits Struct Reference}
+\hypertarget{structDDS__FilterResourceLimits}{}\label{structDDS__FilterResourceLimits}\index{DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}}
+
+
+Resource limits for content filtering on a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} and all of its child entities.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+content\+\_\+filter.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__FilterResourceLimits_ae9a35e2349c4f64893087025aedbc6ea}{filter\+\_\+class\+\_\+max\+\_\+length}}
+\begin{DoxyCompactList}\small\item\em Maximum length of a filter class name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__FilterResourceLimits_ad65d0576c3e721bd7c5e3bcb406652ff}{filter\+\_\+class\+\_\+max\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em Maximum number of filter classes supported. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__FilterResourceLimits_a534bbb93f652f557954bb4dbf339afad}{filter\+\_\+expression\+\_\+max\+\_\+length}}
+\begin{DoxyCompactList}\small\item\em Maximum length of a filter expression. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__FilterResourceLimits_ac442e59dbbfde4634fba249072809db9}{filter\+\_\+expression\+\_\+max\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em Maximum number of unique filter expressions supported. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__FilterResourceLimits_a8827d7767815d2e11e4e48db7cecb817}{filter\+\_\+parameter\+\_\+max\+\_\+count\+\_\+per\+\_\+expression}}
+\begin{DoxyCompactList}\small\item\em Maximum number of filter parameters per filter expression. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__FilterResourceLimits_a949bc2b7e1c4f1a2be8881f6c9ffbb6c}{filter\+\_\+parameter\+\_\+max\+\_\+length}}
+\begin{DoxyCompactList}\small\item\em Maximum length of a filter parameter. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__FilterResourceLimits_a3d844f061db6d796460ec15a7fcf03d7}{sql\+\_\+predicate\+\_\+max\+\_\+count\+\_\+per\+\_\+expression}}
+\begin{DoxyCompactList}\small\item\em Maximum number of SQL predicates per filter expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Resource limits for content filtering on a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} and all of its child entities. 
+
+The resources used for content filtering are all pre-\/allocated and shared by all the child entities of a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. This includes the filters specified by a \doxylink{classDDSDataReader}{DDSData\+Reader} in its \doxylink{structDDS__ContentFilterQosPolicy}{DDS\+\_\+\+Content\+Filter\+Qos\+Policy} and the filters discovered by a \doxylink{classDDSDataWriter}{DDSData\+Writer} for remote \doxylink{classDDSDataReader}{DDSData\+Reader} entities. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__FilterResourceLimits_ae9a35e2349c4f64893087025aedbc6ea}\index{DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}!filter\_class\_max\_length@{filter\_class\_max\_length}}
+\index{filter\_class\_max\_length@{filter\_class\_max\_length}!DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}}
+\doxyparagraph{\texorpdfstring{filter\_class\_max\_length}{filter\_class\_max\_length}}
+{\footnotesize\ttfamily \label{structDDS__FilterResourceLimits_ae9a35e2349c4f64893087025aedbc6ea} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Filter\+Resource\+Limits\+::filter\+\_\+class\+\_\+max\+\_\+length}
+
+
+
+Maximum length of a filter class name. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 7 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, \doxylink{group__DDSFilterQosModule_ga9deebbdff885a131695ed57402619763}{DDS\+\_\+\+CONTENT\+\_\+\+FILTER\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}\mbox{]} \Hypertarget{structDDS__FilterResourceLimits_ad65d0576c3e721bd7c5e3bcb406652ff}\index{DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}!filter\_class\_max\_count@{filter\_class\_max\_count}}
+\index{filter\_class\_max\_count@{filter\_class\_max\_count}!DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}}
+\doxyparagraph{\texorpdfstring{filter\_class\_max\_count}{filter\_class\_max\_count}}
+{\footnotesize\ttfamily \label{structDDS__FilterResourceLimits_ad65d0576c3e721bd7c5e3bcb406652ff} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Filter\+Resource\+Limits\+::filter\+\_\+class\+\_\+max\+\_\+count}
+
+
+
+Maximum number of filter classes supported. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 1 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, 2147483647\mbox{]} \Hypertarget{structDDS__FilterResourceLimits_a534bbb93f652f557954bb4dbf339afad}\index{DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}!filter\_expression\_max\_length@{filter\_expression\_max\_length}}
+\index{filter\_expression\_max\_length@{filter\_expression\_max\_length}!DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}}
+\doxyparagraph{\texorpdfstring{filter\_expression\_max\_length}{filter\_expression\_max\_length}}
+{\footnotesize\ttfamily \label{structDDS__FilterResourceLimits_a534bbb93f652f557954bb4dbf339afad} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Filter\+Resource\+Limits\+::filter\+\_\+expression\+\_\+max\+\_\+length}
+
+
+
+Maximum length of a filter expression. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 63 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, \doxylink{group__DDSFilterQosModule_ga3a110a7653d5705e82061fc4945bcb27}{DDS\+\_\+\+CONTENT\+\_\+\+FILTER\+\_\+\+EXPRESSION\+\_\+\+MAX\+\_\+\+LENGTH}\mbox{]} \Hypertarget{structDDS__FilterResourceLimits_ac442e59dbbfde4634fba249072809db9}\index{DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}!filter\_expression\_max\_count@{filter\_expression\_max\_count}}
+\index{filter\_expression\_max\_count@{filter\_expression\_max\_count}!DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}}
+\doxyparagraph{\texorpdfstring{filter\_expression\_max\_count}{filter\_expression\_max\_count}}
+{\footnotesize\ttfamily \label{structDDS__FilterResourceLimits_ac442e59dbbfde4634fba249072809db9} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Filter\+Resource\+Limits\+::filter\+\_\+expression\+\_\+max\+\_\+count}
+
+
+
+Maximum number of unique filter expressions supported. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} DDS\+\_\+\+LENGTH\+\_\+\+AUTO 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, 2147483647\mbox{]} 
+
+If set to DDS\+\_\+\+LENGTH\+\_\+\+AUTO, then enough resources will be allocated for every local and remote \doxylink{classDDSDataReader}{DDSData\+Reader} to have a unique filter expression. \Hypertarget{structDDS__FilterResourceLimits_a8827d7767815d2e11e4e48db7cecb817}\index{DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}!filter\_parameter\_max\_count\_per\_expression@{filter\_parameter\_max\_count\_per\_expression}}
+\index{filter\_parameter\_max\_count\_per\_expression@{filter\_parameter\_max\_count\_per\_expression}!DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}}
+\doxyparagraph{\texorpdfstring{filter\_parameter\_max\_count\_per\_expression}{filter\_parameter\_max\_count\_per\_expression}}
+{\footnotesize\ttfamily \label{structDDS__FilterResourceLimits_a8827d7767815d2e11e4e48db7cecb817} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Filter\+Resource\+Limits\+::filter\+\_\+parameter\+\_\+max\+\_\+count\+\_\+per\+\_\+expression}
+
+
+
+Maximum number of filter parameters per filter expression. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 4 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, \doxylink{group__DDSFilterQosModule_ga542d33e21d6e29e85c40fd146d3e4715}{DDS\+\_\+\+CONTENT\+\_\+\+FILTER\+\_\+\+MAX\+\_\+\+PARAMETERS}\mbox{]} 
+
+This is the maximum number of parameters that can be specified in a single filter expression. \Hypertarget{structDDS__FilterResourceLimits_a949bc2b7e1c4f1a2be8881f6c9ffbb6c}\index{DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}!filter\_parameter\_max\_length@{filter\_parameter\_max\_length}}
+\index{filter\_parameter\_max\_length@{filter\_parameter\_max\_length}!DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}}
+\doxyparagraph{\texorpdfstring{filter\_parameter\_max\_length}{filter\_parameter\_max\_length}}
+{\footnotesize\ttfamily \label{structDDS__FilterResourceLimits_a949bc2b7e1c4f1a2be8881f6c9ffbb6c} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Filter\+Resource\+Limits\+::filter\+\_\+parameter\+\_\+max\+\_\+length}
+
+
+
+Maximum length of a filter parameter. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 15 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, 2147483647\mbox{]} \Hypertarget{structDDS__FilterResourceLimits_a3d844f061db6d796460ec15a7fcf03d7}\index{DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}!sql\_predicate\_max\_count\_per\_expression@{sql\_predicate\_max\_count\_per\_expression}}
+\index{sql\_predicate\_max\_count\_per\_expression@{sql\_predicate\_max\_count\_per\_expression}!DDS\_FilterResourceLimits@{DDS\_FilterResourceLimits}}
+\doxyparagraph{\texorpdfstring{sql\_predicate\_max\_count\_per\_expression}{sql\_predicate\_max\_count\_per\_expression}}
+{\footnotesize\ttfamily \label{structDDS__FilterResourceLimits_a3d844f061db6d796460ec15a7fcf03d7} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Filter\+Resource\+Limits\+::sql\+\_\+predicate\+\_\+max\+\_\+count\+\_\+per\+\_\+expression}
+
+
+
+Maximum number of SQL predicates per filter expression. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 1 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, 2147483647\mbox{]} 
+
+If using the built-\/in SQL content filter, then this is the maximum number of SQL predicates that can be specified in a single filter expression. 
+
+If not using the built-\/in SQL content filter, then this value may or may not be used, depending on the filter implementation. 

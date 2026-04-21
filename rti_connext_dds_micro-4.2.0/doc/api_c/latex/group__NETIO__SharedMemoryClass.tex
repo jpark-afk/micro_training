@@ -1,0 +1,75 @@
+\doxysubsubsection{NETIO Shared Memory API}
+\hypertarget{group__NETIO__SharedMemoryClass}{}\label{group__NETIO__SharedMemoryClass}\index{NETIO Shared Memory API@{NETIO Shared Memory API}}
+
+
+OS independent way to setup and access shared-\/memory segments, shared-\/memory mutexes and shared memory binary semaphores.  
+
+
+\doxysubsubsubsubsection*{Topics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__NETIO__SharedMemoryMutexClass}{Shared Memory Mutex API}}
+\item 
+\mbox{\hyperlink{group__NETIO__SharedMemorySegmentClass}{Shared Memory Segment API}}
+\begin{DoxyCompactList}\small\item\em Allow access to a shared memory segment (memory block) so that multiple processes can read-\/and write a common memory area. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__NETIO__SharedMemorySignalingSemaphoreClass}{Shared Memory Signaling Semaphore}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+OS independent way to setup and access shared-\/memory segments, shared-\/memory mutexes and shared memory binary semaphores. 
+
+This module consist of three constructs\+: Shared\+Memory\+Segment, Shared\+Memory\+Binary\+Semaphore, Shared\+Memory\+Mutex.
+
+These objects, represent operating-\/system resources that are accessible from different processes running on the same computer. These three objects are manipulated in very similar ways and have also very similar lifecycles.
+
+The model is as follows. The underlying shared memory resource ( segment, semaphore, and mutex) is identified using an integer "{}key"{}. Processes wishing to create or interact with the resource objects must do it via the appropriate handles. To be portable across operating systems the application should consider keys to be unique even across different kinds of shared memory resources, that is if a key is specified for a shared-\/memory segment it cannot be re-\/used to specify a shared-\/memory semaphore or mutex. Different keys must be used for different resources even if they are of different kinds.
+
+The thing to keep in mind when looking at the lifecycles is that there are potentially many shared-\/memory handles referencing the same underlying shared-\/memory resource. That is in fact the whole point of using shared memory resource.
+
+A shared-\/memory object can be in one of the following states\+: CREATED, OPEN, CLOSED.
+
+A shared-\/memory handle can be in one of the following states\+: DETACHED, ATTACHED.
+
+The state transitions of the shared-\/memory object are surrogate to those of corresponding handles because processes can only manipulate shared memory using the handles. The following charts describe this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ +-\/>\ DETACHED\ -\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |\ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |\ \ \ \ \ |\ create()\ \ |}
+\DoxyCodeLine{detach()\ |\ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ |\ attach()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |\ \ \ \ \ v\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ +-\/-\/\ ATTACHED\ <-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \string^\ \ \ \ \ \ \ \ \ \ \ |\ additional\ operations}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ |\ depending\ on\ the\ resource}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+
+
+State of the shared-\/memory resource\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{INITIAL}
+\DoxyCodeLine{\ \ \ |}
+\DoxyCodeLine{\ \ \ |\ create()}
+\DoxyCodeLine{\ \ \ |}
+\DoxyCodeLine{\ \ \ |\ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ v\ \ |\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{CREATED\ \ \ \ \ \ \ \ \ |\ attach()}
+\DoxyCodeLine{\ \ \ |\ \ \string^\ \ \ \ \ \ \ \ \ |\ detach()}
+\DoxyCodeLine{\ \ \ |\ \ |\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ |\ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ |}
+\DoxyCodeLine{\ \ \ |\ \textcolor{keyword}{delete}()}
+\DoxyCodeLine{\ \ \ v}
+\DoxyCodeLine{\ FINAL}
+
+\end{DoxyCode}
+
+
+No control is performed on the permission of the delete() function. Once a resource is deleted, it is permanently destroyed and any subsequent call to attach() should fail.
+
+The shared-\/memory objects used in this module represent named operating-\/system resources. Many OSs provide utilities to view and administer these operating system resources from an independent API. For example, in Unix/\+Linux the command-\/line utility "{}ipcs"{} can be used to see a listing of the current shared memory segments, semaphores and mutexes. Similarly "{}ipcrm"{} can be used to remove shared-\/memory resources. \input{group__NETIO__SharedMemoryMutexClass}
+\input{group__NETIO__SharedMemorySegmentClass}
+\input{group__NETIO__SharedMemorySignalingSemaphoreClass}

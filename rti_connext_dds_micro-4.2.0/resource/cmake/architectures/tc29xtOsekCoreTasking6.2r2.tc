@@ -1,0 +1,61 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 1oct2020,fmt MICRO-2586/PR.28158 Align CPU_BIT_ORDER with MICRO
+# 04may2020 tk MICRO-2364/PR.27521 Removed compiler warnings
+#              - ctc W525 Use +strings to allow "char *const ptr = (const char*)ptr",
+#                since not all internal APIs allow const *char 
+#              - ctc W588 Disable optimization to prevent 'dead assignment'
+#                warnings.
+################################################################################
+
+INCLUDE(CMakeForceCompiler)
+
+FOREACH(language C CXX)
+    SET(CMAKE_${language}_COMPILER_WORKS 1)
+    SET(CMAKE_${language}_ABI_COMPILED 1)
+ENDFOREACH()
+
+SET(CMAKE_SYSTEM_NAME OsekCore)
+
+IF (DEFINED ENV{OSEK_TOOLCHAIN_PATH})
+    STRING(REPLACE "\\" "/" COMPILER_PATH $ENV{OSEK_TOOLCHAIN_PATH})
+
+    IF (RTIME_TARGET_NAME MATCHES ".*OsekCore.*")
+        SET(COMMON "--core=tc1.6.x --eabi-compliant --integer-enumeration")
+        SET(COMMON "${COMMON} --iso=99 --language=-comments,-gcc,+volatile,+strings --source --optimize=0")
+        SET(COMMON "${COMMON} --switch=auto --align=4 --default-near-size=0 --default-a0-size=0 --default-a1-size=0")
+    ELSEIF()
+        MESSAGE(FATAL_ERROR "Only OsekCore is supported.")
+    ENDIF()
+    
+    SET(CC_COMMON "${COMMON} -O3")
+    SET(CXX_COMMON "${COMMON} -O3 --c++03 --g++")
+    SET(RELEASE_COMMON "-O2ROP -DNDEBUG")
+    SET(DEBUG_COMMON "-O0 -g2")
+
+    SET(_RTIME_IGNORE_CFLAGS TRUE)
+    INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/tasking.tc)
+ELSE()
+    MESSAGE("Please set the OSEK_TOOLCHAIN_PATH environment variable. Example:")
+    MESSAGE("set OSEK_TOOLCHAIN_PATH=c:\\TASKING\\TriCore v6.2r2")
+    MESSAGE(FATAL_ERROR "")
+ENDIF()
+
+ADD_DEFINITIONS(-DOSAPI_OS_DEF_H=osapi_os_autosar.h)
+ADD_DEFINITIONS(-DOSAPI_CC_DEF_H=osapi_cc_autosar.h)
+
+# Multicast not supported at the moment in Autosar port
+SET(RTIME_UDP_ENABLE_MULTICAST FALSE)

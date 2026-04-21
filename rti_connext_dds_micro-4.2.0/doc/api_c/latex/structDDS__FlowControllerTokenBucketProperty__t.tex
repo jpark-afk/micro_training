@@ -1,0 +1,133 @@
+\doxysubsection{DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t Struct Reference}
+\hypertarget{structDDS__FlowControllerTokenBucketProperty__t}{}\label{structDDS__FlowControllerTokenBucketProperty__t}\index{DDS\_FlowControllerTokenBucketProperty\_t@{DDS\_FlowControllerTokenBucketProperty\_t}}
+
+
+\doxylink{group__DDSFlowControllerModule_gac250f779038cbaa0e1bde24a4b33db05}{DDS\+\_\+\+Flow\+Controller} uses the popular token bucket approach for open loop network flow control. The flow control characteristics are determined by the token bucket properties.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+flowcontroller.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__FlowControllerTokenBucketProperty__t_a662f02e48691a39d0d3ab13d6e4efc66}{max\+\_\+tokens}}
+\begin{DoxyCompactList}\small\item\em Maximum number of tokens than can accumulate in the token bucket. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__FlowControllerTokenBucketProperty__t_a721f7182e312c99deb1e152e849dc694}{tokens\+\_\+added\+\_\+per\+\_\+period}}
+\begin{DoxyCompactList}\small\item\em The number of tokens added to the token bucket per specified period. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__FlowControllerTokenBucketProperty__t_af9e2f8fd04c1bfa059f85fe42b4f2df6}{tokens\+\_\+leaked\+\_\+per\+\_\+period}}
+\begin{DoxyCompactList}\small\item\em The number of tokens removed from the token bucket per specified period. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \mbox{\hyperlink{structDDS__FlowControllerTokenBucketProperty__t_a6dc56f20c740970edbe778ece872824d}{period}}
+\begin{DoxyCompactList}\small\item\em Period for adding tokens to and removing tokens from the bucket. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__FlowControllerTokenBucketProperty__t_a9a648e9579c63f93c2bf17a78b713536}{bytes\+\_\+per\+\_\+token}}
+\begin{DoxyCompactList}\small\item\em Maximum number of bytes allowed to send for each token available. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{group__DDSFlowControllerModule_gac250f779038cbaa0e1bde24a4b33db05}{DDS\+\_\+\+Flow\+Controller} uses the popular token bucket approach for open loop network flow control. The flow control characteristics are determined by the token bucket properties. 
+
+Asynchronously published samples are queued up and transmitted based on the token bucket flow control scheme. The token bucket contains tokens, each of which represents a number of bytes. Samples can be sent only when there are sufficient tokens in the bucket. As samples are sent, tokens are consumed. The number of tokens consumed is proportional to the size of the data being sent. Tokens are replenished on a periodic basis. 
+
+The rate at which tokens become available and other token bucket properties determine the network traffic flow. 
+
+Note that if the same sample must be sent to multiple destinations, separate tokens are required for each destination. Only when multiple samples are destined to the same destination will they be co-\/alesced and sent using the same token(s). In other words, each token can only contribute to a single network packet. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{group__DDSFlowControllerModule_gac250f779038cbaa0e1bde24a4b33db05}{DDS\+\_\+\+Flow\+Controller} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = N/A~\newline
+ 
+\end{DoxyParagraph}
+\doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_yes}{YES}. However, the special value of \doxylink{group__DDSTimeSupportModule_gac74d319dbdb844da5b8b1ee76a843bcb}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE} as \doxylink{structDDS__FlowControllerTokenBucketProperty__t_a6dc56f20c740970edbe778ece872824d}{DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t\+::period} is strictly used to create an {\itshape on-\/demand} \doxylink{group__DDSFlowControllerModule_gac250f779038cbaa0e1bde24a4b33db05}{DDS\+\_\+\+Flow\+Controller}. The token period cannot toggle from an infinite to finite value (or vice versa). It can, however, change from one finite value to another.~\newline
+ 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__FlowControllerTokenBucketProperty__t_a662f02e48691a39d0d3ab13d6e4efc66}\index{DDS\_FlowControllerTokenBucketProperty\_t@{DDS\_FlowControllerTokenBucketProperty\_t}!max\_tokens@{max\_tokens}}
+\index{max\_tokens@{max\_tokens}!DDS\_FlowControllerTokenBucketProperty\_t@{DDS\_FlowControllerTokenBucketProperty\_t}}
+\doxyparagraph{\texorpdfstring{max\_tokens}{max\_tokens}}
+{\footnotesize\ttfamily \label{structDDS__FlowControllerTokenBucketProperty__t_a662f02e48691a39d0d3ab13d6e4efc66} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t\+::max\+\_\+tokens}
+
+
+
+Maximum number of tokens than can accumulate in the token bucket. 
+
+The number of tokens in the bucket will never exceed this value. Any excess tokens are discarded. This property value, combined with \doxylink{structDDS__FlowControllerTokenBucketProperty__t_a9a648e9579c63f93c2bf17a78b713536}{DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t\+::bytes\+\_\+per\+\_\+token}, determines the maximum allowable data burst. 
+
+Use DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED to allow accumulation of an unlimited amount of tokens (and therefore potentially an unlimited burst size). 
+
+{\bfseries{\mbox{[}default\mbox{]}}} DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1,DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED\mbox{]} \Hypertarget{structDDS__FlowControllerTokenBucketProperty__t_a721f7182e312c99deb1e152e849dc694}\index{DDS\_FlowControllerTokenBucketProperty\_t@{DDS\_FlowControllerTokenBucketProperty\_t}!tokens\_added\_per\_period@{tokens\_added\_per\_period}}
+\index{tokens\_added\_per\_period@{tokens\_added\_per\_period}!DDS\_FlowControllerTokenBucketProperty\_t@{DDS\_FlowControllerTokenBucketProperty\_t}}
+\doxyparagraph{\texorpdfstring{tokens\_added\_per\_period}{tokens\_added\_per\_period}}
+{\footnotesize\ttfamily \label{structDDS__FlowControllerTokenBucketProperty__t_a721f7182e312c99deb1e152e849dc694} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t\+::tokens\+\_\+added\+\_\+per\+\_\+period}
+
+
+
+The number of tokens added to the token bucket per specified period. 
+
+\doxylink{group__DDSFlowControllerModule_gac250f779038cbaa0e1bde24a4b33db05}{DDS\+\_\+\+Flow\+Controller} transmits data only when tokens are available. Tokens are periodically replenished. This field determines the number of tokens added to the token bucket with each periodic replenishment. 
+
+Available tokens are distributed to associated \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} instances based on the \doxylink{structDDS__FlowControllerProperty__t_a97ba75a849dfbdb62fedc501f72188d7}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::scheduling\+\_\+policy}. 
+
+Use DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED to add the maximum number of tokens allowed by \doxylink{structDDS__FlowControllerTokenBucketProperty__t_a662f02e48691a39d0d3ab13d6e4efc66}{DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t\+::max\+\_\+tokens}. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1,DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED\mbox{]} \Hypertarget{structDDS__FlowControllerTokenBucketProperty__t_af9e2f8fd04c1bfa059f85fe42b4f2df6}\index{DDS\_FlowControllerTokenBucketProperty\_t@{DDS\_FlowControllerTokenBucketProperty\_t}!tokens\_leaked\_per\_period@{tokens\_leaked\_per\_period}}
+\index{tokens\_leaked\_per\_period@{tokens\_leaked\_per\_period}!DDS\_FlowControllerTokenBucketProperty\_t@{DDS\_FlowControllerTokenBucketProperty\_t}}
+\doxyparagraph{\texorpdfstring{tokens\_leaked\_per\_period}{tokens\_leaked\_per\_period}}
+{\footnotesize\ttfamily \label{structDDS__FlowControllerTokenBucketProperty__t_af9e2f8fd04c1bfa059f85fe42b4f2df6} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t\+::tokens\+\_\+leaked\+\_\+per\+\_\+period}
+
+
+
+The number of tokens removed from the token bucket per specified period. 
+
+\doxylink{group__DDSFlowControllerModule_gac250f779038cbaa0e1bde24a4b33db05}{DDS\+\_\+\+Flow\+Controller} transmits data only when tokens are available. When tokens are replenished and there are sufficient tokens to send all samples in the queue, this property determines whether any or all of the leftover tokens remain in the bucket. 
+
+Use DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED to remove all excess tokens from the token bucket once all samples have been sent. In other words, no token accumulation is allowed. When new samples are written after tokens were purged, the earliest point in time at which they can be sent is at the next periodic replenishment. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 0 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}0,DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED\mbox{]} \Hypertarget{structDDS__FlowControllerTokenBucketProperty__t_a6dc56f20c740970edbe778ece872824d}\index{DDS\_FlowControllerTokenBucketProperty\_t@{DDS\_FlowControllerTokenBucketProperty\_t}!period@{period}}
+\index{period@{period}!DDS\_FlowControllerTokenBucketProperty\_t@{DDS\_FlowControllerTokenBucketProperty\_t}}
+\doxyparagraph{\texorpdfstring{period}{period}}
+{\footnotesize\ttfamily \label{structDDS__FlowControllerTokenBucketProperty__t_a6dc56f20c740970edbe778ece872824d} 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t\+::period}
+
+
+
+Period for adding tokens to and removing tokens from the bucket. 
+
+\doxylink{group__DDSFlowControllerModule_gac250f779038cbaa0e1bde24a4b33db05}{DDS\+\_\+\+Flow\+Controller} transmits data only when tokens are available. This field determines the period by which tokens are added or removed from the token bucket. 
+
+The special value \doxylink{group__DDSTimeSupportModule_gac74d319dbdb844da5b8b1ee76a843bcb}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE} can be used to create an {\itshape on-\/demand} \doxylink{group__DDSFlowControllerModule_gac250f779038cbaa0e1bde24a4b33db05}{DDS\+\_\+\+Flow\+Controller}, for which tokens are no longer replenished periodically. Instead, tokens must be added explicitly by calling \doxylink{group__DDSFlowControllerModule_ga9642d3cb97710a9968af2a20da2b2f4a}{DDS\+\_\+\+Flow\+Controller\+\_\+trigger\+\_\+flow}. This external trigger adds \doxylink{structDDS__FlowControllerTokenBucketProperty__t_a721f7182e312c99deb1e152e849dc694}{DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t\+::tokens\+\_\+added\+\_\+per\+\_\+period} tokens each time it is called (subject to the other property settings). 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 1 second 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1 nanosec, 1 year\mbox{]} or \doxylink{group__DDSTimeSupportModule_gac74d319dbdb844da5b8b1ee76a843bcb}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE} \Hypertarget{structDDS__FlowControllerTokenBucketProperty__t_a9a648e9579c63f93c2bf17a78b713536}\index{DDS\_FlowControllerTokenBucketProperty\_t@{DDS\_FlowControllerTokenBucketProperty\_t}!bytes\_per\_token@{bytes\_per\_token}}
+\index{bytes\_per\_token@{bytes\_per\_token}!DDS\_FlowControllerTokenBucketProperty\_t@{DDS\_FlowControllerTokenBucketProperty\_t}}
+\doxyparagraph{\texorpdfstring{bytes\_per\_token}{bytes\_per\_token}}
+{\footnotesize\ttfamily \label{structDDS__FlowControllerTokenBucketProperty__t_a9a648e9579c63f93c2bf17a78b713536} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t\+::bytes\+\_\+per\+\_\+token}
+
+
+
+Maximum number of bytes allowed to send for each token available. 
+
+\doxylink{group__DDSFlowControllerModule_gac250f779038cbaa0e1bde24a4b33db05}{DDS\+\_\+\+Flow\+Controller} transmits data only when tokens are available. This field determines the number of bytes that can actually be transmitted based on the number of tokens. 
+
+Tokens are always consumed in whole by each \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. That is, in cases where \doxylink{structDDS__FlowControllerTokenBucketProperty__t_a9a648e9579c63f93c2bf17a78b713536}{DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t\+::bytes\+\_\+per\+\_\+token} is greater than the sample size, multiple samples may be sent to the same destination using a single token (regardless of \doxylink{structDDS__FlowControllerProperty__t_a97ba75a849dfbdb62fedc501f72188d7}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::scheduling\+\_\+policy}). 
+
+Where fragmentation is required, the fragment size will be \doxylink{structDDS__FlowControllerTokenBucketProperty__t_a9a648e9579c63f93c2bf17a78b713536}{DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t\+::bytes\+\_\+per\+\_\+token} or the minimum largest message size across all transports installed with the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}, whichever is less. 
+
+Use DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED to indicate that an unlimited number of bytes can be transmitted per token. In other words, a single token allows the recipient \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} to transmit all its queued samples to a single destination. A separate token is required to send to each additional destination. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1024,DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED\mbox{]} 

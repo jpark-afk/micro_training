@@ -1,0 +1,124 @@
+\doxysubsubsubsection{Data\+Writer}
+\hypertarget{group__DDSWriterModule}{}\label{group__DDSWriterModule}\index{DataWriter@{DataWriter}}
+
+
+\doxylink{classDDSDataWriter}{DDSData\+Writer} entity and associated elements  
+
+
+\doxysubsubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__OfferedDeadlineMissedStatus}{DDS\+\_\+\+Offered\+Deadline\+Missed\+Status}}
+\begin{DoxyCompactList}\small\item\em \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa84f12530ffc8d6e68906054b06972342}{DDS\+\_\+\+OFFERED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LivelinessLostStatus}{DDS\+\_\+\+Liveliness\+Lost\+Status}}
+\begin{DoxyCompactList}\small\item\em \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__OfferedIncompatibleQosStatus}{DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status}}
+\begin{DoxyCompactList}\small\item\em \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PublicationMatchedStatus}{DDS\+\_\+\+Publication\+Matched\+Status}}
+\begin{DoxyCompactList}\small\item\em \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa3052f04c67620660f92aa3b5da2455d2}{DDS\+\_\+\+PUBLICATION\+\_\+\+MATCHED\+\_\+\+STATUS} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__ReliableReaderActivityChangedStatus}{DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Describes the activity (i.\+e. are acknowledgements forthcoming) of reliable readers matched to a reliable writer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__ReliableSampleUnacknowledgedStatus}{DDS\+\_\+\+Reliable\+Sample\+Unacknowledged\+Status}}
+\begin{DoxyCompactList}\small\item\em Status about an unacknowledged sample that is removed from the \doxylink{classDDSDataWriter}{DDSData\+Writer} cache before being acknowledged by all matched \doxylink{classDDSDataReader}{DDSData\+Reader} entities. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}}
+\begin{DoxyCompactList}\small\item\em QoS policies supported by a \doxylink{classDDSDataWriter}{DDSData\+Writer} entity. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{structFooDataWriter}{Foo\+Data\+Writer}}
+\begin{DoxyCompactList}\small\item\em Declares the interface required to support a user data type-\/specific data writer. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classDDSDataWriterListener}{DDSData\+Writer\+Listener}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{classDDSListener}{DDSListener} for writer status. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application to set the value of the data to be published under a given \doxylink{classDDSTopic}{DDSTopic}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DDSWriterModule_ga09a2b4e70fbd97c661f012b6300e313c}{DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em Initializer for new status instances. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSWriterModule_gaca1a700ae46eaec10fb461d343d9e3a3}{DDS\+\_\+\+Data\+Writer\+Listener\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Callback}}) (void \texorpdfstring{$\ast$}{*}listener\+\_\+data, DDS\+\_\+\+Data\+Writer \texorpdfstring{$\ast$}{*}writer, const struct \mbox{\hyperlink{structDDS__ReliableReaderActivityChangedStatus}{DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status}} \texorpdfstring{$\ast$}{*}status)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A matched reliable reader has become active or become inactive. \end{DoxyCompactList}\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSWriterModule_gafe797c9488ed0e1253516dcfc45d59e4}{DDS\+\_\+\+Data\+Writer\+Listener\+\_\+\+Reliable\+Sample\+Unacknowledged\+Callback}}) (void \texorpdfstring{$\ast$}{*}listener\+\_\+data, DDS\+\_\+\+Data\+Writer \texorpdfstring{$\ast$}{*}writer, const struct \mbox{\hyperlink{structDDS__ReliableSampleUnacknowledgedStatus}{DDS\+\_\+\+Reliable\+Sample\+Unacknowledged\+Status}} \texorpdfstring{$\ast$}{*}status)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Unacknowledged samples are removed from the writer cache. \end{DoxyCompactList}\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSWriterModule_ga31bf3b3d23eb833440d4f5aba7ca0f8c}{DDS\+\_\+\+Data\+Writer\+Listener\+\_\+\+Sample\+Removed\+Callback}}) (void \texorpdfstring{$\ast$}{*}listener\+\_\+data, DDS\+\_\+\+Data\+Writer \texorpdfstring{$\ast$}{*}writer, const struct DDS\+\_\+\+Cookie\+\_\+t \texorpdfstring{$\ast$}{*}cookie)
+\begin{DoxyCompactList}\small\item\em Prototype of a \doxylink{classDDSDataWriterListener}{DDSData\+Writer\+Listener} on\+\_\+sample\+\_\+removed function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+\doxylink{classDDSDataWriter}{DDSData\+Writer} entity and associated elements 
+
+
+
+\doxysubsubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__DDSWriterModule_ga09a2b4e70fbd97c661f012b6300e313c}\index{DataWriter@{DataWriter}!DDS\_ReliableReaderActivityChangedStatus\_INITIALIZER@{DDS\_ReliableReaderActivityChangedStatus\_INITIALIZER}}
+\index{DDS\_ReliableReaderActivityChangedStatus\_INITIALIZER@{DDS\_ReliableReaderActivityChangedStatus\_INITIALIZER}!DataWriter@{DataWriter}}
+\doxyparagraph{\texorpdfstring{DDS\_ReliableReaderActivityChangedStatus\_INITIALIZER}{DDS\_ReliableReaderActivityChangedStatus\_INITIALIZER}}
+{\footnotesize\ttfamily \label{group__DDSWriterModule_ga09a2b4e70fbd97c661f012b6300e313c} 
+\#define DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status\+\_\+\+INITIALIZER}
+
+
+
+Initializer for new status instances. 
+
+New \doxylink{structDDS__ReliableReaderActivityChangedStatus}{DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status} instances stored on the stack should be initialized with this value before they are passed to any method. This step ensures that those fields that use dynamic memory are properly initialized. This does not allocate memory. 
+
+The simplest way to create a status structure is to initialize it on the stack at the time of its creation. 
+
+\doxysubsubsubsubsection{Typedef Documentation}
+\Hypertarget{group__DDSWriterModule_gaca1a700ae46eaec10fb461d343d9e3a3}\index{DataWriter@{DataWriter}!DDS\_DataWriterListener\_ReliableReaderActivityChangedCallback@{DDS\_DataWriterListener\_ReliableReaderActivityChangedCallback}}
+\index{DDS\_DataWriterListener\_ReliableReaderActivityChangedCallback@{DDS\_DataWriterListener\_ReliableReaderActivityChangedCallback}!DataWriter@{DataWriter}}
+\doxyparagraph{\texorpdfstring{DDS\_DataWriterListener\_ReliableReaderActivityChangedCallback}{DDS\_DataWriterListener\_ReliableReaderActivityChangedCallback}}
+{\footnotesize\ttfamily \label{group__DDSWriterModule_gaca1a700ae46eaec10fb461d343d9e3a3} 
+typedef void(\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Data\+Writer\+Listener\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Callback) (void \texorpdfstring{$\ast$}{*}listener\+\_\+data, DDS\+\_\+\+Data\+Writer \texorpdfstring{$\ast$}{*}writer, const struct \mbox{\hyperlink{structDDS__ReliableReaderActivityChangedStatus}{DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status}} \texorpdfstring{$\ast$}{*}status)}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A matched reliable reader has become active or become inactive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Data associated with the listener when the listener is set\\
+\hline
+{\em writer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Locally created \doxylink{classDDSDataWriter}{DDSData\+Writer} that triggers the listener callback\\
+\hline
+{\em status} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Current reliable reader activity changed status of the locally created \doxylink{classDDSDataWriter}{DDSData\+Writer} \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__DDSWriterModule_gafe797c9488ed0e1253516dcfc45d59e4}\index{DataWriter@{DataWriter}!DDS\_DataWriterListener\_ReliableSampleUnacknowledgedCallback@{DDS\_DataWriterListener\_ReliableSampleUnacknowledgedCallback}}
+\index{DDS\_DataWriterListener\_ReliableSampleUnacknowledgedCallback@{DDS\_DataWriterListener\_ReliableSampleUnacknowledgedCallback}!DataWriter@{DataWriter}}
+\doxyparagraph{\texorpdfstring{DDS\_DataWriterListener\_ReliableSampleUnacknowledgedCallback}{DDS\_DataWriterListener\_ReliableSampleUnacknowledgedCallback}}
+{\footnotesize\ttfamily \label{group__DDSWriterModule_gafe797c9488ed0e1253516dcfc45d59e4} 
+typedef void(\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Data\+Writer\+Listener\+\_\+\+Reliable\+Sample\+Unacknowledged\+Callback) (void \texorpdfstring{$\ast$}{*}listener\+\_\+data, DDS\+\_\+\+Data\+Writer \texorpdfstring{$\ast$}{*}writer, const struct \mbox{\hyperlink{structDDS__ReliableSampleUnacknowledgedStatus}{DDS\+\_\+\+Reliable\+Sample\+Unacknowledged\+Status}} \texorpdfstring{$\ast$}{*}status)}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Unacknowledged samples are removed from the writer cache. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Data associated with the listener when the listener is set\\
+\hline
+{\em writer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Locally created \doxylink{classDDSDataWriter}{DDSData\+Writer} that triggers the listener callback\\
+\hline
+{\em status} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Unacknowledged sample status for \doxylink{classDDSDataWriter}{DDSData\+Writer} \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__DDSWriterModule_ga31bf3b3d23eb833440d4f5aba7ca0f8c}\index{DataWriter@{DataWriter}!DDS\_DataWriterListener\_SampleRemovedCallback@{DDS\_DataWriterListener\_SampleRemovedCallback}}
+\index{DDS\_DataWriterListener\_SampleRemovedCallback@{DDS\_DataWriterListener\_SampleRemovedCallback}!DataWriter@{DataWriter}}
+\doxyparagraph{\texorpdfstring{DDS\_DataWriterListener\_SampleRemovedCallback}{DDS\_DataWriterListener\_SampleRemovedCallback}}
+{\footnotesize\ttfamily \label{group__DDSWriterModule_ga31bf3b3d23eb833440d4f5aba7ca0f8c} 
+typedef void(\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Data\+Writer\+Listener\+\_\+\+Sample\+Removed\+Callback) (void \texorpdfstring{$\ast$}{*}listener\+\_\+data, DDS\+\_\+\+Data\+Writer \texorpdfstring{$\ast$}{*}writer, const struct DDS\+\_\+\+Cookie\+\_\+t \texorpdfstring{$\ast$}{*}cookie)}
+
+
+
+Prototype of a \doxylink{classDDSDataWriterListener}{DDSData\+Writer\+Listener} on\+\_\+sample\+\_\+removed function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Data associated with the listener when the listener is set\\
+\hline
+{\em writer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Locally created \doxylink{classDDSDataWriter}{DDSData\+Writer} that triggers the listener callback\\
+\hline
+{\em cookie} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cookie uniquely identifying the sample that was removed \\
+\hline
+\end{DoxyParams}

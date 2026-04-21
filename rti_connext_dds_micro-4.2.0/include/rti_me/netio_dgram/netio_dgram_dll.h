@@ -1,0 +1,57 @@
+/*
+ * FILE: netio_dgram_dll.h - NETIO DGRAM external linkage
+ *
+ * Copyright (c) 2022-2024 Real-Time Innovations, Inc.
+ *
+ * All rights reserved.
+ *
+ * No duplications, whole or partial, manual or electronic, may be made
+ * without express written permission.  Any such copies, or
+ * revisions thereof, must display this notice unaltered.
+ * This code contains trade secrets of Real-Time Innovations, Inc.
+ *
+ * Modification History
+ * --------------------
+ * 26oct2022,tk Written
+ */
+#ifndef netio_dgram_dll_h
+#define netio_dgram_dll_h
+
+#include "osapi/osapi_config.h"
+
+#if defined(RTI_WIN32) || defined(RTI_WINCE30)
+
+#if defined(RTIME_DLL_EXPORT)
+#ifndef RTI_netio_dgram_DLL_EXPORT
+#define RTI_netio_dgram_DLL_EXPORT
+#endif
+#ifndef RTI_netio_dgram_DLL_VARIABLE
+#define RTI_netio_dgram_DLL_VARIABLE
+#endif
+#endif
+
+#if defined(RTI_netio_dgram_DLL_EXPORT)
+#define NETIO_DGRAMDllExport __declspec( dllexport )
+#else
+#define NETIO_DGRAMDllExport
+#endif /* RTI_netio_dgram_DLL_EXPORT */
+
+#if defined(RTI_netio_dgram_DLL_VARIABLE)
+#if defined(RTI_netio_dgram_DLL_EXPORT)
+#define NETIO_DGRAMDllVariable __declspec( dllexport )
+#else
+#define NETIO_DGRAMDllVariable __declspec( dllimport )
+#endif /* RTI_netio_dgram_DLL_EXPORT */
+#else
+#define NETIO_DGRAMDllVariable
+#endif /* RTI_netio_dgram_DLL_VARIABLE */
+#else
+#define NETIO_DGRAMDllExport
+#define NETIO_DGRAMDllVariable
+#endif /* RTI_WIN32 || RTI_WINCE30 */
+
+#if defined(__cplusplus) && defined(RTI_USE_CPP_API)
+#define RTI_CPP
+#endif
+
+#endif /* netio_dgram_dll_h */

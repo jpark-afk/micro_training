@@ -1,0 +1,46 @@
+\doxysubsection{netio\+\_\+zcopy.\+h File Reference}
+\hypertarget{netio__zcopy_8h}{}\label{netio__zcopy_8h}\index{netio\_zcopy.h@{netio\_zcopy.h}}
+
+
+Zero Copy transport API.  
+
+
+{\ttfamily \#include "{}netio\+\_\+zcopy/netio\+\_\+zcopy\+\_\+dll.\+h"{}}\newline
+{\ttfamily \#include "{}netio\+\_\+zcopy/netio\+\_\+zcopy\+\_\+notif\+\_\+interface.\+h"{}}\newline
+{\ttfamily \#include "{}netio\+\_\+zcopy/netio\+\_\+zcopy\+\_\+notif\+\_\+mechanism\+\_\+intf.\+h"{}}\newline
+{\ttfamily \#include "{}netio\+\_\+zcopy/netio\+\_\+zcopy\+\_\+whsq.\+h"{}}\newline
+{\ttfamily \#include "{}netio\+\_\+zcopy/netio\+\_\+zcopy\+\_\+loader.\+h"{}}\newline
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+NETIO\+\_\+\+ZCOPYDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__ZCV2Module_ga9b344cef3d779733d2aa9a1cb5403655}{NDDS\+\_\+\+Transport\+\_\+\+Zero\+Copy\+\_\+initialize}} (RT\+\_\+\+Registry\+\_\+T \texorpdfstring{$\ast$}{*}registry, const char \texorpdfstring{$\ast$}{*}transport\+\_\+name, struct \mbox{\hyperlink{structZCOPY__NotifInterfaceFactoryProperty}{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property}} \texorpdfstring{$\ast$}{*}property)
+\begin{DoxyCompactList}\small\item\em Initialize the RTI Connext DDS Micro transport with Zero Copy support. \end{DoxyCompactList}\item 
+NETIO\+\_\+\+ZCOPYDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__ZCV2Module_ga7877607eed9998670e9a4f687c24287d}{NDDS\+\_\+\+Transport\+\_\+\+Zero\+Copy\+\_\+finalize}} (RT\+\_\+\+Registry\+\_\+T \texorpdfstring{$\ast$}{*}registry, const char \texorpdfstring{$\ast$}{*}transport\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Finalize the Zero Copy NDDS transport. \end{DoxyCompactList}\item 
+NETIO\+\_\+\+ZCOPYDll\+Export struct RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__ZCV2Module_ga850c2019112bf086189cb150c216a3f9}{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+\_\+get\+\_\+interface}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the singleton instance of the notification interface factory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+NETIO\+\_\+\+ZCOPYDll\+Export const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{group__ZCOPY__NotifInterfaceClass_ga611e2d6de3dd5f6b0cb9e88f6d79daed}{NETIO\+\_\+\+DEFAULT\+\_\+\+NOTIF\+\_\+\+NAME}}
+\begin{DoxyCompactList}\small\item\em Default name for notification interface. \end{DoxyCompactList}\item 
+NETIO\+\_\+\+ZCOPYDll\+Export const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{netio__zcopy_8h_a1155a0175a18781bb17e84cbccbdfb40}{DDSHST\+\_\+\+WRITER\+\_\+\+WRAPPED\+\_\+\+HISTORY\+\_\+\+NAME}}
+\begin{DoxyCompactList}\small\item\em Default writer history name when it is wrapped by another history. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Zero Copy transport API. 
+
+
+
+\doxysubsubsection{Variable Documentation}
+\Hypertarget{netio__zcopy_8h_a1155a0175a18781bb17e84cbccbdfb40}\index{netio\_zcopy.h@{netio\_zcopy.h}!DDSHST\_WRITER\_WRAPPED\_HISTORY\_NAME@{DDSHST\_WRITER\_WRAPPED\_HISTORY\_NAME}}
+\index{DDSHST\_WRITER\_WRAPPED\_HISTORY\_NAME@{DDSHST\_WRITER\_WRAPPED\_HISTORY\_NAME}!netio\_zcopy.h@{netio\_zcopy.h}}
+\doxyparagraph{\texorpdfstring{DDSHST\_WRITER\_WRAPPED\_HISTORY\_NAME}{DDSHST\_WRITER\_WRAPPED\_HISTORY\_NAME}}
+{\footnotesize\ttfamily \label{netio__zcopy_8h_a1155a0175a18781bb17e84cbccbdfb40} 
+NETIO\+\_\+\+ZCOPYDll\+Export const char\texorpdfstring{$\ast$}{*} const DDSHST\+\_\+\+WRITER\+\_\+\+WRAPPED\+\_\+\+HISTORY\+\_\+\+NAME\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Default writer history name when it is wrapped by another history. 
+

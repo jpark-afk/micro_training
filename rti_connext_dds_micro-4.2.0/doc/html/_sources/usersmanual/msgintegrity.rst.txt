@@ -1,0 +1,219 @@
+.. _msgintegrity:
+
+Message Integrity Checking
+==========================
+
+|me| uses the DDS-I/RTPS protocol for communication between DDS applications,
+and RTPS messages are sent and received by a transport. When an RTPS message
+is sent across a communication link, such as Ethernet, it is possible that
+some bits may change value. These errors may cause communication failures 
+or incorrect data to be received. In order to *detect* these types of errors,
+transports such as UDP often include a checksum to validate the integrity 
+of the data: a sender adds the checksum to the transmitted data and 
+the receiver validates that the calculated checksum for the received data 
+matches the checksum received from the sender. If the checksums are 
+different, a data corruption has occurred. 
+
+By default, |me| relies on the underlying transport, such as UDP, to handle 
+data integrity checking. However, the underlying transport may not provide 
+sufficient integrity checking, or may itself introduce errors that |me| 
+must be able to detect regardless of the transport.
+
+In order to address both of these scenarios for *any* transport, 
+|me| supports RTPS message integrity checking by adding a checksum to 
+the RTPS message itself. This chapter describes the setup and default options 
+to access this feature.
+ 
+For information on how to write custom checksum functions, please refer to
+:ref:`transport_rtps`.
+
+RTPS checksum
+-------------
+
+|me| implements checksum validation on a complete RTPS message. A typical 
+RTPS message without a checksum has the following structure:
+
+    ::
+        
+        +--------+------------+-------------------------+------------+
+        | Header | Submessage | ...... submessages .... | Submessage |
+        +--------+------------+-------------------------+------------+
+
+
+When the message integrity checking feature is enabled, the structure
+of the RTPS message changes as illustrated below:
+
+    ::
+        
+        +--------+------------+------------+------------------+------------+
+        | Header | Checksum   | Submessage | .. submessages ..| Submessage |
+        +--------+------------+------------+------------------+------------+
+
+
+The sender calculates the checksum for the entire message with a checksum 
+field set to 0 and places the result in the checksum field.
+
+The receiver saves the the received checksum, sets the received checksum
+field to 0, and calculates the checksum for the entire message. It then 
+compares the calculated checksum with the received checksum. If the checksums
+differ, the entire RTPS message is considered corrupted.   
+
+
+Note that the checksum is used *only* for error *detection* and *not* for error 
+*correction*.  
+
+Configurations
+--------------
+
+You can configure your application to define which algorithms to use and 
+validate as well as the requirements enforced by the participant when 
+communicating with other participants using the
+:link_connextmicro_dds_api_c_up_one:`DDS_WireProtocolQosPolicy <structDDS__WireProtocolQosPolicy.html>`. 
+
+Configuring the message integrity checking consists of the two parts:
+
+#. Selecting the checksum algorithm.
+
+#. Configuring how a participant applies the checksums.
+
+Selecting a checksum algorithm
+..............................
+
+|me| supports three built-in algorithms and can be configured to use any of the
+following algorithms:
+
+#. DDS_CHECKSUM_BUILTIN32: CRC-32 As defined by ISO/IEC 13239:2002.
+#. DDS_CHECKSUM_BUILTIN64: CRC-64 As defined by ISO/IEC 13239:2002.
+#. DDS_CRC_BUILTIN128: MD5 Message Digest
+
+The CRC functions have the following properties:
+
++----------+------------+-----------+-----------+-----------+-----------+
+| Checksum | Polynom    | Initial   | Input     | Output    | XOR Value |
+|          |            | Value     | Reflected | Reflected |           |
++==========+============+===========+===========+===========+===========+
+| CRC-32   | 0x04c11db7 | 2^32 - 1  | true      | true      | 2^32 - 1  |
++----------+------------+-----------+-----------+-----------+-----------+
+| CRC-64   | 0x1b       | 2^64 - 1  | true      | true      | 2^64 -1   |
++----------+------------+-----------+-----------+-----------+-----------+
+
+Please refer to :ref:`transport_rtps` for information on how to implement 
+custom checksum functions.
+
+Configuring the DDS DomainParticipant
+.....................................
+
+The RTPS message integrity feature is configured in the 
+:link_connextmicro_dds_api_c_up_one:`DDS_WireProtocolQosPolicy <structDDS__WireProtocolQosPolicy.html>`
+for a participant. This QoS determines which RTPS
+checksum should be allowed, and if checksums should be sent and/or validated.
+
+The following three fields determine how a participant uses RTPS checksums:
+
+- ``compute_crc`` - This configures the participant to send a checksum with 
+  each RTPS message. Which checksum to send is determined by  
+  ``computed_crc_kind``.
+  
+- ``check_crc`` - This configures the participant to verify the checksum in 
+  each received RTPS message if the checksum is present. If the checksum
+  is valid, the message is accepted; otherwise, the message is dropped. If a
+  message is received *without* a checksum, it is accepted and processed.
+   
+- ``require_crc`` - This configures the participant to *require* that a checksum 
+  is present in the receiving packet. Messages without a checksum are dropped 
+  without further processing. Note that this option is orthogonal to the 
+  ``check_crc`` options. This option only requires that a checksum is included,
+  it does not validate it. To validate and only accept messages with a checksum,
+  *both* check_crc and require_crc must be ``true``.
+  
+
+The following two fields determine which checksums are used:
+
+- ``computed_crc_kind`` -  The checksum type to include in each RTPS message when 
+  ``compute_crc`` is ``true``.
+
+- ``allowed_crc_mask`` - A mask of all checksum algorithms that the participant 
+  can verify. This allows the participant to receive messages from other 
+  participants with a different ``computed_crc_kind``. A participant will ignore
+  a participant that is sending a checksum that it cannot validate. 
+
+
+For example, the following snippet shows how to configure the participant to:
+
+- Send all messages (except the participant announcements; see 
+  :ref:`section-participant-discovery-and-compatibility` below) with ``DDS_CHECKSUM_BUILTIN64``.
+
+- Accept ``DDS_CHECKSUM_BUILTIN32``, ``DDS_CHECKSUM_BUILTIN64``, and
+  ``DDS_CHECKSUM_BUILTIN128`` algorithms. 
+
+  ::
+  
+  
+      struct DDS_DomainParticipantQos dp_qos =              
+                                        DDS_DomainParticipantQos_INITIALIZER;
+                                        
+      dp_qos.protocol.computed_crc_kind =  DDS_CHECKSUM_BUILTIN64;
+      
+      dp_qos.protocol.allowed_crc_mask = DDS_CHECKSUM_BUILTIN32 
+                                         | DDS_CHECKSUM_BUILTIN64
+                                         | DDS_CHECKSUM_BUILTIN128;
+
+.. _section-participant-discovery-and-compatibility:
+
+Participant discovery and compatibility
+---------------------------------------
+
+|me| ensures that participants establish communication with each other only 
+when they have compatible checksum configurations. If ``compute_crc`` is 
+``true``, all messages sent from the participant are protected by a checksum. 
+Since each participant can use a different type of checksum, a mechanism 
+is required to ensure that participants are compatible during discovery.
+
+To bootstrap this mechanism, all participant announcements 
+(if ``compute_crc`` is set to true) include a checksum of type  
+``DDS_CHECKSUM_BUILTIN32``. The participant announcement carries information 
+about the ``computed_crc_kind`` (the checksum kind 
+used by the participant) and the ``allowed_crc_mask`` (the checksum kinds 
+understood by the participant), and whether or not the participant requires 
+a checksum for each RTPS message (if ``require_crc`` is set to true). 
+Please note that messages with ``DDS_CHECKSUM_BUILTIN32`` checksum 
+are *always* accepted to enable discovering new participants. 
+
+For a Participant (A) to match with another Participant (B), 
+the ``computed_crc_kind`` of Participant (B) must be a strict subset of 
+the ``allowed_crc_mask`` of Participant (A) and vice versa. If Participant 
+(B) does not send a checksum (``compute_crc`` is set to false), it can 
+only match Participant (A) if it does not set ``require_crc`` to true. 
+
+Interoperability with |core_pro_h|
+----------------------------------
+
+|me| supports two different kinds of RTPS submessages for CRC 32-bit checksums:
+
+- The standard CRC 32-bit checksum in the RTPS header extension, as
+  defined by the `OMG <https://www.omg.org/index.htm>`_.
+- The legacy CRC 32-bit checksum submessage used
+  by older versions of |core_pro|.
+
+|me| will understand and accept either kind of
+received submessage. However, it may be necessary to change the transmit mode
+of |me| to enable interoperability with older versions of |core_pro| and allow
+|core_pro| to validate the checksum. 
+
+The following two transmit modes are available:
+
+- **RTPS_CRC_TXMODE_OMG**: uses the standard method as defined by the `OMG <https://www.omg.org/index.htm>`_.
+  This is the default mode. The checksums sent by |me| may not be understood
+  by older versions of |core_pro| and cause |core_pro| to treat the message as
+  if it does not include a checksum.
+
+- **RTPS_CRC_TXMODE_RTICRC32**: uses the legacy CRC32 mode. This mode sets the
+  ``computed_crc_kind`` to ``DDS_CRC_BUILTIN32``. The checksum sent by |me| will be
+  understood by older versions of |core_pro|. Use this option only if there is a
+  |core_pro| application in your system which requires the legacy CRC 32-bit
+  checksum.
+
+.. warning::
+
+  |core_pro| does not support the ``require_crc`` field in the
+  :link_connextmicro_dds_api_c_up_one:`DDS_WireProtocolQosPolicy <structDDS__WireProtocolQosPolicy.html>`.

@@ -1,0 +1,59 @@
+\doxysubsection{NETIO\+\_\+\+DGRAM\+\_\+\+Interface\+Multi\+Cast\+Group Struct Reference}
+\hypertarget{structNETIO__DGRAM__InterfaceMultiCastGroup}{}\label{structNETIO__DGRAM__InterfaceMultiCastGroup}\index{NETIO\_DGRAM\_InterfaceMultiCastGroup@{NETIO\_DGRAM\_InterfaceMultiCastGroup}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Definition of a valid multicast group address range.  
+
+
+
+
+{\ttfamily \#include $<$netio\+\_\+dgram.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \mbox{\hyperlink{structNETIO__DGRAM__InterfaceMultiCastGroup_acd80a8b731ac5ee2327b269863a76a45}{address\+\_\+low}}
+\begin{DoxyCompactList}\small\item\em The lowest multicast address. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \mbox{\hyperlink{structNETIO__DGRAM__InterfaceMultiCastGroup_a97ad01b566d1fbe0e9e3a6c2fcd9b048}{address\+\_\+high}}
+\begin{DoxyCompactList}\small\item\em The highest multicast address. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNETIO__Netmask}{NETIO\+\_\+\+Netmask}} \mbox{\hyperlink{structNETIO__DGRAM__InterfaceMultiCastGroup_a513deffbf655b06e7b47b2abddb6921d}{netmask}}
+\begin{DoxyCompactList}\small\item\em The netmask to apply to the group. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Definition of a valid multicast group address range. 
+
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structNETIO__DGRAM__InterfaceMultiCastGroup_acd80a8b731ac5ee2327b269863a76a45}\index{NETIO\_DGRAM\_InterfaceMultiCastGroup@{NETIO\_DGRAM\_InterfaceMultiCastGroup}!address\_low@{address\_low}}
+\index{address\_low@{address\_low}!NETIO\_DGRAM\_InterfaceMultiCastGroup@{NETIO\_DGRAM\_InterfaceMultiCastGroup}}
+\doxyparagraph{\texorpdfstring{address\_low}{address\_low}}
+{\footnotesize\ttfamily \label{structNETIO__DGRAM__InterfaceMultiCastGroup_acd80a8b731ac5ee2327b269863a76a45} 
+struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} NETIO\+\_\+\+DGRAM\+\_\+\+Interface\+Multi\+Cast\+Group\+::address\+\_\+low}
+
+
+
+The lowest multicast address. 
+
+\Hypertarget{structNETIO__DGRAM__InterfaceMultiCastGroup_a97ad01b566d1fbe0e9e3a6c2fcd9b048}\index{NETIO\_DGRAM\_InterfaceMultiCastGroup@{NETIO\_DGRAM\_InterfaceMultiCastGroup}!address\_high@{address\_high}}
+\index{address\_high@{address\_high}!NETIO\_DGRAM\_InterfaceMultiCastGroup@{NETIO\_DGRAM\_InterfaceMultiCastGroup}}
+\doxyparagraph{\texorpdfstring{address\_high}{address\_high}}
+{\footnotesize\ttfamily \label{structNETIO__DGRAM__InterfaceMultiCastGroup_a97ad01b566d1fbe0e9e3a6c2fcd9b048} 
+struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} NETIO\+\_\+\+DGRAM\+\_\+\+Interface\+Multi\+Cast\+Group\+::address\+\_\+high}
+
+
+
+The highest multicast address. 
+
+\Hypertarget{structNETIO__DGRAM__InterfaceMultiCastGroup_a513deffbf655b06e7b47b2abddb6921d}\index{NETIO\_DGRAM\_InterfaceMultiCastGroup@{NETIO\_DGRAM\_InterfaceMultiCastGroup}!netmask@{netmask}}
+\index{netmask@{netmask}!NETIO\_DGRAM\_InterfaceMultiCastGroup@{NETIO\_DGRAM\_InterfaceMultiCastGroup}}
+\doxyparagraph{\texorpdfstring{netmask}{netmask}}
+{\footnotesize\ttfamily \label{structNETIO__DGRAM__InterfaceMultiCastGroup_a513deffbf655b06e7b47b2abddb6921d} 
+struct \mbox{\hyperlink{structNETIO__Netmask}{NETIO\+\_\+\+Netmask}} NETIO\+\_\+\+DGRAM\+\_\+\+Interface\+Multi\+Cast\+Group\+::netmask}
+
+
+
+The netmask to apply to the group. 
+
+The netmask is a sequence of N consecutive 1s, starting with the left most bit. In order to determine if an address is a multicast address the netmask is first applied to the address and the high and low address of the multicast group. If the masked address is within the multicast group it is treated as a multicast address. 

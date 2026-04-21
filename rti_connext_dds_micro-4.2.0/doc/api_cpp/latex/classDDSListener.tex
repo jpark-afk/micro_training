@@ -1,0 +1,88 @@
+\doxysubsection{DDSListener Class Reference}
+\hypertarget{classDDSListener}{}\label{classDDSListener}\index{DDSListener@{DDSListener}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Abstract base class for all Listener interfaces.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+infrastructure.\+hxx$>$}
+
+Inheritance diagram for DDSListener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classDDSListener}
+\end{center}
+\end{figure}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Abstract base class for all Listener interfaces. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSEntity}{DDSEntity} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{QoS\+:}
+\doxylink{group__DDSQosTypesModule}{QoS Policies} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule}{Status Kinds} 
+\end{DoxyParagraph}
+All the supported kinds of concrete \doxylink{classDDSListener}{DDSListener} interfaces (one per concrete \doxylink{classDDSEntity}{DDSEntity} type) derive from this root and add methods whose prototype depends on the concrete Listener. 
+
+Listeners provide a way for RTI Connext DDS Micro to asynchronously alert the application when there are relevant status changes. 
+
+Almost every application will have to implement listener interfaces. 
+
+Each dedicated listener presents a list of operations that correspond to the relevant communication status changes to which an application may respond. 
+
+The same \doxylink{classDDSListener}{DDSListener} instance may be shared among multiple entities if you so desire. Consequently, the provided parameter contains a reference to the concerned \doxylink{classDDSEntity}{DDSEntity}. \hypertarget{classDDSListener_Listener_plain}{}\doxysubsubsection{\texorpdfstring{Access to Plain Communication Status}{Access to Plain Communication Status}}\label{classDDSListener_Listener_plain}
+The general mapping between the plain communication statuses (see \doxylink{group__DDSStatusTypesModule}{Status Kinds}) and the listeners\textquotesingle{} operations is as follows\+: 
+
+\begin{DoxyItemize}
+\item For each communication status, there is a corresponding operation whose name is {\ttfamily on\+\_\+\texorpdfstring{$<$}{<}communication\+\_\+status\texorpdfstring{$>$}{>}}(), which takes a parameter of type {\ttfamily \texorpdfstring{$<$}{<}communication\+\_\+status\texorpdfstring{$>$}{>}} as listed in \doxylink{group__DDSStatusTypesModule}{Status Kinds}. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item {\ttfamily on\+\_\+\texorpdfstring{$<$}{<}communication\+\_\+status\texorpdfstring{$>$}{>}} is available on the relevant \doxylink{classDDSEntity}{DDSEntity} as well as those that embed it, as expressed in the following figure\+: \end{DoxyItemize}
+
+
+\begin{DoxyItemize}
+\item When the application attaches a listener on an entity, it must set a mask. The mask indicates to RTI Connext DDS Micro which operations are enabled within the listener (cf. operation \doxylink{classDDSEntity}{DDSEntity} set\+\_\+listener() ). \end{DoxyItemize}
+\begin{DoxyItemize}
+\item When a plain communication status changes, RTI Connext DDS Micro triggers the most specific relevant listener operation that is enabled. In case the most specific relevant listener operation corresponds to an application-\/installed \textquotesingle{}nil\textquotesingle{} listener the operation will be considered handled by a NO-\/\+OP operation that does not reset the communication status. \end{DoxyItemize}
+This behavior allows the application to set a default behavior (e.\+g., in the listener associated with the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}) and to set dedicated behaviors only where needed. \hypertarget{dds_cpp_infrastructure.hxx_Listener_read}{}\doxysubsubsection{\texorpdfstring{Access to Read Communication Status}{Access to Read Communication Status}}\label{dds_cpp_infrastructure.hxx_Listener_read}
+The two statuses related to data arrival are treated slightly differently. Since they constitute the core purpose of the Data Distribution Service, there is no need to provide a default mechanism (as is done for the plain communication statuses above). 
+
+The rule is as follows. Each time the read communication status changes\+: 
+
+\begin{DoxyItemize}
+\item First, RTI Connext DDS Micro tries to trigger the \doxylink{classDDSSubscriberListener_ac58cac112bc6d1639c68d906627d4468}{DDSSubscriber\+Listener\+::on\+\_\+data\+\_\+on\+\_\+readers} with a parameter of the related \doxylink{classDDSSubscriber}{DDSSubscriber}; \end{DoxyItemize}
+\begin{DoxyItemize}
+\item If this does not succeed (there is no listener or the operation is not enabled), RTI Connext DDS Micro tries to trigger \doxylink{classDDSDataReaderListener_a6eb7415a3d7fad02746dc3eb16adc6e4}{DDSData\+Reader\+Listener\+::on\+\_\+data\+\_\+available} on all the related \doxylink{classDDSDataReaderListener}{DDSData\+Reader\+Listener} objects, with a parameter of the related \doxylink{classDDSDataReader}{DDSData\+Reader}. \end{DoxyItemize}
+The rationale is that either the application is interested in relations among data arrivals and it must use the first option or it wants to treat each \doxylink{classDDSDataReader}{DDSData\+Reader} independently and it may choose the second option (and then get the data by calling \doxylink{structFooDataReader_a74c15a01f765327c1b05c87950f64f4e}{Foo\+Data\+Reader\+::read\+\_\+next\+\_\+sample} or \doxylink{structFooDataReader_a95aad2ef7e94736c234b8071dfb29996}{Foo\+Data\+Reader\+::take\+\_\+next\+\_\+sample} on the related \doxylink{classDDSDataReader}{DDSData\+Reader}). 
+
+Note that if \doxylink{classDDSSubscriberListener_ac58cac112bc6d1639c68d906627d4468}{DDSSubscriber\+Listener\+::on\+\_\+data\+\_\+on\+\_\+readers} is called, RTI Connext DDS Micro will {\itshape not} try to call \doxylink{classDDSDataReaderListener_a6eb7415a3d7fad02746dc3eb16adc6e4}{DDSData\+Reader\+Listener\+::on\+\_\+data\+\_\+available}. 
+
+The operations that are allowed in \doxylink{classDDSListener}{DDSListener} callbacks depend the \doxylink{classDDSEntity}{DDSEntity} to which the \doxylink{classDDSListener}{DDSListener} is attached -\/-\/ or in the case of a \doxylink{classDDSDataWriter}{DDSData\+Writer} of \doxylink{classDDSDataReader}{DDSData\+Reader} listener, on the parent \doxylink{classDDSPublisher}{DDSPublisher} or \doxylink{classDDSSubscriber}{DDSSubscriber}. 
+
+The following operations are {\itshape not} allowed\+: 
+\begin{DoxyItemize}
+\item Within any listener callback, deleting the entity to which the \doxylink{classDDSListener}{DDSListener} is attached 
+\item Within a \doxylink{classDDSTopic}{DDSTopic} listener callback, any operations on any subscribers, readers, publishers or writers 
+\end{DoxyItemize}An attempt to call a disallowed method from within a callback will result in \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9abc2fecf5d7348c77744f0b16bdfcf2}{DDS\+\_\+\+RETCODE\+\_\+\+ILLEGAL\+\_\+\+OPERATION}. 
+
+The following are {\itshape not} allowed\+: 
+\begin{DoxyItemize}
+\item Within any listener callback, creating any entity 
+\item Within any listener callback, deleting any entity 
+\item Within any listener callback, enabling any entity 
+\item Within any listener callback, setting the QoS of any entities 
+\item Within a \doxylink{classDDSDataReader}{DDSData\+Reader} or \doxylink{classDDSSubscriber}{DDSSubscriber} listener callback, invoking any operation on any other \doxylink{classDDSSubscriber}{DDSSubscriber} or on any \doxylink{classDDSDataReader}{DDSData\+Reader} belonging to another \doxylink{classDDSSubscriber}{DDSSubscriber}. 
+\item Within a \doxylink{classDDSDataReader}{DDSData\+Reader} or \doxylink{classDDSSubscriber}{DDSSubscriber} listener callback, invoking any operation on any \doxylink{classDDSPublisher}{DDSPublisher} (or on any \doxylink{classDDSDataWriter}{DDSData\+Writer} belonging to such a \doxylink{classDDSPublisher}{DDSPublisher}).  
+\item Within a \doxylink{classDDSDataWriter}{DDSData\+Writer} of \doxylink{classDDSPublisher}{DDSPublisher} listener callback, invoking any operation on another Publisher or on a \doxylink{classDDSDataWriter}{DDSData\+Writer} belonging to another \doxylink{classDDSPublisher}{DDSPublisher}. 
+\item Within a \doxylink{classDDSDataWriter}{DDSData\+Writer} of \doxylink{classDDSPublisher}{DDSPublisher} listener callback, invoking any operation on any \doxylink{classDDSSubscriber}{DDSSubscriber} or \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+\end{DoxyItemize}An attempt to call a disallowed method from within a callback will result in \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9abc2fecf5d7348c77744f0b16bdfcf2}{DDS\+\_\+\+RETCODE\+\_\+\+ILLEGAL\+\_\+\+OPERATION}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSStatusTypesModule}{Status Kinds} 
+\end{DoxySeeAlso}

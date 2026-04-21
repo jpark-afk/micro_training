@@ -1,0 +1,111 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# DDS options file
+#
+# Modification History
+# --------------------
+# 15nov2016 tk Written
+################################################################################
+IF (RTIME_PSL)
+    RETURN()
+ENDIF()
+
+IF (RTIME_PRINT_CONFIG)
+    RTI_MESSAGE_STATUS("RTIME_DDS_DISABLE_APPLICATION_INFO .: ${RTIME_DDS_DISABLE_APPLICATION_INFO}")
+    RETURN()
+ENDIF()
+
+SET(RTIME_DDS_DISABLE_PARTICIPANT_INFO_DOC 
+"Checking this option disables sending DDS participant information, such as
+application name, process id, hostname, target name etc., as part of the 
+participant discovery data.")
+
+IF (NOT DEFINED RTIME_DDS_DISABLE_APPLICATION_INFO)
+    SET(RTIME_DDS_DISABLE_APPLICATION_INFO FALSE CACHE BOOL ${RTIME_DDS_DISABLE_PARTICIPANT_INFO_DOC})
+ELSE()
+    SET(RTIME_DDS_DISABLE_APPLICATION_INFO ${RTIME_DDS_DISABLE_APPLICATION_INFO} CACHE BOOL ${RTIME_DDS_DISABLE_PARTICIPANT_INFO_DOC})
+ENDIF()
+
+IF (${RTIME_DDS_DISABLE_APPLICATION_INFO})
+    ADD_DEFINITIONS(-DDDS_DISABLE_PARTICIPANT_INFO=1)
+ENDIF()
+
+SET(RTIME_DDS_ENABLE_APPGEN_DOC 
+"Checking this option enables feature Application Generation.")
+
+SET(RTIME_DDS_DISABLE_LIVELINESS_CHANNEL_DOC
+"Checking this option disables the inter-participant channel.
+This channel is needed to use DDS_AUTOMATIC_LIVELINESS_QOS and
+DDS_MANUAL_BY_PARTICIPANT_LIVELINESS_QOS with finite lease duration.")
+
+IF (RTIME_CERT)
+    SET(RTIME_DDS_DISABLE_LIVELINESS_CHANNEL TRUE)
+ELSE()
+    SET(RTIME_DDS_DISABLE_LIVELINESS_CHANNEL FALSE 
+        CACHE BOOL ${RTIME_DDS_DISABLE_LIVELINESS_CHANNEL_DOC}
+    )
+ENDIF()
+
+IF (${RTIME_DDS_DISABLE_LIVELINESS_CHANNEL})
+    ADD_DEFINITIONS(-DDDS_ENABLE_LIVELINESS_CHANNEL=0)
+ENDIF()
+
+SET(RTIME_DDS_ENABLE_APPGEN TRUE CACHE BOOL ${RTIME_DDS_ENABLE_APPGEN_DOC})
+
+IF (${RTIME_DDS_ENABLE_APPGEN})
+    ADD_DEFINITIONS(-DDDS_ENABLE_APPGEN=1)
+ENDIF()
+
+SET(RTIME_DDS_ENABLE_FLOW_CONRTOL_DOC 
+"Checking this option enables the flow controller for RTPS fragmentation of data samples that exceed the transport MTU.")
+
+SET(RTIME_DDS_ENABLE_FLOW_CONRTOL TRUE CACHE BOOL ${RTIME_DDS_ENABLE_FLOW_CONRTOL_DOC})
+
+IF (${RTIME_DDS_ENABLE_FLOW_CONRTOL})
+    ADD_DEFINITIONS(-DDS_ENABLE_FLOW_CONTORL=1)
+ENDIF()
+
+##########
+# X-Types
+##########
+SET(RTIME_DDS_EXCLUDE_XTYPES_DOC 
+"Unchecking this option enables x-types support.")
+
+IF (RTIME_CERT)
+    SET(RTIME_DDS_EXCLUDE_XTYPES TRUE CACHE BOOL ${RTIME_DDS_EXCLUDE_XTYPES_DOC})
+ELSE()
+    SET(RTIME_DDS_EXCLUDE_XTYPES FALSE CACHE BOOL ${RTIME_DDS_EXCLUDE_XTYPES_DOC})
+ENDIF()
+
+IF (RTIME_DDS_EXCLUDE_XTYPES)
+    ADD_DEFINITIONS(-DDDS_ENABLE_XTYPES=0)
+ELSE()
+    ADD_DEFINITIONS(-DDDS_ENABLE_XTYPES=1)
+ENDIF()
+
+###################
+# Content filtering
+###################
+SET(RTIME_DDS_EXCLUDE_FILTERING_DOC "Checking this option disables filtering support.")
+
+# Content filtering currently requires X-Types
+IF (RTIME_DDS_EXCLUDE_XTYPES)
+    SET(RTIME_DDS_EXCLUDE_FILTERING TRUE CACHE BOOL ${RTIME_DDS_EXCLUDE_FILTERING_DOC})
+ELSE()
+    SET(RTIME_DDS_EXCLUDE_FILTERING FALSE CACHE BOOL ${RTIME_DDS_EXCLUDE_FILTERING_DOC})
+ENDIF()
+
+IF (RTIME_DDS_EXCLUDE_FILTERING)
+    ADD_DEFINITIONS(-DDDS_ENABLE_FILTERING=0)
+ELSE()
+    ADD_DEFINITIONS(-DDDS_ENABLE_FILTERING=1)
+ENDIF()

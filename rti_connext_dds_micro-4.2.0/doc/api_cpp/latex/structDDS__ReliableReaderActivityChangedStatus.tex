@@ -1,0 +1,90 @@
+\doxysubsection{DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status Struct Reference}
+\hypertarget{structDDS__ReliableReaderActivityChangedStatus}{}\label{structDDS__ReliableReaderActivityChangedStatus}\index{DDS\_ReliableReaderActivityChangedStatus@{DDS\_ReliableReaderActivityChangedStatus}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Describes the activity (i.\+e. are acknowledgements forthcoming) of reliable readers matched to a reliable writer.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+publication.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__ReliableReaderActivityChangedStatus_a6db43531b7fdb31abb2fd02cdb063a3f}{active\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em The current number of reliable readers currently matched with this reliable writer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__ReliableReaderActivityChangedStatus_a90132e85cb704923631bb117a86c03e5}{inactive\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em The number of reliable readers that have been dropped by this reliable writer because they failed to send acknowledgements in a timely fashion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__ReliableReaderActivityChangedStatus_a6b834cb11736d3dd8b24fc797f45b9f9}{active\+\_\+count\+\_\+change}}
+\begin{DoxyCompactList}\small\item\em The most recent change in the number of active remote reliable readers. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__ReliableReaderActivityChangedStatus_a89eb6396278944ccf07cdbdf7a6fd631}{inactive\+\_\+count\+\_\+change}}
+\begin{DoxyCompactList}\small\item\em The most recent change in the number of inactive remote reliable readers. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{structDDS__ReliableReaderActivityChangedStatus_a79ba425c659abf712a231783cefeb972}{last\+\_\+instance\+\_\+handle}}
+\begin{DoxyCompactList}\small\item\em The instance handle of the last reliable remote reader to be determined inactive. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Describes the activity (i.\+e. are acknowledgements forthcoming) of reliable readers matched to a reliable writer. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSDataWriter}{DDSData\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Listener\+:}
+\doxylink{classDDSDataWriterListener}{DDSData\+Writer\+Listener} 
+\end{DoxyParagraph}
+This status is the reciprocal status to the \doxylink{structDDS__LivelinessChangedStatus}{DDS\+\_\+\+Liveliness\+Changed\+Status} on the reader. It is different than the \doxylink{structDDS__LivelinessLostStatus}{DDS\+\_\+\+Liveliness\+Lost\+Status} on the writer in that the latter informs the writer about its own liveliness; this status informs the writer about the "{}liveliness"{} (activity) of its matched readers. 
+
+All counts in this status will remain at zero for best effort writers. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__ReliableReaderActivityChangedStatus_a6db43531b7fdb31abb2fd02cdb063a3f}\index{DDS\_ReliableReaderActivityChangedStatus@{DDS\_ReliableReaderActivityChangedStatus}!active\_count@{active\_count}}
+\index{active\_count@{active\_count}!DDS\_ReliableReaderActivityChangedStatus@{DDS\_ReliableReaderActivityChangedStatus}}
+\doxyparagraph{\texorpdfstring{active\_count}{active\_count}}
+{\footnotesize\ttfamily \label{structDDS__ReliableReaderActivityChangedStatus_a6db43531b7fdb31abb2fd02cdb063a3f} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status\+::active\+\_\+count}
+
+
+
+The current number of reliable readers currently matched with this reliable writer. 
+
+\Hypertarget{structDDS__ReliableReaderActivityChangedStatus_a90132e85cb704923631bb117a86c03e5}\index{DDS\_ReliableReaderActivityChangedStatus@{DDS\_ReliableReaderActivityChangedStatus}!inactive\_count@{inactive\_count}}
+\index{inactive\_count@{inactive\_count}!DDS\_ReliableReaderActivityChangedStatus@{DDS\_ReliableReaderActivityChangedStatus}}
+\doxyparagraph{\texorpdfstring{inactive\_count}{inactive\_count}}
+{\footnotesize\ttfamily \label{structDDS__ReliableReaderActivityChangedStatus_a90132e85cb704923631bb117a86c03e5} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status\+::inactive\+\_\+count}
+
+
+
+The number of reliable readers that have been dropped by this reliable writer because they failed to send acknowledgements in a timely fashion. 
+
+A reader is considered to be inactive after is has been sent heartbeats \doxylink{structDDS__RtpsReliableWriterProtocol__t_a5be67d978618b5995cb517b51231d39d}{DDS\+\_\+\+Rtps\+Reliable\+Writer\+Protocol\+\_\+t\+::max\+\_\+heartbeat\+\_\+retries} times, each heartbeat having been separated from the previous by the current heartbeat period. \Hypertarget{structDDS__ReliableReaderActivityChangedStatus_a6b834cb11736d3dd8b24fc797f45b9f9}\index{DDS\_ReliableReaderActivityChangedStatus@{DDS\_ReliableReaderActivityChangedStatus}!active\_count\_change@{active\_count\_change}}
+\index{active\_count\_change@{active\_count\_change}!DDS\_ReliableReaderActivityChangedStatus@{DDS\_ReliableReaderActivityChangedStatus}}
+\doxyparagraph{\texorpdfstring{active\_count\_change}{active\_count\_change}}
+{\footnotesize\ttfamily \label{structDDS__ReliableReaderActivityChangedStatus_a6b834cb11736d3dd8b24fc797f45b9f9} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status\+::active\+\_\+count\+\_\+change}
+
+
+
+The most recent change in the number of active remote reliable readers. 
+
+\Hypertarget{structDDS__ReliableReaderActivityChangedStatus_a89eb6396278944ccf07cdbdf7a6fd631}\index{DDS\_ReliableReaderActivityChangedStatus@{DDS\_ReliableReaderActivityChangedStatus}!inactive\_count\_change@{inactive\_count\_change}}
+\index{inactive\_count\_change@{inactive\_count\_change}!DDS\_ReliableReaderActivityChangedStatus@{DDS\_ReliableReaderActivityChangedStatus}}
+\doxyparagraph{\texorpdfstring{inactive\_count\_change}{inactive\_count\_change}}
+{\footnotesize\ttfamily \label{structDDS__ReliableReaderActivityChangedStatus_a89eb6396278944ccf07cdbdf7a6fd631} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status\+::inactive\+\_\+count\+\_\+change}
+
+
+
+The most recent change in the number of inactive remote reliable readers. 
+
+\Hypertarget{structDDS__ReliableReaderActivityChangedStatus_a79ba425c659abf712a231783cefeb972}\index{DDS\_ReliableReaderActivityChangedStatus@{DDS\_ReliableReaderActivityChangedStatus}!last\_instance\_handle@{last\_instance\_handle}}
+\index{last\_instance\_handle@{last\_instance\_handle}!DDS\_ReliableReaderActivityChangedStatus@{DDS\_ReliableReaderActivityChangedStatus}}
+\doxyparagraph{\texorpdfstring{last\_instance\_handle}{last\_instance\_handle}}
+{\footnotesize\ttfamily \label{structDDS__ReliableReaderActivityChangedStatus_a79ba425c659abf712a231783cefeb972} 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status\+::last\+\_\+instance\+\_\+handle}
+
+
+
+The instance handle of the last reliable remote reader to be determined inactive. 
+

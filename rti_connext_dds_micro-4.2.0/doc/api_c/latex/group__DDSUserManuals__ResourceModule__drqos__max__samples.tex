@@ -1,0 +1,18 @@
+\doxysubsubsubsection{max\+\_\+samples}
+\hypertarget{group__DDSUserManuals__ResourceModule__drqos__max__samples}{}\label{group__DDSUserManuals__ResourceModule__drqos__max__samples}\index{max\_samples@{max\_samples}}
+\begin{DoxyParagraph}{NAME}
+\doxylink{structDDS__ResourceLimitsQosPolicy_a90db906a3958146c5e22557db648e7ff}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+samples}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{DESCRIPTION}
+\doxylink{structDDS__ResourceLimitsQosPolicy_a90db906a3958146c5e22557db648e7ff}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+samples} limits the maximum number of samples a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} can allocate and cache. Samples are cached before they are made available to the application, for example when samples are received out-\/of-\/order. Thus, this resource-\/limit may impact throughput and latency.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+What this value should be set to is determined by a number of factors\+:
+\begin{DoxyItemize}
+\item For best-\/effort it can be set to 1 since samples are not cached. However, if data is polled or samples are loaned longer than the update frequency this resource-\/limit should be increased to prevent samples from being reused before the application has a chance to access the data (along with \doxylink{structDDS__HistoryQosPolicy_aef0fb3fd3579866be17d1a936f5e3729}{DDS\+\_\+\+History\+Qos\+Policy\+::depth}).
+\item For reliable data the value should take into account the data-\/rate, the heartbeat rate of the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} and the number of piggy-\/backed heartbeats.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{SEE ALSO}
+\doxylink{structDDS__HistoryQosPolicy_aef0fb3fd3579866be17d1a936f5e3729}{DDS\+\_\+\+History\+Qos\+Policy\+::depth}, \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} 
+\end{DoxyParagraph}

@@ -1,0 +1,145 @@
+\doxysubsubsection{Infrastructure Module}
+\hypertarget{group__DDSInfrastructureModule}{}\label{group__DDSInfrastructureModule}\index{Infrastructure Module@{Infrastructure Module}}
+
+
+Defines the DDS infrastructure package.  
+
+
+\doxysubsubsubsubsection*{Topics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSTimeSupportModule}{Time Support}}
+\begin{DoxyCompactList}\small\item\em Time and duration types and defines. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSGUIDSupportModule}{GUID Support}}
+\begin{DoxyCompactList}\small\item\em GUID type and defines. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSSequenceNumberSupportModule}{Sequence Number Support}}
+\begin{DoxyCompactList}\small\item\em Sequence number type and defines. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule}{Return Codes}}
+\begin{DoxyCompactList}\small\item\em Types of return codes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSStatusTypesModule}{Status Kinds}}
+\begin{DoxyCompactList}\small\item\em Kinds of communication status. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSQosTypesModule}{Qo\+S Policies}}
+\begin{DoxyCompactList}\small\item\em Quality of Service (QoS) policies. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSConditionsModule}{Conditions and Wait\+Sets}}
+\begin{DoxyCompactList}\small\item\em \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} and \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} and related items. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSEntityModule}{Entity Support}}
+\begin{DoxyCompactList}\small\item\em \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}, \doxylink{structDDS__Listener}{DDS\+\_\+\+Listener} and related items. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSSequenceModule}{Sequence Support}}
+\begin{DoxyCompactList}\small\item\em Defines sequence interface and primitive data types sequences. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSExceptionTypesModule}{Exception codes}}
+\begin{DoxyCompactList}\small\item\em Exception codes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSMicroTypesModule}{Type Support}}
+\begin{DoxyCompactList}\small\item\em Type Plugin. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSStringClass}{String Support}}
+\begin{DoxyCompactList}\small\item\em String creation, cloning, assignment, and deletion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__SampleIdentity__t}{DDS\+\_\+\+Sample\+Identity\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Data structure used to provide explicit identity information about a published data sample. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__WriteParams__t}{DDS\+\_\+\+Write\+Params\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Data structure used to provide custom parameters to a Data\+Writer\textquotesingle{}s write operation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DDSInfrastructureModule_gabcb97cfbe1ea6d80ab1d772b6241c0b7}{DDS\+\_\+\+WRITEPARAMS\+\_\+\+DEFAULT}}
+\begin{DoxyCompactList}\small\item\em Default values used to initialize instances of \doxylink{structDDS__WriteParams__t}{DDS\+\_\+\+Write\+Params\+\_\+t}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__DDSInfrastructureModule_ga942a5ab2fd1acc2b36190e45802ba0ea}{DDS\+\_\+\+Entity\+Kind\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa9eb11ff6e9fce5f42166c9f720cb341c}{DDS\+\_\+\+UNKNOWN\+\_\+\+ENTITY\+\_\+\+KIND}} = 0
+, \mbox{\hyperlink{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaaa84bdcc14a4b25f2bdea8d664e48300f}{DDS\+\_\+\+PARTICIPANT\+\_\+\+ENTITY\+\_\+\+KIND}} = 1
+, \mbox{\hyperlink{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa56e7e496b7d6526ef67d8278048ad552}{DDS\+\_\+\+PUBLISHER\+\_\+\+ENTITY\+\_\+\+KIND}} = 2
+, \mbox{\hyperlink{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa59fda38ef539f6ebb6a38e4d1d39018a}{DDS\+\_\+\+SUBSCRIBER\+\_\+\+ENTITY\+\_\+\+KIND}} = 3
+, \newline
+\mbox{\hyperlink{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa22d3153b25e710a02de0d9ada56d4374}{DDS\+\_\+\+TOPIC\+\_\+\+ENTITY\+\_\+\+KIND}} = 4
+, \mbox{\hyperlink{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaab28db5847b5458ddd988d20a0fa8283e}{DDS\+\_\+\+DATAREADER\+\_\+\+ENTITY\+\_\+\+KIND}} = 5
+, \mbox{\hyperlink{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa542003fa6737b0bbb76a290e3c9e9b47}{DDS\+\_\+\+DATAWRITER\+\_\+\+ENTITY\+\_\+\+KIND}} = 6
+ \}
+\begin{DoxyCompactList}\small\item\em Type of a DDS entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Defines the DDS infrastructure package. 
+
+Defines the abstract classes and the interfaces that are refined by the other modules. Contains common definitions such as return codes, status values, and QoS policies. 
+
+This diagram defines the elements that are defined in the DDS specification, and their relationships to each other. Not all entities and functions shown in the diagram are supported by RTI Connext DDS Micro. Please read the information on the individual types to determine whether a function is supported. 
+
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__DDSInfrastructureModule_gabcb97cfbe1ea6d80ab1d772b6241c0b7}\index{Infrastructure Module@{Infrastructure Module}!DDS\_WRITEPARAMS\_DEFAULT@{DDS\_WRITEPARAMS\_DEFAULT}}
+\index{DDS\_WRITEPARAMS\_DEFAULT@{DDS\_WRITEPARAMS\_DEFAULT}!Infrastructure Module@{Infrastructure Module}}
+\doxyparagraph{\texorpdfstring{DDS\_WRITEPARAMS\_DEFAULT}{DDS\_WRITEPARAMS\_DEFAULT}}
+{\footnotesize\ttfamily \label{group__DDSInfrastructureModule_gabcb97cfbe1ea6d80ab1d772b6241c0b7} 
+\#define DDS\+\_\+\+WRITEPARAMS\+\_\+\+DEFAULT}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_SAMPLE\_IDENTITY\_UNKNOWN,\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_SAMPLE\_IDENTITY\_UNKNOWN,\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__DDSTimeSupportModule_gac99dcc849b77a82c132b902492fa7b03}{DDS\_TIME\_ZERO}},\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_HANDLE\_NIL\_NATIVE\ \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Default values used to initialize instances of \doxylink{structDDS__WriteParams__t}{DDS\+\_\+\+Write\+Params\+\_\+t}. 
+
+
+
+\doxysubsubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__DDSInfrastructureModule_ga942a5ab2fd1acc2b36190e45802ba0ea}\index{Infrastructure Module@{Infrastructure Module}!DDS\_EntityKind\_t@{DDS\_EntityKind\_t}}
+\index{DDS\_EntityKind\_t@{DDS\_EntityKind\_t}!Infrastructure Module@{Infrastructure Module}}
+\doxyparagraph{\texorpdfstring{DDS\_EntityKind\_t}{DDS\_EntityKind\_t}}
+{\footnotesize\ttfamily \label{group__DDSInfrastructureModule_ga942a5ab2fd1acc2b36190e45802ba0ea} 
+enum \mbox{\hyperlink{group__DDSInfrastructureModule_ga942a5ab2fd1acc2b36190e45802ba0ea}{DDS\+\_\+\+Entity\+Kind\+\_\+t}}}
+
+
+
+Type of a DDS entity. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_UNKNOWN\_ENTITY\_KIND@{DDS\_UNKNOWN\_ENTITY\_KIND}!Infrastructure Module@{Infrastructure Module}}\index{Infrastructure Module@{Infrastructure Module}!DDS\_UNKNOWN\_ENTITY\_KIND@{DDS\_UNKNOWN\_ENTITY\_KIND}}}\Hypertarget{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa9eb11ff6e9fce5f42166c9f720cb341c}\label{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa9eb11ff6e9fce5f42166c9f720cb341c} 
+DDS\+\_\+\+UNKNOWN\+\_\+\+ENTITY\+\_\+\+KIND&Entity is of an unknown type. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_PARTICIPANT\_ENTITY\_KIND@{DDS\_PARTICIPANT\_ENTITY\_KIND}!Infrastructure Module@{Infrastructure Module}}\index{Infrastructure Module@{Infrastructure Module}!DDS\_PARTICIPANT\_ENTITY\_KIND@{DDS\_PARTICIPANT\_ENTITY\_KIND}}}\Hypertarget{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaaa84bdcc14a4b25f2bdea8d664e48300f}\label{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaaa84bdcc14a4b25f2bdea8d664e48300f} 
+DDS\+\_\+\+PARTICIPANT\+\_\+\+ENTITY\+\_\+\+KIND&Entity is a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_PUBLISHER\_ENTITY\_KIND@{DDS\_PUBLISHER\_ENTITY\_KIND}!Infrastructure Module@{Infrastructure Module}}\index{Infrastructure Module@{Infrastructure Module}!DDS\_PUBLISHER\_ENTITY\_KIND@{DDS\_PUBLISHER\_ENTITY\_KIND}}}\Hypertarget{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa56e7e496b7d6526ef67d8278048ad552}\label{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa56e7e496b7d6526ef67d8278048ad552} 
+DDS\+\_\+\+PUBLISHER\+\_\+\+ENTITY\+\_\+\+KIND&Entity is a \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_SUBSCRIBER\_ENTITY\_KIND@{DDS\_SUBSCRIBER\_ENTITY\_KIND}!Infrastructure Module@{Infrastructure Module}}\index{Infrastructure Module@{Infrastructure Module}!DDS\_SUBSCRIBER\_ENTITY\_KIND@{DDS\_SUBSCRIBER\_ENTITY\_KIND}}}\Hypertarget{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa59fda38ef539f6ebb6a38e4d1d39018a}\label{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa59fda38ef539f6ebb6a38e4d1d39018a} 
+DDS\+\_\+\+SUBSCRIBER\+\_\+\+ENTITY\+\_\+\+KIND&Entity is a \doxylink{group__DDSSubscriberModule_ga2755712602505786a23baef5a42d6782}{DDS\+\_\+\+Subscriber}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_TOPIC\_ENTITY\_KIND@{DDS\_TOPIC\_ENTITY\_KIND}!Infrastructure Module@{Infrastructure Module}}\index{Infrastructure Module@{Infrastructure Module}!DDS\_TOPIC\_ENTITY\_KIND@{DDS\_TOPIC\_ENTITY\_KIND}}}\Hypertarget{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa22d3153b25e710a02de0d9ada56d4374}\label{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa22d3153b25e710a02de0d9ada56d4374} 
+DDS\+\_\+\+TOPIC\+\_\+\+ENTITY\+\_\+\+KIND&Entity is a \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_DATAREADER\_ENTITY\_KIND@{DDS\_DATAREADER\_ENTITY\_KIND}!Infrastructure Module@{Infrastructure Module}}\index{Infrastructure Module@{Infrastructure Module}!DDS\_DATAREADER\_ENTITY\_KIND@{DDS\_DATAREADER\_ENTITY\_KIND}}}\Hypertarget{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaab28db5847b5458ddd988d20a0fa8283e}\label{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaab28db5847b5458ddd988d20a0fa8283e} 
+DDS\+\_\+\+DATAREADER\+\_\+\+ENTITY\+\_\+\+KIND&Entity is a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_DATAWRITER\_ENTITY\_KIND@{DDS\_DATAWRITER\_ENTITY\_KIND}!Infrastructure Module@{Infrastructure Module}}\index{Infrastructure Module@{Infrastructure Module}!DDS\_DATAWRITER\_ENTITY\_KIND@{DDS\_DATAWRITER\_ENTITY\_KIND}}}\Hypertarget{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa542003fa6737b0bbb76a290e3c9e9b47}\label{group__DDSInfrastructureModule_gga942a5ab2fd1acc2b36190e45802ba0eaa542003fa6737b0bbb76a290e3c9e9b47} 
+DDS\+\_\+\+DATAWRITER\+\_\+\+ENTITY\+\_\+\+KIND&Entity is a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. \\
+\hline
+
+\end{DoxyEnumFields}
+\input{group__DDSTimeSupportModule}
+\input{group__DDSGUIDSupportModule}
+\input{group__DDSSequenceNumberSupportModule}
+\input{group__DDSReturnTypesModule}
+\input{group__DDSStatusTypesModule}
+\input{group__DDSQosTypesModule}
+\input{group__DDSConditionsModule}
+\input{group__DDSEntityModule}
+\input{group__DDSSequenceModule}
+\input{group__DDSExceptionTypesModule}
+\input{group__DDSMicroTypesModule}
+\input{group__DDSStringClass}

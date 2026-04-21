@@ -1,0 +1,45 @@
+\doxysubsubsubsection{Sequence Number Support}
+\hypertarget{group__DDSSequenceNumberSupportModule}{}\label{group__DDSSequenceNumberSupportModule}\index{Sequence Number Support@{Sequence Number Support}}
+
+
+Sequence number type and defines.  
+
+
+\doxysubsubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__SequenceNumber__t}{DDS\+\_\+\+Sequence\+Number\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type for {\itshape sequence} number representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__DDSSequenceNumberSupportModule_gab595533e452b57270f2ae65322b0e351}{DDS\+\_\+\+Sequence\+Number\+\_\+compare}} (const struct \mbox{\hyperlink{structDDS__SequenceNumber__t}{DDS\+\_\+\+Sequence\+Number\+\_\+t}} \texorpdfstring{$\ast$}{*}sn1, const struct \mbox{\hyperlink{structDDS__SequenceNumber__t}{DDS\+\_\+\+Sequence\+Number\+\_\+t}} \texorpdfstring{$\ast$}{*}sn2)
+\begin{DoxyCompactList}\small\item\em Compares two sequence numbers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+Sequence number type and defines. 
+
+
+
+\doxysubsubsubsubsection{Function Documentation}
+\Hypertarget{group__DDSSequenceNumberSupportModule_gab595533e452b57270f2ae65322b0e351}\index{Sequence Number Support@{Sequence Number Support}!DDS\_SequenceNumber\_compare@{DDS\_SequenceNumber\_compare}}
+\index{DDS\_SequenceNumber\_compare@{DDS\_SequenceNumber\_compare}!Sequence Number Support@{Sequence Number Support}}
+\doxyparagraph{\texorpdfstring{DDS\_SequenceNumber\_compare()}{DDS\_SequenceNumber\_compare()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceNumberSupportModule_gab595533e452b57270f2ae65322b0e351} 
+int DDS\+\_\+\+Sequence\+Number\+\_\+compare (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structDDS__SequenceNumber__t}{DDS\+\_\+\+Sequence\+Number\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{sn1}{, }\item[{const struct \mbox{\hyperlink{structDDS__SequenceNumber__t}{DDS\+\_\+\+Sequence\+Number\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{sn2}{}\end{DoxyParamCaption})}
+
+
+
+Compares two sequence numbers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn1} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Sequence number to compare. Cannot be NULL.\\
+\hline
+{\em sn2} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Sequence number to compare. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the two sequence numbers are equal, the function returns 0. If sn1 is greater than sn2 the function returns a positive number; otherwise, it returns a negative number. 
+\end{DoxyReturn}

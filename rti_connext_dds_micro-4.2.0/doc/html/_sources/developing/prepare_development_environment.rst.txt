@@ -1,0 +1,130 @@
+.. _section-prepare-development-environment:
+
+Prepare Your Development Environment
+====================================
+
+This section describes how to set up your development environment
+for |me| applications, such as the required environment variables, 
+compilers, compiler definitions, and libraries.
+
+Set environment variables
+-------------------------
+
+The ``RTIMEHOME`` environment variable must be set to the installation directory path 
+for |rti_me|. If you installed |rti_core| with default settings, |rti_me| will be here:
+``<path_to_connext_dds_installation>/rti_connext_dds-<version>/rti_connext_micro-<version>``. 
+If you copied |rti_me| to another place, set ``RTIMEHOME`` to point to that location.
+
+Add required preprocessor flags
+-------------------------------
+
+All |me| applications require the following preprocessor defines:
+
+.. code-block:: none
+
+  -IRTIMEHOME/include
+  -IRTIMEHOME/include/rti_me
+
+Add the following preprocessor defines, according to your platform and 
+compiler:
+
+.. tabs::
+
+    .. group-tab:: Windows
+
+        Using MSVSCC:
+
+        .. code-block::
+
+            -DOSAPI_CC_DEF_H=osapi/osapi_cc_msvsc.h
+            -DRTI_WIN32
+
+    .. group-tab:: macOS
+
+        Using clang:
+
+        .. code-block::
+
+            -DOSAPI_CC_DEF_H=osapi/osapi_cc_clang.h
+            -DRTI_DARWIN
+
+    .. group-tab:: Linux
+
+        Using GCC:
+
+        .. code-block::
+
+            -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h
+            -DRTI_LINUX
+
+    .. group-tab:: QNX
+
+        Using QCC:
+
+        .. code-block::
+
+            -DOSAPI_CC_DEF_H=osapi/osapi_cc_qcc.h
+            -DRTI_QNX
+
+Link applications and libraries
+-------------------------------
+
+Add the library path for both the PIL and PSL to the linker's search path:
+
+* ``RTIMEHOME/lib/<arch>/`` (PIL)
+* ``RTIMEHOME/lib/<arch>-<PSL>/`` (PSL)
+
+.. note:: 
+  
+  When executing executables that are linked with the |me| shared libraries, 
+  you must add the path to the PIL architecture directory to the 
+  runtime linker's search path.
+
+To link a C application, the libraries are required in the following order:
+
+* ``RTIMEHOME/lib/<arch>/``
+
+  1. ``rti_me_appgen`` (if using the :ref:`section-appgen` plugin)
+
+  2. ``rti_me_netiosdm`` (if using :ref:`section-zero-copy-transfer` with the :ref:`section-shared-memory-transport`)
+
+  3. ``rti_me_netiozcopy`` (if using the :ref:`section-zero-copy-v2-transport`)
+
+  4. ``rti_me_netioshmem`` (if using the :ref:`section-shared-memory-transport`)
+
+  5. ``rti_me_discdpde`` (if using DPDE)
+
+  6. ``rti_me_discdpse`` (if using DPSE)
+
+  7. ``rti_me_ddsfilter`` (if using :ref:`section-content-filtering`)
+
+  8. ``rti_me_ddsxtypes`` (if using X-Types)
+
+  9. ``rti_me_rhsm``, ``rti_me_whsm``, and ``rti_me`` (always required)
+
+* ``RTIMEHOME/lib/<arch>-<PSL>/``
+
+  10. ``rti_me_netiopsl`` (when building with a Platform Independent Library)
+  
+  11. ``rti_me_ospsl`` (when building with a Platform Independent Library)
+
+To link a C++ application, the libraries are required in the following order:
+
+* ``RTIMEHOME/lib/<arch>/``
+
+  1. ``rti_me_appgen`` (if using the :ref:`section-appgen` plugin)
+
+  2. ``rti_me_ddsxtypes`` (if using X-Types)
+
+  3. ``rti_me_cpp``, ``rti_me_netiosdm``, ``rti_me_netiozcopy``, ``rti_me_netioshmem``, ``rti_me_discdpde``, 
+     ``rti_me_discdpse``, ``rti_me_ddsfilter`` [1]_, ``rti_me_rhsm``, ``rti_me_whsm``, and ``rti_me`` (always required)
+
+  .. [1] Only required if using :ref:`section-content-filtering`.
+
+* ``RTIMEHOME/lib/<arch>-<PSL>/``
+
+  4. ``rti_me_netiopsl_cpp`` (when building with a Platform Independent Library)
+
+  5. ``rti_me_netiopsl`` (when building with a Platform Independent Library)
+
+  6. ``rti_me_ospsl`` (when building with a Platform Independent Library)

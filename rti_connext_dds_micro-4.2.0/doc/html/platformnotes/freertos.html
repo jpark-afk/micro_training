@@ -1,0 +1,894 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.2. FreeRTOS Platforms &mdash; RTI Connext Micro 4.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.3. Linux Platforms" href="linux.html" />
+    <link rel="prev" title="4.1. Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">3. User’s Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Platform Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">4.1. Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.2. FreeRTOS Platforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#port-overview">4.2.1. Port overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-configure-lwip-and-freertos">4.2.2. How to configure lwIP and FreeRTOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-the-pil-was-built-for-freertos">4.2.3. How the PIL was built for FreeRTOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-psl-from-source-for-freertos-platforms">4.2.4. Building the PSL from source for FreeRTOS platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-freertos-applications-with-me-h">4.2.5. Building FreeRTOS applications with Connext Micro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-tick-rollovers">4.2.6. System tick rollovers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linux.html">4.3. Linux Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="macos.html">4.4. macOS Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qnx.html">4.5. QNX Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">4.6. Windows Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../building/index.html">5. Building Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with Connext Micro and Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">12. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">4. </span>Platform Notes</a> &raquo;</li>
+        
+      <li><span class="section-number">4.2. </span>FreeRTOS Platforms</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/platformnotes/freertos.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="freertos-platforms">
+<h1><span class="section-number">4.2. </span>FreeRTOS Platforms<a class="headerlink" href="#freertos-platforms" title="Permalink to this headline">¶</a></h1>
+<p>The following table shows the currently supported FreeRTOS platforms.</p>
+<table class="colwidths-given longtable docutils align-default" id="id1">
+<caption><span class="caption-number">Table 4.5 </span><span class="caption-text">Supported FreeRTOS Platforms</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 8%" />
+<col style="width: 12%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 23%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>OS</p></th>
+<th class="head"><p>Version</p></th>
+<th class="head"><p>CPU</p></th>
+<th class="head"><p>Network Stack</p></th>
+<th class="head"><p>Toolchain</p></th>
+<th class="head"><p>Architecture PIL</p></th>
+<th class="head"><p>Architecture PSL</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FreeRTOS</p></td>
+<td><p>10.0.0</p></td>
+<td><p>ARMv7E-M</p></td>
+<td><p>LWiP 2.0.0</p></td>
+<td><p>GCC 10.3.1</p></td>
+<td><p>armv7emleElfgcc10.3.1</p>
+<p>armv7emleElfgcc10.3.1CERT</p>
+</td>
+<td><p>armv7emleElfgcc10.3.1-FreeRTOS10.0</p>
+<p>armv7emleElfgcc10.3.1CERT-FreeRTOS10.0</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="port-overview">
+<h2><span class="section-number">4.2.1. </span>Port overview<a class="headerlink" href="#port-overview" title="Permalink to this headline">¶</a></h2>
+<p>RTI ported <em>Connext Micro</em> to run on the FreeRTOS operating system with the lwIP protocol
+stack. This section contains some additional information on the hardware and
+software used.</p>
+<p>RTI used S32G-VNP-RDB2 as the reference hardware. This reference kit
+has a S32G274A processor with 3x Arm Cortex-M7 LS pairs and 8MB system RAM.
+For a full description, please refer to the microcontroller
+documentation <a class="reference external" href="https://www.nxp.com/docs/en/fact-sheet/SG32VNPRDB2FS.pdf">here</a>.</p>
+<p>NXP provides a comprehensive software ecosystem for its S32G platform.
+For development on the M7 core, NXP offers the S32 Design Studio (S32DS)—a free,
+Eclipse-based integrated development environment (IDE) that supports the full S32G family.
+S32DS includes a GCC-based C/C++ compiler, GDB debugger integration,
+and tools for flashing and debugging the M7 core.</p>
+<p>To simplify embedded software development,
+NXP provides the Real-Time Drivers (RTD) 4.0 package.
+RTD includes all necessary low-level drivers and middleware components to build
+applications for the M7 core on S32G platforms.
+It is fully compliant with AUTOSAR 4.x and integrates with FreeRTOS and other lightweight RTOS environments.
+RTI used the following versions of the different components:</p>
+<ul class="simple">
+<li><p>RTD version V4.0.0</p></li>
+<li><p>S32 Design Studio V3.6.0</p></li>
+<li><p>FreeRTOS Kernel V10.4.6</p></li>
+<li><p>lwIP version V2.0.0</p></li>
+</ul>
+</div>
+<div class="section" id="how-to-configure-lwip-and-freertos">
+<h2><span class="section-number">4.2.2. </span>How to configure lwIP and FreeRTOS<a class="headerlink" href="#how-to-configure-lwip-and-freertos" title="Permalink to this headline">¶</a></h2>
+<p>RTI ported <em>Connext Micro</em> to FreeRTOS using the following lwIP and FreeRTOS
+configurations. These can be tuned according to your needs by
+modifying the examples below. Details about how to configure these
+third-party components can also be found in the
+<a class="reference external" href="https://freertos.org/Documentation/00-Overview">FreeRTOS documentation</a> and
+<a class="reference external" href="https://www.nongnu.org/lwip/2_0_x/index.html">lwIP documentation</a>.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-bHdJUA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-bHdJUA==" name="bHdJUA==" role="tab" tabindex="0">lwIP</button><button aria-controls="panel-0-RnJlZVJUT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-RnJlZVJUT1M=" name="RnJlZVJUT1M=" role="tab" tabindex="-1">FreeRTOS</button></div><div aria-labelledby="tab-0-bHdJUA==" class="sphinx-tabs-panel group-tab" id="panel-0-bHdJUA==" name="bHdJUA==" role="tabpanel" tabindex="0"><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef LWIP_OPTS_H</span>
+<span class="cp">#define LWIP_OPTS_H</span>
+
+<span class="cm">/**</span>
+<span class="cm">* @page misra_violations MISRA-C:2012 violations</span>
+<span class="cm">*</span>
+<span class="cm">* @section [global]</span>
+<span class="cm">* Violates MISRA 2012 Advisory Rule 2.5, Global macro not referenced.</span>
+<span class="cm">* The global macro will be used in function call of the module.</span>
+<span class="cm">*/</span>
+
+<span class="cm">/* ---------- Application APIs ---------- */</span>
+<span class="cp">#define NO_SYS                     0</span>
+<span class="cp">#define LWIP_RAW                   1</span>
+<span class="cp">#define LWIP_SOCKET                (NO_SYS==0)</span>
+<span class="cp">#define LWIP_NETCONN               (NO_SYS==0)</span>
+
+<span class="cm">/* ---------- ARP options ---------- */</span>
+<span class="cp">#define LWIP_ARP                   1</span>
+<span class="cp">#define ARP_TABLE_SIZE             10</span>
+<span class="cp">#define ARP_QUEUEING               1</span>
+
+<span class="cm">/* ---------- IP options ---------- */</span>
+<span class="cp">#define LWIP_IPV6                  0</span>
+
+<span class="cm">/* ---------- DHCP options ---------- */</span>
+<span class="cm">/* Define LWIP_DHCP to 1 if you want DHCP configuration of interfaces */</span>
+<span class="cp">#define LWIP_DHCP                  0</span>
+<span class="cm">/* 1 if you want to do an ARP check on the offered address (recommended) */</span>
+<span class="cp">#define DHCP_DOES_ARP_CHECK        (LWIP_DHCP)</span>
+
+<span class="cm">/* ---------- AUTOIP options ---------- */</span>
+<span class="cp">#define LWIP_AUTOIP                    0</span>
+<span class="cp">#define LWIP_DHCP_AUTOIP_COOP          (LWIP_DHCP &amp;&amp; LWIP_AUTOIP)</span>
+<span class="cp">#define LWIP_DHCP_AUTOIP_COOP_TRIES    3</span>
+
+<span class="cm">/* Define IP_FORWARD to 1 if you wish to have the ability to forward</span>
+<span class="cm">   IP packets across network interfaces. If you are going to run lwIP</span>
+<span class="cm">   on a device with only one network interface, define this to 0. */</span>
+<span class="cp">#define IP_FORWARD                     0</span>
+
+<span class="cm">/* IP reassembly and segmentation.These are orthogonal even</span>
+<span class="cm">* if they both deal with IP fragments */</span>
+<span class="cp">#define IP_REASSEMBLY                  1</span>
+<span class="cp">#define IP_REASS_MAX_PBUFS             10</span>
+<span class="cp">#define MEMP_NUM_REASSDATA             10</span>
+<span class="cp">#define IP_FRAG                        1</span>
+
+<span class="cm">/* ---------- IP options ---------- */</span>
+<span class="cp">#define LWIP_IPV4                      1</span>
+<span class="cp">#define ICMP_TTL                       255</span>
+<span class="cp">#define LWIP_ICMP                      1</span>
+<span class="cp">#define LWIP_IGMP                      1</span>
+
+<span class="cm">/* ---------- TCP options ---------- */</span>
+<span class="cp">#define LWIP_TCP                1</span>
+<span class="cp">#define TCP_TTL                 255</span>
+
+<span class="cm">/* Controls if TCP should queue segments that arrive out of</span>
+<span class="cm">   order. Define to 0 if your device is low on memory. */</span>
+<span class="cp">#define TCP_QUEUE_OOSEQ         0</span>
+
+<span class="cm">/* TCP Maximum segment size. */</span>
+<span class="cp">#define TCP_MSS                 1536</span>
+
+<span class="cm">/* TCP sender buffer space (bytes). */</span>
+<span class="cp">#define TCP_SND_BUF             TCP_MSS * 4</span>
+
+<span class="cm">/* TCP sender buffer space (pbufs). This must be at least = 2 *</span>
+<span class="cm">   TCP_SND_BUF/TCP_MSS for things to work. */</span>
+<span class="cp">#define TCP_SND_QUEUELEN       (4 * TCP_SND_BUF/TCP_MSS)</span>
+
+<span class="cm">/* TCP writable space (bytes). This must be less than or equal</span>
+<span class="cm">   to TCP_SND_BUF. It is the amount of space which must be</span>
+<span class="cm">   available in the tcp snd_buf for select to return writable */</span>
+<span class="cp">#define TCP_SNDLOWAT           (TCP_SND_BUF/2)</span>
+
+<span class="cm">/* TCP receive window. */</span>
+<span class="cp">#define TCP_WND                 4096</span>
+
+<span class="cm">/* Maximum number of retransmissions of data segments. */</span>
+<span class="cp">#define TCP_MAXRTX              2</span>
+
+<span class="cm">/* Maximum number of retransmissions of SYN segments. */</span>
+<span class="cp">#define TCP_SYNMAXRTX           2</span>
+
+<span class="cm">/* ---------- UDP options ---------- */</span>
+<span class="cp">#define LWIP_UDP                1</span>
+<span class="cp">#define LWIP_UDPLITE            LWIP_UDP</span>
+<span class="cp">#define UDP_TTL                 255</span>
+
+<span class="cm">/* ---------- Memory options ---------- */</span>
+<span class="cm">/* MEM_ALIGNMENT: should be set to the alignment of the CPU for which</span>
+<span class="cm">   lwIP is compiled. 4 byte alignment -&gt; define MEM_ALIGNMENT to 4, 2</span>
+<span class="cm">   byte alignment -&gt; define MEM_ALIGNMENT to 2. */</span>
+<span class="cm">/* MSVC port: intel processors do not need 4-byte alignment,</span>
+<span class="cm">   but are faster that way! */</span>
+
+<span class="cm">/*!</span>
+<span class="cm"> * @brief Custom memcpy function used to optimize and improve the lwip copy speed process.</span>
+<span class="cm"> *</span>
+<span class="cm"> * This function copies len characters from memory area src to memory area dest using 64 bit alignment.</span>
+<span class="cm"> */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">memcpy_64</span><span class="p">(</span><span class="kt">uint64_t</span><span class="w"> </span><span class="o">*</span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="p">);</span>
+
+<span class="cm">/*!</span>
+<span class="cm"> * @brief Custom memcpy function used to optimize and improve the lwip copy speed process.</span>
+<span class="cm"> *</span>
+<span class="cm"> * This function copies len characters from memory area src to memory area dest.</span>
+<span class="cm"> */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">memcpy_custom</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="p">);</span>
+
+<span class="cp">#define MEMCPY(dst,src,len)         memcpy(dst,src,len)</span>
+
+<span class="cm">/* Memory alignment must match your architecture - for ARM Cortex M7, 8-byte alignment is required */</span>
+<span class="cp">#define MEM_ALIGNMENT               8</span>
+
+<span class="cm">/* MEM_SIZE: the size of the heap memory. If the application will send</span>
+<span class="cm">a lot of data that needs to be copied, this should be set high. */</span>
+<span class="cp">#define MEM_SIZE                    128*1024</span>
+
+<span class="cm">/* MEMP_NUM_PBUF: the number of memp struct pbufs. If the application</span>
+<span class="cm">   sends a lot of data out of ROM (or other static memory), this</span>
+<span class="cm">   should be set high. */</span>
+<span class="cp">#define MEMP_NUM_PBUF               8</span>
+
+<span class="cm">/* MEMP_NUM_RAW_PCB: the number of UDP protocol control blocks. One</span>
+<span class="cm">   per active RAW connection. */</span>
+<span class="cp">#define MEMP_NUM_RAW_PCB            4</span>
+
+<span class="cm">/* MEMP_NUM_UDP_PCB: the number of UDP protocol control blocks. One</span>
+<span class="cm">   per active UDP connection. */</span>
+<span class="cp">#define MEMP_NUM_UDP_PCB            4</span>
+
+<span class="cm">/* MEMP_NUM_TCP_PCB: the number of simultaneously active TCP connections. */</span>
+<span class="cp">#define MEMP_NUM_TCP_PCB            4</span>
+
+<span class="cm">/* MEMP_NUM_TCP_PCB_LISTEN: the number of listening TCP connections. */</span>
+<span class="cp">#define MEMP_NUM_TCP_PCB_LISTEN     4</span>
+
+<span class="cm">/* MEMP_NUM_TCP_SEG: the number of simultaneously queued TCP segments.*/</span>
+<span class="cp">#define MEMP_NUM_TCP_SEG            64</span>
+
+<span class="cm">/* MEMP_NUM_SYS_TIMEOUT: the number of simultaneously active timeouts. */</span>
+<span class="cp">#define MEMP_NUM_SYS_TIMEOUT        15</span>
+
+<span class="cm">/* The following four are used only with the sequential API and can be</span>
+<span class="cm">   set to 0 if the application only will use the raw API. */</span>
+<span class="cm">/* MEMP_NUM_NETBUF: the number of struct netbufs. */</span>
+<span class="cp">#define MEMP_NUM_NETBUF             16</span>
+
+<span class="cm">/* MEMP_NUM_NETCONN: the number of struct netconns. */</span>
+<span class="cp">#define MEMP_NUM_NETCONN            32</span>
+
+<span class="cm">/* MEMP_NUM_TCPIP_MSG_*: the number of struct tcpip_msg, which is used</span>
+<span class="cm">   for sequential API communication and incoming packets. Used in</span>
+<span class="cm">   src/api/tcpip.c. */</span>
+<span class="cp">#define MEMP_NUM_TCPIP_MSG_API      40  </span><span class="cm">/* Increased from 20 */</span>
+<span class="cp">#define MEMP_NUM_TCPIP_MSG_INPKT    30  </span><span class="cm">/* Increased from 20 */</span>
+
+<span class="cm">/* MEM_USE_POOLS==1: Use an alternative to malloc()</span>
+<span class="cm">   To use this, MEMP_USE_CUSTOM_POOLS also has to be enabled. */</span>
+<span class="cp">#define MEM_USE_POOLS               0</span>
+<span class="cp">#define MEMP_USE_CUSTOM_POOLS       0</span>
+
+<span class="cm">/* ---------- Pbuf options ---------- */</span>
+<span class="cm">/* PBUF_POOL_SIZE: the number of buffers in the pbuf pool. */</span>
+<span class="cp">#define PBUF_POOL_SIZE              32</span>
+<span class="cp">#define PBUF_POOL_BUFSIZE           1536</span>
+
+<span class="cm">/** SYS_LIGHTWEIGHT_PROT</span>
+<span class="cm">* define SYS_LIGHTWEIGHT_PROT in lwipopts.h if you want inter-task protection</span>
+<span class="cm">* for certain critical regions during buffer allocation, deallocation and memory</span>
+<span class="cm">* allocation and deallocation. */</span>
+<span class="cp">#define SYS_LIGHTWEIGHT_PROT        (NO_SYS==0)</span>
+
+<span class="cm">/* ---------- Statistics options ---------- */</span>
+<span class="cp">#define LWIP_STATS                      1</span>
+<span class="cp">#define LWIP_STATS_DISPLAY              1</span>
+
+<span class="cp">#if LWIP_STATS</span>
+<span class="cp">#define LINK_STATS                      1</span>
+<span class="cp">#define IP_STATS                        1</span>
+<span class="cp">#define ICMP_STATS                      1</span>
+<span class="cp">#define IGMP_STATS                      1</span>
+<span class="cp">#define IPFRAG_STATS                    1</span>
+<span class="cp">#define UDP_STATS                       1</span>
+<span class="cp">#define TCP_STATS                       1</span>
+<span class="cp">#define MEM_STATS                       1</span>
+<span class="cp">#define MEMP_STATS                      1</span>
+<span class="cp">#define PBUF_STATS                      1</span>
+<span class="cp">#define SYS_STATS                       1</span>
+<span class="cp">#endif </span><span class="cm">/* LWIP_STATS */</span>
+
+<span class="cm">/* ---------- PPP options ---------- */</span>
+<span class="cp">#define PPP_SUPPORT                     0</span>
+
+<span class="cm">/* ---------- Other options ---------- */</span>
+
+<span class="cm">/* (LWIP_ETHERNET == 1) Enable ETHERNET support even though ARP might be disabled */</span>
+<span class="cp">#define LWIP_ETHERNET                   1</span>
+
+<span class="cp">#define TCPIP_MBOX_SIZE                 24</span>
+
+<span class="cp">#define DEFAULT_UDP_RECVMBOX_SIZE       1500</span>
+<span class="cp">#define DEFAULT_TCP_RECVMBOX_SIZE       1500</span>
+<span class="cp">#define DEFAULT_RAW_RECVMBOX_SIZE       1500</span>
+<span class="cp">#define DEFAULT_ACCEPTMBOX_SIZE         1500</span>
+<span class="cp">#define LWIP_NETIF_TX_SINGLE_PBUF       1</span>
+
+<span class="cp">#define LWIP_SUPPORT_CUSTOM_PBUF        1</span>
+
+<span class="cp">#define LWIP_SNMP                       LWIP_UDP</span>
+<span class="cp">#define MIB2_STATS                      LWIP_SNMP</span>
+
+<span class="cp">#define LWIP_DNS                        LWIP_UDP</span>
+<span class="cp">#define LWIP_MDNS_RESPONDER             LWIP_UDP</span>
+
+<span class="cp">#define LWIP_NUM_NETIF_CLIENT_DATA      (LWIP_MDNS_RESPONDER)</span>
+
+<span class="cp">#define LWIP_HAVE_LOOPIF                0</span>
+<span class="cp">#define LWIP_NETIF_LOOPBACK             0</span>
+
+<span class="cp">#define TCP_LISTEN_BACKLOG              1</span>
+
+<span class="cp">#define LWIP_COMPAT_SOCKETS             1</span>
+<span class="cp">#define LWIP_SO_RCVTIMEO                1</span>
+<span class="cp">#define LWIP_SO_RCVBUF                  1</span>
+
+<span class="cp">#define LWIP_TCPIP_CORE_LOCKING         1</span>
+
+<span class="cp">#define LWIP_NETIF_LINK_CALLBACK        1</span>
+<span class="cp">#define LWIP_NETIF_STATUS_CALLBACK      1</span>
+
+<span class="cp">#define LWIP_NETCONN_SEM_PER_THREAD     0</span>
+
+<span class="cp">#define LWIP_SOCKET_SET_ERRNO           1</span>
+
+<span class="cp">#define LWIP_NETIF_HOSTNAME             1</span>
+
+<span class="cm">/* ---------- TIMEVAL options ---------- */</span>
+<span class="cp">#define LWIP_TIMEVAL_PRIVATE            0</span>
+
+<span class="cm">/* ---------- Thread options ---------- */</span>
+<span class="cp">#define TCPIP_THREAD_NAME               &quot;tcpip_thread&quot;</span>
+<span class="cp">#define TCPIP_THREAD_STACKSIZE          1024*64</span>
+<span class="cp">#define TCPIP_THREAD_PRIO               4</span>
+<span class="cp">#define DEFAULT_THREAD_STACKSIZE        4096</span>
+<span class="cp">#define DEFAULT_THREAD_PRIO             3</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * LWIP_SO_RCVBUF==1: Enable SO_RCVBUF processing.</span>
+<span class="cm"> */</span>
+<span class="cp">#define LWIP_SO_RCVBUF                  1</span>
+
+<span class="cp">#define LWIP_SOCKET_SELECT              0</span>
+
+<span class="cp">#endif </span><span class="cm">/* LWIP_OPTS_H */</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-RnJlZVJUT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-RnJlZVJUT1M=" name="RnJlZVJUT1M=" role="tabpanel" tabindex="0"><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef FREERTOS_CONFIG_H</span>
+<span class="cp">#define FREERTOS_CONFIG_H</span>
+
+<span class="cm">/*-----------------------------------------------------------</span>
+<span class="cm"> * Application specific definitions.</span>
+<span class="cm"> *</span>
+<span class="cm"> * These definitions should be adjusted for your particular hardware and</span>
+<span class="cm"> * application requirements.</span>
+<span class="cm"> *</span>
+<span class="cm"> * THESE PARAMETERS ARE DESCRIBED WITHIN THE &#39;CONFIGURATION&#39; SECTION OF THE</span>
+<span class="cm"> * FreeRTOS API DOCUMENTATION AVAILABLE ON THE FreeRTOS.org WEB SITE.</span>
+<span class="cm"> *</span>
+<span class="cm"> * See http://www.freertos.org/a00110.html.</span>
+<span class="cm"> *----------------------------------------------------------*/</span>
+
+<span class="cp">#define configUSE_PREEMPTION                        1</span>
+<span class="cp">#define configCPU_CLOCK_HZ                          ( 400000000UL )</span>
+<span class="cp">#define configTICK_RATE_HZ                          ((TickType_t) 1000 )</span>
+<span class="cp">#define configMAX_PRIORITIES                        10</span>
+<span class="cp">#define configMINIMAL_STACK_SIZE                    RTI_configMINIMAL_STACK_SIZE</span>
+<span class="cp">#define configMAX_TASK_NAME_LEN                     16</span>
+<span class="cp">#define configUSE_16_BIT_TICKS                      0</span>
+<span class="cp">#define configIDLE_SHOULD_YIELD                     1</span>
+<span class="cp">#define configUSE_PREEMPTION                        1</span>
+<span class="cp">#define configNUM_THREAD_LOCAL_STORAGE_POINTERS     2</span>
+<span class="cp">#define configUSE_PORT_OPTIMISED_TASK_SELECTION     0</span>
+<span class="cp">#define configUSE_TASK_NOTIFICATIONS                1</span>
+<span class="cp">#define configUSE_TIME_SLICING                      0</span>
+<span class="cp">#define configUSE_NEWLIB_REENTRANT                  0</span>
+<span class="cp">#define configENABLE_BACKWARD_COMPATIBILITY         1</span>
+<span class="cp">#define configUSE_POSIX_ERRNO                       0</span>
+<span class="cp">#define configUSE_APPLICATION_TASK_TAG              0</span>
+<span class="cp">#define configRECORD_STACK_HIGH_ADDRESS             1</span>
+
+<span class="cm">/* Definition assert() function. */</span>
+<span class="cp">#define configASSERT(x)                             if((x)==0) { taskDISABLE_INTERRUPTS(); __asm__ volatile (&quot;bkpt #0&quot;); for( ;; ); }</span>
+
+<span class="cm">/* The highest interrupt priority that can be used by any interrupt service</span>
+<span class="cm">routine that makes calls to interrupt safe FreeRTOS API functions.  DO NOT CALL</span>
+<span class="cm">INTERRUPT SAFE FREERTOS API FUNCTIONS FROM ANY INTERRUPT THAT HAS A HIGHER</span>
+<span class="cm">PRIORITY THAN THIS! (higher priorities are lower numeric values. */</span>
+<span class="cp">#define configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY ( 2 )</span>
+
+<span class="cm">/* Memory allocation related definitions. */</span>
+<span class="cp">#define configSUPPORT_STATIC_ALLOCATION             0</span>
+<span class="cp">#define configSUPPORT_DYNAMIC_ALLOCATION            1</span>
+<span class="cp">#define configTOTAL_HEAP_SIZE                       (( size_t ) (__heap_size__) )</span>
+<span class="cp">#define configAPPLICATION_ALLOCATED_HEAP            4</span>
+
+<span class="cm">/* Hook function related definitions. */</span>
+<span class="cp">#define configUSE_IDLE_HOOK                         0</span>
+<span class="cp">#define configUSE_TICK_HOOK                         0</span>
+<span class="cp">#define configUSE_MALLOC_FAILED_HOOK                1</span>
+<span class="cp">#define configCHECK_FOR_STACK_OVERFLOW              1</span>
+<span class="cp">#define configUSE_DAEMON_TASK_STARTUP_HOOK          0</span>
+
+<span class="cm">/* Run time and task stats gathering related definitions. */</span>
+<span class="cp">#define configGENERATE_RUN_TIME_STATS               1</span>
+<span class="cp">#define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS()</span>
+<span class="cp">#define portGET_RUN_TIME_COUNTER_VALUE()            xTaskGetTickCount()</span>
+<span class="cp">#define configUSE_TRACE_FACILITY                    1</span>
+<span class="cp">#define configUSE_STATS_FORMATTING_FUNCTIONS        1</span>
+
+<span class="cm">/* Co-routine related definitions. */</span>
+<span class="cp">#define configUSE_CO_ROUTINES                       0</span>
+<span class="cp">#define configMAX_CO_ROUTINE_PRIORITIES             2</span>
+
+<span class="cm">/* SEMAPHORES and MUTEXS */</span>
+<span class="cp">#define configUSE_MUTEXES                           1</span>
+<span class="cp">#define configUSE_RECURSIVE_MUTEXES                 1</span>
+<span class="cp">#define configUSE_COUNTING_SEMAPHORES               1</span>
+
+<span class="cm">/* Software timer related definitions. */</span>
+<span class="cm">/* Software timer related definitions. */</span>
+<span class="cp">#define configUSE_TIMERS                            1</span>
+<span class="cp">#define configTIMER_TASK_PRIORITY                   6</span>
+<span class="cp">#define configTIMER_QUEUE_LENGTH                    16</span>
+<span class="cp">#define configTIMER_TASK_STACK_DEPTH                (1024*2)</span>
+
+<span class="cm">/* Tickless Idle Mode */</span>
+<span class="cp">#define configUSE_TICKLESS_IDLE                     0</span>
+
+<span class="cm">/* QUEUE */</span>
+<span class="cp">#define configQUEUE_REGISTRY_SIZE                   8</span>
+<span class="cp">#define configUSE_QUEUE_SETS                        0</span>
+
+<span class="cm">/* Optional functions - most linkers will remove unused functions anyway. */</span>
+<span class="cp">#define INCLUDE_vTaskPrioritySet                    1</span>
+<span class="cp">#define INCLUDE_uxTaskPriorityGet                   1</span>
+<span class="cp">#define INCLUDE_vTaskDelete                         1</span>
+<span class="cp">#define INCLUDE_vTaskSuspend                        1</span>
+<span class="cp">#define INCLUDE_vTaskDelayUntil                     1</span>
+<span class="cp">#define INCLUDE_vTaskDelay                          1</span>
+<span class="cp">#define INCLUDE_xTaskGetSchedulerState              1</span>
+<span class="cp">#define INCLUDE_xTaskGetCurrentTaskHandle           1</span>
+<span class="cp">#define INCLUDE_uxTaskGetStackHighWaterMark         1</span>
+<span class="cp">#define INCLUDE_uxTaskGetStackHighWaterMark2        0</span>
+<span class="cp">#define INCLUDE_xTaskGetIdleTaskHandle              0</span>
+<span class="cp">#define INCLUDE_eTaskGetState                       1</span>
+<span class="cp">#define INCLUDE_xEventGroupSetBitFromISR            1</span>
+<span class="cp">#define INCLUDE_xTimerPendFunctionCall              1</span>
+<span class="cp">#define INCLUDE_xTaskAbortDelay                     1</span>
+<span class="cp">#define INCLUDE_xTaskGetHandle                      1</span>
+<span class="cp">#define INCLUDE_xTaskResumeFromISR                  1</span>
+<span class="cp">#define INCLUDE_xQueueGetMutexHolder                1</span>
+
+<span class="cm">/* Run time stats gathering definitions. */</span>
+<span class="cp">#ifdef __GNUC__</span>
+<span class="w">    </span><span class="cm">/* The #ifdef just prevents this C specific syntax from being included in</span>
+<span class="cm">    assembly files. */</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">vMainConfigureTimerForRunTimeStats</span><span class="p">(</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">ulMainGetRunTimeCounterValue</span><span class="p">(</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">);</span>
+<span class="cp">#endif</span>
+
+<span class="cm">/* Cortex-M specific definitions. */</span>
+<span class="cp">#ifdef __NVIC_PRIO_BITS</span>
+<span class="w">  </span><span class="cp">#define configPRIO_BITS                         __NVIC_PRIO_BITS</span>
+<span class="cp">#else</span>
+<span class="w">  </span><span class="cp">#define configPRIO_BITS                         4</span>
+<span class="cp">#endif</span>
+
+<span class="cm">/* The lowest interrupt priority that can be used in a call to a &quot;set priority&quot;</span>
+<span class="cm">function. */</span>
+<span class="cp">#define configLIBRARY_LOWEST_INTERRUPT_PRIORITY  (0x0F)</span>
+
+<span class="cm">/* Interrupt priorities used by the kernel port layer itself.  These are generic</span>
+<span class="cm">to all Cortex-M ports, and do not rely on any particular library functions. */</span>
+<span class="cp">#ifndef configKERNEL_INTERRUPT_PRIORITY</span>
+<span class="w">  </span><span class="cp">#define configKERNEL_INTERRUPT_PRIORITY         (configLIBRARY_LOWEST_INTERRUPT_PRIORITY &lt;&lt; (8-configPRIO_BITS))</span>
+<span class="cp">#endif</span>
+
+<span class="cm">/* !!!! configMAX_SYSCALL_INTERRUPT_PRIORITY must not be set to zero !!!!</span>
+<span class="cm">See http://www.FreeRTOS.org/RTOS-Cortex-M3-M4.html. */</span>
+<span class="cp">#ifndef configMAX_SYSCALL_INTERRUPT_PRIORITY</span>
+<span class="w">  </span><span class="cp">#define configMAX_SYSCALL_INTERRUPT_PRIORITY    (configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY &lt;&lt; (8-configPRIO_BITS))</span>
+<span class="cp">#endif</span>
+
+<span class="cm">/* Definitions that map the FreeRTOS port interrupt handlers to their CMSIS</span>
+<span class="cm">standard names. */</span>
+<span class="cp">#define vPortSVCHandler                             SVC_Handler</span>
+<span class="cp">#define xPortPendSVHandler                          PendSV_Handler</span>
+<span class="cp">#define xPortSysTickHandler                         SysTick_Handler</span>
+
+
+<span class="cp">#endif </span><span class="cm">/* FREERTOS_CONFIG_H */</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="how-the-pil-was-built-for-freertos">
+<h2><span class="section-number">4.2.3. </span>How the PIL was built for FreeRTOS<a class="headerlink" href="#how-the-pil-was-built-for-freertos" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how RTI built the Platform Independent Library (PIL)
+for FreeRTOS.</p>
+<p>The following table shows the compiler flags RTI used to create
+the PIL for FreeRTOS platforms:</p>
+<table class="colwidths-given longtable docutils align-default" id="freertosrequiredflags">
+<caption><span class="caption-number">Table 4.6 </span><span class="caption-text">PIL Compiler Flags for FreeRTOS Platforms</span><a class="headerlink" href="#freertosrequiredflags" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 20%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Architecture PIL</p></th>
+<th class="head"><p>Library Format</p></th>
+<th class="head"><p>Compiler Flags Used by RTI</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>armv7emleElfgcc10.3.1</p></td>
+<td><p>Static Release</p></td>
+<td><p>–specs=nosys.specs –specs=nano.specs -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_stubs.h -DRTIME_TARGET_NAME=”armv7emleElfgcc10.3.1” -DRTI_PIL=1 -D__freertos__
+-std=c99 -nostdinc  -fstrict-aliasing -fsigned-char -O -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums -DNDEBUG</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Static Debug</p></td>
+<td><p>–specs=nosys.specs –specs=nano.specs -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_stubs.h -DRTIME_TARGET_NAME=”armv7emleElfgcc10.3.1” -DRTI_PIL=1 -D__freertos__
+-std=c99 -nostdinc  -fstrict-aliasing -fsigned-char -O0 -g -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums</p></td>
+</tr>
+<tr class="row-even"><td><p>armv7emleElfgcc10.3.1CERT</p></td>
+<td><p>Static Release</p></td>
+<td><p>–specs=nosys.specs –specs=nano.specs -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_stubs.h -DRTIME_TARGET_NAME=”armv7emleElfgcc10.3.1CERT” -DRTI_CERT -DRTI_PIL=1 -D__freertos__
+-std=c99 -nostdinc -fstrict-aliasing -fsigned-char -O -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums -DNDEBUG</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Static Debug</p></td>
+<td><p>-specs=nosys.specs –specs=nano.specs -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_stubs.h -DRTIME_TARGET_NAME=”armv7emleElfgcc10.3.1CERT” -DRTI_CERT -DRTI_PIL=1 -D__freertos__
+-std=c99 -nostdinc  -fstrict-aliasing -fsigned-char  -O0 -g -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="building-the-psl-from-source-for-freertos-platforms">
+<h2><span class="section-number">4.2.4. </span>Building the PSL from source for FreeRTOS platforms<a class="headerlink" href="#building-the-psl-from-source-for-freertos-platforms" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how to build your own PSL for FreeRTOS.</p>
+<p><em>Connext Micro</em> includes support to compile Platform Support Libraries (PSL) for
+FreeRTOS using <a class="reference external" href="https://cmake.org/">CMake</a>.
+Refer to <a class="reference internal" href="../building/building.html#section-set-up-build-environment"><span class="std std-ref">Setting up the build environment</span></a> before continuing with
+the following instructions.</p>
+<ol class="arabic">
+<li><p>Make sure CMake is in the path.</p></li>
+<li><p>Define the following environment variables:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG_PATH</span></code>: Path to where the <code class="docutils literal notranslate"><span class="pre">FreeRTOSConfig.h</span></code> and <code class="docutils literal notranslate"><span class="pre">lwipopts.h</span></code>
+files are located.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FREERTOS_PATH</span></code>: Path to the FreeRTOS source code and header files.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LWIP_PATH</span></code>: Path to the lwIP source code and header files.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LWIP_PORTS_PATH</span></code>: Path to the lwIP ports folder that contains cc.h.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RTD_PATH</span></code>: Path to the folder that contains the eclipse plugins of RTD.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PATH</span></code>: Update your path with the location of the C and C++ compiler. By
+default, <code class="docutils literal notranslate"><span class="pre">arm-none-eabi-gcc</span></code> and <code class="docutils literal notranslate"><span class="pre">arm-none-eabi-g++</span></code> are used as C and C++ compilers.</p></li>
+</ul>
+</li>
+<li><p>Enter the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">RTIMEHOME/resource/scripts/rtime-make --target armv7emleElfgcc10.3.1-FreeRTOS10.0 \</span>
+<span class="go">                      -G &quot;Unix Makefiles&quot; --build</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">rtime-make</span></code> uses the architecture specified with <code class="docutils literal notranslate"><span class="pre">--target</span></code> to
+determine a few settings needed by <em>Connext Micro</em>. Please refer to
+<a class="reference internal" href="../building/building.html#prepare-psl"><span class="std std-ref">Preparing to build</span></a> for details.</p>
+</div>
+</li>
+<li><p>The <em>Connext Micro</em> PSL is available in:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">RTIMEHOME/lib/armv7emleElfgcc10.3.1-FreeRTOS10.0</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="building-freertos-applications-with-me-h">
+<h2><span class="section-number">4.2.5. </span>Building FreeRTOS applications with Connext Micro<a class="headerlink" href="#building-freertos-applications-with-me-h" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how RTI built the Platform Support Library (PSL) for
+FreeRTOS platforms. You must build applications with compatible flags to the PIL
+and PSL in order to operate with <em>Connext Micro</em>. The PSL must also be binary compatible
+with the PIL. Applications must not specify the <code class="docutils literal notranslate"><span class="pre">RTI_PSL</span></code> or <code class="docutils literal notranslate"><span class="pre">RTI_PIL</span></code>
+preprocessor definitions.</p>
+<p>The following table shows the compiler flags and required options that RTI
+used to build the PSL for FreeRTOS platforms. When you build the PSL with
+<code class="docutils literal notranslate"><span class="pre">rtime-make</span></code>, the <code class="docutils literal notranslate"><span class="pre">--target</span></code> argument automatically adds all the necessary
+flags for the specified architecture.</p>
+<table class="colwidths-given longtable docutils align-default" id="id2">
+<caption><span class="caption-number">Table 4.7 </span><span class="caption-text">PSL Compiler Flags for FreeRTOS Platforms</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 20%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Architecture PSL</p></th>
+<th class="head"><p>Library Format</p></th>
+<th class="head"><p>Compiler Flags Used by RTI</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>armv7emleElfgcc10.3.1-FreeRTOS10.0</p></td>
+<td><p>Static Release</p></td>
+<td><p>–specs=nosys.specs –specs=nano.specs   -DNDEBUG  -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h  -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_freertos.h    -DRTIME_TARGET_NAME=”armv7emleElfgcc10.3.1-FreeRTOS10.0”  -DRTI_PSL=1   -DUSING_RTD=1 -D_TIMEVAL_DEFINED=0 -D__freertos__
+-std=c99 -fstrict-aliasing  -fsigned-char -O -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums -DNDEBUG</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Static Debug</p></td>
+<td><p>–specs=nosys.specs –specs=nano.specs    -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h  -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_freertos.h    -DRTIME_TARGET_NAME=”armv7emleElfgcc10.3.1-FreeRTOS10.0”  -DRTI_PSL=1   -DUSING_RTD=1 -D_TIMEVAL_DEFINED=0 -D__freertos__
+-std=c99 -fstrict-aliasing  -fsigned-char -O0 -g -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums</p></td>
+</tr>
+<tr class="row-even"><td><p>armv7emleElfgcc10.3.1CERT-FreeRTOS10.0</p></td>
+<td><p>Static Release</p></td>
+<td><p>–specs=nosys.specs –specs=nano.specs   -DNDEBUG  -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_freertos.h  -DRTIME_TARGET_NAME=”armv7emleElfgcc10.3.1CERT-FreeRTOS10.0”  -DRTI_CERT -DRTI_PSL=1  -DUSING_RTD=1 -D_TIMEVAL_DEFINED=0 -D__freertos__
+-std=c99 -fstrict-aliasing  -fsigned-char -O -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums -DNDEBUG</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Static Debug</p></td>
+<td><p>–specs=nosys.specs –specs=nano.specs    -DOSAPI_CC_DEF_H=osapi/osapi_cc_gcc.h  -DOSPSL_OS_DEF_H=rti_me_psl/ospsl/ospsl_os_freertos.h  -DRTIME_TARGET_NAME=”armv7emleElfgcc10.3.1CERT-FreeRTOS10.0”  -DRTI_CERT -DRTI_PSL=1  -DUSING_RTD=1 -D_TIMEVAL_DEFINED=0 -D__freertos__
+-std=c99 -fstrict-aliasing  -fsigned-char -O0 -g -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -fno-short-enums</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="system-tick-rollovers">
+<h2><span class="section-number">4.2.6. </span>System tick rollovers<a class="headerlink" href="#system-tick-rollovers" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://www.omg.org/spec">OMG standard</a> does not specify how an
+implementation of DDS should handle counter rollover. By default, <em>Connext Micro</em> does not
+check for rollover of the system tick count on FreeRTOS platforms.</p>
+<p>The <a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemFreeRTOS_get_time</a>
+function uses the system tick count to calculate the time in milliseconds
+since the system started. It does so by multiplying the number of ticks since
+the system started by the FreeRTOS-defined constant <code class="docutils literal notranslate"><span class="pre">portTICK_RATE_MS</span></code>. <em>Connext Micro</em>
+stores the result in an unsigned 32-bit variable.</p>
+<p>Two conditions can result from this calculation: the tick count can rollover, and
+the resulting calculation can be greater than the size of an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code>
+(2^32). This can cause an overflow, which would result in time appearing to go
+backwards.</p>
+<p>If you need to change or mitigate this behavior, you can alter the source code
+for the reference implementation of <a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemFreeRTOS_get_time</a>
+(or provide your own implementation) and rebuild the PSL.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="linux.html" class="btn btn-neutral float-right" title="4.3. Linux Platforms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="4.1. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2025, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

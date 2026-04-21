@@ -1,0 +1,56 @@
+\doxysubsection{dds\+\_\+c\+\_\+discovery.\+h File Reference}
+\hypertarget{dds__c__discovery_8h}{}\label{dds__c__discovery_8h}\index{dds\_c\_discovery.h@{dds\_c\_discovery.h}}
+
+
+DDS discovery data definitions.  
+
+
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+dll.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+infrastructure.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+domain.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+type.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+partition\+\_\+qos.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+user\+\_\+data\+\_\+qos.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+content\+\_\+filter.\+h"{}}\newline
+{\ttfamily \#include $<$reda/reda\+\_\+sequence\+\_\+decl.\+h$>$}\newline
+\doxysubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Object representing a remote Domain\+Participant. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data}}
+\begin{DoxyCompactList}\small\item\em Object describing a remote Publication. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}}
+\begin{DoxyCompactList}\small\item\em Entry created when a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} is discovered in association with its Subscriber. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSParticipantBuiltInTopicModule_ga3554455a9e65e291dc1a9d83ab9728c5}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+\_\+initialize\+\_\+from\+\_\+qos}} (struct \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \texorpdfstring{$\ast$}{*}dp\+\_\+qos)
+\begin{DoxyCompactList}\small\item\em Initialize the contents of this Participant\+Builtin\+Topic\+Data using the resource limits specified in the given QoS. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSParticipantBuiltInTopicModule_gac7babd042d917107fd5016551ead1e39}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+\_\+finalize}} (struct \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Finalize the contents of this Participant\+Builtin\+Topic\+Data. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSParticipantBuiltInTopicModule_ga272c94d9c194620b4de312982ec0365c}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+\_\+copy}} (struct \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}source)
+\begin{DoxyCompactList}\small\item\em Copy the contents of the given Participant\+Builtin\+Topic\+Data into this Participant\+Builtin\+Topic\+Data. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSParticipantBuiltInTopicModule_ga714fa4e3bdf362dec23b5cc449d394da}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+\_\+is\+\_\+equal}} (const struct \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}left, const struct \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}right)
+\begin{DoxyCompactList}\small\item\em Compare two Participant\+Builtin\+Topic\+Data structures for equality. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSPublicationBuiltInTopicModule_ga705dd63de611ae67ab2d6770cf1df6d2}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+\_\+initialize\+\_\+from\+\_\+qos}} (struct \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \texorpdfstring{$\ast$}{*}dp\+\_\+qos)
+\begin{DoxyCompactList}\small\item\em Initialize the contents of this Publication\+Builtin\+Topic\+Data using the resource limits specified in the given QoS. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSPublicationBuiltInTopicModule_ga2f688be8aadc7ec02386942c54d867df}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+\_\+finalize}} (struct \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Finalize the contents of this Publication\+Builtin\+Topic\+Data. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSPublicationBuiltInTopicModule_ga097361ed6d859e519d7d4a2126778d0a}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+\_\+copy}} (struct \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}source)
+\begin{DoxyCompactList}\small\item\em Copy the contents of the given Publication\+Builtin\+Topic\+Data into this Publication\+Builtin\+Topic\+Data. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSPublicationBuiltInTopicModule_ga5e95e37bbca4d84c009a6533e527ef80}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+\_\+is\+\_\+equal}} (const struct \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}left, const struct \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}right)
+\begin{DoxyCompactList}\small\item\em Compare two Publication\+Builtin\+Topic\+Data structures for equality. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSubscriptionBuiltInTopicModule_ga9259fa7887c4ee40754e4313715ff1ef}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+\_\+initialize\+\_\+from\+\_\+qos}} (struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \texorpdfstring{$\ast$}{*}dp\+\_\+qos)
+\begin{DoxyCompactList}\small\item\em Initialize the contents of this Subscription\+Builtin\+Topic\+Data using the resource limits specified in the given QoS. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSubscriptionBuiltInTopicModule_ga0d444e6c852411b5307e43fd42c43d3f}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+\_\+finalize}} (struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Finalize the contents of this Subscription\+Builtin\+Topic\+Data. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSubscriptionBuiltInTopicModule_ga2cdc6114d8d71d49c2f325a9096a916f}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+\_\+copy}} (struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}source)
+\begin{DoxyCompactList}\small\item\em Copy the contents of the given Subscription\+Builtin\+Topic\+Data into this Subscription\+Builtin\+Topic\+Data. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSubscriptionBuiltInTopicModule_ga66f93d9bf2f7aa4fd8d906f8de8a20ce}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+\_\+is\+\_\+equal}} (const struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}left, const struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}right)
+\begin{DoxyCompactList}\small\item\em Compare two Subscription\+Builtin\+Topic\+Data structures for equality. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+DDS discovery data definitions. 
+

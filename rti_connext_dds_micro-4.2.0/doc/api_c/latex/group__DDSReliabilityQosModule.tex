@@ -1,0 +1,57 @@
+\doxysubsubsubsubsection{RELIABILITY}
+\hypertarget{group__DDSReliabilityQosModule}{}\label{group__DDSReliabilityQosModule}\index{RELIABILITY@{RELIABILITY}}
+
+
+Indicates the level of reliability offered/requested by RTI Connext DDS Micro.  
+
+
+\doxysubsubsubsubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__ReliabilityQosPolicy}{DDS\+\_\+\+Reliability\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Indicates the level of reliability offered/requested by RTI Connext DDS Micro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__DDSReliabilityQosModule_gaf09e82d431c2328186c7fb4b3fa9ad91}{DDS\+\_\+\+Reliability\+Qos\+Policy\+Kind}} \{ \mbox{\hyperlink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91aae82431f2015239328733f3cb41d780d}{DDS\+\_\+\+BEST\+\_\+\+EFFORT\+\_\+\+RELIABILITY\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91ae5d04022c6405f9db6406489956d1923}{DDS\+\_\+\+RELIABLE\+\_\+\+RELIABILITY\+\_\+\+QOS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of reliability. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsubsection{Detailed Description}
+Indicates the level of reliability offered/requested by RTI Connext DDS Micro. 
+
+
+
+\doxysubsubsubsubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__DDSReliabilityQosModule_gaf09e82d431c2328186c7fb4b3fa9ad91}\index{RELIABILITY@{RELIABILITY}!DDS\_ReliabilityQosPolicyKind@{DDS\_ReliabilityQosPolicyKind}}
+\index{DDS\_ReliabilityQosPolicyKind@{DDS\_ReliabilityQosPolicyKind}!RELIABILITY@{RELIABILITY}}
+\doxyparagraph{\texorpdfstring{DDS\_ReliabilityQosPolicyKind}{DDS\_ReliabilityQosPolicyKind}}
+{\footnotesize\ttfamily \label{group__DDSReliabilityQosModule_gaf09e82d431c2328186c7fb4b3fa9ad91} 
+enum \mbox{\hyperlink{group__DDSReliabilityQosModule_gaf09e82d431c2328186c7fb4b3fa9ad91}{DDS\+\_\+\+Reliability\+Qos\+Policy\+Kind}}}
+
+
+
+Kinds of reliability. 
+
+\begin{DoxyParagraph}{QoS\+:}
+\doxylink{structDDS__ReliabilityQosPolicy}{DDS\+\_\+\+Reliability\+Qos\+Policy} 
+\end{DoxyParagraph}
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_BEST\_EFFORT\_RELIABILITY\_QOS@{DDS\_BEST\_EFFORT\_RELIABILITY\_QOS}!RELIABILITY@{RELIABILITY}}\index{RELIABILITY@{RELIABILITY}!DDS\_BEST\_EFFORT\_RELIABILITY\_QOS@{DDS\_BEST\_EFFORT\_RELIABILITY\_QOS}}}\Hypertarget{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91aae82431f2015239328733f3cb41d780d}\label{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91aae82431f2015239328733f3cb41d780d} 
+DDS\+\_\+\+BEST\+\_\+\+EFFORT\+\_\+\+RELIABILITY\+\_\+\+QOS&Indicates that it is acceptable to not retry propagation of any samples. Presumably new values for the samples are generated often enough that it is not necessary to re-\/send or acknowledge any samples.~\newline
+ 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_RELIABLE\_RELIABILITY\_QOS@{DDS\_RELIABLE\_RELIABILITY\_QOS}!RELIABILITY@{RELIABILITY}}\index{RELIABILITY@{RELIABILITY}!DDS\_RELIABLE\_RELIABILITY\_QOS@{DDS\_RELIABLE\_RELIABILITY\_QOS}}}\Hypertarget{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91ae5d04022c6405f9db6406489956d1923}\label{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91ae5d04022c6405f9db6406489956d1923} 
+DDS\+\_\+\+RELIABLE\+\_\+\+RELIABILITY\+\_\+\+QOS&Specifies RTI Connext DDS Micro will attempt to deliver all samples in its history. Missed samples may be retried. In steady-\/state (no modifications communicated via the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}) the middleware guarantees that all samples in the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} history will eventually be delivered to all the \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} objects (subject to timeouts that indicate loss of communication with a particular \doxylink{group__DDSSubscriberModule_ga2755712602505786a23baef5a42d6782}{DDS\+\_\+\+Subscriber}). 
+
+Outside steady state the \doxylink{group__DDSHistoryQosModule}{HISTORY} and \doxylink{group__DDSResourceLimitsQosModule}{RESOURCE\+\_\+\+LIMITS} policies will determine how samples become part of the history and whether samples can be discarded from it. 
+
+NOTE\+: The RTPS spec defines reliability as 0x03 to comply with RTPS spec. However, RTI Connext Core uses 0x3, as well as others. \\
+\hline
+
+\end{DoxyEnumFields}

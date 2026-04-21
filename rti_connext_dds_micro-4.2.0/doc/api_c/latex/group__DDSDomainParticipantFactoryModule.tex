@@ -1,0 +1,483 @@
+\doxysubsubsubsection{Domain\+Participant\+Factory}
+\hypertarget{group__DDSDomainParticipantFactoryModule}{}\label{group__DDSDomainParticipantFactoryModule}\index{DomainParticipantFactory@{DomainParticipantFactory}}
+
+
+\doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory} entity and associated elements  
+
+
+\doxysubsubsubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__DomainParticipantFactoryQos}{DDS\+\_\+\+Domain\+Participant\+Factory\+Qos}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  QoS policies supported by a \doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_gaa14b6c67c9c50b0ae9ed46911e0ef0e8}{DDS\+\_\+\+Domain\+Participant\+Factory\+Qos\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Initializer for new QoS instances. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga07c3de23fd7f25cf9c02c0efaaaa5526}{DDS\+\_\+\+The\+Participant\+Factory}}~\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga555c8d8df54b1982ffc2533e2e5df51b}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance}}()
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Alias for singleton participant factory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct DDS\+\_\+\+Domain\+Participant\+Factory\+Impl \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_singleton}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}singleton\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows creation and destruction of \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga555c8d8df54b1982ffc2533e2e5df51b}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance}} (void)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Gets the singleton instance of this class. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga72ed804caf5353b256da2c95678717ee}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+finalize\+\_\+instance}} (void)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Destroys the singleton instance of this class. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga0a8d09facbefb080c4464ae5cf6e560f}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+set\+\_\+default\+\_\+participant\+\_\+qos}} (\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \texorpdfstring{$\ast$}{*}qos)
+\begin{DoxyCompactList}\small\item\em Sets the default \doxylink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos} values for this domain participant factory. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_gafd441c991cbb793ee085fc45fc8f583b}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+default\+\_\+participant\+\_\+qos}} (\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \texorpdfstring{$\ast$}{*}qos)
+\begin{DoxyCompactList}\small\item\em Initializes the \doxylink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos} instance with default values. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga1786d8b20d9a0bbfb2b2b2293a4acf29}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+create\+\_\+participant}} (\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSDomainModule_ga060e392b8334a6dbc289ec0f363df67a}{DDS\+\_\+\+Domain\+Id\+\_\+t}} domain\+Id, const struct \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \texorpdfstring{$\ast$}{*}qos, const struct \mbox{\hyperlink{structDDS__DomainParticipantListener}{DDS\+\_\+\+Domain\+Participant\+Listener}} \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} mask)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Creates a new \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} object. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_gaffe54d6763b13d63d7599dc009dd7c0c}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+delete\+\_\+participant}} (\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*}a\+\_\+participant)
+\begin{DoxyCompactList}\small\item\em Deletes an existing \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga13261cc33e9b7bce5d2e64a27ec052d4}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+lookup\+\_\+participant}} (\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSDomainModule_ga060e392b8334a6dbc289ec0f363df67a}{DDS\+\_\+\+Domain\+Id\+\_\+t}} domain\+Id)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Locates an existing \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_gadbdd53580e80587e723643f6af1b27b7}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+lookup\+\_\+participant\+\_\+by\+\_\+name}} (\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}self, const char \texorpdfstring{$\ast$}{*}participant\+\_\+name)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieves a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} by its entity name in the within the \doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory} \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga9967159da7349f0fef75135df1879a3f}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+qos}} (\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structDDS__DomainParticipantFactoryQos}{DDS\+\_\+\+Domain\+Participant\+Factory\+Qos}} \texorpdfstring{$\ast$}{*}qos)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Gets the value for participant factory QoS. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga06757822681ad95d0f779628abf48483}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+set\+\_\+qos}} (\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__DomainParticipantFactoryQos}{DDS\+\_\+\+Domain\+Participant\+Factory\+Qos}} \texorpdfstring{$\ast$}{*}qos)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Sets the value for a participant factory QoS. \end{DoxyCompactList}\item 
+DDSCDll\+Export RT\+\_\+\+Registry\+\_\+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_gad9d4f4d0d37eba093af8ab47d523cbcf}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+registry}} (\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieves the singleton registry instance associated with the factory. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga58f089ac5a8a9f614d17d9dd07732ec0}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+create\+\_\+participant\+\_\+from\+\_\+config}} (\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}self, const char \texorpdfstring{$\ast$}{*}configuration\+\_\+name)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Creates a new \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} given its configuration name from a description provided in configuration file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+DDSCDll\+Variable const struct \mbox{\hyperlink{structDDS__DomainParticipantFactoryQos}{DDS\+\_\+\+Domain\+Participant\+Factory\+Qos}} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga55f2077386eea73a9716f6461b04c73b}{DDS\+\_\+\+PARTICIPANT\+\_\+\+FACTORY\+\_\+\+QOS\+\_\+\+DEFAULT}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Special value for creating domain participant with default QoS. \end{DoxyCompactList}\item 
+DDSCDll\+Variable const struct \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_gac3f06a49a434ba800609f6369c65694b}{DDS\+\_\+\+PARTICIPANT\+\_\+\+QOS\+\_\+\+DEFAULT}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Special value for creating domain participant with default QoS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+\doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory} entity and associated elements 
+
+
+
+\doxysubsubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_gaa14b6c67c9c50b0ae9ed46911e0ef0e8}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactoryQos\_INITIALIZER@{DDS\_DomainParticipantFactoryQos\_INITIALIZER}}
+\index{DDS\_DomainParticipantFactoryQos\_INITIALIZER@{DDS\_DomainParticipantFactoryQos\_INITIALIZER}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactoryQos\_INITIALIZER}{DDS\_DomainParticipantFactoryQos\_INITIALIZER}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_gaa14b6c67c9c50b0ae9ed46911e0ef0e8} 
+\#define DDS\+\_\+\+Domain\+Participant\+Factory\+Qos\+\_\+\+INITIALIZER}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Initializer for new QoS instances. 
+
+\doxylink{structDDS__DomainParticipantFactoryQos}{DDS\+\_\+\+Domain\+Participant\+Factory\+Qos} instances stored on the stack should be initialized with this value before they are passed to any function. This step ensures that those contained QoS policies that use dynamic memory are properly initialized. This does not allocate memory. 
+
+The simplest way to create a new QoS structure is to initialize it on the stack at the time of its creation. \Hypertarget{group__DDSDomainParticipantFactoryModule_ga07c3de23fd7f25cf9c02c0efaaaa5526}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_TheParticipantFactory@{DDS\_TheParticipantFactory}}
+\index{DDS\_TheParticipantFactory@{DDS\_TheParticipantFactory}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_TheParticipantFactory}{DDS\_TheParticipantFactory}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_ga07c3de23fd7f25cf9c02c0efaaaa5526} 
+\#define DDS\+\_\+\+The\+Participant\+Factory~\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga555c8d8df54b1982ffc2533e2e5df51b}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance}}()}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Alias for singleton participant factory. 
+
+
+
+\doxysubsubsubsubsection{Typedef Documentation}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactory@{DDS\_DomainParticipantFactory}}
+\index{DDS\_DomainParticipantFactory@{DDS\_DomainParticipantFactory}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactory}{DDS\_DomainParticipantFactory}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d} 
+typedef struct DDS\+\_\+\+Domain\+Participant\+Factory\+Impl \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_singleton}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}singleton\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows creation and destruction of \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} objects. 
+
+The sole purpose of this class is to allow the creation and destruction of \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} objects. This class itself is a {\itshape \doxylink{group__DDSDocGuideModule_a_st_singleton}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}singleton\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}, and accessed via the get\+\_\+instance() function, and destroyed with finalize\+\_\+instance() function. 
+
+A single application can participate in multiple domains by instantiating multiple \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} objects. 
+
+An application may even instantiate multiple participants in the same domain. Participants in the same domain exchange data in the same way regardless of whether they are in the same application or different applications or on the same node or different nodes; their location is transparent. 
+
+There are two important caveats\+: 
+\begin{DoxyItemize}
+\item With multiple participants in the same domain on the same node (in the same application or different applications), each participant must be assigned its own receive ports. The receive ports are calculated based on the domain ID and the participant index set in the \doxylink{structDDS__WireProtocolQosPolicy}{DDS\+\_\+\+Wire\+Protocol\+Qos\+Policy}. The default index (-\/1) causes the participant to automatically search for the next available index, starting at 0, when it is created. If an index larger or equal to 0 is assigned then only that value will be used. If another participant with the same index already exists the participant creation will fail. 
+
+NOTE\+: An exception to this rule is multicast ports. Multicast ports are shared between between participants in the same domain on the same host). Thus, the index value is ignored.  
+\item You cannot mix entities from different participants. For example, you cannot delete a topic on a different participant than you created it from, and you cannot ask a subscriber to create a reader for a topic created from a participant different than the subscriber\textquotesingle{}s own participant. (Note that it is permissable for an application built on top of RTI Connext DDS Micro to know about entities from different participants. For example, an application could keep references to a reader from one domain and a writer from another and then bridge the domains by writing the data received in the reader callback.)  
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsubsubsection{Function Documentation}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_ga555c8d8df54b1982ffc2533e2e5df51b}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactory\_get\_instance@{DDS\_DomainParticipantFactory\_get\_instance}}
+\index{DDS\_DomainParticipantFactory\_get\_instance@{DDS\_DomainParticipantFactory\_get\_instance}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactory\_get\_instance()}{DDS\_DomainParticipantFactory\_get\_instance()}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_ga555c8d8df54b1982ffc2533e2e5df51b} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Gets the singleton instance of this class. 
+
+\begin{DoxyReturn}{Returns}
+the \doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory} instance. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE on the FIRST call to \doxylink{group__DDSDomainParticipantFactoryModule_ga555c8d8df54b1982ffc2533e2e5df51b}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance()}. It is not safe for two threads to simultaneously make the first call to get an instance of the factory. Subsequent calls are thread safe. 
+\end{DoxyParagraph}
+\doxylink{group__DDSDomainParticipantFactoryModule_ga07c3de23fd7f25cf9c02c0efaaaa5526}{DDS\+\_\+\+The\+Participant\+Factory} can be used as an alias for the singleton factory returned by this operation. 
+
+\begin{DoxyReturn}{Returns}
+the singleton \doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory} instance. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDomainParticipantFactoryModule_ga07c3de23fd7f25cf9c02c0efaaaa5526}{DDS\+\_\+\+The\+Participant\+Factory} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_ga72ed804caf5353b256da2c95678717ee}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactory\_finalize\_instance@{DDS\_DomainParticipantFactory\_finalize\_instance}}
+\index{DDS\_DomainParticipantFactory\_finalize\_instance@{DDS\_DomainParticipantFactory\_finalize\_instance}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactory\_finalize\_instance()}{DDS\_DomainParticipantFactory\_finalize\_instance()}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_ga72ed804caf5353b256da2c95678717ee} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+finalize\+\_\+instance (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Destroys the singleton instance of this class. 
+
+Only necessary to explicitly reclaim resources used by the participant factory singleton. Note that on many OSes, these resources are automatically reclaimed by the OS when the program terminates. Some memory checker tools still flag these as unreclaimed however. So this function provides a way to clean up memory used by the participant factory. 
+
+\begin{DoxyPrecond}{Precondition}
+All participants created from the factory have been deleted. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+All resources belonging to the factory reclaimed. Another call to \doxylink{group__DDSDomainParticipantFactoryModule_ga555c8d8df54b1982ffc2533e2e5df51b}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance} will return a new lifecycle of the singleton. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE for two threads to simultaneously call \doxylink{group__DDSDomainParticipantFactoryModule_ga72ed804caf5353b256da2c95678717ee}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+finalize\+\_\+instance()} or \doxylink{group__DDSDomainParticipantFactoryModule_ga555c8d8df54b1982ffc2533e2e5df51b}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance()} at the same time. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} 
+\end{DoxyReturn}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_ga0a8d09facbefb080c4464ae5cf6e560f}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactory\_set\_default\_participant\_qos@{DDS\_DomainParticipantFactory\_set\_default\_participant\_qos}}
+\index{DDS\_DomainParticipantFactory\_set\_default\_participant\_qos@{DDS\_DomainParticipantFactory\_set\_default\_participant\_qos}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactory\_set\_default\_participant\_qos()}{DDS\_DomainParticipantFactory\_set\_default\_participant\_qos()}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_ga0a8d09facbefb080c4464ae5cf6e560f} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+set\+\_\+default\+\_\+participant\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const struct \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \texorpdfstring{$\ast$}{*}}]{qos}{}\end{DoxyParamCaption})}
+
+
+
+Sets the default \doxylink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos} values for this domain participant factory. 
+
+This function may potentially allocate memory depending on the sequences contained in some QoS policies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Qos to be used by the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. The special value \doxylink{group__DDSDomainParticipantFactoryModule_gac3f06a49a434ba800609f6369c65694b}{DDS\+\_\+\+PARTICIPANT\+\_\+\+QOS\+\_\+\+DEFAULT} may be passed as {\ttfamily qos} to indicate that the default QoS should be reset back to the initial values the factory would used if \doxylink{group__DDSDomainParticipantFactoryModule_ga0a8d09facbefb080c4464ae5cf6e560f}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+set\+\_\+default\+\_\+participant\+\_\+qos} had never been called.  Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDomainParticipantFactoryModule_gac3f06a49a434ba800609f6369c65694b}{DDS\+\_\+\+PARTICIPANT\+\_\+\+QOS\+\_\+\+DEFAULT} 
+
+\doxylink{group__DDSDomainParticipantFactoryModule_ga1786d8b20d9a0bbfb2b2b2293a4acf29}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+create\+\_\+participant} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_gafd441c991cbb793ee085fc45fc8f583b}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactory\_get\_default\_participant\_qos@{DDS\_DomainParticipantFactory\_get\_default\_participant\_qos}}
+\index{DDS\_DomainParticipantFactory\_get\_default\_participant\_qos@{DDS\_DomainParticipantFactory\_get\_default\_participant\_qos}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactory\_get\_default\_participant\_qos()}{DDS\_DomainParticipantFactory\_get\_default\_participant\_qos()}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_gafd441c991cbb793ee085fc45fc8f583b} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+default\+\_\+participant\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{struct \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \texorpdfstring{$\ast$}{*}}]{qos}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the \doxylink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos} instance with default values. 
+
+The retrieved {\ttfamily qos} will match the set of values specified on the last successful call to \doxylink{group__DDSDomainParticipantFactoryModule_ga0a8d09facbefb080c4464ae5cf6e560f}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+set\+\_\+default\+\_\+participant\+\_\+qos}, or else, if the call was never made, the default values listed in \doxylink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}. 
+
+This function may potentially allocate memory depending on the sequences contained in some QoS policies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the domain participant\textquotesingle{}s QoS  Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDomainParticipantFactoryModule_gac3f06a49a434ba800609f6369c65694b}{DDS\+\_\+\+PARTICIPANT\+\_\+\+QOS\+\_\+\+DEFAULT} 
+
+\doxylink{group__DDSDomainParticipantFactoryModule_ga1786d8b20d9a0bbfb2b2b2293a4acf29}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+create\+\_\+participant} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_ga1786d8b20d9a0bbfb2b2b2293a4acf29}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactory\_create\_participant@{DDS\_DomainParticipantFactory\_create\_participant}}
+\index{DDS\_DomainParticipantFactory\_create\_participant@{DDS\_DomainParticipantFactory\_create\_participant}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactory\_create\_participant()}{DDS\_DomainParticipantFactory\_create\_participant()}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_ga1786d8b20d9a0bbfb2b2b2293a4acf29} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+create\+\_\+participant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSDomainModule_ga060e392b8334a6dbc289ec0f363df67a}{DDS\+\_\+\+Domain\+Id\+\_\+t}}}]{domain\+Id}{, }\item[{const struct \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \texorpdfstring{$\ast$}{*}}]{qos}{, }\item[{const struct \mbox{\hyperlink{structDDS__DomainParticipantListener}{DDS\+\_\+\+Domain\+Participant\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{, }\item[{\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}}}]{mask}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Creates a new \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} object. 
+
+\begin{DoxyPrecond}{Precondition}
+The specified QoS policies must be consistent, or the operation will fail and no \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} will be created. 
+\end{DoxyPrecond}
+If you want to create multiple participants on a given host in the same domain, make sure each one has a different participant index (set in the \doxylink{structDDS__WireProtocolQosPolicy}{DDS\+\_\+\+Wire\+Protocol\+Qos\+Policy}). This in turn will ensure each participant uses a different port number (since the unicast port numbers are calculated from the participant index and the domain ID). 
+
+Note that if there is a single participant per host in a given domain, the participant index can be left at the default value (-\/1). 
+
+\begin{DoxyPrecond}{Precondition}
+if {\ttfamily listener} is specified, none of the listener callback functions can be NULL.  
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em domain\+Id} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} ID of the domain that the application intends to join. {\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}\texorpdfstring{$>$}{>}=0\mbox{]}, and does not violate guidelines stated in \doxylink{structDDS__RtpsWellKnownPorts__t}{DDS\+\_\+\+Rtps\+Well\+Known\+Ports\+\_\+t}. \\
+\hline
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the domain participant\textquotesingle{}s QoS. The special value \doxylink{group__DDSDomainParticipantFactoryModule_gac3f06a49a434ba800609f6369c65694b}{DDS\+\_\+\+PARTICIPANT\+\_\+\+QOS\+\_\+\+DEFAULT} can be used to indicate that the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} should be created with the default \doxylink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos} set in the \doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}.  Cannot be NULL.  \\
+\hline
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the domain participant\textquotesingle{}s listener.\\
+\hline
+{\em mask} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Changes of communication status to be invoked on the listener. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+domain participant or NULL on failure 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{group__DDSQosTypesModule_DDSQosTypesModule_usage}{Specifying QoS on entities}{1} for information on setting QoS before entity creation 
+
+\doxylink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos} for rules on consistency among QoS 
+
+\doxylink{group__DDSDomainParticipantFactoryModule_gac3f06a49a434ba800609f6369c65694b}{DDS\+\_\+\+PARTICIPANT\+\_\+\+QOS\+\_\+\+DEFAULT} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_gaffe54d6763b13d63d7599dc009dd7c0c}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactory\_delete\_participant@{DDS\_DomainParticipantFactory\_delete\_participant}}
+\index{DDS\_DomainParticipantFactory\_delete\_participant@{DDS\_DomainParticipantFactory\_delete\_participant}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactory\_delete\_participant()}{DDS\_DomainParticipantFactory\_delete\_participant()}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_gaffe54d6763b13d63d7599dc009dd7c0c} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+delete\+\_\+participant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*}}]{a\+\_\+participant}{}\end{DoxyParamCaption})}
+
+
+
+Deletes an existing \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. 
+
+\begin{DoxyPrecond}{Precondition}
+All domain entities belonging to the participant must have already been deleted. Otherwise it fails with the error \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Listener installed on the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} will not be called after this function returns successfully. 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em a\+\_\+participant} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} to be deleted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_ga13261cc33e9b7bce5d2e64a27ec052d4}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactory\_lookup\_participant@{DDS\_DomainParticipantFactory\_lookup\_participant}}
+\index{DDS\_DomainParticipantFactory\_lookup\_participant@{DDS\_DomainParticipantFactory\_lookup\_participant}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactory\_lookup\_participant()}{DDS\_DomainParticipantFactory\_lookup\_participant()}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_ga13261cc33e9b7bce5d2e64a27ec052d4} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+lookup\+\_\+participant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSDomainModule_ga060e392b8334a6dbc289ec0f363df67a}{DDS\+\_\+\+Domain\+Id\+\_\+t}}}]{domain\+Id}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Locates an existing \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. 
+
+If no such \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} exists, the operation will return NULL value. 
+
+If multiple \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} entities belonging to that domain\+Id exist, then the operation will return one of them. It is not specified which one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em domain\+Id} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} ID of the domain participant to lookup. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+domain participant if it exists, or NULL 
+\end{DoxyReturn}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_gadbdd53580e80587e723643f6af1b27b7}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactory\_lookup\_participant\_by\_name@{DDS\_DomainParticipantFactory\_lookup\_participant\_by\_name}}
+\index{DDS\_DomainParticipantFactory\_lookup\_participant\_by\_name@{DDS\_DomainParticipantFactory\_lookup\_participant\_by\_name}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactory\_lookup\_participant\_by\_name()}{DDS\_DomainParticipantFactory\_lookup\_participant\_by\_name()}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_gadbdd53580e80587e723643f6af1b27b7} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+lookup\+\_\+participant\+\_\+by\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{participant\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieves a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} by its entity name in the within the \doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory} 
+
+This returned \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} is either enabled or disabled. 
+
+Every \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} in the system has an entity name which is configured and stored in the Entity\+Name policy, ENTITY\+\_\+\+NAME. 
+
+This operation retrieves a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} within the \doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory} given the entity\textquotesingle{}s name. If there are several \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} with the same name within the \doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}, this function returns the first matching occurrence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em participant\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Entity name of the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} found with the specified name or NULL if it is not found. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to lookup a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} in one thread while another thread is simultaneously creating or destroying that \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. 
+\end{DoxyParagraph}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_ga9967159da7349f0fef75135df1879a3f}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactory\_get\_qos@{DDS\_DomainParticipantFactory\_get\_qos}}
+\index{DDS\_DomainParticipantFactory\_get\_qos@{DDS\_DomainParticipantFactory\_get\_qos}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactory\_get\_qos()}{DDS\_DomainParticipantFactory\_get\_qos()}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_ga9967159da7349f0fef75135df1879a3f} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{struct \mbox{\hyperlink{structDDS__DomainParticipantFactoryQos}{DDS\+\_\+\+Domain\+Participant\+Factory\+Qos}} \texorpdfstring{$\ast$}{*}}]{qos}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Gets the value for participant factory QoS. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} QoS to be filled up.  Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_ga06757822681ad95d0f779628abf48483}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactory\_set\_qos@{DDS\_DomainParticipantFactory\_set\_qos}}
+\index{DDS\_DomainParticipantFactory\_set\_qos@{DDS\_DomainParticipantFactory\_set\_qos}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactory\_set\_qos()}{DDS\_DomainParticipantFactory\_set\_qos()}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_ga06757822681ad95d0f779628abf48483} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+set\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const struct \mbox{\hyperlink{structDDS__DomainParticipantFactoryQos}{DDS\+\_\+\+Domain\+Participant\+Factory\+Qos}} \texorpdfstring{$\ast$}{*}}]{qos}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Sets the value for a participant factory QoS. 
+
+The \doxylink{structDDS__DomainParticipantFactoryQos_a02dc2ae2e347305a6f1735fbf1f51677}{DDS\+\_\+\+Domain\+Participant\+Factory\+Qos\+::entity\+\_\+factory} can be changed. The other policies are immutable. 
+
+Note that despite having QoS, the \doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory} is not an \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}. 
+
+Note that this function may cause RTI Connext DDS Micro to free and reallocate memory, depending on the QoS policies that are changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Set of policies to be applied to \doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}. Policies must be consistent. Immutable policies can only be changed before calling any other RTI Connext DDS Micro functions except for \doxylink{group__DDSDomainParticipantFactoryModule_ga9967159da7349f0fef75135df1879a3f}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+qos}  Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a6e50f4433cf3e47737f4d317d0a4a707}{DDS\+\_\+\+RETCODE\+\_\+\+IMMUTABLE\+\_\+\+POLICY} if immutable policy is changed, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} if policies are inconsistent 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__DomainParticipantFactoryQos}{DDS\+\_\+\+Domain\+Participant\+Factory\+Qos} for rules on consistency among QoS 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_gad9d4f4d0d37eba093af8ab47d523cbcf}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactory\_get\_registry@{DDS\_DomainParticipantFactory\_get\_registry}}
+\index{DDS\_DomainParticipantFactory\_get\_registry@{DDS\_DomainParticipantFactory\_get\_registry}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactory\_get\_registry()}{DDS\_DomainParticipantFactory\_get\_registry()}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_gad9d4f4d0d37eba093af8ab47d523cbcf} 
+DDSCDll\+Export RT\+\_\+\+Registry\+\_\+T \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+registry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieves the singleton registry instance associated with the factory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the registry instance or NULL on failure. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_ga58f089ac5a8a9f614d17d9dd07732ec0}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_DomainParticipantFactory\_create\_participant\_from\_config@{DDS\_DomainParticipantFactory\_create\_participant\_from\_config}}
+\index{DDS\_DomainParticipantFactory\_create\_participant\_from\_config@{DDS\_DomainParticipantFactory\_create\_participant\_from\_config}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainParticipantFactory\_create\_participant\_from\_config()}{DDS\_DomainParticipantFactory\_create\_participant\_from\_config()}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_ga58f089ac5a8a9f614d17d9dd07732ec0} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+create\+\_\+participant\+\_\+from\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{configuration\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Creates a new \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} given its configuration name from a description provided in configuration file. 
+
+This operation creates a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} and all the contained entities (\doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}, \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}, \doxylink{group__DDSSubscriberModule_ga2755712602505786a23baef5a42d6782}{DDS\+\_\+\+Subscriber}, \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}, \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}) from a description given in a configuration file. 
+
+The configuration name is the fully qualified name of the application, consisting of the name of the application library plus the name of application configuration. 
+
+For example the name "{}My\+Application\+Library\+::\+Publication\+Participant"{} can be used to create the application from the configuration with library name "{}My\+Application\+Library"{} and participant name "{}Publication\+Participant"{} 
+
+The entities belonging to the newly created \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} can be retrieved with the help of lookup operations such as\+: \doxylink{group__DDSDomainParticipantModule_ga03dda25363785874e3beb4c56dac1517}{DDS\+\_\+\+Domain\+Participant\+\_\+lookup\+\_\+publisher\+\_\+by\+\_\+name}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em configuration\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name of RTI Connext DDS Micro application configuration in the configuration file. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} or NULL on failure 
+\end{DoxyReturn}
+
+
+\doxysubsubsubsubsection{Variable Documentation}
+\Hypertarget{group__DDSDomainParticipantFactoryModule_ga55f2077386eea73a9716f6461b04c73b}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_PARTICIPANT\_FACTORY\_QOS\_DEFAULT@{DDS\_PARTICIPANT\_FACTORY\_QOS\_DEFAULT}}
+\index{DDS\_PARTICIPANT\_FACTORY\_QOS\_DEFAULT@{DDS\_PARTICIPANT\_FACTORY\_QOS\_DEFAULT}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_PARTICIPANT\_FACTORY\_QOS\_DEFAULT}{DDS\_PARTICIPANT\_FACTORY\_QOS\_DEFAULT}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_ga55f2077386eea73a9716f6461b04c73b} 
+DDSCDll\+Variable const struct \mbox{\hyperlink{structDDS__DomainParticipantFactoryQos}{DDS\+\_\+\+Domain\+Participant\+Factory\+Qos}} DDS\+\_\+\+PARTICIPANT\+\_\+\+FACTORY\+\_\+\+QOS\+\_\+\+DEFAULT\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Special value for creating domain participant with default QoS. 
+
+When used in \doxylink{group__DDSDomainParticipantFactoryModule_ga1786d8b20d9a0bbfb2b2b2293a4acf29}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+create\+\_\+participant}, this special value is used to indicate that the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} should be created with the default \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} QoS. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDomainParticipantFactoryModule_ga1786d8b20d9a0bbfb2b2b2293a4acf29}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+create\+\_\+participant()} 
+\end{DoxySeeAlso}
+
+
+Referenced by \mbox{\hyperlink{group__DDSDomainParticipantModule_ga4d8cfdb8127b4a37cb4cdcf6f962a959}{DDS\+\_\+\+Domain\+Participant\+\_\+unregister\+\_\+type()}}.
+
+\Hypertarget{group__DDSDomainParticipantFactoryModule_gac3f06a49a434ba800609f6369c65694b}\index{DomainParticipantFactory@{DomainParticipantFactory}!DDS\_PARTICIPANT\_QOS\_DEFAULT@{DDS\_PARTICIPANT\_QOS\_DEFAULT}}
+\index{DDS\_PARTICIPANT\_QOS\_DEFAULT@{DDS\_PARTICIPANT\_QOS\_DEFAULT}!DomainParticipantFactory@{DomainParticipantFactory}}
+\doxyparagraph{\texorpdfstring{DDS\_PARTICIPANT\_QOS\_DEFAULT}{DDS\_PARTICIPANT\_QOS\_DEFAULT}}
+{\footnotesize\ttfamily \label{group__DDSDomainParticipantFactoryModule_gac3f06a49a434ba800609f6369c65694b} 
+DDSCDll\+Variable const struct \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} DDS\+\_\+\+PARTICIPANT\+\_\+\+QOS\+\_\+\+DEFAULT\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Special value for creating domain participant with default QoS. 
+
+When used in \doxylink{group__DDSDomainParticipantFactoryModule_ga1786d8b20d9a0bbfb2b2b2293a4acf29}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+create\+\_\+participant}, this special value is used to indicate that the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} should be created with the default \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} QoS. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDomainParticipantFactoryModule_ga1786d8b20d9a0bbfb2b2b2293a4acf29}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+create\+\_\+participant()} 
+\end{DoxySeeAlso}
+
+
+Referenced by \mbox{\hyperlink{group__DDSDomainParticipantModule_ga4d8cfdb8127b4a37cb4cdcf6f962a959}{DDS\+\_\+\+Domain\+Participant\+\_\+unregister\+\_\+type()}}.
+

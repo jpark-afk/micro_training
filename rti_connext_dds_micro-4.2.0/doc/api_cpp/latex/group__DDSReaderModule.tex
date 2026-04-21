@@ -1,0 +1,179 @@
+\doxysubsubsubsection{Data\+Reader}
+\hypertarget{group__DDSReaderModule}{}\label{group__DDSReaderModule}\index{DataReader@{DataReader}}
+
+
+\doxylink{classDDSDataReader}{DDSData\+Reader} entity and associated elements  
+
+
+\doxysubsubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__RequestedDeadlineMissedStatus}{DDS\+\_\+\+Requested\+Deadline\+Missed\+Status}}
+\begin{DoxyCompactList}\small\item\em \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fab4c627eaeae35f65790cc564208ca2e6}{DDS\+\_\+\+REQUESTED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LivelinessChangedStatus}{DDS\+\_\+\+Liveliness\+Changed\+Status}}
+\begin{DoxyCompactList}\small\item\em \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa267a5ad100a1e87c372752b6900a9965}{DDS\+\_\+\+LIVELINESS\+\_\+\+CHANGED\+\_\+\+STATUS} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__RequestedIncompatibleQosStatus}{DDS\+\_\+\+Requested\+Incompatible\+Qos\+Status}}
+\begin{DoxyCompactList}\small\item\em \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa126ff1b38cdfc905353cb2dac57b6796}{DDS\+\_\+\+REQUESTED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__SampleRejectedStatus}{DDS\+\_\+\+Sample\+Rejected\+Status}}
+\begin{DoxyCompactList}\small\item\em \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa9e9d4b8dec6fa48c37aa32aa51ad2dd0}{DDS\+\_\+\+SAMPLE\+\_\+\+REJECTED\+\_\+\+STATUS} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DataReaderInstanceReplacedStatus}{DDS\+\_\+\+Data\+Reader\+Instance\+Replaced\+Status}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26faed26723fdb41d795e19992939b893de3}{DDS\+\_\+\+INSTANCE\+\_\+\+REPLACED\+\_\+\+STATUS}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__SubscriptionMatchedStatus}{DDS\+\_\+\+Subscription\+Matched\+Status}}
+\begin{DoxyCompactList}\small\item\em \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26faceedf0fda6d695b4fabd8ac0af807bb1}{DDS\+\_\+\+SUBSCRIPTION\+\_\+\+MATCHED\+\_\+\+STATUS} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__SampleLostStatus}{DDS\+\_\+\+Sample\+Lost\+Status}}
+\begin{DoxyCompactList}\small\item\em \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa0114c506e39a7fef5a42587556fc812f}{DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+STATUS} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos}}
+\begin{DoxyCompactList}\small\item\em QoS policies supported by a \doxylink{classDDSDataReader}{DDSData\+Reader} entity. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{structFooDataReader}{Foo\+Data\+Reader}}
+\begin{DoxyCompactList}\small\item\em Declares the interface required to support a user data type-\/specific data reader. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classDDSDataReaderListener}{DDSData\+Reader\+Listener}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{classDDSListener}{DDSListener} for reader status. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows the application to\+: (1) declare the data it wishes to receive (i.\+e. make a subscription) and (2) access the data received by the attached \doxylink{classDDSSubscriber}{DDSSubscriber}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__DDSReaderModule_ga08df559babd09ceefcd351b2cb6876f1}{DDS\+\_\+\+Sample\+Rejected\+Status\+Kind}} \{ \newline
+\mbox{\hyperlink{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1ae371624e8cee89be655a853a3107fb35}{DDS\+\_\+\+NOT\+\_\+\+REJECTED}}
+, \mbox{\hyperlink{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1a0dab8798e087551400c60a82a42ce02a}{DDS\+\_\+\+REJECTED\+\_\+\+BY\+\_\+\+INSTANCES\+\_\+\+LIMIT}}
+, \mbox{\hyperlink{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1ad17f50fcc59ea3b9decd493227f6d1ca}{DDS\+\_\+\+REJECTED\+\_\+\+BY\+\_\+\+SAMPLES\+\_\+\+LIMIT}}
+, \mbox{\hyperlink{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1aab6c983268ca4dd0520e6705156197b7}{DDS\+\_\+\+REJECTED\+\_\+\+BY\+\_\+\+SAMPLES\+\_\+\+PER\+\_\+\+INSTANCE\+\_\+\+LIMIT}}
+, \newline
+\mbox{\hyperlink{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1ac318063c4701ef9d3f77becafd075c6f}{DDS\+\_\+\+REJECTED\+\_\+\+BY\+\_\+\+REMOTE\+\_\+\+WRITERS\+\_\+\+LIMIT}}
+, \mbox{\hyperlink{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1a98f2efea03af4d0aecfa356b01e91789}{DDS\+\_\+\+REJECTED\+\_\+\+BY\+\_\+\+SAMPLES\+\_\+\+PER\+\_\+\+REMOTE\+\_\+\+WRITER\+\_\+\+LIMIT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of reasons for rejecting a sample. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__DDSReaderModule_gad50b30818f1c22476283f3dd114a1834}{DDS\+\_\+\+Sample\+Lost\+Status\+Kind}} \{ \newline
+\mbox{\hyperlink{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a0eb386dcaf60ef5d766d5b54c56f692c}{DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+NOT\+\_\+\+LOST}}
+, \mbox{\hyperlink{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a10e7e264d66b34a7de1b780dcde76901}{DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+BY\+\_\+\+DATAWRITER}}
+, \mbox{\hyperlink{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a4a5e7018c70d1466772c3ec1e8a70c6f}{DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+BY\+\_\+\+MAX\+\_\+\+SAMPLES\+\_\+\+LIMIT}}
+, \mbox{\hyperlink{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a898c08cdc3279dbed785f3fef9e697f2}{DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+BY\+\_\+\+HISTORY\+\_\+\+DEPTH\+\_\+\+LIMIT}}
+, \newline
+\mbox{\hyperlink{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a253659ac4b397ad1e23c46c54249531f}{DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+BY\+\_\+\+META\+\_\+\+SAMPLE\+\_\+\+LIMIT}}
+, \mbox{\hyperlink{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a47a5780ed9743f294775798cdafbb5b7}{DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+BY\+\_\+\+NOT\+\_\+\+READ\+\_\+\+ON\+\_\+\+CACHE\+\_\+\+DELETION}}
+, \mbox{\hyperlink{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a23bded268fd8ba851622431cd95c993d}{DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+BY\+\_\+\+MANAGEDPOOL\+\_\+\+OVERWRITE}}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of reasons a sample was lost. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+\doxylink{classDDSDataReader}{DDSData\+Reader} entity and associated elements 
+
+
+
+\doxysubsubsubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__DDSReaderModule_ga08df559babd09ceefcd351b2cb6876f1}\index{DataReader@{DataReader}!DDS\_SampleRejectedStatusKind@{DDS\_SampleRejectedStatusKind}}
+\index{DDS\_SampleRejectedStatusKind@{DDS\_SampleRejectedStatusKind}!DataReader@{DataReader}}
+\doxyparagraph{\texorpdfstring{DDS\_SampleRejectedStatusKind}{DDS\_SampleRejectedStatusKind}}
+{\footnotesize\ttfamily \label{group__DDSReaderModule_ga08df559babd09ceefcd351b2cb6876f1} 
+enum \mbox{\hyperlink{group__DDSReaderModule_ga08df559babd09ceefcd351b2cb6876f1}{DDS\+\_\+\+Sample\+Rejected\+Status\+Kind}}}
+
+
+
+Kinds of reasons for rejecting a sample. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_NOT\_REJECTED@{DDS\_NOT\_REJECTED}!DataReader@{DataReader}}\index{DataReader@{DataReader}!DDS\_NOT\_REJECTED@{DDS\_NOT\_REJECTED}}}\Hypertarget{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1ae371624e8cee89be655a853a3107fb35}\label{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1ae371624e8cee89be655a853a3107fb35} 
+DDS\+\_\+\+NOT\+\_\+\+REJECTED&Samples are never rejected. \begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_REJECTED\_BY\_INSTANCES\_LIMIT@{DDS\_REJECTED\_BY\_INSTANCES\_LIMIT}!DataReader@{DataReader}}\index{DataReader@{DataReader}!DDS\_REJECTED\_BY\_INSTANCES\_LIMIT@{DDS\_REJECTED\_BY\_INSTANCES\_LIMIT}}}\Hypertarget{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1a0dab8798e087551400c60a82a42ce02a}\label{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1a0dab8798e087551400c60a82a42ce02a} 
+DDS\+\_\+\+REJECTED\+\_\+\+BY\+\_\+\+INSTANCES\+\_\+\+LIMIT&A resource limit on the number of instances was reached. \begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_REJECTED\_BY\_SAMPLES\_LIMIT@{DDS\_REJECTED\_BY\_SAMPLES\_LIMIT}!DataReader@{DataReader}}\index{DataReader@{DataReader}!DDS\_REJECTED\_BY\_SAMPLES\_LIMIT@{DDS\_REJECTED\_BY\_SAMPLES\_LIMIT}}}\Hypertarget{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1ad17f50fcc59ea3b9decd493227f6d1ca}\label{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1ad17f50fcc59ea3b9decd493227f6d1ca} 
+DDS\+\_\+\+REJECTED\+\_\+\+BY\+\_\+\+SAMPLES\+\_\+\+LIMIT&A resource limit on the number of samples was reached. \begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_REJECTED\_BY\_SAMPLES\_PER\_INSTANCE\_LIMIT@{DDS\_REJECTED\_BY\_SAMPLES\_PER\_INSTANCE\_LIMIT}!DataReader@{DataReader}}\index{DataReader@{DataReader}!DDS\_REJECTED\_BY\_SAMPLES\_PER\_INSTANCE\_LIMIT@{DDS\_REJECTED\_BY\_SAMPLES\_PER\_INSTANCE\_LIMIT}}}\Hypertarget{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1aab6c983268ca4dd0520e6705156197b7}\label{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1aab6c983268ca4dd0520e6705156197b7} 
+DDS\+\_\+\+REJECTED\+\_\+\+BY\+\_\+\+SAMPLES\+\_\+\+PER\+\_\+\+INSTANCE\+\_\+\+LIMIT&A resource limit on the number of samples per instance was reached. \begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_REJECTED\_BY\_REMOTE\_WRITERS\_LIMIT@{DDS\_REJECTED\_BY\_REMOTE\_WRITERS\_LIMIT}!DataReader@{DataReader}}\index{DataReader@{DataReader}!DDS\_REJECTED\_BY\_REMOTE\_WRITERS\_LIMIT@{DDS\_REJECTED\_BY\_REMOTE\_WRITERS\_LIMIT}}}\Hypertarget{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1ac318063c4701ef9d3f77becafd075c6f}\label{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1ac318063c4701ef9d3f77becafd075c6f} 
+DDS\+\_\+\+REJECTED\+\_\+\+BY\+\_\+\+REMOTE\+\_\+\+WRITERS\+\_\+\+LIMIT&A resource limit on the number of remote writers from which a \doxylink{classDDSDataReader}{DDSData\+Reader} may read was reached. This constant is an extension to the DDS standard. \begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__DataReaderResourceLimitsQosPolicy}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_REJECTED\_BY\_SAMPLES\_PER\_REMOTE\_WRITER\_LIMIT@{DDS\_REJECTED\_BY\_SAMPLES\_PER\_REMOTE\_WRITER\_LIMIT}!DataReader@{DataReader}}\index{DataReader@{DataReader}!DDS\_REJECTED\_BY\_SAMPLES\_PER\_REMOTE\_WRITER\_LIMIT@{DDS\_REJECTED\_BY\_SAMPLES\_PER\_REMOTE\_WRITER\_LIMIT}}}\Hypertarget{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1a98f2efea03af4d0aecfa356b01e91789}\label{group__DDSReaderModule_gga08df559babd09ceefcd351b2cb6876f1a98f2efea03af4d0aecfa356b01e91789} 
+DDS\+\_\+\+REJECTED\+\_\+\+BY\+\_\+\+SAMPLES\+\_\+\+PER\+\_\+\+REMOTE\+\_\+\+WRITER\+\_\+\+LIMIT&A resource limit on the number of samples from a given remote writer that a \doxylink{classDDSDataReader}{DDSData\+Reader} may store was reached. This constant is an extension to the DDS standard. \begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__DataReaderResourceLimitsQosPolicy}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{group__DDSReaderModule_gad50b30818f1c22476283f3dd114a1834}\index{DataReader@{DataReader}!DDS\_SampleLostStatusKind@{DDS\_SampleLostStatusKind}}
+\index{DDS\_SampleLostStatusKind@{DDS\_SampleLostStatusKind}!DataReader@{DataReader}}
+\doxyparagraph{\texorpdfstring{DDS\_SampleLostStatusKind}{DDS\_SampleLostStatusKind}}
+{\footnotesize\ttfamily \label{group__DDSReaderModule_gad50b30818f1c22476283f3dd114a1834} 
+enum \mbox{\hyperlink{group__DDSReaderModule_gad50b30818f1c22476283f3dd114a1834}{DDS\+\_\+\+Sample\+Lost\+Status\+Kind}}}
+
+
+
+Kinds of reasons a sample was lost. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_SAMPLE\_LOST\_NOT\_LOST@{DDS\_SAMPLE\_LOST\_NOT\_LOST}!DataReader@{DataReader}}\index{DataReader@{DataReader}!DDS\_SAMPLE\_LOST\_NOT\_LOST@{DDS\_SAMPLE\_LOST\_NOT\_LOST}}}\Hypertarget{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a0eb386dcaf60ef5d766d5b54c56f692c}\label{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a0eb386dcaf60ef5d766d5b54c56f692c} 
+DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+NOT\+\_\+\+LOST&Samples was not lost, normal removal. \begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_SAMPLE\_LOST\_BY\_DATAWRITER@{DDS\_SAMPLE\_LOST\_BY\_DATAWRITER}!DataReader@{DataReader}}\index{DataReader@{DataReader}!DDS\_SAMPLE\_LOST\_BY\_DATAWRITER@{DDS\_SAMPLE\_LOST\_BY\_DATAWRITER}}}\Hypertarget{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a10e7e264d66b34a7de1b780dcde76901}\label{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a10e7e264d66b34a7de1b780dcde76901} 
+DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+BY\+\_\+\+DATAWRITER&Sample was lost was by the Data\+Writer, it was never received by the Data\+Reader. \begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_SAMPLE\_LOST\_BY\_MAX\_SAMPLES\_LIMIT@{DDS\_SAMPLE\_LOST\_BY\_MAX\_SAMPLES\_LIMIT}!DataReader@{DataReader}}\index{DataReader@{DataReader}!DDS\_SAMPLE\_LOST\_BY\_MAX\_SAMPLES\_LIMIT@{DDS\_SAMPLE\_LOST\_BY\_MAX\_SAMPLES\_LIMIT}}}\Hypertarget{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a4a5e7018c70d1466772c3ec1e8a70c6f}\label{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a4a5e7018c70d1466772c3ec1e8a70c6f} 
+DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+BY\+\_\+\+MAX\+\_\+\+SAMPLES\+\_\+\+LIMIT&A sample was received by the Data\+Reader but lost because the max\+\_\+samples resource was exceeded and not samples could be freed to receive it. \begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_SAMPLE\_LOST\_BY\_HISTORY\_DEPTH\_LIMIT@{DDS\_SAMPLE\_LOST\_BY\_HISTORY\_DEPTH\_LIMIT}!DataReader@{DataReader}}\index{DataReader@{DataReader}!DDS\_SAMPLE\_LOST\_BY\_HISTORY\_DEPTH\_LIMIT@{DDS\_SAMPLE\_LOST\_BY\_HISTORY\_DEPTH\_LIMIT}}}\Hypertarget{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a898c08cdc3279dbed785f3fef9e697f2}\label{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a898c08cdc3279dbed785f3fef9e697f2} 
+DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+BY\+\_\+\+HISTORY\+\_\+\+DEPTH\+\_\+\+LIMIT&A sample was received by the Data\+Reader but lost because the max depth was reached for the instance and no samples could be removed from the history. For example, if all the samples in the Data\+Reader cache are loaned by the application, they cannot be removed. \begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_SAMPLE\_LOST\_BY\_META\_SAMPLE\_LIMIT@{DDS\_SAMPLE\_LOST\_BY\_META\_SAMPLE\_LIMIT}!DataReader@{DataReader}}\index{DataReader@{DataReader}!DDS\_SAMPLE\_LOST\_BY\_META\_SAMPLE\_LIMIT@{DDS\_SAMPLE\_LOST\_BY\_META\_SAMPLE\_LIMIT}}}\Hypertarget{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a253659ac4b397ad1e23c46c54249531f}\label{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a253659ac4b397ad1e23c46c54249531f} 
+DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+BY\+\_\+\+META\+\_\+\+SAMPLE\+\_\+\+LIMIT&A meta sample was received by the Data\+Reader but lost because the meta sample for the instance was loaned by the application and could not be reused. \begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_SAMPLE\_LOST\_BY\_NOT\_READ\_ON\_CACHE\_DELETION@{DDS\_SAMPLE\_LOST\_BY\_NOT\_READ\_ON\_CACHE\_DELETION}!DataReader@{DataReader}}\index{DataReader@{DataReader}!DDS\_SAMPLE\_LOST\_BY\_NOT\_READ\_ON\_CACHE\_DELETION@{DDS\_SAMPLE\_LOST\_BY\_NOT\_READ\_ON\_CACHE\_DELETION}}}\Hypertarget{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a47a5780ed9743f294775798cdafbb5b7}\label{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a47a5780ed9743f294775798cdafbb5b7} 
+DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+BY\+\_\+\+NOT\+\_\+\+READ\+\_\+\+ON\+\_\+\+CACHE\+\_\+\+DELETION&The Data\+Reader has samples in the cache that were not seen by the application and were lost when the Data\+Reader was deleted. \begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_SAMPLE\_LOST\_BY\_MANAGEDPOOL\_OVERWRITE@{DDS\_SAMPLE\_LOST\_BY\_MANAGEDPOOL\_OVERWRITE}!DataReader@{DataReader}}\index{DataReader@{DataReader}!DDS\_SAMPLE\_LOST\_BY\_MANAGEDPOOL\_OVERWRITE@{DDS\_SAMPLE\_LOST\_BY\_MANAGEDPOOL\_OVERWRITE}}}\Hypertarget{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a23bded268fd8ba851622431cd95c993d}\label{group__DDSReaderModule_ggad50b30818f1c22476283f3dd114a1834a23bded268fd8ba851622431cd95c993d} 
+DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+BY\+\_\+\+MANAGEDPOOL\+\_\+\+OVERWRITE&The Data\+Reader has samples that may have been overwritten. \begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\end{DoxyEnumFields}

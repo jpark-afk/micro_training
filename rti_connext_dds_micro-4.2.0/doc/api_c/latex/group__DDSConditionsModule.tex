@@ -1,0 +1,460 @@
+\doxysubsubsubsection{Conditions and Wait\+Sets}
+\hypertarget{group__DDSConditionsModule}{}\label{group__DDSConditionsModule}\index{Conditions and WaitSets@{Conditions and WaitSets}}
+
+
+\doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} and \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} and related items.  
+
+
+\doxysubsubsubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct DDS\+\_\+\+Condition\+Impl \mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Root class for all the conditions that may be attached to a \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+Guard\+Condition\+Impl \mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A specific \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} whose {\ttfamily trigger\+\_\+value} is completely under the control of the application. \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+Status\+Condition\+Impl \mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A specific \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} that is associated with each \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}. \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+Wait\+Set\+Impl \mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application to wait until one or more of the attached \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} objects has a {\ttfamily trigger\+\_\+value} of \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} or else until the timeout expires. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSConditionsModule_gab55dedb1d418b172706c7cc9137fd5cf}{DDS\+\_\+\+Condition\+\_\+get\+\_\+trigger\+\_\+value}} (\mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieve the {\ttfamily trigger\+\_\+value}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSConditionsModule_gac1f9650dba78ac680a29645b231abbd6}{DDS\+\_\+\+Guard\+Condition\+\_\+as\+\_\+condition}} (\mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}} \texorpdfstring{$\ast$}{*}guard\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Access a \doxylink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}\textquotesingle{}s supertype instance. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSConditionsModule_ga582ebe0a987db533d0b31bb4323d667e}{DDS\+\_\+\+Guard\+Condition\+\_\+new}} (void)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  No argument constructor. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_ga53c8fb1a19cdb65c583baa59a862245c}{DDS\+\_\+\+Guard\+Condition\+\_\+delete}} (\mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_ga2c362db9e0b4fdc568aa655413b8ad8c}{DDS\+\_\+\+Guard\+Condition\+\_\+set\+\_\+trigger\+\_\+value}} (\mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} value)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Set the guard condition trigger value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSConditionsModule_gac92bd05b3e338202feffd1606322db23}{DDS\+\_\+\+Status\+Condition\+\_\+as\+\_\+condition}} (\mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}} \texorpdfstring{$\ast$}{*}status\+Condition)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Access a \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}\textquotesingle{}s supertype instance. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} \mbox{\hyperlink{group__DDSConditionsModule_ga9c9b95da1c6e7784286ad66cc6101457}{DDS\+\_\+\+Status\+Condition\+\_\+get\+\_\+enabled\+\_\+statuses}} (\mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Get the list of statuses enabled on an \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_gab2cb31f6955993ec9feaa3148e3ef2f9}{DDS\+\_\+\+Status\+Condition\+\_\+set\+\_\+enabled\+\_\+statuses}} (\mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} mask)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  This operation defines the list of communication statuses that determine the {\ttfamily trigger\+\_\+value} of the \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSConditionsModule_ga102d863846d77ab146b5e3c6fcb6b800}{DDS\+\_\+\+Status\+Condition\+\_\+get\+\_\+entity}} (\mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Get the \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} associated with the \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSConditionsModule_gabb61cc7fcbcc33e40c523a43066aedee}{DDS\+\_\+\+Wait\+Set\+\_\+new}} (void)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Create a new, empty waitset. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_gaebdc837f4d5e7911c0b2de4f0c940bdc}{DDS\+\_\+\+Wait\+Set\+\_\+wait}} (\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structDDS__ConditionSeq}{DDS\+\_\+\+Condition\+Seq}} \texorpdfstring{$\ast$}{*}active\+\_\+conditions, const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}timeout)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application thread to wait for the occurrence of certain conditions. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_ga34c5f2edde97b6030598d513240806db}{DDS\+\_\+\+Wait\+Set\+\_\+attach\+\_\+condition}} (\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*}cond)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Attaches a \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} to the \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_ga790958fc704d48553f7aa9d11004d3c9}{DDS\+\_\+\+Wait\+Set\+\_\+delete}} (\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_ga5188adc3183ac484aa958e2602b1b27e}{DDS\+\_\+\+Wait\+Set\+\_\+detach\+\_\+condition}} (\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*}cond)
+\begin{DoxyCompactList}\small\item\em Detaches a \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} from the \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_gace235f3ff6ef8c448e55dd3157c88c6b}{DDS\+\_\+\+Wait\+Set\+\_\+get\+\_\+conditions}} (\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structDDS__ConditionSeq}{DDS\+\_\+\+Condition\+Seq}} \texorpdfstring{$\ast$}{*}attached\+\_\+conditions)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieves the list of attached \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} (s). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+\doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} and \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} and related items. 
+
+
+
+\doxysubsubsubsubsection{Typedef Documentation}
+\Hypertarget{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_Condition@{DDS\_Condition}}
+\index{DDS\_Condition@{DDS\_Condition}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_Condition}{DDS\_Condition}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d} 
+typedef struct DDS\+\_\+\+Condition\+Impl \mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Root class for all the conditions that may be attached to a \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. 
+
+This basic class is specialised in two classes\+: 
+
+\doxylink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition} and \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}. 
+
+A \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} has a {\ttfamily trigger\+\_\+value} that can be \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} or \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} and is set automatically by RTI Connext DDS Micro. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_GuardCondition@{DDS\_GuardCondition}}
+\index{DDS\_GuardCondition@{DDS\_GuardCondition}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_GuardCondition}{DDS\_GuardCondition}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3} 
+typedef struct DDS\+\_\+\+Guard\+Condition\+Impl \mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A specific \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} whose {\ttfamily trigger\+\_\+value} is completely under the control of the application. 
+
+The \doxylink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition} provides a way for an application to manually wake up a \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. This is accomplished by attaching the \doxylink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition} to the \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} and then setting the {\ttfamily trigger\+\_\+value} by means of the \doxylink{group__DDSConditionsModule_ga2c362db9e0b4fdc568aa655413b8ad8c}{DDS\+\_\+\+Guard\+Condition\+\_\+set\+\_\+trigger\+\_\+value} operation. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_StatusCondition@{DDS\_StatusCondition}}
+\index{DDS\_StatusCondition@{DDS\_StatusCondition}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_StatusCondition}{DDS\_StatusCondition}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd} 
+typedef struct DDS\+\_\+\+Status\+Condition\+Impl \mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A specific \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} that is associated with each \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}. 
+
+The {\ttfamily trigger\+\_\+value} of the \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition} depends on the communication status of that entity (e.\+g., arrival of data, loss of information, etc.), \textquotesingle{}filtered\textquotesingle{} by the set of {\ttfamily enabled\+\_\+statuses} on the \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}. 
+
+This release supports the following subset of communication statuses that can be assocated with a \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition} \+: 
+
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa9d2d926d515abd0ddd0b537efd42f03e}{DDS\+\_\+\+DATA\+\_\+\+AVAILABLE\+\_\+\+STATUS} 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSStatusTypesModule}{Status Kinds} 
+
+\doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}, \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} 
+
+\doxylink{structDDS__Listener}{DDS\+\_\+\+Listener} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_WaitSet@{DDS\_WaitSet}}
+\index{DDS\_WaitSet@{DDS\_WaitSet}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_WaitSet}{DDS\_WaitSet}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82} 
+typedef struct DDS\+\_\+\+Wait\+Set\+Impl \mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application to wait until one or more of the attached \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} objects has a {\ttfamily trigger\+\_\+value} of \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} or else until the timeout expires. 
+
+\hypertarget{group__DDSConditionsModule_WaitSet_usage}{}\doxysubsubsubsubsection{\texorpdfstring{Usage}{Usage}}\label{group__DDSConditionsModule_WaitSet_usage}
+\doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} (s) (in conjunction with wait-\/sets) provide an alternative mechanism to allow the middleware to communicate communication status changes (including arrival of data) to the application. 
+
+This mechanism is wait-\/based. Its general use pattern is as follows\+: 
+
+\begin{DoxyItemize}
+\item The application indicates which relevant information it wants to get by creating \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} objects (\doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}) and attaching them to a \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item It then waits on that \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} until the {\ttfamily trigger\+\_\+value} of one or several \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} objects become \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item It then uses the result of the wait (i.\+e., {\ttfamily active\+\_\+conditions}, the list of \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} objects with {\ttfamily trigger\+\_\+value} == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}) to actually get the information\+: 
+\begin{DoxyItemize}
+\item by calling \doxylink{group__DDSEntityModule_ga805d3ec649b511a679b514b3ed044bfa}{DDS\+\_\+\+Entity\+\_\+get\+\_\+status\+\_\+changes} and then {\ttfamily get\+\_\+\texorpdfstring{$<$}{<}communication\+\_\+status\texorpdfstring{$>$}{>}}() on the relevant \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}, if the condition is a \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition} and the status changes, refer to plain communication status; 
+
+
+\item by calling \doxylink{group__DDSEntityModule_ga805d3ec649b511a679b514b3ed044bfa}{DDS\+\_\+\+Entity\+\_\+get\+\_\+status\+\_\+changes} and then \doxylink{group__DDSReaderModule_ga84f8ad6ee21fb024234034bbcce6d812}{Foo\+Data\+Reader\+\_\+read()} or \doxylink{group__DDSReaderModule_gafa56233023b6c95f89a9df48d16a4659}{Foo\+Data\+Reader\+\_\+take} on the relevant \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}, if the condition is a \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition} and the status changes refers to \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa9d2d926d515abd0ddd0b537efd42f03e}{DDS\+\_\+\+DATA\+\_\+\+AVAILABLE\+\_\+\+STATUS};  
+
+
+\end{DoxyItemize}\end{DoxyItemize}
+Usually the first step is done in an initialization phase, while the others are put in the application main loop. 
+
+As there is no extra information passed from the middleware to the application when a wait returns (only the list of triggered \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} objects), \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} objects are meant to embed all that is needed to react properly when enabled. In particular, \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}-\/related conditions are related to exactly one \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} and cannot be shared. 
+
+The result of a \doxylink{group__DDSConditionsModule_gaebdc837f4d5e7911c0b2de4f0c940bdc}{DDS\+\_\+\+Wait\+Set\+\_\+wait} operation depends on the state of the \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}, which in turn depends on whether at least one attached \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} has a {\ttfamily trigger\+\_\+value} of \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}. If the wait operation is called on \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} with state BLOCKED, it will block the calling thread. If wait is called on a \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} with state UNBLOCKED, it will return immediately. In addition, when the \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} transitions from BLOCKED to UNBLOCKED it wakes up any threads that had called wait on it. 
+
+A key aspect of the \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}/\doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} mechanism is the setting of the {\ttfamily trigger\+\_\+value} of each \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}. \hypertarget{group__DDSConditionsModule_WaitSet_trigger_status}{}\doxysubsubsubsubsection{\texorpdfstring{Trigger State of a \+::\+DDS\+\_\+\+Status\+Condition}{Trigger State of a \+::\+DDS\+\_\+\+Status\+Condition}}\label{group__DDSConditionsModule_WaitSet_trigger_status}
+The {\ttfamily trigger\+\_\+value} of a \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition} is the boolean OR of the Changed\+Status\+Flag of all the communication statuses (see \doxylink{group__DDSStatusTypesModule}{Status Kinds}) to which it is sensitive. That is, {\ttfamily trigger\+\_\+value} == \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} only if all the values of the Changed\+Status\+Flags are \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE}. 
+
+The sensitivity of the \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition} to a particular communication status is controlled by the list of {\ttfamily enabled\+\_\+statuses} set on the condition by means of the \doxylink{group__DDSConditionsModule_gab2cb31f6955993ec9feaa3148e3ef2f9}{DDS\+\_\+\+Status\+Condition\+\_\+set\+\_\+enabled\+\_\+statuses} operation. \hypertarget{group__DDSConditionsModule_WaitSet_trigger_guard}{}\doxysubsubsubsubsection{\texorpdfstring{Trigger State of a \+::\+DDS\+\_\+\+Guard\+Condition}{Trigger State of a \+::\+DDS\+\_\+\+Guard\+Condition}}\label{group__DDSConditionsModule_WaitSet_trigger_guard}
+The {\ttfamily trigger\+\_\+value} of a \doxylink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition} is completely controlled by the application via the operation \doxylink{group__DDSConditionsModule_ga2c362db9e0b4fdc568aa655413b8ad8c}{DDS\+\_\+\+Guard\+Condition\+\_\+set\+\_\+trigger\+\_\+value}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSStatusTypesModule}{Status Kinds} 
+
+\doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}, \doxylink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition} 
+
+\doxylink{structDDS__Listener}{DDS\+\_\+\+Listener} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsubsubsection{Function Documentation}
+\Hypertarget{group__DDSConditionsModule_gab55dedb1d418b172706c7cc9137fd5cf}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_Condition\_get\_trigger\_value@{DDS\_Condition\_get\_trigger\_value}}
+\index{DDS\_Condition\_get\_trigger\_value@{DDS\_Condition\_get\_trigger\_value}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_Condition\_get\_trigger\_value()}{DDS\_Condition\_get\_trigger\_value()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_gab55dedb1d418b172706c7cc9137fd5cf} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Condition\+\_\+get\+\_\+trigger\+\_\+value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieve the {\ttfamily trigger\+\_\+value}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the trigger value. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSConditionsModule_gac1f9650dba78ac680a29645b231abbd6}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_GuardCondition\_as\_condition@{DDS\_GuardCondition\_as\_condition}}
+\index{DDS\_GuardCondition\_as\_condition@{DDS\_GuardCondition\_as\_condition}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_GuardCondition\_as\_condition()}{DDS\_GuardCondition\_as\_condition()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_gac1f9650dba78ac680a29645b231abbd6} 
+\mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Guard\+Condition\+\_\+as\+\_\+condition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}} \texorpdfstring{$\ast$}{*}}]{guard\+\_\+cond}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Access a \doxylink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}\textquotesingle{}s supertype instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em guard\+\_\+cond} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__DDSConditionsModule_ga582ebe0a987db533d0b31bb4323d667e}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_GuardCondition\_new@{DDS\_GuardCondition\_new}}
+\index{DDS\_GuardCondition\_new@{DDS\_GuardCondition\_new}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_GuardCondition\_new()}{DDS\_GuardCondition\_new()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_ga582ebe0a987db533d0b31bb4323d667e} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Guard\+Condition\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  No argument constructor. 
+
+Construct a new guard condition on the heap. 
+
+\begin{DoxyReturn}{Returns}
+A new condition with trigger value \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE}, or NULL if a condition could not be allocated.  
+\end{DoxyReturn}
+\Hypertarget{group__DDSConditionsModule_ga53c8fb1a19cdb65c583baa59a862245c}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_GuardCondition\_delete@{DDS\_GuardCondition\_delete}}
+\index{DDS\_GuardCondition\_delete@{DDS\_GuardCondition\_delete}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_GuardCondition\_delete()}{DDS\_GuardCondition\_delete()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_ga53c8fb1a19cdb65c583baa59a862245c} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Guard\+Condition\+\_\+delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+Releases the resources associated with this object. 
+
+Deleting a NULL condition is safe and has no effect.  
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.   \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__DDSConditionsModule_ga2c362db9e0b4fdc568aa655413b8ad8c}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_GuardCondition\_set\_trigger\_value@{DDS\_GuardCondition\_set\_trigger\_value}}
+\index{DDS\_GuardCondition\_set\_trigger\_value@{DDS\_GuardCondition\_set\_trigger\_value}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_GuardCondition\_set\_trigger\_value()}{DDS\_GuardCondition\_set\_trigger\_value()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_ga2c362db9e0b4fdc568aa655413b8ad8c} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Guard\+Condition\+\_\+set\+\_\+trigger\+\_\+value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}}}]{value}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Set the guard condition trigger value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em value} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the new trigger value. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__DDSConditionsModule_gac92bd05b3e338202feffd1606322db23}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_StatusCondition\_as\_condition@{DDS\_StatusCondition\_as\_condition}}
+\index{DDS\_StatusCondition\_as\_condition@{DDS\_StatusCondition\_as\_condition}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_StatusCondition\_as\_condition()}{DDS\_StatusCondition\_as\_condition()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_gac92bd05b3e338202feffd1606322db23} 
+\mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Status\+Condition\+\_\+as\+\_\+condition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}} \texorpdfstring{$\ast$}{*}}]{status\+Condition}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Access a \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}\textquotesingle{}s supertype instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status\+Condition} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__DDSConditionsModule_ga9c9b95da1c6e7784286ad66cc6101457}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_StatusCondition\_get\_enabled\_statuses@{DDS\_StatusCondition\_get\_enabled\_statuses}}
+\index{DDS\_StatusCondition\_get\_enabled\_statuses@{DDS\_StatusCondition\_get\_enabled\_statuses}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_StatusCondition\_get\_enabled\_statuses()}{DDS\_StatusCondition\_get\_enabled\_statuses()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_ga9c9b95da1c6e7784286ad66cc6101457} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} DDS\+\_\+\+Status\+Condition\+\_\+get\+\_\+enabled\+\_\+statuses (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Get the list of statuses enabled on an \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list of enabled statuses. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSConditionsModule_gab2cb31f6955993ec9feaa3148e3ef2f9}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_StatusCondition\_set\_enabled\_statuses@{DDS\_StatusCondition\_set\_enabled\_statuses}}
+\index{DDS\_StatusCondition\_set\_enabled\_statuses@{DDS\_StatusCondition\_set\_enabled\_statuses}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_StatusCondition\_set\_enabled\_statuses()}{DDS\_StatusCondition\_set\_enabled\_statuses()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_gab2cb31f6955993ec9feaa3148e3ef2f9} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Status\+Condition\+\_\+set\+\_\+enabled\+\_\+statuses (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}}}]{mask}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  This operation defines the list of communication statuses that determine the {\ttfamily trigger\+\_\+value} of the \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}. 
+
+This operation may change the {\ttfamily trigger\+\_\+value} of the \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}. 
+
+\doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} objects\textquotesingle{} behavior depends on the changes of the {\ttfamily trigger\+\_\+value} of their attached conditions. Therefore, any \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} to which the \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition} is attached is potentially affected by this operation. 
+
+If this function is not invoked, the default list of enabled statuses includes all the statuses. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em mask} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the list of enables statuses (see \doxylink{group__DDSStatusTypesModule}{Status Kinds}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\Hypertarget{group__DDSConditionsModule_ga102d863846d77ab146b5e3c6fcb6b800}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_StatusCondition\_get\_entity@{DDS\_StatusCondition\_get\_entity}}
+\index{DDS\_StatusCondition\_get\_entity@{DDS\_StatusCondition\_get\_entity}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_StatusCondition\_get\_entity()}{DDS\_StatusCondition\_get\_entity()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_ga102d863846d77ab146b5e3c6fcb6b800} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Status\+Condition\+\_\+get\+\_\+entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Get the \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} associated with the \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}. 
+
+There is exactly one \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} assocated with each \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} associated with the \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSConditionsModule_gabb61cc7fcbcc33e40c523a43066aedee}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_WaitSet\_new@{DDS\_WaitSet\_new}}
+\index{DDS\_WaitSet\_new@{DDS\_WaitSet\_new}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_WaitSet\_new()}{DDS\_WaitSet\_new()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_gabb61cc7fcbcc33e40c523a43066aedee} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Wait\+Set\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Create a new, empty waitset. 
+
+Create a new waitset. The waitset does not have a factory, so for this reason the waitset is allocated from the heap. A waitset maintains a list of conditions that have been attached with DDS\+\_\+\+Wait\+Set\+\_\+attach. 
+
+\begin{DoxyReturn}{Returns}
+A new, empty waitset on success or NULL on failure. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSConditionsModule_gaebdc837f4d5e7911c0b2de4f0c940bdc}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_WaitSet\_wait@{DDS\_WaitSet\_wait}}
+\index{DDS\_WaitSet\_wait@{DDS\_WaitSet\_wait}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_WaitSet\_wait()}{DDS\_WaitSet\_wait()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_gaebdc837f4d5e7911c0b2de4f0c940bdc} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Wait\+Set\+\_\+wait (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{struct \mbox{\hyperlink{structDDS__ConditionSeq}{DDS\+\_\+\+Condition\+Seq}} \texorpdfstring{$\ast$}{*}}]{active\+\_\+conditions}{, }\item[{const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{timeout}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application thread to wait for the occurrence of certain conditions. 
+
+If none of the conditions attached to the \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} have a {\ttfamily trigger\+\_\+value} of \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}, the wait operation will block suspending the calling thread. 
+
+The result of the wait operation is the list of all the attached conditions that have a {\ttfamily trigger\+\_\+value} of \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} (i.\+e., the conditions that unblocked the wait). 
+
+Note\+: The resolution of the {\ttfamily timeout} period is constrained by the resolution of the system clock. 
+
+The wait operation takes a {\ttfamily timeout} argument that specifies the maximum duration for the wait. If this duration is exceeded and none of the attached \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} objects is \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}, wait will return with the return code \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT}. In this case, the resulting list of conditions will be empty. 
+
+Note\+: The resolution of the {\ttfamily timeout} period is constrained by the resolution of the system clock. 
+
+\doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT} will {\itshape not} be returned when the {\ttfamily timeout} duration is exceeded if attached \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} objects are \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}, or in the case of a \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} waiting for more than one trigger event, if one or more trigger events have occurred. 
+
+It is not allowable for for more than one application thread to be waiting on the same \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. If the wait operation is invoked on a \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} that already has a thread blocking on it, the operation will return immediately with the value \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em active\+\_\+conditions} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} a valid non-\/\+NULL \doxylink{structDDS__ConditionSeq}{DDS\+\_\+\+Condition\+Seq} object. Note that RTI Connext DDS Micro will not allocate a new object if {\ttfamily active\+\_\+conditions} is NULL; the function will return \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. \\
+\hline
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em timeout} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} a wait timeout \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT}.  
+\end{DoxyReturn}
+\Hypertarget{group__DDSConditionsModule_ga34c5f2edde97b6030598d513240806db}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_WaitSet\_attach\_condition@{DDS\_WaitSet\_attach\_condition}}
+\index{DDS\_WaitSet\_attach\_condition@{DDS\_WaitSet\_attach\_condition}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_WaitSet\_attach\_condition()}{DDS\_WaitSet\_attach\_condition()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_ga34c5f2edde97b6030598d513240806db} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Wait\+Set\+\_\+attach\+\_\+condition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*}}]{cond}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Attaches a \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} to the \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. 
+
+It is possible to attach a \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} on a \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} that is currently being waited upon (via the wait operation). In this case, if the \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} has a {\ttfamily trigger\+\_\+value} of \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}, then attaching the condition will unblock the \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em cond} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Contition to be attached.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES}.  
+\end{DoxyReturn}
+\Hypertarget{group__DDSConditionsModule_ga790958fc704d48553f7aa9d11004d3c9}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_WaitSet\_delete@{DDS\_WaitSet\_delete}}
+\index{DDS\_WaitSet\_delete@{DDS\_WaitSet\_delete}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_WaitSet\_delete()}{DDS\_WaitSet\_delete()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_ga790958fc704d48553f7aa9d11004d3c9} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Wait\+Set\+\_\+delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+Releases the resources asociated with this \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. This function is {\itshape  not } thread-\/safe. Only one thread should be deleting a \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. If a thread is blocked on a \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} that is being deleted the blocked thread will be unblocked and \doxylink{group__DDSConditionsModule_gaebdc837f4d5e7911c0b2de4f0c940bdc}{DDS\+\_\+\+Wait\+Set\+\_\+wait} will return \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91adaf7aa0f849422d3e4345bf1c0d98e59}{DDS\+\_\+\+RETCODE\+\_\+\+ALREADY\+\_\+\+DELETED}. 
+
+Freeing a null pointer is safe and does nothing.  
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.   \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__DDSConditionsModule_ga5188adc3183ac484aa958e2602b1b27e}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_WaitSet\_detach\_condition@{DDS\_WaitSet\_detach\_condition}}
+\index{DDS\_WaitSet\_detach\_condition@{DDS\_WaitSet\_detach\_condition}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_WaitSet\_detach\_condition()}{DDS\_WaitSet\_detach\_condition()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_ga5188adc3183ac484aa958e2602b1b27e} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Wait\+Set\+\_\+detach\+\_\+condition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*}}]{cond}{}\end{DoxyParamCaption})}
+
+
+
+Detaches a \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} from the \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. 
+
+If the \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} was not attached to the \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set} the operation will return \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em cond} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Condition to be detached.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}.  
+\end{DoxyReturn}
+\Hypertarget{group__DDSConditionsModule_gace235f3ff6ef8c448e55dd3157c88c6b}\index{Conditions and WaitSets@{Conditions and WaitSets}!DDS\_WaitSet\_get\_conditions@{DDS\_WaitSet\_get\_conditions}}
+\index{DDS\_WaitSet\_get\_conditions@{DDS\_WaitSet\_get\_conditions}!Conditions and WaitSets@{Conditions and WaitSets}}
+\doxyparagraph{\texorpdfstring{DDS\_WaitSet\_get\_conditions()}{DDS\_WaitSet\_get\_conditions()}}
+{\footnotesize\ttfamily \label{group__DDSConditionsModule_gace235f3ff6ef8c448e55dd3157c88c6b} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Wait\+Set\+\_\+get\+\_\+conditions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{struct \mbox{\hyperlink{structDDS__ConditionSeq}{DDS\+\_\+\+Condition\+Seq}} \texorpdfstring{$\ast$}{*}}]{attached\+\_\+conditions}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieves the list of attached \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} (s). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em attached\+\_\+conditions} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} a \doxylink{structDDS__ConditionSeq}{DDS\+\_\+\+Condition\+Seq} object where the list of attached conditions will be returned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES}.  
+\end{DoxyReturn}

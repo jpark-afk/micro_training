@@ -1,0 +1,29 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2020
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+SET(CMAKE_SYSTEM_NAME VxWorks)
+INCLUDE(Platform/VxWorks)
+
+# Disable optimization as it removed functions needed for Cert
+IF (RTIME_CERT)
+    SET(RTI_ME_CMAKE_C_FLAGS_RELEASE_INIT "-O1 -fno-inline-functions-called-once")
+    SET(RTI_BUILD_UNITTESTS FALSE)
+ENDIF()
+
+# This is an architecture specific file that is using the generic 
+# VxWorks target.
+
+IF (NOT DEFINED RTI_VX653_BSP)
+    SET(RTI_VX653_BSP c912)
+ENDIF()
+IF (NOT DEFINED RTI_VX653_TARGET)
+    SET(RTI_VX653_TARGET p4080)
+ENDIF()

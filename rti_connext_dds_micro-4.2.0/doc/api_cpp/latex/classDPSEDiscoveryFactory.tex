@@ -1,0 +1,42 @@
+\doxysubsection{DPSEDiscovery\+Factory Class Reference}
+\hypertarget{classDPSEDiscoveryFactory}{}\label{classDPSEDiscoveryFactory}\index{DPSEDiscoveryFactory@{DPSEDiscoveryFactory}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A discovery factory that will be used by the \doxylink{classDDSDomainParticipantFactory}{DDSDomain\+Participant\+Factory} to create a discovery plugin.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+dpse.\+hxx$>$}
+
+\doxysubsubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static struct RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDPSEDiscoveryFactory_a8bd413ec7f6b0b0a3e2b7a73818f2066}{get\+\_\+interface}} ()
+\begin{DoxyCompactList}\small\item\em Gets the singleton instance of the DPSE discovery plugin factory. The singleton instance of the factory is used when creating a domain participant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A discovery factory that will be used by the \doxylink{classDDSDomainParticipantFactory}{DDSDomain\+Participant\+Factory} to create a discovery plugin. 
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classDPSEDiscoveryFactory_a8bd413ec7f6b0b0a3e2b7a73818f2066}\index{DPSEDiscoveryFactory@{DPSEDiscoveryFactory}!get\_interface@{get\_interface}}
+\index{get\_interface@{get\_interface}!DPSEDiscoveryFactory@{DPSEDiscoveryFactory}}
+\doxyparagraph{\texorpdfstring{get\_interface()}{get\_interface()}}
+{\footnotesize\ttfamily \label{classDPSEDiscoveryFactory_a8bd413ec7f6b0b0a3e2b7a73818f2066} 
+static struct RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*} DPSEDiscovery\+Factory\+::get\+\_\+interface (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets the singleton instance of the DPSE discovery plugin factory. The singleton instance of the factory is used when creating a domain participant. 
+
+This function gets the single singleton instance of the DPSE discovery plugin factory that is used by the middleware to create a DPSE plugin. In the future, as more discovery plug-\/ins are supported, they will be registered with the middleware by installing different discovery factory instances with the \doxylink{classDDSDomainParticipantFactory}{DDSDomain\+Participant\+Factory}. The singleton instance of the factory is registered with a name, and that name is specified in the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} \doxylink{structDDS__DiscoveryQosPolicy}{DDS\+\_\+\+Discovery\+Qos\+Policy}. This is used to create a discovery plug-\/in instance when creating a domain participant. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to DPSE discovery plugin factory 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__DiscoveryQosPolicy}{DDS\+\_\+\+Discovery\+Qos\+Policy} 
+\end{DoxySeeAlso}

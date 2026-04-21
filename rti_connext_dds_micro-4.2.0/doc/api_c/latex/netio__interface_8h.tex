@@ -1,0 +1,119 @@
+\doxysubsection{netio\+\_\+interface.\+h File Reference}
+\hypertarget{netio__interface_8h}{}\label{netio__interface_8h}\index{netio\_interface.h@{netio\_interface.h}}
+
+
+Generic \doxylink{structNETIO__Interface}{NETIO\+\_\+\+Interface} functions.  
+
+
+{\ttfamily \#include "{}netio/netio\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include "{}netio/netio\+\_\+dll.\+h"{}}\newline
+{\ttfamily \#include "{}osapi/osapi\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include "{}osapi/osapi\+\_\+types.\+h"{}}\newline
+{\ttfamily \#include "{}osapi/osapi\+\_\+time.\+h"{}}\newline
+{\ttfamily \#include "{}reda/reda\+\_\+sequence\+Number.\+h"{}}\newline
+{\ttfamily \#include "{}db/db\+\_\+api.\+h"{}}\newline
+{\ttfamily \#include "{}rt/rt\+\_\+rt.\+h"{}}\newline
+{\ttfamily \#include "{}netio/netio\+\_\+address.\+h"{}}\newline
+{\ttfamily \#include "{}cdr/cdr\+\_\+stream.\+h"{}}\newline
+{\ttfamily \#include "{}netio\+\_\+sample\+\_\+access.\+h"{}}\newline
+\doxysubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structNETIO__Packet}{NETIO\+\_\+\+Packet}}
+\begin{DoxyCompactList}\small\item\em Implementation of the abstract \doxylink{structNETIO__Packet}{NETIO\+\_\+\+Packet} type. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNETIO__Interface}{NETIO\+\_\+\+Interface}}
+\begin{DoxyCompactList}\small\item\em Base-\/class definition for all NETIO interfaces. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNETIO__InterfaceI}{NETIO\+\_\+\+InterfaceI}}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__NETIO__InterfaceClass_ga03369b69822e1cf4487e6618f05e0661}{NETIO\+\_\+\+Interface\+\_\+receive}}(self\+\_\+,  src\+\_\+,  dst\+\_\+,  p\+\_\+)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Call receive on a \doxylink{structNETIO__Interface}{NETIO\+\_\+\+Interface}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structNETIO__Packet}{NETIO\+\_\+\+Packet}} \mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}}
+\begin{DoxyCompactList}\small\item\em A NETIO Packet. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structNETIO__Interface}{NETIO\+\_\+\+Interface}} \mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}}
+\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__NETIO__InterfaceClass_gad8ba150d9a8ebcbf959f43ff7a6df9db}{NETIO\+\_\+\+Interface\+\_\+send\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structNETIO__Interface}{NETIO\+\_\+\+Interface}} \texorpdfstring{$\ast$}{*}source, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}destination, \mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Definition of the \doxylink{structNETIO__InterfaceI}{NETIO\+\_\+\+InterfaceI} send method. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__NETIO__InterfaceClass_ga7747d3d4869c1cf9a474c9cbf8e52bbb}{NETIO\+\_\+\+Interface\+\_\+receive\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}netio\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}src\+\_\+addr, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}dst\+\_\+addr, \mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Definition of the \doxylink{structNETIO__InterfaceI}{NETIO\+\_\+\+InterfaceI} receive method. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__NETIO__InterfaceClass_ga625186913a83d6fd19ba951dfee35b7b}{NETIO\+\_\+\+Interface\+\_\+reserve\+\_\+address\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structNETIO__AddressSeq}{NETIO\+\_\+\+Address\+Seq}} \texorpdfstring{$\ast$}{*}req\+\_\+address, struct \mbox{\hyperlink{structNETIO__AddressSeq}{NETIO\+\_\+\+Address\+Seq}} \texorpdfstring{$\ast$}{*}rsvd\+\_\+address, struct NETIOBind\+Property \texorpdfstring{$\ast$}{*}property)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Definition of the \doxylink{structNETIO__InterfaceI}{NETIO\+\_\+\+InterfaceI} reserve\+\_\+address method \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__NETIO__InterfaceClass_gabbdd4140486c1d3b7e52338b4453f905}{NETIO\+\_\+\+Interface\+\_\+release\+\_\+address\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}src\+\_\+addr)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Definition of the \doxylink{structNETIO__InterfaceI}{NETIO\+\_\+\+InterfaceI} release\+\_\+address method \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__ZCV2Module_gad9500b9adc441f7953d49695ed19e11f}{NETIO\+\_\+\+Interface\+\_\+resolve\+\_\+address\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}netio\+\_\+intf, const char \texorpdfstring{$\ast$}{*}address\+\_\+string, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}address\+\_\+value, \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \texorpdfstring{$\ast$}{*}invalid)
+\begin{DoxyCompactList}\small\item\em Resolve an address of a user interface. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__ZCV2Module_gacb2ef86fa4206e5c5d9a3b1f92f27e39}{NETIO\+\_\+\+Interface\+\_\+get\+\_\+route\+\_\+table\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}netio\+\_\+intf, struct \mbox{\hyperlink{structNETIO__AddressSeq}{NETIO\+\_\+\+Address\+Seq}} \texorpdfstring{$\ast$}{*}address, struct \mbox{\hyperlink{structNETIO__NetmaskSeq}{NETIO\+\_\+\+Netmask\+Seq}} \texorpdfstring{$\ast$}{*}netmask)
+\begin{DoxyCompactList}\small\item\em Get the route table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__NETIO__PacketClass_gafea7df0a5eaedc3d014084e9578e37f5}{NETIO\+\_\+\+Packet\+\_\+get\+\_\+head}} (const \mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}} \texorpdfstring{$\ast$}{*}const packet)
+\begin{DoxyCompactList}\small\item\em Get a pointer to the current head. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__NETIO__PacketClass_ga7db7b203480f6bcdd9df4af16e0e8cfd}{NETIO\+\_\+\+Packet\+\_\+set\+\_\+payload}} (\mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}} \texorpdfstring{$\ast$}{*}const packet, void \texorpdfstring{$\ast$}{*}buffer, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} buffer\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Initialize a packet with a payload. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} \mbox{\hyperlink{group__NETIO__PacketClass_ga89fb71cf8b67e94568cb0ae9bbabc707}{NETIO\+\_\+\+Packet\+\_\+get\+\_\+payload\+\_\+length}} (const \mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}} \texorpdfstring{$\ast$}{*}const packet)
+\begin{DoxyCompactList}\small\item\em Get the length the packet payload. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{netio__interface_8h_af4aac637b972cd1f2697180325034bb7}{NETIO\+\_\+\+DEFAULT\+\_\+\+UDP\+\_\+\+NAME}}
+\begin{DoxyCompactList}\small\item\em Default name for the automatically registered UDP transport. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{netio__interface_8h_aa9b0eaef7ce88a9da2f48ee366b8d401}{NETIO\+\_\+\+DEFAULT\+\_\+\+INTRA\+\_\+\+NAME}}
+\begin{DoxyCompactList}\small\item\em Default name for the automatically registered INTRA transport. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{netio__interface_8h_a369f9483ef08913268652f7c17d7039c}{NETIO\+\_\+\+DEFAULT\+\_\+\+SHMEM\+\_\+\+NAME}}
+\begin{DoxyCompactList}\small\item\em Default name for the automatically registered shared memory transport. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{netio__interface_8h_a94c1a95d9eac9af651f29a4ed3a261d5}{NETIO\+\_\+\+DEFAULT\+\_\+\+RTPS\+\_\+\+NAME}}
+\begin{DoxyCompactList}\small\item\em Default name for the automatically registered RTPS interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Generic \doxylink{structNETIO__Interface}{NETIO\+\_\+\+Interface} functions. 
+
+This file contains generic NETIO interface functions. A \doxylink{structNETIO__Interface}{NETIO\+\_\+\+Interface} is a base-\/class and is typically not instantiated on its own. Derived classes call methods here to initialize/finalize a base-\/class. This file also defines the NETIO interface structure as well as the \doxylink{structNETIO__Packet}{NETIO\+\_\+\+Packet} structure and protocol types. 
+
+\doxysubsubsection{Variable Documentation}
+\Hypertarget{netio__interface_8h_af4aac637b972cd1f2697180325034bb7}\index{netio\_interface.h@{netio\_interface.h}!NETIO\_DEFAULT\_UDP\_NAME@{NETIO\_DEFAULT\_UDP\_NAME}}
+\index{NETIO\_DEFAULT\_UDP\_NAME@{NETIO\_DEFAULT\_UDP\_NAME}!netio\_interface.h@{netio\_interface.h}}
+\doxyparagraph{\texorpdfstring{NETIO\_DEFAULT\_UDP\_NAME}{NETIO\_DEFAULT\_UDP\_NAME}}
+{\footnotesize\ttfamily \label{netio__interface_8h_af4aac637b972cd1f2697180325034bb7} 
+const char\texorpdfstring{$\ast$}{*} const NETIO\+\_\+\+DEFAULT\+\_\+\+UDP\+\_\+\+NAME\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Default name for the automatically registered UDP transport. 
+
+\Hypertarget{netio__interface_8h_aa9b0eaef7ce88a9da2f48ee366b8d401}\index{netio\_interface.h@{netio\_interface.h}!NETIO\_DEFAULT\_INTRA\_NAME@{NETIO\_DEFAULT\_INTRA\_NAME}}
+\index{NETIO\_DEFAULT\_INTRA\_NAME@{NETIO\_DEFAULT\_INTRA\_NAME}!netio\_interface.h@{netio\_interface.h}}
+\doxyparagraph{\texorpdfstring{NETIO\_DEFAULT\_INTRA\_NAME}{NETIO\_DEFAULT\_INTRA\_NAME}}
+{\footnotesize\ttfamily \label{netio__interface_8h_aa9b0eaef7ce88a9da2f48ee366b8d401} 
+const char\texorpdfstring{$\ast$}{*} const NETIO\+\_\+\+DEFAULT\+\_\+\+INTRA\+\_\+\+NAME\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Default name for the automatically registered INTRA transport. 
+
+\Hypertarget{netio__interface_8h_a369f9483ef08913268652f7c17d7039c}\index{netio\_interface.h@{netio\_interface.h}!NETIO\_DEFAULT\_SHMEM\_NAME@{NETIO\_DEFAULT\_SHMEM\_NAME}}
+\index{NETIO\_DEFAULT\_SHMEM\_NAME@{NETIO\_DEFAULT\_SHMEM\_NAME}!netio\_interface.h@{netio\_interface.h}}
+\doxyparagraph{\texorpdfstring{NETIO\_DEFAULT\_SHMEM\_NAME}{NETIO\_DEFAULT\_SHMEM\_NAME}}
+{\footnotesize\ttfamily \label{netio__interface_8h_a369f9483ef08913268652f7c17d7039c} 
+const char\texorpdfstring{$\ast$}{*} const NETIO\+\_\+\+DEFAULT\+\_\+\+SHMEM\+\_\+\+NAME\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Default name for the automatically registered shared memory transport. 
+
+\Hypertarget{netio__interface_8h_a94c1a95d9eac9af651f29a4ed3a261d5}\index{netio\_interface.h@{netio\_interface.h}!NETIO\_DEFAULT\_RTPS\_NAME@{NETIO\_DEFAULT\_RTPS\_NAME}}
+\index{NETIO\_DEFAULT\_RTPS\_NAME@{NETIO\_DEFAULT\_RTPS\_NAME}!netio\_interface.h@{netio\_interface.h}}
+\doxyparagraph{\texorpdfstring{NETIO\_DEFAULT\_RTPS\_NAME}{NETIO\_DEFAULT\_RTPS\_NAME}}
+{\footnotesize\ttfamily \label{netio__interface_8h_a94c1a95d9eac9af651f29a4ed3a261d5} 
+const char\texorpdfstring{$\ast$}{*} const NETIO\+\_\+\+DEFAULT\+\_\+\+RTPS\+\_\+\+NAME\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Default name for the automatically registered RTPS interface. 
+

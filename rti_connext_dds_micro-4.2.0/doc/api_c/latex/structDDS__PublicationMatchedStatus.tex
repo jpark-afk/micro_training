@@ -1,0 +1,84 @@
+\doxysubsection{DDS\+\_\+\+Publication\+Matched\+Status Struct Reference}
+\hypertarget{structDDS__PublicationMatchedStatus}{}\label{structDDS__PublicationMatchedStatus}\index{DDS\_PublicationMatchedStatus@{DDS\_PublicationMatchedStatus}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa3052f04c67620660f92aa3b5da2455d2}{DDS\+\_\+\+PUBLICATION\+\_\+\+MATCHED\+\_\+\+STATUS}  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+publication.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__PublicationMatchedStatus_ad30400d098f3bcf74fd5be586f900960}{total\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em The total cumulative number of times the concerned \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} discovered a "{}match"{} with a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__PublicationMatchedStatus_a15d13c8b8b914298f4d130ce7786beaf}{total\+\_\+count\+\_\+change}}
+\begin{DoxyCompactList}\small\item\em The incremental changes in total\+\_\+count since the last time the listener was called or the status was read. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__PublicationMatchedStatus_ada7d3ae5de5bc07ff1d7f61f0335ce46}{current\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em The current number of readers with which the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} is matched. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__PublicationMatchedStatus_a9cb517dcb586536ece4872a9c84e3674}{current\+\_\+count\+\_\+change}}
+\begin{DoxyCompactList}\small\item\em The change in current\+\_\+count since the last time the listener was called or the status was read. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{structDDS__PublicationMatchedStatus_acff73198c0b741358f392263631ee818}{last\+\_\+subscription\+\_\+handle}}
+\begin{DoxyCompactList}\small\item\em A handle to the last \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} that caused the the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}\textquotesingle{}s status to change. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa3052f04c67620660f92aa3b5da2455d2}{DDS\+\_\+\+PUBLICATION\+\_\+\+MATCHED\+\_\+\+STATUS} 
+
+A "{}match"{} happens when the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} finds a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} for the same \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} and common partition with a requested QoS that is compatible with that offered by the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. 
+
+This status is also changed (and the listener, if any, called) when a match is ended. A local \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will become "{}unmatched"{} from a remote \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} when that \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} goes away for any reason. 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__PublicationMatchedStatus_ad30400d098f3bcf74fd5be586f900960}\index{DDS\_PublicationMatchedStatus@{DDS\_PublicationMatchedStatus}!total\_count@{total\_count}}
+\index{total\_count@{total\_count}!DDS\_PublicationMatchedStatus@{DDS\_PublicationMatchedStatus}}
+\doxyparagraph{\texorpdfstring{total\_count}{total\_count}}
+{\footnotesize\ttfamily \label{structDDS__PublicationMatchedStatus_ad30400d098f3bcf74fd5be586f900960} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Publication\+Matched\+Status\+::total\+\_\+count}
+
+
+
+The total cumulative number of times the concerned \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} discovered a "{}match"{} with a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. 
+
+This number increases whenever a new match is discovered. It does not change when an existing match goes away. \Hypertarget{structDDS__PublicationMatchedStatus_a15d13c8b8b914298f4d130ce7786beaf}\index{DDS\_PublicationMatchedStatus@{DDS\_PublicationMatchedStatus}!total\_count\_change@{total\_count\_change}}
+\index{total\_count\_change@{total\_count\_change}!DDS\_PublicationMatchedStatus@{DDS\_PublicationMatchedStatus}}
+\doxyparagraph{\texorpdfstring{total\_count\_change}{total\_count\_change}}
+{\footnotesize\ttfamily \label{structDDS__PublicationMatchedStatus_a15d13c8b8b914298f4d130ce7786beaf} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Publication\+Matched\+Status\+::total\+\_\+count\+\_\+change}
+
+
+
+The incremental changes in total\+\_\+count since the last time the listener was called or the status was read. 
+
+\Hypertarget{structDDS__PublicationMatchedStatus_ada7d3ae5de5bc07ff1d7f61f0335ce46}\index{DDS\_PublicationMatchedStatus@{DDS\_PublicationMatchedStatus}!current\_count@{current\_count}}
+\index{current\_count@{current\_count}!DDS\_PublicationMatchedStatus@{DDS\_PublicationMatchedStatus}}
+\doxyparagraph{\texorpdfstring{current\_count}{current\_count}}
+{\footnotesize\ttfamily \label{structDDS__PublicationMatchedStatus_ada7d3ae5de5bc07ff1d7f61f0335ce46} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Publication\+Matched\+Status\+::current\+\_\+count}
+
+
+
+The current number of readers with which the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} is matched. 
+
+This number increases when a new match is discovered and decreases when an existing match goes away. \Hypertarget{structDDS__PublicationMatchedStatus_a9cb517dcb586536ece4872a9c84e3674}\index{DDS\_PublicationMatchedStatus@{DDS\_PublicationMatchedStatus}!current\_count\_change@{current\_count\_change}}
+\index{current\_count\_change@{current\_count\_change}!DDS\_PublicationMatchedStatus@{DDS\_PublicationMatchedStatus}}
+\doxyparagraph{\texorpdfstring{current\_count\_change}{current\_count\_change}}
+{\footnotesize\ttfamily \label{structDDS__PublicationMatchedStatus_a9cb517dcb586536ece4872a9c84e3674} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Publication\+Matched\+Status\+::current\+\_\+count\+\_\+change}
+
+
+
+The change in current\+\_\+count since the last time the listener was called or the status was read. 
+
+\Hypertarget{structDDS__PublicationMatchedStatus_acff73198c0b741358f392263631ee818}\index{DDS\_PublicationMatchedStatus@{DDS\_PublicationMatchedStatus}!last\_subscription\_handle@{last\_subscription\_handle}}
+\index{last\_subscription\_handle@{last\_subscription\_handle}!DDS\_PublicationMatchedStatus@{DDS\_PublicationMatchedStatus}}
+\doxyparagraph{\texorpdfstring{last\_subscription\_handle}{last\_subscription\_handle}}
+{\footnotesize\ttfamily \label{structDDS__PublicationMatchedStatus_acff73198c0b741358f392263631ee818} 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} DDS\+\_\+\+Publication\+Matched\+Status\+::last\+\_\+subscription\+\_\+handle}
+
+
+
+A handle to the last \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} that caused the the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}\textquotesingle{}s status to change. 
+

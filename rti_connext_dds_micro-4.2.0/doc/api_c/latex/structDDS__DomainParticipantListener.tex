@@ -1,0 +1,77 @@
+\doxysubsection{DDS\+\_\+\+Domain\+Participant\+Listener Struct Reference}
+\hypertarget{structDDS__DomainParticipantListener}{}\label{structDDS__DomainParticipantListener}\index{DDS\_DomainParticipantListener@{DDS\_DomainParticipantListener}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Listener for participant status.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+domain.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__TopicListener}{DDS\+\_\+\+Topic\+Listener}} \mbox{\hyperlink{structDDS__DomainParticipantListener_afdf454bf85a27626f010996268f654ef}{as\+\_\+topiclistener}}
+\begin{DoxyCompactList}\small\item\em A superclass instance of this \doxylink{structDDS__DomainParticipantListener}{DDS\+\_\+\+Domain\+Participant\+Listener}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener}} \mbox{\hyperlink{structDDS__DomainParticipantListener_a5c87435e1638a2331b9982fe3e806402}{as\+\_\+publisherlistener}}
+\begin{DoxyCompactList}\small\item\em A superclass instance of this \doxylink{structDDS__DomainParticipantListener}{DDS\+\_\+\+Domain\+Participant\+Listener}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__SubscriberListener}{DDS\+\_\+\+Subscriber\+Listener}} \mbox{\hyperlink{structDDS__DomainParticipantListener_a8cdad1a208a63822b7cc6f7a0157f966}{as\+\_\+subscriberlistener}}
+\begin{DoxyCompactList}\small\item\em A superclass instance of this \doxylink{structDDS__DomainParticipantListener}{DDS\+\_\+\+Domain\+Participant\+Listener}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Listener for participant status. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule}{Status Kinds} 
+\end{DoxyParagraph}
+This is the interface that can be implemented by an application-\/provided class and then registered with the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} such that the application can be notified by RTI Connext DDS Micro of relevant status changes. 
+
+The \doxylink{structDDS__DomainParticipantListener}{DDS\+\_\+\+Domain\+Participant\+Listener} interface extends all other Listener interfaces and has no additional operation beyond the ones defined by the more general listeners. 
+
+The purpose of the \doxylink{structDDS__DomainParticipantListener}{DDS\+\_\+\+Domain\+Participant\+Listener} is to be the listener of last resort that is notified of all status changes not captured by more specific listeners attached to the \doxylink{group__DDSEntityModule_ga0cd8d7d61066e2a434918419e1514bfc}{DDS\+\_\+\+Domain\+Entity} objects. When a relevant status change occurs, RTI Connext DDS Micro will first attempt to notify the listener attached to the concerned \doxylink{group__DDSEntityModule_ga0cd8d7d61066e2a434918419e1514bfc}{DDS\+\_\+\+Domain\+Entity} if one is installed. Otherwise, RTI Connext DDS Micro will notify the Listener attached to the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. 
+
+{\itshape Important\+:} Because a \doxylink{structDDS__DomainParticipantListener}{DDS\+\_\+\+Domain\+Participant\+Listener} may receive callbacks pertaining to many different entities, it is possible for the same listener to receive multiple callbacks simultaneously in different threads. (Such is not the case for listeners of other types.) It is therefore critical that users of this listener provide their own protection for any thread-\/unsafe activities undertaken in a \doxylink{structDDS__DomainParticipantListener}{DDS\+\_\+\+Domain\+Participant\+Listener} callback. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__Listener}{DDS\+\_\+\+Listener} 
+
+\doxylink{group__DDSDomainParticipantModule_ga1e92a84fd5e3950227de1d4ccb793786}{DDS\+\_\+\+Domain\+Participant\+\_\+set\+\_\+listener} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__DomainParticipantListener_afdf454bf85a27626f010996268f654ef}\index{DDS\_DomainParticipantListener@{DDS\_DomainParticipantListener}!as\_topiclistener@{as\_topiclistener}}
+\index{as\_topiclistener@{as\_topiclistener}!DDS\_DomainParticipantListener@{DDS\_DomainParticipantListener}}
+\doxyparagraph{\texorpdfstring{as\_topiclistener}{as\_topiclistener}}
+{\footnotesize\ttfamily \label{structDDS__DomainParticipantListener_afdf454bf85a27626f010996268f654ef} 
+struct \mbox{\hyperlink{structDDS__TopicListener}{DDS\+\_\+\+Topic\+Listener}} DDS\+\_\+\+Domain\+Participant\+Listener\+::as\+\_\+topiclistener}
+
+
+
+A superclass instance of this \doxylink{structDDS__DomainParticipantListener}{DDS\+\_\+\+Domain\+Participant\+Listener}. 
+
+\Hypertarget{structDDS__DomainParticipantListener_a5c87435e1638a2331b9982fe3e806402}\index{DDS\_DomainParticipantListener@{DDS\_DomainParticipantListener}!as\_publisherlistener@{as\_publisherlistener}}
+\index{as\_publisherlistener@{as\_publisherlistener}!DDS\_DomainParticipantListener@{DDS\_DomainParticipantListener}}
+\doxyparagraph{\texorpdfstring{as\_publisherlistener}{as\_publisherlistener}}
+{\footnotesize\ttfamily \label{structDDS__DomainParticipantListener_a5c87435e1638a2331b9982fe3e806402} 
+struct \mbox{\hyperlink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener}} DDS\+\_\+\+Domain\+Participant\+Listener\+::as\+\_\+publisherlistener}
+
+
+
+A superclass instance of this \doxylink{structDDS__DomainParticipantListener}{DDS\+\_\+\+Domain\+Participant\+Listener}. 
+
+\Hypertarget{structDDS__DomainParticipantListener_a8cdad1a208a63822b7cc6f7a0157f966}\index{DDS\_DomainParticipantListener@{DDS\_DomainParticipantListener}!as\_subscriberlistener@{as\_subscriberlistener}}
+\index{as\_subscriberlistener@{as\_subscriberlistener}!DDS\_DomainParticipantListener@{DDS\_DomainParticipantListener}}
+\doxyparagraph{\texorpdfstring{as\_subscriberlistener}{as\_subscriberlistener}}
+{\footnotesize\ttfamily \label{structDDS__DomainParticipantListener_a8cdad1a208a63822b7cc6f7a0157f966} 
+struct \mbox{\hyperlink{structDDS__SubscriberListener}{DDS\+\_\+\+Subscriber\+Listener}} DDS\+\_\+\+Domain\+Participant\+Listener\+::as\+\_\+subscriberlistener}
+
+
+
+A superclass instance of this \doxylink{structDDS__DomainParticipantListener}{DDS\+\_\+\+Domain\+Participant\+Listener}. 
+

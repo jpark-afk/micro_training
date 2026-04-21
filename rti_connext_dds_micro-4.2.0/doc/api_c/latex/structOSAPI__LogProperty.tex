@@ -1,0 +1,56 @@
+\doxysubsection{OSAPI\+\_\+\+Log\+Property Struct Reference}
+\hypertarget{structOSAPI__LogProperty}{}\label{structOSAPI__LogProperty}\index{OSAPI\_LogProperty@{OSAPI\_LogProperty}}
+
+
+Configuration of logging functionality.  
+
+
+
+
+{\ttfamily \#include $<$osapi\+\_\+log.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} \mbox{\hyperlink{structOSAPI__LogProperty_a38dee602d76f0376c09c0af9e09cffd5}{max\+\_\+buffer\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em The maximum number of bytes allocated to the log buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} \mbox{\hyperlink{structOSAPI__LogProperty_a5cfce24213c12e1062d0d2ea93f4bfe6}{log\+\_\+detail}}
+\begin{DoxyCompactList}\small\item\em Bitmap to control the fidelity of what is stored in the log entry. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPILogClass_gade576446ec18437473c2c63fd08a2d60}{OSAPI\+\_\+\+Log\+\_\+write\+\_\+buffer\+\_\+T}} \mbox{\hyperlink{structOSAPI__LogProperty_a4e59110aad8d0bb5e7e4c8c3e3be9e9e}{write\+\_\+buffer}}
+\begin{DoxyCompactList}\small\item\em Function pointer to output a log/trace buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Configuration of logging functionality. 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structOSAPI__LogProperty_a38dee602d76f0376c09c0af9e09cffd5}\index{OSAPI\_LogProperty@{OSAPI\_LogProperty}!max\_buffer\_size@{max\_buffer\_size}}
+\index{max\_buffer\_size@{max\_buffer\_size}!OSAPI\_LogProperty@{OSAPI\_LogProperty}}
+\doxyparagraph{\texorpdfstring{max\_buffer\_size}{max\_buffer\_size}}
+{\footnotesize\ttfamily \label{structOSAPI__LogProperty_a38dee602d76f0376c09c0af9e09cffd5} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} OSAPI\+\_\+\+Log\+Property\+::max\+\_\+buffer\+\_\+size}
+
+
+
+The maximum number of bytes allocated to the log buffer. 
+
+Log entries are of variable length. When this limit has been reached, no more log entries can be stored unless the buffer is cleared. \Hypertarget{structOSAPI__LogProperty_a5cfce24213c12e1062d0d2ea93f4bfe6}\index{OSAPI\_LogProperty@{OSAPI\_LogProperty}!log\_detail@{log\_detail}}
+\index{log\_detail@{log\_detail}!OSAPI\_LogProperty@{OSAPI\_LogProperty}}
+\doxyparagraph{\texorpdfstring{log\_detail}{log\_detail}}
+{\footnotesize\ttfamily \label{structOSAPI__LogProperty_a5cfce24213c12e1062d0d2ea93f4bfe6} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} OSAPI\+\_\+\+Log\+Property\+::log\+\_\+detail}
+
+
+
+Bitmap to control the fidelity of what is stored in the log entry. 
+
+\Hypertarget{structOSAPI__LogProperty_a4e59110aad8d0bb5e7e4c8c3e3be9e9e}\index{OSAPI\_LogProperty@{OSAPI\_LogProperty}!write\_buffer@{write\_buffer}}
+\index{write\_buffer@{write\_buffer}!OSAPI\_LogProperty@{OSAPI\_LogProperty}}
+\doxyparagraph{\texorpdfstring{write\_buffer}{write\_buffer}}
+{\footnotesize\ttfamily \label{structOSAPI__LogProperty_a4e59110aad8d0bb5e7e4c8c3e3be9e9e} 
+\mbox{\hyperlink{group__OSAPILogClass_gade576446ec18437473c2c63fd08a2d60}{OSAPI\+\_\+\+Log\+\_\+write\+\_\+buffer\+\_\+T}} OSAPI\+\_\+\+Log\+Property\+::write\+\_\+buffer}
+
+
+
+Function pointer to output a log/trace buffer. 
+

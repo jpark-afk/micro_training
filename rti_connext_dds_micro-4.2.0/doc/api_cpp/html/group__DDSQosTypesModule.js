@@ -1,0 +1,55 @@
+var group__DDSQosTypesModule =
+[
+    [ "FILTER", "group__DDSFilterQosModule.html", "group__DDSFilterQosModule" ],
+    [ "CONTENT_FILTER", "group__DDSContentFilterQosModule.html", "group__DDSContentFilterQosModule" ],
+    [ "DISCOVERY", "group__DDSDiscoveryQosModule.html", "group__DDSDiscoveryQosModule" ],
+    [ "USER_TRAFFIC", "group__UserTrafficQosModule.html", "group__UserTrafficQosModule" ],
+    [ "DEADLINE", "group__DDSDeadlineQosModule.html", "group__DDSDeadlineQosModule" ],
+    [ "LATENCY_BUDGET", "group__DDSLatencyBudgetQosModule.html", "group__DDSLatencyBudgetQosModule" ],
+    [ "OWNERSHIP", "group__DDSOwnershipQosModule.html", "group__DDSOwnershipQosModule" ],
+    [ "OWNERSHIP_STRENGTH", "group__DDSOwnershipStrengthQosModule.html", "group__DDSOwnershipStrengthQosModule" ],
+    [ "LIVELINESS", "group__DDSLivelinessQosModule.html", "group__DDSLivelinessQosModule" ],
+    [ "RELIABILITY", "group__DDSReliabilityQosModule.html", "group__DDSReliabilityQosModule" ],
+    [ "HISTORY", "group__DDSHistoryQosModule.html", "group__DDSHistoryQosModule" ],
+    [ "DURABILITY", "group__DurabilityQosPolicyModule.html", "group__DurabilityQosPolicyModule" ],
+    [ "DATA_REPRESENTATION", "group__DDSDataRepresentationQosModule.html", "group__DDSDataRepresentationQosModule" ],
+    [ "RESOURCE_LIMITS", "group__DDSResourceLimitsQosModule.html", "group__DDSResourceLimitsQosModule" ],
+    [ "PRESENTATION", "group__DDSPresentationQosModule.html", "group__DDSPresentationQosModule" ],
+    [ "DESTINATION_ORDER", "group__DestinationOrderQosPolicyModule.html", "group__DestinationOrderQosPolicyModule" ],
+    [ "ENTITY_FACTORY", "group__DDSEntityFactoryQosModule.html", "group__DDSEntityFactoryQosModule" ],
+    [ "Extended Qos Support", "group__DDSExtendedQosSupportModule.html", "group__DDSExtendedQosSupportModule" ],
+    [ "SYSTEM_RESOURCE_LIMITS", "group__DDSSystemResourceLimitsQosModule.html", "group__DDSSystemResourceLimitsQosModule" ],
+    [ "WIRE_PROTOCOL", "group__DDSWireProtocolQosModule.html", "group__DDSWireProtocolQosModule" ],
+    [ "DATA_READER_PROTOCOL", "group__DDSDataReaderProtocolQosModule.html", "group__DDSDataReaderProtocolQosModule" ],
+    [ "DATA_WRITER_PROTOCOL", "group__DDSDataWriterProtocolQosModule.html", "group__DDSDataWriterProtocolQosModule" ],
+    [ "TRANSPORT", "group__TransportQosModule.html", "group__TransportQosModule" ],
+    [ "DOMAIN_PARTICIPANT_RESOURCE_LIMITS", "group__DDSDomainParticipantResourceLimitsQosModule.html", "group__DDSDomainParticipantResourceLimitsQosModule" ],
+    [ "ENTITY_NAME", "group__DDSEntityNameQosModule.html", "group__DDSEntityNameQosModule" ],
+    [ "PUBLISH_MODE", "group__DDSPublishModeQosModule.html", "group__DDSPublishModeQosModule" ],
+    [ "PARTITION", "group__DDSPartitionQosModule.html", "group__DDSPartitionQosModule" ],
+    [ "PROPERTY", "group__DDSPropertyQosModule.html", "group__DDSPropertyQosModule" ],
+    [ "USER_DATA", "group__DDSUserDataQosModule.html", "group__DDSUserDataQosModule" ],
+    [ "GROUP_DATA", "group__DDSGroupDataQosModule.html", "group__DDSGroupDataQosModule" ],
+    [ "TOPIC_DATA", "group__DDSTopicDataQosModule.html", "group__DDSTopicDataQosModule" ],
+    [ "DATA_WRITER_TRANSFER_MODE", "group__DDSDataWriterTransferModeQosModule.html", "group__DDSDataWriterTransferModeQosModule" ],
+    [ "DDS_ChecksumProperty", "structDDS__ChecksumProperty.html", [
+      [ "computed_crc_kind", "structDDS__ChecksumProperty.html#addf479bf172abaed9e730129282733da", null ],
+      [ "allowed_crc_mask", "structDDS__ChecksumProperty.html#a368c203cdc4e3d924b0c279b8d7aacc9", null ],
+      [ "require_crc", "structDDS__ChecksumProperty.html#aaa531b29c93048d210f4713d62266cbc", null ]
+    ] ],
+    [ "DDS_ChecksumProperty_t", "structDDS__ChecksumProperty__t.html", [
+      [ "computed_crc_kind", "structDDS__ChecksumProperty__t.html#ae65be1e56cbad37a560200b1d436d5e8", null ],
+      [ "allowed_crc_mask", "structDDS__ChecksumProperty__t.html#a33abd7c7fbc5098fee8ade4f98323c14", null ],
+      [ "require_crc", "structDDS__ChecksumProperty__t.html#adbc1169318474625a490425162b9c86c", null ]
+    ] ],
+    [ "DDS_QosPolicyId_t", "group__DDSQosTypesModule.html#ga4b2c4d85475a58758fba7601082a40f8", [
+      [ "DDS_INVALID_QOS_POLICY_ID", "group__DDSQosTypesModule.html#gga4b2c4d85475a58758fba7601082a40f8a3b381d1bfefadadd7bdc4a6df94066ba", null ],
+      [ "DDS_DEADLINE_QOS_POLICY_ID", "group__DDSQosTypesModule.html#gga4b2c4d85475a58758fba7601082a40f8abd77e173b457d7c9a4455c00f5a72d32", null ],
+      [ "DDS_OWNERSHIP_QOS_POLICY_ID", "group__DDSQosTypesModule.html#gga4b2c4d85475a58758fba7601082a40f8afd0f507c4cc38a933f5817d0ea873d03", null ],
+      [ "DDS_OWNERSHIPSTRENGTH_QOS_POLICY_ID", "group__DDSQosTypesModule.html#gga4b2c4d85475a58758fba7601082a40f8a766d1409fe6aa9ee6264f4efe69731c5", null ],
+      [ "DDS_LIVELINESS_QOS_POLICY_ID", "group__DDSQosTypesModule.html#gga4b2c4d85475a58758fba7601082a40f8ad155c60f378087fa8fdbb0f3eddca268", null ],
+      [ "DDS_RELIABILITY_QOS_POLICY_ID", "group__DDSQosTypesModule.html#gga4b2c4d85475a58758fba7601082a40f8a33cceb8ac73aa06ef39485b3d887c815", null ],
+      [ "DDS_HISTORY_QOS_POLICY_ID", "group__DDSQosTypesModule.html#gga4b2c4d85475a58758fba7601082a40f8ae84e1113bab59340942bfd52193ea428", null ],
+      [ "DDS_ENTITYFACTORY_QOS_POLICY_ID", "group__DDSQosTypesModule.html#gga4b2c4d85475a58758fba7601082a40f8a02e9e33058e0cdbce813165a59c53438", null ]
+    ] ]
+];

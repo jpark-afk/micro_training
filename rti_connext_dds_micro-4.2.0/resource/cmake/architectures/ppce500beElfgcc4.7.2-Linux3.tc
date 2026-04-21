@@ -1,0 +1,44 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2024-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+SET(CMAKE_SYSTEM_NAME Linux)
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Platform/linux.tc)
+
+if (NOT DEFINED ENV{FREESCALE_ROOT})
+    if (NOT DEFINED FREESCALE_ROOT)
+        set(FREESCALE_ROOT "/local/applications/freescale/v1.4/x86_64/sysroots")
+    endif()
+else()
+    set(FREESCALE_ROOT $ENV{FREESCALE_ROOT})
+endif()
+
+MESSAGE("FREESCALE_ROOT: ${FREESCALE_ROOT}")
+
+SET(COMPILER_PATH "${FREESCALE_ROOT}/x86_64-fsl_networking_sdk-linux/usr/bin/ppce500mc-fsl_networking-linux")
+SET(COMPILER_PREFIX "powerpc-fsl_networking-linux-")
+SET(CMAKE_CXX_COMPILER "${COMPILER_PATH}/powerpc-fsl_networking-linux-g++")
+SET(CMAKE_C_COMPILER   "${COMPILER_PATH}/powerpc-fsl_networking-linux-gcc")
+SET(CMAKE_SYSROOT "${FREESCALE_ROOT}/ppce500mc-fsl_networking-linux")
+
+SET(CMAKE_AR "${COMPILER_PATH}/powerpc-fsl_networking-linux-ar" CACHE INTERNAL "CMAKE_AR" FORCE)
+SET(CMAKE_RANLIB "${COMPILER_PATH}/powerpc-fsl_networking-linux-ranlib" CACHE INTERNAL "CMAKE_RANLIB" FORCE)
+
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --sysroot=${CMAKE_SYSROOT}")
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} --sysroot=${CMAKE_SYSROOT}")
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/gcc_pi.tc)
+INCLUDE_GCC_COMPILER_PSL("4.7.2")
+
+SET(RTIME_OSAPI_PLATFORM posix)
+
+IF (NOT DEFINED RTIME_UDP_ENABLE_MULTICAST)
+    SET(RTIME_UDP_ENABLE_MULTICAST TRUE)
+ENDIF()

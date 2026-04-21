@@ -1,0 +1,22 @@
+\doxysubsubsubsection{max\+\_\+samples}
+\hypertarget{group__DDSUserManuals__ResourceModule__dwqos__max__samples}{}\label{group__DDSUserManuals__ResourceModule__dwqos__max__samples}\index{max\_samples@{max\_samples}}
+\begin{DoxyParagraph}{NAME}
+\doxylink{structDDS__ResourceLimitsQosPolicy_a90db906a3958146c5e22557db648e7ff}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+samples}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{DESCRIPTION}
+\doxylink{structDDS__ResourceLimitsQosPolicy_a90db906a3958146c5e22557db648e7ff}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+samples} limits the maximum number of samples a \doxylink{classDDSDataWriter}{DDSData\+Writer} can allocate and maintain state for at any given time. Every time a write operation is called, a sample is allocated from the cache and filled in with user-\/data.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+A sample allocated from the pool controlled by this resource-\/limit can be reused based on the following rules\+: \begin{DoxyItemize}
+\item If the \doxylink{classDDSDataWriter}{DDSData\+Writer} is using \doxylink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91aae82431f2015239328733f3cb41d780d}{DDS\+\_\+\+BEST\+\_\+\+EFFORT\+\_\+\+RELIABILITY\+\_\+\+QOS} effort the sample is returned for reuse after the transport returns from the write call. \item If the Data\+Writer is using \doxylink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91ae5d04022c6405f9db6406489956d1923}{DDS\+\_\+\+RELIABLE\+\_\+\+RELIABILITY\+\_\+\+QOS} and \doxylink{group__DurabilityQosPolicyModule_gga4bc6b72c72928cb9ed6432e3e6a83e2eab81cc94a7a319b48b17e177d217a09d4}{DDS\+\_\+\+VOLATILE\+\_\+\+DURABILITY\+\_\+\+QOS} , the sample is returned when all known Data\+Readers have acknowledged the sample or the Data\+Writer has given up on delivering the sample (controlled by \doxylink{structDDS__RtpsReliableWriterProtocol__t_a5be67d978618b5995cb517b51231d39d}{DDS\+\_\+\+Rtps\+Reliable\+Writer\+Protocol\+\_\+t\+::max\+\_\+heartbeat\+\_\+retries}), whichever happens first. \item If the Data\+Writer is using \doxylink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91ae5d04022c6405f9db6406489956d1923}{DDS\+\_\+\+RELIABLE\+\_\+\+RELIABILITY\+\_\+\+QOS} and not using \doxylink{group__DurabilityQosPolicyModule_gga4bc6b72c72928cb9ed6432e3e6a83e2eab81cc94a7a319b48b17e177d217a09d4}{DDS\+\_\+\+VOLATILE\+\_\+\+DURABILITY\+\_\+\+QOS}, the sample is returned to the pool for reuse only if the history depth is exceeded and the \doxylink{structDDS__HistoryQosPolicy_a3cb2743cd13a81614bcc4f314cd640ab}{DDS\+\_\+\+History\+Qos\+Policy\+::kind} is set to \doxylink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a993d3120b7bbb347ce11e0e6f68b29ff}{DDS\+\_\+\+KEEP\+\_\+\+LAST\+\_\+\+HISTORY\+\_\+\+QOS}\end{DoxyItemize}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{NOTES}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+For best-\/effort communication this resource-\/limit can be set to 1.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+For reliable communication the value of this resource-\/limit determines the maximum number of samples a \doxylink{classDDSDataWriter}{DDSData\+Writer} can keep in unacknowledged state before reusing potentially unacknowledged samples (for \doxylink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a993d3120b7bbb347ce11e0e6f68b29ff}{DDS\+\_\+\+KEEP\+\_\+\+LAST\+\_\+\+HISTORY\+\_\+\+QOS}). For reliable data the value should take into account the data-\/rate, the \doxylink{structDDS__RtpsReliableWriterProtocol__t_a47229dfbfde987f8bbebe67e789e0908}{DDS\+\_\+\+Rtps\+Reliable\+Writer\+Protocol\+\_\+t\+::heartbeat\+\_\+period} and \doxylink{structDDS__RtpsReliableWriterProtocol__t_a9dd9360fe1f9c8a7f251576c8878a139}{DDS\+\_\+\+Rtps\+Reliable\+Writer\+Protocol\+\_\+t\+::heartbeats\+\_\+per\+\_\+max\+\_\+samples}. 
+\end{DoxyParagraph}

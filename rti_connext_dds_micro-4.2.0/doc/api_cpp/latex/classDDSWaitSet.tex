@@ -1,0 +1,165 @@
+\doxysubsection{DDSWait\+Set Class Reference}
+\hypertarget{classDDSWaitSet}{}\label{classDDSWaitSet}\index{DDSWaitSet@{DDSWaitSet}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application to wait until one or more of the attached \doxylink{classDDSCondition}{DDSCondition} objects has a {\ttfamily trigger\+\_\+value} of \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} or else until the timeout expires.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+infrastructure.\+hxx$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSWaitSet_aef5595268757958cd1f30b9aebe1132b}{wait}} (\mbox{\hyperlink{classDDSConditionSeq}{DDSCondition\+Seq}} \&active\+\_\+conditions, const \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \&timeout)
+\begin{DoxyCompactList}\small\item\em Allows an application thread to wait for the occurrence of certain conditions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSWaitSet_a7bbb5165011e9cb983ecaf2f65e5cd57}{attach\+\_\+condition}} (\mbox{\hyperlink{classDDSCondition}{DDSCondition}} \texorpdfstring{$\ast$}{*}cond)
+\begin{DoxyCompactList}\small\item\em Attaches a \doxylink{classDDSCondition}{DDSCondition} to the \doxylink{classDDSWaitSet}{DDSWait\+Set}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSWaitSet_a84a6c2e370740e8863bbb601469cbda1}{detach\+\_\+condition}} (\mbox{\hyperlink{classDDSCondition}{DDSCondition}} \texorpdfstring{$\ast$}{*}cond)
+\begin{DoxyCompactList}\small\item\em Detaches a \doxylink{classDDSCondition}{DDSCondition} from the \doxylink{classDDSWaitSet}{DDSWait\+Set}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSWaitSet_a866479123394b65814dca5dc94eadba0}{get\+\_\+conditions}} (\mbox{\hyperlink{classDDSConditionSeq}{DDSCondition\+Seq}} \&attached\+\_\+conditions)
+\begin{DoxyCompactList}\small\item\em Retrieves the list of attached \doxylink{classDDSCondition}{DDSCondition} (s). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application to wait until one or more of the attached \doxylink{classDDSCondition}{DDSCondition} objects has a {\ttfamily trigger\+\_\+value} of \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} or else until the timeout expires. 
+
+\hypertarget{classDDSWaitSet_WaitSet_usage}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{classDDSWaitSet_WaitSet_usage}
+\doxylink{classDDSCondition}{DDSCondition} (s) (in conjunction with wait-\/sets) provide an alternative mechanism to allow the middleware to communicate communication status changes (including arrival of data) to the application. 
+
+This mechanism is wait-\/based. Its general use pattern is as follows\+: 
+
+\begin{DoxyItemize}
+\item The application indicates which relevant information it wants to get by creating \doxylink{classDDSCondition}{DDSCondition} objects (\doxylink{classDDSStatusCondition}{DDSStatus\+Condition}) and attaching them to a \doxylink{classDDSWaitSet}{DDSWait\+Set}. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item It then waits on that \doxylink{classDDSWaitSet}{DDSWait\+Set} until the {\ttfamily trigger\+\_\+value} of one or several \doxylink{classDDSCondition}{DDSCondition} objects become \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item It then uses the result of the wait (i.\+e., {\ttfamily active\+\_\+conditions}, the list of \doxylink{classDDSCondition}{DDSCondition} objects with {\ttfamily trigger\+\_\+value} == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}) to actually get the information\+: 
+\begin{DoxyItemize}
+\item by calling \doxylink{classDDSEntity_ade1b0388ee69bf07981a70e5b17cc857}{DDSEntity\+::get\+\_\+status\+\_\+changes} and then {\ttfamily get\+\_\+\texorpdfstring{$<$}{<}communication\+\_\+status\texorpdfstring{$>$}{>}}() on the relevant \doxylink{classDDSEntity}{DDSEntity}, if the condition is a \doxylink{classDDSStatusCondition}{DDSStatus\+Condition} and the status changes, refer to plain communication status; 
+
+
+\item by calling \doxylink{classDDSEntity_ade1b0388ee69bf07981a70e5b17cc857}{DDSEntity\+::get\+\_\+status\+\_\+changes} and then \doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read()} or \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take} on the relevant \doxylink{classDDSDataReader}{DDSData\+Reader}, if the condition is a \doxylink{classDDSStatusCondition}{DDSStatus\+Condition} and the status changes refers to \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa9d2d926d515abd0ddd0b537efd42f03e}{DDS\+\_\+\+DATA\+\_\+\+AVAILABLE\+\_\+\+STATUS};  
+
+
+\end{DoxyItemize}\end{DoxyItemize}
+Usually the first step is done in an initialization phase, while the others are put in the application main loop. 
+
+As there is no extra information passed from the middleware to the application when a wait returns (only the list of triggered \doxylink{classDDSCondition}{DDSCondition} objects), \doxylink{classDDSCondition}{DDSCondition} objects are meant to embed all that is needed to react properly when enabled. In particular, \doxylink{classDDSEntity}{DDSEntity}-\/related conditions are related to exactly one \doxylink{classDDSEntity}{DDSEntity} and cannot be shared. 
+
+The result of a \doxylink{classDDSWaitSet_aef5595268757958cd1f30b9aebe1132b}{DDSWait\+Set\+::wait} operation depends on the state of the \doxylink{classDDSWaitSet}{DDSWait\+Set}, which in turn depends on whether at least one attached \doxylink{classDDSCondition}{DDSCondition} has a {\ttfamily trigger\+\_\+value} of \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}. If the wait operation is called on \doxylink{classDDSWaitSet}{DDSWait\+Set} with state BLOCKED, it will block the calling thread. If wait is called on a \doxylink{classDDSWaitSet}{DDSWait\+Set} with state UNBLOCKED, it will return immediately. In addition, when the \doxylink{classDDSWaitSet}{DDSWait\+Set} transitions from BLOCKED to UNBLOCKED it wakes up any threads that had called wait on it. 
+
+A key aspect of the \doxylink{classDDSCondition}{DDSCondition}/\doxylink{classDDSWaitSet}{DDSWait\+Set} mechanism is the setting of the {\ttfamily trigger\+\_\+value} of each \doxylink{classDDSCondition}{DDSCondition}. \hypertarget{dds_cpp_infrastructure.hxx_WaitSet_trigger_status}{}\doxysubsubsection{\texorpdfstring{Trigger State of a \+::\+DDSStatus\+Condition}{Trigger State of a \+::\+DDSStatus\+Condition}}\label{dds_cpp_infrastructure.hxx_WaitSet_trigger_status}
+The {\ttfamily trigger\+\_\+value} of a \doxylink{classDDSStatusCondition}{DDSStatus\+Condition} is the boolean OR of the Changed\+Status\+Flag of all the communication statuses (see \doxylink{group__DDSStatusTypesModule}{Status Kinds}) to which it is sensitive. That is, {\ttfamily trigger\+\_\+value} == \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} only if all the values of the Changed\+Status\+Flags are \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE}. 
+
+The sensitivity of the \doxylink{classDDSStatusCondition}{DDSStatus\+Condition} to a particular communication status is controlled by the list of {\ttfamily enabled\+\_\+statuses} set on the condition by means of the \doxylink{classDDSStatusCondition_af02bd19a79d790314604d3e1196c356e}{DDSStatus\+Condition\+::set\+\_\+enabled\+\_\+statuses} operation. \hypertarget{dds_cpp_infrastructure.hxx_WaitSet_trigger_guard}{}\doxysubsubsection{\texorpdfstring{Trigger State of a \+::\+DDSGuard\+Condition}{Trigger State of a \+::\+DDSGuard\+Condition}}\label{dds_cpp_infrastructure.hxx_WaitSet_trigger_guard}
+The {\ttfamily trigger\+\_\+value} of a \doxylink{classDDSGuardCondition}{DDSGuard\+Condition} is completely controlled by the application via the operation \doxylink{classDDSGuardCondition_aef55194d456f67b62454bd09e3043602}{DDSGuard\+Condition\+::set\+\_\+trigger\+\_\+value}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSStatusTypesModule}{Status Kinds} 
+
+\doxylink{classDDSStatusCondition}{DDSStatus\+Condition}, \doxylink{classDDSGuardCondition}{DDSGuard\+Condition} 
+
+\doxylink{classDDSListener}{DDSListener} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classDDSWaitSet_aef5595268757958cd1f30b9aebe1132b}\index{DDSWaitSet@{DDSWaitSet}!wait@{wait}}
+\index{wait@{wait}!DDSWaitSet@{DDSWaitSet}}
+\doxyparagraph{\texorpdfstring{wait()}{wait()}}
+{\footnotesize\ttfamily \label{classDDSWaitSet_aef5595268757958cd1f30b9aebe1132b} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSWait\+Set\+::wait (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSConditionSeq}{DDSCondition\+Seq}} \&}]{active\+\_\+conditions}{, }\item[{const \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \&}]{timeout}{}\end{DoxyParamCaption})}
+
+
+
+Allows an application thread to wait for the occurrence of certain conditions. 
+
+If none of the conditions attached to the \doxylink{classDDSWaitSet}{DDSWait\+Set} have a {\ttfamily trigger\+\_\+value} of \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}, the wait operation will block suspending the calling thread. 
+
+The result of the wait operation is the list of all the attached conditions that have a {\ttfamily trigger\+\_\+value} of \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} (i.\+e., the conditions that unblocked the wait). 
+
+Note\+: The resolution of the {\ttfamily timeout} period is constrained by the resolution of the system clock. 
+
+The wait operation takes a {\ttfamily timeout} argument that specifies the maximum duration for the wait. If this duration is exceeded and none of the attached \doxylink{classDDSCondition}{DDSCondition} objects is \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}, wait will return with the return code \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT}. In this case, the resulting list of conditions will be empty. 
+
+Note\+: The resolution of the {\ttfamily timeout} period is constrained by the resolution of the system clock. 
+
+\doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT} will {\itshape not} be returned when the {\ttfamily timeout} duration is exceeded if attached \doxylink{classDDSCondition}{DDSCondition} objects are \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}, or in the case of a \doxylink{classDDSWaitSet}{DDSWait\+Set} waiting for more than one trigger event, if one or more trigger events have occurred. 
+
+It is not allowable for for more than one application thread to be waiting on the same \doxylink{classDDSWaitSet}{DDSWait\+Set}. If the wait operation is invoked on a \doxylink{classDDSWaitSet}{DDSWait\+Set} that already has a thread blocking on it, the operation will return immediately with the value \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em active\+\_\+conditions} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} a valid non-\/\+NULL \doxylink{classDDSConditionSeq}{DDSCondition\+Seq} object. Note that RTI Connext DDS Micro will not allocate a new object if {\ttfamily active\+\_\+conditions} is NULL; the method will return \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. \\
+\hline
+\end{DoxyParams}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em timeout} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} a wait timeout \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT}.  
+\end{DoxyReturn}
+\Hypertarget{classDDSWaitSet_a7bbb5165011e9cb983ecaf2f65e5cd57}\index{DDSWaitSet@{DDSWaitSet}!attach\_condition@{attach\_condition}}
+\index{attach\_condition@{attach\_condition}!DDSWaitSet@{DDSWaitSet}}
+\doxyparagraph{\texorpdfstring{attach\_condition()}{attach\_condition()}}
+{\footnotesize\ttfamily \label{classDDSWaitSet_a7bbb5165011e9cb983ecaf2f65e5cd57} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSWait\+Set\+::attach\+\_\+condition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSCondition}{DDSCondition}} \texorpdfstring{$\ast$}{*}}]{cond}{}\end{DoxyParamCaption})}
+
+
+
+Attaches a \doxylink{classDDSCondition}{DDSCondition} to the \doxylink{classDDSWaitSet}{DDSWait\+Set}. 
+
+It is possible to attach a \doxylink{classDDSCondition}{DDSCondition} on a \doxylink{classDDSWaitSet}{DDSWait\+Set} that is currently being waited upon (via the wait operation). In this case, if the \doxylink{classDDSCondition}{DDSCondition} has a {\ttfamily trigger\+\_\+value} of \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}, then attaching the condition will unblock the \doxylink{classDDSWaitSet}{DDSWait\+Set}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cond} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Contition to be attached.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES}.  
+\end{DoxyReturn}
+\Hypertarget{classDDSWaitSet_a84a6c2e370740e8863bbb601469cbda1}\index{DDSWaitSet@{DDSWaitSet}!detach\_condition@{detach\_condition}}
+\index{detach\_condition@{detach\_condition}!DDSWaitSet@{DDSWaitSet}}
+\doxyparagraph{\texorpdfstring{detach\_condition()}{detach\_condition()}}
+{\footnotesize\ttfamily \label{classDDSWaitSet_a84a6c2e370740e8863bbb601469cbda1} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSWait\+Set\+::detach\+\_\+condition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSCondition}{DDSCondition}} \texorpdfstring{$\ast$}{*}}]{cond}{}\end{DoxyParamCaption})}
+
+
+
+Detaches a \doxylink{classDDSCondition}{DDSCondition} from the \doxylink{classDDSWaitSet}{DDSWait\+Set}. 
+
+If the \doxylink{classDDSCondition}{DDSCondition} was not attached to the \doxylink{classDDSWaitSet}{DDSWait\+Set} the operation will return \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cond} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Condition to be detached.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}.  
+\end{DoxyReturn}
+\Hypertarget{classDDSWaitSet_a866479123394b65814dca5dc94eadba0}\index{DDSWaitSet@{DDSWaitSet}!get\_conditions@{get\_conditions}}
+\index{get\_conditions@{get\_conditions}!DDSWaitSet@{DDSWaitSet}}
+\doxyparagraph{\texorpdfstring{get\_conditions()}{get\_conditions()}}
+{\footnotesize\ttfamily \label{classDDSWaitSet_a866479123394b65814dca5dc94eadba0} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSWait\+Set\+::get\+\_\+conditions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSConditionSeq}{DDSCondition\+Seq}} \&}]{attached\+\_\+conditions}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the list of attached \doxylink{classDDSCondition}{DDSCondition} (s). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em attached\+\_\+conditions} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} a \doxylink{classDDSConditionSeq}{DDSCondition\+Seq} object where the list of attached conditions will be returned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES}.  
+\end{DoxyReturn}

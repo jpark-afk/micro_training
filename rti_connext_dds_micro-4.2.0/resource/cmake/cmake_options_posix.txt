@@ -1,0 +1,77 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# UDP options file
+#
+# Modification History
+# --------------------
+# 24oct2016 tk Written
+################################################################################
+IF (RTIME_PIL)
+    RETURN()
+ENDIF()
+
+IF (NOT DEFINED RTIME_OSAPI_PLATFORM)
+    RETURN()
+ENDIF()
+
+IF (RTIME_PRINT_CONFIG)
+    RTI_MESSAGE_STATUS("RTIME_OSAPI_ENABLE_STRICT_POSIX ....: ${RTIME_OSAPI_ENABLE_STRICT_POSIX}")
+    RTI_MESSAGE_STATUS("RTIME_OSAPI_ENABLE_POSIX_RTTIMER....: ${RTIME_OSAPI_ENABLE_POSIX_RTTIMER}")
+    RETURN()
+ENDIF()
+
+SET(RTIME_OSAPI_ENABLE_STRICT_POSIX_DOC 
+"Checking this option enables as strict POSIX compliance as the platform 
+permits. Thus, even when features are available on the platform they are not 
+used if this flag is checked (for example setting the thread name on Darwin or 
+Linux). Check this flag when compiling for an unsupported POSIX platform or 
+to limit the number of non-POSIX APIs used. Note that the BSD socket APIs are
+not POSIX compliant across all platforms due to header-file differences.")
+
+SET(RTIME_OSAPI_ENABLE_STRICT_POSIX_DEFAULT FALSE)
+
+SET(RTIME_OSAPI_ENABLE_POSIX_RTTIMER_DOC 
+"Checking this option enables the use of one POSIX.4 real-time timer on 
+QNX and Linux to run the internal timers in Connext DDS Micro. The advantage
+with this timer as opposed to the default sleep loop, is that clock drift is
+minimized. When this option is enabled, Connext DDS Micro uses the SIGRTMIN
+signal to signal timer expiration.")
+
+SET(RTIME_OSAPI_ENABLE_POSIX_RTTIMER_DEFAULT FALSE)
+
+# Make this option only appear when the platform is POSIX or autodetect
+IF (NOT ((${RTIME_OSAPI_PLATFORM} STREQUAL "posix") OR 
+         (${RTIME_OSAPI_PLATFORM} STREQUAL "<auto detect>")))
+    UNSET(RTIME_OSAPI_ENABLE_STRICT_POSIX CACHE)
+    UNSET(RTIME_OSAPI_ENABLE_POSIX_RTTIMER CACHE)
+    RETURN()
+ENDIF()
+
+IF (DEFINED _RTIME_OSAPI_ENABLE_STRICT_POSIX)
+    SET(RTIME_OSAPI_ENABLE_STRICT_POSIX_DEFAULT ${_RTIME_OSAPI_ENABLE_STRICT_POSIX})
+ENDIF()
+
+IF (DEFINED _RTIME_OSAPI_ENABLE_POSIX_RTTIMER)
+    SET(RTIME_OSAPI_ENABLE_POSIX_RTTIMER_DEFAULT ${_RTIME_OSAPI_ENABLE_POSIX_RTTIMER})
+ENDIF()
+
+SET(RTIME_OSAPI_ENABLE_STRICT_POSIX ${RTIME_OSAPI_ENABLE_STRICT_POSIX_DEFAULT} CACHE BOOL ${RTIME_OSAPI_ENABLE_STRICT_POSIX_DOC})
+SET(RTIME_OSAPI_ENABLE_POSIX_RTTIMER ${RTIME_OSAPI_ENABLE_POSIX_RTTIMER_DEFAULT} CACHE BOOL ${RTIME_OSAPI_ENABLE_POSIX_RTTIMER_DOC})
+
+IF (${RTIME_OSAPI_ENABLE_STRICT_POSIX})
+    ADD_DEFINITIONS(-DOSAPI_ENABLE_STRICT_POSIX=1)
+ENDIF()
+
+IF (${RTIME_OSAPI_ENABLE_POSIX_RTTIMER})
+    ADD_DEFINITIONS(-DOSAPI_ENABLE_POSIX_RTTIMER=1)
+ENDIF()
+

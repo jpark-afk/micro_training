@@ -1,0 +1,55 @@
+\doxysubsection{DDSPublisher\+Listener Class Reference}
+\hypertarget{classDDSPublisherListener}{}\label{classDDSPublisherListener}\index{DDSPublisherListener@{DDSPublisherListener}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{classDDSListener}{DDSListener} for \doxylink{classDDSPublisher}{DDSPublisher} status.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+publication.\+hxx$>$}
+
+Inheritance diagram for DDSPublisher\+Listener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classDDSPublisherListener}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Additional Inherited Members}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{classDDSDataWriterListener}{DDSData\+Writer\+Listener}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_a1c1723bb81c548264780d8b22c406849}{on\+\_\+offered\+\_\+deadline\+\_\+missed}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const \mbox{\hyperlink{structDDS__OfferedDeadlineMissedStatus}{DDS\+\_\+\+Offered\+Deadline\+Missed\+Status}} \&status)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa84f12530ffc8d6e68906054b06972342}{DDS\+\_\+\+OFFERED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS} status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_ae60da4bf340932692394b89489e84893}{on\+\_\+liveliness\+\_\+lost}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const \mbox{\hyperlink{structDDS__LivelinessLostStatus}{DDS\+\_\+\+Liveliness\+Lost\+Status}} \&status)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS} status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_aaa46c2b3a743f9ec8473ba99e1c71554}{on\+\_\+offered\+\_\+incompatible\+\_\+qos}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const \mbox{\hyperlink{structDDS__OfferedIncompatibleQosStatus}{DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status}} \&status)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_ab7b1ca573cb1be49aeda49846cc20b8d}{on\+\_\+publication\+\_\+matched}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const \mbox{\hyperlink{structDDS__PublicationMatchedStatus}{DDS\+\_\+\+Publication\+Matched\+Status}} \&status)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa3052f04c67620660f92aa3b5da2455d2}{DDS\+\_\+\+PUBLICATION\+\_\+\+MATCHED\+\_\+\+STATUS} status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_aa4d34ce27b8ff0d2614cddcfa7b7d2bf}{on\+\_\+reliable\+\_\+reader\+\_\+activity\+\_\+changed}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const \mbox{\hyperlink{structDDS__ReliableReaderActivityChangedStatus}{DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status}} \&status)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A matched reliable reader has become active or become inactive. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_a795803ad1802bcbd0adea59c0cef03f0}{on\+\_\+reliable\+\_\+sample\+\_\+unacknowledged}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const \mbox{\hyperlink{structDDS__ReliableSampleUnacknowledgedStatus}{DDS\+\_\+\+Reliable\+Sample\+Unacknowledged\+Status}} \&status)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A matched reliable reader has become active or become inactive. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_a229b6abe3243acd1912697c1dd3e25a8}{on\+\_\+sample\+\_\+removed}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const DDS\+\_\+\+Cookie\+\_\+t \&cookie)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Called when a sample is removed from the Data\+Writer queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{classDDSListener}{DDSListener} for \doxylink{classDDSPublisher}{DDSPublisher} status. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSPublisher}{DDSPublisher} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS}, \doxylink{structDDS__LivelinessLostStatus}{DDS\+\_\+\+Liveliness\+Lost\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa84f12530ffc8d6e68906054b06972342}{DDS\+\_\+\+OFFERED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS}, \doxylink{structDDS__OfferedDeadlineMissedStatus}{DDS\+\_\+\+Offered\+Deadline\+Missed\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}, \doxylink{structDDS__OfferedIncompatibleQosStatus}{DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa3052f04c67620660f92aa3b5da2455d2}{DDS\+\_\+\+PUBLICATION\+\_\+\+MATCHED\+\_\+\+STATUS}, \doxylink{structDDS__PublicationMatchedStatus}{DDS\+\_\+\+Publication\+Matched\+Status}; ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSListener}{DDSListener} 
+
+\doxylink{group__DDSStatusTypesModule}{Status Kinds} 
+\end{DoxySeeAlso}

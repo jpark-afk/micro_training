@@ -1,0 +1,79 @@
+\doxysubsection{DPDE Dynamic Discovery API}
+\hypertarget{group__DPDEModule}{}\label{group__DPDEModule}\index{DPDE Dynamic Discovery API@{DPDE Dynamic Discovery API}}
+\doxysubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDPDE__DiscoveryPluginProperty}{DPDE\+\_\+\+Discovery\+Plugin\+Property}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Properties for the Dynamic Participant/\+Dynamic Endpoint (DPDE) discovery plugin. This includes all discovery timing properties for participant discovery. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DPDEModule_gad95c8efc5715b54bf371328d295a98ef}{DPDE\+\_\+\+Discovery\+Plugin\+Property\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em Initializer for the \doxylink{structDPDE__DiscoveryPluginProperty}{DPDE\+\_\+\+Discovery\+Plugin\+Property}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+DISC\+\_\+\+DPDEDll\+Export struct RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DPDEModule_gad04238a54f293edfa1bd94039d13ad4a}{DPDE\+\_\+\+Discovery\+Factory\+\_\+get\+\_\+interface}} (void)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Gets the component factory necessary when registering a DPDE component with RTI Connext DDS Micro \end{DoxyCompactList}\item 
+DISC\+\_\+\+DPDEDll\+Export const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DPDEModule_ga59ce799f0d40202b77b3fcb621800f3e}{DPDE\+\_\+\+Discovery\+Factory\+\_\+get\+\_\+version}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the version string for the DPDE library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The RTI Connext DDS Micro support for DPDE discovery of remote entities. Please refer to Discovery chapter in the User\textquotesingle{}s Manual, and the Getting Started Guide, for an example of how to register and use the DPDE plugin. 
+
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__DPDEModule_gad95c8efc5715b54bf371328d295a98ef}\index{DPDE Dynamic Discovery API@{DPDE Dynamic Discovery API}!DPDE\_DiscoveryPluginProperty\_INITIALIZER@{DPDE\_DiscoveryPluginProperty\_INITIALIZER}}
+\index{DPDE\_DiscoveryPluginProperty\_INITIALIZER@{DPDE\_DiscoveryPluginProperty\_INITIALIZER}!DPDE Dynamic Discovery API@{DPDE Dynamic Discovery API}}
+\doxyparagraph{\texorpdfstring{DPDE\_DiscoveryPluginProperty\_INITIALIZER}{DPDE\_DiscoveryPluginProperty\_INITIALIZER}}
+{\footnotesize\ttfamily \label{group__DPDEModule_gad95c8efc5715b54bf371328d295a98ef} 
+\#define DPDE\+\_\+\+Discovery\+Plugin\+Property\+\_\+\+INITIALIZER}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ RT\_ComponentFactoryProperty\_INITIALIZER,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{30,0\},\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{100,0\},\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ 5,\ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{1,0\},\ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\_BOOLEAN\_FALSE}},\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_LENGTH\_AUTO,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ 4,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ 8,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_MAX\_UNLIMITED,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_LENGTH\_UNLIMITED,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{0,100000000\},\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_LENGTH\_UNLIMITED,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_RTPS\_NACK\_PERIOD\_DEFAULT\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_PARTICIPANT\_MESSAGE\_READER\_RELIABILITY\_KIND\_INITIALIZER\ \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Initializer for the \doxylink{structDPDE__DiscoveryPluginProperty}{DPDE\+\_\+\+Discovery\+Plugin\+Property}. 
+
+
+
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__DPDEModule_gad04238a54f293edfa1bd94039d13ad4a}\index{DPDE Dynamic Discovery API@{DPDE Dynamic Discovery API}!DPDE\_DiscoveryFactory\_get\_interface@{DPDE\_DiscoveryFactory\_get\_interface}}
+\index{DPDE\_DiscoveryFactory\_get\_interface@{DPDE\_DiscoveryFactory\_get\_interface}!DPDE Dynamic Discovery API@{DPDE Dynamic Discovery API}}
+\doxyparagraph{\texorpdfstring{DPDE\_DiscoveryFactory\_get\_interface()}{DPDE\_DiscoveryFactory\_get\_interface()}}
+{\footnotesize\ttfamily \label{group__DPDEModule_gad04238a54f293edfa1bd94039d13ad4a} 
+DISC\+\_\+\+DPDEDll\+Export struct RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*} DPDE\+\_\+\+Discovery\+Factory\+\_\+get\+\_\+interface (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Gets the component factory necessary when registering a DPDE component with RTI Connext DDS Micro 
+
+\Hypertarget{group__DPDEModule_ga59ce799f0d40202b77b3fcb621800f3e}\index{DPDE Dynamic Discovery API@{DPDE Dynamic Discovery API}!DPDE\_DiscoveryFactory\_get\_version@{DPDE\_DiscoveryFactory\_get\_version}}
+\index{DPDE\_DiscoveryFactory\_get\_version@{DPDE\_DiscoveryFactory\_get\_version}!DPDE Dynamic Discovery API@{DPDE Dynamic Discovery API}}
+\doxyparagraph{\texorpdfstring{DPDE\_DiscoveryFactory\_get\_version()}{DPDE\_DiscoveryFactory\_get\_version()}}
+{\footnotesize\ttfamily \label{group__DPDEModule_ga59ce799f0d40202b77b3fcb621800f3e} 
+DISC\+\_\+\+DPDEDll\+Export const char \texorpdfstring{$\ast$}{*} DPDE\+\_\+\+Discovery\+Factory\+\_\+get\+\_\+version (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the version string for the DPDE library. 
+

@@ -1,0 +1,18 @@
+Logging
+=======
+
+:major:`[Major]` Race condition and memory corruption in logger
+---------------------------------------------------------------
+
+The following issues have been fixed in the logger:
+
+- Processing log-messages in a log handler was not thread-safe. 
+- Memory corruption may have occurred.
+- Conversion of INT_MIN was incorrect.
+
+.. note::
+  
+  The ``OSAPI_Log_clear`` API must not be called outside a log-handler 
+  since it is no longer thread-safe.
+
+[RTI Issue ID MICRO-5854]

@@ -1,0 +1,46 @@
+\doxysubsection{DDS\+\_\+\+Data\+Writer\+Shmem\+Ref\+Transfer\+Mode\+Settings Struct Reference}
+\hypertarget{structDDS__DataWriterShmemRefTransferModeSettings}{}\label{structDDS__DataWriterShmemRefTransferModeSettings}\index{DDS\_DataWriterShmemRefTransferModeSettings@{DDS\_DataWriterShmemRefTransferModeSettings}}
+
+
+Settings related to transferring data using shared memory references.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{structDDS__DataWriterShmemRefTransferModeSettings_af4766de78ad7d0787d1c073576c0eae4}{enable\+\_\+data\+\_\+consistency\+\_\+check}}
+\begin{DoxyCompactList}\small\item\em Controls if samples can be checked for consistency. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Settings related to transferring data using shared memory references. 
+
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = N/A ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{QoS\+:}
+\doxylink{structDDS__DataWriterTransferModeQosPolicy}{DDS\+\_\+\+Data\+Writer\+Transfer\+Mode\+Qos\+Policy} ~\newline
+ 
+\end{DoxyParagraph}
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__DataWriterShmemRefTransferModeSettings_af4766de78ad7d0787d1c073576c0eae4}\index{DDS\_DataWriterShmemRefTransferModeSettings@{DDS\_DataWriterShmemRefTransferModeSettings}!enable\_data\_consistency\_check@{enable\_data\_consistency\_check}}
+\index{enable\_data\_consistency\_check@{enable\_data\_consistency\_check}!DDS\_DataWriterShmemRefTransferModeSettings@{DDS\_DataWriterShmemRefTransferModeSettings}}
+\doxyparagraph{\texorpdfstring{enable\_data\_consistency\_check}{enable\_data\_consistency\_check}}
+{\footnotesize\ttfamily \label{structDDS__DataWriterShmemRefTransferModeSettings_af4766de78ad7d0787d1c073576c0eae4} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Data\+Writer\+Shmem\+Ref\+Transfer\+Mode\+Settings\+::enable\+\_\+data\+\_\+consistency\+\_\+check}
+
+
+
+Controls if samples can be checked for consistency. 
+
+When this setting is true, the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} sends an incrementing sequence number as an inline QoS with every sample. This sequence number allows a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} to use the \doxylink{group__DDSReaderModule_ga52310dd765b4ba0c9f66cd1774621eb5}{Foo\+Data\+Reader\+\_\+is\+\_\+data\+\_\+consistent} API to detect if the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} overwrote the sample before the \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} could complete processing the sample. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} 

@@ -1,0 +1,162 @@
+\doxysubsubsection{OSAPI Memory API}
+\hypertarget{group__OSAPI__MemoryClass}{}\label{group__OSAPI__MemoryClass}\index{OSAPI Memory API@{OSAPI Memory API}}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+OSPSLDll\+Export void \mbox{\hyperlink{group__OSAPI__MemoryClass_ga6a9824696dfa4ed3009aa83d2a86da5b}{OSAPI\+\_\+\+Memory\+\_\+copy}} (void \texorpdfstring{$\ast$}{*}dest, const void \texorpdfstring{$\ast$}{*}src, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size)
+\begin{DoxyCompactList}\small\item\em Copies size bytes from non-\/overlapping src to dest. \end{DoxyCompactList}\item 
+OSPSLDll\+Export void \mbox{\hyperlink{group__OSAPI__MemoryClass_ga14d79010768b560817c40404afd2537e}{OSAPI\+\_\+\+Memory\+\_\+zero}} (void \texorpdfstring{$\ast$}{*}mem, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size)
+\begin{DoxyCompactList}\small\item\em Sets memory region to 0. \end{DoxyCompactList}\item 
+OSPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{group__OSAPI__MemoryClass_gaf9ca72331710a4b305f23e91a88981e5}{OSAPI\+\_\+\+Memory\+\_\+compare}} (const void \texorpdfstring{$\ast$}{*}left, const void \texorpdfstring{$\ast$}{*}right, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size)
+\begin{DoxyCompactList}\small\item\em Byte-\/wise compare of two memory regions. \end{DoxyCompactList}\item 
+OSPSLDll\+Export void \mbox{\hyperlink{group__OSAPI__MemoryClass_ga09e811d12b64e0811899834bce9c485b}{OSAPI\+\_\+\+Memory\+\_\+move}} (void \texorpdfstring{$\ast$}{*}dest, const void \texorpdfstring{$\ast$}{*}src, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size)
+\begin{DoxyCompactList}\small\item\em Moves size bytes from non-\/overlapping src to dest. \end{DoxyCompactList}\item 
+OSPSLDll\+Export void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__MemoryClass_ga4164a9aa2b3772cdf5d1713cd9c3bfe4}{OSAPI\+\_\+\+Memory\+\_\+fndchr}} (const void \texorpdfstring{$\ast$}{*}s, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} c, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} n)
+\begin{DoxyCompactList}\small\item\em Locate byte in byte string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+
+
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__OSAPI__MemoryClass_ga6a9824696dfa4ed3009aa83d2a86da5b}\index{OSAPI Memory API@{OSAPI Memory API}!OSAPI\_Memory\_copy@{OSAPI\_Memory\_copy}}
+\index{OSAPI\_Memory\_copy@{OSAPI\_Memory\_copy}!OSAPI Memory API@{OSAPI Memory API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Memory\_copy()}{OSAPI\_Memory\_copy()}}
+{\footnotesize\ttfamily \label{group__OSAPI__MemoryClass_ga6a9824696dfa4ed3009aa83d2a86da5b} 
+OSPSLDll\+Export void OSAPI\+\_\+\+Memory\+\_\+copy (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{dest}{, }\item[{const void \texorpdfstring{$\ast$}{*}}]{src}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}}}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Copies size bytes from non-\/overlapping src to dest. 
+
+Valid dest and src \texorpdfstring{$>$}{>}= size, where size \texorpdfstring{$>$}{>}= 0. The src and dst memory regions should NOT overlap or the results will be undetermined. On success move size number of bytes from in \mbox{[}dest, dest+size) are identical to \mbox{[}src, src+size). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em dest} & Pointer to destination memory region. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src} & Pointer to source memory region. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & Number of bytes to copy starting at dest. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None.} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyParagraph}{MT Safety\+:}
+src cannot be modified concurrently and dest cannot be modified or read concurrently. 
+\end{DoxyParagraph}
+\Hypertarget{group__OSAPI__MemoryClass_ga14d79010768b560817c40404afd2537e}\index{OSAPI Memory API@{OSAPI Memory API}!OSAPI\_Memory\_zero@{OSAPI\_Memory\_zero}}
+\index{OSAPI\_Memory\_zero@{OSAPI\_Memory\_zero}!OSAPI Memory API@{OSAPI Memory API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Memory\_zero()}{OSAPI\_Memory\_zero()}}
+{\footnotesize\ttfamily \label{group__OSAPI__MemoryClass_ga14d79010768b560817c40404afd2537e} 
+OSPSLDll\+Export void OSAPI\+\_\+\+Memory\+\_\+zero (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{mem}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}}}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Sets memory region to 0. 
+
+Clear a memory region. Valid memory \texorpdfstring{$>$}{>}= size, where size \texorpdfstring{$>$}{>}= 0. On On success \mbox{[}mem, mem+size) is filled with 0. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em mem} & Pointer to memory region to be modified. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & Number of bytes to fill with zeroes, starting at mem. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None.} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyParagraph}{MT Safety\+:}
+mem cannot be modified or read concurrently. 
+\end{DoxyParagraph}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__OSAPI__MemoryClass_gaf9ca72331710a4b305f23e91a88981e5}\index{OSAPI Memory API@{OSAPI Memory API}!OSAPI\_Memory\_compare@{OSAPI\_Memory\_compare}}
+\index{OSAPI\_Memory\_compare@{OSAPI\_Memory\_compare}!OSAPI Memory API@{OSAPI Memory API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Memory\_compare()}{OSAPI\_Memory\_compare()}}
+{\footnotesize\ttfamily \label{group__OSAPI__MemoryClass_gaf9ca72331710a4b305f23e91a88981e5} 
+OSPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} OSAPI\+\_\+\+Memory\+\_\+compare (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{left}{, }\item[{const void \texorpdfstring{$\ast$}{*}}]{right}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}}}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Byte-\/wise compare of two memory regions. 
+
+This function performs a byte-\/wise comparison of two memory regions of size bytes. left and right must be \texorpdfstring{$>$}{>}= 0 and size \texorpdfstring{$>$}{>}= 0. This function does not alter any memory content. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em left} & Pointer to logical "{}left"{} side of the inequality test. \\
+\hline
+\mbox{\texttt{ in}}  & {\em right} & Pointer to logical "{}right"{} side of the inequality test. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & Number of bytes to compare, starting from left to right. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+less than, equal to, or greater than 0, according to whether left is lexicographically less than, equal to, or greater than right when taken as unsigned characters. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__MemoryClass_ga09e811d12b64e0811899834bce9c485b}\index{OSAPI Memory API@{OSAPI Memory API}!OSAPI\_Memory\_move@{OSAPI\_Memory\_move}}
+\index{OSAPI\_Memory\_move@{OSAPI\_Memory\_move}!OSAPI Memory API@{OSAPI Memory API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Memory\_move()}{OSAPI\_Memory\_move()}}
+{\footnotesize\ttfamily \label{group__OSAPI__MemoryClass_ga09e811d12b64e0811899834bce9c485b} 
+OSPSLDll\+Export void OSAPI\+\_\+\+Memory\+\_\+move (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{dest}{, }\item[{const void \texorpdfstring{$\ast$}{*}}]{src}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}}}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Moves size bytes from non-\/overlapping src to dest. 
+
+Copy size bytes from source to dest. Valid dest and source must point to memory regions \texorpdfstring{$>$}{>}= size, where size \texorpdfstring{$>$}{>}= 0. The source and dest memory regions may overlap. On return, size number of bytes from source has been copied to\mbox{[}dest, dest + size) and is identical to \mbox{[}source, source + size\mbox{]}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em dest} & Pointer to destination memory region. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src} & Pointer to source memory region. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & Number of bytes to copy from source to dest. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None.} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyParagraph}{MT Safety\+:}
+source cannot be modified concurrently; dest cannot be modified or read concurrently. 
+\end{DoxyParagraph}
+\Hypertarget{group__OSAPI__MemoryClass_ga4164a9aa2b3772cdf5d1713cd9c3bfe4}\index{OSAPI Memory API@{OSAPI Memory API}!OSAPI\_Memory\_fndchr@{OSAPI\_Memory\_fndchr}}
+\index{OSAPI\_Memory\_fndchr@{OSAPI\_Memory\_fndchr}!OSAPI Memory API@{OSAPI Memory API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Memory\_fndchr()}{OSAPI\_Memory\_fndchr()}}
+{\footnotesize\ttfamily \label{group__OSAPI__MemoryClass_ga4164a9aa2b3772cdf5d1713cd9c3bfe4} 
+OSPSLDll\+Export void \texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+Memory\+\_\+fndchr (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{s}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}}]{c}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}}}]{n}{}\end{DoxyParamCaption})}
+
+
+
+Locate byte in byte string. 
+
+Locate byte in byte string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em s} & Pointer to beginning of byte string. \\
+\hline
+\mbox{\texttt{ in}}  & {\em c} & Byte to search for. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n} & Maximum search length. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to first occurrence of c if found, NULL otherwise. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+

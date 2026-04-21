@@ -1,0 +1,72 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may2016 tk Written
+################################################################################
+
+IF (${RTIME_TARGET_NAME} MATCHES "x64")
+    SET(CC_ARCH "-m64")
+ELSEIF (${RTIME_TARGET_NAME} MATCHES "i86")
+    SET(CC_ARCH "-m32")
+ENDIF()
+
+IF (RTI_GCC_VERSION)
+    IF (${RTI_GCC_VERSION} VERSION_GREATER_EQUAL "4.9")
+            SET(GCC_WPENDATIC "-Wpedantic")
+    ENDIF()
+ELSE()
+    SET(GCC_WPENDATIC "-Wpedantic")
+ENDIF()
+
+set(CMAKE_C_FLAGS 
+        "-std=c99 -Winit-self -fstrict-aliasing ${CC_ARCH} \
+        -fsigned-char \
+        -Wmissing-declarations -Wall -Wextra ${GCC_WPENDATIC} -Wshadow \
+        -Wcast-align -Wunused -Wconversion -Wsign-conversion \
+        -Wlogical-op -Wdouble-promotion -Wstrict-prototypes"
+)
+
+set(CMAKE_CXX_FLAGS 
+        "-Winit-self -fstrict-aliasing \
+        -fsigned-char \
+        -Wmissing-declarations -Wall -Wextra ${GCC_WPENDATIC} ${CC_ARCH} \
+        -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused \
+        -Woverloaded-virtual -Wconversion -Wsign-conversion \
+        -Wlogical-op  -Wdouble-promotion -Wno-long-long"
+)
+
+set(CMAKE_C_FLAGS_RELEASE
+        "-O2"
+)
+
+set(CMAKE_CXX_FLAGS_RELEASE
+        "-O2"
+)
+
+SET(_RTIME_CC stdc)
+
+IF (${TARGET_HELP})
+    MESSAGE("COMPILER NOTES\n")
+    MESSAGE(" The following GCC specific flags are used based on RTIME_TARGET_NAME\n")        
+    MESSAGE(" - If x64 is part of the name 64 bit is used")
+    MESSAGE(" - If i86 is part of the name 32 bit is used")
+    MESSAGE(" - If i86 or x64 is not found, the default is used\n")
+    MESSAGE(" The following flags are added:")
+    MESSAGE(" - For C Debug libraries:  ${CC_DEBUG}")
+    MESSAGE(" - For C++ Debug libraries:  ${CXX_DEBUG}")
+    MESSAGE(" - For C Release libraries:  ${CC_RELEASE}")
+    MESSAGE(" - For C++ Release libraries:  ${CXX_RELEASE}\n\n")
+    RETURN()
+ENDIF()

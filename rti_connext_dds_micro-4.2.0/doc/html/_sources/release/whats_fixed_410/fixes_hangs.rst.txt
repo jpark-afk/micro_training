@@ -1,0 +1,29 @@
+Hangs
+=====
+
+.. Release Notes from this point.
+
+.. _MICRO-6013:
+
+:critical:`[Critical]` Ungracefully terminated QNX processes using SHMEM transport prevented startup of new processes due to unclosed POSIX semaphores
+------------------------------------------------------------------------------------------------------------------------------------------------------
+If a QNX application using the shared-memory transport was
+ungracefully shut down, crashed, or otherwise had an abnormal
+termination while holding a POSIX semaphore used by the transport (for
+example, while sending data through the shared-memory transport),
+*Connext* applications launched after that point on the same domain may
+have waited forever for that semaphore to be released.
+
+Now on QNX 7.1 and greater, the usage of POSIX semaphores has been
+replaced with robust pthread mutexes. Abnormal termination of an
+application while holding a mutex will no longer result in a
+*Connext* application launched after that point hanging. 
+
+As a result, |me| 4.1.0 will **not** be backward compatible with previous 
+versions of |me| when using the shared memory transport on QNX 7.1 and 
+greater. |me| 4.1.0 will now be compatible with *Connext Professional* 
+7.3.0 on QNX 7.1 and greater.
+
+[RTI Issue ID MICRO-6013]
+
+

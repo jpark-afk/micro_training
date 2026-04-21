@@ -1,0 +1,11 @@
+\doxysubsubsubsection{max\+\_\+routes\+\_\+per\+\_\+writer}
+\hypertarget{group__DDSUserManuals__ResourceModule__drqos__max__routes__per__writer}{}\label{group__DDSUserManuals__ResourceModule__drqos__max__routes__per__writer}\index{max\_routes\_per\_writer@{max\_routes\_per\_writer}}
+\begin{DoxyParagraph}{NAME}
+\doxylink{structDDS__DataReaderResourceLimitsQosPolicy_a598e4610e4a78199d9e2ad5c37043980}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+routes\+\_\+per\+\_\+writer}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{DESCRIPTION}
+Each \doxylink{classDDSDataReader}{DDSData\+Reader} maintains information about the state of its peer \doxylink{classDDSDataWriter}{DDSData\+Writer} (those it has matched with). Part of this state is which locators (or destination addresses) it should use to send data to a particular \doxylink{classDDSDataWriter}{DDSData\+Writer}. \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_a598e4610e4a78199d9e2ad5c37043980}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+routes\+\_\+per\+\_\+writer} limits the maximum number of routes that can be saved per \doxylink{classDDSDataWriter}{DDSData\+Writer}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{NOTES}
+This resource-\/limit is shared across all matched \doxylink{classDDSDataWriter}{DDSData\+Writer} per \doxylink{classDDSDataReader}{DDSData\+Reader}. Thus, if \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_ae89be540f623745dab6b0d6379037da1}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+remote\+\_\+writers} is 2 and \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_a598e4610e4a78199d9e2ad5c37043980}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+routes\+\_\+per\+\_\+writer} is 4, a total of 8 routes can be saved for both datawriters. One \doxylink{classDDSDataWriter}{DDSData\+Writer} may have 6 routes and the other 2. 
+\end{DoxyParagraph}

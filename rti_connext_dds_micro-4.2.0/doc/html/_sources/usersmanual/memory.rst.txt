@@ -1,0 +1,175 @@
+.. _section-memory-management:
+
+Memory Management
+=================
+
+|me| is designed for use in real-time systems and uses a predictable,
+deterministic memory manager to ensure that memory growth is
+not unbounded, OS memory fragmentation is eliminated, and memory usage can be
+determined before runtime. This design ensures proper operation after all
+entities have been created, but requires the system designer to properly
+configure |me|, as described in this section.
+
+Resource limits
+---------------
+
+|me| uses resource limits to determine how much to allocate of a particular
+resource; e.g., the maximum number of samples that can be cached by a
+*DataReader*, or how many *DataWriters* can be created locally. These limits
+may incur additional memory allocations. This
+section provides guidance on how much overhead these resource limits incur.
+
+.. note::
+
+   Simple resource limits, such as those that specify a number of bytes, are not
+   discussed in this section.
+
+Please refer to  :link_connextmicro_dds_api_c_up_one:`Resource Limits <group__DDSUserManuals__ResourceModule.html>`
+for the full list of resource limits, and
+to `RTI Connext Performance Benchmarks <https://community.rti.com/static/documentation/performance/benchmarks/index.html>`_
+on |rti_community| for memory usage benchmarks.
+
+Dynamic memory allocation
+-------------------------
+
+|me| allocates heap memory to create internal data structures dynamically as
+DDS entities are created. Keep in mind that |me| manages allocated memory using
+its own internal memory management, and *only* returns freed allocated memory
+when something is deleted. So, if an application never deletes anything, no
+memory is ever freed.
+
+.. note::
+
+   |me| uses the term "heap" to refer to any memory that is allocated
+   dynamically, typically using the ``malloc`` system call. However, the
+   Platform Support Library (PSL) is responsible for implementing the memory
+   allocation and freeing functions required by |me|; the only requirement is
+   that heap memory is valid from when it is allcoated to when it is freed.
+
+.. attention::
+
+   |me| does not support dynamically allocating resources beyond the initial
+   configuration. Therefore, all resource limits must be finite.
+
+DDS resource limits
+-------------------
+
+The following table shows which resource limits are applicable to DDS APIs
+that allocate memory:
+
+.. list-table:: DDS APIs that allocates memory
+   :widths: 10 8 12
+   :header-rows: 1
+   :class: longtable
+
+   * - API
+     - Creates
+     - Applicable Resource Limits
+   * - DDS_DomainParticipantFactory_get_instance
+     - DDS_DomainParticipantFactory
+     - :link_connextmicro_dds_api_c_up_one:`DDS_DomainParticipantFactoryQos <group__DDSUserManuals__ResourceModule__dpf.html>` |br|
+       :link_connextmicro_dds_api_c_up_one:`OSAPI_LogProperty <group__DDSUserManuals__ResourceModule__osapi.html>` |br|
+       OSAPI_SystemProperty
+   * - DDS_DomainParticipantFactory_create_participant
+     - DDS_DomainParticipant
+     - :link_connextmicro_dds_api_c_up_one:`DDS_DomainParticipantQos <group__DDSUserManuals__ResourceModule__dp.html>`
+   * - DDS_DomainParticipant_create_topic
+     - DDS_Topic
+     - Topic name length
+   * - DDS_Publisher_create_datawriter
+     - DDS_DataWriter
+     - :link_connextmicro_dds_api_c_up_one:`DDS_DataWriterQos <group__DDSUserManuals__ResourceModule__dwqos.html>`
+   * - DDS_Subscriber_create_datareader
+     - DDS_DataReader
+     - :link_connextmicro_dds_api_c_up_one:`DDS_DataReaderQos <group__DDSUserManuals__ResourceModule__drqos.html>`
+   * - DDS_WaitSet_new
+     - DDS_WaitSet
+     - None
+   * - FooTypeSupport_register_type
+     - TypeSupport
+     - Type name length |br|
+       :ref:`section-memory-management-type-support`
+
+.. _section-memory-management-type-support:
+
+Discovery plugin resource limits
+--------------------------------
+
+|me| preallocates memory to store discovery information. If these limits are
+exceeeded, |me| discards the discovery information. |me| includes two different
+discovery plugins:
+
+#. Dynamic Participant Dynamic Endpoint (DPDE). Please refer
+   to :link_connextmicro_dds_api_c_up_one:`DPDE <group__DDSUserManuals__ResourceModule__dpde.html>`
+   for details. DPDE is the simplest discovery plugin to use; however, its
+   lack of ability to ignore DDS entities may cause |me| to run out of resources
+   if running in a non-determinstic environment. For this reason, DPDE is
+   recommended when running in a deterministic environment OR when resource
+   limits are set sufficiently high to accomocodate all possible scenarios.
+
+#. Dynamic Participant Static Endpoint (DPSE). Please refer
+   to :link_connextmicro_dds_api_c_up_one:`DPSE <group__DDSUserManuals__ResourceModule__dpse.html>`
+   for details. DPSE trades off ease of use, higher memory usage, and
+   non-deterministic behavior with more upfront configuraton, lower memory
+   usage, and deterministic behavior.
+
+The discovery process does not *only* store discovery information; it also
+*matches* local endpoints with discovered endpoints. While there may be
+sufficient resources needed to store a discovery message, the resource needed to
+perform matching may be exhausted. The DDS discovery process can easily exhaust
+the resource limits in |me|.
+
+The following resource limits are important to take into account:
+
+.. list-table:: Resource Limits and Discovery
+   :widths: 10 8
+   :header-rows: 1
+   :class: longtable
+
+   * - Resource Limit
+     - Description
+
+   * - ``DDS_DomainParticipantQos.resource_limits.remote_participant_allocation``
+     - The maximum number of *DomainParticipants* that can be discovered.
+       The *DomainParticipant* itself is never discovered.
+
+   * - ``DDS_DomainParticipantQos.resource_limits.remote_reader_allocation``
+     - The maximum number of remote *DataReaders* that can be discovered. Locally
+       created *DataReaders* are not discovered via discovery plugin and should
+       *not* count toward this limit.
+
+   * - ``DDS_DomainParticipantQos.resource_limits.remote_writer_allocation``
+     - The maximum number of remote *DataWriters* that can be discovered. Locally
+       created *DataWriters* are not discovered via discovery plugin and should
+       *not* count toward this limit.
+
+   * - ``DDS_DomainParticipantQos.resource_limits.matching_writer_reader_pair_allocation``
+     - The maximum number of RTPS sessions that can be created. An RTPS session
+       is created between a *DataReader* and a matched *DataWriter* *and*
+       between a *DataWriter* and a matched *DataReader*.
+
+   * - ``DDS_DataWriterQos.writer_resource_limits.max_remote_readers``
+     - The maximum number of *DataReaders* the *DataWriter* can match with. Note
+       that both discovered *and* locally created *DataReaders* should count
+       toward this resource limit.
+
+   * - ``DDS_DataReaderQos.writer_resource_limits.max_remote_writers``
+     - The maximum number of *DataWriters* the *DataReader* can match with. Note
+       that both discovered *and* locally created *DataWriters* should count
+       toward this resource limit.
+
+Type support resource limits
+----------------------------
+
+|me| supports two different types of code generation from IDL:
+
+#. **Interpreted**: The is the default and requires the use of the
+   ``rti_me_ddsxtypes`` library. However, it also allocates additional memory.
+   You can enable interpreted type support by passing ``interpreted 1`` to
+   *rtiddsgen*.
+
+#. **Non-Interpreted**: The non-intepreted type support does not support the
+   the DDS X-Types specification. However, it uses significantly less memory.
+   This is also the only type support supported by the CERT profile.
+   You can enable the non-interpreted type support by passing ``interpreted 0``
+   to *rtiddsgen*.

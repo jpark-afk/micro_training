@@ -1,0 +1,47 @@
+\doxysubsubsubsection{max\+\_\+receive\+\_\+ports}
+\hypertarget{group__DDSUserManuals__ResourceModule__dp__max__receive__ports}{}\label{group__DDSUserManuals__ResourceModule__dp__max__receive__ports}\index{max\_receive\_ports@{max\_receive\_ports}}
+\begin{DoxyParagraph}{NAME}
+\doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_a6f94968c12c525f5d3e1bc556ab2d012}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+receive\+\_\+ports}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{DESCRIPTION}
+RTI Connext DDS Micro listens for discovery data and user data on different transports as specified by the user. The \doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_a6f94968c12c525f5d3e1bc556ab2d012}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+receive\+\_\+ports} resource-\/limit sets the maximum number of addresses that can be listened on. As a rule of thumb, this resource limit can be determined as follows\+:
+\begin{DoxyItemize}
+\item A user-\/traffic unicast port counts as 1.
+\item A meta-\/traffic unicast port counts as 1.
+\item A user-\/traffic multicast address counts as 1.
+\item A meta-\/traffic multicast address counts as 1.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{EXAMPLES}
+Consider the typical case with the UDP transport, using unicast and multicast for discovery data and unicast for user data\+:
+\begin{DoxyItemize}
+\item Discovery data needs two ports.
+\item User data needs one port.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Thus, this requires 3 resources.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Consider a case with the UDP transport, using unicast and multicast for discovery data and user data\+:
+\begin{DoxyItemize}
+\item Discovery data needs two ports.
+\item User data needs two ports.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Thus, this requires 4 resources.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Consider a case with the UDP transport, using unicast and 2 multicast addresses each for discovery data and user data\+:
+\begin{DoxyItemize}
+\item Discovery data needs three ports.
+\item User data needs three ports.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Thus, this requires 6 resources.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{NOTES}
+The default value has been set to cover most cases. This resource-\/limit should only be changed if a lot of interfaces are supported (increase it) or if memory is extremely limited (decrease it). 
+\end{DoxyParagraph}

@@ -1,0 +1,192 @@
+\doxysubsubsection{OSAPI\+\_\+\+Shared\+Memory\+Monitor}
+\hypertarget{group__OSAPI__SharedMemoryMonitorClass}{}\label{group__OSAPI__SharedMemoryMonitorClass}\index{OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}}
+
+
+A shared memory monitor to provide mutual exclusion between processes and inter-\/process signaling.  
+
+
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} \mbox{\hyperlink{group__OSAPI__SharedMemoryMonitorClass_gabac0bcc7bef233be60df3e46cfb14996}{OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+get\+\_\+size}} (void)
+\begin{DoxyCompactList}\small\item\em Get the amount of memory required to store OSAPI\+\_\+\+Shared\+Memory\+Monitor on the current platform. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemoryMonitorClass_ga55dcd3143932659d58d225b21c9223bc}{OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+initialize}} (\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} mem\+\_\+len, void \texorpdfstring{$\ast$}{*}mem, struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}self\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Initialize a shared memory monitor in a provided memory segment. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemoryMonitorClass_ga9327b2cd07fbf0ddf09cec5d3f706ca0}{OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+finalize}} (struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Finalize a shared memory monitor. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemoryMonitorClass_ga3188171b73ba55dae0d639a5c091c2ea}{OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+acquire}} (struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga884eac2ae783af9e47a34f30da11d64f}{OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS}} \texorpdfstring{$\ast$}{*}status\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Acquire the lock protecting the monitor. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemoryMonitorClass_gac1118eb2f60fe91bfffdf5635605af62}{OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+release}} (struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Release the lock protecting the monitor. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemoryMonitorClass_gaa908d6b2000207aa7c72d32a4feb1ea2}{OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+wait}} (struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga884eac2ae783af9e47a34f30da11d64f}{OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS}} \texorpdfstring{$\ast$}{*}status\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Wait for the monitor to be signaled. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemoryMonitorClass_ga7caec5bd53de849a829773457e87fd91}{OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+signal}} (struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Signal a thread waiting on a monitor to wake up. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SharedMemoryMonitorClass_ga195fc581005cc9ca601f01546630c7be}{OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+mark\+\_\+consistent}} (struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Mark the shared state protected by the monitor as consistent after a process died while holding the lock on the monitor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+A shared memory monitor to provide mutual exclusion between processes and inter-\/process signaling. 
+
+
+
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__OSAPI__SharedMemoryMonitorClass_gabac0bcc7bef233be60df3e46cfb14996}\index{OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}!OSAPI\_SharedMemoryMonitor\_get\_size@{OSAPI\_SharedMemoryMonitor\_get\_size}}
+\index{OSAPI\_SharedMemoryMonitor\_get\_size@{OSAPI\_SharedMemoryMonitor\_get\_size}!OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemoryMonitor\_get\_size()}{OSAPI\_SharedMemoryMonitor\_get\_size()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemoryMonitorClass_gabac0bcc7bef233be60df3e46cfb14996} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get the amount of memory required to store OSAPI\+\_\+\+Shared\+Memory\+Monitor on the current platform. 
+
+\begin{DoxyReturn}{Returns}
+The number of bytes required to store a shared memory monitor. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SharedMemoryMonitorClass_ga55dcd3143932659d58d225b21c9223bc}\index{OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}!OSAPI\_SharedMemoryMonitor\_initialize@{OSAPI\_SharedMemoryMonitor\_initialize}}
+\index{OSAPI\_SharedMemoryMonitor\_initialize@{OSAPI\_SharedMemoryMonitor\_initialize}!OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemoryMonitor\_initialize()}{OSAPI\_SharedMemoryMonitor\_initialize()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemoryMonitorClass_ga55dcd3143932659d58d225b21c9223bc} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}}}]{mem\+\_\+len}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{mem}{, }\item[{struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{self\+\_\+out}{}\end{DoxyParamCaption})}
+
+
+
+Initialize a shared memory monitor in a provided memory segment. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mem\+\_\+len} & Size of provided memory.\\
+\hline
+\mbox{\texttt{ in}}  & {\em mem} & Memory segment.\\
+\hline
+\mbox{\texttt{ out}}  & {\em self\+\_\+out} & Pointer to initialized monitor.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SharedMemoryMonitorClass_ga9327b2cd07fbf0ddf09cec5d3f706ca0}\index{OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}!OSAPI\_SharedMemoryMonitor\_finalize@{OSAPI\_SharedMemoryMonitor\_finalize}}
+\index{OSAPI\_SharedMemoryMonitor\_finalize@{OSAPI\_SharedMemoryMonitor\_finalize}!OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemoryMonitor\_finalize()}{OSAPI\_SharedMemoryMonitor\_finalize()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemoryMonitorClass_ga9327b2cd07fbf0ddf09cec5d3f706ca0} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+finalize (\begin{DoxyParamCaption}\item[{struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Finalize a shared memory monitor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em self} & Monitor to finalize.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred.
+\end{DoxyReturn}
+Once this function is called (even if it returns RTI\+\_\+\+FALSE) you can no longer use this monitor. \Hypertarget{group__OSAPI__SharedMemoryMonitorClass_ga3188171b73ba55dae0d639a5c091c2ea}\index{OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}!OSAPI\_SharedMemoryMonitor\_acquire@{OSAPI\_SharedMemoryMonitor\_acquire}}
+\index{OSAPI\_SharedMemoryMonitor\_acquire@{OSAPI\_SharedMemoryMonitor\_acquire}!OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemoryMonitor\_acquire()}{OSAPI\_SharedMemoryMonitor\_acquire()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemoryMonitorClass_ga3188171b73ba55dae0d639a5c091c2ea} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+acquire (\begin{DoxyParamCaption}\item[{struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga884eac2ae783af9e47a34f30da11d64f}{OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS}} \texorpdfstring{$\ast$}{*}}]{status\+\_\+out}{}\end{DoxyParamCaption})}
+
+
+
+Acquire the lock protecting the monitor. 
+
+~\newline
+ If this function returns RTI\+\_\+\+TRUE, the calling thread is guaranteed mutual exclusion by the monitor. No other thread can acquire the lock until the lock is returned with \doxylink{group__OSAPI__SharedMemoryMonitorClass_gac1118eb2f60fe91bfffdf5635605af62}{OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+release}. This function shall not be called by a thread which currently holds the lock.
+
+If this function returns status\+\_\+out=OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS\+\_\+\+OWNER\+\_\+\+DEAD, then any shared data protected by the monitor may be in an inconsistent state. If the shared data can be restored to a consistent state, then it can be marked as consistent with \doxylink{group__OSAPI__SharedMemoryMonitorClass_ga195fc581005cc9ca601f01546630c7be}{OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+mark\+\_\+consistent}. Otherwise, any subsequent attempts to acquire or wait on the monitor will fail.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em self} & Monitor to acquire.\\
+\hline
+\mbox{\texttt{ out}}  & {\em status\+\_\+out} & If successful, the status of the protected state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SharedMemoryMonitorClass_gac1118eb2f60fe91bfffdf5635605af62}\index{OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}!OSAPI\_SharedMemoryMonitor\_release@{OSAPI\_SharedMemoryMonitor\_release}}
+\index{OSAPI\_SharedMemoryMonitor\_release@{OSAPI\_SharedMemoryMonitor\_release}!OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemoryMonitor\_release()}{OSAPI\_SharedMemoryMonitor\_release()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemoryMonitorClass_gac1118eb2f60fe91bfffdf5635605af62} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+release (\begin{DoxyParamCaption}\item[{struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Release the lock protecting the monitor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em self} & Monitor to release.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred.
+\end{DoxyReturn}
+This function can only be called on a monitor which is currently locked by the calling thread. \Hypertarget{group__OSAPI__SharedMemoryMonitorClass_gaa908d6b2000207aa7c72d32a4feb1ea2}\index{OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}!OSAPI\_SharedMemoryMonitor\_wait@{OSAPI\_SharedMemoryMonitor\_wait}}
+\index{OSAPI\_SharedMemoryMonitor\_wait@{OSAPI\_SharedMemoryMonitor\_wait}!OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemoryMonitor\_wait()}{OSAPI\_SharedMemoryMonitor\_wait()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemoryMonitorClass_gaa908d6b2000207aa7c72d32a4feb1ea2} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+wait (\begin{DoxyParamCaption}\item[{struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__OSAPI__SharedMemorySegmentClass_ga884eac2ae783af9e47a34f30da11d64f}{OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS}} \texorpdfstring{$\ast$}{*}}]{status\+\_\+out}{}\end{DoxyParamCaption})}
+
+
+
+Wait for the monitor to be signaled. 
+
+Only one thread can wait on a monitor at any one time. This function can only be called on a monitor which is currently locked by the calling thread. The function will return successfully only when another thread has called \doxylink{group__OSAPI__SharedMemoryMonitorClass_ga7caec5bd53de849a829773457e87fd91}{OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+signal} and when the calling thread has acquired the lock.
+
+If this function returns status\+\_\+out=OSAPI\+\_\+\+SHMEM\+\_\+\+STATUS\+\_\+\+OWNER\+\_\+\+DEAD, then any shared data protected by the monitor may be in an inconsistent state. If the shared data can be restored to a consistent state, then it can be marked as consistent with \doxylink{group__OSAPI__SharedMemoryMonitorClass_ga195fc581005cc9ca601f01546630c7be}{OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+mark\+\_\+consistent}. Otherwise, any subsequent attempts to acquire or wait on the monitor will fail.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em self} & Monitor to wait on.\\
+\hline
+\mbox{\texttt{ out}}  & {\em status\+\_\+out} & If successful, the status of the protected state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SharedMemoryMonitorClass_ga7caec5bd53de849a829773457e87fd91}\index{OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}!OSAPI\_SharedMemoryMonitor\_signal@{OSAPI\_SharedMemoryMonitor\_signal}}
+\index{OSAPI\_SharedMemoryMonitor\_signal@{OSAPI\_SharedMemoryMonitor\_signal}!OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemoryMonitor\_signal()}{OSAPI\_SharedMemoryMonitor\_signal()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemoryMonitorClass_ga7caec5bd53de849a829773457e87fd91} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+signal (\begin{DoxyParamCaption}\item[{struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Signal a thread waiting on a monitor to wake up. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em self} & Monitor to signal.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred.
+\end{DoxyReturn}
+This function can only be called on a monitor which is currently locked by the calling thread. \Hypertarget{group__OSAPI__SharedMemoryMonitorClass_ga195fc581005cc9ca601f01546630c7be}\index{OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}!OSAPI\_SharedMemoryMonitor\_mark\_consistent@{OSAPI\_SharedMemoryMonitor\_mark\_consistent}}
+\index{OSAPI\_SharedMemoryMonitor\_mark\_consistent@{OSAPI\_SharedMemoryMonitor\_mark\_consistent}!OSAPI\_SharedMemoryMonitor@{OSAPI\_SharedMemoryMonitor}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SharedMemoryMonitor\_mark\_consistent()}{OSAPI\_SharedMemoryMonitor\_mark\_consistent()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SharedMemoryMonitorClass_ga195fc581005cc9ca601f01546630c7be} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Shared\+Memory\+Monitor\+\_\+mark\+\_\+consistent (\begin{DoxyParamCaption}\item[{struct OSAPI\+\_\+\+Shared\+Memory\+Monitor \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Mark the shared state protected by the monitor as consistent after a process died while holding the lock on the monitor. 
+
+This function can only be called on a monitor which is currently locked by the calling thread and currently inconsistent. The function shall return the monitor to a consistent state and allow other functions to be called on it. This function may not be supported on all platforms.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em self} & Monitor to mark consistent.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred. 
+\end{DoxyReturn}

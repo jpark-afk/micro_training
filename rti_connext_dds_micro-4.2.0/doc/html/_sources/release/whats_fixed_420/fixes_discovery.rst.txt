@@ -1,0 +1,76 @@
+Discovery
+=========
+
+.. Release Notes from this point.
+
+:critical:`[Critical]` Lost INFO_DST messages with GUIDPREFIX_UNKNOWN
+---------------------------------------------------------------------
+|me| may have silently discarded RTPS INFO_DST messages
+containing a *guidPrefix* of ``0x0`` (GUIDPREFIX_UNKNOWN).
+
+[RTI Issue ID MICRO-8751]
+
+:major:`[Major]` DomainParticipants stopped sending announcements to initial peer locator after a discovered DomainParticipant went away
+----------------------------------------------------------------------------------------------------------------------------------------
+*This issue only affected patch release 4.1.0.1.*
+
+If *DomainParticipant A* discovered *DomainParticipant B* on an initial peer
+locator, then lost *DomainParticipant B* and attempted to rediscover it,
+*DomainParticipant A* would stop sending discovery announcements to that initial
+peer locator.
+
+[RTI Issue ID MICRO-10899]
+
+.. _MICRO-10044:
+
+:major:`[Major]` Possible mismatched endpoint messages during discovery
+-----------------------------------------------------------------------
+If a *DomainParticipant* receives an endpoint discovery message and lacks
+sufficient resources to store the endpoint, |me| will (by default)
+acknowledge the message as received, but discard the discovery information.
+This can lead to a mismatch in discovery states between *DomainParticipants*. 
+
+This release adds a new field,
+``DomainParticipantQos.discovery.enable_endpoint_discovery_queue``, and if this
+field is set to ``DDS_BOOLEAN_TRUE``, endpoint discovery messages will instead be
+queued for later processing when resources become available.
+
+.. note::
+
+  This new field assumes that there are sufficient resources available for
+  discovery information and that the lack of resources is temporary (such as
+  during a system restart). Setting this value to ``DDS_BOOLEAN_TRUE`` without
+  sufficient resources may cause undefined behavior.
+
+[RTI Issue ID MICRO-10044]
+
+:major:`[Major]` DomainParticipants continued to send DATA(p) messages to nonexistent remote participants
+---------------------------------------------------------------------------------------------------------
+A *DomainParticipant* might have continued to send DATA(p) discovery
+messages to remote *DomainParticipants* that were once discovered but no
+longer exist.
+
+[RTI Issue ID MICRO-8747]
+
+:major:`[Major]` DataReader failed to acknowledge samples when it received more instances than it could store
+-------------------------------------------------------------------------------------------------------------
+A *DataReader* failed to add key instances or acknowledge samples when it
+received more instances than its QoS supported.
+
+[RTI Issue ID MICRO-8872]
+
+:minor:`[Minor]` Participants using DPDE sent one extra announcement message
+----------------------------------------------------------------------------
+Participants using DPDE sent one more participant announcement message than
+expected for discovery purposes.
+
+[RTI Issue ID MICRO-8257]
+
+:minor:`[Minor]` Failed to delete a participant before sending at least one participant announcement
+----------------------------------------------------------------------------------------------------
+If ``DomainParticipantFactory_delete_participant`` was called before
+sending at least one participant announcement,
+``DomainParticipantFactory_delete_participant`` would return a failure.
+
+[RTI Issue ID MICRO-9828]
+

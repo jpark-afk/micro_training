@@ -1,0 +1,52 @@
+\doxysubsection{DDS\+\_\+\+Ownership\+Strength\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__OwnershipStrengthQosPolicy}{}\label{structDDS__OwnershipStrengthQosPolicy}\index{DDS\_OwnershipStrengthQosPolicy@{DDS\_OwnershipStrengthQosPolicy}}
+
+
+Specifies the value of the strength used to arbitrate among multiple \doxylink{classDDSDataWriter}{DDSData\+Writer} objects that attempt to modify the same instance of a data type (identified by \doxylink{classDDSTopic}{DDSTopic} + key).  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__OwnershipStrengthQosPolicy_afda6a59cd3cfd9bc904c98efc68a61eb}{value}}
+\begin{DoxyCompactList}\small\item\em The strength value used to arbitrate among multiple writers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Specifies the value of the strength used to arbitrate among multiple \doxylink{classDDSDataWriter}{DDSData\+Writer} objects that attempt to modify the same instance of a data type (identified by \doxylink{classDDSTopic}{DDSTopic} + key). 
+
+This policy only applies if the \doxylink{group__DDSOwnershipQosModule}{OWNERSHIP} policy is of kind \doxylink{group__DDSOwnershipQosModule_ggaa88100c64a26cc036cb2eb2d631c3f43a6f223289a81f87d7929408a84a27f316}{DDS\+\_\+\+EXCLUSIVE\+\_\+\+OWNERSHIP\+\_\+\+QOS}. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSDataWriter}{DDSData\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = N/A ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} ~\newline
+ 
+\end{DoxyParagraph}
+The value of the \doxylink{group__DDSOwnershipStrengthQosModule}{OWNERSHIP\+\_\+\+STRENGTH} is used to determine the ownership of a data-\/instance (identified by the key). The arbitration is performed by the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{dds_c_infrastructure.h_DDSOwnershipQosModule_usage_exclusive}{EXCLUSIVE ownership}{2} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__OwnershipStrengthQosPolicy_afda6a59cd3cfd9bc904c98efc68a61eb}\index{DDS\_OwnershipStrengthQosPolicy@{DDS\_OwnershipStrengthQosPolicy}!value@{value}}
+\index{value@{value}!DDS\_OwnershipStrengthQosPolicy@{DDS\_OwnershipStrengthQosPolicy}}
+\doxyparagraph{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily \label{structDDS__OwnershipStrengthQosPolicy_afda6a59cd3cfd9bc904c98efc68a61eb} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Ownership\+Strength\+Qos\+Policy\+::value}
+
+
+
+The strength value used to arbitrate among multiple writers. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 0 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}0, 1 million\mbox{]} 

@@ -1,0 +1,65 @@
+Generate Type Support Code with rtiddsgen
+=========================================
+
+You will provide your IDL as an input to *rtiddsgen*.  *rtiddsgen* supports code
+generation for the following standard types:
+
+ - octet, char, wchar
+ - short, unsigned short
+ - long, unsigned long
+ - long long, unsigned long long float
+ - double, long double
+ - boolean
+ - string
+ - struct
+ - array
+ - enum
+ - wstring
+ - sequence
+ - union
+ - typedef
+ - value type
+
+*rtiddsgen* is in
+*<your_top_level_dir>/rti_connext_dds-7.3.0/rti_connext_micro-4.0.1/rtiddsgen/scripts*.
+
+To generate support code for data types in a file called HelloWorld.idl: ::
+
+   rtiddsgen -micro -language C -replace HelloWorld.idl
+
+Run ``rtiddsgen -help`` to see all available options.  For the options used here:
+
+* The ``-micro`` option is necessary to generate support code specific to |me|,
+  as *rtiddsgen* is also capable of generating support code for |core|,
+  and the generated code for the two are different.
+
+* The ``-language`` option specifies the language of the generated code. |me|
+  supports C and C++ (with ``-language C++``).
+
+* The ``-replace`` option specifies that the new generated code will replace,
+  or overwrite, any existing files with the same name.
+
+*rtiddsgen* generates the following files for an input file HelloWorld.idl:
+
+* **HelloWorld.h and HelloWorld.c**. Operations to manage a sample of the
+  type, and a DDS sequence of the type.
+
+* **HelloWorldPlugin.h and HelloWorldPlugin.c**. Implements the type-plugin
+  interface defined by |me|.  Includes operations to serialize and deserialize
+  a sample of the type and its DDS instance keys.
+
+* **HelloWorldSupport.h and HelloWorldSupport.c**. Support operations to
+  generate a type-specific *DataWriter* and *DataReader*, and to register the type
+  with a DDS *DomainParticipant*.
+
+This release of |me| supports a new way to generate support code for IDL Types that will 
+generate a TypeCode object containing information used by an interpreter to serialize
+and deserialize samples. Prior to this release, the code for serialization and deserialization
+was generated for each type. 
+To disable generating code to be used by the interpreter, use the ``-interpreted 0`` 
+command-line option to generate code. 
+This option generates code in the same way as was done in previous releases.
+
+For more details, see :doc:`../usersmanual/rtiddsgen` in the *User's Manual*.
+
+

@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['nack_5fperiod_0',['nack_period',['../structDDS__RtpsReliableReaderProtocol__t.html#a9c299ef4fe921b91a7bdedadcd38c2a8',1,'DDS_RtpsReliableReaderProtocol_t']]],
+  ['name_1',['name',['../structDDS__FilterQosPolicy.html#abf99b0bab461715b53ffdaabaa162f01',1,'DDS_FilterQosPolicy::name'],['../structDDS__DiscoveryComponent.html#ad99117d643b57ee09ccb14700449b35b',1,'DDS_DiscoveryComponent::name'],['../structDDS__EntityNameQosPolicy.html#a6217d3549242214e9e288f4a2b58c52d',1,'DDS_EntityNameQosPolicy::name'],['../structDDS__PartitionQosPolicy.html#a32d912c94f200b40110043c31a45e12d',1,'DDS_PartitionQosPolicy::name'],['../structDDS__Property__t.html#a154ba5b855e64321ff3b8e956de169e2',1,'DDS_Property_t::name']]],
+  ['nanosec_2',['nanosec',['../structOSAPI__SystemTime.html#af009e848331d842e54ffc2f21dbc43ea',1,'OSAPI_SystemTime::nanosec'],['../structDDS__Time__t.html#aeefbede0d9976cbcdce3c7499df4b548',1,'DDS_Time_t::nanosec'],['../structDDS__Duration__t.html#a3b0cc19e5e7ffff0d0c5ee8b679b50cb',1,'DDS_Duration_t::nanosec']]],
+  ['nat_3',['nat',['../structUDP__InterfaceFactoryProperty.html#aa497775dbc8f1aa5952ad9d003882377',1,'UDP_InterfaceFactoryProperty']]],
+  ['netio_5faddress_5fudpv4_5fany_5fmulticast_5froute_4',['NETIO_ADDRESS_UDPv4_ANY_MULTICAST_ROUTE',['../group__NETIO__DGRAMInterface.html#ga22d8c263f8e4f061498493f7685f9b4c',1,'netio_dgram.h']]],
+  ['netio_5faddress_5fudpv4_5fany_5funicast_5froute_5',['NETIO_ADDRESS_UDPv4_ANY_UNICAST_ROUTE',['../group__NETIO__DGRAMInterface.html#ga7f8aa1116addd6bf930f61bcf9007b0e',1,'netio_dgram.h']]],
+  ['netio_5faddress_5fudpv6_5fany_5fmulticast_5froute_6',['NETIO_ADDRESS_UDPv6_ANY_MULTICAST_ROUTE',['../group__NETIO__DGRAMInterface.html#gae9017872a4aeb1a2a6dabd2748dc6ab3',1,'netio_dgram.h']]],
+  ['netio_5faddress_5fudpv6_5fany_5funicast_5froute_7',['NETIO_ADDRESS_UDPv6_ANY_UNICAST_ROUTE',['../group__NETIO__DGRAMInterface.html#gaf94066a38ab2d9d12ae2ac2526cb327b',1,'netio_dgram.h']]],
+  ['netio_5fdefault_5fintra_5fname_8',['NETIO_DEFAULT_INTRA_NAME',['../netio__interface_8h.html#aa9b0eaef7ce88a9da2f48ee366b8d401',1,'netio_interface.h']]],
+  ['netio_5fdefault_5fnotif_5fname_9',['NETIO_DEFAULT_NOTIF_NAME',['../group__ZCOPY__NotifInterfaceClass.html#ga611e2d6de3dd5f6b0cb9e88f6d79daed',1,'netio_zcopy.h']]],
+  ['netio_5fdefault_5frtps_5fname_10',['NETIO_DEFAULT_RTPS_NAME',['../netio__interface_8h.html#a94c1a95d9eac9af651f29a4ed3a261d5',1,'netio_interface.h']]],
+  ['netio_5fdefault_5fshmem_5fname_11',['NETIO_DEFAULT_SHMEM_NAME',['../netio__interface_8h.html#a369f9483ef08913268652f7c17d7039c',1,'netio_interface.h']]],
+  ['netio_5fdefault_5fudp_5fname_12',['NETIO_DEFAULT_UDP_NAME',['../netio__interface_8h.html#af4aac637b972cd1f2697180325034bb7',1,'netio_interface.h']]],
+  ['netmask_13',['netmask',['../structNETIO__DGRAM__InterfaceMultiCastGroup.html#a513deffbf655b06e7b47b2abddb6921d',1,'NETIO_DGRAM_InterfaceMultiCastGroup::netmask'],['../structNETIO__DGRAM__InterfaceRouteEntry.html#aceacf1f8d16b5268b14e5b2728e30a0d',1,'NETIO_DGRAM_InterfaceRouteEntry::netmask'],['../structUDP__InterfaceTableEntry.html#af81c852401651dd859af8d0f28b3f20c',1,'UDP_InterfaceTableEntry::netmask'],['../group__UDPTransformModule.html#ga729d15d4ea1d8ea323d4c9e8f580b043',1,'UDP_TransformRule::netmask']]],
+  ['not_5falive_5fcount_14',['not_alive_count',['../structDDS__LivelinessChangedStatus.html#a033deaf4050e1d8c8f449a8d8d23f42b',1,'DDS_LivelinessChangedStatus']]],
+  ['not_5falive_5fcount_5fchange_15',['not_alive_count_change',['../structDDS__LivelinessChangedStatus.html#a7538f6a9c8972ce3f715926666152458',1,'DDS_LivelinessChangedStatus']]],
+  ['notify_5frecv_5fport_16',['notify_recv_port',['../structZCOPY__NotifUserInterfaceI.html#aab6aa425e1d847510f981efefe146011',1,'ZCOPY_NotifUserInterfaceI']]]
+];

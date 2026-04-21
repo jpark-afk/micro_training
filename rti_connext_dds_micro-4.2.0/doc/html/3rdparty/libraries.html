@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>11.1. Connext Micro Libraries &mdash; RTI Connext Micro 4.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.2. RTI Code Generator (rtiddsgen)" href="rtiddsgen.html" />
+    <link rel="prev" title="11. Third-Party and Open Source Software" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">3. User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">4. Platform Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building/index.html">5. Building Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with Connext Micro and Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">11. Third-Party and Open Source Software</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">11.1. Connext Micro Libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fnmatch">11.1.1. fnmatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crc32c-c">11.1.2. crc32c.c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#md5">11.1.3. MD5</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">11.2. RTI Code Generator (rtiddsgen)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsmag.html">11.3. Micro Application Generator (rtiddsmag)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="psk.html">11.4. Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appendix.html">11.5. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">12. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">11. </span>Third-Party and Open Source Software</a> &raquo;</li>
+        
+      <li><span class="section-number">11.1. </span>Connext Micro Libraries</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/3rdparty/libraries.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="me-h-libraries">
+<h1><span class="section-number">11.1. </span>Connext Micro Libraries<a class="headerlink" href="#me-h-libraries" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="fnmatch">
+<h2><span class="section-number">11.1.1. </span>fnmatch<a class="headerlink" href="#fnmatch" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Related to: Content-filtered topics, query conditions, partitions,
+multicast address management, topic filter in XML QoS profile.</p></li>
+<li><p>Software is included in the core middleware libraries.</p></li>
+<li><p>Third-Party Software License:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Copyright (c) 1989, 1993, 1994
+
+The Regents of the University of California. All rights reserved.
+
+This code is derived from software contributed to Berkeley by Guido
+van Rossum.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+
+1. Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+
+3. All advertising materials mentioning features or use of this
+software must display the following acknowledgement:
+
+This product includes software developed by the University of
+California, Berkeley and its contributors.
+
+4. Neither the name of the University nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS \``AS IS&#39;&#39;
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</pre></div>
+</div>
+</div>
+<div class="section" id="crc32c-c">
+<h2><span class="section-number">11.1.2. </span>crc32c.c<a class="headerlink" href="#crc32c-c" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Related to: RTPS CRC-32 checksum support</p></li>
+<li><p>Version 1.1</p></li>
+<li><p>Third-Party Software License:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>This software is provided ‘as-is’, without any express or implied
+warranty. In no event will the author be held liable for any damages
+arising from the use of the software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not
+claim that you wrote the original software. If you use this software
+in a product, an acknowledgement in the product documentation would
+be appreciated but is not required.
+
+2. Altered source versions must be plainly marked as such, and must not
+be misrepresented as being the original software.
+
+3. This notice may not be removed or altered from any source
+distribution
+
+
+Mark Adler
+
+madler@alumni.caltech.edu
+</pre></div>
+</div>
+</div>
+<div class="section" id="md5">
+<h2><span class="section-number">11.1.3. </span>MD5<a class="headerlink" href="#md5" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Related to: DDS keys implementation, content-filtered topics (to sign
+the filter), persistence service (to generate writer-side unique
+identification), Integration Toolkit for AUTOSAR (DDS-IDL Service
+Interface code generation)</p></li>
+<li><p>Software is included in core DDS middleware libraries, in the Connext
+DDS Micro libraries, in the Connext DDS Cert libraries and in the
+Integration Toolkit for AUTOSAR.</p></li>
+<li><p>Third-Party Software License:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Copyright (C) 1999, 2002 Aladdin Enterprises.  All rights reserved.
+
+This software is provided &#39;as-is&#39;, without any express or implied
+warranty.  In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not
+    claim that you wrote the original software. If you use this software
+    in a product, an acknowledgment in the product documentation would be
+    appreciated but is not required.
+2. Altered source versions must be plainly marked as such, and must not be
+    misrepresented as being the original software.
+3. This notice may not be removed or altered from any source distribution.
+
+L. Peter Deutsch
+ghost@aladdin.com
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rtiddsgen.html" class="btn btn-neutral float-right" title="11.2. RTI Code Generator (rtiddsgen)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="11. Third-Party and Open Source Software" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2025, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

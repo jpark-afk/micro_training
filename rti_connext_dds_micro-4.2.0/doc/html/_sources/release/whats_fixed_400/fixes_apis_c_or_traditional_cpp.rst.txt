@@ -1,0 +1,69 @@
+APIs (C or Traditional C++)
+===========================
+
+:critical:`[Critical]` Segmentation fault when finalizing DataWriter QoS
+------------------------------------------------------------------------
+Finalizing a *DataWriter* QoS could have resulted in a segmentation fault if
+**publish_mode.name** was set to a builtin Flow Controller name. 
+
+[RTI Issue ID MICRO-5966]
+
+:major:`[Major]` DDS_Subscriber_lookup_datareader may return a DataReader that was created by a different Subscriber
+--------------------------------------------------------------------------------------------------------------------
+
+The ``DDS_Subscriber_lookup_datareader`` API searches for a *DataReader* for a 
+given TopicDescription created by the *Subscriber*. However, in previous 
+releases, it the returned *DataReader* could belong to a different 
+*Subscriber* if multiple *DataReaders* were created for the same *Topic* in 
+different *Subscribers*.
+
+[RTI Issue ID MICRO-4569]
+
+:major:`[Major]` DDS_Publisher_lookup_datawriter may return a DataWriter that was created by a different Publisher
+------------------------------------------------------------------------------------------------------------------
+
+The ``DDS_Publisher_lookup_datawriter`` API searches for a *DataWriter* for a 
+given *Topic* created by the *Publisher*. However, in previous releases, the 
+returned *DataWriter* could belong to a different *Publisher* if multiple 
+*DataWriters* were created for the same *Topic* in different *Publishers*.
+
+[RTI Issue ID MICRO-4570]
+
+:major:`[Major]` DDS_Entity_enable was not thread-safe for a DomainParticipant
+------------------------------------------------------------------------------
+
+*DDS_Entity_enable* was not thread-safe, which may 
+have led to race conditions. 
+
+[RTI Issue ID MICRO-3379]
+
+:major:`[Major]` Race condition in DDS enable APIs
+--------------------------------------------------
+
+A race condition existed if the same DDS entity was
+enabled from multiple threads at the same time.
+
+[RTI Issue ID MICRO-3311]
+  
+:minor:`[Minor]` DDS_FLOW_CONTROLLER_PROPERTY_DEFAULT ignored when used as argument to DDS_DomainParticipant_create_flowcontroller
+----------------------------------------------------------------------------------------------------------------------------------
+The following related issues are resolved in this release:
+
+- *Connext Micro* ignored DDS_FLOW_CONTROLLER_PROPERTY_DEFAULT when passed in
+  to the ``DDS_DomainParticipant_create_flowcontroller`` API call. 
+
+- The properties used by *Connext Micro* for the builtin Flow Controllers were
+  not aligned with *Connext Professional*. 
+
+- The default Flow Controller properties returned were not aligned with
+  *Connext Professional*. 
+
+[RTI Issue ID MICRO-6118]
+
+:minor:`[Minor]` Failure to parse invalid index
+-----------------------------------------------
+
+A peer descriptor string consisting of only an invalid range, e.g, "``[3``"
+was incorrectly interpreted as the empty peer address string "".
+
+[RTI Issue ID MICRO-4436]

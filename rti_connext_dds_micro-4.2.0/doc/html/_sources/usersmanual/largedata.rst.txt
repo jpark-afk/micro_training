@@ -1,0 +1,108 @@
+Sending Large Data
+==================
+
+|me| supports transmission and reception of data types that exceed the
+maximum message size of a transport. This section describes the behavior and the
+configuration options.
+
+This section includes:
+
+- `Overview`_
+- `Configuration of Large Data`_
+- `Limitations`_
+
+Overview
+--------
+
+|me| supports transmission and reception of data samples that exceed the
+maximum message size of a transport. For example, UDP supports a maximum user payload
+of 65507 bytes. In order to send samples larger than 65507 bytes, |me| must
+split the sample into multiple UDP payloads.
+
+When a sample larger than the transport size is sent, |me| splits the sample
+into fragments and starts sending fragments based on a flow-control algorithm. A
+bandwidth-allocation parameter on the *DataWriter* and the scheduling rate
+determine how frequently and how much data can be sent each period.
+
+When a sample is received in multiple fragments, the receiver reassembles each fragment
+into a complete serialized sample. The serialized data is then deserialized and made
+available to the user as regular data.
+
+When working with large data, it is important to keep the following in mind:
+
+- Fragmentation is always enabled.
+- Fragmentation is per *DataWriter*.
+- Flow-control is per *DataWriter*. It is important to keep this in mind since in |rti_core_pro|
+  the flow-controller works across all *DataWriters* in the same publisher.
+- Fragmentation is on a per sample basis. That is, two samples of the same type may lead to
+  fragmentation of one sample, but not the other. The application is never exposed to
+  fragments.
+- It is the *DataWriters* that determine the fragmentation size. Different *DataWriters* can
+  use different fragmentation sizes for the same type.
+- All fragments must be received before a sample can be reconstructed. When using best-effort,
+  if a fragment is lost, the entire sample is lost. When using reliability, a fragment that is
+  not received may be resent. If a fragment is no longer available, the entire sample is
+  dropped.
+- If one of the DDS **write()** APIs is called too fast when writing large samples,
+  |me| may run out of resources. This is because the sample may take a long time to
+  send and resources are not freed until the complete sample has been sent.
+
+It is important to distinguish between the following concepts:
+
+- Fragmentation by |me|.
+- Fragmentation by an underlying transport, e.g., IP fragmentation when UDP datagrams exceed
+  about 1488 bytes.
+- The maximum transmit message size of the sender. This is the maximum size of any payload
+  going over the transport.
+- The maximum transport transmit buffer size of the sender. This is the maximum number of
+  bytes that can be stored by the transport.
+- The maximum receive message size of a receiver. This is the maximum size of a single
+  payload on a transport.
+- The maximum receive buffer size of a receiver. This is the maximum number of bytes that
+  can be received.
+
+Configuration of Large Data
+---------------------------
+
+For a general overview of writing large data, please refer to these sections in the :link_external_community_doc_pro_um:`RTI Connext DDS Core Libraries User's Manual <index.htm>`:
+
+- :link_external_community_doc_pro_um:`the ASYNCHRONOUS_PUBLISHER QoSPolicy section <index.htm#users_manual/ASYNCHRONOUS_PUBL_Qos.htm>` (available :link_external_community_doc_pro_um:`here <index.htm#users_manual/ASYNCHRONOUS_PUBL_Qos.htm>` if you have Internet access)
+- :link_external_community_doc_pro_um:`the FlowControllers section <index.htm#users_manual/FlowControllers__DDS_Extension_.htm>` (available :link_external_community_doc_pro_um:`here <index.htm#users_manual/FlowControllers__DDS_Extension_.htm>` if you have Internet access)
+
+NOTE: |me| only supports the default FlowController.
+
+Asynchronous publishing is handled by a separate thread that runs at a fixed rate. The rate
+and properties of this thread can be adjusted in the OSAPI_SystemProperty and the
+following fields before :link_connextmicro_dds_api_c_up_one:`DomainParticipantFactory_get_instance() <group__DDSDomainParticipantFactoryModule.html>` is called.
+
+::
+
+    struct OSAPI_SystemProperty sys_property = OSAPI_SystemProperty_INITIALIZER;
+    DDS_DomainParticipantFactory *factory = NULL;
+
+    if (!OSAPI_System_get_property(&sys_property))
+    {
+        /* error */
+    }
+
+    sys_property.task_scheduler.thread.stack_size = ....
+    sys_property.task_scheduler.thread.options = ....
+    sys_property.task_scheduler.thread.priority = ....
+    sys_property.task_scheduler.rate = rate in nanosec;
+
+    if (!OSAPI_System_set_property(&sys_property))
+    {
+        /* error */
+    }
+
+    factory = DDS_DomainParticipantFactory_get_instance();
+
+    ....
+
+Limitations
+-----------
+
+The following are known limitations and issues with Large Data support:
+
+- It is not possible to disable fragmentation support.
+- The scheduler thread accuracy is based on the operating system.

@@ -1,0 +1,24 @@
+Reliability Protocol and Wire Representation
+============================================
+
+:critical:`[Critical]` Reliable DataWriter may have ignored requests to resend samples
+--------------------------------------------------------------------------------------
+
+If a *DataWriter* received multiple requests to resend samples before 
+its periodic heartbeat period expired, the *DataWriter* may have ignored 
+the request if the requested sample had been sent and was also the first 
+expected sample by the requesting *DataReader*.
+
+[RTI Issue ID MICRO-5183]
+
+:minor:`[Minor]` Incorrect heartbeat sent before first sample when first_write_sequence_number is different from 1
+------------------------------------------------------------------------------------------------------------------
+
+In previous releases, if the **DataWriterQos.protocol.rtps_reliable_writer.first_write_sequence_number**
+was different from the default value 1, heartbeats sent before the first
+sample was written would indicate 1 as the first sample available. This
+caused a *DataReader* to wait for samples with a sequence number less than
+**DataWriterQos.protocol.rtps_reliable_writer.first_write_sequence_number**
+until a heartbeat with the correct first sequence number was received.
+
+[RTI Issue ID MICRO-4081]

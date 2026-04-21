@@ -1,0 +1,42 @@
+Generated Code (C, Traditional C++, and Modern C++)
+===================================================
+
+:major:`[Major]` Incorrect generated code when using IDL whose name starts with a number
+----------------------------------------------------------------------------------------
+
+The generated code for an IDL whose name started with a number was incorrect 
+and did not compile. The generated code contained some ifdef instructions that 
+started with a number, which was not valid because an identifier must start 
+with a letter (or underscore).
+
+Now, invalid identifier characters are converted to '_' in the ifdef 
+instruction.
+
+[RTI Issue ID MICRO-2066]
+
+:major:`[Major]` Code generated for a FLAT_DATA type failed to compile when using namespace option
+--------------------------------------------------------------------------------------------------
+
+Code generated for a FLAT_DATA type failed to compile when using the 
+``-namespace`` option to run *rtiddsgen*.
+
+[RTI Issue ID MICRO-6788]
+
+:major:`[Major]` Code generated for an aliased sequence of an aliased string failed to compile
+----------------------------------------------------------------------------------------------
+
+The code generated for an aliased sequence of an aliased string failed to 
+compile. For example, the following IDL would fail:
+
+.. code-block:: idl
+
+    typedef string<2> MyString10;
+    typedef sequence<MyString10,4> MyStringSeq10;
+
+    struct SequenceType4 {
+       string<64> msg;
+       MyString msg2;
+       MyStringSeq10 seq;
+    };
+
+[RTI Issue ID MICRO-6824]

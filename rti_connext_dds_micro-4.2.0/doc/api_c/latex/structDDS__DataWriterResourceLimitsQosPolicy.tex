@@ -1,0 +1,131 @@
+\doxysubsection{DDS\+\_\+\+Data\+Writer\+Resource\+Limits\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__DataWriterResourceLimitsQosPolicy}{}\label{structDDS__DataWriterResourceLimitsQosPolicy}\index{DDS\_DataWriterResourceLimitsQosPolicy@{DDS\_DataWriterResourceLimitsQosPolicy}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Resource limits that apply only to \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} instances.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataWriterResourceLimitsQosPolicy_a6f64b3e30241cdb06ce4942641336025}{max\+\_\+remote\+\_\+readers}}
+\begin{DoxyCompactList}\small\item\em The maximum number of remote readers for which the writer will maintain state and communication. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataWriterResourceLimitsQosPolicy_abbf46a75c9cd1bed060b1f1bcf99c66a}{max\+\_\+routes\+\_\+per\+\_\+reader}}
+\begin{DoxyCompactList}\small\item\em The maximum number of routes the writer will send to per matched reader. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataWriterResourceLimitsQosPolicy_a3573400a04c05813f29f72ed761665dc}{writer\+\_\+loaned\+\_\+sample\+\_\+allocation}}
+\begin{DoxyCompactList}\small\item\em Represents the amount of loanable samples managed by a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{structDDS__DataWriterResourceLimitsQosPolicy_a853628f860f77a13627f232fde71af80}{initialize\+\_\+writer\+\_\+loaned\+\_\+sample}}
+\begin{DoxyCompactList}\small\item\em Whether or not to initialize loaned samples returned by a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataWriterResourceLimitsQosPolicy_aa7a681cc4e445f5554947fd8fe7ea8d1}{max\+\_\+remote\+\_\+reader\+\_\+filters}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_experimental}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}experimental\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The maximum number of remote readers for which a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will simultaneously perform writer-\/side filtering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Resource limits that apply only to \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} instances. 
+
+This QoS policy is an extension to the DDS standard. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = N/A ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} ~\newline
+ 
+\end{DoxyParagraph}
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__DataWriterResourceLimitsQosPolicy_a6f64b3e30241cdb06ce4942641336025}\index{DDS\_DataWriterResourceLimitsQosPolicy@{DDS\_DataWriterResourceLimitsQosPolicy}!max\_remote\_readers@{max\_remote\_readers}}
+\index{max\_remote\_readers@{max\_remote\_readers}!DDS\_DataWriterResourceLimitsQosPolicy@{DDS\_DataWriterResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{max\_remote\_readers}{max\_remote\_readers}}
+{\footnotesize\ttfamily \label{structDDS__DataWriterResourceLimitsQosPolicy_a6f64b3e30241cdb06ce4942641336025} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Writer\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+remote\+\_\+readers}
+
+
+
+The maximum number of remote readers for which the writer will maintain state and communication. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 16 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, 100000000\mbox{]} \Hypertarget{structDDS__DataWriterResourceLimitsQosPolicy_abbf46a75c9cd1bed060b1f1bcf99c66a}\index{DDS\_DataWriterResourceLimitsQosPolicy@{DDS\_DataWriterResourceLimitsQosPolicy}!max\_routes\_per\_reader@{max\_routes\_per\_reader}}
+\index{max\_routes\_per\_reader@{max\_routes\_per\_reader}!DDS\_DataWriterResourceLimitsQosPolicy@{DDS\_DataWriterResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{max\_routes\_per\_reader}{max\_routes\_per\_reader}}
+{\footnotesize\ttfamily \label{structDDS__DataWriterResourceLimitsQosPolicy_abbf46a75c9cd1bed060b1f1bcf99c66a} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Writer\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+routes\+\_\+per\+\_\+reader}
+
+
+
+The maximum number of routes the writer will send to per matched reader. 
+
+NOTE\+: If this resource limit is exceeded when matching a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} with a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}, the two entities are not matched. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 2 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, 2147483647\mbox{]} \Hypertarget{structDDS__DataWriterResourceLimitsQosPolicy_a3573400a04c05813f29f72ed761665dc}\index{DDS\_DataWriterResourceLimitsQosPolicy@{DDS\_DataWriterResourceLimitsQosPolicy}!writer\_loaned\_sample\_allocation@{writer\_loaned\_sample\_allocation}}
+\index{writer\_loaned\_sample\_allocation@{writer\_loaned\_sample\_allocation}!DDS\_DataWriterResourceLimitsQosPolicy@{DDS\_DataWriterResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{writer\_loaned\_sample\_allocation}{writer\_loaned\_sample\_allocation}}
+{\footnotesize\ttfamily \label{structDDS__DataWriterResourceLimitsQosPolicy_a3573400a04c05813f29f72ed761665dc} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Writer\+Resource\+Limits\+Qos\+Policy\+::writer\+\_\+loaned\+\_\+sample\+\_\+allocation}
+
+
+
+Represents the amount of loanable samples managed by a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. 
+
+The number of samples loaned by a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} via \doxylink{group__DDSWriterModule_gad0273edf424235cff792ca704092315b}{Foo\+Data\+Writer\+\_\+get\+\_\+loan} is limited by \doxylink{structDDS__DataWriterResourceLimitsQosPolicy_a3573400a04c05813f29f72ed761665dc}{DDS\+\_\+\+Data\+Writer\+Resource\+Limits\+Qos\+Policy\+::writer\+\_\+loaned\+\_\+sample\+\_\+allocation}. \doxylink{group__DDSWriterModule_gad0273edf424235cff792ca704092315b}{Foo\+Data\+Writer\+\_\+get\+\_\+loan} returns NULL if and only if \doxylink{structDDS__DataWriterResourceLimitsQosPolicy_a3573400a04c05813f29f72ed761665dc}{DDS\+\_\+\+Data\+Writer\+Resource\+Limits\+Qos\+Policy\+::writer\+\_\+loaned\+\_\+sample\+\_\+allocation} samples have been loaned, and none of those samples have been written with \doxylink{group__DDSWriterModule_ga2b106f9efd70a4da90b09a7216253aca}{Foo\+Data\+Writer\+\_\+write} or discarded via \doxylink{group__DDSWriterModule_ga37a6425b0d50db3cd8795604abe0593d}{Foo\+Data\+Writer\+\_\+discard\+\_\+loan}. If the default value of DDS\+\_\+\+SIZE\+\_\+\+AUTO is used the \doxylink{structDDS__DataWriterResourceLimitsQosPolicy_a3573400a04c05813f29f72ed761665dc}{DDS\+\_\+\+Data\+Writer\+Resource\+Limits\+Qos\+Policy\+::writer\+\_\+loaned\+\_\+sample\+\_\+allocation} is set to \doxylink{structDDS__ResourceLimitsQosPolicy_a90db906a3958146c5e22557db648e7ff}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+samples} + 1. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} DDS\+\_\+\+SIZE\+\_\+\+AUTO 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, 1000000\mbox{]} 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSWriterModule_gad0273edf424235cff792ca704092315b}{Foo\+Data\+Writer\+\_\+get\+\_\+loan} 
+
+\doxylink{group__DDSWriterModule_ga37a6425b0d50db3cd8795604abe0593d}{Foo\+Data\+Writer\+\_\+discard\+\_\+loan} 
+\end{DoxySeeAlso}
+\Hypertarget{structDDS__DataWriterResourceLimitsQosPolicy_a853628f860f77a13627f232fde71af80}\index{DDS\_DataWriterResourceLimitsQosPolicy@{DDS\_DataWriterResourceLimitsQosPolicy}!initialize\_writer\_loaned\_sample@{initialize\_writer\_loaned\_sample}}
+\index{initialize\_writer\_loaned\_sample@{initialize\_writer\_loaned\_sample}!DDS\_DataWriterResourceLimitsQosPolicy@{DDS\_DataWriterResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{initialize\_writer\_loaned\_sample}{initialize\_writer\_loaned\_sample}}
+{\footnotesize\ttfamily \label{structDDS__DataWriterResourceLimitsQosPolicy_a853628f860f77a13627f232fde71af80} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Data\+Writer\+Resource\+Limits\+Qos\+Policy\+::initialize\+\_\+writer\+\_\+loaned\+\_\+sample}
+
+
+
+Whether or not to initialize loaned samples returned by a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE}\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSWriterModule_gad0273edf424235cff792ca704092315b}{Foo\+Data\+Writer\+\_\+get\+\_\+loan} 
+\end{DoxySeeAlso}
+\Hypertarget{structDDS__DataWriterResourceLimitsQosPolicy_aa7a681cc4e445f5554947fd8fe7ea8d1}\index{DDS\_DataWriterResourceLimitsQosPolicy@{DDS\_DataWriterResourceLimitsQosPolicy}!max\_remote\_reader\_filters@{max\_remote\_reader\_filters}}
+\index{max\_remote\_reader\_filters@{max\_remote\_reader\_filters}!DDS\_DataWriterResourceLimitsQosPolicy@{DDS\_DataWriterResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{max\_remote\_reader\_filters}{max\_remote\_reader\_filters}}
+{\footnotesize\ttfamily \label{structDDS__DataWriterResourceLimitsQosPolicy_aa7a681cc4e445f5554947fd8fe7ea8d1} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Writer\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+remote\+\_\+reader\+\_\+filters}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_experimental}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}experimental\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The maximum number of remote readers for which a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will simultaneously perform writer-\/side filtering. 
+
+This QoS policy has no effect if the content filtering feature is not enabled or if \doxylink{structDDS__FilterQosPolicy_a2cc05388484155dd9f830df89dbc6231}{DDS\+\_\+\+Filter\+Qos\+Policy\+::disable\+\_\+writer\+\_\+filtering} is set to \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}. 
+
+This resource limit controls how many remote \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will simultaneously perform writer-\/side content filtering for. The \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will store the filter result per sample per filtered \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. 
+
+The behavior depends on the configured value\+: \begin{DoxyItemize}
+\item {\ttfamily 0}\+: The \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will not perform writer-\/side filtering for any \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. All content filtering will be performed on the reader side. \item {\ttfamily 1} to {\ttfamily }(2\texorpdfstring{$^\wedge$}{\string^}31)-\/1\+: The \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will perform writer-\/side filtering for up to the specified number of \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities. \item DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED\+: The \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will perform writer-\/side filtering for up to \doxylink{structDDS__DataWriterResourceLimitsQosPolicy_a6f64b3e30241cdb06ce4942641336025}{DDS\+\_\+\+Data\+Writer\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+remote\+\_\+readers} \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities. \end{DoxyItemize}
+If a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} is already filtering the maximum number of \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities specified by this limit and a new filtered \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} is discovered, the newly discovered \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} will not be filtered by the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}, and the \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} will instead apply the content filter itself. 
+
+Once a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} is excluded from writer-\/side filtering due to this resource limit, it will remain excluded even if one of the previously filtered \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities goes away. However, any subsequently created \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities will be eligible for writer-\/side filtering as long as the number of currently filtered \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities does not exceed this limit. 
+
+No matter the value of this QoS policy, a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will only ever be able to apply writer-\/side filtering for up to 4 unique filters on the same locator. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}0, (2\texorpdfstring{$^\wedge$}{\string^}31)-\/1\mbox{]} or DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSFILTERModule_ga78e6991395a89e1a00e08038c23112d4}{DDS\+\_\+\+Filter\+Plugin\+Factory\+\_\+register} for how to enable the content filtering feature 
+\end{DoxySeeAlso}

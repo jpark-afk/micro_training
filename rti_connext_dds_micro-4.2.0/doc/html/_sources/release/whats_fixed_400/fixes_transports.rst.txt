@@ -1,0 +1,23 @@
+Transports
+==========
+
+:critical:`[Critical]` Stalled communication when using shared-memory transport
+-------------------------------------------------------------------------------
+On systems with a weak memory architecture, such as Arm®, the shared-memory
+(SHMEM) transport may have been corrupted due to a data race in the concurrent
+queue where the messages are written into the shared-memory segment. This data
+race may have occurred until **received_message_count_max messages** were sent
+through the transport. The corrupted transport resulted in parsing errors,
+which filled up the shared-memory segment, stalling communication.
+
+[RTI Issue ID MICRO-5931]
+
+:critical:`[Critical]` Undefined behavior when using SHMEM transport in Linux, macOS, QNX, Integrity, and Lynx
+--------------------------------------------------------------------------------------------------------------
+
+There was an issue in the shared-memory (SHMEM) transport implementation that may 
+have led to undefined behavior in your |me| application, including data corruption, 
+errors, and hangs. The problem could occur in Linux®, macOS®, QNX®, INTEGRITY®, 
+and LynxOS® systems.
+
+[RTI Issue ID MICRO-5932]

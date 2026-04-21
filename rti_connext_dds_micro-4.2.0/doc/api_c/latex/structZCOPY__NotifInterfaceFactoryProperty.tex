@@ -1,0 +1,61 @@
+\doxysubsection{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property Struct Reference}
+\hypertarget{structZCOPY__NotifInterfaceFactoryProperty}{}\label{structZCOPY__NotifInterfaceFactoryProperty}\index{ZCOPY\_NotifInterfaceFactoryProperty@{ZCOPY\_NotifInterfaceFactoryProperty}}
+
+
+Notification interface property.  
+
+
+
+
+{\ttfamily \#include $<$netio\+\_\+zcopy\+\_\+notif\+\_\+interface.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} \mbox{\hyperlink{structZCOPY__NotifInterfaceFactoryProperty_a8c57edf55083ea1bd14621448b492823}{max\+\_\+samples\+\_\+per\+\_\+notif}}
+\begin{DoxyCompactList}\small\item\em Maximum samples to process per notification per Data\+Reader. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structZCOPY__NotifUserInterfaceI}{ZCOPY\+\_\+\+Notif\+User\+InterfaceI}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structZCOPY__NotifInterfaceFactoryProperty_a343ccccbecd4a111c72691491955bd28}{user\+\_\+intf}}
+\begin{DoxyCompactList}\small\item\em The downstream transport interface. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structZCOPY__NotifInterfaceFactoryProperty_ad99f2bd922ed00e0454c8f37629b9d60}{user\+\_\+property}}
+\begin{DoxyCompactList}\small\item\em Pass-\/through pointer to the downstream transport. This must be valid for the life-\/cycle of the transport. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Notification interface property. 
+
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structZCOPY__NotifInterfaceFactoryProperty_a8c57edf55083ea1bd14621448b492823}\index{ZCOPY\_NotifInterfaceFactoryProperty@{ZCOPY\_NotifInterfaceFactoryProperty}!max\_samples\_per\_notif@{max\_samples\_per\_notif}}
+\index{max\_samples\_per\_notif@{max\_samples\_per\_notif}!ZCOPY\_NotifInterfaceFactoryProperty@{ZCOPY\_NotifInterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{max\_samples\_per\_notif}{max\_samples\_per\_notif}}
+{\footnotesize\ttfamily \label{structZCOPY__NotifInterfaceFactoryProperty_a8c57edf55083ea1bd14621448b492823} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property\+::max\+\_\+samples\+\_\+per\+\_\+notif}
+
+
+
+Maximum samples to process per notification per Data\+Reader. 
+
+This setting optimizes performance when sending large amounts of data. However, setting it to an excessively high value may prevent other threads from running effectively. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 1. \Hypertarget{structZCOPY__NotifInterfaceFactoryProperty_a343ccccbecd4a111c72691491955bd28}\index{ZCOPY\_NotifInterfaceFactoryProperty@{ZCOPY\_NotifInterfaceFactoryProperty}!user\_intf@{user\_intf}}
+\index{user\_intf@{user\_intf}!ZCOPY\_NotifInterfaceFactoryProperty@{ZCOPY\_NotifInterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{user\_intf}{user\_intf}}
+{\footnotesize\ttfamily \label{structZCOPY__NotifInterfaceFactoryProperty_a343ccccbecd4a111c72691491955bd28} 
+struct \mbox{\hyperlink{structZCOPY__NotifUserInterfaceI}{ZCOPY\+\_\+\+Notif\+User\+InterfaceI}}\texorpdfstring{$\ast$}{*} ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property\+::user\+\_\+intf}
+
+
+
+The downstream transport interface. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} NULL. \Hypertarget{structZCOPY__NotifInterfaceFactoryProperty_ad99f2bd922ed00e0454c8f37629b9d60}\index{ZCOPY\_NotifInterfaceFactoryProperty@{ZCOPY\_NotifInterfaceFactoryProperty}!user\_property@{user\_property}}
+\index{user\_property@{user\_property}!ZCOPY\_NotifInterfaceFactoryProperty@{ZCOPY\_NotifInterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{user\_property}{user\_property}}
+{\footnotesize\ttfamily \label{structZCOPY__NotifInterfaceFactoryProperty_ad99f2bd922ed00e0454c8f37629b9d60} 
+void\texorpdfstring{$\ast$}{*} ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property\+::user\+\_\+property}
+
+
+
+Pass-\/through pointer to the downstream transport. This must be valid for the life-\/cycle of the transport. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} NULL. 

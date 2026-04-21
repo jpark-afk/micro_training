@@ -1,0 +1,42 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2024-2025
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+SET(CMAKE_SYSTEM_NAME FreeRTOS)
+
+IF (${TARGET_HELP})
+    MESSAGE("TARGET\n\n")
+    MESSAGE("armv7emleElfgcc10.3.1-FreeRTOS10.0\n")
+    MESSAGE("armv7emleElfgcc10.3.1CERT-FreeRTOS10.0\n")
+    MESSAGE("DESCRIPTION\n")
+    MESSAGE(" This FreeRTOS PSL target can be used for cross-compiling the")
+    MESSAGE(" target. The compiler and options are determined based on the")
+    MESSAGE(" TOOLCHAIN_PATH, CONFIG_PATH, LWIP_PATH, FREERTOS_PATH and")
+    MESSAGE(" RTD_PATH environment variables.")
+    MESSAGE("\nThis PSL is based on the following PIL:\n")
+    MESSAGE(" --name armv7emleElfgcc10.3.1 // armv7emleElfgcc10.3.1CERT\n")
+ENDIF()
+
+FOREACH(language C CXX)
+    SET(CMAKE_${language}_COMPILER_WORKS 1)
+    SET(CMAKE_${language}_ABI_COMPILED 1)
+ENDFOREACH()
+
+SET(CMAKE_C_COMPILER   arm-none-eabi-gcc "--specs=nosys.specs --specs=nano.specs")
+SET(CMAKE_CXX_COMPILER arm-none-eabi-g++ "--specs=nosys.specs --specs=nano.specs")
+
+ADD_DEFINITIONS(-DHAVE_SOCKET_API)
+ADD_DEFINITIONS(-DLWIP_SYS)
+ADD_DEFINITIONS(-D__freertos__)
+
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/armgcc_pi.tc)
+
+INCLUDE_ARMGCC_COMPILER_PSL("10.3.1")

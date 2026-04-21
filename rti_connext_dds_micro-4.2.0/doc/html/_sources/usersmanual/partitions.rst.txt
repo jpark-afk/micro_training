@@ -1,0 +1,450 @@
+.. _section-partitions:
+
+Partitions
+==========
+
+Introduction
+------------
+
+The :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QoS provides a way to control which *Entities* will 
+match—and thus communicate with—which other *Entities*. It can be used to 
+prevent *Entities* that would have otherwise matched from talking to each 
+other. Much in the same way that only applications within the same DDS domain 
+will communicate with each other, only *Entities* that belong to the same 
+partition can talk to each other.
+
+The :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QoS applies to *Publishers* and *Subscribers*.
+*DataWriters* and *DataReaders* belong to the partitions 
+as set in the QoS of the *Publishers* and *Subscribers* that created them. 
+
+The :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QoS consists of a set of partition names that identify the 
+partitions of which the *Entity* is a member. These names can be concrete 
+(e.g., ExamplePartition) or regular expression strings (e.g, Example*), and 
+two *Entities* are considered to be in the same partition if one of the 
+*Entities* has a concrete partition name matching one of the concrete or 
+regular expression partition names of the other *Entity* (see 
+:ref:`section-pattern-matching`). By default, *DataWriters* and 
+*DataReaders* (through their *Publisher/Subscriber* 
+parents), belong to a single partition whose name is the empty string, "".
+
+Conceptually, each partition name can be thought of as defining a 
+“visibility plane” within the DDS domain. *DataWriters* will make their data 
+available on all of the visibility planes that correspond to their 
+*Publisher’s* partition names, and the *DataReaders* will see the data that 
+is placed on all of the visibility planes that correspond to their 
+*Subscriber’s* partition names.
+
+:numref:`partitions-diagram` illustrates the concept of PARTITION QoS at 
+the *Publisher* and *Subscriber* level. In this figure, all *DataWriters* 
+and *DataReaders* belong to the same DDS domain ID and 
+*DomainParticipant* partition, and they use the same *Topic*. 
+*DataWriter1* is configured to belong to three partitions: partition_A, 
+partition_B, and partition_C. *DataWriter2* belongs to partition_C and 
+partition_D.
+
+.. _partitions-diagram:
+
+.. figure:: /images/Partitions.png
+   :figwidth: 90%
+   :align: center
+   
+   Controlling Visibility of Data with PARTITION QoS
+
+Similarly, *DataReader1* is configured to belong to partition_A and 
+partition_B, and *DataReader2* belongs only to partition_C. Given this 
+topology, the data written by *DataWriter1* is visible in partitions A, 
+B, and C. The oval tagged with the number “S1” represents one DDS data 
+sample written by *DataWriter1*.
+
+Similarly, the data written by *DataWriter2* is visible in partitions C 
+and D. The oval tagged with the number “S2” represents one DDS data 
+sample written by *DataWriter2*.
+
+The result is that the data written by *DataWriter1* will be received 
+by both *DataReader1* and *DataReader2*, but the data written by 
+*DataWriter2* will only be visible by *DataReader2*.
+
+*Publishers* and *Subscribers* always belong to a partition. By default, 
+*Publishers* and *Subscribers* belong to a single partition whose name is 
+the empty string, "". If you set the :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QoS to be an empty set, 
+|me| will assign the *Publisher* or *Subscriber* to the default partition,
+"". Thus, for the example above, without using the :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QoS on any of 
+the entities, *DataReaders* 1 and 2 would have received all data samples 
+written by *DataWriters* 1 and 2.
+
+Rules for PARTITION matching
+----------------------------
+
+The :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QosPolicy associates a set of partition names with the entity 
+(*Publisher* or *Subscriber*). The partition names are concrete names (e.g., 
+ExamplePartition) or regular expression strings (e.g, Example*).
+
+With regard to the :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QoS, a *DataWriter* will communicate with a 
+*DataReader* if and only if the following conditions apply:
+
+#. The *DataWriter* and *DataReader* belong to *DomainParticipants* bound to 
+   the same DDS domain ID.
+#. The *DataWriter* and *DataReader* have matching *Topics*. That is, each is 
+   associated with a *Topic* with the same name and compatible data type.
+#. The QoS offered by the *DataWriter* is compatible with the QoS requested 
+   by the *DataReader*.
+
+Matching partition names is done by string pattern matching, and partition 
+names are case-sensitive.
+
+.. note::
+
+   Failure to match partitions (on *Publisher* or *Subscriber*) is not 
+   considered an incompatible QoS and does not trigger any listeners or 
+   change any status conditions.
+
+.. _section-pattern-matching:
+
+Pattern matching for PARTITION names
+------------------------------------
+
+You may add strings that are regular expressions to the :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>`
+QosPolicy. A PARTITION.name is a regular expression if it contains 
+any of the following unescaped special characters: ``*``, ``?``, 
+``[``, ``]``, ``!``, or ``^``. The PARTITION.name strings can be 
+"concrete" names or regular expression strings; a PARTITION.name 
+element that is a regular expression will only match against 
+concrete strings found in a PARTITON.name element of a
+different *Entity's* :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QosPolicy.
+
+If a :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QoS only contains regular expressions, then the *Entity* will 
+be assigned automatically to the default partition with the empty string name 
+(""). Thus, a :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QoS that only contains the string ``*`` matches another 
+*Entity's* :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QoS that also only contains the string ``*``, not because 
+the regular expression strings are identical, but because they both belong to 
+the default "" partition.
+
+For more on regular expressions, see :ref:`regular-expression-matching` below.
+
+Two *Entities* are considered to have a partition in common if the sets of 
+partitions associated with them have:
+
+-  At least one concrete partition name in common
+-  A regular expression in one *Entity* that matches a concrete partition name 
+   in another *Entity*
+
+The programmatic representation of the :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QoS is shown in 
+:numref:`DDS_PartitionQosPolicyTable`. The QosPolicy contains the single string 
+sequence, name. Each element in the sequence can be a concrete name or a 
+regular expression. The *Entity* will be assigned to the default "" partition 
+if the sequence is empty, or if the sequence contains only regular expressions.
+
+.. list-table:: DDS_PartitionQosPolicy
+   :name: DDS_PartitionQosPolicyTable
+   :widths: 20 20 60
+   :header-rows: 1
+
+   * - Type
+     - Field Name
+     - Description
+   * - DDS_StringSeq
+     - name
+     - Empty by default.
+
+       There can be up to 64 names, with a maximum of 256 characters 
+       (including the NUL terminator), summed across all names.
+
+You can have one long partition string of 256 chars, or multiple shorter 
+strings that add up to 256 or fewer characters. For example, you can have 
+one string of 4 chars and one string of 252 chars.
+
+.. _regular-expression-matching:
+
+Regular Expression Matching
+...........................
+
+The SQL expression format provided by |me| supports the relational
+operator **MATCH**. It may only be used with string fields. 
+The right-hand operator is a string pattern, which specifies 
+a template that the left-hand field must match.
+
+**MATCH** is case-sensitive. The following characters have special 
+meaning, unless escaped by the escape character: ``,\/?*[]-^!\%``.
+
+The pattern allows limited "wild card" matching under the rules in 
+:numref:`wild-card-matching`.
+
+The syntax is similar to the POSIX® fnmatch syntax. (See 
+http://www.opengroup.org/onlinepubs/000095399/functions/fnmatch.html.)
+
+.. _wild-card-matching:
+
+.. list-table:: Wild Card Matching
+   :header-rows: 1
+   :widths: 20 80
+
+   * - Character
+     - Meaning
+   * - ,
+     - **NOT SUPPORTED**
+     
+       A , separates a list of alternate patterns. The field string is 
+       matched if it matches one or more of the patterns.
+   * - /
+     - **NOT SUPPORTED**
+     
+       A / in the pattern string matches a / in the field string. It 
+       separates a sequence of mandatory substrings.
+   * - ?
+     - A ? in the patterns tring matches any single non-special characters
+       in the field string.
+   * - \* 
+     - A * in the pattern string matches 0 or more non-special characters 
+       in the field string.
+   * - %
+     - **NOT SUPPORTED**
+     
+       This special character is used to designate filter expression 
+       parameters.
+   * - \
+     - Escape character for special characters.
+   * - [charlist]
+     - Matches any one of the characters in charlist.
+   * - [!charlist] or [^charlist]
+     - Matches any one of the characters *not* in charlist.
+   * - [s-e]
+     - Matches any character from **s** to **e**, inclusive.
+   * - [!s-e] or [^s-e]
+     - Matches any character *not* in the interval **s** to **e**.
+
+.. note::
+
+   To use special characters as regular characters in regular 
+   expressions, you must escape them using the character ``\``. For 
+   example, ``A[`` is considered a malformed expression and the result 
+   is undefined.
+
+Example
+-------
+
+The :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QosPolicy is useful to control which *DataWriters* can 
+communicate with which *DataReaders* and vice versa—even if all of the 
+*DataWriters* and *DataReaders* are for the same *Topic*. This facility 
+is useful for creating temporary separation groups among *Entities* 
+that would otherwise be connected to and exchange data each other.
+
+The code below illustrates how to set the :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QosPolicy on a 
+*Publisher*:
+
+.. code-block:: c
+
+   struct DDS_PublisherQos pub_qos = DDS_PublisherQos_INITIALIZER;
+      DDS_StringSeq_set_maximum(&pub_qos.partition.name,2);
+      DDS_StringSeq_set_length(&pub_qos.partition.name,2);
+      *DDS_StringSeq_get_reference(&pub_qos.partition.name,0) = DDS_String_dup("partition1");
+      *DDS_StringSeq_get_reference(&pub_qos.partition.name,1) = DDS_String_dup("partition2");
+
+   publisher = DDS_DomainParticipant_create_publisher(application->participant,&pub_qos, NULL,DDS_STATUS_MASK_NONE);
+      if (publisher == NULL)
+      {
+         ...
+      }
+
+Using partitions, connectivity can be controlled based on 
+location-based partitioning, access-control groups, or a 
+combination of these and other application-defined criteria. We will 
+examine some of these options via concrete examples.
+
+Location-based partitions
+.........................
+
+Assume you have a set of *Topics* in a traffic management system 
+such as “TrafficAlert,” “AccidentReport,” and “CongestionStatus.” 
+You may want to control the visibility of these *Topics* based on 
+the actual location to which the information applies. You can do 
+this by placing the *Publisher* in a partition that represents the 
+area to which the information applies. This can be done using a 
+string that includes the city, state, and country, such as 
+“USA/California/Santa Clara.” A *Subscriber* can then choose whether 
+it wants to see the alerts in a single city, the accidents in a set 
+of states, or the congestion status across the US. Some concrete 
+examples are shown in :numref:`location-based-partition-example`.
+
+.. _location-based-partition-example:
+
+.. list-table:: Example of Using Location-Based Partitions
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Publisher Partitions
+     - Subscriber Partitions
+     - Result
+   * - Specify a single partition name using the pattern:
+
+       "<country>/<state>/<city>"
+     - Specify multiple partition names, one per region of interest
+     - Limits the visibility of the data to *Subscribers* that 
+       express interest in the geographical region.
+   * - "USA/California/Santa Clara"
+     - (*Subscriber* partition is irrelevant here.)
+     - Send only information for Santa Clara, California.
+   * - (Publisher partition is irrelevant here.)
+     - "USA/California/Santa Clara"
+     - Receive only information for Santa Clara, California.
+   * - (Publisher partition is irrelevant here.)
+     - "USA/California/Santa Clara"
+
+       "USA/California/Sunnyvale"
+     - Receive information for Santa Clara or Sunnyvale, California.
+   * - (Publisher partition is irrelevant here.)
+     - "USA/California/\*"
+       
+       "USA/Nevada/\*"
+     - Receive information for California or Nevada.
+   * - (Publisher partition is irrelevant here.)
+     - "USA/California/\*"
+       
+       "USA/Nevada/Reno"
+
+       "USA/Nevada/Las Vegas"
+     - Receive information for California and two cities in Nevada.
+
+Access-control group partitions
+...............................
+
+Suppose you have an application where access to the information must 
+be restricted based on reader membership to access-control groups. 
+You can map this group-controlled visibility to partitions by naming 
+all the groups (e.g., executives, payroll, financial, general-staff, 
+consultants, external-people) and assigning the *Publisher* to the 
+set of partitions that represents which groups should have access to 
+the information. The *Subscribers* specify the groups to which they 
+belong, and the partition-matching behavior will ensure that the 
+information is only distributed to *Subscribers* belonging to the 
+appropriate groups. Some concrete examples are shown in 
+:numref:`access-control-partition-example`
+
+.. _access-control-partition-example:
+
+.. list-table:: Example of Access-Control Group Partitions
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Publisher Partitions
+     - Subscriber Partitions
+     - Result
+   * - Specify several partition names, one per group that is allowed 
+       access:
+     - Specify multiple partition names, one per group to which the 
+       *Subscriber* belongs.
+     - Limits the visibility of the data to *Subscribers* that belong 
+       to the access-groups specified by the *Publisher*.
+   * - "payroll"
+
+       "financial"
+     - (*Subscriber* partition is irrelevant here.)
+     - Makes information available only to *Subscribers* that have 
+       access to either financial or payroll information.
+   * - (Publisher partition is irrelevant here.)
+     - "executives"
+
+       "financial"
+     - Gain access to information that is intended for executives or 
+       people with access to the finances.
+
+A slight variation of this pattern could be used to confine the 
+information based on security levels.
+
+Properties
+----------
+
+This QosPolicy cannot be modified at runtime.
+
+Strictly speaking, this QosPolicy does not have request-offered 
+semantics, although it is matched between *DataWriters* and 
+*DataReaders*, and communication is established only if there is a 
+match between partition names.
+
+Resource limits
+---------------
+
+Before this QoS policy can be used, you must configure the following
+:link_connextmicro_dds_api_c_up_one:`DomainParticipantResourceLimitsQosPolicy <structDDS__DomainParticipantResourceLimitsQosPolicy.html>` fields:
+
+*  ``max_partitions``: sets the maximum number of partitions for each :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QoS.
+*  ``max_partition_cumulative_characters``: sets the maximum number of 
+   characters (per *DomainParticipant*) that can be used for the sum-total 
+   length of all partition names. Note that the NUL terminator in each 
+   string contributes to the character count.
+*  ``max_partition_string_size``: sets the maximum number of characters that 
+   can be used for each partition name. This can be set to a value greater than
+   0 or DDS_LENGTH_UNLIMITED.
+*  ``max_partition_string_allocation``: sets the maximum total memory allocated
+   to partition names across all *DomainParticipants*. This can be set to a 
+   value greater than 0 or DDS_LENGTH_UNLIMITED.
+
+.. note:: 
+
+   All applications in the DDS domain must have the same resource limit values 
+   in order to communicate. For example, if two applications have different 
+   values, and one application sets the :link_connextmicro_dds_api_c_up_one:`PARTITION <group__DDSPartitionQosModule.html>` QosPolicy to hold more 
+   partitions or longer names than set by another application, the 
+   matching *Entities* between the two applications will not connect. This is 
+   similar to the restrictions for the :ref:`section-group-data`, 
+   :ref:`section-user-data`, and :ref:`section-topic-data` Qos Policies.
+
+These fields collectively determine how your application manages partition memory.
+The subsections below explain how to configure your :link_connextmicro_dds_api_c_up_one:`DomainParticipantResourceLimitsQosPolicy <structDDS__DomainParticipantResourceLimitsQosPolicy.html>`
+for different behaviors.
+
+Configuring for runtime allocation
+..................................
+
+This configuration allows memory for PARTITION.name strings to be allocated 
+and freed during runtime. Each PARTITION.name string can be of any size; however, 
+the sum-total string length of all partition names is still limited by 
+``max_partition_cumulative_characters``.
+
+For this behavior, set the following:
+
+* Set ``max_partition_string_size`` to DDS_LENGTH_UNLIMITED.
+* Set ``max_partition_string_allocation`` to DDS_LENGTH_UNLIMITED.
+
+Configuring for preallocated memory
+...................................
+
+Preallocating memory gives you greater control over memory utilization. There 
+are two possible configurations for preallocated memory: reusable and 
+non-reusable.
+
+Reusable preallocated memory
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In this configuration, memory for PARTITION.name strings is
+preallocated and will never be freed during operation. However, memory will
+be reused for PARTITION names that are added, internally deleted,
+and no longer needed. For example, if the application creates a Publisher
+with a unique PARTITION name instance and then deletes it, the application
+will reuse the memory that was storing the unique name (unless 
+there are other uses of that name).
+
+For this behavior, set the following:
+
+* Set ``max_partition_string_size`` to a value greater than 0. 
+* Set ``max_partition_string_allocation`` to a value greater than 0. This 
+  value must be large enough to store every instance of each PARTITION
+  name that will be created or discovered.
+
+Note that each PARTITION name will take up memory equal to ``max_partition_string_size``, 
+regardless of the actual string length. 
+
+Non-reusable preallocated memory
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In this configuration, memory for PARTITION.name strings is preallocated 
+and will never be freed or reused.
+
+For this behavior, set the following:
+
+* Set ``max_partition_string_size`` to DDS_LENGTH_UNLIMITED. 
+* Set ``max_partition_string_allocation`` to a value greater than 0. This 
+  value must be large enough to store every instance of each PARTITION
+  name that is created and discovered.
+
+Note that each PARTITION name will take up memory equal to its exact string 
+size. 

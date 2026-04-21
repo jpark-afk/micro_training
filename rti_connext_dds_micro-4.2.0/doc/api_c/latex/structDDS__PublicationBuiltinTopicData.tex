@@ -1,0 +1,256 @@
+\doxysubsection{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data Struct Reference}
+\hypertarget{structDDS__PublicationBuiltinTopicData}{}\label{structDDS__PublicationBuiltinTopicData}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+
+
+Object describing a remote Publication.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+discovery.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_a7abdc1babe38596287fe73d769baf399}{key}}
+\begin{DoxyCompactList}\small\item\em DCPS key to distinguish entries. This is used to configure the object ID of the remote \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_a03d4e4661232d0c103ae9ae40ac82695}{participant\+\_\+key}}
+\begin{DoxyCompactList}\small\item\em DCPS key of the participant to which the Data\+Writer belongs. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_a7a839633fbafd0c1b65db9ef35313f28}{topic\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em Name of the related \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_a14c589ddb5213f67d184c87b2af85e69}{type\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em Name of the type attached to the \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DeadlineQosPolicy}{DDS\+\_\+\+Deadline\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_a9bbe601cda488176a4a427988776efd4}{deadline}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Writer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__OwnershipQosPolicy}{DDS\+\_\+\+Ownership\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_ab132b2e5d53fcf3666987665afa551f7}{ownership}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Writer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__OwnershipStrengthQosPolicy}{DDS\+\_\+\+Ownership\+Strength\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_add22df16fbee44d1863778ae0709d155}{ownership\+\_\+strength}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Writer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LatencyBudgetQosPolicy}{DDS\+\_\+\+Latency\+Budget\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_a0ec22ddb9260ff9494edae435c3e6a87}{latency\+\_\+budget}}
+\begin{DoxyCompactList}\small\item\em Latency budget policy, \doxylink{group__DDSLatencyBudgetQosModule}{LATENCY\+\_\+\+BUDGET}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__ReliabilityQosPolicy}{DDS\+\_\+\+Reliability\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_a627123139778dfda5790aa92ca71f548}{reliability}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Writer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LivelinessQosPolicy}{DDS\+\_\+\+Liveliness\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_ae2f1ae488666386637ba49fb91eb3a22}{liveliness}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Writer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DurabilityQosPolicy}{DDS\+\_\+\+Durability\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_a5f864a1b922f7892f6bb70b2cea7c4ba}{durability}}
+\begin{DoxyCompactList}\small\item\em durability policy of the corresponding Data\+Writer \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DestinationOrderQosPolicy}{DDS\+\_\+\+Destination\+Order\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_aa83ac973bffc3b57aa19deb1793d82e8}{destination\+\_\+order}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Writer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_a135da29dc2f41f3e67d5bf03ed7cdc40}{unicast\+\_\+locator}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Custom unicast locators that the endpoint can specify. The default locators will be used if this is not specified. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DataRepresentationQosPolicy}{DDS\+\_\+\+Data\+Representation\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_a3c61893776c861eafe95bf88d50cf336}{representation}}
+\begin{DoxyCompactList}\small\item\em Data representation policy, \doxylink{group__DDSDataRepresentationQosModule}{DATA\+\_\+\+REPRESENTATION}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PartitionQosPolicy}{DDS\+\_\+\+Partition\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_ab590d198ae7e088ccd89e638acccc8da}{partition}}
+\begin{DoxyCompactList}\small\item\em Policy of the Publisher to which the Data\+Writer belongs. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__UserDataQosPolicy}{DDS\+\_\+\+User\+Data\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_a32f5f098f4bb08d5887d682bfb449f13}{user\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Writer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__GroupDataQosPolicy}{DDS\+\_\+\+Group\+Data\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_a8af1c832cffabb15c9cd07026060338a}{group\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Policy of the Publisher to which the Data\+Writer belongs. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__TopicDataQosPolicy}{DDS\+\_\+\+Topic\+Data\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData_a74918b1474f0182091a55460e1cb3402}{topic\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Policy of the related Topic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Object describing a remote Publication. 
+
+This object contains all of the information about a remote \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} and its \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} that is necessary for matching the remote \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} to a local \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} during discovery. 
+
+This object is used to pre-\/configure remote entities for Dynamic Participant/\+Static Endpoint discovery. 
+
+For example\+: Application A is designed to discover a remote \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} in application B, and that remote \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} has an object ID of 100, and a deadline of three seconds. In Dynamic Participant/\+Static Endpoint discovery, this discovery data is not sent over the network, so the user must create an instance of a \doxylink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data} structure in application A. The user then must fill in the QoS describing this remote \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}, including the writer\textquotesingle{}s object ID and three-\/second deadline. Then the user must assert this \doxylink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data} describing the remote entity with the discovery plugin. The pre-\/configured QoS must match the actual QoS of the remote entity, or communication will not occur. 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__PublicationBuiltinTopicData_a7abdc1babe38596287fe73d769baf399}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!key@{key}}
+\index{key@{key}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{key}{key}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_a7abdc1babe38596287fe73d769baf399} 
+struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::key}
+
+
+
+DCPS key to distinguish entries. This is used to configure the object ID of the remote \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_a03d4e4661232d0c103ae9ae40ac82695}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!participant\_key@{participant\_key}}
+\index{participant\_key@{participant\_key}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{participant\_key}{participant\_key}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_a03d4e4661232d0c103ae9ae40ac82695} 
+struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::participant\+\_\+key}
+
+
+
+DCPS key of the participant to which the Data\+Writer belongs. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_a7a839633fbafd0c1b65db9ef35313f28}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!topic\_name@{topic\_name}}
+\index{topic\_name@{topic\_name}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{topic\_name}{topic\_name}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_a7a839633fbafd0c1b65db9ef35313f28} 
+char\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::topic\+\_\+name}
+
+
+
+Name of the related \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}. 
+
+The length of this string is limited to 255 characters. 
+
+The memory for this field is managed as described in \doxysectlink{group__DDSStringClass_DDSStringClass_conventions}{Conventions}{1}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{group__DDSStringClass_DDSStringClass_conventions}{Conventions}{1} 
+\end{DoxySeeAlso}
+\Hypertarget{structDDS__PublicationBuiltinTopicData_a14c589ddb5213f67d184c87b2af85e69}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!type\_name@{type\_name}}
+\index{type\_name@{type\_name}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{type\_name}{type\_name}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_a14c589ddb5213f67d184c87b2af85e69} 
+char\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::type\+\_\+name}
+
+
+
+Name of the type attached to the \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}. 
+
+The length of this string is limited to 255 characters. 
+
+The memory for this field is managed as described in \doxysectlink{group__DDSStringClass_DDSStringClass_conventions}{Conventions}{1}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{group__DDSStringClass_DDSStringClass_conventions}{Conventions}{1} 
+\end{DoxySeeAlso}
+\Hypertarget{structDDS__PublicationBuiltinTopicData_a9bbe601cda488176a4a427988776efd4}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!deadline@{deadline}}
+\index{deadline@{deadline}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{deadline}{deadline}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_a9bbe601cda488176a4a427988776efd4} 
+struct \mbox{\hyperlink{structDDS__DeadlineQosPolicy}{DDS\+\_\+\+Deadline\+Qos\+Policy}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::deadline}
+
+
+
+Policy of the corresponding Data\+Writer. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_ab132b2e5d53fcf3666987665afa551f7}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!ownership@{ownership}}
+\index{ownership@{ownership}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{ownership}{ownership}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_ab132b2e5d53fcf3666987665afa551f7} 
+struct \mbox{\hyperlink{structDDS__OwnershipQosPolicy}{DDS\+\_\+\+Ownership\+Qos\+Policy}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::ownership}
+
+
+
+Policy of the corresponding Data\+Writer. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_add22df16fbee44d1863778ae0709d155}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!ownership\_strength@{ownership\_strength}}
+\index{ownership\_strength@{ownership\_strength}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{ownership\_strength}{ownership\_strength}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_add22df16fbee44d1863778ae0709d155} 
+struct \mbox{\hyperlink{structDDS__OwnershipStrengthQosPolicy}{DDS\+\_\+\+Ownership\+Strength\+Qos\+Policy}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::ownership\+\_\+strength}
+
+
+
+Policy of the corresponding Data\+Writer. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_a0ec22ddb9260ff9494edae435c3e6a87}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!latency\_budget@{latency\_budget}}
+\index{latency\_budget@{latency\_budget}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{latency\_budget}{latency\_budget}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_a0ec22ddb9260ff9494edae435c3e6a87} 
+struct \mbox{\hyperlink{structDDS__LatencyBudgetQosPolicy}{DDS\+\_\+\+Latency\+Budget\+Qos\+Policy}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::latency\+\_\+budget}
+
+
+
+Latency budget policy, \doxylink{group__DDSLatencyBudgetQosModule}{LATENCY\+\_\+\+BUDGET}. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_a627123139778dfda5790aa92ca71f548}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!reliability@{reliability}}
+\index{reliability@{reliability}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{reliability}{reliability}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_a627123139778dfda5790aa92ca71f548} 
+struct \mbox{\hyperlink{structDDS__ReliabilityQosPolicy}{DDS\+\_\+\+Reliability\+Qos\+Policy}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::reliability}
+
+
+
+Policy of the corresponding Data\+Writer. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_ae2f1ae488666386637ba49fb91eb3a22}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!liveliness@{liveliness}}
+\index{liveliness@{liveliness}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{liveliness}{liveliness}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_ae2f1ae488666386637ba49fb91eb3a22} 
+struct \mbox{\hyperlink{structDDS__LivelinessQosPolicy}{DDS\+\_\+\+Liveliness\+Qos\+Policy}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::liveliness}
+
+
+
+Policy of the corresponding Data\+Writer. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_a5f864a1b922f7892f6bb70b2cea7c4ba}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!durability@{durability}}
+\index{durability@{durability}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{durability}{durability}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_a5f864a1b922f7892f6bb70b2cea7c4ba} 
+struct \mbox{\hyperlink{structDDS__DurabilityQosPolicy}{DDS\+\_\+\+Durability\+Qos\+Policy}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::durability}
+
+
+
+durability policy of the corresponding Data\+Writer 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_aa83ac973bffc3b57aa19deb1793d82e8}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!destination\_order@{destination\_order}}
+\index{destination\_order@{destination\_order}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{destination\_order}{destination\_order}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_aa83ac973bffc3b57aa19deb1793d82e8} 
+struct \mbox{\hyperlink{structDDS__DestinationOrderQosPolicy}{DDS\+\_\+\+Destination\+Order\+Qos\+Policy}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::destination\+\_\+order}
+
+
+
+Policy of the corresponding Data\+Writer. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_a135da29dc2f41f3e67d5bf03ed7cdc40}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!unicast\_locator@{unicast\_locator}}
+\index{unicast\_locator@{unicast\_locator}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{unicast\_locator}{unicast\_locator}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_a135da29dc2f41f3e67d5bf03ed7cdc40} 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::unicast\+\_\+locator}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Custom unicast locators that the endpoint can specify. The default locators will be used if this is not specified. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_a3c61893776c861eafe95bf88d50cf336}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!representation@{representation}}
+\index{representation@{representation}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{representation}{representation}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_a3c61893776c861eafe95bf88d50cf336} 
+struct \mbox{\hyperlink{structDDS__DataRepresentationQosPolicy}{DDS\+\_\+\+Data\+Representation\+Qos\+Policy}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::representation}
+
+
+
+Data representation policy, \doxylink{group__DDSDataRepresentationQosModule}{DATA\+\_\+\+REPRESENTATION}. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_ab590d198ae7e088ccd89e638acccc8da}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!partition@{partition}}
+\index{partition@{partition}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{partition}{partition}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_ab590d198ae7e088ccd89e638acccc8da} 
+struct \mbox{\hyperlink{structDDS__PartitionQosPolicy}{DDS\+\_\+\+Partition\+Qos\+Policy}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::partition}
+
+
+
+Policy of the Publisher to which the Data\+Writer belongs. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_a32f5f098f4bb08d5887d682bfb449f13}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_a32f5f098f4bb08d5887d682bfb449f13} 
+struct \mbox{\hyperlink{structDDS__UserDataQosPolicy}{DDS\+\_\+\+User\+Data\+Qos\+Policy}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::user\+\_\+data}
+
+
+
+Policy of the corresponding Data\+Writer. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_a8af1c832cffabb15c9cd07026060338a}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!group\_data@{group\_data}}
+\index{group\_data@{group\_data}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{group\_data}{group\_data}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_a8af1c832cffabb15c9cd07026060338a} 
+struct \mbox{\hyperlink{structDDS__GroupDataQosPolicy}{DDS\+\_\+\+Group\+Data\+Qos\+Policy}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::group\+\_\+data}
+
+
+
+Policy of the Publisher to which the Data\+Writer belongs. 
+
+\Hypertarget{structDDS__PublicationBuiltinTopicData_a74918b1474f0182091a55460e1cb3402}\index{DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}!topic\_data@{topic\_data}}
+\index{topic\_data@{topic\_data}!DDS\_PublicationBuiltinTopicData@{DDS\_PublicationBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{topic\_data}{topic\_data}}
+{\footnotesize\ttfamily \label{structDDS__PublicationBuiltinTopicData_a74918b1474f0182091a55460e1cb3402} 
+struct \mbox{\hyperlink{structDDS__TopicDataQosPolicy}{DDS\+\_\+\+Topic\+Data\+Qos\+Policy}} DDS\+\_\+\+Publication\+Builtin\+Topic\+Data\+::topic\+\_\+data}
+
+
+
+Policy of the related Topic. 
+

@@ -1,0 +1,39 @@
+\doxysubsection{RHSMHistory\+Factory Class Reference}
+\hypertarget{classRHSMHistoryFactory}{}\label{classRHSMHistoryFactory}\index{RHSMHistoryFactory@{RHSMHistoryFactory}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A reader history factory that will be used by the Data\+Reader to create a history cache.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+rh\+\_\+sm.\+hxx$>$}
+
+\doxysubsubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static struct RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classRHSMHistoryFactory_a14db7f416075a9d41daf3313b45b21ba}{get\+\_\+interface}} ()
+\begin{DoxyCompactList}\small\item\em Gets the singleton instance of the RHSM reader history factory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A reader history factory that will be used by the Data\+Reader to create a history cache. 
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classRHSMHistoryFactory_a14db7f416075a9d41daf3313b45b21ba}\index{RHSMHistoryFactory@{RHSMHistoryFactory}!get\_interface@{get\_interface}}
+\index{get\_interface@{get\_interface}!RHSMHistoryFactory@{RHSMHistoryFactory}}
+\doxyparagraph{\texorpdfstring{get\_interface()}{get\_interface()}}
+{\footnotesize\ttfamily \label{classRHSMHistoryFactory_a14db7f416075a9d41daf3313b45b21ba} 
+static struct RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*} RHSMHistory\+Factory\+::get\+\_\+interface (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets the singleton instance of the RHSM reader history factory. 
+
+This function gets the singleton instance of the RHSM history plugin factory that is used by the middleware to create a Reader\+History plugin. The singleton instance of the factory must be registered with the name "{}rh"{} in the Domain\+Participant\+Factory. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to RHSM history plugin factory 
+\end{DoxyReturn}

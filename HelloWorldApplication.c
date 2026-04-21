@@ -1,13 +1,13 @@
+#include "rti_me_c.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "rti_me_c.h"
 #include "disc_dpde/disc_dpde_discovery_plugin.h"
 #include "wh_sm/wh_sm_history.h"
 #include "rh_sm/rh_sm_history.h"
 #include "netio/netio_udp.h"
-
 #include "HelloWorld.h"
 #include "HelloWorldPlugin.h"
 #include "HelloWorldSupport.h"
@@ -45,10 +45,8 @@ Application_create(
     DDS_Boolean success = DDS_BOOLEAN_FALSE;
     RT_Registry_T *registry = NULL;
     struct UDP_InterfaceFactoryProperty *udp_property = NULL;
-
     struct DPDE_DiscoveryPluginProperty discovery_plugin_properties =
     DPDE_DiscoveryPluginProperty_INITIALIZER;
-
     struct Application *application = NULL;
     (void)local_participant_name;
     (void)remote_participant_name;
@@ -93,13 +91,13 @@ Application_create(
         goto done;
     }
 
-    /* Configure UDP transport's allowed interfaces */
-    if (!RT_Registry_unregister(registry, NETIO_DEFAULT_UDP_NAME, NULL, NULL))
+    /* If the UDP transport has already been registered, unregister it to
+    * set new properties.
+    */
+    if (RT_Registry_unregister(registry, NETIO_DEFAULT_UDP_NAME, NULL, NULL))
     {
-        printf("failed to unregister udp\n");
-        goto done;
+        printf("Unregistered existing UDP transport.\n");
     }
-
     udp_property = (struct UDP_InterfaceFactoryProperty *)
     malloc(sizeof(struct UDP_InterfaceFactoryProperty));
     if (udp_property == NULL)
@@ -124,20 +122,17 @@ Application_create(
     }
 
     /* loopback interface */
-    #if defined(RTI_DARWIN)
-    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) = 
+    #if defined(RTI_DARWIN) || defined(RTI_VXWORKS) || defined(RTI_QNX)
+    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) =
     DDS_String_dup("lo0");
     #elif defined (RTI_LINUX)
-    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) = 
+    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) =
     DDS_String_dup("lo");
-    #elif defined (RTI_VXWORKS)
-    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) = 
-    DDS_String_dup("lo0");
     #elif defined(RTI_WIN32)
-    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) = 
+    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) =
     DDS_String_dup("Loopback Pseudo-Interface 1");
     #else
-    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) = 
+    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) =
     DDS_String_dup("lo");
     #endif
 
@@ -149,19 +144,19 @@ Application_create(
     else                /* use hardcoded interface */
     {
         #if defined(RTI_DARWIN)
-        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) = 
+        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) =
         DDS_String_dup("en1");
         #elif defined (RTI_LINUX)
-        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) = 
+        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) =
         DDS_String_dup("eth0");
         #elif defined (RTI_VXWORKS)
-        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) = 
+        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) =
         DDS_String_dup("geisc0");
         #elif defined(RTI_WIN32)
-        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) = 
+        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) =
         DDS_String_dup("Local Area Connection");
         #else
-        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) = 
+        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) =
         DDS_String_dup("ce0");
         #endif
     }
@@ -186,7 +181,7 @@ Application_create(
         registry,
         "dpde",
         DPDE_DiscoveryFactory_get_interface(),
-        &discovery_plugin_properties._parent, 
+        &discovery_plugin_properties._parent,
         NULL))
     {
         printf("failed to register dpde\n");
@@ -198,6 +193,55 @@ Application_create(
         printf("failed to set discovery plugin name\n");
         goto done;
     }
+
+    if (!DDS_StringSeq_set_maximum(&dp_qos.transports.enabled_transports,1))
+    {
+        printf("failed to set maximum for transports.enabled_transports\n");
+        goto done;
+    }
+
+    if (!DDS_StringSeq_set_length(&dp_qos.transports.enabled_transports,1))
+    {
+        printf("failed to set length for transports.enabled_transports\n");
+        goto done;
+    }
+    *DDS_StringSeq_get_reference(&dp_qos.transports.enabled_transports,0) = DDS_String_dup("_udp");
+
+    if (!DDS_StringSeq_set_maximum(&dp_qos.discovery.enabled_transports,3))
+    {
+        printf("failed to set maximum for discovery.enabled_transports\n");
+        goto done;
+    }
+
+    if (!DDS_StringSeq_set_length(&dp_qos.discovery.enabled_transports,3))
+    {
+        printf("failed to set length for discovery.enabled_transports\n");
+        goto done;
+    }
+
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.enabled_transports,0) =
+    DDS_String_dup("_udp://239.255.0.1");
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.enabled_transports,1) =
+    DDS_String_dup("_udp://192.168.56.1");
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.enabled_transports,2) =
+    DDS_String_dup("_udp://127.0.0.1");
+
+    if (!DDS_StringSeq_set_maximum(&dp_qos.user_traffic.enabled_transports,2))
+    {
+        printf("failed to set maximum for user_traffic.enabled_transports\n");
+        goto done;
+    }
+
+    if (!DDS_StringSeq_set_length(&dp_qos.user_traffic.enabled_transports,2))
+    {
+        printf("failed to set length for user_traffic.enabled_transports\n");
+        goto done;
+    }
+
+    *DDS_StringSeq_get_reference(&dp_qos.user_traffic.enabled_transports,0) =
+    DDS_String_dup("_udp://192.168.56.1");
+    *DDS_StringSeq_get_reference(&dp_qos.user_traffic.enabled_transports,1) =
+    DDS_String_dup("_udp://127.0.0.1");
 
     if (!DDS_StringSeq_set_maximum(&dp_qos.discovery.initial_peers,1))
     {
@@ -299,7 +343,6 @@ Application_delete(struct Application *application)
     RT_Registry_T *registry = NULL;
     DDS_DomainParticipantFactory *factory = NULL;
     struct UDP_InterfaceFactoryProperty *udp_property = NULL;
-
     if (application == NULL)
     {
         return;
@@ -331,7 +374,7 @@ Application_delete(struct Application *application)
     if (!RT_Registry_unregister(
         registry,
         NETIO_DEFAULT_UDP_NAME,
-        (struct RT_ComponentFactoryProperty**)&udp_property, 
+        (struct RT_ComponentFactoryProperty**)&udp_property,
         NULL))
     {
         printf("failed to unregister udp\n");
@@ -368,7 +411,6 @@ Application_delete(struct Application *application)
         printf("failed to unregister wh\n");
         return;
     }
-
     free(application);
 
     retcode = DDS_DomainParticipantFactory_finalize_instance();

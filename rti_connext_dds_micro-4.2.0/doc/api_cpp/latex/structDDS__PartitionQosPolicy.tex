@@ -1,0 +1,87 @@
+\doxysubsection{DDS\+\_\+\+Partition\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__PartitionQosPolicy}{}\label{structDDS__PartitionQosPolicy}\index{DDS\_PartitionQosPolicy@{DDS\_PartitionQosPolicy}}
+
+
+A set of strings that introduces logical PARTITIONs.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+partition\+\_\+qos.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct DDS\+\_\+\+String\+Seq \mbox{\hyperlink{structDDS__PartitionQosPolicy_a32d912c94f200b40110043c31a45e12d}{name}}
+\begin{DoxyCompactList}\small\item\em The PARTITION string Sequence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+A set of strings that introduces logical PARTITIONs. 
+
+Only entities that belong to the same PARTITION can communicate with each other. 
+
+The PARTITION QoS controls which entities will match which other entities. PARTITIONs prevent entities from communicating. Only entities that belong to the same PARTITION can communicate with each other. The PARTITION QoS policy applies directly to Publishers and Subscribers. Data\+Writers and Data\+Readers belong to the partitions of the Publishers and Subscribers that created them. 
+
+PARTITION names are propagated with the discovery traffic for Publishers and Subscribers. 
+
+Data\+Writers will make their data available on all PARTITIONs that correspond to their Publisher\textquotesingle{}s PARTITION names, and the Data\+Readers will see the data on all PARTITIONs that correspond to their Subscriber\textquotesingle{}s PARTITION names. For a Data\+Writer and Data\+Reader to communicate, the Data\+Writer\textquotesingle{}s Publisher must match the Data\+Reader\textquotesingle{}s Subscribers PARTITION. 
+
+Data\+Writers and Data\+Readers will only match with each other if their Publisher\textquotesingle{}s QoS and Subscriber\textquotesingle{}s QoS contain a compatible PARTITION. 
+
+The PARTITION sequence must be set before enabling the entity. The user must create a Publisher QoS \doxylink{structDDS__PublisherQos_a96c903f30dd0794f4de01a85a1e002ec}{DDS\+\_\+\+Publisher\+Qos\+::partition} or a Subscriber QoS \doxylink{structDDS__SubscriberQos_a5aff8656c5f0ce9a114cb08eb9137d6e}{DDS\+\_\+\+Subscriber\+Qos\+::partition} for PARTITION configuration. 
+
+The default value for a PARTITION is the empty seqeunce. When an entity is created with a \doxylink{structDDS__PublisherQos_a96c903f30dd0794f4de01a85a1e002ec}{DDS\+\_\+\+Publisher\+Qos\+::partition} that does not have any concrete strings, meaning it only has regular expressions, then the partition is considered a member of the empty string "{}"{}. 
+
+Publishers and Subscribers without PARTITIONS are considered members of the empty string "{}"{}. 
+
+The regular expression matching rules are as follows\+: -\/ Two PARTITIONs will match if they are lexicographically identical. -\/ Two PARTITIONs will match if one is a string is not a regular expression and the other is a regular expression that completely matches. -\/ Two regular expressions cannot match. 
+
+\doxylink{structDDS__PartitionQosPolicy}{DDS\+\_\+\+Partition\+Qos\+Policy} supports the following regular expressions\+: 
+
+\texorpdfstring{$\ast$}{*} The \textquotesingle{}\texorpdfstring{$\ast$}{*}\textquotesingle{} matches any sequence of characters, including the empty string. 
+
+? The \textquotesingle{}?\textquotesingle{} character matches the preceding charcter once. Note that the \textquotesingle{}?\textquotesingle{} does not conform with the POSIX standard where it is allowed to match zero times. 
+
+\textbackslash{} The \textquotesingle{}\textbackslash{}\textquotesingle{} escape character {\itshape {\bfseries{shall}}} cause the next character to be interpreted literally. 
+
+\mbox{[} \mbox{]} Opening and closing brackets \textquotesingle{}\mbox{[}\textquotesingle{} \textquotesingle{}\mbox{]}\textquotesingle{} matches one of the characters enclosed in the brackets\+: A range "{} \textquotesingle{}\mbox{[}\textquotesingle{} C0 \textquotesingle{}-\/\textquotesingle{} C1 \textquotesingle{}\mbox{]}\textquotesingle{} "{} matches one character between the collating elements C0 and C1, inclusive. 
+
+The "{}\texorpdfstring{$^\wedge$}{\string^}"{} and "{}!"{} characters placed first in opening and closing brackets matches a single character if the character is not enclosed in the brackets. 
+
+A range "{} \textquotesingle{}\mbox{[}\textquotesingle{} \textquotesingle{}!\textquotesingle{} C0 \textquotesingle{}-\/\textquotesingle{} C1 \textquotesingle{}\mbox{]}\textquotesingle{} "{} matches a character not in the lexicographically closed interval C0 to C1. 
+
+The \doxylink{structDDS__PartitionQosPolicy}{DDS\+\_\+\+Partition\+Qos\+Policy} resource limits are made on a per Domain\+Participant basis. The resource limits cannot be set individually on a per Publisher/\+Subscriber basis. 
+
+\doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_a6b37b5d8e18a9a3bb40178b74436ec28}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+partitions} controls the maximum number of PARTITIONs that can be assigned per Publisher/\+Subscriber. 
+
+\doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_adaae0663c2f786d8779e126abf8f0779}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+partition\+\_\+cumulative\+\_\+characters} controls the maximum number of combined characters in all PARTITION names in a \doxylink{structDDS__PartitionQosPolicy}{DDS\+\_\+\+Partition\+Qos\+Policy}. 
+
+The maximum number of combined characters should account for a terminating NUL (\textquotesingle{}\textbackslash{}0\textquotesingle{}) character for each partition name string. 
+
+\doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_a99cc670256c0351fe9389e1ccb13a819}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+partition\+\_\+string\+\_\+allocation} The maximum number of 8-\/bit characters reserved for PARTITION.\+name strings to allocate for the PARTITION. When this is set to DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED, no memory is preallocated. Memory is allocated during local and remote entity creation even if the creation occurs during runtime. When max\+\_\+partition\+\_\+string\+\_\+allocation is greater than 0, that amount of memory is preallocated for storing created and discovered PARTITION names. \doxylink{structDDS__PartitionQosPolicy}{DDS\+\_\+\+Partition\+Qos\+Policy}. 
+
+\doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_ab231225ad10a34bfe49224823834a918}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+partition\+\_\+string\+\_\+size} max\+\_\+partition\+\_\+string\+\_\+size configures the PARTITION name element max string length in local and remote Publishers and Subscribers. All applications in the DDS domain must use the same max\+\_\+partition\+\_\+string\+\_\+size in order to communicate. 
+
+When creating a Publisher or Subscriber, all PARTITION elements in the Publisher or Subscriber QoS must not exceed max\+\_\+partition\+\_\+string\+\_\+size or the creation will fail. max\+\_\+partition\+\_\+string\+\_\+size also controls the max length for any discovered PARTITION names from remote Publishers and Subscribers. Remote entities that have PARTITION name lengths that exceed max\+\_\+partition\+\_\+string\+\_\+size will not be discovered. 
+
+When max\+\_\+partition\+\_\+string\+\_\+allocation is DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED max\+\_\+partition\+\_\+string\+\_\+size should be set to DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED. This configuration allows each PARTITION name size to be any length up to max\+\_\+partition\+\_\+cumulative\+\_\+characters. In this configuration, PARTITION strings are allocated and freed during runtime. To prevent allocation during runtime, when max\+\_\+partition\+\_\+string\+\_\+allocation is DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED, the users can assert all unique PARTITION names during creation. When any additional instances of that name is encountered, during entity creation or discovery, no further memory is used for storing the existing PARTITION names. 
+
+Use the following configurations to completely control memory utilization or to avoid any possibility of runtime allocation. 
+
+When max\+\_\+partition\+\_\+string\+\_\+allocation is not DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED and max\+\_\+partition\+\_\+string\+\_\+size is DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED then PARTITION names can be any length up to max\+\_\+partition\+\_\+cumulative\+\_\+characters. Memory for PARTITION names will be preallocated and will never be freed or reused. The user must have enough max\+\_\+partition\+\_\+string\+\_\+allocation to store every unique instance of each PARTITION name to be discovered. 
+
+When max\+\_\+partition\+\_\+string\+\_\+allocation is not DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED then max\+\_\+partition\+\_\+string\+\_\+size can be set to a value greater than 0. In this configuration, memory for PARTITION names are preallocated and will never be freed during operation. PARTITION names are stored in memory and consume max\+\_\+partition\+\_\+string\+\_\+size sized memory segments up to max\+\_\+partition\+\_\+string\+\_\+allocation. Memory is reused for PARTITION names that are added to memory, internally deleted, and are no longer needed. As an example, if the application creates a Publisher with a unique PARTITION name instance and then deletes that Publisher, if there are no further uses of that partition name, the application will reuse the memory that was storing the unique PARTITION name. Reuse occurs in the same way for remote entities. The user must have enough max\+\_\+partition\+\_\+string\+\_\+allocation to store every unique instance of each PARTITION name to be created and discovered. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__PartitionQosPolicy_a32d912c94f200b40110043c31a45e12d}\index{DDS\_PartitionQosPolicy@{DDS\_PartitionQosPolicy}!name@{name}}
+\index{name@{name}!DDS\_PartitionQosPolicy@{DDS\_PartitionQosPolicy}}
+\doxyparagraph{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{structDDS__PartitionQosPolicy_a32d912c94f200b40110043c31a45e12d} 
+struct DDS\+\_\+\+String\+Seq DDS\+\_\+\+Partition\+Qos\+Policy\+::name}
+
+
+
+The PARTITION string Sequence. 
+
+Sequence of strings that introduce a logical PARTITION among the topics visible by the Publisher and Subscriber. 

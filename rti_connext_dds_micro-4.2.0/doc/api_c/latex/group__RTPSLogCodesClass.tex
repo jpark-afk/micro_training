@@ -1,0 +1,1890 @@
+\doxysubsubsection{RTPS}
+\hypertarget{group__RTPSLogCodesClass}{}\label{group__RTPSLogCodesClass}\index{RTPS@{RTPS}}
+
+
+Real-\/\+Time Publish-\/\+Subscribe. Module\+ID = 6.  
+
+
+\doxysubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga2b72ebfd4c5fc89eeb7465b89c9ef3d9}{RTPS\+\_\+\+LOG\+\_\+\+INITIALIZE\+\_\+\+INTERFACE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 1)
+\begin{DoxyCompactList}\small\item\em Failed to initialize an RTPS interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaf4038ecf5824b8bdda387dce3ac4d057}{RTPS\+\_\+\+LOG\+\_\+\+ALLOCATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 2)
+\begin{DoxyCompactList}\small\item\em Failed to allocate heap memory for internal resources. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga182f75e42fc6551f5abf66aad29ec801}{RTPS\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+ROUTE\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 3)
+\begin{DoxyCompactList}\small\item\em Failed to create a database table for storing RTPS route info. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga48c4e7905c1224552c3ffe2119e8bdac}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+ROUTE\+\_\+\+PEER\+\_\+\+INDEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 4)
+\begin{DoxyCompactList}\small\item\em Failed to create database index for route-\/peer info. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gad9405d37aa009655eeeb89c871e8527e}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+ROUTE\+\_\+\+XPORT\+\_\+\+INDEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 5)
+\begin{DoxyCompactList}\small\item\em Failed to create database index for route-\/transport info. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga426fde8d4106ec1d7a30e28e70db3119}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+BIND\+\_\+\+PEER\+\_\+\+INDEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 6)
+\begin{DoxyCompactList}\small\item\em Failed to create database index for bind-\/peer info. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gac9d41b3e4488977dcb7809293eddc4ae}{RTPS\+\_\+\+LOG\+\_\+\+INDEX\+\_\+\+ADD\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 8)
+\begin{DoxyCompactList}\small\item\em Failed to add an entry to a database index. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaa7ac5c95df3b609467bf2b11ae971fc9}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+SELECT\+\_\+\+ALL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 9)
+\begin{DoxyCompactList}\small\item\em Failed to select all entries of a database table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga77331390c7645c121ed7ba0fa20dc8a8}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+SELECT\+\_\+\+MATCH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 10)
+\begin{DoxyCompactList}\small\item\em Matching entry not found in a database table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga9c204c22364effddbff59e6ac2604307}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+SELECT\+\_\+\+RANGE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 11)
+\begin{DoxyCompactList}\small\item\em No matching entries found in a database table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga357e400b7082df947440e1dbe356ab62}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+ROUTE\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 12)
+\begin{DoxyCompactList}\small\item\em Failed to create database entry for route. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga801b2aec26a54858e849bafb3c4f2fd3}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+INSERT\+\_\+\+ROUTE\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 13)
+\begin{DoxyCompactList}\small\item\em Failed to insert entry into route table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gacdbcad0c3e05da352e255f7731db5b1b}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+DELETE\+\_\+\+ROUTE\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 15)
+\begin{DoxyCompactList}\small\item\em Failed to delete entry from route table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga1d40f522b702a3d0c11417122d9ba70b}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 16)
+\begin{DoxyCompactList}\small\item\em Failed to create database entry for bind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gab8b66a3721ce3982c76f27a496d891cf}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+INSERT\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 17)
+\begin{DoxyCompactList}\small\item\em Failed to insert an entry into the bind table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga2bd27f8c8f67eae5afc2678e0cf6b03c}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+REMOVE\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 18)
+\begin{DoxyCompactList}\small\item\em Failed to remove an entry from the bind table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga5b840f0bc052aa0be8c1b1bc80bc271f}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+REMOVE\+\_\+\+EXTERNAL\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 19)
+\begin{DoxyCompactList}\small\item\em Failed to remove an entry from the external bind table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga156735552183cde5fb04ccea2f83abea}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+DELETE\+\_\+\+EXTERNAL\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 20)
+\begin{DoxyCompactList}\small\item\em Failed to delete entry from external bind table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gab1e46911c2897af498d13ed848223ea7}{RTPS\+\_\+\+LOG\+\_\+\+SEND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 21)
+\begin{DoxyCompactList}\small\item\em Failed to send a packet due to a lower module failing to send the packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga27de27a2175f09808be25145ae110ff9}{RTPS\+\_\+\+LOG\+\_\+\+RECEIVE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 22)
+\begin{DoxyCompactList}\small\item\em Failed to receive a packet due to a higher module failing to receive the packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaec3723934996afbc0e0f13557eefade1}{RTPS\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+PACKET\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 23)
+\begin{DoxyCompactList}\small\item\em Failed to send a packet, when routing to a lower module or peer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaf5b67603579278c01be13d6065be089b}{RTPS\+\_\+\+LOG\+\_\+\+FORWARD\+\_\+\+UPSTREAM\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 24)
+\begin{DoxyCompactList}\small\item\em Failed to receive a packet, when forwarding to a higher upstream module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaf78bd43a868265e00d78f69f86c74c63}{RTPS\+\_\+\+LOG\+\_\+\+BAD\+\_\+\+PARAMETER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 25)
+\begin{DoxyCompactList}\small\item\em Bad parameter to an RTPS interface function. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaa0c62bdf416e19b04a218be6ed24a206}{RTPS\+\_\+\+LOG\+\_\+\+NOT\+\_\+\+ENABLED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 26)
+\begin{DoxyCompactList}\small\item\em Failed because interface is not enabled. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga37ce093d22b8b521b43f4b06f4eaa328}{RTPS\+\_\+\+LOG\+\_\+\+READER\+\_\+\+UNSUPPORTED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 27)
+\begin{DoxyCompactList}\small\item\em RTPS reader does not support send. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga2224021cfb1edb3e29cb46110827c6c5}{RTPS\+\_\+\+LOG\+\_\+\+INTERFACE\+\_\+\+MISMATCH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 28)
+\begin{DoxyCompactList}\small\item\em Upstream interface does not match source or destination of packet being sent or received. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga26b5dfc9ce6c2aa048193f27b504d0e3}{RTPS\+\_\+\+LOG\+\_\+\+FULL\+\_\+\+SEND\+\_\+\+WINDOW\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 29)
+\begin{DoxyCompactList}\small\item\em Failed to send due to reaching maximum send window size. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga2ff25b3a3f19552c73f7268a702efee4}{RTPS\+\_\+\+LOG\+\_\+\+NETIO\+\_\+\+PACKET\+\_\+\+SET\+\_\+\+TAIL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 31)
+\begin{DoxyCompactList}\small\item\em Failed to set tail of packet to send. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga9d323a5b92a8a86bd469313ee693afd9}{RTPS\+\_\+\+LOG\+\_\+\+FUNC\+\_\+\+UNSUPPORTED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 32)
+\begin{DoxyCompactList}\small\item\em RTPS interface does not support this function. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga1dc7cfd3fa36e378b60ab14393481413}{RTPS\+\_\+\+LOG\+\_\+\+EXCEEDED\+\_\+\+LIMIT\+\_\+\+TRANSPORTS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 33)
+\begin{DoxyCompactList}\small\item\em Out of transport entries. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga99f576879543668837dc2c6e4245c32d}{RTPS\+\_\+\+LOG\+\_\+\+EXCEEDED\+\_\+\+LIMIT\+\_\+\+PEERS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 34)
+\begin{DoxyCompactList}\small\item\em Out of peer entries. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gab62ac0511ba7f9e0be5fee86ea9791b3}{RTPS\+\_\+\+LOG\+\_\+\+ASSERT\+\_\+\+PEER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 35)
+\begin{DoxyCompactList}\small\item\em Failed to assert a remote writer or reader. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gac145cbaee4058e1b64b53f06d5d8cb85}{RTPS\+\_\+\+LOG\+\_\+\+ASSERT\+\_\+\+TRANSPORT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 36)
+\begin{DoxyCompactList}\small\item\em Failed to assert a downstream transport. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga18dba0e8240847cb2c98d9a71b43266c}{RTPS\+\_\+\+LOG\+\_\+\+FIND\+\_\+\+EXTERNAL\+\_\+\+INTERFACE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 37)
+\begin{DoxyCompactList}\small\item\em Failed to lookup an external interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaa775e6b064d1576d379792a46960750a}{RTPS\+\_\+\+LOG\+\_\+\+NONEXISTENT\+\_\+\+ROUTE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 38)
+\begin{DoxyCompactList}\small\item\em Failed to delete a nonexistent route. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga4ff6831904ebcbdc0a69e425309901b0}{RTPS\+\_\+\+LOG\+\_\+\+NONEXISTENT\+\_\+\+BIND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 39)
+\begin{DoxyCompactList}\small\item\em Failed to remove a nonexistent bind entry. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga6125f1d59249cc8b07b0a0ae3f680665}{RTPS\+\_\+\+LOG\+\_\+\+NONEXISTENT\+\_\+\+EXTERNAL\+\_\+\+BIND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 40)
+\begin{DoxyCompactList}\small\item\em Failed to remove a nonexistent external bind entry. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga3842e1b4417fee84920a1eba7ec4fd1b}{RTPS\+\_\+\+LOG\+\_\+\+STALE\+\_\+\+ACK\+\_\+\+EPOCH\+\_\+\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 41)
+\begin{DoxyCompactList}\small\item\em Dropped an ACKNACK submessage with an old epoch. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga7aaaaa8fed2af9ea10382e16987fa925}{RTPS\+\_\+\+LOG\+\_\+\+STALE\+\_\+\+HB\+\_\+\+EPOCH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 42)
+\begin{DoxyCompactList}\small\item\em Dropped a HEARTBEAT submessage with an old epoch. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga9c6c02b69c8387892d4dc0dc39a2a79f}{RTPS\+\_\+\+LOG\+\_\+\+ACK\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 43)
+\begin{DoxyCompactList}\small\item\em Failed an acknack() upstream. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaa3c24a088a371bcb49ffc1670ee10502}{RTPS\+\_\+\+LOG\+\_\+\+REQUEST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 45)
+\begin{DoxyCompactList}\small\item\em Failed a request() upstream. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga4d84b84c684ce145bbfa1b41d94c4cac}{RTPS\+\_\+\+LOG\+\_\+\+RETURN\+\_\+\+LOAN\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 46)
+\begin{DoxyCompactList}\small\item\em Failed a return\+\_\+loan() upstream. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga88d028b7bbb59dbde77d879690b6355b}{RTPS\+\_\+\+LOG\+\_\+\+NETIO\+\_\+\+PACKET\+\_\+\+SET\+\_\+\+HEAD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 47)
+\begin{DoxyCompactList}\small\item\em Failed to set the head of a packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gae56ee2df4d9cd4f2fff0c4e08889dd56}{RTPS\+\_\+\+LOG\+\_\+\+SEND\+\_\+\+HEARTBEAT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 48)
+\begin{DoxyCompactList}\small\item\em Failed to send a HEARTBEAT submessage. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga189a6296bc3c814c4485bbf1fafb53c6}{RTPS\+\_\+\+LOG\+\_\+\+SHIFT\+\_\+\+BITMAP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 49)
+\begin{DoxyCompactList}\small\item\em Failed to shift a bitmap. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga893aa3775a5b73efdc96a310287e0b71}{RTPS\+\_\+\+LOG\+\_\+\+FULLY\+\_\+\+ACKED\+\_\+\+READER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 50)
+\begin{DoxyCompactList}\small\item\em A Reader is fully acknowledged and does not need to respond to a final HEARTBEAT. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga27b6a063babe60c061728563f77cfe65}{RTPS\+\_\+\+LOG\+\_\+\+DATA\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 51)
+\begin{DoxyCompactList}\small\item\em Dropping a DATA submessage whose sequence number is outside of a Reader\textquotesingle{}s receive window. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaa5157f68aa7cfa01f51ee395b33321aa}{RTPS\+\_\+\+LOG\+\_\+\+DATA\+\_\+\+ALREADY\+\_\+\+RECEIVED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 52)
+\begin{DoxyCompactList}\small\item\em Dropping a DATA submessage whose sequence number was previously received. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gad028075347045136b99d726b802d096b}{RTPS\+\_\+\+LOG\+\_\+\+INTERFACE\+\_\+\+NOT\+\_\+\+ENABLED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 53)
+\begin{DoxyCompactList}\small\item\em Failed to receive a message because interface is not enabled. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga1b28856449e5198dceb4d5d07dd9dc81}{RTPS\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+PACKET\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 54)
+\begin{DoxyCompactList}\small\item\em Dropped a message with an invalid packet header. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gafde9a3c954537a09faf81cfbc543cb37}{RTPS\+\_\+\+LOG\+\_\+\+UNSUPPORTED\+\_\+\+INTERFACE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 55)
+\begin{DoxyCompactList}\small\item\em Received a message on an unsupported interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga6bc71dcd82a73461c1893c57f2858610}{RTPS\+\_\+\+LOG\+\_\+\+UNKNOWN\+\_\+\+SUBMESSAGE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 56)
+\begin{DoxyCompactList}\small\item\em Received a submessage with an unknown ID. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaab9afa57996b04f0d16775a6ac439087}{RTPS\+\_\+\+LOG\+\_\+\+PROCESS\+\_\+\+ACKNACK\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 57)
+\begin{DoxyCompactList}\small\item\em Failed to process received ACKNACK submessage. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gab5ead619cd43a733718b481923c29aea}{RTPS\+\_\+\+LOG\+\_\+\+PROCESS\+\_\+\+DATA\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 58)
+\begin{DoxyCompactList}\small\item\em Failed to process received DATA submessage. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga87b76833ffe520c116a885f0af488d92}{RTPS\+\_\+\+LOG\+\_\+\+PROCESS\+\_\+\+GAP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 59)
+\begin{DoxyCompactList}\small\item\em Failed to process received GAP submessage. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga7e974326bfe0b80f4201a990142fff44}{RTPS\+\_\+\+LOG\+\_\+\+PROCESS\+\_\+\+HEARTBEAT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 60)
+\begin{DoxyCompactList}\small\item\em Failed to process received HEARTBEAT submessage. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaa6276952da140cc5ef32a16f2f8d9226}{RTPS\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+HB\+\_\+\+EVENT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 61)
+\begin{DoxyCompactList}\small\item\em Failed to create periodic HEARTBEAT event. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga79f2f4cc339bb591bef0b6f55994bcae}{RTPS\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+EVENT\+\_\+\+TIMER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 62)
+\begin{DoxyCompactList}\small\item\em Failed to create periodic HEARTBEAT event timer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga004fe1e8ef3f7f16cdd817f0ff14a477}{RTPS\+\_\+\+LOG\+\_\+\+SEQ\+\_\+\+NUM\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 63)
+\begin{DoxyCompactList}\small\item\em Failed to set bitmap bit due to out-\/of-\/range sequence number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga4c81b6e9bb9eb22e42980a58089ef39f}{RTPS\+\_\+\+LOG\+\_\+\+FIRST\+\_\+\+SN\+\_\+\+GREATER\+\_\+\+LAST\+\_\+\+SN\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 65)
+\begin{DoxyCompactList}\small\item\em Invalid range of sequence numbers to fill in bitmap. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gad68d9b4d095e922d1cef28ca2c36ecc7}{RTPS\+\_\+\+LOG\+\_\+\+BITCOUNT\+\_\+\+OUT\+\_\+\+OF\+\_\+\+BOUNDS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 66)
+\begin{DoxyCompactList}\small\item\em Deserialized an invalid out-\/of-\/bounds bitcount for a bitmap. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga3ae2e12e4d03ae0c29c13ac59efe5a44}{RTPS\+\_\+\+LOG\+\_\+\+SHIFT\+\_\+\+SN\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 67)
+\begin{DoxyCompactList}\small\item\em Failed to shift bitmap due to invalid starting sequence number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga21cab8e34e51d63f341ca4bece5bec01}{RTPS\+\_\+\+LOG\+\_\+\+SERIALIZE\+\_\+\+HOST\+\_\+\+ID\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 68)
+\begin{DoxyCompactList}\small\item\em Failed to serialize host ID of GUID. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga4d7495c976ca3b477dd2ec55a415fb2f}{RTPS\+\_\+\+LOG\+\_\+\+SERIALIZE\+\_\+\+APP\+\_\+\+ID\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 69)
+\begin{DoxyCompactList}\small\item\em Failed to serialize app ID of GUID. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga3125ee9d613e478d0926d92cfb89e0b3}{RTPS\+\_\+\+LOG\+\_\+\+SERIALIZE\+\_\+\+INSTANCE\+\_\+\+ID\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 70)
+\begin{DoxyCompactList}\small\item\em Failed to serialized instance ID of GUID. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga4aa42ee75deb7bb2193d510875659a46}{RTPS\+\_\+\+LOG\+\_\+\+SERIALIZE\+\_\+\+OBJECT\+\_\+\+ID\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 71)
+\begin{DoxyCompactList}\small\item\em Failed to serialize object ID of GUID. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaeb8a018d0d72ef85f0d8b3d0b2705805}{RTPS\+\_\+\+LOG\+\_\+\+DESERIALIZE\+\_\+\+HOST\+\_\+\+ID\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 72)
+\begin{DoxyCompactList}\small\item\em Failed to deserialize host ID of GUID. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga2e7591e843ab182f6440ad78813d2745}{RTPS\+\_\+\+LOG\+\_\+\+DESERIALIZE\+\_\+\+APP\+\_\+\+ID\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 73)
+\begin{DoxyCompactList}\small\item\em Faild to deserialize app ID of GUID. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga8d19a7c2ade41d3a493158cf96cf2a59}{RTPS\+\_\+\+LOG\+\_\+\+DESERIALIZE\+\_\+\+INSTANCE\+\_\+\+ID\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 74)
+\begin{DoxyCompactList}\small\item\em Failed to deserialize instance ID of GUID. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gadf4554ed91a3252ca93bc98f9af78f8a}{RTPS\+\_\+\+LOG\+\_\+\+DESERIALIZE\+\_\+\+OBJECT\+\_\+\+ID\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 75)
+\begin{DoxyCompactList}\small\item\em Failed to deserialize object ID of GUID. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gabfaebffd41336adee57926e2dab76fbb}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+EXT\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 76)
+\begin{DoxyCompactList}\small\item\em Failed to create database entry for external bind table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gada5b3cdb835541c1303109f86dcebed3}{RTPS\+\_\+\+LOG\+\_\+\+BITMAP\+\_\+\+SET\+\_\+\+BIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 77)
+\begin{DoxyCompactList}\small\item\em Failed to set bit in bitmap. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaca05ae040b45805d368db4e8086b952f}{RTPS\+\_\+\+LOG\+\_\+\+UNSUPPORTED\+\_\+\+INFO\+\_\+\+REPLY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 78)
+\begin{DoxyCompactList}\small\item\em Received and dropped currently unsupported INFO\+\_\+\+REPLY submessage. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gab1add63b4eb4d06a288d9b0c7e8ace48}{RTPS\+\_\+\+LOG\+\_\+\+UNSUPPORTED\+\_\+\+INFO\+\_\+\+REPLY\+\_\+\+IP4\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 79)
+\begin{DoxyCompactList}\small\item\em Received and dropped currently unsupported INFO\+\_\+\+REPLY\+\_\+\+IP4 submessage. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga4d43f7b1a9bd80b15715d2933b96e19e}{RTPS\+\_\+\+LOG\+\_\+\+UNSUPPORTED\+\_\+\+INFO\+\_\+\+SRC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 80)
+\begin{DoxyCompactList}\small\item\em Received and dropped currently unsupported INFO\+\_\+\+SRC submessage. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga177b58566568087ae073988204e7bf18}{RTPS\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+INDEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 81)
+\begin{DoxyCompactList}\small\item\em Failed to delete index of a database table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaf13515d8689d8a1d4d51094e5523339e}{RTPS\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 82)
+\begin{DoxyCompactList}\small\item\em Failed to delete a database table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gac3b267d65e760ef8d1e8ed9208053cf9}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+LOCK\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 83)
+\begin{DoxyCompactList}\small\item\em Failed to take database lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gae4b0699f64f3fcb35e361b60346bd32c}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+UNLOCK\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 84)
+\begin{DoxyCompactList}\small\item\em Failed to give database lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaf77f0a9ad406bb8e0c08a8e44580284c}{RTPS\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+BIND\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 85)
+\begin{DoxyCompactList}\small\item\em Failed to create a database table for storing RTPS bind info. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gac3672be511e032620bcdb824815288c7}{RTPS\+\_\+\+LOG\+\_\+\+STATUS\+\_\+\+CHANGE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 86)
+\begin{DoxyCompactList}\small\item\em Failed to update status for reliable reader activity changed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gab76bb08e19fd9156289ecb053aa6b056}{RTPS\+\_\+\+LOG\+\_\+\+SET\+\_\+\+GAP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 87)
+\begin{DoxyCompactList}\small\item\em Failed to update status for reliable reader activity changed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaaa94819cb95575e1ecd75bb248488b61}{RTPS\+\_\+\+LOG\+\_\+\+WINDOW\+\_\+\+POOL\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 88)
+\begin{DoxyCompactList}\small\item\em Out of memory to allocate send window pool. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gac097ee6f26dd9caeb2db8823f217ad83}{RTPS\+\_\+\+LOG\+\_\+\+GET\+\_\+\+WINDOW\+\_\+\+BUFFER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 89)
+\begin{DoxyCompactList}\small\item\em Failed to get buffer from send window pool. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gafcbae4eb174f27659f5a05df8bbe9e10}{RTPS\+\_\+\+LOG\+\_\+\+INSERT\+\_\+\+WINDOW\+\_\+\+FULL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 90)
+\begin{DoxyCompactList}\small\item\em Cannot insert sample into full window. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaa574732e368fb55ff08baa30f9fb77df}{RTPS\+\_\+\+LOG\+\_\+\+WINDOW\+\_\+\+INSERT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 91)
+\begin{DoxyCompactList}\small\item\em Failed to insert sample into send window. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga8703805d36d3d69366824db3f98d84c2}{RTPS\+\_\+\+LOG\+\_\+\+TIMER\+\_\+\+DELETE\+\_\+\+TIMEOUT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 92)
+\begin{DoxyCompactList}\small\item\em Failed to delete a timeout event. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gac8f96e5993ea86589e761e0c8b951aba}{RTPS\+\_\+\+LOG\+\_\+\+BUFFERPOOL\+\_\+\+DELETE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 93)
+\begin{DoxyCompactList}\small\item\em Failed to delete a buffer pool. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaabf8e511ba405e61692750aa3bbf3a9c}{RTPS\+\_\+\+LOG\+\_\+\+DIRECT\+\_\+\+SEND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 94)
+\begin{DoxyCompactList}\small\item\em Failed to send a message to a specific peer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga10bbb123be2fe20c94a183b47d0afd68}{RTPS\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+INITIALIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 95)
+\begin{DoxyCompactList}\small\item\em RTPS writer failed to initialize a packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga38c6282b66feecba841877d14c6d3e1a}{RTPS\+\_\+\+LOG\+\_\+\+WRITER\+\_\+\+REQUEST\+\_\+\+SENT\+\_\+\+HISTORY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 96)
+\begin{DoxyCompactList}\small\item\em RTPS reliable writer failed to request and resend history. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga89074994908d039b773f5d238a17795e}{RTPS\+\_\+\+LOG\+\_\+\+BITMAP\+\_\+\+SHIFT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 97)
+\begin{DoxyCompactList}\small\item\em Failed to shift bitmap to new lead sequence number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaec00ead7b7697c7de702b8fa1678b09f}{RTPS\+\_\+\+LOG\+\_\+\+WINDOW\+\_\+\+ADVANCE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 98)
+\begin{DoxyCompactList}\small\item\em Send window of a remote reader failed to advance. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gac3ace851507f704d7edd02f4a67be09f}{RTPS\+\_\+\+LOG\+\_\+\+WINDOW\+\_\+\+ADVANCE\+\_\+\+UNACKED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 99)
+\begin{DoxyCompactList}\small\item\em Failed when advancing window ahead of unacknowledged sequence number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga5da0b0f0d7b87e148ce253653554ba50}{RTPS\+\_\+\+LOG\+\_\+\+LOOKUP\+\_\+\+PEER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 100)
+\begin{DoxyCompactList}\small\item\em Failed to find peer that should exist. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gac4c12834cd1c7d2df55be62bb86a6650}{RTPS\+\_\+\+LOG\+\_\+\+READER\+\_\+\+SEND\+\_\+\+ACKNACK\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 101)
+\begin{DoxyCompactList}\small\item\em RTPS reader failed to send an ACKNACK message. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga3ff0760a317a4f8971703ed4e84c9267}{RTPS\+\_\+\+LOG\+\_\+\+FINALIZE\+\_\+\+INTERFACE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 102)
+\begin{DoxyCompactList}\small\item\em Failed to finalize an RTPS interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gadd20933ec0a615be4052fe62aed4037f}{RTPS\+\_\+\+LOG\+\_\+\+INDEXER\+\_\+\+REMOVE\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 103)
+\begin{DoxyCompactList}\small\item\em Failed to remove index entry for external interface upon deleting RTPS interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gad32fd037d5d3c50281f48cdf2a7bad64}{RTPS\+\_\+\+LOG\+\_\+\+LOOKUP\+\_\+\+EXT\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 104)
+\begin{DoxyCompactList}\small\item\em Failed when looking up external bind entry from database. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gae9b18c3adc4ba59203c593b4b966b1e7}{RTPS\+\_\+\+LOG\+\_\+\+SEQ\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 105)
+\begin{DoxyCompactList}\small\item\em Failed to initialize a local sequence. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaf1460d49c76fd8735446c0fccf2db726}{RTPS\+\_\+\+LOG\+\_\+\+SEQ\+\_\+\+MAX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 106)
+\begin{DoxyCompactList}\small\item\em Failed to set maximum of a local sequence. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga7ee6964d6553daf317b0cf04023c036f}{RTPS\+\_\+\+LOG\+\_\+\+SEQ\+\_\+\+LEN\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 107)
+\begin{DoxyCompactList}\small\item\em Failed to set length of a local sequence. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaf88c5c5cfb136352681f68df9c91ddb3}{RTPS\+\_\+\+LOG\+\_\+\+INTF\+\_\+\+MODE\+\_\+\+UNDEF\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 108)
+\begin{DoxyCompactList}\small\item\em Initializing an RTPS interface with undefined mode. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga268e0686f254505a3823bbb78d13c2e1}{RTPS\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+BUFFER\+\_\+\+POOL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 109)
+\begin{DoxyCompactList}\small\item\em Failed to delete buffer pool. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga192e803afd2c25751ed231a3716b997e}{RTPS\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+BUFFER\+\_\+\+POOL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 110)
+\begin{DoxyCompactList}\small\item\em Failed to create buffer pool. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga5c5d81ff3e4d18b7f089213374827a19}{RTPS\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+PEERS\+\_\+\+INDEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 111)
+\begin{DoxyCompactList}\small\item\em Failed to create index of peers. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga3db2727b8cd62ff59ac0e398747de7dc}{RTPS\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+INDEXER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 112)
+\begin{DoxyCompactList}\small\item\em Failed to delete indexer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gab3c1bea442603280f5c2e491ebd88032}{RTPS\+\_\+\+LOG\+\_\+\+GET\+\_\+\+PEER\+\_\+\+BUFFER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 113)
+\begin{DoxyCompactList}\small\item\em Failed to get buffer from peer buffer pool. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga983f1c0cf5d05e700a7796c087d9218b}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+DIRECT\+\_\+\+INDEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 114)
+\begin{DoxyCompactList}\small\item\em Failed to create database index for direct sends. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gab637cdb8393d32fda3d5b05207c85f49}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+GROUP\+\_\+\+INDEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 115)
+\begin{DoxyCompactList}\small\item\em Failed to create database index for group sends. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga323f90fea6a28fcde6e943929ef0bebc}{RTPS\+\_\+\+LOG\+\_\+\+NETIO\+\_\+\+PACKET\+\_\+\+INSUFFICIENT\+\_\+\+BUFFER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 116)
+\begin{DoxyCompactList}\small\item\em Insufficient buffer in packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaf70804af83f519383b50a93b340fe980}{RTPS\+\_\+\+LOG\+\_\+\+TRANSFORM\+\_\+\+RTPS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 117)
+\begin{DoxyCompactList}\small\item\em Failed to transform rtps message. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gab9e273594e8e201ba5f9a83d8755674d}{RTPS\+\_\+\+LOG\+\_\+\+RESTORE\+\_\+\+TRUST\+\_\+\+LOAN\+\_\+\+BUFFER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 118)
+\begin{DoxyCompactList}\small\item\em Failed to restore trust loan buffer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga9160d05790be87310f59707e94d7d8b9}{RTPS\+\_\+\+LOG\+\_\+\+PROCESS\+\_\+\+DATA\+\_\+\+BATCH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 136)
+\begin{DoxyCompactList}\small\item\em Failed to process received DATA BATCH submessage. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gae66b8f0c83d02b70285ba5fdab0dcb2c}{RTPS\+\_\+\+LOG\+\_\+\+PROCESS\+\_\+\+HEARTBEAT\+\_\+\+BATCH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 137)
+\begin{DoxyCompactList}\small\item\em Failed to process received HEARTBEAT\+\_\+\+BATCH submessage. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gad0c28803792f19a7f1c6b48e0a109150}{RTPS\+\_\+\+LOG\+\_\+\+NEGATIVE\+\_\+\+RESERVATION\+\_\+\+COUNT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 138)
+\begin{DoxyCompactList}\small\item\em The reservation count it zero. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gab0b2f4d4437ab34a9ad0cbd25f210ab6}{RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+REMOTE\+\_\+\+PARTICIPANT\+\_\+\+HANDLE\+\_\+\+LOOKUP\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 139)
+\begin{DoxyCompactList}\small\item\em Failed to lookup a remote participant\textquotesingle{}s interceptor handle. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gadbe9ed0b2aaa11a64fe0ec05948b8b65}{RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+REMOTE\+\_\+\+PARTICIPANT\+\_\+\+HANDLE\+\_\+\+CREATE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 140)
+\begin{DoxyCompactList}\small\item\em Failed to create a record to store a remote participant\textquotesingle{}s interceptor handle. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaa8a15f8ff8c3979ed098e296027a925b}{RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+REMOTE\+\_\+\+PARTICIPANT\+\_\+\+HANDLE\+\_\+\+INSERT\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 141)
+\begin{DoxyCompactList}\small\item\em Failed to insert a record in the table storing interceptor handles of matched remote participants. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gae1a57d8816451900e8d42342e294cd77}{RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+INTERCEPTOR\+\_\+\+HANDLE\+\_\+\+LIST\+\_\+\+FULL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 142)
+\begin{DoxyCompactList}\small\item\em Interceptor handle list out of resources. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga542370fcc2e7a043b688af21be5d5489}{RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+INCONSISTENT\+\_\+\+INTERCEPTOR\+\_\+\+HANDLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 143)
+\begin{DoxyCompactList}\small\item\em Inconsistent handles found for remote peer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga8b37008561bcc854dbae751a070e50ec}{RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+BIND\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 144)
+\begin{DoxyCompactList}\small\item\em Failed to bind resources for trust behavior. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga55cf9bf52ccc7cba37b3fb550d8c10a0}{RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+SUBMSG\+\_\+\+CONVERSION\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 145)
+\begin{DoxyCompactList}\small\item\em Failed to bind resources for trust behavior. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga7972b5de1938c1e5fc8837ad435f0411}{RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+INVALID\+\_\+\+SUBMSG\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 146)
+\begin{DoxyCompactList}\small\item\em A malformed trust message was received. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gabc490eceea6d20629801c70051c8c090}{RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+UNEXPECTED\+\_\+\+READER\+\_\+\+STATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 147)
+\begin{DoxyCompactList}\small\item\em The RTPS reader was in an unexpected state. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga7dacbafe3e30feb4126d81bf60861e16}{RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+SELECTED\+\_\+\+GROUP\+\_\+\+INDEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 148)
+\begin{DoxyCompactList}\small\item\em Failed to create database index for the selected route group. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga6c9836eb7875882664315591778bdc02}{RTPS\+\_\+\+LOG\+\_\+\+LOCK\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 149)
+\begin{DoxyCompactList}\small\item\em Failed to take a lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gac74556c14fb2b7cd05e121675c98ac7c}{RTPS\+\_\+\+LOG\+\_\+\+UNLOCK\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 150)
+\begin{DoxyCompactList}\small\item\em Failed to give a lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga5e1bef12bf08606b728e033867476b72}{RTPS\+\_\+\+LOG\+\_\+\+SCHEDULE\+\_\+\+PACKET\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 151)
+\begin{DoxyCompactList}\small\item\em Failed to schedule a packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gadae7f816491aa9d568fa0b002cb3617c}{RTPS\+\_\+\+LOG\+\_\+\+SEQ\+\_\+\+FINALIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 152)
+\begin{DoxyCompactList}\small\item\em Failed to finalize a sequence. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga144d98675a07713add14e2919594f92d}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+ILLEGAL\+\_\+\+OVERRIDE\+\_\+\+CHECKSUM128\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 200)
+\begin{DoxyCompactList}\small\item\em The property tries to override the BUILTIN128 checksum without setting allow\+\_\+builtin\+\_\+override to TRUE. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gafaf67f272c290b3524dff2ff08d3382e}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+ILLEGAL\+\_\+\+OVERRIDE\+\_\+\+CHECKSUM32\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 201)
+\begin{DoxyCompactList}\small\item\em The property tries to override the BUILTIN32 checksum without setting allow\+\_\+builtin\+\_\+override to TRUE. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaaa1bd3ec940b1a1e9dc10c8ae20fb489}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+ILLEGAL\+\_\+\+OVERRIDE\+\_\+\+CHECKSUM64\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 202)
+\begin{DoxyCompactList}\small\item\em The property tries to override the BUILTIN64 checksum without setting allow\+\_\+builtin\+\_\+override to TRUE. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gafbaad20d71d52d27c59dc21c2f3fdb77}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+INVALID\+\_\+\+OVERRIDE\+\_\+\+BUILTIN128\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 203)
+\begin{DoxyCompactList}\small\item\em The property override of the BUILTIN128 checksum is invalid. It is not legal to reuse any of the built-\/in functions. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga44527708f97db4ab3b4165afe0e48cf8}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+INVALID\+\_\+\+OVERRIDE\+\_\+\+BUILTIN32\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 204)
+\begin{DoxyCompactList}\small\item\em The property override of the BUILTIN32 checksum is invalid. It is not legal to reuse any of the built-\/in functions functions. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga4db94ba4c93c82024b2a7bfe256e280a}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+INVALID\+\_\+\+OVERRIDE\+\_\+\+BUILTIN64\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 205)
+\begin{DoxyCompactList}\small\item\em The property override of the BUILTIN64 checksum is invalid. It is not legal to reuse any of the built-\/in functions functions. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga4ca692de62e8759f437a391e58795bcc}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+CHECKSUM\+\_\+\+CALCULATION\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 210)
+\begin{DoxyCompactList}\small\item\em RTPS\+\_\+\+Interface\+\_\+calculate\+\_\+checksum() failed to calculate the checksum. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaa607bd0ea7808465d363fbeab47d8b3a}{RTPS\+\_\+\+LOG\+\_\+\+UNSUPPORTED\+\_\+\+MANDTORY\+\_\+\+HDR\+\_\+\+EXT\+\_\+\+PID\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 211)
+\begin{DoxyCompactList}\small\item\em The Header\+Extension contained a mandatory PID that was not understood. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaea649fd18d43cde468dc7322462d6ca6}{RTPS\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+HDR\+\_\+\+EXT\+\_\+\+PID\+\_\+\+LIST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 212)
+\begin{DoxyCompactList}\small\item\em An invalid Header\+Extension PID was detected. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga2d780b30a9a0db510bb8d60393f85502}{RTPS\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+HDR\+\_\+\+EXT\+\_\+\+PID\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 213)
+\begin{DoxyCompactList}\small\item\em Failed to decode the Header\+Extension PID list. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga3768cc981ee82191ff3f6bb88eb986dd}{RTPS\+\_\+\+LOG\+\_\+\+INCONSISTENT\+\_\+\+HDR\+\_\+\+EXT\+\_\+\+LENGTH\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 214)
+\begin{DoxyCompactList}\small\item\em The Header\+Extension length is isconsistent with the decoded encoded Header\+Extension length. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga0dc90bea2f16af6ebf37abc22c9ae20b}{RTPS\+\_\+\+LOG\+\_\+\+MESSAGE\+\_\+\+EXCEED\+\_\+\+LENGTH\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 215)
+\begin{DoxyCompactList}\small\item\em A RTPS message which was longer than the indicated message length in the RTPS header was received. This causes the rest of the RTPS message to be invalidated and the remaining submessages to be ignored. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga35e519e21b4ac9f362200208dab26f0d}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+INVALID\+\_\+\+CRC32\+\_\+\+FLAGS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 216)
+\begin{DoxyCompactList}\small\item\em The CRC32 submsg flags are invalid. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gab641871a57f4e07edb0b8ce43b42a065}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+MISSING\+\_\+\+CHECKSUM\+\_\+\+LENGTH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 217)
+\begin{DoxyCompactList}\small\item\em A header extension was received, but the checksum length is not present. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga11235281001aa85d0dcbc90a86af91b7}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+UNSUPPORTED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 218)
+\begin{DoxyCompactList}\small\item\em Unsupported checksum bits received, message dropped. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gaad2d677a71a870f9b22bb1ae08920f0c}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+LENGTH\+\_\+\+DESERIALIZE\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 219)
+\begin{DoxyCompactList}\small\item\em Checksum length could not be deserialized. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga5f47280156ebeeb5110412175de75608}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+INCONSISTENT\+\_\+\+LENGTH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 220)
+\begin{DoxyCompactList}\small\item\em The payload length is less than the deserialized checksum length. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga797e5b01e0700f590a32aac73be7d86d}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+CHECKSUM\+\_\+\+DESERIALIZE\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 221)
+\begin{DoxyCompactList}\small\item\em Checksum length could not be deserialized. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga3b34a28c67ad3a8fe14deb36f873acce}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+CHECKSUM\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 222)
+\begin{DoxyCompactList}\small\item\em The checksum is invalid. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga8d97f480a900d0e86c3ae58a1b592052}{RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+TOO\+\_\+\+MANY\+\_\+\+SG\+\_\+\+BUFFERS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 223)
+\begin{DoxyCompactList}\small\item\em Found too many scatter-\/gather buffers when calculating checksum. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga168ce6cf89a0535531a4dc93c53f04d6}{RTPS\+\_\+\+LOG\+\_\+\+SEND\+\_\+\+LIVELINESS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 224)
+\begin{DoxyCompactList}\small\item\em Failure to send Liveliness packets. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gae5bbae9bdcb390e93fdc45cda8370e02}{RTPS\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+RECORD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 225)
+\begin{DoxyCompactList}\small\item\em Failure to delete a record. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga982316657dacea9197853e59ab0508e6}{RTPS\+\_\+\+LOG\+\_\+\+APPLY\+\_\+\+CONTENT\+\_\+\+FILTER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 300)
+\begin{DoxyCompactList}\small\item\em Failed to apply a content filter to a message. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga474720e54ccb749388f5e86a55d09d80}{RTPS\+\_\+\+LOG\+\_\+\+UPDATE\+\_\+\+RELIABLE\+\_\+\+PEERS\+\_\+\+FILTER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 301)
+\begin{DoxyCompactList}\small\item\em Failed to update the state of reliable peers while applying filtering. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_ga29688b3dd6b76517ef55ee22b889826e}{RTPS\+\_\+\+LOG\+\_\+\+ADD\+\_\+\+FILTERED\+\_\+\+ROUTE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 302)
+\begin{DoxyCompactList}\small\item\em Failed to add a filtered route. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTPSLogCodesClass_gadb7184dc200fba2010c0abe59cad4df6}{RTPS\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+FILTERED\+\_\+\+ROUTE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 303)
+\begin{DoxyCompactList}\small\item\em Failed to delete a filtered route. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Real-\/\+Time Publish-\/\+Subscribe. Module\+ID = 6. 
+
+
+
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__RTPSLogCodesClass_ga2b72ebfd4c5fc89eeb7465b89c9ef3d9}\index{RTPS@{RTPS}!RTPS\_LOG\_INITIALIZE\_INTERFACE\_EC@{RTPS\_LOG\_INITIALIZE\_INTERFACE\_EC}}
+\index{RTPS\_LOG\_INITIALIZE\_INTERFACE\_EC@{RTPS\_LOG\_INITIALIZE\_INTERFACE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_INITIALIZE\_INTERFACE\_EC}{RTPS\_LOG\_INITIALIZE\_INTERFACE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga2b72ebfd4c5fc89eeb7465b89c9ef3d9} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+INITIALIZE\+\_\+\+INTERFACE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 1)}
+
+
+
+Failed to initialize an RTPS interface. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaf4038ecf5824b8bdda387dce3ac4d057}\index{RTPS@{RTPS}!RTPS\_LOG\_ALLOCATE\_EC@{RTPS\_LOG\_ALLOCATE\_EC}}
+\index{RTPS\_LOG\_ALLOCATE\_EC@{RTPS\_LOG\_ALLOCATE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_ALLOCATE\_EC}{RTPS\_LOG\_ALLOCATE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaf4038ecf5824b8bdda387dce3ac4d057} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+ALLOCATE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 2)}
+
+
+
+Failed to allocate heap memory for internal resources. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga182f75e42fc6551f5abf66aad29ec801}\index{RTPS@{RTPS}!RTPS\_LOG\_CREATE\_ROUTE\_TABLE\_EC@{RTPS\_LOG\_CREATE\_ROUTE\_TABLE\_EC}}
+\index{RTPS\_LOG\_CREATE\_ROUTE\_TABLE\_EC@{RTPS\_LOG\_CREATE\_ROUTE\_TABLE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CREATE\_ROUTE\_TABLE\_EC}{RTPS\_LOG\_CREATE\_ROUTE\_TABLE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga182f75e42fc6551f5abf66aad29ec801} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+ROUTE\+\_\+\+TABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 3)}
+
+
+
+Failed to create a database table for storing RTPS route info. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga48c4e7905c1224552c3ffe2119e8bdac}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_CREATE\_ROUTE\_PEER\_INDEX\_EC@{RTPS\_LOG\_DB\_CREATE\_ROUTE\_PEER\_INDEX\_EC}}
+\index{RTPS\_LOG\_DB\_CREATE\_ROUTE\_PEER\_INDEX\_EC@{RTPS\_LOG\_DB\_CREATE\_ROUTE\_PEER\_INDEX\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_CREATE\_ROUTE\_PEER\_INDEX\_EC}{RTPS\_LOG\_DB\_CREATE\_ROUTE\_PEER\_INDEX\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga48c4e7905c1224552c3ffe2119e8bdac} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+ROUTE\+\_\+\+PEER\+\_\+\+INDEX\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 4)}
+
+
+
+Failed to create database index for route-\/peer info. 
+
+\Hypertarget{group__RTPSLogCodesClass_gad9405d37aa009655eeeb89c871e8527e}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_CREATE\_ROUTE\_XPORT\_INDEX\_EC@{RTPS\_LOG\_DB\_CREATE\_ROUTE\_XPORT\_INDEX\_EC}}
+\index{RTPS\_LOG\_DB\_CREATE\_ROUTE\_XPORT\_INDEX\_EC@{RTPS\_LOG\_DB\_CREATE\_ROUTE\_XPORT\_INDEX\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_CREATE\_ROUTE\_XPORT\_INDEX\_EC}{RTPS\_LOG\_DB\_CREATE\_ROUTE\_XPORT\_INDEX\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gad9405d37aa009655eeeb89c871e8527e} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+ROUTE\+\_\+\+XPORT\+\_\+\+INDEX\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 5)}
+
+
+
+Failed to create database index for route-\/transport info. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga426fde8d4106ec1d7a30e28e70db3119}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_CREATE\_BIND\_PEER\_INDEX\_EC@{RTPS\_LOG\_DB\_CREATE\_BIND\_PEER\_INDEX\_EC}}
+\index{RTPS\_LOG\_DB\_CREATE\_BIND\_PEER\_INDEX\_EC@{RTPS\_LOG\_DB\_CREATE\_BIND\_PEER\_INDEX\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_CREATE\_BIND\_PEER\_INDEX\_EC}{RTPS\_LOG\_DB\_CREATE\_BIND\_PEER\_INDEX\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga426fde8d4106ec1d7a30e28e70db3119} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+BIND\+\_\+\+PEER\+\_\+\+INDEX\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 6)}
+
+
+
+Failed to create database index for bind-\/peer info. 
+
+\Hypertarget{group__RTPSLogCodesClass_gac9d41b3e4488977dcb7809293eddc4ae}\index{RTPS@{RTPS}!RTPS\_LOG\_INDEX\_ADD\_ENTRY\_EC@{RTPS\_LOG\_INDEX\_ADD\_ENTRY\_EC}}
+\index{RTPS\_LOG\_INDEX\_ADD\_ENTRY\_EC@{RTPS\_LOG\_INDEX\_ADD\_ENTRY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_INDEX\_ADD\_ENTRY\_EC}{RTPS\_LOG\_INDEX\_ADD\_ENTRY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gac9d41b3e4488977dcb7809293eddc4ae} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+INDEX\+\_\+\+ADD\+\_\+\+ENTRY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 8)}
+
+
+
+Failed to add an entry to a database index. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaa7ac5c95df3b609467bf2b11ae971fc9}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_SELECT\_ALL\_EC@{RTPS\_LOG\_DB\_SELECT\_ALL\_EC}}
+\index{RTPS\_LOG\_DB\_SELECT\_ALL\_EC@{RTPS\_LOG\_DB\_SELECT\_ALL\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_SELECT\_ALL\_EC}{RTPS\_LOG\_DB\_SELECT\_ALL\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaa7ac5c95df3b609467bf2b11ae971fc9} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+SELECT\+\_\+\+ALL\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 9)}
+
+
+
+Failed to select all entries of a database table. 
+
+Failure reason given by database return code (dbrc) \Hypertarget{group__RTPSLogCodesClass_ga77331390c7645c121ed7ba0fa20dc8a8}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_SELECT\_MATCH\_EC@{RTPS\_LOG\_DB\_SELECT\_MATCH\_EC}}
+\index{RTPS\_LOG\_DB\_SELECT\_MATCH\_EC@{RTPS\_LOG\_DB\_SELECT\_MATCH\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_SELECT\_MATCH\_EC}{RTPS\_LOG\_DB\_SELECT\_MATCH\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga77331390c7645c121ed7ba0fa20dc8a8} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+SELECT\+\_\+\+MATCH\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 10)}
+
+
+
+Matching entry not found in a database table. 
+
+Failure reason given by database return code (dbrc) \Hypertarget{group__RTPSLogCodesClass_ga9c204c22364effddbff59e6ac2604307}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_SELECT\_RANGE\_EC@{RTPS\_LOG\_DB\_SELECT\_RANGE\_EC}}
+\index{RTPS\_LOG\_DB\_SELECT\_RANGE\_EC@{RTPS\_LOG\_DB\_SELECT\_RANGE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_SELECT\_RANGE\_EC}{RTPS\_LOG\_DB\_SELECT\_RANGE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga9c204c22364effddbff59e6ac2604307} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+SELECT\+\_\+\+RANGE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 11)}
+
+
+
+No matching entries found in a database table. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga357e400b7082df947440e1dbe356ab62}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_CREATE\_ROUTE\_ENTRY\_EC@{RTPS\_LOG\_DB\_CREATE\_ROUTE\_ENTRY\_EC}}
+\index{RTPS\_LOG\_DB\_CREATE\_ROUTE\_ENTRY\_EC@{RTPS\_LOG\_DB\_CREATE\_ROUTE\_ENTRY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_CREATE\_ROUTE\_ENTRY\_EC}{RTPS\_LOG\_DB\_CREATE\_ROUTE\_ENTRY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga357e400b7082df947440e1dbe356ab62} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+ROUTE\+\_\+\+ENTRY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 12)}
+
+
+
+Failed to create database entry for route. 
+
+May have exceeded Domain\+Participant\+Qos.\+resource\+\_\+limits.\+matching\+\_\+writer\+\_\+reader\+\_\+pair\+\_\+allocation, Data\+Writer\+Qos.\+writer\+\_\+resource\+\_\+limits.\+max\+\_\+remote\+\_\+readers, or Data\+Reader\+Qos.\+reader\+\_\+resource\+\_\+limits.\+max\+\_\+remote\+\_\+writers \Hypertarget{group__RTPSLogCodesClass_ga801b2aec26a54858e849bafb3c4f2fd3}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_INSERT\_ROUTE\_ENTRY\_EC@{RTPS\_LOG\_DB\_INSERT\_ROUTE\_ENTRY\_EC}}
+\index{RTPS\_LOG\_DB\_INSERT\_ROUTE\_ENTRY\_EC@{RTPS\_LOG\_DB\_INSERT\_ROUTE\_ENTRY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_INSERT\_ROUTE\_ENTRY\_EC}{RTPS\_LOG\_DB\_INSERT\_ROUTE\_ENTRY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga801b2aec26a54858e849bafb3c4f2fd3} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+INSERT\+\_\+\+ROUTE\+\_\+\+ENTRY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 13)}
+
+
+
+Failed to insert entry into route table. 
+
+Failure reason given by database return code (dbrc) \Hypertarget{group__RTPSLogCodesClass_gacdbcad0c3e05da352e255f7731db5b1b}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_DELETE\_ROUTE\_ENTRY\_EC@{RTPS\_LOG\_DB\_DELETE\_ROUTE\_ENTRY\_EC}}
+\index{RTPS\_LOG\_DB\_DELETE\_ROUTE\_ENTRY\_EC@{RTPS\_LOG\_DB\_DELETE\_ROUTE\_ENTRY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_DELETE\_ROUTE\_ENTRY\_EC}{RTPS\_LOG\_DB\_DELETE\_ROUTE\_ENTRY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gacdbcad0c3e05da352e255f7731db5b1b} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+DELETE\+\_\+\+ROUTE\+\_\+\+ENTRY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 15)}
+
+
+
+Failed to delete entry from route table. 
+
+Failure reason given by database return code (dbrc) \Hypertarget{group__RTPSLogCodesClass_ga1d40f522b702a3d0c11417122d9ba70b}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_CREATE\_BIND\_ENTRY\_EC@{RTPS\_LOG\_DB\_CREATE\_BIND\_ENTRY\_EC}}
+\index{RTPS\_LOG\_DB\_CREATE\_BIND\_ENTRY\_EC@{RTPS\_LOG\_DB\_CREATE\_BIND\_ENTRY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_CREATE\_BIND\_ENTRY\_EC}{RTPS\_LOG\_DB\_CREATE\_BIND\_ENTRY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga1d40f522b702a3d0c11417122d9ba70b} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 16)}
+
+
+
+Failed to create database entry for bind. 
+
+If Domain\+Participant, may have exceeded Domain\+Participant\+Qos.\+resource\+\_\+limits.\+matching\+\_\+reader\+\_\+writer\+\_\+pair\+\_\+allocation. Failure reason given by database return code (dbrc). \Hypertarget{group__RTPSLogCodesClass_gab8b66a3721ce3982c76f27a496d891cf}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_INSERT\_BIND\_ENTRY\_EC@{RTPS\_LOG\_DB\_INSERT\_BIND\_ENTRY\_EC}}
+\index{RTPS\_LOG\_DB\_INSERT\_BIND\_ENTRY\_EC@{RTPS\_LOG\_DB\_INSERT\_BIND\_ENTRY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_INSERT\_BIND\_ENTRY\_EC}{RTPS\_LOG\_DB\_INSERT\_BIND\_ENTRY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gab8b66a3721ce3982c76f27a496d891cf} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+INSERT\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 17)}
+
+
+
+Failed to insert an entry into the bind table. 
+
+Failure reason given by database return code (dbrc) \Hypertarget{group__RTPSLogCodesClass_ga2bd27f8c8f67eae5afc2678e0cf6b03c}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_REMOVE\_BIND\_ENTRY\_EC@{RTPS\_LOG\_DB\_REMOVE\_BIND\_ENTRY\_EC}}
+\index{RTPS\_LOG\_DB\_REMOVE\_BIND\_ENTRY\_EC@{RTPS\_LOG\_DB\_REMOVE\_BIND\_ENTRY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_REMOVE\_BIND\_ENTRY\_EC}{RTPS\_LOG\_DB\_REMOVE\_BIND\_ENTRY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga2bd27f8c8f67eae5afc2678e0cf6b03c} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+REMOVE\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 18)}
+
+
+
+Failed to remove an entry from the bind table. 
+
+Failure reason given by database return code (dbrc) \Hypertarget{group__RTPSLogCodesClass_ga5b840f0bc052aa0be8c1b1bc80bc271f}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_REMOVE\_EXTERNAL\_BIND\_ENTRY\_EC@{RTPS\_LOG\_DB\_REMOVE\_EXTERNAL\_BIND\_ENTRY\_EC}}
+\index{RTPS\_LOG\_DB\_REMOVE\_EXTERNAL\_BIND\_ENTRY\_EC@{RTPS\_LOG\_DB\_REMOVE\_EXTERNAL\_BIND\_ENTRY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_REMOVE\_EXTERNAL\_BIND\_ENTRY\_EC}{RTPS\_LOG\_DB\_REMOVE\_EXTERNAL\_BIND\_ENTRY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga5b840f0bc052aa0be8c1b1bc80bc271f} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+REMOVE\+\_\+\+EXTERNAL\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 19)}
+
+
+
+Failed to remove an entry from the external bind table. 
+
+Failure reason given by database return code (dbrc) \Hypertarget{group__RTPSLogCodesClass_ga156735552183cde5fb04ccea2f83abea}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_DELETE\_EXTERNAL\_BIND\_ENTRY\_EC@{RTPS\_LOG\_DB\_DELETE\_EXTERNAL\_BIND\_ENTRY\_EC}}
+\index{RTPS\_LOG\_DB\_DELETE\_EXTERNAL\_BIND\_ENTRY\_EC@{RTPS\_LOG\_DB\_DELETE\_EXTERNAL\_BIND\_ENTRY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_DELETE\_EXTERNAL\_BIND\_ENTRY\_EC}{RTPS\_LOG\_DB\_DELETE\_EXTERNAL\_BIND\_ENTRY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga156735552183cde5fb04ccea2f83abea} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+DELETE\+\_\+\+EXTERNAL\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 20)}
+
+
+
+Failed to delete entry from external bind table. 
+
+Failure reason given by database return code (dbrc) \Hypertarget{group__RTPSLogCodesClass_gab1e46911c2897af498d13ed848223ea7}\index{RTPS@{RTPS}!RTPS\_LOG\_SEND\_EC@{RTPS\_LOG\_SEND\_EC}}
+\index{RTPS\_LOG\_SEND\_EC@{RTPS\_LOG\_SEND\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SEND\_EC}{RTPS\_LOG\_SEND\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gab1e46911c2897af498d13ed848223ea7} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SEND\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 21)}
+
+
+
+Failed to send a packet due to a lower module failing to send the packet. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga27de27a2175f09808be25145ae110ff9}\index{RTPS@{RTPS}!RTPS\_LOG\_RECEIVE\_EC@{RTPS\_LOG\_RECEIVE\_EC}}
+\index{RTPS\_LOG\_RECEIVE\_EC@{RTPS\_LOG\_RECEIVE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_RECEIVE\_EC}{RTPS\_LOG\_RECEIVE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga27de27a2175f09808be25145ae110ff9} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+RECEIVE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 22)}
+
+
+
+Failed to receive a packet due to a higher module failing to receive the packet. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaec3723934996afbc0e0f13557eefade1}\index{RTPS@{RTPS}!RTPS\_LOG\_ROUTE\_PACKET\_EC@{RTPS\_LOG\_ROUTE\_PACKET\_EC}}
+\index{RTPS\_LOG\_ROUTE\_PACKET\_EC@{RTPS\_LOG\_ROUTE\_PACKET\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_ROUTE\_PACKET\_EC}{RTPS\_LOG\_ROUTE\_PACKET\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaec3723934996afbc0e0f13557eefade1} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+PACKET\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 23)}
+
+
+
+Failed to send a packet, when routing to a lower module or peer. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaf5b67603579278c01be13d6065be089b}\index{RTPS@{RTPS}!RTPS\_LOG\_FORWARD\_UPSTREAM\_EC@{RTPS\_LOG\_FORWARD\_UPSTREAM\_EC}}
+\index{RTPS\_LOG\_FORWARD\_UPSTREAM\_EC@{RTPS\_LOG\_FORWARD\_UPSTREAM\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_FORWARD\_UPSTREAM\_EC}{RTPS\_LOG\_FORWARD\_UPSTREAM\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaf5b67603579278c01be13d6065be089b} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+FORWARD\+\_\+\+UPSTREAM\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 24)}
+
+
+
+Failed to receive a packet, when forwarding to a higher upstream module. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaf78bd43a868265e00d78f69f86c74c63}\index{RTPS@{RTPS}!RTPS\_LOG\_BAD\_PARAMETER\_EC@{RTPS\_LOG\_BAD\_PARAMETER\_EC}}
+\index{RTPS\_LOG\_BAD\_PARAMETER\_EC@{RTPS\_LOG\_BAD\_PARAMETER\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_BAD\_PARAMETER\_EC}{RTPS\_LOG\_BAD\_PARAMETER\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaf78bd43a868265e00d78f69f86c74c63} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+BAD\+\_\+\+PARAMETER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 25)}
+
+
+
+Bad parameter to an RTPS interface function. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaa0c62bdf416e19b04a218be6ed24a206}\index{RTPS@{RTPS}!RTPS\_LOG\_NOT\_ENABLED\_EC@{RTPS\_LOG\_NOT\_ENABLED\_EC}}
+\index{RTPS\_LOG\_NOT\_ENABLED\_EC@{RTPS\_LOG\_NOT\_ENABLED\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_NOT\_ENABLED\_EC}{RTPS\_LOG\_NOT\_ENABLED\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaa0c62bdf416e19b04a218be6ed24a206} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+NOT\+\_\+\+ENABLED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 26)}
+
+
+
+Failed because interface is not enabled. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga37ce093d22b8b521b43f4b06f4eaa328}\index{RTPS@{RTPS}!RTPS\_LOG\_READER\_UNSUPPORTED\_EC@{RTPS\_LOG\_READER\_UNSUPPORTED\_EC}}
+\index{RTPS\_LOG\_READER\_UNSUPPORTED\_EC@{RTPS\_LOG\_READER\_UNSUPPORTED\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_READER\_UNSUPPORTED\_EC}{RTPS\_LOG\_READER\_UNSUPPORTED\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga37ce093d22b8b521b43f4b06f4eaa328} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+READER\+\_\+\+UNSUPPORTED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 27)}
+
+
+
+RTPS reader does not support send. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga2224021cfb1edb3e29cb46110827c6c5}\index{RTPS@{RTPS}!RTPS\_LOG\_INTERFACE\_MISMATCH\_EC@{RTPS\_LOG\_INTERFACE\_MISMATCH\_EC}}
+\index{RTPS\_LOG\_INTERFACE\_MISMATCH\_EC@{RTPS\_LOG\_INTERFACE\_MISMATCH\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_INTERFACE\_MISMATCH\_EC}{RTPS\_LOG\_INTERFACE\_MISMATCH\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga2224021cfb1edb3e29cb46110827c6c5} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+INTERFACE\+\_\+\+MISMATCH\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 28)}
+
+
+
+Upstream interface does not match source or destination of packet being sent or received. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga26b5dfc9ce6c2aa048193f27b504d0e3}\index{RTPS@{RTPS}!RTPS\_LOG\_FULL\_SEND\_WINDOW\_EC@{RTPS\_LOG\_FULL\_SEND\_WINDOW\_EC}}
+\index{RTPS\_LOG\_FULL\_SEND\_WINDOW\_EC@{RTPS\_LOG\_FULL\_SEND\_WINDOW\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_FULL\_SEND\_WINDOW\_EC}{RTPS\_LOG\_FULL\_SEND\_WINDOW\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga26b5dfc9ce6c2aa048193f27b504d0e3} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+FULL\+\_\+\+SEND\+\_\+\+WINDOW\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 29)}
+
+
+
+Failed to send due to reaching maximum send window size. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga2ff25b3a3f19552c73f7268a702efee4}\index{RTPS@{RTPS}!RTPS\_LOG\_NETIO\_PACKET\_SET\_TAIL\_EC@{RTPS\_LOG\_NETIO\_PACKET\_SET\_TAIL\_EC}}
+\index{RTPS\_LOG\_NETIO\_PACKET\_SET\_TAIL\_EC@{RTPS\_LOG\_NETIO\_PACKET\_SET\_TAIL\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_NETIO\_PACKET\_SET\_TAIL\_EC}{RTPS\_LOG\_NETIO\_PACKET\_SET\_TAIL\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga2ff25b3a3f19552c73f7268a702efee4} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+NETIO\+\_\+\+PACKET\+\_\+\+SET\+\_\+\+TAIL\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 31)}
+
+
+
+Failed to set tail of packet to send. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga9d323a5b92a8a86bd469313ee693afd9}\index{RTPS@{RTPS}!RTPS\_LOG\_FUNC\_UNSUPPORTED\_EC@{RTPS\_LOG\_FUNC\_UNSUPPORTED\_EC}}
+\index{RTPS\_LOG\_FUNC\_UNSUPPORTED\_EC@{RTPS\_LOG\_FUNC\_UNSUPPORTED\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_FUNC\_UNSUPPORTED\_EC}{RTPS\_LOG\_FUNC\_UNSUPPORTED\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga9d323a5b92a8a86bd469313ee693afd9} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+FUNC\+\_\+\+UNSUPPORTED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 32)}
+
+
+
+RTPS interface does not support this function. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga1dc7cfd3fa36e378b60ab14393481413}\index{RTPS@{RTPS}!RTPS\_LOG\_EXCEEDED\_LIMIT\_TRANSPORTS\_EC@{RTPS\_LOG\_EXCEEDED\_LIMIT\_TRANSPORTS\_EC}}
+\index{RTPS\_LOG\_EXCEEDED\_LIMIT\_TRANSPORTS\_EC@{RTPS\_LOG\_EXCEEDED\_LIMIT\_TRANSPORTS\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_EXCEEDED\_LIMIT\_TRANSPORTS\_EC}{RTPS\_LOG\_EXCEEDED\_LIMIT\_TRANSPORTS\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga1dc7cfd3fa36e378b60ab14393481413} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+EXCEEDED\+\_\+\+LIMIT\+\_\+\+TRANSPORTS\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 33)}
+
+
+
+Out of transport entries. 
+
+Exceeded either Data\+Writer\+Qos.\+writer\+\_\+resource\+\_\+limits.\+max\+\_\+remote\+\_\+readers or Data\+Reader\+Qos.\+reader\+\_\+resource\+\_\+limits.\+max\+\_\+remote\+\_\+writers \Hypertarget{group__RTPSLogCodesClass_ga99f576879543668837dc2c6e4245c32d}\index{RTPS@{RTPS}!RTPS\_LOG\_EXCEEDED\_LIMIT\_PEERS\_EC@{RTPS\_LOG\_EXCEEDED\_LIMIT\_PEERS\_EC}}
+\index{RTPS\_LOG\_EXCEEDED\_LIMIT\_PEERS\_EC@{RTPS\_LOG\_EXCEEDED\_LIMIT\_PEERS\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_EXCEEDED\_LIMIT\_PEERS\_EC}{RTPS\_LOG\_EXCEEDED\_LIMIT\_PEERS\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga99f576879543668837dc2c6e4245c32d} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+EXCEEDED\+\_\+\+LIMIT\+\_\+\+PEERS\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 34)}
+
+
+
+Out of peer entries. 
+
+Exceeded either Data\+Writer\+Qos.\+writer\+\_\+resource\+\_\+limits.\+max\+\_\+remote\+\_\+readers or Data\+Reader\+Qos.\+reader\+\_\+resource\+\_\+limits.\+max\+\_\+remote\+\_\+writers \Hypertarget{group__RTPSLogCodesClass_gab62ac0511ba7f9e0be5fee86ea9791b3}\index{RTPS@{RTPS}!RTPS\_LOG\_ASSERT\_PEER\_EC@{RTPS\_LOG\_ASSERT\_PEER\_EC}}
+\index{RTPS\_LOG\_ASSERT\_PEER\_EC@{RTPS\_LOG\_ASSERT\_PEER\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_ASSERT\_PEER\_EC}{RTPS\_LOG\_ASSERT\_PEER\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gab62ac0511ba7f9e0be5fee86ea9791b3} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+ASSERT\+\_\+\+PEER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 35)}
+
+
+
+Failed to assert a remote writer or reader. 
+
+\Hypertarget{group__RTPSLogCodesClass_gac145cbaee4058e1b64b53f06d5d8cb85}\index{RTPS@{RTPS}!RTPS\_LOG\_ASSERT\_TRANSPORT\_EC@{RTPS\_LOG\_ASSERT\_TRANSPORT\_EC}}
+\index{RTPS\_LOG\_ASSERT\_TRANSPORT\_EC@{RTPS\_LOG\_ASSERT\_TRANSPORT\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_ASSERT\_TRANSPORT\_EC}{RTPS\_LOG\_ASSERT\_TRANSPORT\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gac145cbaee4058e1b64b53f06d5d8cb85} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+ASSERT\+\_\+\+TRANSPORT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 36)}
+
+
+
+Failed to assert a downstream transport. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga18dba0e8240847cb2c98d9a71b43266c}\index{RTPS@{RTPS}!RTPS\_LOG\_FIND\_EXTERNAL\_INTERFACE\_EC@{RTPS\_LOG\_FIND\_EXTERNAL\_INTERFACE\_EC}}
+\index{RTPS\_LOG\_FIND\_EXTERNAL\_INTERFACE\_EC@{RTPS\_LOG\_FIND\_EXTERNAL\_INTERFACE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_FIND\_EXTERNAL\_INTERFACE\_EC}{RTPS\_LOG\_FIND\_EXTERNAL\_INTERFACE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga18dba0e8240847cb2c98d9a71b43266c} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+FIND\+\_\+\+EXTERNAL\+\_\+\+INTERFACE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 37)}
+
+
+
+Failed to lookup an external interface. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaa775e6b064d1576d379792a46960750a}\index{RTPS@{RTPS}!RTPS\_LOG\_NONEXISTENT\_ROUTE\_EC@{RTPS\_LOG\_NONEXISTENT\_ROUTE\_EC}}
+\index{RTPS\_LOG\_NONEXISTENT\_ROUTE\_EC@{RTPS\_LOG\_NONEXISTENT\_ROUTE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_NONEXISTENT\_ROUTE\_EC}{RTPS\_LOG\_NONEXISTENT\_ROUTE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaa775e6b064d1576d379792a46960750a} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+NONEXISTENT\+\_\+\+ROUTE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 38)}
+
+
+
+Failed to delete a nonexistent route. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga4ff6831904ebcbdc0a69e425309901b0}\index{RTPS@{RTPS}!RTPS\_LOG\_NONEXISTENT\_BIND\_EC@{RTPS\_LOG\_NONEXISTENT\_BIND\_EC}}
+\index{RTPS\_LOG\_NONEXISTENT\_BIND\_EC@{RTPS\_LOG\_NONEXISTENT\_BIND\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_NONEXISTENT\_BIND\_EC}{RTPS\_LOG\_NONEXISTENT\_BIND\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga4ff6831904ebcbdc0a69e425309901b0} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+NONEXISTENT\+\_\+\+BIND\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 39)}
+
+
+
+Failed to remove a nonexistent bind entry. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga6125f1d59249cc8b07b0a0ae3f680665}\index{RTPS@{RTPS}!RTPS\_LOG\_NONEXISTENT\_EXTERNAL\_BIND\_EC@{RTPS\_LOG\_NONEXISTENT\_EXTERNAL\_BIND\_EC}}
+\index{RTPS\_LOG\_NONEXISTENT\_EXTERNAL\_BIND\_EC@{RTPS\_LOG\_NONEXISTENT\_EXTERNAL\_BIND\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_NONEXISTENT\_EXTERNAL\_BIND\_EC}{RTPS\_LOG\_NONEXISTENT\_EXTERNAL\_BIND\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga6125f1d59249cc8b07b0a0ae3f680665} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+NONEXISTENT\+\_\+\+EXTERNAL\+\_\+\+BIND\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 40)}
+
+
+
+Failed to remove a nonexistent external bind entry. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga3842e1b4417fee84920a1eba7ec4fd1b}\index{RTPS@{RTPS}!RTPS\_LOG\_STALE\_ACK\_EPOCH\_\_EC@{RTPS\_LOG\_STALE\_ACK\_EPOCH\_\_EC}}
+\index{RTPS\_LOG\_STALE\_ACK\_EPOCH\_\_EC@{RTPS\_LOG\_STALE\_ACK\_EPOCH\_\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_STALE\_ACK\_EPOCH\_\_EC}{RTPS\_LOG\_STALE\_ACK\_EPOCH\_\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga3842e1b4417fee84920a1eba7ec4fd1b} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+STALE\+\_\+\+ACK\+\_\+\+EPOCH\+\_\+\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 41)}
+
+
+
+Dropped an ACKNACK submessage with an old epoch. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga7aaaaa8fed2af9ea10382e16987fa925}\index{RTPS@{RTPS}!RTPS\_LOG\_STALE\_HB\_EPOCH\_EC@{RTPS\_LOG\_STALE\_HB\_EPOCH\_EC}}
+\index{RTPS\_LOG\_STALE\_HB\_EPOCH\_EC@{RTPS\_LOG\_STALE\_HB\_EPOCH\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_STALE\_HB\_EPOCH\_EC}{RTPS\_LOG\_STALE\_HB\_EPOCH\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga7aaaaa8fed2af9ea10382e16987fa925} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+STALE\+\_\+\+HB\+\_\+\+EPOCH\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 42)}
+
+
+
+Dropped a HEARTBEAT submessage with an old epoch. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga9c6c02b69c8387892d4dc0dc39a2a79f}\index{RTPS@{RTPS}!RTPS\_LOG\_ACK\_EC@{RTPS\_LOG\_ACK\_EC}}
+\index{RTPS\_LOG\_ACK\_EC@{RTPS\_LOG\_ACK\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_ACK\_EC}{RTPS\_LOG\_ACK\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga9c6c02b69c8387892d4dc0dc39a2a79f} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+ACK\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 43)}
+
+
+
+Failed an acknack() upstream. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaa3c24a088a371bcb49ffc1670ee10502}\index{RTPS@{RTPS}!RTPS\_LOG\_REQUEST\_EC@{RTPS\_LOG\_REQUEST\_EC}}
+\index{RTPS\_LOG\_REQUEST\_EC@{RTPS\_LOG\_REQUEST\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_REQUEST\_EC}{RTPS\_LOG\_REQUEST\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaa3c24a088a371bcb49ffc1670ee10502} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+REQUEST\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 45)}
+
+
+
+Failed a request() upstream. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga4d84b84c684ce145bbfa1b41d94c4cac}\index{RTPS@{RTPS}!RTPS\_LOG\_RETURN\_LOAN\_EC@{RTPS\_LOG\_RETURN\_LOAN\_EC}}
+\index{RTPS\_LOG\_RETURN\_LOAN\_EC@{RTPS\_LOG\_RETURN\_LOAN\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_RETURN\_LOAN\_EC}{RTPS\_LOG\_RETURN\_LOAN\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga4d84b84c684ce145bbfa1b41d94c4cac} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+RETURN\+\_\+\+LOAN\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 46)}
+
+
+
+Failed a return\+\_\+loan() upstream. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga88d028b7bbb59dbde77d879690b6355b}\index{RTPS@{RTPS}!RTPS\_LOG\_NETIO\_PACKET\_SET\_HEAD\_EC@{RTPS\_LOG\_NETIO\_PACKET\_SET\_HEAD\_EC}}
+\index{RTPS\_LOG\_NETIO\_PACKET\_SET\_HEAD\_EC@{RTPS\_LOG\_NETIO\_PACKET\_SET\_HEAD\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_NETIO\_PACKET\_SET\_HEAD\_EC}{RTPS\_LOG\_NETIO\_PACKET\_SET\_HEAD\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga88d028b7bbb59dbde77d879690b6355b} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+NETIO\+\_\+\+PACKET\+\_\+\+SET\+\_\+\+HEAD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 47)}
+
+
+
+Failed to set the head of a packet. 
+
+\Hypertarget{group__RTPSLogCodesClass_gae56ee2df4d9cd4f2fff0c4e08889dd56}\index{RTPS@{RTPS}!RTPS\_LOG\_SEND\_HEARTBEAT\_EC@{RTPS\_LOG\_SEND\_HEARTBEAT\_EC}}
+\index{RTPS\_LOG\_SEND\_HEARTBEAT\_EC@{RTPS\_LOG\_SEND\_HEARTBEAT\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SEND\_HEARTBEAT\_EC}{RTPS\_LOG\_SEND\_HEARTBEAT\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gae56ee2df4d9cd4f2fff0c4e08889dd56} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SEND\+\_\+\+HEARTBEAT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 48)}
+
+
+
+Failed to send a HEARTBEAT submessage. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga189a6296bc3c814c4485bbf1fafb53c6}\index{RTPS@{RTPS}!RTPS\_LOG\_SHIFT\_BITMAP\_EC@{RTPS\_LOG\_SHIFT\_BITMAP\_EC}}
+\index{RTPS\_LOG\_SHIFT\_BITMAP\_EC@{RTPS\_LOG\_SHIFT\_BITMAP\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SHIFT\_BITMAP\_EC}{RTPS\_LOG\_SHIFT\_BITMAP\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga189a6296bc3c814c4485bbf1fafb53c6} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SHIFT\+\_\+\+BITMAP\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 49)}
+
+
+
+Failed to shift a bitmap. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga893aa3775a5b73efdc96a310287e0b71}\index{RTPS@{RTPS}!RTPS\_LOG\_FULLY\_ACKED\_READER\_EC@{RTPS\_LOG\_FULLY\_ACKED\_READER\_EC}}
+\index{RTPS\_LOG\_FULLY\_ACKED\_READER\_EC@{RTPS\_LOG\_FULLY\_ACKED\_READER\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_FULLY\_ACKED\_READER\_EC}{RTPS\_LOG\_FULLY\_ACKED\_READER\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga893aa3775a5b73efdc96a310287e0b71} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+FULLY\+\_\+\+ACKED\+\_\+\+READER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 50)}
+
+
+
+A Reader is fully acknowledged and does not need to respond to a final HEARTBEAT. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga27b6a063babe60c061728563f77cfe65}\index{RTPS@{RTPS}!RTPS\_LOG\_DATA\_OUT\_OF\_RANGE\_EC@{RTPS\_LOG\_DATA\_OUT\_OF\_RANGE\_EC}}
+\index{RTPS\_LOG\_DATA\_OUT\_OF\_RANGE\_EC@{RTPS\_LOG\_DATA\_OUT\_OF\_RANGE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DATA\_OUT\_OF\_RANGE\_EC}{RTPS\_LOG\_DATA\_OUT\_OF\_RANGE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga27b6a063babe60c061728563f77cfe65} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DATA\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 51)}
+
+
+
+Dropping a DATA submessage whose sequence number is outside of a Reader\textquotesingle{}s receive window. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaa5157f68aa7cfa01f51ee395b33321aa}\index{RTPS@{RTPS}!RTPS\_LOG\_DATA\_ALREADY\_RECEIVED\_EC@{RTPS\_LOG\_DATA\_ALREADY\_RECEIVED\_EC}}
+\index{RTPS\_LOG\_DATA\_ALREADY\_RECEIVED\_EC@{RTPS\_LOG\_DATA\_ALREADY\_RECEIVED\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DATA\_ALREADY\_RECEIVED\_EC}{RTPS\_LOG\_DATA\_ALREADY\_RECEIVED\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaa5157f68aa7cfa01f51ee395b33321aa} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DATA\+\_\+\+ALREADY\+\_\+\+RECEIVED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 52)}
+
+
+
+Dropping a DATA submessage whose sequence number was previously received. 
+
+\Hypertarget{group__RTPSLogCodesClass_gad028075347045136b99d726b802d096b}\index{RTPS@{RTPS}!RTPS\_LOG\_INTERFACE\_NOT\_ENABLED\_EC@{RTPS\_LOG\_INTERFACE\_NOT\_ENABLED\_EC}}
+\index{RTPS\_LOG\_INTERFACE\_NOT\_ENABLED\_EC@{RTPS\_LOG\_INTERFACE\_NOT\_ENABLED\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_INTERFACE\_NOT\_ENABLED\_EC}{RTPS\_LOG\_INTERFACE\_NOT\_ENABLED\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gad028075347045136b99d726b802d096b} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+INTERFACE\+\_\+\+NOT\+\_\+\+ENABLED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 53)}
+
+
+
+Failed to receive a message because interface is not enabled. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga1b28856449e5198dceb4d5d07dd9dc81}\index{RTPS@{RTPS}!RTPS\_LOG\_INVALID\_PACKET\_EC@{RTPS\_LOG\_INVALID\_PACKET\_EC}}
+\index{RTPS\_LOG\_INVALID\_PACKET\_EC@{RTPS\_LOG\_INVALID\_PACKET\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_INVALID\_PACKET\_EC}{RTPS\_LOG\_INVALID\_PACKET\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga1b28856449e5198dceb4d5d07dd9dc81} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+PACKET\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 54)}
+
+
+
+Dropped a message with an invalid packet header. 
+
+\Hypertarget{group__RTPSLogCodesClass_gafde9a3c954537a09faf81cfbc543cb37}\index{RTPS@{RTPS}!RTPS\_LOG\_UNSUPPORTED\_INTERFACE\_EC@{RTPS\_LOG\_UNSUPPORTED\_INTERFACE\_EC}}
+\index{RTPS\_LOG\_UNSUPPORTED\_INTERFACE\_EC@{RTPS\_LOG\_UNSUPPORTED\_INTERFACE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_UNSUPPORTED\_INTERFACE\_EC}{RTPS\_LOG\_UNSUPPORTED\_INTERFACE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gafde9a3c954537a09faf81cfbc543cb37} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+UNSUPPORTED\+\_\+\+INTERFACE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 55)}
+
+
+
+Received a message on an unsupported interface. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga6bc71dcd82a73461c1893c57f2858610}\index{RTPS@{RTPS}!RTPS\_LOG\_UNKNOWN\_SUBMESSAGE\_EC@{RTPS\_LOG\_UNKNOWN\_SUBMESSAGE\_EC}}
+\index{RTPS\_LOG\_UNKNOWN\_SUBMESSAGE\_EC@{RTPS\_LOG\_UNKNOWN\_SUBMESSAGE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_UNKNOWN\_SUBMESSAGE\_EC}{RTPS\_LOG\_UNKNOWN\_SUBMESSAGE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga6bc71dcd82a73461c1893c57f2858610} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+UNKNOWN\+\_\+\+SUBMESSAGE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 56)}
+
+
+
+Received a submessage with an unknown ID. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaab9afa57996b04f0d16775a6ac439087}\index{RTPS@{RTPS}!RTPS\_LOG\_PROCESS\_ACKNACK\_EC@{RTPS\_LOG\_PROCESS\_ACKNACK\_EC}}
+\index{RTPS\_LOG\_PROCESS\_ACKNACK\_EC@{RTPS\_LOG\_PROCESS\_ACKNACK\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_PROCESS\_ACKNACK\_EC}{RTPS\_LOG\_PROCESS\_ACKNACK\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaab9afa57996b04f0d16775a6ac439087} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+PROCESS\+\_\+\+ACKNACK\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 57)}
+
+
+
+Failed to process received ACKNACK submessage. 
+
+\Hypertarget{group__RTPSLogCodesClass_gab5ead619cd43a733718b481923c29aea}\index{RTPS@{RTPS}!RTPS\_LOG\_PROCESS\_DATA\_EC@{RTPS\_LOG\_PROCESS\_DATA\_EC}}
+\index{RTPS\_LOG\_PROCESS\_DATA\_EC@{RTPS\_LOG\_PROCESS\_DATA\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_PROCESS\_DATA\_EC}{RTPS\_LOG\_PROCESS\_DATA\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gab5ead619cd43a733718b481923c29aea} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+PROCESS\+\_\+\+DATA\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 58)}
+
+
+
+Failed to process received DATA submessage. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga87b76833ffe520c116a885f0af488d92}\index{RTPS@{RTPS}!RTPS\_LOG\_PROCESS\_GAP\_EC@{RTPS\_LOG\_PROCESS\_GAP\_EC}}
+\index{RTPS\_LOG\_PROCESS\_GAP\_EC@{RTPS\_LOG\_PROCESS\_GAP\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_PROCESS\_GAP\_EC}{RTPS\_LOG\_PROCESS\_GAP\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga87b76833ffe520c116a885f0af488d92} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+PROCESS\+\_\+\+GAP\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 59)}
+
+
+
+Failed to process received GAP submessage. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga7e974326bfe0b80f4201a990142fff44}\index{RTPS@{RTPS}!RTPS\_LOG\_PROCESS\_HEARTBEAT\_EC@{RTPS\_LOG\_PROCESS\_HEARTBEAT\_EC}}
+\index{RTPS\_LOG\_PROCESS\_HEARTBEAT\_EC@{RTPS\_LOG\_PROCESS\_HEARTBEAT\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_PROCESS\_HEARTBEAT\_EC}{RTPS\_LOG\_PROCESS\_HEARTBEAT\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga7e974326bfe0b80f4201a990142fff44} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+PROCESS\+\_\+\+HEARTBEAT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 60)}
+
+
+
+Failed to process received HEARTBEAT submessage. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaa6276952da140cc5ef32a16f2f8d9226}\index{RTPS@{RTPS}!RTPS\_LOG\_CREATE\_HB\_EVENT\_EC@{RTPS\_LOG\_CREATE\_HB\_EVENT\_EC}}
+\index{RTPS\_LOG\_CREATE\_HB\_EVENT\_EC@{RTPS\_LOG\_CREATE\_HB\_EVENT\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CREATE\_HB\_EVENT\_EC}{RTPS\_LOG\_CREATE\_HB\_EVENT\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaa6276952da140cc5ef32a16f2f8d9226} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+HB\+\_\+\+EVENT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 61)}
+
+
+
+Failed to create periodic HEARTBEAT event. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga79f2f4cc339bb591bef0b6f55994bcae}\index{RTPS@{RTPS}!RTPS\_LOG\_CREATE\_EVENT\_TIMER\_EC@{RTPS\_LOG\_CREATE\_EVENT\_TIMER\_EC}}
+\index{RTPS\_LOG\_CREATE\_EVENT\_TIMER\_EC@{RTPS\_LOG\_CREATE\_EVENT\_TIMER\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CREATE\_EVENT\_TIMER\_EC}{RTPS\_LOG\_CREATE\_EVENT\_TIMER\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga79f2f4cc339bb591bef0b6f55994bcae} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+EVENT\+\_\+\+TIMER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 62)}
+
+
+
+Failed to create periodic HEARTBEAT event timer. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga004fe1e8ef3f7f16cdd817f0ff14a477}\index{RTPS@{RTPS}!RTPS\_LOG\_SEQ\_NUM\_OUT\_OF\_RANGE\_EC@{RTPS\_LOG\_SEQ\_NUM\_OUT\_OF\_RANGE\_EC}}
+\index{RTPS\_LOG\_SEQ\_NUM\_OUT\_OF\_RANGE\_EC@{RTPS\_LOG\_SEQ\_NUM\_OUT\_OF\_RANGE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SEQ\_NUM\_OUT\_OF\_RANGE\_EC}{RTPS\_LOG\_SEQ\_NUM\_OUT\_OF\_RANGE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga004fe1e8ef3f7f16cdd817f0ff14a477} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SEQ\+\_\+\+NUM\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 63)}
+
+
+
+Failed to set bitmap bit due to out-\/of-\/range sequence number. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga4c81b6e9bb9eb22e42980a58089ef39f}\index{RTPS@{RTPS}!RTPS\_LOG\_FIRST\_SN\_GREATER\_LAST\_SN\_EC@{RTPS\_LOG\_FIRST\_SN\_GREATER\_LAST\_SN\_EC}}
+\index{RTPS\_LOG\_FIRST\_SN\_GREATER\_LAST\_SN\_EC@{RTPS\_LOG\_FIRST\_SN\_GREATER\_LAST\_SN\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_FIRST\_SN\_GREATER\_LAST\_SN\_EC}{RTPS\_LOG\_FIRST\_SN\_GREATER\_LAST\_SN\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga4c81b6e9bb9eb22e42980a58089ef39f} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+FIRST\+\_\+\+SN\+\_\+\+GREATER\+\_\+\+LAST\+\_\+\+SN\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 65)}
+
+
+
+Invalid range of sequence numbers to fill in bitmap. 
+
+\Hypertarget{group__RTPSLogCodesClass_gad68d9b4d095e922d1cef28ca2c36ecc7}\index{RTPS@{RTPS}!RTPS\_LOG\_BITCOUNT\_OUT\_OF\_BOUNDS\_EC@{RTPS\_LOG\_BITCOUNT\_OUT\_OF\_BOUNDS\_EC}}
+\index{RTPS\_LOG\_BITCOUNT\_OUT\_OF\_BOUNDS\_EC@{RTPS\_LOG\_BITCOUNT\_OUT\_OF\_BOUNDS\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_BITCOUNT\_OUT\_OF\_BOUNDS\_EC}{RTPS\_LOG\_BITCOUNT\_OUT\_OF\_BOUNDS\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gad68d9b4d095e922d1cef28ca2c36ecc7} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+BITCOUNT\+\_\+\+OUT\+\_\+\+OF\+\_\+\+BOUNDS\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 66)}
+
+
+
+Deserialized an invalid out-\/of-\/bounds bitcount for a bitmap. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga3ae2e12e4d03ae0c29c13ac59efe5a44}\index{RTPS@{RTPS}!RTPS\_LOG\_SHIFT\_SN\_OUT\_OF\_RANGE\_EC@{RTPS\_LOG\_SHIFT\_SN\_OUT\_OF\_RANGE\_EC}}
+\index{RTPS\_LOG\_SHIFT\_SN\_OUT\_OF\_RANGE\_EC@{RTPS\_LOG\_SHIFT\_SN\_OUT\_OF\_RANGE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SHIFT\_SN\_OUT\_OF\_RANGE\_EC}{RTPS\_LOG\_SHIFT\_SN\_OUT\_OF\_RANGE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga3ae2e12e4d03ae0c29c13ac59efe5a44} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SHIFT\+\_\+\+SN\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 67)}
+
+
+
+Failed to shift bitmap due to invalid starting sequence number. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga21cab8e34e51d63f341ca4bece5bec01}\index{RTPS@{RTPS}!RTPS\_LOG\_SERIALIZE\_HOST\_ID\_EC@{RTPS\_LOG\_SERIALIZE\_HOST\_ID\_EC}}
+\index{RTPS\_LOG\_SERIALIZE\_HOST\_ID\_EC@{RTPS\_LOG\_SERIALIZE\_HOST\_ID\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SERIALIZE\_HOST\_ID\_EC}{RTPS\_LOG\_SERIALIZE\_HOST\_ID\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga21cab8e34e51d63f341ca4bece5bec01} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SERIALIZE\+\_\+\+HOST\+\_\+\+ID\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 68)}
+
+
+
+Failed to serialize host ID of GUID. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga4d7495c976ca3b477dd2ec55a415fb2f}\index{RTPS@{RTPS}!RTPS\_LOG\_SERIALIZE\_APP\_ID\_EC@{RTPS\_LOG\_SERIALIZE\_APP\_ID\_EC}}
+\index{RTPS\_LOG\_SERIALIZE\_APP\_ID\_EC@{RTPS\_LOG\_SERIALIZE\_APP\_ID\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SERIALIZE\_APP\_ID\_EC}{RTPS\_LOG\_SERIALIZE\_APP\_ID\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga4d7495c976ca3b477dd2ec55a415fb2f} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SERIALIZE\+\_\+\+APP\+\_\+\+ID\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 69)}
+
+
+
+Failed to serialize app ID of GUID. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga3125ee9d613e478d0926d92cfb89e0b3}\index{RTPS@{RTPS}!RTPS\_LOG\_SERIALIZE\_INSTANCE\_ID\_EC@{RTPS\_LOG\_SERIALIZE\_INSTANCE\_ID\_EC}}
+\index{RTPS\_LOG\_SERIALIZE\_INSTANCE\_ID\_EC@{RTPS\_LOG\_SERIALIZE\_INSTANCE\_ID\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SERIALIZE\_INSTANCE\_ID\_EC}{RTPS\_LOG\_SERIALIZE\_INSTANCE\_ID\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga3125ee9d613e478d0926d92cfb89e0b3} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SERIALIZE\+\_\+\+INSTANCE\+\_\+\+ID\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 70)}
+
+
+
+Failed to serialized instance ID of GUID. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga4aa42ee75deb7bb2193d510875659a46}\index{RTPS@{RTPS}!RTPS\_LOG\_SERIALIZE\_OBJECT\_ID\_EC@{RTPS\_LOG\_SERIALIZE\_OBJECT\_ID\_EC}}
+\index{RTPS\_LOG\_SERIALIZE\_OBJECT\_ID\_EC@{RTPS\_LOG\_SERIALIZE\_OBJECT\_ID\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SERIALIZE\_OBJECT\_ID\_EC}{RTPS\_LOG\_SERIALIZE\_OBJECT\_ID\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga4aa42ee75deb7bb2193d510875659a46} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SERIALIZE\+\_\+\+OBJECT\+\_\+\+ID\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 71)}
+
+
+
+Failed to serialize object ID of GUID. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaeb8a018d0d72ef85f0d8b3d0b2705805}\index{RTPS@{RTPS}!RTPS\_LOG\_DESERIALIZE\_HOST\_ID\_EC@{RTPS\_LOG\_DESERIALIZE\_HOST\_ID\_EC}}
+\index{RTPS\_LOG\_DESERIALIZE\_HOST\_ID\_EC@{RTPS\_LOG\_DESERIALIZE\_HOST\_ID\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DESERIALIZE\_HOST\_ID\_EC}{RTPS\_LOG\_DESERIALIZE\_HOST\_ID\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaeb8a018d0d72ef85f0d8b3d0b2705805} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DESERIALIZE\+\_\+\+HOST\+\_\+\+ID\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 72)}
+
+
+
+Failed to deserialize host ID of GUID. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga2e7591e843ab182f6440ad78813d2745}\index{RTPS@{RTPS}!RTPS\_LOG\_DESERIALIZE\_APP\_ID\_EC@{RTPS\_LOG\_DESERIALIZE\_APP\_ID\_EC}}
+\index{RTPS\_LOG\_DESERIALIZE\_APP\_ID\_EC@{RTPS\_LOG\_DESERIALIZE\_APP\_ID\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DESERIALIZE\_APP\_ID\_EC}{RTPS\_LOG\_DESERIALIZE\_APP\_ID\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga2e7591e843ab182f6440ad78813d2745} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DESERIALIZE\+\_\+\+APP\+\_\+\+ID\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 73)}
+
+
+
+Faild to deserialize app ID of GUID. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga8d19a7c2ade41d3a493158cf96cf2a59}\index{RTPS@{RTPS}!RTPS\_LOG\_DESERIALIZE\_INSTANCE\_ID\_EC@{RTPS\_LOG\_DESERIALIZE\_INSTANCE\_ID\_EC}}
+\index{RTPS\_LOG\_DESERIALIZE\_INSTANCE\_ID\_EC@{RTPS\_LOG\_DESERIALIZE\_INSTANCE\_ID\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DESERIALIZE\_INSTANCE\_ID\_EC}{RTPS\_LOG\_DESERIALIZE\_INSTANCE\_ID\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga8d19a7c2ade41d3a493158cf96cf2a59} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DESERIALIZE\+\_\+\+INSTANCE\+\_\+\+ID\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 74)}
+
+
+
+Failed to deserialize instance ID of GUID. 
+
+\Hypertarget{group__RTPSLogCodesClass_gadf4554ed91a3252ca93bc98f9af78f8a}\index{RTPS@{RTPS}!RTPS\_LOG\_DESERIALIZE\_OBJECT\_ID\_EC@{RTPS\_LOG\_DESERIALIZE\_OBJECT\_ID\_EC}}
+\index{RTPS\_LOG\_DESERIALIZE\_OBJECT\_ID\_EC@{RTPS\_LOG\_DESERIALIZE\_OBJECT\_ID\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DESERIALIZE\_OBJECT\_ID\_EC}{RTPS\_LOG\_DESERIALIZE\_OBJECT\_ID\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gadf4554ed91a3252ca93bc98f9af78f8a} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DESERIALIZE\+\_\+\+OBJECT\+\_\+\+ID\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 75)}
+
+
+
+Failed to deserialize object ID of GUID. 
+
+\Hypertarget{group__RTPSLogCodesClass_gabfaebffd41336adee57926e2dab76fbb}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_CREATE\_EXT\_BIND\_ENTRY\_EC@{RTPS\_LOG\_DB\_CREATE\_EXT\_BIND\_ENTRY\_EC}}
+\index{RTPS\_LOG\_DB\_CREATE\_EXT\_BIND\_ENTRY\_EC@{RTPS\_LOG\_DB\_CREATE\_EXT\_BIND\_ENTRY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_CREATE\_EXT\_BIND\_ENTRY\_EC}{RTPS\_LOG\_DB\_CREATE\_EXT\_BIND\_ENTRY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gabfaebffd41336adee57926e2dab76fbb} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+EXT\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 76)}
+
+
+
+Failed to create database entry for external bind table. 
+
+If Domain\+Participant, may have exceeded Domain\+Participant\+Qos.\+resource\+\_\+limits.\+matching\+\_\+reader\+\_\+writer\+\_\+pair\+\_\+allocation. \Hypertarget{group__RTPSLogCodesClass_gada5b3cdb835541c1303109f86dcebed3}\index{RTPS@{RTPS}!RTPS\_LOG\_BITMAP\_SET\_BIT\_EC@{RTPS\_LOG\_BITMAP\_SET\_BIT\_EC}}
+\index{RTPS\_LOG\_BITMAP\_SET\_BIT\_EC@{RTPS\_LOG\_BITMAP\_SET\_BIT\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_BITMAP\_SET\_BIT\_EC}{RTPS\_LOG\_BITMAP\_SET\_BIT\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gada5b3cdb835541c1303109f86dcebed3} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+BITMAP\+\_\+\+SET\+\_\+\+BIT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 77)}
+
+
+
+Failed to set bit in bitmap. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaca05ae040b45805d368db4e8086b952f}\index{RTPS@{RTPS}!RTPS\_LOG\_UNSUPPORTED\_INFO\_REPLY\_EC@{RTPS\_LOG\_UNSUPPORTED\_INFO\_REPLY\_EC}}
+\index{RTPS\_LOG\_UNSUPPORTED\_INFO\_REPLY\_EC@{RTPS\_LOG\_UNSUPPORTED\_INFO\_REPLY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_UNSUPPORTED\_INFO\_REPLY\_EC}{RTPS\_LOG\_UNSUPPORTED\_INFO\_REPLY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaca05ae040b45805d368db4e8086b952f} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+UNSUPPORTED\+\_\+\+INFO\+\_\+\+REPLY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 78)}
+
+
+
+Received and dropped currently unsupported INFO\+\_\+\+REPLY submessage. 
+
+\Hypertarget{group__RTPSLogCodesClass_gab1add63b4eb4d06a288d9b0c7e8ace48}\index{RTPS@{RTPS}!RTPS\_LOG\_UNSUPPORTED\_INFO\_REPLY\_IP4\_EC@{RTPS\_LOG\_UNSUPPORTED\_INFO\_REPLY\_IP4\_EC}}
+\index{RTPS\_LOG\_UNSUPPORTED\_INFO\_REPLY\_IP4\_EC@{RTPS\_LOG\_UNSUPPORTED\_INFO\_REPLY\_IP4\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_UNSUPPORTED\_INFO\_REPLY\_IP4\_EC}{RTPS\_LOG\_UNSUPPORTED\_INFO\_REPLY\_IP4\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gab1add63b4eb4d06a288d9b0c7e8ace48} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+UNSUPPORTED\+\_\+\+INFO\+\_\+\+REPLY\+\_\+\+IP4\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 79)}
+
+
+
+Received and dropped currently unsupported INFO\+\_\+\+REPLY\+\_\+\+IP4 submessage. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga4d43f7b1a9bd80b15715d2933b96e19e}\index{RTPS@{RTPS}!RTPS\_LOG\_UNSUPPORTED\_INFO\_SRC\_EC@{RTPS\_LOG\_UNSUPPORTED\_INFO\_SRC\_EC}}
+\index{RTPS\_LOG\_UNSUPPORTED\_INFO\_SRC\_EC@{RTPS\_LOG\_UNSUPPORTED\_INFO\_SRC\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_UNSUPPORTED\_INFO\_SRC\_EC}{RTPS\_LOG\_UNSUPPORTED\_INFO\_SRC\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga4d43f7b1a9bd80b15715d2933b96e19e} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+UNSUPPORTED\+\_\+\+INFO\+\_\+\+SRC\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 80)}
+
+
+
+Received and dropped currently unsupported INFO\+\_\+\+SRC submessage. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga177b58566568087ae073988204e7bf18}\index{RTPS@{RTPS}!RTPS\_LOG\_DELETE\_INDEX\_EC@{RTPS\_LOG\_DELETE\_INDEX\_EC}}
+\index{RTPS\_LOG\_DELETE\_INDEX\_EC@{RTPS\_LOG\_DELETE\_INDEX\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DELETE\_INDEX\_EC}{RTPS\_LOG\_DELETE\_INDEX\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga177b58566568087ae073988204e7bf18} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+INDEX\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 81)}
+
+
+
+Failed to delete index of a database table. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaf13515d8689d8a1d4d51094e5523339e}\index{RTPS@{RTPS}!RTPS\_LOG\_DELETE\_TABLE\_EC@{RTPS\_LOG\_DELETE\_TABLE\_EC}}
+\index{RTPS\_LOG\_DELETE\_TABLE\_EC@{RTPS\_LOG\_DELETE\_TABLE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DELETE\_TABLE\_EC}{RTPS\_LOG\_DELETE\_TABLE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaf13515d8689d8a1d4d51094e5523339e} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+TABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 82)}
+
+
+
+Failed to delete a database table. 
+
+\Hypertarget{group__RTPSLogCodesClass_gac3b267d65e760ef8d1e8ed9208053cf9}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_LOCK\_EC@{RTPS\_LOG\_DB\_LOCK\_EC}}
+\index{RTPS\_LOG\_DB\_LOCK\_EC@{RTPS\_LOG\_DB\_LOCK\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_LOCK\_EC}{RTPS\_LOG\_DB\_LOCK\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gac3b267d65e760ef8d1e8ed9208053cf9} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+LOCK\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 83)}
+
+
+
+Failed to take database lock. 
+
+\Hypertarget{group__RTPSLogCodesClass_gae4b0699f64f3fcb35e361b60346bd32c}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_UNLOCK\_EC@{RTPS\_LOG\_DB\_UNLOCK\_EC}}
+\index{RTPS\_LOG\_DB\_UNLOCK\_EC@{RTPS\_LOG\_DB\_UNLOCK\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_UNLOCK\_EC}{RTPS\_LOG\_DB\_UNLOCK\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gae4b0699f64f3fcb35e361b60346bd32c} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+UNLOCK\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 84)}
+
+
+
+Failed to give database lock. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaf77f0a9ad406bb8e0c08a8e44580284c}\index{RTPS@{RTPS}!RTPS\_LOG\_CREATE\_BIND\_TABLE\_EC@{RTPS\_LOG\_CREATE\_BIND\_TABLE\_EC}}
+\index{RTPS\_LOG\_CREATE\_BIND\_TABLE\_EC@{RTPS\_LOG\_CREATE\_BIND\_TABLE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CREATE\_BIND\_TABLE\_EC}{RTPS\_LOG\_CREATE\_BIND\_TABLE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaf77f0a9ad406bb8e0c08a8e44580284c} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+BIND\+\_\+\+TABLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 85)}
+
+
+
+Failed to create a database table for storing RTPS bind info. 
+
+\Hypertarget{group__RTPSLogCodesClass_gac3672be511e032620bcdb824815288c7}\index{RTPS@{RTPS}!RTPS\_LOG\_STATUS\_CHANGE\_EC@{RTPS\_LOG\_STATUS\_CHANGE\_EC}}
+\index{RTPS\_LOG\_STATUS\_CHANGE\_EC@{RTPS\_LOG\_STATUS\_CHANGE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_STATUS\_CHANGE\_EC}{RTPS\_LOG\_STATUS\_CHANGE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gac3672be511e032620bcdb824815288c7} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+STATUS\+\_\+\+CHANGE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 86)}
+
+
+
+Failed to update status for reliable reader activity changed. 
+
+\Hypertarget{group__RTPSLogCodesClass_gab76bb08e19fd9156289ecb053aa6b056}\index{RTPS@{RTPS}!RTPS\_LOG\_SET\_GAP\_EC@{RTPS\_LOG\_SET\_GAP\_EC}}
+\index{RTPS\_LOG\_SET\_GAP\_EC@{RTPS\_LOG\_SET\_GAP\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SET\_GAP\_EC}{RTPS\_LOG\_SET\_GAP\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gab76bb08e19fd9156289ecb053aa6b056} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SET\+\_\+\+GAP\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 87)}
+
+
+
+Failed to update status for reliable reader activity changed. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaaa94819cb95575e1ecd75bb248488b61}\index{RTPS@{RTPS}!RTPS\_LOG\_WINDOW\_POOL\_ALLOC\_EC@{RTPS\_LOG\_WINDOW\_POOL\_ALLOC\_EC}}
+\index{RTPS\_LOG\_WINDOW\_POOL\_ALLOC\_EC@{RTPS\_LOG\_WINDOW\_POOL\_ALLOC\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_WINDOW\_POOL\_ALLOC\_EC}{RTPS\_LOG\_WINDOW\_POOL\_ALLOC\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaaa94819cb95575e1ecd75bb248488b61} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+WINDOW\+\_\+\+POOL\+\_\+\+ALLOC\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 88)}
+
+
+
+Out of memory to allocate send window pool. 
+
+\Hypertarget{group__RTPSLogCodesClass_gac097ee6f26dd9caeb2db8823f217ad83}\index{RTPS@{RTPS}!RTPS\_LOG\_GET\_WINDOW\_BUFFER\_EC@{RTPS\_LOG\_GET\_WINDOW\_BUFFER\_EC}}
+\index{RTPS\_LOG\_GET\_WINDOW\_BUFFER\_EC@{RTPS\_LOG\_GET\_WINDOW\_BUFFER\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_GET\_WINDOW\_BUFFER\_EC}{RTPS\_LOG\_GET\_WINDOW\_BUFFER\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gac097ee6f26dd9caeb2db8823f217ad83} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+GET\+\_\+\+WINDOW\+\_\+\+BUFFER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 89)}
+
+
+
+Failed to get buffer from send window pool. 
+
+\Hypertarget{group__RTPSLogCodesClass_gafcbae4eb174f27659f5a05df8bbe9e10}\index{RTPS@{RTPS}!RTPS\_LOG\_INSERT\_WINDOW\_FULL\_EC@{RTPS\_LOG\_INSERT\_WINDOW\_FULL\_EC}}
+\index{RTPS\_LOG\_INSERT\_WINDOW\_FULL\_EC@{RTPS\_LOG\_INSERT\_WINDOW\_FULL\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_INSERT\_WINDOW\_FULL\_EC}{RTPS\_LOG\_INSERT\_WINDOW\_FULL\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gafcbae4eb174f27659f5a05df8bbe9e10} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+INSERT\+\_\+\+WINDOW\+\_\+\+FULL\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 90)}
+
+
+
+Cannot insert sample into full window. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaa574732e368fb55ff08baa30f9fb77df}\index{RTPS@{RTPS}!RTPS\_LOG\_WINDOW\_INSERT\_EC@{RTPS\_LOG\_WINDOW\_INSERT\_EC}}
+\index{RTPS\_LOG\_WINDOW\_INSERT\_EC@{RTPS\_LOG\_WINDOW\_INSERT\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_WINDOW\_INSERT\_EC}{RTPS\_LOG\_WINDOW\_INSERT\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaa574732e368fb55ff08baa30f9fb77df} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+WINDOW\+\_\+\+INSERT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 91)}
+
+
+
+Failed to insert sample into send window. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga8703805d36d3d69366824db3f98d84c2}\index{RTPS@{RTPS}!RTPS\_LOG\_TIMER\_DELETE\_TIMEOUT\_EC@{RTPS\_LOG\_TIMER\_DELETE\_TIMEOUT\_EC}}
+\index{RTPS\_LOG\_TIMER\_DELETE\_TIMEOUT\_EC@{RTPS\_LOG\_TIMER\_DELETE\_TIMEOUT\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_TIMER\_DELETE\_TIMEOUT\_EC}{RTPS\_LOG\_TIMER\_DELETE\_TIMEOUT\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga8703805d36d3d69366824db3f98d84c2} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+TIMER\+\_\+\+DELETE\+\_\+\+TIMEOUT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 92)}
+
+
+
+Failed to delete a timeout event. 
+
+\Hypertarget{group__RTPSLogCodesClass_gac8f96e5993ea86589e761e0c8b951aba}\index{RTPS@{RTPS}!RTPS\_LOG\_BUFFERPOOL\_DELETE\_EC@{RTPS\_LOG\_BUFFERPOOL\_DELETE\_EC}}
+\index{RTPS\_LOG\_BUFFERPOOL\_DELETE\_EC@{RTPS\_LOG\_BUFFERPOOL\_DELETE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_BUFFERPOOL\_DELETE\_EC}{RTPS\_LOG\_BUFFERPOOL\_DELETE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gac8f96e5993ea86589e761e0c8b951aba} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+BUFFERPOOL\+\_\+\+DELETE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 93)}
+
+
+
+Failed to delete a buffer pool. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaabf8e511ba405e61692750aa3bbf3a9c}\index{RTPS@{RTPS}!RTPS\_LOG\_DIRECT\_SEND\_EC@{RTPS\_LOG\_DIRECT\_SEND\_EC}}
+\index{RTPS\_LOG\_DIRECT\_SEND\_EC@{RTPS\_LOG\_DIRECT\_SEND\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DIRECT\_SEND\_EC}{RTPS\_LOG\_DIRECT\_SEND\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaabf8e511ba405e61692750aa3bbf3a9c} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DIRECT\+\_\+\+SEND\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 94)}
+
+
+
+Failed to send a message to a specific peer. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga10bbb123be2fe20c94a183b47d0afd68}\index{RTPS@{RTPS}!RTPS\_LOG\_PACKET\_INITIALIZE\_EC@{RTPS\_LOG\_PACKET\_INITIALIZE\_EC}}
+\index{RTPS\_LOG\_PACKET\_INITIALIZE\_EC@{RTPS\_LOG\_PACKET\_INITIALIZE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_PACKET\_INITIALIZE\_EC}{RTPS\_LOG\_PACKET\_INITIALIZE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga10bbb123be2fe20c94a183b47d0afd68} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+INITIALIZE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 95)}
+
+
+
+RTPS writer failed to initialize a packet. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga38c6282b66feecba841877d14c6d3e1a}\index{RTPS@{RTPS}!RTPS\_LOG\_WRITER\_REQUEST\_SENT\_HISTORY\_EC@{RTPS\_LOG\_WRITER\_REQUEST\_SENT\_HISTORY\_EC}}
+\index{RTPS\_LOG\_WRITER\_REQUEST\_SENT\_HISTORY\_EC@{RTPS\_LOG\_WRITER\_REQUEST\_SENT\_HISTORY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_WRITER\_REQUEST\_SENT\_HISTORY\_EC}{RTPS\_LOG\_WRITER\_REQUEST\_SENT\_HISTORY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga38c6282b66feecba841877d14c6d3e1a} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+WRITER\+\_\+\+REQUEST\+\_\+\+SENT\+\_\+\+HISTORY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 96)}
+
+
+
+RTPS reliable writer failed to request and resend history. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga89074994908d039b773f5d238a17795e}\index{RTPS@{RTPS}!RTPS\_LOG\_BITMAP\_SHIFT\_EC@{RTPS\_LOG\_BITMAP\_SHIFT\_EC}}
+\index{RTPS\_LOG\_BITMAP\_SHIFT\_EC@{RTPS\_LOG\_BITMAP\_SHIFT\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_BITMAP\_SHIFT\_EC}{RTPS\_LOG\_BITMAP\_SHIFT\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga89074994908d039b773f5d238a17795e} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+BITMAP\+\_\+\+SHIFT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 97)}
+
+
+
+Failed to shift bitmap to new lead sequence number. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaec00ead7b7697c7de702b8fa1678b09f}\index{RTPS@{RTPS}!RTPS\_LOG\_WINDOW\_ADVANCE\_EC@{RTPS\_LOG\_WINDOW\_ADVANCE\_EC}}
+\index{RTPS\_LOG\_WINDOW\_ADVANCE\_EC@{RTPS\_LOG\_WINDOW\_ADVANCE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_WINDOW\_ADVANCE\_EC}{RTPS\_LOG\_WINDOW\_ADVANCE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaec00ead7b7697c7de702b8fa1678b09f} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+WINDOW\+\_\+\+ADVANCE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 98)}
+
+
+
+Send window of a remote reader failed to advance. 
+
+\Hypertarget{group__RTPSLogCodesClass_gac3ace851507f704d7edd02f4a67be09f}\index{RTPS@{RTPS}!RTPS\_LOG\_WINDOW\_ADVANCE\_UNACKED\_EC@{RTPS\_LOG\_WINDOW\_ADVANCE\_UNACKED\_EC}}
+\index{RTPS\_LOG\_WINDOW\_ADVANCE\_UNACKED\_EC@{RTPS\_LOG\_WINDOW\_ADVANCE\_UNACKED\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_WINDOW\_ADVANCE\_UNACKED\_EC}{RTPS\_LOG\_WINDOW\_ADVANCE\_UNACKED\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gac3ace851507f704d7edd02f4a67be09f} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+WINDOW\+\_\+\+ADVANCE\+\_\+\+UNACKED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 99)}
+
+
+
+Failed when advancing window ahead of unacknowledged sequence number. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga5da0b0f0d7b87e148ce253653554ba50}\index{RTPS@{RTPS}!RTPS\_LOG\_LOOKUP\_PEER\_EC@{RTPS\_LOG\_LOOKUP\_PEER\_EC}}
+\index{RTPS\_LOG\_LOOKUP\_PEER\_EC@{RTPS\_LOG\_LOOKUP\_PEER\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_LOOKUP\_PEER\_EC}{RTPS\_LOG\_LOOKUP\_PEER\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga5da0b0f0d7b87e148ce253653554ba50} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+LOOKUP\+\_\+\+PEER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 100)}
+
+
+
+Failed to find peer that should exist. 
+
+\Hypertarget{group__RTPSLogCodesClass_gac4c12834cd1c7d2df55be62bb86a6650}\index{RTPS@{RTPS}!RTPS\_LOG\_READER\_SEND\_ACKNACK\_EC@{RTPS\_LOG\_READER\_SEND\_ACKNACK\_EC}}
+\index{RTPS\_LOG\_READER\_SEND\_ACKNACK\_EC@{RTPS\_LOG\_READER\_SEND\_ACKNACK\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_READER\_SEND\_ACKNACK\_EC}{RTPS\_LOG\_READER\_SEND\_ACKNACK\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gac4c12834cd1c7d2df55be62bb86a6650} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+READER\+\_\+\+SEND\+\_\+\+ACKNACK\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 101)}
+
+
+
+RTPS reader failed to send an ACKNACK message. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga3ff0760a317a4f8971703ed4e84c9267}\index{RTPS@{RTPS}!RTPS\_LOG\_FINALIZE\_INTERFACE\_EC@{RTPS\_LOG\_FINALIZE\_INTERFACE\_EC}}
+\index{RTPS\_LOG\_FINALIZE\_INTERFACE\_EC@{RTPS\_LOG\_FINALIZE\_INTERFACE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_FINALIZE\_INTERFACE\_EC}{RTPS\_LOG\_FINALIZE\_INTERFACE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga3ff0760a317a4f8971703ed4e84c9267} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+FINALIZE\+\_\+\+INTERFACE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 102)}
+
+
+
+Failed to finalize an RTPS interface. 
+
+\Hypertarget{group__RTPSLogCodesClass_gadd20933ec0a615be4052fe62aed4037f}\index{RTPS@{RTPS}!RTPS\_LOG\_INDEXER\_REMOVE\_ENTRY\_EC@{RTPS\_LOG\_INDEXER\_REMOVE\_ENTRY\_EC}}
+\index{RTPS\_LOG\_INDEXER\_REMOVE\_ENTRY\_EC@{RTPS\_LOG\_INDEXER\_REMOVE\_ENTRY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_INDEXER\_REMOVE\_ENTRY\_EC}{RTPS\_LOG\_INDEXER\_REMOVE\_ENTRY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gadd20933ec0a615be4052fe62aed4037f} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+INDEXER\+\_\+\+REMOVE\+\_\+\+ENTRY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 103)}
+
+
+
+Failed to remove index entry for external interface upon deleting RTPS interface. 
+
+\Hypertarget{group__RTPSLogCodesClass_gad32fd037d5d3c50281f48cdf2a7bad64}\index{RTPS@{RTPS}!RTPS\_LOG\_LOOKUP\_EXT\_BIND\_ENTRY\_EC@{RTPS\_LOG\_LOOKUP\_EXT\_BIND\_ENTRY\_EC}}
+\index{RTPS\_LOG\_LOOKUP\_EXT\_BIND\_ENTRY\_EC@{RTPS\_LOG\_LOOKUP\_EXT\_BIND\_ENTRY\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_LOOKUP\_EXT\_BIND\_ENTRY\_EC}{RTPS\_LOG\_LOOKUP\_EXT\_BIND\_ENTRY\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gad32fd037d5d3c50281f48cdf2a7bad64} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+LOOKUP\+\_\+\+EXT\+\_\+\+BIND\+\_\+\+ENTRY\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 104)}
+
+
+
+Failed when looking up external bind entry from database. 
+
+\Hypertarget{group__RTPSLogCodesClass_gae9b18c3adc4ba59203c593b4b966b1e7}\index{RTPS@{RTPS}!RTPS\_LOG\_SEQ\_INIT\_EC@{RTPS\_LOG\_SEQ\_INIT\_EC}}
+\index{RTPS\_LOG\_SEQ\_INIT\_EC@{RTPS\_LOG\_SEQ\_INIT\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SEQ\_INIT\_EC}{RTPS\_LOG\_SEQ\_INIT\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gae9b18c3adc4ba59203c593b4b966b1e7} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SEQ\+\_\+\+INIT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 105)}
+
+
+
+Failed to initialize a local sequence. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaf1460d49c76fd8735446c0fccf2db726}\index{RTPS@{RTPS}!RTPS\_LOG\_SEQ\_MAX\_EC@{RTPS\_LOG\_SEQ\_MAX\_EC}}
+\index{RTPS\_LOG\_SEQ\_MAX\_EC@{RTPS\_LOG\_SEQ\_MAX\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SEQ\_MAX\_EC}{RTPS\_LOG\_SEQ\_MAX\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaf1460d49c76fd8735446c0fccf2db726} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SEQ\+\_\+\+MAX\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 106)}
+
+
+
+Failed to set maximum of a local sequence. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga7ee6964d6553daf317b0cf04023c036f}\index{RTPS@{RTPS}!RTPS\_LOG\_SEQ\_LEN\_EC@{RTPS\_LOG\_SEQ\_LEN\_EC}}
+\index{RTPS\_LOG\_SEQ\_LEN\_EC@{RTPS\_LOG\_SEQ\_LEN\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SEQ\_LEN\_EC}{RTPS\_LOG\_SEQ\_LEN\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga7ee6964d6553daf317b0cf04023c036f} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SEQ\+\_\+\+LEN\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 107)}
+
+
+
+Failed to set length of a local sequence. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaf88c5c5cfb136352681f68df9c91ddb3}\index{RTPS@{RTPS}!RTPS\_LOG\_INTF\_MODE\_UNDEF\_EC@{RTPS\_LOG\_INTF\_MODE\_UNDEF\_EC}}
+\index{RTPS\_LOG\_INTF\_MODE\_UNDEF\_EC@{RTPS\_LOG\_INTF\_MODE\_UNDEF\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_INTF\_MODE\_UNDEF\_EC}{RTPS\_LOG\_INTF\_MODE\_UNDEF\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaf88c5c5cfb136352681f68df9c91ddb3} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+INTF\+\_\+\+MODE\+\_\+\+UNDEF\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 108)}
+
+
+
+Initializing an RTPS interface with undefined mode. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga268e0686f254505a3823bbb78d13c2e1}\index{RTPS@{RTPS}!RTPS\_LOG\_DELETE\_BUFFER\_POOL\_EC@{RTPS\_LOG\_DELETE\_BUFFER\_POOL\_EC}}
+\index{RTPS\_LOG\_DELETE\_BUFFER\_POOL\_EC@{RTPS\_LOG\_DELETE\_BUFFER\_POOL\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DELETE\_BUFFER\_POOL\_EC}{RTPS\_LOG\_DELETE\_BUFFER\_POOL\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga268e0686f254505a3823bbb78d13c2e1} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+BUFFER\+\_\+\+POOL\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 109)}
+
+
+
+Failed to delete buffer pool. 
+
+May still have buffers in use, thus cannot delete pool. \Hypertarget{group__RTPSLogCodesClass_ga192e803afd2c25751ed231a3716b997e}\index{RTPS@{RTPS}!RTPS\_LOG\_CREATE\_BUFFER\_POOL\_EC@{RTPS\_LOG\_CREATE\_BUFFER\_POOL\_EC}}
+\index{RTPS\_LOG\_CREATE\_BUFFER\_POOL\_EC@{RTPS\_LOG\_CREATE\_BUFFER\_POOL\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CREATE\_BUFFER\_POOL\_EC}{RTPS\_LOG\_CREATE\_BUFFER\_POOL\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga192e803afd2c25751ed231a3716b997e} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+BUFFER\+\_\+\+POOL\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 110)}
+
+
+
+Failed to create buffer pool. 
+
+May have insufficient memory to allocate pool. \Hypertarget{group__RTPSLogCodesClass_ga5c5d81ff3e4d18b7f089213374827a19}\index{RTPS@{RTPS}!RTPS\_LOG\_CREATE\_PEERS\_INDEX\_EC@{RTPS\_LOG\_CREATE\_PEERS\_INDEX\_EC}}
+\index{RTPS\_LOG\_CREATE\_PEERS\_INDEX\_EC@{RTPS\_LOG\_CREATE\_PEERS\_INDEX\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CREATE\_PEERS\_INDEX\_EC}{RTPS\_LOG\_CREATE\_PEERS\_INDEX\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga5c5d81ff3e4d18b7f089213374827a19} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+PEERS\+\_\+\+INDEX\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 111)}
+
+
+
+Failed to create index of peers. 
+
+System may have insufficient memory to allocate new index. \Hypertarget{group__RTPSLogCodesClass_ga3db2727b8cd62ff59ac0e398747de7dc}\index{RTPS@{RTPS}!RTPS\_LOG\_DELETE\_INDEXER\_EC@{RTPS\_LOG\_DELETE\_INDEXER\_EC}}
+\index{RTPS\_LOG\_DELETE\_INDEXER\_EC@{RTPS\_LOG\_DELETE\_INDEXER\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DELETE\_INDEXER\_EC}{RTPS\_LOG\_DELETE\_INDEXER\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga3db2727b8cd62ff59ac0e398747de7dc} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+INDEXER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 112)}
+
+
+
+Failed to delete indexer. 
+
+\Hypertarget{group__RTPSLogCodesClass_gab3c1bea442603280f5c2e491ebd88032}\index{RTPS@{RTPS}!RTPS\_LOG\_GET\_PEER\_BUFFER\_EC@{RTPS\_LOG\_GET\_PEER\_BUFFER\_EC}}
+\index{RTPS\_LOG\_GET\_PEER\_BUFFER\_EC@{RTPS\_LOG\_GET\_PEER\_BUFFER\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_GET\_PEER\_BUFFER\_EC}{RTPS\_LOG\_GET\_PEER\_BUFFER\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gab3c1bea442603280f5c2e491ebd88032} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+GET\+\_\+\+PEER\+\_\+\+BUFFER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 113)}
+
+
+
+Failed to get buffer from peer buffer pool. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga983f1c0cf5d05e700a7796c087d9218b}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_CREATE\_DIRECT\_INDEX\_EC@{RTPS\_LOG\_DB\_CREATE\_DIRECT\_INDEX\_EC}}
+\index{RTPS\_LOG\_DB\_CREATE\_DIRECT\_INDEX\_EC@{RTPS\_LOG\_DB\_CREATE\_DIRECT\_INDEX\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_CREATE\_DIRECT\_INDEX\_EC}{RTPS\_LOG\_DB\_CREATE\_DIRECT\_INDEX\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga983f1c0cf5d05e700a7796c087d9218b} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+DIRECT\+\_\+\+INDEX\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 114)}
+
+
+
+Failed to create database index for direct sends. 
+
+\Hypertarget{group__RTPSLogCodesClass_gab637cdb8393d32fda3d5b05207c85f49}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_CREATE\_GROUP\_INDEX\_EC@{RTPS\_LOG\_DB\_CREATE\_GROUP\_INDEX\_EC}}
+\index{RTPS\_LOG\_DB\_CREATE\_GROUP\_INDEX\_EC@{RTPS\_LOG\_DB\_CREATE\_GROUP\_INDEX\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_CREATE\_GROUP\_INDEX\_EC}{RTPS\_LOG\_DB\_CREATE\_GROUP\_INDEX\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gab637cdb8393d32fda3d5b05207c85f49} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+GROUP\+\_\+\+INDEX\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 115)}
+
+
+
+Failed to create database index for group sends. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga323f90fea6a28fcde6e943929ef0bebc}\index{RTPS@{RTPS}!RTPS\_LOG\_NETIO\_PACKET\_INSUFFICIENT\_BUFFER\_EC@{RTPS\_LOG\_NETIO\_PACKET\_INSUFFICIENT\_BUFFER\_EC}}
+\index{RTPS\_LOG\_NETIO\_PACKET\_INSUFFICIENT\_BUFFER\_EC@{RTPS\_LOG\_NETIO\_PACKET\_INSUFFICIENT\_BUFFER\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_NETIO\_PACKET\_INSUFFICIENT\_BUFFER\_EC}{RTPS\_LOG\_NETIO\_PACKET\_INSUFFICIENT\_BUFFER\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga323f90fea6a28fcde6e943929ef0bebc} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+NETIO\+\_\+\+PACKET\+\_\+\+INSUFFICIENT\+\_\+\+BUFFER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 116)}
+
+
+
+Insufficient buffer in packet. 
+
+Receive buffer does not have enough space for a valid RTPS message \Hypertarget{group__RTPSLogCodesClass_gaf70804af83f519383b50a93b340fe980}\index{RTPS@{RTPS}!RTPS\_LOG\_TRANSFORM\_RTPS\_EC@{RTPS\_LOG\_TRANSFORM\_RTPS\_EC}}
+\index{RTPS\_LOG\_TRANSFORM\_RTPS\_EC@{RTPS\_LOG\_TRANSFORM\_RTPS\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_TRANSFORM\_RTPS\_EC}{RTPS\_LOG\_TRANSFORM\_RTPS\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaf70804af83f519383b50a93b340fe980} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+TRANSFORM\+\_\+\+RTPS\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 117)}
+
+
+
+Failed to transform rtps message. 
+
+\Hypertarget{group__RTPSLogCodesClass_gab9e273594e8e201ba5f9a83d8755674d}\index{RTPS@{RTPS}!RTPS\_LOG\_RESTORE\_TRUST\_LOAN\_BUFFER\_EC@{RTPS\_LOG\_RESTORE\_TRUST\_LOAN\_BUFFER\_EC}}
+\index{RTPS\_LOG\_RESTORE\_TRUST\_LOAN\_BUFFER\_EC@{RTPS\_LOG\_RESTORE\_TRUST\_LOAN\_BUFFER\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_RESTORE\_TRUST\_LOAN\_BUFFER\_EC}{RTPS\_LOG\_RESTORE\_TRUST\_LOAN\_BUFFER\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gab9e273594e8e201ba5f9a83d8755674d} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+RESTORE\+\_\+\+TRUST\+\_\+\+LOAN\+\_\+\+BUFFER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 118)}
+
+
+
+Failed to restore trust loan buffer. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga9160d05790be87310f59707e94d7d8b9}\index{RTPS@{RTPS}!RTPS\_LOG\_PROCESS\_DATA\_BATCH\_EC@{RTPS\_LOG\_PROCESS\_DATA\_BATCH\_EC}}
+\index{RTPS\_LOG\_PROCESS\_DATA\_BATCH\_EC@{RTPS\_LOG\_PROCESS\_DATA\_BATCH\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_PROCESS\_DATA\_BATCH\_EC}{RTPS\_LOG\_PROCESS\_DATA\_BATCH\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga9160d05790be87310f59707e94d7d8b9} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+PROCESS\+\_\+\+DATA\+\_\+\+BATCH\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 136)}
+
+
+
+Failed to process received DATA BATCH submessage. 
+
+This indicates an invalid DATA\+\_\+\+BATCH submessage \Hypertarget{group__RTPSLogCodesClass_gae66b8f0c83d02b70285ba5fdab0dcb2c}\index{RTPS@{RTPS}!RTPS\_LOG\_PROCESS\_HEARTBEAT\_BATCH\_EC@{RTPS\_LOG\_PROCESS\_HEARTBEAT\_BATCH\_EC}}
+\index{RTPS\_LOG\_PROCESS\_HEARTBEAT\_BATCH\_EC@{RTPS\_LOG\_PROCESS\_HEARTBEAT\_BATCH\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_PROCESS\_HEARTBEAT\_BATCH\_EC}{RTPS\_LOG\_PROCESS\_HEARTBEAT\_BATCH\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gae66b8f0c83d02b70285ba5fdab0dcb2c} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+PROCESS\+\_\+\+HEARTBEAT\+\_\+\+BATCH\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 137)}
+
+
+
+Failed to process received HEARTBEAT\+\_\+\+BATCH submessage. 
+
+This indicates an invalid HEARTBEAT\+\_\+\+BATCH submessage \Hypertarget{group__RTPSLogCodesClass_gad0c28803792f19a7f1c6b48e0a109150}\index{RTPS@{RTPS}!RTPS\_LOG\_NEGATIVE\_RESERVATION\_COUNT\_EC@{RTPS\_LOG\_NEGATIVE\_RESERVATION\_COUNT\_EC}}
+\index{RTPS\_LOG\_NEGATIVE\_RESERVATION\_COUNT\_EC@{RTPS\_LOG\_NEGATIVE\_RESERVATION\_COUNT\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_NEGATIVE\_RESERVATION\_COUNT\_EC}{RTPS\_LOG\_NEGATIVE\_RESERVATION\_COUNT\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gad0c28803792f19a7f1c6b48e0a109150} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+NEGATIVE\+\_\+\+RESERVATION\+\_\+\+COUNT\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 138)}
+
+
+
+The reservation count it zero. 
+
+The reservation count should never be less than 0, this is an internal error. \Hypertarget{group__RTPSLogCodesClass_gab0b2f4d4437ab34a9ad0cbd25f210ab6}\index{RTPS@{RTPS}!RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_LOOKUP\_FAILED\_EC@{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_LOOKUP\_FAILED\_EC}}
+\index{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_LOOKUP\_FAILED\_EC@{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_LOOKUP\_FAILED\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_LOOKUP\_FAILED\_EC}{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_LOOKUP\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gab0b2f4d4437ab34a9ad0cbd25f210ab6} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+REMOTE\+\_\+\+PARTICIPANT\+\_\+\+HANDLE\+\_\+\+LOOKUP\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 139)}
+
+
+
+Failed to lookup a remote participant\textquotesingle{}s interceptor handle. 
+
+An interceptor handle must be always supplied for a remote participant, if any encoding and/or decoding are to be performed. This is an internal error. \Hypertarget{group__RTPSLogCodesClass_gadbe9ed0b2aaa11a64fe0ec05948b8b65}\index{RTPS@{RTPS}!RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_CREATE\_FAILED\_EC@{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_CREATE\_FAILED\_EC}}
+\index{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_CREATE\_FAILED\_EC@{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_CREATE\_FAILED\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_CREATE\_FAILED\_EC}{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_CREATE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gadbe9ed0b2aaa11a64fe0ec05948b8b65} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+REMOTE\+\_\+\+PARTICIPANT\+\_\+\+HANDLE\+\_\+\+CREATE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 140)}
+
+
+
+Failed to create a record to store a remote participant\textquotesingle{}s interceptor handle. 
+
+Interceptor handles for remote participants are stored in an indexed tabled for quicker access. This is an internal error. \Hypertarget{group__RTPSLogCodesClass_gaa8a15f8ff8c3979ed098e296027a925b}\index{RTPS@{RTPS}!RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_INSERT\_FAILED\_EC@{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_INSERT\_FAILED\_EC}}
+\index{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_INSERT\_FAILED\_EC@{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_INSERT\_FAILED\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_INSERT\_FAILED\_EC}{RTPS\_LOG\_TRUST\_REMOTE\_PARTICIPANT\_HANDLE\_INSERT\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaa8a15f8ff8c3979ed098e296027a925b} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+REMOTE\+\_\+\+PARTICIPANT\+\_\+\+HANDLE\+\_\+\+INSERT\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 141)}
+
+
+
+Failed to insert a record in the table storing interceptor handles of matched remote participants. 
+
+\Hypertarget{group__RTPSLogCodesClass_gae1a57d8816451900e8d42342e294cd77}\index{RTPS@{RTPS}!RTPS\_LOG\_TRUST\_INTERCEPTOR\_HANDLE\_LIST\_FULL\_EC@{RTPS\_LOG\_TRUST\_INTERCEPTOR\_HANDLE\_LIST\_FULL\_EC}}
+\index{RTPS\_LOG\_TRUST\_INTERCEPTOR\_HANDLE\_LIST\_FULL\_EC@{RTPS\_LOG\_TRUST\_INTERCEPTOR\_HANDLE\_LIST\_FULL\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_TRUST\_INTERCEPTOR\_HANDLE\_LIST\_FULL\_EC}{RTPS\_LOG\_TRUST\_INTERCEPTOR\_HANDLE\_LIST\_FULL\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gae1a57d8816451900e8d42342e294cd77} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+INTERCEPTOR\+\_\+\+HANDLE\+\_\+\+LIST\+\_\+\+FULL\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 142)}
+
+
+
+Interceptor handle list out of resources. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga542370fcc2e7a043b688af21be5d5489}\index{RTPS@{RTPS}!RTPS\_LOG\_TRUST\_INCONSISTENT\_INTERCEPTOR\_HANDLE\_EC@{RTPS\_LOG\_TRUST\_INCONSISTENT\_INTERCEPTOR\_HANDLE\_EC}}
+\index{RTPS\_LOG\_TRUST\_INCONSISTENT\_INTERCEPTOR\_HANDLE\_EC@{RTPS\_LOG\_TRUST\_INCONSISTENT\_INTERCEPTOR\_HANDLE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_TRUST\_INCONSISTENT\_INTERCEPTOR\_HANDLE\_EC}{RTPS\_LOG\_TRUST\_INCONSISTENT\_INTERCEPTOR\_HANDLE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga542370fcc2e7a043b688af21be5d5489} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+INCONSISTENT\+\_\+\+INTERCEPTOR\+\_\+\+HANDLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 143)}
+
+
+
+Inconsistent handles found for remote peer. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga8b37008561bcc854dbae751a070e50ec}\index{RTPS@{RTPS}!RTPS\_LOG\_TRUST\_BIND\_FAILED\_EC@{RTPS\_LOG\_TRUST\_BIND\_FAILED\_EC}}
+\index{RTPS\_LOG\_TRUST\_BIND\_FAILED\_EC@{RTPS\_LOG\_TRUST\_BIND\_FAILED\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_TRUST\_BIND\_FAILED\_EC}{RTPS\_LOG\_TRUST\_BIND\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga8b37008561bcc854dbae751a070e50ec} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+BIND\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 144)}
+
+
+
+Failed to bind resources for trust behavior. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga55cf9bf52ccc7cba37b3fb550d8c10a0}\index{RTPS@{RTPS}!RTPS\_LOG\_TRUST\_SUBMSG\_CONVERSION\_FAILED\_EC@{RTPS\_LOG\_TRUST\_SUBMSG\_CONVERSION\_FAILED\_EC}}
+\index{RTPS\_LOG\_TRUST\_SUBMSG\_CONVERSION\_FAILED\_EC@{RTPS\_LOG\_TRUST\_SUBMSG\_CONVERSION\_FAILED\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_TRUST\_SUBMSG\_CONVERSION\_FAILED\_EC}{RTPS\_LOG\_TRUST\_SUBMSG\_CONVERSION\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga55cf9bf52ccc7cba37b3fb550d8c10a0} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+SUBMSG\+\_\+\+CONVERSION\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 145)}
+
+
+
+Failed to bind resources for trust behavior. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga7972b5de1938c1e5fc8837ad435f0411}\index{RTPS@{RTPS}!RTPS\_LOG\_TRUST\_INVALID\_SUBMSG\_EC@{RTPS\_LOG\_TRUST\_INVALID\_SUBMSG\_EC}}
+\index{RTPS\_LOG\_TRUST\_INVALID\_SUBMSG\_EC@{RTPS\_LOG\_TRUST\_INVALID\_SUBMSG\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_TRUST\_INVALID\_SUBMSG\_EC}{RTPS\_LOG\_TRUST\_INVALID\_SUBMSG\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga7972b5de1938c1e5fc8837ad435f0411} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+INVALID\+\_\+\+SUBMSG\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 146)}
+
+
+
+A malformed trust message was received. 
+
+\Hypertarget{group__RTPSLogCodesClass_gabc490eceea6d20629801c70051c8c090}\index{RTPS@{RTPS}!RTPS\_LOG\_TRUST\_UNEXPECTED\_READER\_STATE\_EC@{RTPS\_LOG\_TRUST\_UNEXPECTED\_READER\_STATE\_EC}}
+\index{RTPS\_LOG\_TRUST\_UNEXPECTED\_READER\_STATE\_EC@{RTPS\_LOG\_TRUST\_UNEXPECTED\_READER\_STATE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_TRUST\_UNEXPECTED\_READER\_STATE\_EC}{RTPS\_LOG\_TRUST\_UNEXPECTED\_READER\_STATE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gabc490eceea6d20629801c70051c8c090} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+UNEXPECTED\+\_\+\+READER\+\_\+\+STATE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 147)}
+
+
+
+The RTPS reader was in an unexpected state. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga7dacbafe3e30feb4126d81bf60861e16}\index{RTPS@{RTPS}!RTPS\_LOG\_DB\_CREATE\_SELECTED\_GROUP\_INDEX\_EC@{RTPS\_LOG\_DB\_CREATE\_SELECTED\_GROUP\_INDEX\_EC}}
+\index{RTPS\_LOG\_DB\_CREATE\_SELECTED\_GROUP\_INDEX\_EC@{RTPS\_LOG\_DB\_CREATE\_SELECTED\_GROUP\_INDEX\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DB\_CREATE\_SELECTED\_GROUP\_INDEX\_EC}{RTPS\_LOG\_DB\_CREATE\_SELECTED\_GROUP\_INDEX\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga7dacbafe3e30feb4126d81bf60861e16} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+SELECTED\+\_\+\+GROUP\+\_\+\+INDEX\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 148)}
+
+
+
+Failed to create database index for the selected route group. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga6c9836eb7875882664315591778bdc02}\index{RTPS@{RTPS}!RTPS\_LOG\_LOCK\_EC@{RTPS\_LOG\_LOCK\_EC}}
+\index{RTPS\_LOG\_LOCK\_EC@{RTPS\_LOG\_LOCK\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_LOCK\_EC}{RTPS\_LOG\_LOCK\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga6c9836eb7875882664315591778bdc02} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+LOCK\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 149)}
+
+
+
+Failed to take a lock. 
+
+\Hypertarget{group__RTPSLogCodesClass_gac74556c14fb2b7cd05e121675c98ac7c}\index{RTPS@{RTPS}!RTPS\_LOG\_UNLOCK\_EC@{RTPS\_LOG\_UNLOCK\_EC}}
+\index{RTPS\_LOG\_UNLOCK\_EC@{RTPS\_LOG\_UNLOCK\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_UNLOCK\_EC}{RTPS\_LOG\_UNLOCK\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gac74556c14fb2b7cd05e121675c98ac7c} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+UNLOCK\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 150)}
+
+
+
+Failed to give a lock. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga5e1bef12bf08606b728e033867476b72}\index{RTPS@{RTPS}!RTPS\_LOG\_SCHEDULE\_PACKET\_EC@{RTPS\_LOG\_SCHEDULE\_PACKET\_EC}}
+\index{RTPS\_LOG\_SCHEDULE\_PACKET\_EC@{RTPS\_LOG\_SCHEDULE\_PACKET\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SCHEDULE\_PACKET\_EC}{RTPS\_LOG\_SCHEDULE\_PACKET\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga5e1bef12bf08606b728e033867476b72} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SCHEDULE\+\_\+\+PACKET\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 151)}
+
+
+
+Failed to schedule a packet. 
+
+\Hypertarget{group__RTPSLogCodesClass_gadae7f816491aa9d568fa0b002cb3617c}\index{RTPS@{RTPS}!RTPS\_LOG\_SEQ\_FINALIZE\_EC@{RTPS\_LOG\_SEQ\_FINALIZE\_EC}}
+\index{RTPS\_LOG\_SEQ\_FINALIZE\_EC@{RTPS\_LOG\_SEQ\_FINALIZE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SEQ\_FINALIZE\_EC}{RTPS\_LOG\_SEQ\_FINALIZE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gadae7f816491aa9d568fa0b002cb3617c} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SEQ\+\_\+\+FINALIZE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 152)}
+
+
+
+Failed to finalize a sequence. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga144d98675a07713add14e2919594f92d}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM128\_EC@{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM128\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM128\_EC@{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM128\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM128\_EC}{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM128\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga144d98675a07713add14e2919594f92d} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+ILLEGAL\+\_\+\+OVERRIDE\+\_\+\+CHECKSUM128\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 200)}
+
+
+
+The property tries to override the BUILTIN128 checksum without setting allow\+\_\+builtin\+\_\+override to TRUE. 
+
+\Hypertarget{group__RTPSLogCodesClass_gafaf67f272c290b3524dff2ff08d3382e}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM32\_EC@{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM32\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM32\_EC@{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM32\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM32\_EC}{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM32\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gafaf67f272c290b3524dff2ff08d3382e} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+ILLEGAL\+\_\+\+OVERRIDE\+\_\+\+CHECKSUM32\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 201)}
+
+
+
+The property tries to override the BUILTIN32 checksum without setting allow\+\_\+builtin\+\_\+override to TRUE. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaaa1bd3ec940b1a1e9dc10c8ae20fb489}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM64\_EC@{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM64\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM64\_EC@{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM64\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM64\_EC}{RTPS\_LOG\_CHECKSUM\_ILLEGAL\_OVERRIDE\_CHECKSUM64\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaaa1bd3ec940b1a1e9dc10c8ae20fb489} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+ILLEGAL\+\_\+\+OVERRIDE\+\_\+\+CHECKSUM64\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 202)}
+
+
+
+The property tries to override the BUILTIN64 checksum without setting allow\+\_\+builtin\+\_\+override to TRUE. 
+
+\Hypertarget{group__RTPSLogCodesClass_gafbaad20d71d52d27c59dc21c2f3fdb77}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN128\_EC@{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN128\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN128\_EC@{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN128\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN128\_EC}{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN128\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gafbaad20d71d52d27c59dc21c2f3fdb77} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+INVALID\+\_\+\+OVERRIDE\+\_\+\+BUILTIN128\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 203)}
+
+
+
+The property override of the BUILTIN128 checksum is invalid. It is not legal to reuse any of the built-\/in functions. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga44527708f97db4ab3b4165afe0e48cf8}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN32\_EC@{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN32\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN32\_EC@{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN32\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN32\_EC}{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN32\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga44527708f97db4ab3b4165afe0e48cf8} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+INVALID\+\_\+\+OVERRIDE\+\_\+\+BUILTIN32\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 204)}
+
+
+
+The property override of the BUILTIN32 checksum is invalid. It is not legal to reuse any of the built-\/in functions functions. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga4db94ba4c93c82024b2a7bfe256e280a}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN64\_EC@{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN64\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN64\_EC@{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN64\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN64\_EC}{RTPS\_LOG\_CHECKSUM\_INVALID\_OVERRIDE\_BUILTIN64\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga4db94ba4c93c82024b2a7bfe256e280a} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+INVALID\+\_\+\+OVERRIDE\+\_\+\+BUILTIN64\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 205)}
+
+
+
+The property override of the BUILTIN64 checksum is invalid. It is not legal to reuse any of the built-\/in functions functions. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga4ca692de62e8759f437a391e58795bcc}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_CHECKSUM\_CALCULATION\_FAILED\_EC@{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_CALCULATION\_FAILED\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_CALCULATION\_FAILED\_EC@{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_CALCULATION\_FAILED\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_CALCULATION\_FAILED\_EC}{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_CALCULATION\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga4ca692de62e8759f437a391e58795bcc} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+CHECKSUM\+\_\+\+CALCULATION\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 210)}
+
+
+
+RTPS\+\_\+\+Interface\+\_\+calculate\+\_\+checksum() failed to calculate the checksum. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaa607bd0ea7808465d363fbeab47d8b3a}\index{RTPS@{RTPS}!RTPS\_LOG\_UNSUPPORTED\_MANDTORY\_HDR\_EXT\_PID\_EC@{RTPS\_LOG\_UNSUPPORTED\_MANDTORY\_HDR\_EXT\_PID\_EC}}
+\index{RTPS\_LOG\_UNSUPPORTED\_MANDTORY\_HDR\_EXT\_PID\_EC@{RTPS\_LOG\_UNSUPPORTED\_MANDTORY\_HDR\_EXT\_PID\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_UNSUPPORTED\_MANDTORY\_HDR\_EXT\_PID\_EC}{RTPS\_LOG\_UNSUPPORTED\_MANDTORY\_HDR\_EXT\_PID\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaa607bd0ea7808465d363fbeab47d8b3a} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+UNSUPPORTED\+\_\+\+MANDTORY\+\_\+\+HDR\+\_\+\+EXT\+\_\+\+PID\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 211)}
+
+
+
+The Header\+Extension contained a mandatory PID that was not understood. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaea649fd18d43cde468dc7322462d6ca6}\index{RTPS@{RTPS}!RTPS\_LOG\_INVALID\_HDR\_EXT\_PID\_LIST\_EC@{RTPS\_LOG\_INVALID\_HDR\_EXT\_PID\_LIST\_EC}}
+\index{RTPS\_LOG\_INVALID\_HDR\_EXT\_PID\_LIST\_EC@{RTPS\_LOG\_INVALID\_HDR\_EXT\_PID\_LIST\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_INVALID\_HDR\_EXT\_PID\_LIST\_EC}{RTPS\_LOG\_INVALID\_HDR\_EXT\_PID\_LIST\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaea649fd18d43cde468dc7322462d6ca6} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+HDR\+\_\+\+EXT\+\_\+\+PID\+\_\+\+LIST\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 212)}
+
+
+
+An invalid Header\+Extension PID was detected. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga2d780b30a9a0db510bb8d60393f85502}\index{RTPS@{RTPS}!RTPS\_LOG\_INVALID\_HDR\_EXT\_PID\_ERROR\_EC@{RTPS\_LOG\_INVALID\_HDR\_EXT\_PID\_ERROR\_EC}}
+\index{RTPS\_LOG\_INVALID\_HDR\_EXT\_PID\_ERROR\_EC@{RTPS\_LOG\_INVALID\_HDR\_EXT\_PID\_ERROR\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_INVALID\_HDR\_EXT\_PID\_ERROR\_EC}{RTPS\_LOG\_INVALID\_HDR\_EXT\_PID\_ERROR\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga2d780b30a9a0db510bb8d60393f85502} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+HDR\+\_\+\+EXT\+\_\+\+PID\+\_\+\+ERROR\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 213)}
+
+
+
+Failed to decode the Header\+Extension PID list. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga3768cc981ee82191ff3f6bb88eb986dd}\index{RTPS@{RTPS}!RTPS\_LOG\_INCONSISTENT\_HDR\_EXT\_LENGTH\_ERROR\_EC@{RTPS\_LOG\_INCONSISTENT\_HDR\_EXT\_LENGTH\_ERROR\_EC}}
+\index{RTPS\_LOG\_INCONSISTENT\_HDR\_EXT\_LENGTH\_ERROR\_EC@{RTPS\_LOG\_INCONSISTENT\_HDR\_EXT\_LENGTH\_ERROR\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_INCONSISTENT\_HDR\_EXT\_LENGTH\_ERROR\_EC}{RTPS\_LOG\_INCONSISTENT\_HDR\_EXT\_LENGTH\_ERROR\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga3768cc981ee82191ff3f6bb88eb986dd} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+INCONSISTENT\+\_\+\+HDR\+\_\+\+EXT\+\_\+\+LENGTH\+\_\+\+ERROR\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 214)}
+
+
+
+The Header\+Extension length is isconsistent with the decoded encoded Header\+Extension length. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga0dc90bea2f16af6ebf37abc22c9ae20b}\index{RTPS@{RTPS}!RTPS\_LOG\_MESSAGE\_EXCEED\_LENGTH\_ERROR\_EC@{RTPS\_LOG\_MESSAGE\_EXCEED\_LENGTH\_ERROR\_EC}}
+\index{RTPS\_LOG\_MESSAGE\_EXCEED\_LENGTH\_ERROR\_EC@{RTPS\_LOG\_MESSAGE\_EXCEED\_LENGTH\_ERROR\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_MESSAGE\_EXCEED\_LENGTH\_ERROR\_EC}{RTPS\_LOG\_MESSAGE\_EXCEED\_LENGTH\_ERROR\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga0dc90bea2f16af6ebf37abc22c9ae20b} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+MESSAGE\+\_\+\+EXCEED\+\_\+\+LENGTH\+\_\+\+ERROR\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 215)}
+
+
+
+A RTPS message which was longer than the indicated message length in the RTPS header was received. This causes the rest of the RTPS message to be invalidated and the remaining submessages to be ignored. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga35e519e21b4ac9f362200208dab26f0d}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_INVALID\_CRC32\_FLAGS\_EC@{RTPS\_LOG\_CHECKSUM\_INVALID\_CRC32\_FLAGS\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_INVALID\_CRC32\_FLAGS\_EC@{RTPS\_LOG\_CHECKSUM\_INVALID\_CRC32\_FLAGS\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_INVALID\_CRC32\_FLAGS\_EC}{RTPS\_LOG\_CHECKSUM\_INVALID\_CRC32\_FLAGS\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga35e519e21b4ac9f362200208dab26f0d} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+INVALID\+\_\+\+CRC32\+\_\+\+FLAGS\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 216)}
+
+
+
+The CRC32 submsg flags are invalid. 
+
+\Hypertarget{group__RTPSLogCodesClass_gab641871a57f4e07edb0b8ce43b42a065}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_MISSING\_CHECKSUM\_LENGTH\_EC@{RTPS\_LOG\_CHECKSUM\_MISSING\_CHECKSUM\_LENGTH\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_MISSING\_CHECKSUM\_LENGTH\_EC@{RTPS\_LOG\_CHECKSUM\_MISSING\_CHECKSUM\_LENGTH\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_MISSING\_CHECKSUM\_LENGTH\_EC}{RTPS\_LOG\_CHECKSUM\_MISSING\_CHECKSUM\_LENGTH\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gab641871a57f4e07edb0b8ce43b42a065} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+MISSING\+\_\+\+CHECKSUM\+\_\+\+LENGTH\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 217)}
+
+
+
+A header extension was received, but the checksum length is not present. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga11235281001aa85d0dcbc90a86af91b7}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_UNSUPPORTED\_EC@{RTPS\_LOG\_CHECKSUM\_UNSUPPORTED\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_UNSUPPORTED\_EC@{RTPS\_LOG\_CHECKSUM\_UNSUPPORTED\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_UNSUPPORTED\_EC}{RTPS\_LOG\_CHECKSUM\_UNSUPPORTED\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga11235281001aa85d0dcbc90a86af91b7} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+UNSUPPORTED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 218)}
+
+
+
+Unsupported checksum bits received, message dropped. 
+
+\Hypertarget{group__RTPSLogCodesClass_gaad2d677a71a870f9b22bb1ae08920f0c}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_LENGTH\_DESERIALIZE\_ERROR\_EC@{RTPS\_LOG\_CHECKSUM\_LENGTH\_DESERIALIZE\_ERROR\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_LENGTH\_DESERIALIZE\_ERROR\_EC@{RTPS\_LOG\_CHECKSUM\_LENGTH\_DESERIALIZE\_ERROR\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_LENGTH\_DESERIALIZE\_ERROR\_EC}{RTPS\_LOG\_CHECKSUM\_LENGTH\_DESERIALIZE\_ERROR\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gaad2d677a71a870f9b22bb1ae08920f0c} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+LENGTH\+\_\+\+DESERIALIZE\+\_\+\+ERROR\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 219)}
+
+
+
+Checksum length could not be deserialized. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga5f47280156ebeeb5110412175de75608}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_INCONSISTENT\_LENGTH\_EC@{RTPS\_LOG\_CHECKSUM\_INCONSISTENT\_LENGTH\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_INCONSISTENT\_LENGTH\_EC@{RTPS\_LOG\_CHECKSUM\_INCONSISTENT\_LENGTH\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_INCONSISTENT\_LENGTH\_EC}{RTPS\_LOG\_CHECKSUM\_INCONSISTENT\_LENGTH\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga5f47280156ebeeb5110412175de75608} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+INCONSISTENT\+\_\+\+LENGTH\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 220)}
+
+
+
+The payload length is less than the deserialized checksum length. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga797e5b01e0700f590a32aac73be7d86d}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_CHECKSUM\_DESERIALIZE\_ERROR\_EC@{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_DESERIALIZE\_ERROR\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_DESERIALIZE\_ERROR\_EC@{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_DESERIALIZE\_ERROR\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_DESERIALIZE\_ERROR\_EC}{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_DESERIALIZE\_ERROR\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga797e5b01e0700f590a32aac73be7d86d} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+CHECKSUM\+\_\+\+DESERIALIZE\+\_\+\+ERROR\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 221)}
+
+
+
+Checksum length could not be deserialized. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga3b34a28c67ad3a8fe14deb36f873acce}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_CHECKSUM\_ERROR\_EC@{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_ERROR\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_ERROR\_EC@{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_ERROR\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_ERROR\_EC}{RTPS\_LOG\_CHECKSUM\_CHECKSUM\_ERROR\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga3b34a28c67ad3a8fe14deb36f873acce} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+CHECKSUM\+\_\+\+ERROR\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 222)}
+
+
+
+The checksum is invalid. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga8d97f480a900d0e86c3ae58a1b592052}\index{RTPS@{RTPS}!RTPS\_LOG\_CHECKSUM\_TOO\_MANY\_SG\_BUFFERS\_EC@{RTPS\_LOG\_CHECKSUM\_TOO\_MANY\_SG\_BUFFERS\_EC}}
+\index{RTPS\_LOG\_CHECKSUM\_TOO\_MANY\_SG\_BUFFERS\_EC@{RTPS\_LOG\_CHECKSUM\_TOO\_MANY\_SG\_BUFFERS\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_CHECKSUM\_TOO\_MANY\_SG\_BUFFERS\_EC}{RTPS\_LOG\_CHECKSUM\_TOO\_MANY\_SG\_BUFFERS\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga8d97f480a900d0e86c3ae58a1b592052} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+CHECKSUM\+\_\+\+TOO\+\_\+\+MANY\+\_\+\+SG\+\_\+\+BUFFERS\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 223)}
+
+
+
+Found too many scatter-\/gather buffers when calculating checksum. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga168ce6cf89a0535531a4dc93c53f04d6}\index{RTPS@{RTPS}!RTPS\_LOG\_SEND\_LIVELINESS\_EC@{RTPS\_LOG\_SEND\_LIVELINESS\_EC}}
+\index{RTPS\_LOG\_SEND\_LIVELINESS\_EC@{RTPS\_LOG\_SEND\_LIVELINESS\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_SEND\_LIVELINESS\_EC}{RTPS\_LOG\_SEND\_LIVELINESS\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga168ce6cf89a0535531a4dc93c53f04d6} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+SEND\+\_\+\+LIVELINESS\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 224)}
+
+
+
+Failure to send Liveliness packets. 
+
+\Hypertarget{group__RTPSLogCodesClass_gae5bbae9bdcb390e93fdc45cda8370e02}\index{RTPS@{RTPS}!RTPS\_LOG\_DELETE\_RECORD\_EC@{RTPS\_LOG\_DELETE\_RECORD\_EC}}
+\index{RTPS\_LOG\_DELETE\_RECORD\_EC@{RTPS\_LOG\_DELETE\_RECORD\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DELETE\_RECORD\_EC}{RTPS\_LOG\_DELETE\_RECORD\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gae5bbae9bdcb390e93fdc45cda8370e02} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+RECORD\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 225)}
+
+
+
+Failure to delete a record. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga982316657dacea9197853e59ab0508e6}\index{RTPS@{RTPS}!RTPS\_LOG\_APPLY\_CONTENT\_FILTER\_EC@{RTPS\_LOG\_APPLY\_CONTENT\_FILTER\_EC}}
+\index{RTPS\_LOG\_APPLY\_CONTENT\_FILTER\_EC@{RTPS\_LOG\_APPLY\_CONTENT\_FILTER\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_APPLY\_CONTENT\_FILTER\_EC}{RTPS\_LOG\_APPLY\_CONTENT\_FILTER\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga982316657dacea9197853e59ab0508e6} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+APPLY\+\_\+\+CONTENT\+\_\+\+FILTER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 300)}
+
+
+
+Failed to apply a content filter to a message. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga474720e54ccb749388f5e86a55d09d80}\index{RTPS@{RTPS}!RTPS\_LOG\_UPDATE\_RELIABLE\_PEERS\_FILTER\_EC@{RTPS\_LOG\_UPDATE\_RELIABLE\_PEERS\_FILTER\_EC}}
+\index{RTPS\_LOG\_UPDATE\_RELIABLE\_PEERS\_FILTER\_EC@{RTPS\_LOG\_UPDATE\_RELIABLE\_PEERS\_FILTER\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_UPDATE\_RELIABLE\_PEERS\_FILTER\_EC}{RTPS\_LOG\_UPDATE\_RELIABLE\_PEERS\_FILTER\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga474720e54ccb749388f5e86a55d09d80} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+UPDATE\+\_\+\+RELIABLE\+\_\+\+PEERS\+\_\+\+FILTER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 301)}
+
+
+
+Failed to update the state of reliable peers while applying filtering. 
+
+\Hypertarget{group__RTPSLogCodesClass_ga29688b3dd6b76517ef55ee22b889826e}\index{RTPS@{RTPS}!RTPS\_LOG\_ADD\_FILTERED\_ROUTE\_EC@{RTPS\_LOG\_ADD\_FILTERED\_ROUTE\_EC}}
+\index{RTPS\_LOG\_ADD\_FILTERED\_ROUTE\_EC@{RTPS\_LOG\_ADD\_FILTERED\_ROUTE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_ADD\_FILTERED\_ROUTE\_EC}{RTPS\_LOG\_ADD\_FILTERED\_ROUTE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_ga29688b3dd6b76517ef55ee22b889826e} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+ADD\+\_\+\+FILTERED\+\_\+\+ROUTE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 302)}
+
+
+
+Failed to add a filtered route. 
+
+\Hypertarget{group__RTPSLogCodesClass_gadb7184dc200fba2010c0abe59cad4df6}\index{RTPS@{RTPS}!RTPS\_LOG\_DELETE\_FILTERED\_ROUTE\_EC@{RTPS\_LOG\_DELETE\_FILTERED\_ROUTE\_EC}}
+\index{RTPS\_LOG\_DELETE\_FILTERED\_ROUTE\_EC@{RTPS\_LOG\_DELETE\_FILTERED\_ROUTE\_EC}!RTPS@{RTPS}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_DELETE\_FILTERED\_ROUTE\_EC}{RTPS\_LOG\_DELETE\_FILTERED\_ROUTE\_EC}}
+{\footnotesize\ttfamily \label{group__RTPSLogCodesClass_gadb7184dc200fba2010c0abe59cad4df6} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+FILTERED\+\_\+\+ROUTE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}} + 303)}
+
+
+
+Failed to delete a filtered route. 
+

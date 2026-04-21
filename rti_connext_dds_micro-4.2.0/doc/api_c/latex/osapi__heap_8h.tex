@@ -1,0 +1,42 @@
+\doxysubsection{osapi\+\_\+heap.\+h File Reference}
+\hypertarget{osapi__heap_8h}{}\label{osapi__heap_8h}\index{osapi\_heap.h@{osapi\_heap.h}}
+
+
+Heap interface definition.  
+
+
+{\ttfamily \#include "{}osapi/osapi\+\_\+dll.\+h"{}}\newline
+{\ttfamily \#include "{}osapi/osapi\+\_\+types.\+h"{}}\newline
+{\ttfamily \#include "{}osapi/osapi\+\_\+heap\+\_\+impl.\+h"{}}\newline
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__OSAPI__HeapClass_gaf6db8625cf68a1a072f523783b462349}{OSAPI\+\_\+\+ALIGNMENT\+\_\+\+DEFAULT}}~(-\/1)
+\begin{DoxyCompactList}\small\item\em Certain methods allow a default alignment\+: this should be an alignment that follows the "{}malloc"{} alignment of the architecture (aligned sufficiently to store any C-\/structure efficiently). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPI__HeapClass_ga95eda8d3daf6f79a29a5146143e4d5d7}{OSAPI\+\_\+\+Heap\+\_\+is\+\_\+address\+\_\+aligned}}(location,  alignment)
+\begin{DoxyCompactList}\small\item\em Check if a particular address is aligned to an alignment. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPI__HeapClass_gaedb296c249503c0489062c4c8309448d}{OSAPI\+\_\+\+Heap\+\_\+align\+\_\+size\+\_\+up}}(size,  alignment)
+\begin{DoxyCompactList}\small\item\em Aligns a particular address to an alignment alignment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{group__OSAPI__HeapClass_gad8b5306cbba35b69f725908906d80b8a}{OSAPI\+\_\+\+Alignment\+\_\+T}}
+\begin{DoxyCompactList}\small\item\em The OSAPIAlignment is the alignment in bytes; an address is aligned when it is a positive integer multiple of the alignment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__HeapClass_gae9f23f5fe41c3dc635d2b091847aecb5}{OSAPI\+\_\+\+Heap\+\_\+allocate}} (\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} count, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size)
+\begin{DoxyCompactList}\small\item\em Allocates zero-\/initialized memory from the heap. \end{DoxyCompactList}\item 
+OSPSLDll\+Export void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__HeapClass_ga6bf37a33f211e6dc789d3f5d1486338a}{OSAPI\+\_\+\+Heap\+\_\+realloc}} (void \texorpdfstring{$\ast$}{*}ptr, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size)
+\begin{DoxyCompactList}\small\item\em Reallocate memory from the heap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__OSAPI__HeapClass_gafaf758c2340df0fe04fc6c832a40948d}{OSAPI\+\_\+\+Heap\+\_\+free}} (void \texorpdfstring{$\ast$}{*}ptr)
+\begin{DoxyCompactList}\small\item\em Frees memory allocated from the heap. \end{DoxyCompactList}\item 
+OSPSLDll\+Export void \mbox{\hyperlink{group__OSAPI__HeapClass_ga010de657ae48605d69e46f2c6b1b69b2}{OSAPI\+\_\+\+Heap\+\_\+allocate\+\_\+buffer}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}buffer, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size, \mbox{\hyperlink{group__OSAPI__HeapClass_gad8b5306cbba35b69f725908906d80b8a}{OSAPI\+\_\+\+Alignment\+\_\+T}} alignment)
+\begin{DoxyCompactList}\small\item\em Allocate a block of memory of the provided size from the heap. \end{DoxyCompactList}\item 
+OSPSLDll\+Export void \mbox{\hyperlink{group__OSAPI__HeapClass_ga39354e7853b2aa509e9dbe8399f6f383}{OSAPI\+\_\+\+Heap\+\_\+free\+\_\+buffer}} (void \texorpdfstring{$\ast$}{*}buffer)
+\begin{DoxyCompactList}\small\item\em A static method to return a block (that was previously allocated with \doxylink{group__OSAPI__HeapClass_ga010de657ae48605d69e46f2c6b1b69b2}{OSAPI\+\_\+\+Heap\+\_\+allocate\+\_\+buffer}) to the heap. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Heap interface definition. 
+

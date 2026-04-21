@@ -1,0 +1,14 @@
+\doxysubsubsubsection{max\+\_\+message\+\_\+size}
+\hypertarget{group__DDSUserManuals__ResourceModule__udp__max__message__size}{}\label{group__DDSUserManuals__ResourceModule__udp__max__message__size}\index{max\_message\_size@{max\_message\_size}}
+\begin{DoxyParagraph}{NAME}
+\doxylink{structUDP__InterfaceFactoryProperty_afebc1cfe35fb3798114fd8784a97d248}{UDP\+\_\+\+Interface\+Factory\+Property\+::max\+\_\+message\+\_\+size}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{DESCRIPTION}
+\doxylink{structUDP__InterfaceFactoryProperty_afebc1cfe35fb3798114fd8784a97d248}{UDP\+\_\+\+Interface\+Factory\+Property\+::max\+\_\+message\+\_\+size} limits the size of the maximum message that can be received.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{NOTES}
+RTI Connext DDS Micro supports RTPS fragmentation. Fragmentation will be applied when sending samples larger than the max\+\_\+message\+\_\+size.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+The UDP transport allocates one buffer for each resource in \doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_a6f94968c12c525f5d3e1bc556ab2d012}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+receive\+\_\+ports}. Thus, the total amount of memory is (max\+\_\+message\+\_\+size \texorpdfstring{$\ast$}{*} max\+\_\+receive\+\_\+ports) 
+\end{DoxyParagraph}

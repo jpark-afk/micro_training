@@ -2,33 +2,29 @@
 
 ## set env values
 ```cmd
-cd rti_connext_dds_micro-2.4.14.2
+cd rti_connext_dds_micro-4.2.0
 
 setenv_micro.bat
 
 cd ..
 ```
 
-## Build libraries
-```cmd
-%RTIMEHOME%\resource\scripts\rtime-make --target self --name x64Win64VS2017 -G "Visual Studio 15 2017" --source-dir %RTIMEHOME% --build
-```
 ## Generate examples codes and build
 ```cmd
-%RTIMEHOME%\rtiddsgen\scripts\rtiddsgen -micro -ppDisable -language C -example .\HelloWorld.idl
+%RTIMEHOME%bin\rtiddsgen -example -language C -ppDisable HelloWorld.idl
 
-%RTIMEHOME%\resource\scripts\rtime-make --target self --name x64Win64VS2017 -G "Visual Studio 15 2017" --source-dir . --build
+%RTIMEHOME%resource\scripts\rtime-make.bat --config Debug -A x64 --target self --name %RTIMEARCH% --build --source-dir 
 ```
 ## Execution
 ```cmd
-.\objs\x64Win64VS2017\Debug\HelloWorld_publisher.exe
+.\objs\x86_64lePEvs2017-Win10\Debug\HelloWorld_publisher.exe
 
-.\objs\x64Win64VS2017\Debug\HelloWorld_subscriber.exe
+.\objs\x86_64lePEvs2017-Win10\Debug\HelloWorld_subscriber.exe
 ```
 
 ## Cross test
 ```cmd
-.\objs\x64Win64VS2017\Debug\HelloWorld_publisher.exe -udp_intf "Ethernet 2" -peer 192.168.56.10
+.\objs\x86_64lePEvs2017-Win10\Debug\HelloWorld_publisher.exe -udp_intf "Ethernet 2" -peer 192.168.56.10
 ```
 # Linux
 
@@ -44,17 +40,14 @@ cd rti_connext_dds_micro-2.4.14.2
 source set_micro_env.sh
 cd ..
 ```
-## Build libraries
-```bash
-$RTIMEHOME/resource/scripts/rtime-make --target self --name $RTIMEARCH -G "Unix Makefiles" --source-dir "$RTIMEHOME" --build
-```
+
 ## Generate examples codes and build
 ```bash
-$RTIMEHOME/rtiddsgen/scripts/rtiddsgen -micro -ppDisable -language C -example ./HelloWorld.idl
+$RTIMEHOME/bin/rtiddsgen -example -language C HelloWorld.idl
 
-$RTIMEHOME/resource/scripts/rtime-make --target Linux --name $RTIMEARCH -G "Unix Makefiles" --source-dir . --build
+$RTIMEHOME/resource/scripts/rtime-make --config Debug --build --target $RTIMEARCH --source-dir . -G "Unix Makefiles" --delete
 ```
 ## Cross test
 ```bash
-./objs/x64Linux4gcc7.3.0/HelloWorld_subscriber -udp_intf enp0s8 -peer 192.168.56.1
+./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorld_subscriber -udp_intf enp0s8 -peer 192.168.56.1
 ```

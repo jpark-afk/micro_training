@@ -1,8 +1,9 @@
+#include "rti_me_c.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "rti_me_c.h"
 #include "wh_sm/wh_sm_history.h"
 #include "rh_sm/rh_sm_history.h"
 
@@ -120,7 +121,7 @@ HelloWorldSubscriber_on_before_sample_deserialize(
 * \param[out] drop_sample  Out parameter determining whether the sample
 *                          should be filtered out or not.
 */
-static void 
+static void
 HelloWorldSubscriber_filter_sample(
     HelloWorld *sample,
     DDS_Boolean *drop_sample)
@@ -150,7 +151,7 @@ HelloWorldSubscriber_on_before_sample_commit(
     const struct DDS_SampleInfo *const sample_info,
     DDS_Boolean *dropped)
 {
-    HelloWorld *hw_sample = (HelloWorld *)sample; 
+    HelloWorld *hw_sample = (HelloWorld *)sample;
 
     (void)listener_data;
     (void)reader;
@@ -197,9 +198,9 @@ HelloWorldSubscriber_on_data_available(
     struct DDS_SampleInfo *sample_info = NULL;
     HelloWorld *sample = NULL;
 
-    struct DDS_SampleInfoSeq info_seq = 
+    struct DDS_SampleInfoSeq info_seq =
     DDS_SEQUENCE_INITIALIZER;
-    struct HelloWorldSeq sample_seq = 
+    struct HelloWorldSeq sample_seq =
     DDS_SEQUENCE_INITIALIZER;
 
     DDS_Long i;
@@ -208,7 +209,7 @@ HelloWorldSubscriber_on_data_available(
     (void)listener_data;
 
     retcode = HelloWorldDataReader_take(
-        hw_reader, 
+        hw_reader,
         &sample_seq,
         &info_seq,
         DDS_LENGTH_UNLIMITED,
@@ -230,12 +231,13 @@ HelloWorldSubscriber_on_data_available(
         if (sample_info->valid_data)
         {
             sample = HelloWorldSeq_get_reference(&sample_seq, i);
-            printf("\nValid sample received\n");
+
+            printf("Valid sample received\n");
+
             *total_samples += 1;
 
-            /* TODO read and process sample attributes here */ 
+            /* TODO read and process sample attributes here */
             printf("%s\n", sample->msg);
-
         }
         else
         {
@@ -268,7 +270,7 @@ subscriber_main_w_args(
     DDS_ReturnCode_t retcode;
     struct Application *application;
 
-    struct DDS_DataReaderListener dr_listener = 
+    struct DDS_DataReaderListener dr_listener =
     DDS_DataReaderListener_INITIALIZER;
 
     int ret_value = -1;
@@ -318,7 +320,7 @@ subscriber_main_w_args(
     dr_qos.reader_resource_limits.max_remote_writers = 10;
     dr_qos.reader_resource_limits.max_remote_writers_per_instance = 10;
     dr_qos.history.depth = 32;
-
+	
     /* Reliability QoS */
     #ifdef USE_RELIABLE_QOS
     dr_qos.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;

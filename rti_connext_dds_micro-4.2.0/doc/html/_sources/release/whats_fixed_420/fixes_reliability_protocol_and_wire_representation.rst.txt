@@ -1,0 +1,22 @@
+Reliability Protocol and Wire Representation
+============================================
+
+.. Release Notes from this point.
+
+:major:`[Major]` Asynchronous flow controller may have stopped sending data
+---------------------------------------------------------------------------
+A flow controller configured with with an ``added_bits_per_period`` of
+``DDS_LENGTH_UNLIMITED`` (such as the default flow controller) may have stopped
+sending data if the controller lost fragments while using reliable
+communication.
+
+[RTI Issue ID MICRO-10991]
+
+:major:`[Major]` Reliable DataReader may have stopped receiving data
+--------------------------------------------------------------------
+A reliable *DataReader* may have stopped receiving data if the data was
+received out of order from a *DataWriter* and the *DataWriter* was deleted
+before the *DataReader* could request the missing data.
+
+[RTI Issue ID MICRO-10317]
+

@@ -1,0 +1,155 @@
+/*
+ * FILE: winHeap.c - Win heap functionality
+ *
+ * Copyright 2012-2024 Real-Time Innovations, Inc. All rights reserved.
+ *
+ * No duplications, whole or partial, manual or electronic, may be made
+ * without express written permission.  Any such copies, or
+ * revisions thereof, must display this notice unaltered.
+ * This code contains trade secrets of Real-Time Innovations, Inc.
+ *
+ * Modification History
+ * --------------------
+ * 09mar2012,tk Written
+ *
+ */
+/*ce
+ * \file
+ * \brief Win implementation of OSAPI heap routines
+ */
+#include "rti_me_psl.h"
+
+#include <stdlib.h>
+#include <malloc.h>
+#include "osapi/osapi_heap.h"
+#include "osapi/osapi_string.h"
+#include "osapi/osapi_log.h"
+#include "rti_me_psl/osapi/osapi_heap_test.h"
+
+RTI_PRIVATE RTI_SIZE_T OSAPI_fv_AllocatedByteCount = 0;
+RTI_PRIVATE RTI_BOOL OSAPI_fv_AllocatedByteCountDisabled = RTI_FALSE;
+RTI_PRIVATE RTI_BOOL OSAPI_Heap_gv_disabled_alloc = RTI_FALSE;
+
+/*** SOURCE_BEGIN ***/
+
+void
+OSAPI_Heap_add_allocated_byte_count(RTI_SIZE_T count)
+{
+    if (!OSAPI_fv_AllocatedByteCountDisabled)
+    {
+        OSAPI_fv_AllocatedByteCount += count;
+    }
+}
+
+void
+OSAPI_Heap_enable_allocated_byte_count(void)
+{
+    OSAPI_fv_AllocatedByteCountDisabled = RTI_FALSE;
+}
+
+void
+OSAPI_Heap_disable_allocated_byte_count(void)
+{
+    OSAPI_fv_AllocatedByteCountDisabled = RTI_TRUE;
+}
+
+RTI_SIZE_T
+OSAPI_Heap_get_allocated_byte_count_v2(void)
+{
+     return OSAPI_fv_AllocatedByteCount;
+}
+
+RTI_SIZE_T
+OSAPI_Heap_get_allocated_byte_count(void)
+{
+     return OSAPI_fv_AllocatedByteCount;
+}
+
+void
+OSAPI_Heap_disable_alloc(void)
+{
+    OSAPI_Heap_gv_disabled_alloc = RTI_TRUE;
+}
+
+void
+OSAPI_Heap_enable_alloc(void)
+{
+    OSAPI_Heap_gv_disabled_alloc = RTI_FALSE;
+}
+
+/* ----------------------------------------------------------------- */
+/* allocate the specified size of memory and align it as well */
+void
+OSAPI_Heap_allocate_buffer(char **buffer,
+                           RTI_SIZE_T size,
+                           OSAPI_Alignment_T alignment)
+{
+    OSAPI_PRECONDITION((buffer == NULL),
+                       return,
+                       OSAPI_Log_entry_add_pointer("buffer",buffer,RTI_TRUE);)
+
+    *buffer = NULL;
+
+#ifndef RTI_CERT
+    if (OSAPI_Heap_gv_disabled_alloc)
+    {
+        return;
+    }
+#endif /* !RTI_CERT */
+
+    if (size == 0)
+    {
+        return;
+    }
+
+    if (alignment == OSAPI_ALIGNMENT_DEFAULT)
+    {
+        alignment = sizeof(void*);
+    }
+
+    *buffer = _aligned_malloc(size, alignment);
+    if (*buffer == NULL)
+    {
+        OSAPI_LOG_HEAP_INTERNAL_ALLOCATE(OSAPI_LOGKIND_ERROR,size)
+        return;
+    }
+
+    OSAPI_Memory_zero(*buffer, size);
+
+#ifndef RTI_CERT
+    OSAPI_Heap_add_allocated_byte_count(size);
+#endif /* !RTI_CERT */
+}
+
+#ifndef RTI_CERT
+void*
+OSAPI_Heap_realloc(void *ptr,RTI_SIZE_T size)
+{
+    OSAPI_PRECONDITION((size == 0),
+                       return NULL,
+                       OSAPI_Log_entry_add_uint("size",size,RTI_TRUE);)
+
+    if (OSAPI_Heap_gv_disabled_alloc)
+    {
+        return NULL;
+    }
+
+    return _aligned_realloc(ptr,size,sizeof(void*));
+}
+#endif
+
+/* ----------------------------------------------------------------- */
+/* free the previously allocated memory */
+void
+OSAPI_Heap_free_buffer(void *buffer)
+{
+#ifndef RTI_CERT
+    OSAPI_PRECONDITION(buffer == NULL,return,
+                       OSAPI_Log_entry_add_pointer("buffer",buffer,RTI_TRUE);)
+
+    _aligned_free(buffer);
+#else
+    UNUSED_ARG(buffer);
+#endif
+}
+

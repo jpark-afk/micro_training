@@ -1,0 +1,45 @@
+##/* $Id$
+##
+##   (c) Copyright, Real-Time Innovations, Inc. 2001.  All rights reserved.
+##   No duplications, whole or partial, manual or electronic, may be made
+##   without prior written permission.  Any such copies, or
+##   revisions thereof, must display this notice unaltered.
+##   This code contains trade secrets of Real-Time Innovations, Inc.
+
+##modification history:
+##---------------------
+##2.2.3,23sep15,djs CODEGENII-481 Added iOS
+##2.2,03sep14,vmg CODEGENII-82 Added Android
+##2.2,30apr14,vmg CODEGENII-82 Adding smart architecture-based code generation
+##2.2,11jun14,eys PLATFORMS-147: Added Android support
+##10a,10jun13,ajm CODEGENII-109 adding envMap and constructMapList variables
+##10a,28may13,ajm Adding constructMap node for the example type
+##10a,25oct12, ajm Refactorizing code and variable names.
+##                 RRTIDDSGEN-32 support for -use42eAlignment and -generateCTypecode
+##10a,05ene12, ajm Upgrading to lola
+##10a,17oct11,ajm variable name changes acording to the emitters
+##10a,14oct11,jmt created 
+##========================================================================
+#setNamespaceNames(false)
+#setDefaultVariables()
+#set ( $use_shared_memory = true )
+#set ( $use_udp = false )
+#setVariableDiscoveryPluginName()
+#publisherSubscriberIncludesC()
+
+#subscriberFilterDeclarationsC()
+
+#functionSubscriberSubscriptionMatchedC()
+
+#functionSubscriberOnDataAvailableC()
+
+#declareFunctionSubscriberMainWArgsC()
+#subscriberMainWArgsPreCreateDataReaderC()
+#subscriberMainWArgsCreateDataReaderC()
+#subscriberMainWArgsApplicationEnableC()
+#subscriberMainWArgsListenerWaitForSamplesC()
+#subscriberMainWArgsDeleteApplicationC()
+#subscriberMainWArgsReturnC()
+
+#functionPublisherSubscriberMain(false, true)
+

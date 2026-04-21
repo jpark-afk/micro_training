@@ -1,0 +1,52 @@
+\doxysubsection{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t Struct Reference}
+\hypertarget{structDDS__BuiltinTopicKey__t}{}\label{structDDS__BuiltinTopicKey__t}\index{DDS\_BuiltinTopicKey\_t@{DDS\_BuiltinTopicKey\_t}}
+
+
+The key type of the built-\/in topic types.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+DDS\+\_\+\+BUILTIN\+\_\+\+TOPIC\+\_\+\+KEY\+\_\+\+TYPE\+\_\+\+NATIVE \mbox{\hyperlink{structDDS__BuiltinTopicKey__t_ae1ed8823d7cea0ee8786cd8b3b125556}{value}} \mbox{[}DDS\+\_\+\+BUILTIN\+\_\+\+TOPIC\+\_\+\+KEY\+\_\+\+TYPE\+\_\+\+NATIVE\+\_\+\+LENGTH\mbox{]}
+\begin{DoxyCompactList}\small\item\em An array of four integers that uniquely represents a remote \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+The key type of the built-\/in topic types. 
+
+Each remote \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} to be discovered can be uniquely identified by this key. This is the key of all the built-\/in topic data types. 
+
+The value of element DDS\+\_\+\+BUILTIN\+\_\+\+TOPIC\+\_\+\+KEY\+\_\+\+OBJECT\+\_\+\+ID is the object ID of the remote entity. In Dynamic Participant/\+Static Endpoint discovery, this must be set correctly for each remote \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} and \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} that an application intends to discover. 
+
+For example, to configure a remote \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} with object ID 100 by setting the key in the \doxylink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{remote\_pub\_data.key.value[DDS\_BUILTIN\_TOPIC\_KEY\_OBJECT\_ID]\ \ =\ 100;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+
+\end{DoxyCode}
+ 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ParticipantBuiltinTopicData}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data} 
+
+\doxylink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data} 
+
+\doxylink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__BuiltinTopicKey__t_ae1ed8823d7cea0ee8786cd8b3b125556}\index{DDS\_BuiltinTopicKey\_t@{DDS\_BuiltinTopicKey\_t}!value@{value}}
+\index{value@{value}!DDS\_BuiltinTopicKey\_t@{DDS\_BuiltinTopicKey\_t}}
+\doxyparagraph{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily \label{structDDS__BuiltinTopicKey__t_ae1ed8823d7cea0ee8786cd8b3b125556} 
+DDS\+\_\+\+BUILTIN\+\_\+\+TOPIC\+\_\+\+KEY\+\_\+\+TYPE\+\_\+\+NATIVE DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t\+::value\mbox{[}DDS\+\_\+\+BUILTIN\+\_\+\+TOPIC\+\_\+\+KEY\+\_\+\+TYPE\+\_\+\+NATIVE\+\_\+\+LENGTH\mbox{]}}
+
+
+
+An array of four integers that uniquely represents a remote \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}. 
+

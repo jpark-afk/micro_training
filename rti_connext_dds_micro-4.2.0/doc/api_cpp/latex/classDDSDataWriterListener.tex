@@ -1,0 +1,194 @@
+\doxysubsection{DDSData\+Writer\+Listener Class Reference}
+\hypertarget{classDDSDataWriterListener}{}\label{classDDSDataWriterListener}\index{DDSDataWriterListener@{DDSDataWriterListener}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{classDDSListener}{DDSListener} for writer status.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+publication.\+hxx$>$}
+
+Inheritance diagram for DDSData\+Writer\+Listener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classDDSDataWriterListener}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_a1c1723bb81c548264780d8b22c406849}{on\+\_\+offered\+\_\+deadline\+\_\+missed}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const \mbox{\hyperlink{structDDS__OfferedDeadlineMissedStatus}{DDS\+\_\+\+Offered\+Deadline\+Missed\+Status}} \&status)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa84f12530ffc8d6e68906054b06972342}{DDS\+\_\+\+OFFERED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS} status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_ae60da4bf340932692394b89489e84893}{on\+\_\+liveliness\+\_\+lost}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const \mbox{\hyperlink{structDDS__LivelinessLostStatus}{DDS\+\_\+\+Liveliness\+Lost\+Status}} \&status)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS} status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_aaa46c2b3a743f9ec8473ba99e1c71554}{on\+\_\+offered\+\_\+incompatible\+\_\+qos}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const \mbox{\hyperlink{structDDS__OfferedIncompatibleQosStatus}{DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status}} \&status)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_ab7b1ca573cb1be49aeda49846cc20b8d}{on\+\_\+publication\+\_\+matched}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const \mbox{\hyperlink{structDDS__PublicationMatchedStatus}{DDS\+\_\+\+Publication\+Matched\+Status}} \&status)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa3052f04c67620660f92aa3b5da2455d2}{DDS\+\_\+\+PUBLICATION\+\_\+\+MATCHED\+\_\+\+STATUS} status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_aa4d34ce27b8ff0d2614cddcfa7b7d2bf}{on\+\_\+reliable\+\_\+reader\+\_\+activity\+\_\+changed}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const \mbox{\hyperlink{structDDS__ReliableReaderActivityChangedStatus}{DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status}} \&status)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A matched reliable reader has become active or become inactive. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_a795803ad1802bcbd0adea59c0cef03f0}{on\+\_\+reliable\+\_\+sample\+\_\+unacknowledged}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const \mbox{\hyperlink{structDDS__ReliableSampleUnacknowledgedStatus}{DDS\+\_\+\+Reliable\+Sample\+Unacknowledged\+Status}} \&status)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A matched reliable reader has become active or become inactive. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataWriterListener_a229b6abe3243acd1912697c1dd3e25a8}{on\+\_\+sample\+\_\+removed}} (\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}writer, const DDS\+\_\+\+Cookie\+\_\+t \&cookie)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Called when a sample is removed from the Data\+Writer queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{classDDSListener}{DDSListener} for writer status. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSDataWriter}{DDSData\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS}, \doxylink{structDDS__LivelinessLostStatus}{DDS\+\_\+\+Liveliness\+Lost\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}, \doxylink{structDDS__OfferedIncompatibleQosStatus}{DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa3052f04c67620660f92aa3b5da2455d2}{DDS\+\_\+\+PUBLICATION\+\_\+\+MATCHED\+\_\+\+STATUS}, \doxylink{structDDS__PublicationMatchedStatus}{DDS\+\_\+\+Publication\+Matched\+Status}; ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSStatusTypesModule}{Status Kinds} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classDDSDataWriterListener_a1c1723bb81c548264780d8b22c406849}\index{DDSDataWriterListener@{DDSDataWriterListener}!on\_offered\_deadline\_missed@{on\_offered\_deadline\_missed}}
+\index{on\_offered\_deadline\_missed@{on\_offered\_deadline\_missed}!DDSDataWriterListener@{DDSDataWriterListener}}
+\doxyparagraph{\texorpdfstring{on\_offered\_deadline\_missed()}{on\_offered\_deadline\_missed()}}
+{\footnotesize\ttfamily \label{classDDSDataWriterListener_a1c1723bb81c548264780d8b22c406849} 
+virtual void DDSData\+Writer\+Listener\+::on\+\_\+offered\+\_\+deadline\+\_\+missed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}}]{writer}{, }\item[{const \mbox{\hyperlink{structDDS__OfferedDeadlineMissedStatus}{DDS\+\_\+\+Offered\+Deadline\+Missed\+Status}} \&}]{status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa84f12530ffc8d6e68906054b06972342}{DDS\+\_\+\+OFFERED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS} status. 
+
+This callback is called when the deadline that the \doxylink{classDDSDataWriter}{DDSData\+Writer} has committed through its \doxylink{group__DDSDeadlineQosModule}{DEADLINE} qos policy was not respected for a specific instance. This callback is called for each deadline period elapsed during which the \doxylink{classDDSDataWriter}{DDSData\+Writer} failed to provide data for an instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Locally created \doxylink{classDDSDataWriter}{DDSData\+Writer} that triggers the listener callback\\
+\hline
+{\em status} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Current deadline missed status of locally created \doxylink{classDDSDataWriter}{DDSData\+Writer}  \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDDSDataWriterListener_ae60da4bf340932692394b89489e84893}\index{DDSDataWriterListener@{DDSDataWriterListener}!on\_liveliness\_lost@{on\_liveliness\_lost}}
+\index{on\_liveliness\_lost@{on\_liveliness\_lost}!DDSDataWriterListener@{DDSDataWriterListener}}
+\doxyparagraph{\texorpdfstring{on\_liveliness\_lost()}{on\_liveliness\_lost()}}
+{\footnotesize\ttfamily \label{classDDSDataWriterListener_ae60da4bf340932692394b89489e84893} 
+virtual void DDSData\+Writer\+Listener\+::on\+\_\+liveliness\+\_\+lost (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}}]{writer}{, }\item[{const \mbox{\hyperlink{structDDS__LivelinessLostStatus}{DDS\+\_\+\+Liveliness\+Lost\+Status}} \&}]{status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS} status. 
+
+This callback is called when the liveliness that the \doxylink{classDDSDataWriter}{DDSData\+Writer} has committed through its \doxylink{group__DDSLivelinessQosModule}{LIVELINESS} qos policy was not respected; this \doxylink{classDDSDataReader}{DDSData\+Reader} entities will consider the \doxylink{classDDSDataWriter}{DDSData\+Writer} as no longer "{}alive/active"{}. This callback will not be called when an already not alive \doxylink{classDDSDataWriter}{DDSData\+Writer} simply remains not alive for another liveliness period. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Locally created \doxylink{classDDSDataWriter}{DDSData\+Writer} that triggers the listener callback\\
+\hline
+{\em status} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Current liveliness lost status of locally created \doxylink{classDDSDataWriter}{DDSData\+Writer}  \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDDSDataWriterListener_aaa46c2b3a743f9ec8473ba99e1c71554}\index{DDSDataWriterListener@{DDSDataWriterListener}!on\_offered\_incompatible\_qos@{on\_offered\_incompatible\_qos}}
+\index{on\_offered\_incompatible\_qos@{on\_offered\_incompatible\_qos}!DDSDataWriterListener@{DDSDataWriterListener}}
+\doxyparagraph{\texorpdfstring{on\_offered\_incompatible\_qos()}{on\_offered\_incompatible\_qos()}}
+{\footnotesize\ttfamily \label{classDDSDataWriterListener_aaa46c2b3a743f9ec8473ba99e1c71554} 
+virtual void DDSData\+Writer\+Listener\+::on\+\_\+offered\+\_\+incompatible\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}}]{writer}{, }\item[{const \mbox{\hyperlink{structDDS__OfferedIncompatibleQosStatus}{DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status}} \&}]{status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} status. 
+
+This callback is called when the \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} of the \doxylink{classDDSDataWriter}{DDSData\+Writer} was incompatible with what was requested by a \doxylink{classDDSDataReader}{DDSData\+Reader}. This callback is called when a \doxylink{classDDSDataWriter}{DDSData\+Writer} has discovered a \doxylink{classDDSDataReader}{DDSData\+Reader} for the same \doxylink{classDDSTopic}{DDSTopic} and common partition, but with a requested QoS that is incompatible with that offered by the \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Locally created \doxylink{classDDSDataWriter}{DDSData\+Writer} that triggers the listener callback\\
+\hline
+{\em status} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Current incompatible qos status of locally created \doxylink{classDDSDataWriter}{DDSData\+Writer}  \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDDSDataWriterListener_ab7b1ca573cb1be49aeda49846cc20b8d}\index{DDSDataWriterListener@{DDSDataWriterListener}!on\_publication\_matched@{on\_publication\_matched}}
+\index{on\_publication\_matched@{on\_publication\_matched}!DDSDataWriterListener@{DDSDataWriterListener}}
+\doxyparagraph{\texorpdfstring{on\_publication\_matched()}{on\_publication\_matched()}}
+{\footnotesize\ttfamily \label{classDDSDataWriterListener_ab7b1ca573cb1be49aeda49846cc20b8d} 
+virtual void DDSData\+Writer\+Listener\+::on\+\_\+publication\+\_\+matched (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}}]{writer}{, }\item[{const \mbox{\hyperlink{structDDS__PublicationMatchedStatus}{DDS\+\_\+\+Publication\+Matched\+Status}} \&}]{status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa3052f04c67620660f92aa3b5da2455d2}{DDS\+\_\+\+PUBLICATION\+\_\+\+MATCHED\+\_\+\+STATUS} status. 
+
+This callback is called when the \doxylink{classDDSDataWriter}{DDSData\+Writer} has found a \doxylink{classDDSDataReader}{DDSData\+Reader} that matches the \doxylink{classDDSTopic}{DDSTopic}, has a common partition and compatible QoS, or has ceased to be matched with a \doxylink{classDDSDataReader}{DDSData\+Reader} that was previously considered to be matched. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Locally created \doxylink{classDDSDataWriter}{DDSData\+Writer} that triggers the listener callback\\
+\hline
+{\em status} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Current publication match status of locally created \doxylink{classDDSDataWriter}{DDSData\+Writer}  \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDDSDataWriterListener_aa4d34ce27b8ff0d2614cddcfa7b7d2bf}\index{DDSDataWriterListener@{DDSDataWriterListener}!on\_reliable\_reader\_activity\_changed@{on\_reliable\_reader\_activity\_changed}}
+\index{on\_reliable\_reader\_activity\_changed@{on\_reliable\_reader\_activity\_changed}!DDSDataWriterListener@{DDSDataWriterListener}}
+\doxyparagraph{\texorpdfstring{on\_reliable\_reader\_activity\_changed()}{on\_reliable\_reader\_activity\_changed()}}
+{\footnotesize\ttfamily \label{classDDSDataWriterListener_aa4d34ce27b8ff0d2614cddcfa7b7d2bf} 
+virtual void DDSData\+Writer\+Listener\+::on\+\_\+reliable\+\_\+reader\+\_\+activity\+\_\+changed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}}]{writer}{, }\item[{const \mbox{\hyperlink{structDDS__ReliableReaderActivityChangedStatus}{DDS\+\_\+\+Reliable\+Reader\+Activity\+Changed\+Status}} \&}]{status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A matched reliable reader has become active or become inactive. 
+
+A reliable writer considers a matched reliable reader to be active when it receives ACKNACK messages from the reader in response to its HEARTBEAT messages. The writer considers an active reader to have become inactive when it has sent a number of consecutive periodic HEARTBEATs equal to \doxylink{structDDS__RtpsReliableWriterProtocol__t_a5be67d978618b5995cb517b51231d39d}{DDS\+\_\+\+Rtps\+Reliable\+Writer\+Protocol\+\_\+t\+::max\+\_\+heartbeat\+\_\+retries} without receiving an ACKNACK from the reader. An inactive reader becomes active once the writer receives an ACKNACK from it. 
+
+This callback is called when the transition from active to inactive, and vice versa, has occurred for a matched reliable reader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Locally created \doxylink{classDDSDataWriter}{DDSData\+Writer} that triggers the listener callback\\
+\hline
+{\em status} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Current reliable reader activity changed status of locally created \doxylink{classDDSDataWriter}{DDSData\+Writer}  \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDDSDataWriterListener_a795803ad1802bcbd0adea59c0cef03f0}\index{DDSDataWriterListener@{DDSDataWriterListener}!on\_reliable\_sample\_unacknowledged@{on\_reliable\_sample\_unacknowledged}}
+\index{on\_reliable\_sample\_unacknowledged@{on\_reliable\_sample\_unacknowledged}!DDSDataWriterListener@{DDSDataWriterListener}}
+\doxyparagraph{\texorpdfstring{on\_reliable\_sample\_unacknowledged()}{on\_reliable\_sample\_unacknowledged()}}
+{\footnotesize\ttfamily \label{classDDSDataWriterListener_a795803ad1802bcbd0adea59c0cef03f0} 
+virtual void DDSData\+Writer\+Listener\+::on\+\_\+reliable\+\_\+sample\+\_\+unacknowledged (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}}]{writer}{, }\item[{const \mbox{\hyperlink{structDDS__ReliableSampleUnacknowledgedStatus}{DDS\+\_\+\+Reliable\+Sample\+Unacknowledged\+Status}} \&}]{status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A matched reliable reader has become active or become inactive. 
+
+A reliable writer considers a matched reliable reader to be active when it receives ACKNACK messages from the reader in response to its HEARTBEAT messages. The writer considers an active reader to have become inactive when it has sent a number of consecutive periodic HEARTBEATs equal to \doxylink{structDDS__RtpsReliableWriterProtocol__t_a5be67d978618b5995cb517b51231d39d}{DDS\+\_\+\+Rtps\+Reliable\+Writer\+Protocol\+\_\+t\+::max\+\_\+heartbeat\+\_\+retries} without receiving an ACKNACK from the reader. An inactive reader becomes active once the writer receives an ACKNACK from it. 
+
+This callback is called when the transition from active to inactive, and vice versa, has occurred for a matched reliable reader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Locally created \doxylink{classDDSDataWriter}{DDSData\+Writer} that triggers the listener callback\\
+\hline
+{\em status} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Current reliable reader activity changed status of locally created \doxylink{classDDSDataWriter}{DDSData\+Writer}  \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDDSDataWriterListener_a229b6abe3243acd1912697c1dd3e25a8}\index{DDSDataWriterListener@{DDSDataWriterListener}!on\_sample\_removed@{on\_sample\_removed}}
+\index{on\_sample\_removed@{on\_sample\_removed}!DDSDataWriterListener@{DDSDataWriterListener}}
+\doxyparagraph{\texorpdfstring{on\_sample\_removed()}{on\_sample\_removed()}}
+{\footnotesize\ttfamily \label{classDDSDataWriterListener_a229b6abe3243acd1912697c1dd3e25a8} 
+virtual void DDSData\+Writer\+Listener\+::on\+\_\+sample\+\_\+removed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*}}]{writer}{, }\item[{const DDS\+\_\+\+Cookie\+\_\+t \&}]{cookie}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Called when a sample is removed from the Data\+Writer queue. 
+
+Supported while using \doxylink{group__RTIZeroCopyModule}{Zero Copy Transfer Over Shared Memory} "{}Zero Copy transfer over shared memory"{} or \doxylink{group__RTIFlatDataModule}{Flat\+Data Topic-\/\+Types} "{}Flat\+Data language binding"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Locally created \doxylink{classDDSDataWriter}{DDSData\+Writer} that triggers the listener callback\\
+\hline
+{\em cookie} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Contains the absolute address of the sample that is removed. The address of the sample can be obtained by using   \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structFooDataWriter_ab7a9f5031701c3495235fb85f591007c}{Foo\+Data\+Writer\+::get\+\_\+loan} 
+\end{DoxySeeAlso}

@@ -1,0 +1,846 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.10. Content Filtering &mdash; RTI Connext Micro 4.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.11. Generating Type Support" href="rtiddsgen.html" />
+    <link rel="prev" title="3.9. Partitions" href="partitions.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. User’s Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">3.2. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">3.3. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">3.4. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">3.5. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transports/index.html">3.6. Transports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">3.7. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html">3.8. User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html">3.9. Partitions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.10. Content Filtering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-content-filter">3.10.1. Creating a Content Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#where-filtering-is-appliedpublishing-vs-subscribing-side">3.10.2. Where Filtering is Applied—Publishing vs. Subscribing Side</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interoperability">3.10.3. Interoperability</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#with-core-pro-h">3.10.3.1. With Connext Professional</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#with-me-cert-h">3.10.3.2. With Connext Cert</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sql-filter-expression-notation">3.10.4. SQL Filter Expression Notation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-sql-filter-expressions">3.10.4.1. Example SQL filter expressions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sql-grammar">3.10.4.2. SQL grammar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#token-expressions">3.10.4.3. Token expressions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#type-compatibility-in-the-predicate">3.10.4.4. Type compatibility in the Predicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enumerations">3.10.4.5. Enumerations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">3.11. Generating Type Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">3.12. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">3.13. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">3.14. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html">3.15. Sending Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html">3.16. Zero Copy Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html">3.17. FlatData Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html">3.18. Application Generation Using XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">3.19. Building Against FACE Conformance Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">3.20. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug.html">3.21. Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.22. Example Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html">3.23. Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">3.24. Memory Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">4. Platform Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building/index.html">5. Building Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micro_core.html">6. Working with Connext Micro and Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">12. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">3. </span>User’s Manual</a> &raquo;</li>
+        
+      <li><span class="section-number">3.10. </span>Content Filtering</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/usersmanual/content_filtering.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="content-filtering">
+<span id="section-content-filtering"></span><h1><span class="section-number">3.10. </span>Content Filtering<a class="headerlink" href="#content-filtering" title="Permalink to this headline">¶</a></h1>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>This is an experimental feature in <em>Connext Micro</em> 4.2.0. It is not guaranteed to be
+consistent or supported and should not be used in production.</p>
+<p>Refer to <a class="reference internal" href="../release/experimental_features.html#section-experimental-features"><span class="std std-ref">Experimental Features</span></a> for more information.</p>
+</div>
+<p>Content filtering provides a mechanism for <em>Connext Micro</em> to filter out data
+samples for <em>DataReaders</em> based on their contents. The user-specified filtering
+properties consist of a filter expression and a set of parameters:</p>
+<ul class="simple">
+<li><p>The filter expression evaluates a logical expression on the data samples. The
+filter expression is similar to the WHERE clause in an SQL expression.</p></li>
+<li><p>The parameters are strings that give values to the ‘parameters’ in the filter
+expression. There must be one parameter string for each parameter in the
+filter expression.</p></li>
+</ul>
+<p>Content filtering in <em>Connext Micro</em> functions similarly to
+<a class="reference external" href="https://community.rti.com/static/documentation/connext-dds/7.3.0/doc/manuals/connext_dds_professional/users_manual/users_manual/Overview.htm">Filtering Data</a>
+in <em>Connext</em> <em>Professional</em>, except that <em>Connext Micro</em> does not use ContentFilteredTopics. Instead,
+it functions by applying a QoS policy (<code class="docutils literal notranslate"><span class="pre">DDS_ContentFilterQosPolicy</span></code>) to a
+<em>DataReader</em>. Some limitations apply to
+<a class="reference internal" href="#section-sql-filter-expression-notation"><span class="std std-ref">SQL Filter Expression Notation</span></a> as well.</p>
+<div class="section" id="creating-a-content-filter">
+<h2><span class="section-number">3.10.1. </span>Creating a Content Filter<a class="headerlink" href="#creating-a-content-filter" title="Permalink to this headline">¶</a></h2>
+<p>This section will walk you through how to set up content filtering for a
+<em>DataReader</em> in your application.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using the C++ API, register the content filtering library using the
+same method as the C API.</p>
+</div>
+<ol class="arabic">
+<li><p>Register the <code class="docutils literal notranslate"><span class="pre">DDS_FilterPluginFactory</span></code> as shown below:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;dds_filter/dds_filter.h&quot;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">DDS_FilterPluginFactory_register</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DDS_RETCODE_OK</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* Error handling */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This enables the content filtering feature for your application. It must be
+registered before a <em>DomainParticipant</em> is created in order for it to use the
+feature.</p>
+</li>
+<li><p><em>Optional</em>. You can configure content filtering support for a given
+<em>DomainParticipant</em>, as shown in the snippet below:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_DomainParticipantQos</span><span class="w"> </span><span class="n">dp_qos</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">DDS_DomainParticipantQos_INITIALIZER</span><span class="p">;</span>
+
+<span class="cm">/* To disable content filtering support for a specific participant,</span>
+<span class="cm"> * clear the filter plugin name in the DDS_FilterQosPolicy</span>
+<span class="cm"> */</span>
+<span class="w"> </span><span class="n">RT_ComponentFactoryId_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dp_qos</span><span class="p">.</span><span class="n">filter</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+
+<span class="cm">/* If you know that a DomainParticipant will only need to support filtering</span>
+<span class="cm"> * for a limited number of entities, then you can reduce memory usage</span>
+<span class="cm"> * by specifying the maximum number of unique filter expressions which</span>
+<span class="cm"> * can be supported at one time.</span>
+<span class="cm"> */</span>
+<span class="w"> </span><span class="n">dp_qos</span><span class="p">.</span><span class="n">filter</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">filter_expression_max_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+
+<span class="cm">/* The DDS_FilterQosPolicy has default limits for the maximum length of a filter expression,</span>
+<span class="cm"> * the maximum number of parameters per expression, and the maximum length of a filter</span>
+<span class="cm"> * parameter. Here you can raise these limits if needed to support your use case or they</span>
+<span class="cm"> * can be  reduced to limit memory usage.</span>
+<span class="cm"> */</span>
+<span class="w"> </span><span class="n">dp_qos</span><span class="p">.</span><span class="n">filter</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">filter_expression_max_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+<span class="w"> </span><span class="n">dp_qos</span><span class="p">.</span><span class="n">filter</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">filter_parameter_max_count_per_expression</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+<span class="w"> </span><span class="n">dp_qos</span><span class="p">.</span><span class="n">filter</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">filter_parameter_max_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+
+<span class="cm">/* To reduce memory usage at the cost of network bandwidth, writer-side</span>
+<span class="cm"> * filtering can also be disabled for all DataWriters created by this participant.</span>
+<span class="cm"> */</span>
+<span class="w"> </span><span class="n">dp_qos</span><span class="p">.</span><span class="n">filter</span><span class="p">.</span><span class="n">disable_writer_filtering</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_BOOLEAN_TRUE</span><span class="p">;</span>
+
+<span class="cm">/* Optionally, configure the maximum number of predicates per SQL expression. For</span>
+<span class="cm"> * longer expressions, it may need to be increased from the default of 4. For</span>
+<span class="cm"> * simpler expressions, it can be reduced to limit memory usage.</span>
+<span class="cm"> */</span>
+<span class="w"> </span><span class="n">dp_qos</span><span class="p">.</span><span class="n">sql_predicate_max_count_per_expression</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+
+<span class="w"> </span><span class="p">...</span><span class="w">  </span><span class="cm">/* Create the DomainParticipant with the given Qos */</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantQos</span></code> contains a <code class="docutils literal notranslate"><span class="pre">DDS_FilterQosPolicy</span></code> for
+configuring properties of the content filtering feature for a given
+<em>DomainParticiant</em>. By default, if the <code class="docutils literal notranslate"><span class="pre">FilterPluginFactory</span></code> is registered,
+every <em>DomainParticipant</em> within the application will support content
+filtering for all of its child entities. Through the <code class="docutils literal notranslate"><span class="pre">FilterQosPolicy</span></code>, you
+can change this default behavior to disable support or limit memory usage.</p>
+</li>
+<li><p>Create a <em>DataReader</em> with a content filter.</p>
+<p>To enable content filtering on a <em>DataReader</em>, you must configure the
+<code class="docutils literal notranslate"><span class="pre">DDS_ContentFilterQosPolicy</span></code> in the <em>DataReader</em>’s’ QoS policy. A content
+filter can either be configured when the <em>DataReader</em> is created or it can be
+added/updated by updating the QoS of the <em>DataReader</em>.</p>
+<p>Generally, <em>Connext Micro</em> does not support changing the QoS of DDS entities after they
+are enabled. The <code class="docutils literal notranslate"><span class="pre">ContentFilterQosPolicy</span></code> is an exception in that it can be
+updated after a <em>DataReader</em> is enabled by using
+<code class="docutils literal notranslate"><span class="pre">DDS_DataReader_set_qos()</span></code>. However, it will fail to update if any
+other fields of the QoS do not match those specified when the <em>DataReader</em>
+was created.</p>
+<p>The contents of the <code class="docutils literal notranslate"><span class="pre">DDS_ContentFilterQosPolicy</span></code> are as follows:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">filter_name</span></code></p></td>
+<td><p>DDS_String</p></td>
+<td><p>A name to uniquely identify this content filter within a
+<em>DomainParticipant</em>. For interoperability with <em>Connext</em> <em>Professional</em>, it is
+equivalent to the <code class="docutils literal notranslate"><span class="pre">filter_name</span></code> when configuring a content filter
+with XML application creation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">filter_class_name</span></code></p></td>
+<td><p>DDS_String</p></td>
+<td><p>The name that identifies the type of filter expression. <em>Connext Micro</em>
+currently only supports the “DDSSQL” filter class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">filter_expression</span></code></p></td>
+<td><p>DDS_String</p></td>
+<td><p>A logical expression on the contents of the <em>DataReader</em>’s <em>Topic</em>. If
+the expression evaluates to TRUE, a DDS sample is received; otherwise,
+it is discarded. The notation for this expression depends on the
+filter that you are using (specified by the <code class="docutils literal notranslate"><span class="pre">filter_name</span></code>
+parameter). See <a class="reference internal" href="#section-sql-filter-expression-notation"><span class="std std-ref">SQL Filter Expression Notation</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">expression_parameters</span></code></p></td>
+<td><p>DDS_StringSeq</p></td>
+<td><p>A string sequence of filter expression parameters. Each parameter
+corresponds to a positional argument in the filter expression: element
+0 corresponds to positional argument 0, element 1 to positional
+argument 1, and so forth.</p></td>
+</tr>
+</tbody>
+</table>
+<p>For example, to create a <em>DataReader</em> with a content filter:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_DataReaderQos</span><span class="w"> </span><span class="n">dr_qos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DataReaderQos_INITIALIZER</span><span class="p">;</span>
+
+<span class="cm">/* Configure the content filter as desired */</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">content_filter</span><span class="p">.</span><span class="n">filter_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;MyFilter&quot;</span><span class="p">);</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">content_filter</span><span class="p">.</span><span class="n">filter_class_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="n">DDS_SQL_CONTENT_FILTER_CLASS</span><span class="p">);</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">content_filter</span><span class="p">.</span><span class="n">filter_expression</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;a &lt; 10&quot;</span><span class="p">);</span>
+
+<span class="p">...</span><span class="w"> </span><span class="cm">/* Create the DataReader with the given Qos */</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Content filtering can also be configured via
+<a class="reference internal" href="appgen.html#section-appgen-content-filtering"><span class="std std-ref">Application Generation Using XML</span></a>.</p>
+</div>
+<p>If your <em>DataReader</em> fails to be created or updated, check if any of the
+following is true:</p>
+<ul class="simple">
+<li><p>Your <em>DataReader</em> specifies a content filter, but content filtering is not
+enabled on its parent <em>DomainParticipant</em>.</p></li>
+<li><p>The filter expression exceeds one of the filter resource limits in the
+<code class="docutils literal notranslate"><span class="pre">DDS_FilterQosPolicy</span></code>.</p></li>
+<li><p>The total number of unique filter expressions within the <em>DomainParticipant</em>
+would exceed the <code class="docutils literal notranslate"><span class="pre">filter_expression_max_count</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="where-filtering-is-appliedpublishing-vs-subscribing-side">
+<span id="section-where-filtering-is-applied"></span><h2><span class="section-number">3.10.2. </span>Where Filtering is Applied—Publishing vs. Subscribing Side<a class="headerlink" href="#where-filtering-is-appliedpublishing-vs-subscribing-side" title="Permalink to this headline">¶</a></h2>
+<p>Content filtering can be applied on either side of your distributed application.
+We refer to filtering applied to a <em>DataReader</em> as <em>reader-side filtering</em>,
+while filtering applied for a <em>DataReader</em> by a <em>DataWriter</em> is called
+<em>writer-side filtering</em>.</p>
+<p>Once a <em>DataReader</em> configures a filter in its QoS, it will only receive samples
+that pass the filter. Whether or not that filter is applied by the reader or
+the writer depends on whether the <em>DataWriter</em> supports writer-side filtering.
+If the writer supports writer-side filtering, then filtered samples can skip
+being sent over the network. If the <em>DataWriter</em> does not support writer-side
+filtering, then the <em>DataReader</em> will continue to only receive samples that
+pass its filter, but the <em>DataWriter</em> will send all samples over the network.</p>
+<p>Therefore, writer-side filtering can significantly reduce bandwidth
+by only sending samples over the network that pass the <em>DataReader</em>’s filter.
+To perform writer-side filtering, the <em>DataWriter</em> obtains the filter expression
+and parameters from the <em>DataReader</em> during discovery.</p>
+<p>A <em>DataWriter</em> will automatically filter DDS data samples for a <em>DataReader</em> if
+all of the following are true:</p>
+<ol class="arabic">
+<li><p>The content filtering feature is enabled on the parent <em>DomainParticipant</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dp_qos.filter.disable_writer_filtering</span></code> is set to <code class="docutils literal notranslate"><span class="pre">DDS_BOOLEAN_FALSE</span></code> on
+the parent <em>DomainParticipant</em>.</p></li>
+<li><p>The <em>DataWriter</em> is filtering for no more than
+<code class="docutils literal notranslate"><span class="pre">writer_resource_limits.max_remote_reader_filters</span></code> <em>DataReaders</em> at the
+same time.</p>
+<ol class="loweralpha">
+<li><p>There is a resource-limit on the <em>DataWriter</em> called
+<code class="docutils literal notranslate"><span class="pre">writer_resource_limits.max_remote_reader_filters</span></code>. This value can be
+from <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">(2^31)-1]</span></code> or <code class="docutils literal notranslate"><span class="pre">DDS_LENGTH_UNLIMITED</span></code> (default). <code class="docutils literal notranslate"><span class="pre">0</span></code> means
+do not filter any <em>DataReader</em>; <code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">(2^31)-1</span></code> means that the
+<em>DataWriter</em> will filter for up to the specified number of <em>DataReaders</em>;
+DDS_LENGTH_UNLIMITED means that the <em>DataWriter</em> will filter for up to
+<code class="docutils literal notranslate"><span class="pre">writer_resource_limits.max_remote_readers</span></code>. The <em>DataWriter</em> will store
+the filter result per sample per filtered <em>DataReader</em>.</p></li>
+<li><p>If a <em>DataWriter</em> is filtering <code class="docutils literal notranslate"><span class="pre">max_remote_reader_filters</span></code> <em>DataReaders</em>
+at the same time and a new filtered <em>DataReader</em> is discovered, then the
+newly created <em>DataReader</em> (<code class="docutils literal notranslate"><span class="pre">max_remote_reader_filters</span> <span class="pre">+</span> <span class="pre">1</span></code>) will not
+be filtered by the <em>DataWriter</em> (but the <em>DataReader</em> will still apply the
+filter itself).</p>
+<p>Even if one of the first (<code class="docutils literal notranslate"><span class="pre">max_remote_reader_filters</span></code>) <em>DataReaders</em> is
+deleted, the already-created <em>DataReader</em> (<code class="docutils literal notranslate"><span class="pre">max_remote_reader_filters</span> <span class="pre">+</span>
+<span class="pre">1</span></code>) will still not be filtered. However, any subsequently created
+<em>DataReaders</em> will be filtered as long as the number of <em>DataReaders</em>
+currently being filtered is not more than
+<code class="docutils literal notranslate"><span class="pre">writer_resource_limits.max_remote_reader_filters</span></code>.</p>
+</li>
+</ol>
+</li>
+<li><p>There are no more than four matching <em>DataReaders</em> in the same locator
+(transport destination, for example: IP address + port).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Connext Micro</em> supports limited writer-side filtering if there are more than four
+matching <em>DataReaders</em> in the same locator. The middleware will not send
+any sample to a locator if the sample is filtered out by all the
+<em>DataReaders</em> receiving samples on that locator. However, if there are one
+or more <em>DataReaders</em> to which the sample has to be sent, some
+<em>DataReaders</em> on the locator will perform reader-side filtering for the
+incoming sample.</p>
+</div>
+</li>
+<li><p>The <em>DataWriter</em> has infinite liveliness.</p></li>
+<li><p>The <em>DataWriter</em> is not using Asynchronous Publication. Either the
+<em>DataWriter</em>’s <code class="docutils literal notranslate"><span class="pre">PUBLISH_MODE</span></code> kind is set to
+<code class="docutils literal notranslate"><span class="pre">DDS_SYNCRHONOUS_PUBLISHER_MODE_QOS</span></code>, or the kind is set to
+<code class="docutils literal notranslate"><span class="pre">DDS_AUTO_PUBLISHER_MODE_QOS</span></code> and the data type does not require
+fragmentation.</p></li>
+<li><p>Support for the specific filter class is registered in the
+<em>DomainParticipant</em> of the <em>DataWriter</em>.</p>
+<p>SQL filter support is enabled by default when filtering is enabled on a
+participant.</p>
+</li>
+<li><p>The specific sample being filtered was written by the <em>DataWriter</em> after
+matching with the <em>DataReader</em>.</p>
+<p>If using a <code class="docutils literal notranslate"><span class="pre">DURABILITY</span></code> QoS setting greater than volatile, then samples
+written before the <em>DataWriter</em> matched with the <em>DataReader</em> may be
+available to the <em>DataReader</em> but will not have filtering applied by the
+<em>DataWriter</em>.</p>
+</li>
+<li><p>The sample doesn’t exceed any of the expression-specific limits or the
+<code class="docutils literal notranslate"><span class="pre">filter_expression_max_count</span></code> within the <em>DomainParticipant</em>.</p></li>
+</ol>
+<p>If any of the above criteria is not met, the <em>DataReader</em> will perform
+reader-side content filtering.</p>
+</div>
+<div class="section" id="interoperability">
+<h2><span class="section-number">3.10.3. </span>Interoperability<a class="headerlink" href="#interoperability" title="Permalink to this headline">¶</a></h2>
+<p>Enabling a content filter on a <em>DataReader</em> has no impact on the
+interoperability of that <em>DataReader</em> with any other <em>DataWriter</em>. However,
+writer-side filtering is not supported by all other DDS products.</p>
+<div class="section" id="with-core-pro-h">
+<h3><span class="section-number">3.10.3.1. </span>With Connext Professional<a class="headerlink" href="#with-core-pro-h" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em>’s implementation of content filtering is compliant with the RTPS
+specification, allowing other DDS implementations (such as <em>Connext</em> <em>Professional</em>) to apply
+writer-side filtering for a <em>Connext Micro</em> application. Similarly, a <em>Connext Micro</em> application can
+apply writer-side filtering for a <em>Connext</em> <em>Professional</em> application as long as it meets
+the criteria listed in <a class="reference internal" href="#section-where-filtering-is-applied"><span class="std std-ref">Where Filtering is Applied—Publishing vs. Subscribing Side</span></a>.</p>
+<p><em>Connext Micro</em> supports a subset of the SQL filter syntax supported by <em>Connext</em> <em>Professional</em>. Any
+valid SQL filter on a <em>Connext Micro</em> <em>DataReader</em> can be applied by a <em>Connext</em> <em>Professional</em>
+<em>DataWriter</em>. However, if a <em>Connext</em> <em>Professional</em> <em>DataReader</em> specifies a filter with
+syntax not supported by <em>Connext Micro</em>, then <em>Connext Micro</em> will be unable to apply writer-side
+filtering for that <em>DataReader</em>. Refer to
+<a class="reference internal" href="#section-sql-filter-expression-notation"><span class="std std-ref">SQL Filter Expression Notation</span></a> for more details.</p>
+</div>
+<div class="section" id="with-me-cert-h">
+<h3><span class="section-number">3.10.3.2. </span>With Connext Cert<a class="headerlink" href="#with-me-cert-h" title="Permalink to this headline">¶</a></h3>
+<p>Content filtering is NOT supported when using the CERT profile or older
+versions of <em>Connext Micro</em>.</p>
+</div>
+</div>
+<div class="section" id="sql-filter-expression-notation">
+<span id="section-sql-filter-expression-notation"></span><h2><span class="section-number">3.10.4. </span>SQL Filter Expression Notation<a class="headerlink" href="#sql-filter-expression-notation" title="Permalink to this headline">¶</a></h2>
+<p>Content filtering uses logical SQL filter expressions, similar to the <strong>WHERE</strong>
+clause in SQL. The following sections provide more information.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Compared to ContentFilteredTopics in <em>Connext</em> <em>Professional</em>, SQL filter expressions in
+<em>Connext Micro</em> have the following limitations:</p>
+<ul class="simple">
+<li><p>Filters can only be applied to the top-level members of a struct (nested
+structs and top-level unions are not supported).</p></li>
+<li><p>You cannot filter on the following members: strings, sequences, arrays,
+unions, and optional members.</p></li>
+<li><p>The XTypes library (<code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code>) is required and a type must be
+compiled with the interpreter. See <a class="reference internal" href="types.html#section-xtypes-compatibility"><span class="std std-ref">Extensible Types (XTypes) 1.2 Compatibility</span></a>.</p></li>
+<li><p>Limited syntax; parentheses are not supported.</p></li>
+</ul>
+<p>Future <em>Connext Micro</em> releases may remove these limitations.</p>
+</div>
+<div class="section" id="example-sql-filter-expressions">
+<h3><span class="section-number">3.10.4.1. </span>Example SQL filter expressions<a class="headerlink" href="#example-sql-filter-expressions" title="Permalink to this headline">¶</a></h3>
+<p>Assume that you have a <em>Topic</em> with two floats, X and Y, which are the
+coordinates of an object moving inside a rectangle measuring 200 x 200 units.
+This object moves quite a bit, generating lots of DDS samples that you are not
+interested in. Instead you only want to receive DDS samples outside the middle
+of the rectangle, as seen in <a class="reference internal" href="#fig-filtering-example"><span class="std std-numref">Figure 3.5</span></a>. That is, you want
+to filter out data points in the gray box.</p>
+<div class="figure align-center" id="id7">
+<span id="fig-filtering-example"></span><img alt="../_images/CFTexample.png" src="../_images/CFTexample.png" />
+<p class="caption"><span class="caption-number">Figure 3.5 </span><span class="caption-text">Filtering Example</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<p>The filter expression would look like this (remember the expression is written
+so that DDS samples that we <em>do</em> want will <em>pass</em>):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>X &lt; 50 OR X &gt; 150  OR  Y &lt; 50 OR Y &gt; 150  OR  X &gt; 150 AND Y &lt; 50  OR  X &gt; 150 AND Y &gt; 150
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This release of <em>Connext Micro</em> does not support parentheses in SQL expressions. However,
+AND takes logical precedence over OR.</p>
+</div>
+<p>Suppose you would like the ability to adjust the coordinates that are considered
+outside the acceptable range (changing the size of the gray box). You can
+achieve this by changing the whole filter expression or by using filter
+parameters. The expression can be written using filter parameters as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>X &lt; %0 AND Y &lt; %2 OR X &lt; %0 AND Y &gt; %3 OR X &gt; %1 AND Y &lt; %2 OR X &gt; %1 AND Y &gt; %3
+</pre></div>
+</div>
+<p>See the <a class="reference external" href="../../../doc/api_c/html/group__DDSStringClass.html">String</a>
+and <a class="reference external" href="../../../doc/api_c/html/group__DDSSequenceModule.html">Sequence Support</a>
+sections of the API Reference for more information.</p>
+<p>In C++, the filter parameters could be assigned like this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">dr_qos</span><span class="p">.</span><span class="n">content_filter</span><span class="p">.</span><span class="n">expression_parameters</span><span class="p">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">content_filter</span><span class="p">.</span><span class="n">expression_parameters</span><span class="p">.</span><span class="n">length</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">content_filter</span><span class="p">.</span><span class="n">expression_parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;50&quot;</span><span class="p">);</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">content_filter</span><span class="p">.</span><span class="n">expression_parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;150&quot;</span><span class="p">);</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">content_filter</span><span class="p">.</span><span class="n">expression_parameters</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;50&quot;</span><span class="p">);</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">content_filter</span><span class="p">.</span><span class="n">expression_parameters</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;150&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sql-grammar">
+<h3><span class="section-number">3.10.4.2. </span>SQL grammar<a class="headerlink" href="#sql-grammar" title="Permalink to this headline">¶</a></h3>
+<p>This section describes the subset of SQL syntax, in Backus-Naur Form (BNF),
+that you can use to form filter expressions.</p>
+<p>We use the following notational conventions:</p>
+<ul class="simple">
+<li><p><em>NonTerminals</em> are typeset in italics.</p></li>
+<li><p>‘Terminals’ are quoted and typeset in a fixed-width font. They are written in
+upper case in most cases in the BNF-grammar below, but should be case
+insensitive.</p></li>
+<li><p><strong>TOKENS</strong> are typeset in bold.</p></li>
+<li><p>The notation (element // ‘,’) represents a non-empty, comma-separated list of
+elements.</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>FilterExpression ::= Condition
+Condition ::= Predicate
+               |    Condition &#39;AND&#39; Condition
+               |    Condition &#39;OR&#39; Condition
+               |    &#39;NOT&#39; Condition
+Predicate ::= ComparisonPredicate
+               |   BetweenPredicate
+ComparisonPredicate ::= FIELDNAME RelOp Parameter
+                                    |    Parameter RelOp FIELDNAME
+                                    |    FIELDNAME RelOp FIELDNAME
+BetweenPredicate ::= FIELDNAME &#39;BETWEEN&#39; Range
+                              |   FIELDNAME &#39;NOT BETWEEN&#39; Range
+RelOp ::= &#39;=&#39; | &#39;&gt;&#39; | &#39;&gt;=&#39; | &#39;&lt;&#39; | &#39;&lt;=&#39; | &#39;&lt;&gt;&#39;
+Range ::= Parameter &#39;AND&#39; Parameter
+Parameter ::= INTEGERVALUE
+                  |   CHARVALUE
+                  |   FLOATVALUE
+                  |   ENUMERATEDVALUE
+                  |   PARAMETER
+</pre></div>
+</div>
+</div>
+<div class="section" id="token-expressions">
+<h3><span class="section-number">3.10.4.3. </span>Token expressions<a class="headerlink" href="#token-expressions" title="Permalink to this headline">¶</a></h3>
+<p>This section describes the syntax and meaning of the tokens used in SQL grammar.</p>
+<p><strong>FIELDNAME</strong>: A reference to a field in the data structure. Defined as any
+series of characters ‘a’, …, ‘z’, ‘A’, …, ‘Z’, ‘0’, …, ‘9’, ‘_’ but
+may not start with a digit. Only top-level fields of a data structure can be
+referenced. The names of the fields are those specified in the IDL definition of
+the corresponding structure, which may or may not match the fieldnames that
+appear on the language-specific mapping of the structure. FIELDNAME must resolve
+to a primitive IDL type; that is boolean, octet, int16, uint16, int32, uint32,
+int64, uint64, float, double, char, or enum.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>FIELDNAME: LETTER (PART_LETTER)*
+</pre></div>
+</div>
+<p>where LETTER: [ “A”-“Z”,”_”,”a”-“z” ] PART_LETTER: [ “A”-“Z”,”_”,”a”-“z”,”0”-“9” ]</p>
+<p>Primitive IDL types referenced by FIELDNAME are treated as different types in
+predicate according to the following table:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Predicate Data Type</p></th>
+<th class="head"><p>IDL Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BOOLEANVALUE</p></td>
+<td><p>boolean</p></td>
+</tr>
+<tr class="row-odd"><td><p>INTEGERVALUE</p></td>
+<td><p>octet, int16, uint16, int32, uint32, int64, uint64</p></td>
+</tr>
+<tr class="row-even"><td><p>FLOATVALUE</p></td>
+<td><p>float, double</p></td>
+</tr>
+<tr class="row-odd"><td><p>CHARVALUE</p></td>
+<td><p>char</p></td>
+</tr>
+<tr class="row-even"><td><p>ENUMERATEDVALUE</p></td>
+<td><p>enum</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>INTEGERVALUE</strong>: Any series of digits, optionally preceded by a plus or minus
+sign, representing a decimal integer value within the range of the system.
+‘<strong>L</strong>’ or ‘<strong>l</strong>’ must be used for int64 (long long), otherwise int32 (long) is
+assumed. A hexadecimal number is preceded by <strong>0x</strong> and must be a valid
+hexadecimal expression.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>INTEGERVALUE : ([&quot;+&quot;,&quot;-&quot;])? ([&quot;0&quot;-&quot;9&quot;])+ [(&quot;L&quot;,&quot;l&quot;)]? | ([&quot;+&quot;,&quot;-&quot;])? [&quot;0x&quot;,&quot;0X&quot;]([&quot;0&quot;-&quot;9&quot;, &quot;A&quot;-&quot;F&quot;, &quot;a&quot;-&quot;f&quot;])+ [(&quot;L&quot;,&quot;l&quot;)]?
+</pre></div>
+</div>
+<p><strong>CHARVALUE</strong>: A single character enclosed between single quotes.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>CHARVALUE : &quot;&#39;&quot; (~[&quot;&#39;&quot;])? &quot;&#39;&quot;
+</pre></div>
+</div>
+<p><strong>FLOATVALUE</strong>: Any series of digits, optionally preceded by a plus or minus
+sign and optionally including a floating point (‘<strong>.</strong>’). ‘<strong>F</strong>’ or ‘<strong>f</strong>’ must be used
+for float, otherwise double is assumed. A power-of-ten expression may be
+postfixed, which has the syntax <span class="bold">e</span><span class="italic">n</span> or <span class="bold">E</span><span class="italic">n</span>,
+where <span class="bolditalic">n</span> is a number, optionally preceded by a plus or minus sign.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>FLOATVALUE : ([&quot;+&quot;,&quot;-&quot;])? ([&quot;0&quot;-&quot;9&quot;])* (&quot;.&quot;)? ([&quot;0&quot;-&quot;9&quot;])+ (EXPONENT)?[(&quot;F&quot;,&#39;f&#39;)]?
+</pre></div>
+</div>
+<p>where EXPONENT: [“e”,”E”] ([“+”,”-“])? ([“0”-“9”])+</p>
+<p><strong>ENUMERATEDVALUE</strong>: A reference to a value declared within an enumeration.
+Enumerated values consist of the name of the enumeration label enclosed in
+single quotes. The name used for the enumeration label must correspond to the
+label names specified in the IDL definition of the enumeration.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ENUMERATEDVALUE : &quot;&#39;&quot; [&quot;A&quot; - &quot;Z&quot;, &quot;a&quot; - &quot;z&quot;] [&quot;A&quot; - &quot;Z&quot;, &quot;a&quot; - &quot;z&quot;, &quot;_&quot;, &quot;0&quot; - &quot;9&quot;]* &quot;&#39;&quot;
+</pre></div>
+</div>
+<p><strong>BOOLEANVALUE</strong>: Can either be <strong>TRUE</strong> or <strong>FALSE</strong>, and is case insensitive.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>BOOLEANVALUE : [&quot;TRUE&quot;,&quot;FALSE&quot;]
+</pre></div>
+</div>
+<p><strong>PARAMETER</strong>: Takes the form %:italic:<cite>n</cite>, where <span class="bolditalic">n</span> represents a
+natural number (zero included) smaller than 100. It refers to the (n + 1)th
+argument in the given context. This argument can only be in primitive type value
+format. It cannot be a FIELDNAME.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>PARAMETER : &quot;%&quot; ([&quot;0&quot;-&quot;9&quot;])+
+</pre></div>
+</div>
+</div>
+<div class="section" id="type-compatibility-in-the-predicate">
+<h3><span class="section-number">3.10.4.4. </span>Type compatibility in the Predicate<a class="headerlink" href="#type-compatibility-in-the-predicate" title="Permalink to this headline">¶</a></h3>
+<p>As seen in <a class="reference internal" href="#table-valid-type-comparisons"><span class="std std-numref">Table 3.9</span></a>, only certain combinations of
+type comparisons are valid in the Predicate.</p>
+<span id="table-valid-type-comparisons"></span><table class="docutils align-default" id="id8">
+<caption><span class="caption-number">Table 3.9 </span><span class="caption-text">Valid Type Comparisons</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head stub"></th>
+<th class="head"><p>Boolean</p></th>
+<th class="head"><p>Integer</p></th>
+<th class="head"><p>Float</p></th>
+<th class="head"><p>Char</p></th>
+<th class="head"><p>Enum</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p>Boolean</p></th>
+<td><p>YES</p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Integer</p></th>
+<td></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td><p><strong>✓</strong> <a class="footnote-reference brackets" href="#id5" id="id1">1</a></p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Float</p></th>
+<td></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Char</p></th>
+<td></td>
+<td></td>
+<td></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><a class="footnote-reference brackets" href="#id6" id="id2">2</a></p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Enum</p></th>
+<td></td>
+<td><p><strong>✓</strong> <a class="footnote-reference brackets" href="#id5" id="id3">1</a></p></td>
+<td></td>
+<td><p><a class="footnote-reference brackets" href="#id6" id="id4">2</a></p></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>)</span></dt>
+<dd><p>An int32 (long) constant is compatible with an enumerated variable, but
+an enumerated constant is not compatible with an integer variable. For
+example, “MyEnum=1” is valid, but “MyInteger=’EnumValue’” is not.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">2</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id4">2</a>)</span></dt>
+<dd><p>Whether or not a constant value in single quotes is interpreted as a char
+or an enum depends on the type of the variable it is being compared
+with. For example, in “MyChar=’A’”, A is interpreted as a char constant. In
+“MyEnum=’A’”, A is interpreted as an enum value and must be a defined label
+for that enumerated type.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="enumerations">
+<h3><span class="section-number">3.10.4.5. </span>Enumerations<a class="headerlink" href="#enumerations" title="Permalink to this headline">¶</a></h3>
+<p>A filter expression can use enumeration values, such as GREEN, instead of the
+numerical value. For example, if <strong>x</strong> is an enumeration of GREEN, YELLOW and
+RED, the following expressions are valid:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&quot;x = &#39;GREEN&#39;&quot;
+&quot;X &lt; &#39;RED&#39;&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rtiddsgen.html" class="btn btn-neutral float-right" title="3.11. Generating Type Support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="partitions.html" class="btn btn-neutral float-left" title="3.9. Partitions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2025, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

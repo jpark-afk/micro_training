@@ -1,0 +1,93 @@
+\doxysubsection{DDS\+\_\+\+Content\+Filter\+Property Struct Reference}
+\hypertarget{structDDS__ContentFilterProperty}{}\label{structDDS__ContentFilterProperty}\index{DDS\_ContentFilterProperty@{DDS\_ContentFilterProperty}}
+
+
+All of the information necessary for a \doxylink{classDDSDataWriter}{DDSData\+Writer} to perform writer-\/side filtering for a \doxylink{classDDSDataReader}{DDSData\+Reader}.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+content\+\_\+filter.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gaa55429110993fe0d5038f14200195837}{DDS\+\_\+\+String}} \mbox{\hyperlink{structDDS__ContentFilterProperty_a4ef9c40d77756d08bae3482f75c853d3}{content\+\_\+filtered\+\_\+topic\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em Name of the content-\/filtered topic. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gaa55429110993fe0d5038f14200195837}{DDS\+\_\+\+String}} \mbox{\hyperlink{structDDS__ContentFilterProperty_ab9736363f65c1cbab2301e5078601fff}{related\+\_\+topic\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em Name of the related (base) topic. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gaa55429110993fe0d5038f14200195837}{DDS\+\_\+\+String}} \mbox{\hyperlink{structDDS__ContentFilterProperty_ae6ac207bba5d2c1617a09e5f2cae29da}{filter\+\_\+class\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em Name of the filter class to use. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gaa55429110993fe0d5038f14200195837}{DDS\+\_\+\+String}} \mbox{\hyperlink{structDDS__ContentFilterProperty_a096d87ccd6cbefcdc2d45922e2889b7e}{filter\+\_\+expression}}
+\begin{DoxyCompactList}\small\item\em The filter expression string. \end{DoxyCompactList}\item 
+struct DDS\+\_\+\+String\+Seq \mbox{\hyperlink{structDDS__ContentFilterProperty_abe20af6df2ce6de23bc88d9f174b2a03}{expression\+\_\+parameters}}
+\begin{DoxyCompactList}\small\item\em Parameters for the filter expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+All of the information necessary for a \doxylink{classDDSDataWriter}{DDSData\+Writer} to perform writer-\/side filtering for a \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__ContentFilterProperty_a4ef9c40d77756d08bae3482f75c853d3}\index{DDS\_ContentFilterProperty@{DDS\_ContentFilterProperty}!content\_filtered\_topic\_name@{content\_filtered\_topic\_name}}
+\index{content\_filtered\_topic\_name@{content\_filtered\_topic\_name}!DDS\_ContentFilterProperty@{DDS\_ContentFilterProperty}}
+\doxyparagraph{\texorpdfstring{content\_filtered\_topic\_name}{content\_filtered\_topic\_name}}
+{\footnotesize\ttfamily \label{structDDS__ContentFilterProperty_a4ef9c40d77756d08bae3482f75c853d3} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gaa55429110993fe0d5038f14200195837}{DDS\+\_\+\+String}} DDS\+\_\+\+Content\+Filter\+Property\+::content\+\_\+filtered\+\_\+topic\+\_\+name}
+
+
+
+Name of the content-\/filtered topic. 
+
+For a Connext Professional \doxylink{classDDSDataReader}{DDSData\+Reader}, this is the name of the content-\/filtered topic that the \doxylink{classDDSDataReader}{DDSData\+Reader} is associated with. 
+
+For interoperability with Connext Professional and the DDS standard, an RTI Connext DDS Micro \doxylink{classDDSDataReader}{DDSData\+Reader} will include a content-\/filtered topic name in its discovery information even though RTI Connext DDS Micro does not support content-\/filtered topics. RTI Connext DDS Micro automatically derives this name for local Data\+Readers from the \doxylink{structDDS__ContentFilterProperty_ab9736363f65c1cbab2301e5078601fff}{DDS\+\_\+\+Content\+Filter\+Property\+::related\+\_\+topic\+\_\+name} and \doxylink{structDDS__ContentFilterQosPolicy_ae1089f3e5cb7df8af6880ed7575ff56d}{DDS\+\_\+\+Content\+Filter\+Qos\+Policy\+::filter\+\_\+name}. Specifically, the name will be formatted as\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sprintf(\mbox{\hyperlink{structDDS__ContentFilterProperty_a4ef9c40d77756d08bae3482f75c853d3}{content\_filtered\_topic\_name}},\ \textcolor{stringliteral}{"{}\%s::\%s"{}},\ \mbox{\hyperlink{structDDS__ContentFilterProperty_ab9736363f65c1cbab2301e5078601fff}{related\_topic\_name}},\ filter\_name);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+
+\end{DoxyCode}
+ If asserting a remote RTI Connext DDS Micro \doxylink{classDDSDataReader}{DDSData\+Reader} using DPSE, you can specify the content-\/filtered topic name in that format to achieve writer-\/side filtering. \Hypertarget{structDDS__ContentFilterProperty_ab9736363f65c1cbab2301e5078601fff}\index{DDS\_ContentFilterProperty@{DDS\_ContentFilterProperty}!related\_topic\_name@{related\_topic\_name}}
+\index{related\_topic\_name@{related\_topic\_name}!DDS\_ContentFilterProperty@{DDS\_ContentFilterProperty}}
+\doxyparagraph{\texorpdfstring{related\_topic\_name}{related\_topic\_name}}
+{\footnotesize\ttfamily \label{structDDS__ContentFilterProperty_ab9736363f65c1cbab2301e5078601fff} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gaa55429110993fe0d5038f14200195837}{DDS\+\_\+\+String}} DDS\+\_\+\+Content\+Filter\+Property\+::related\+\_\+topic\+\_\+name}
+
+
+
+Name of the related (base) topic. 
+
+Specifies the name of the base topic from which the content-\/filtered topic is derived, or in RTI Connext DDS Micro simply the topic that the reader is associated with. \Hypertarget{structDDS__ContentFilterProperty_ae6ac207bba5d2c1617a09e5f2cae29da}\index{DDS\_ContentFilterProperty@{DDS\_ContentFilterProperty}!filter\_class\_name@{filter\_class\_name}}
+\index{filter\_class\_name@{filter\_class\_name}!DDS\_ContentFilterProperty@{DDS\_ContentFilterProperty}}
+\doxyparagraph{\texorpdfstring{filter\_class\_name}{filter\_class\_name}}
+{\footnotesize\ttfamily \label{structDDS__ContentFilterProperty_ae6ac207bba5d2c1617a09e5f2cae29da} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gaa55429110993fe0d5038f14200195837}{DDS\+\_\+\+String}} DDS\+\_\+\+Content\+Filter\+Property\+::filter\+\_\+class\+\_\+name}
+
+
+
+Name of the filter class to use. 
+
+Specifies which filter class should be used to evaluate the filter expression. See \doxylink{structDDS__ContentFilterQosPolicy_ae3f1c043fa595ca1a074d393a16756b9}{DDS\+\_\+\+Content\+Filter\+Qos\+Policy\+::filter\+\_\+class\+\_\+name} for additional information. \Hypertarget{structDDS__ContentFilterProperty_a096d87ccd6cbefcdc2d45922e2889b7e}\index{DDS\_ContentFilterProperty@{DDS\_ContentFilterProperty}!filter\_expression@{filter\_expression}}
+\index{filter\_expression@{filter\_expression}!DDS\_ContentFilterProperty@{DDS\_ContentFilterProperty}}
+\doxyparagraph{\texorpdfstring{filter\_expression}{filter\_expression}}
+{\footnotesize\ttfamily \label{structDDS__ContentFilterProperty_a096d87ccd6cbefcdc2d45922e2889b7e} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gaa55429110993fe0d5038f14200195837}{DDS\+\_\+\+String}} DDS\+\_\+\+Content\+Filter\+Property\+::filter\+\_\+expression}
+
+
+
+The filter expression string. 
+
+Contains the filter expression that determines which samples are accepted by the content filter. See \doxylink{structDDS__ContentFilterQosPolicy_ad701fc2883ab62f3d6b08c7dd880b8de}{DDS\+\_\+\+Content\+Filter\+Qos\+Policy\+::filter\+\_\+expression} for additional information. \Hypertarget{structDDS__ContentFilterProperty_abe20af6df2ce6de23bc88d9f174b2a03}\index{DDS\_ContentFilterProperty@{DDS\_ContentFilterProperty}!expression\_parameters@{expression\_parameters}}
+\index{expression\_parameters@{expression\_parameters}!DDS\_ContentFilterProperty@{DDS\_ContentFilterProperty}}
+\doxyparagraph{\texorpdfstring{expression\_parameters}{expression\_parameters}}
+{\footnotesize\ttfamily \label{structDDS__ContentFilterProperty_abe20af6df2ce6de23bc88d9f174b2a03} 
+struct DDS\+\_\+\+String\+Seq DDS\+\_\+\+Content\+Filter\+Property\+::expression\+\_\+parameters}
+
+
+
+Parameters for the filter expression. 
+
+A sequence of string parameters that can be referenced in the filter expression. See \doxylink{structDDS__ContentFilterQosPolicy_a8b70ce3a87d1335a9bf2ee709a008d79}{DDS\+\_\+\+Content\+Filter\+Qos\+Policy\+::expression\+\_\+parameters} for additional information. 

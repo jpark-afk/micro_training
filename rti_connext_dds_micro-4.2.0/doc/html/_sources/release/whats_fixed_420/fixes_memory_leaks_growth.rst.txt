@@ -1,0 +1,21 @@
+Memory Leaks/Growth
+===================
+
+.. Release Notes from this point.
+
+:minor:`[Minor]` Memory leak in static discovery examples
+---------------------------------------------------------
+The generated examples for C++ using static discovery leaked memory for
+the topic and type names.
+
+[RTI Issue ID MICRO-10046]
+
+:major:`[Major]` Resources not freed when calling unregister_instance on a reliable Zero Copy DataWriter
+--------------------------------------------------------------------------------------------------------
+When using a reliable Zero Copy *DataWriter*, calling
+``FooDataWriter_unregister_instance()`` would not return the instance's 
+resources to the appropriate pool for reuse.
+
+[RTI Issue ID MICRO-10039]
+
+

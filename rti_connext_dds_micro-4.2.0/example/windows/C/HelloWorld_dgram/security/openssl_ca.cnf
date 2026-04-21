@@ -1,0 +1,60 @@
+#
+# OpenSSL example Certificate Authority configuration file.
+
+####################################################################
+[ ca ]
+default_ca    = CA_default
+
+####################################################################
+[ CA_default ]
+dir              = ./ca
+new_certs_dir    = $dir
+certs            = $dir/certs
+crl_dir          = $dir/crl
+database         = $dir/index.txt
+certificate      = $dir/ca.pem
+private_key      = $dir/ca_key.pem
+serial           = $dir/serial
+crlnumber        = $dir/crlnumber
+crl              = $dir/crl.pem
+RANDFILE         = $dir/.rand
+name_opt         = ca_default
+cert_opt         = ca_default
+default_days     = 365
+default_crl_days = 30
+default_md       = sha256
+preserve         = no
+policy           = policy_match
+
+# For the CA policy
+[ policy_match ]
+countryName            = match
+stateOrProvinceName    = match
+organizationName       = match
+organizationalUnitName = optional
+commonName             = supplied
+emailAddress           = optional
+
+[ policy_anything ]
+countryName            = optional
+stateOrProvinceName    = optional
+localityName           = optional
+organizationName       = optional
+organizationalUnitName = optional
+commonName             = supplied
+emailAddress           = optional
+
+[ req ]
+prompt              = no
+distinguished_name  = req_distinguished_name
+
+[ req_distinguished_name ]
+countryName             = US
+stateOrProvinceName     = CA
+localityName            = Sunnyvale
+0.organizationName      = My Organization
+commonName              = My Org CA
+emailAddress            = example@my-organization.com
+
+
+

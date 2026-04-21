@@ -1,0 +1,41 @@
+\doxysubsection{dds\+\_\+c\+\_\+flowcontroller.\+h File Reference}
+\hypertarget{dds__c__flowcontroller_8h}{}\label{dds__c__flowcontroller_8h}\index{dds\_c\_flowcontroller.h@{dds\_c\_flowcontroller.h}}
+
+
+DDS Flow Controller.  
+
+
+{\ttfamily \#include "{}netio/netio\+\_\+flowcontroller.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+common.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+infrastructure.\+h"{}}\newline
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__FlowControllerTokenBucketProperty__t}{DDS\+\_\+\+Flow\+Controller\+Token\+Bucket\+Property\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classDDSFlowController}{DDSFlow\+Controller} uses the popular token bucket approach for open loop network flow control. The flow control characteristics are determined by the token bucket properties. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Determines the flow control characteristics of the \doxylink{classDDSFlowController}{DDSFlow\+Controller}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__DDSFlowControllerModule_gacdd2356baadedf00457c9ce32f5ca115}{DDS\+\_\+\+Flow\+Controller\+Scheduling\+Policy}} \{ \mbox{\hyperlink{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115a22b0cb68305116cc3a5978084685c1cd}{DDS\+\_\+\+RR\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY}}
+, \mbox{\hyperlink{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115afb77daa170cc951b2387ca9e24003a38}{DDS\+\_\+\+EDF\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY}}
+, \mbox{\hyperlink{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115abcc07438223e2fe71c0bff710b3ef020}{DDS\+\_\+\+HPF\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY}}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of flow controller scheduling policy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{group__DDSFlowControllerModule_ga8d70ffa29103edde8717472c79a239d2}{DDS\+\_\+\+DEFAULT\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME}}
+\begin{DoxyCompactList}\small\item\em {\bfseries{\mbox{[}default\mbox{]}}} Special value of \doxylink{structDDS__PublishModeQosPolicy_ae1d0fe3d8d81f5f0a207709a9fc51bac}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::flow\+\_\+controller\+\_\+name} that refers to the built-\/in default flow controller. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{group__DDSFlowControllerModule_gabc34ec170f1c54ddbe002e510cfef8c6}{DDS\+\_\+\+FIXED\+\_\+\+RATE\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME}}
+\begin{DoxyCompactList}\small\item\em Special value of \doxylink{structDDS__PublishModeQosPolicy_ae1d0fe3d8d81f5f0a207709a9fc51bac}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::flow\+\_\+controller\+\_\+name} that refers to the built-\/in fixed-\/rate flow controller. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{group__DDSFlowControllerModule_ga2172a524dbc9cebfeb844408505193ac}{DDS\+\_\+\+ON\+\_\+\+DEMAND\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME}}
+\begin{DoxyCompactList}\small\item\em Special value of \doxylink{structDDS__PublishModeQosPolicy_ae1d0fe3d8d81f5f0a207709a9fc51bac}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::flow\+\_\+controller\+\_\+name} that refers to the built-\/in on-\/demand flow controller. \end{DoxyCompactList}\item 
+const struct \mbox{\hyperlink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t}} \mbox{\hyperlink{group__DDSDomainParticipantModule_gaa1c04b8c62ee5286f5a695c1dbd5ecb5}{DDS\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+PROPERTY\+\_\+\+DEFAULT}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Special value for creating a \doxylink{classDDSFlowController}{DDSFlow\+Controller} with default property. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+DDS Flow Controller. 
+

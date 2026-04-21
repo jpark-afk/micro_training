@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="http://www.omg.org/spec/DDS-Security/20170901/omg_shared_ca_permissions.xsd">
+    <!--
+    A permissions files contains 1 or more grant elements for local
+    DomainParticipants. Rules for discovered DomainParticipants will be 
+    exchanged at run-time.
+    
+    Since RTI Connext DDS Micro performs validation using the official OMG 
+    XSD definition, all elements must be included and defined in the presented
+    order. The XML elements must also follow proper XSD types syntax. Note that
+    this means that for boolean elements the only legal values are "true" and 
+    "false".
+    -->
+    <permissions>
+        <!--
+        Each grant defines the domains and topics which a DomainParticipant, 
+        identified by the grant's subject_name, may or may not access.
+        The grant's name must be unique within the document.
+        -->
+        <grant name="GrantPermissions">
+            <!--
+            subject_name must match the identity used to generate the 
+            DomainParticipant's certificate.
+            -->
+            <subject_name>/C=US/ST=CA/O=My Organization/CN=A subscriber/emailAddress=subscriber@my-organization.com</subject_name>
+            <!--
+            The validity imposes lower and upper time limits on the 
+            applicability of the enclosing grant.
+            -->
+            <validity>
+                <!-- 
+                Format is CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm] 
+                The time zone may be specified as Z (UTC) or (+|-)hh:mm.
+                If the time zone isn't specified, it assumed to be UTC. 
+                -->
+                <not_before>2018-06-01T00:00:00</not_before>
+                <not_after>2023-05-31T23:59:59</not_after>
+            </validity>
+            <!--
+            A grant can contain 1 or more allow_rule and/or deny_rule elements.
+            Each rule pertains a range of domains. An allow_rule provides
+            access for publishing and or subscribing to the topics selected
+            by the enclosed publish and subscribe elements. A deny_rule 
+            explicitly forbids the DomainParticipant to access the selected
+            domains and topic.
+            -->
+            <allow_rule>
+                <!--
+                The domains elements specifies the range of domains affected
+                by the enclosing rule. It is similar to the one used by 
+                the governance file's domain_rule element.
+                -->
+                <domains>
+                    <id>0</id>
+                    <id_range>
+                        <min>1</min>
+                        <max>10</max>
+                    </id_range>
+                </domains>
+                <!--
+                The subscribe element enables/disables access to DataReaders
+                for the select topic(s).
+                
+                It's contents are similar to those of the publish element.
+                -->
+                <subscribe>
+                    <!--
+                    1 or more topic elements must be specified. These elements
+                    must match the full name of the desired topics.
+                    -->
+                    <topics>
+                        <topic>Example *</topic>
+                    </topics>
+                    <!--
+                    The scope of the enclosing element can be further refined
+                    by specifying tag elements. Only DataWriters with the
+                    selected tags in their DataTagQosPolicy will be subjected
+                    to the rule.
+                    -->
+                    <data_tags>
+                        <tag>
+                            <name>aTagName1</name>
+                            <value>aTagValue1</value>
+                        </tag>
+                        <tag>
+                            <name>aTagName2</name>
+                            <value>aTagValue2</value>
+                        </tag>
+                    </data_tags>
+                </subscribe>
+            </allow_rule>
+            <!--
+            A default element can be included to define default rules for all
+            domains and topics not explicitly covered by any of the rules in 
+            the grant. Accepted values are DENY and ALLOW.
+            -->
+            <default>DENY</default>
+        </grant>
+    </permissions>
+</dds>

@@ -1,0 +1,105 @@
+Data Corruption
+===============
+
+.. _MICRO-5930:
+
+:critical:`[Critical]` DataReader on a Topic with appendable type could receive samples with incorrect value
+------------------------------------------------------------------------------------------------------------
+A *DataReader* subscribing to a *Topic* on an appendable type may have received 
+incorrect samples from a matching *DataWriter*. 
+
+The problem only occurred when the *DataWriter* published a type with fewer 
+members than the *DataReader* type. For example, consider a *DataWriter* on 
+FooBase and a *DataReader* on FooDerived:
+
+.. code-block:: css
+
+   @appendable struct FooBase { 
+      sequence<uint8,1024>base_value; 
+   }; 
+
+   @appendable struct FooDerived { 
+      sequence<uint8,1024> base_value; 
+      @default(12) uint8 derived_value; 
+   };
+
+When the *DataWriter* published a sample with type FooBase, in some cases 
+the *DataReader* received a sample in which the field ``derived_value`` was set 
+to 0 instead of 12.
+
+This issue was caused by a bug in which |core| did not set the padding bits in 
+the encapsulation header for a serialized sample as required by the 
+`OMG 'Extensible and Dynamic Topic Types for DDS' specification, version 1.3 <https://www.omg.org/spec/DDS-XTypes/1.3>`_. 
+As a result, some of the padding bytes were interpreted as data.
+
+.. note::
+   
+   This fix may lead to a compatibility issue causing a |me| *DataWriter* to 
+   not match with a |me| or |me_cert| *DataReader*.
+
+   For more information, see :link_external_community_doc_pro_xtypes_um:`Extensible Types Compliance Mask <extensible_types/Data_Representation.htm#4.5_Extensible_Types_Compliance_Mask>`
+   in the *Core Libraries Extensible Types Guide* if you have Internet access.
+
+   Padding bits can be disabled with the :link_connextmicro_dds_api_c_up_two:`dds.xtypes.compliance_mask <group__NDDSGlobalPropertyModule.html>` 
+   property for backwards compatibility with the following releases:
+
+   - |me| 2.4.12 and earlier
+   - |me| 2.4.13.2-5
+   - |me| 2.4.14 and 2.4.14.1
+   - |me_cert| 2.4.12.1
+   - |me_cert| 2.4.13.1
+   - |me_cert| 2.4.15.1
+   - |me| 3
+   - |me| 4.0.0
+
+[RTI Issue ID MICRO-5930]
+
+:critical:`[Critical]` Undefined behavior using XCDR2 with keyed topic types with key union members
+---------------------------------------------------------------------------------------------------
+
+Using XCDR encoding version 2 (XCDR2) with keyed topic types with key union 
+members was not supported. For example:
+
+.. code-block:: 
+
+   union MyUnion switch(long) {
+      case 0:
+          long m_long;
+      case 1:
+          short m_short;
+   };
+
+   struct StructWithUnionKey {
+      @key MyUnion m_union;
+      long m_long;
+   };
+
+The behavior was undefined if any of your topic types had a union key member. 
+The results varied, from a potential segmentation fault to an incorrect key 
+hash in which two instances were considered equal.
+
+[RTI Issue ID MICRO-5933]
+
+:critical:`[Critical]` Incorrect keyhash generated when receiving data without a keyhash from a node with different endianness 
+------------------------------------------------------------------------------------------------------------------------------
+
+A *DataReader* would generate an incorrect keyhash for a received sample if 
+all of the following were true:
+
+- The *DataReader* did not receive a keyhash in a sample for a keyed type.
+- The *DataReader* used the FLAT_DATA language binding.
+- The sample was sent from a node with different endianess than the 
+  *DataReader*.
+
+Also, a *DataReader* would generate an incorrect keyhash for a DISPOSE or UNREGISTER sample if:
+
+- The *DataReader* did not receive a keyhash in a DISPOSE or UNREGISTER sample for a keyed type.
+- The *DataReader* used IDL compiled with ``-interpreted 1`` (the default).
+- The DISPOSE or UNREGISTER sample was sent from a node with a different endianess than the *DataReader*.
+
+.. note:: 
+   
+   Both |me| and |core_pro| send a keyhash by default, but |core_pro| can be configured to send without a keyhash.
+
+[RTI Issue ID MICRO-6870]
+

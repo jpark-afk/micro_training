@@ -1,0 +1,67 @@
+\doxysubsubsection{Domain Module}
+\hypertarget{group__DDSDomainModule}{}\label{group__DDSDomainModule}\index{Domain Module@{Domain Module}}
+
+
+Contains the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} class that acts as an entrypoint of RTI Connext DDS Micro and acts as a factory for many of the classes. The \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} also acts as a container for the other objects that make up RTI Connext DDS Micro. Testing RTI Connext DDS Micro command.  
+
+
+\doxysubsubsubsubsection*{Topics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule}{Domain\+Participant\+Factory}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classDDSDomainParticipantFactory}{DDSDomain\+Participant\+Factory} entity and associated elements \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSDomainParticipantModule}{Domain\+Participant}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} entity and associated elements \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSDiscoveryModule}{Discovery}}
+\begin{DoxyCompactList}\small\item\em Descriptions of remote entities used for discovery. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DDSDomainModule_ga4436e042bbc423d24c5624ca246610ec}{DDSThe\+Participant\+Factory}}~\mbox{\hyperlink{classDDSDomainParticipantFactory_af97713a0773c8f0d6d5bcd63409bfdbd}{DDSDomain\+Participant\+Factory\+::get\+\_\+instance}}()
+\begin{DoxyCompactList}\small\item\em Can be used as an alias for the singleton factory returned by the operation \doxylink{classDDSDomainParticipantFactory_af97713a0773c8f0d6d5bcd63409bfdbd}{DDSDomain\+Participant\+Factory\+::get\+\_\+instance()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef DDS\+\_\+\+DOMAINID\+\_\+\+TYPE\+\_\+\+NATIVE \mbox{\hyperlink{group__DDSDomainModule_ga060e392b8334a6dbc289ec0f363df67a}{DDS\+\_\+\+Domain\+Id\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em An integer that indicates in which domain a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} communicates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Contains the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} class that acts as an entrypoint of RTI Connext DDS Micro and acts as a factory for many of the classes. The \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} also acts as a container for the other objects that make up RTI Connext DDS Micro. Testing RTI Connext DDS Micro command. 
+
+Defines the DDS domain package.
+
+This image describes the DDS Domain Package, as described by the DDS standard. Note that not all functions and objects shown in this diagram are supported by RTI Connext DDS Micro. Please read the information on the individual types to determine whether a function is supported. 
+
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__DDSDomainModule_ga4436e042bbc423d24c5624ca246610ec}\index{Domain Module@{Domain Module}!DDSTheParticipantFactory@{DDSTheParticipantFactory}}
+\index{DDSTheParticipantFactory@{DDSTheParticipantFactory}!Domain Module@{Domain Module}}
+\doxyparagraph{\texorpdfstring{DDSTheParticipantFactory}{DDSTheParticipantFactory}}
+{\footnotesize\ttfamily \label{group__DDSDomainModule_ga4436e042bbc423d24c5624ca246610ec} 
+\#define DDSThe\+Participant\+Factory~\mbox{\hyperlink{classDDSDomainParticipantFactory_af97713a0773c8f0d6d5bcd63409bfdbd}{DDSDomain\+Participant\+Factory\+::get\+\_\+instance}}()}
+
+
+
+Can be used as an alias for the singleton factory returned by the operation \doxylink{classDDSDomainParticipantFactory_af97713a0773c8f0d6d5bcd63409bfdbd}{DDSDomain\+Participant\+Factory\+::get\+\_\+instance()}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDomainParticipantFactory_af97713a0773c8f0d6d5bcd63409bfdbd}{DDSDomain\+Participant\+Factory\+::get\+\_\+instance} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsubsection{Typedef Documentation}
+\Hypertarget{group__DDSDomainModule_ga060e392b8334a6dbc289ec0f363df67a}\index{Domain Module@{Domain Module}!DDS\_DomainId\_t@{DDS\_DomainId\_t}}
+\index{DDS\_DomainId\_t@{DDS\_DomainId\_t}!Domain Module@{Domain Module}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainId\_t}{DDS\_DomainId\_t}}
+{\footnotesize\ttfamily \label{group__DDSDomainModule_ga060e392b8334a6dbc289ec0f363df67a} 
+typedef DDS\+\_\+\+DOMAINID\+\_\+\+TYPE\+\_\+\+NATIVE \mbox{\hyperlink{group__DDSDomainModule_ga060e392b8334a6dbc289ec0f363df67a}{DDS\+\_\+\+Domain\+Id\+\_\+t}}}
+
+
+
+An integer that indicates in which domain a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} communicates. 
+
+Participants with the same \doxylink{group__DDSDomainModule_ga060e392b8334a6dbc289ec0f363df67a}{DDS\+\_\+\+Domain\+Id\+\_\+t} are said to be in the same domain, and can thus communicate with one another. 
+
+The lower limit for a domain ID is 0. The upper limit for a domain ID is determined by the guidelines of the RTPS specification of the well-\/known ports on which a Participant will listen for discovery metatraffic from other Participants. \input{group__DDSDomainParticipantFactoryModule}
+\input{group__DDSDomainParticipantModule}
+\input{group__DDSDiscoveryModule}

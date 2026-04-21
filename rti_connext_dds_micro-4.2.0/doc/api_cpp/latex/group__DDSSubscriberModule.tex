@@ -1,0 +1,67 @@
+\doxysubsubsubsection{Subscriber}
+\hypertarget{group__DDSSubscriberModule}{}\label{group__DDSSubscriberModule}\index{Subscriber@{Subscriber}}
+
+
+\doxylink{classDDSSubscriber}{DDSSubscriber} entity and associated elements  
+
+
+\doxysubsubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos}}
+\begin{DoxyCompactList}\small\item\em QoS policies supported by a \doxylink{classDDSSubscriber}{DDSSubscriber} entity. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classDDSSubscriberListener}{DDSSubscriber\+Listener}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{classDDSListener}{DDSListener} for status about a subscriber. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classDDSSubscriber}{DDSSubscriber}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} A subscriber is the object responsible for actually receiving data from a subscription. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos}} \mbox{\hyperlink{group__DDSSubscriberModule_ga10e72a8d4b8ee4d40a7dd8a603927288}{DDS\+\_\+\+DATAREADER\+\_\+\+QOS\+\_\+\+DEFAULT}}
+\begin{DoxyCompactList}\small\item\em Special value for creating data reader with default QoS. \end{DoxyCompactList}\item 
+const struct \mbox{\hyperlink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos}} \mbox{\hyperlink{group__DDSSubscriberModule_ga2fca4ad1f04b053fc675cdfdfdb9c9f1}{DDS\+\_\+\+DATAREADER\+\_\+\+QOS\+\_\+\+USE\+\_\+\+TOPIC\+\_\+\+QOS}}
+\begin{DoxyCompactList}\small\item\em Special value for creating \doxylink{classDDSDataReader}{DDSData\+Reader} with a combination of the default \doxylink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos} and the \doxylink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+\doxylink{classDDSSubscriber}{DDSSubscriber} entity and associated elements 
+
+
+
+\doxysubsubsubsubsection{Variable Documentation}
+\Hypertarget{group__DDSSubscriberModule_ga10e72a8d4b8ee4d40a7dd8a603927288}\index{Subscriber@{Subscriber}!DDS\_DATAREADER\_QOS\_DEFAULT@{DDS\_DATAREADER\_QOS\_DEFAULT}}
+\index{DDS\_DATAREADER\_QOS\_DEFAULT@{DDS\_DATAREADER\_QOS\_DEFAULT}!Subscriber@{Subscriber}}
+\doxyparagraph{\texorpdfstring{DDS\_DATAREADER\_QOS\_DEFAULT}{DDS\_DATAREADER\_QOS\_DEFAULT}}
+{\footnotesize\ttfamily \label{group__DDSSubscriberModule_ga10e72a8d4b8ee4d40a7dd8a603927288} 
+const struct \mbox{\hyperlink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos}} DDS\+\_\+\+DATAREADER\+\_\+\+QOS\+\_\+\+DEFAULT\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Special value for creating data reader with default QoS. 
+
+When used in \doxylink{classDDSSubscriber_adf2acf9e22681064e6966cac2258ac5c}{DDSSubscriber\+::create\+\_\+datareader}, this special value is used to indicate that the \doxylink{classDDSDataReader}{DDSData\+Reader} should be created with the default \doxylink{classDDSDataReader}{DDSData\+Reader} QoS. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSSubscriber_adf2acf9e22681064e6966cac2258ac5c}{DDSSubscriber\+::create\+\_\+datareader} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSSubscriberModule_ga2fca4ad1f04b053fc675cdfdfdb9c9f1}\index{Subscriber@{Subscriber}!DDS\_DATAREADER\_QOS\_USE\_TOPIC\_QOS@{DDS\_DATAREADER\_QOS\_USE\_TOPIC\_QOS}}
+\index{DDS\_DATAREADER\_QOS\_USE\_TOPIC\_QOS@{DDS\_DATAREADER\_QOS\_USE\_TOPIC\_QOS}!Subscriber@{Subscriber}}
+\doxyparagraph{\texorpdfstring{DDS\_DATAREADER\_QOS\_USE\_TOPIC\_QOS}{DDS\_DATAREADER\_QOS\_USE\_TOPIC\_QOS}}
+{\footnotesize\ttfamily \label{group__DDSSubscriberModule_ga2fca4ad1f04b053fc675cdfdfdb9c9f1} 
+const struct \mbox{\hyperlink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos}} DDS\+\_\+\+DATAREADER\+\_\+\+QOS\+\_\+\+USE\+\_\+\+TOPIC\+\_\+\+QOS\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Special value for creating \doxylink{classDDSDataReader}{DDSData\+Reader} with a combination of the default \doxylink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos} and the \doxylink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos}. 
+
+The use of this value is equivalent to the application obtaining the default \doxylink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos} and the \doxylink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos} (by means of the operation \doxylink{classDDSTopic_ac5e4aa18fb18ec7725e189b3f3e48c8e}{DDSTopic\+::get\+\_\+qos}) and then combining these two QoS so that any policy that is set on the \doxylink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos} "{}overrides"{} the corresponding policy on the default QoS. The resulting QoS is then applied to the creation of the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+This value should only be used in \doxylink{classDDSSubscriber_adf2acf9e22681064e6966cac2258ac5c}{DDSSubscriber\+::create\+\_\+datareader}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSSubscriber_adf2acf9e22681064e6966cac2258ac5c}{DDSSubscriber\+::create\+\_\+datareader} 
+
+\doxylink{classDDSSubscriber_a04d43ea1ba0f27b6868be97980cd0f34}{DDSSubscriber\+::get\+\_\+default\+\_\+datareader\+\_\+qos} 
+
+\doxylink{classDDSTopic_ac5e4aa18fb18ec7725e189b3f3e48c8e}{DDSTopic\+::get\+\_\+qos} 
+\end{DoxySeeAlso}

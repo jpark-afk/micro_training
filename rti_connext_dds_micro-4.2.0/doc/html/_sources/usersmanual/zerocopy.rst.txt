@@ -1,0 +1,421 @@
+.. _section-zero-copy-transfer:
+
+Zero Copy Transfer
+================== 
+
+Zero Copy transfer enables |rti_me| to transmit data samples without copying 
+them internally, similar to 
+:link_external_community_doc_pro_um:`Zero Copy Transfer Over Shared Memory <users_manual/SendingLDZeroCopy.htm>`
+in |core_pro|. This offers several benefits, 
+including higher throughput of user data, reduced latency between DDS 
+endpoints (compared to other transports that send serialized data, such as 
+UDP), and decoupling sample size from latency. This is particularly useful in 
+applications with large sample sizes, such as image or lidar point cloud data.
+
+At a high level, Zero Copy transfer works by a *DataWriter* and *DataReader* 
+accessing the same shared memory; see :numref:`FigureZCOverview` below. 
+A Zero Copy-enabled *DataWriter* creates a structure in a shared memory region 
+and allocates samples from its pool to shared memory. When samples are 
+published by the *DataWriter*, matching *DataReaders* are notified via a 
+transport that new samples are available in shared memory. The *DataReader* 
+then accesses the samples in shared memory using the standard DDS read/take 
+APIs. Note that the *DataReader* and *DataWriter* must be 
+co-located—that is, within the same operating system instance.
+
+.. _FigureZCOverview:
+
+.. figure:: ../images/cert-zc-diagram.png
+   :width: 50%
+   :align: center
+   
+   Zero Copy Transfer in |me|
+
+There are two methods for performing Zero Copy transfer in |me|, which we refer 
+to as Zero Copy v1 and v2 in this documentation. The main difference between
+these two methods is the transport used to notify *DataReaders* that new 
+samples are available:
+
+* Zero Copy v1: :ref:`section-shared-memory-transport`
+* Zero Copy v2: :ref:`section-zero-copy-v2-transport`
+
+When choosing between the two versions, consider primarily whether you plan to 
+interoperate |me| with |me_cert| or |core_pro|. Zero Copy v1 is compatible 
+with |core_pro|, while Zero Copy v2 is compatible with |me_cert|. Other 
+functional differences between v1 and v2 are described in 
+:ref:`section-zc-compatibility`.
+
+.. _section-zc-compatibility:
+
+Compatibility
+-------------
+
+Zero Copy v1 and v2 are API-compatible, meaning the API is identical whether
+you are using the Shared Memory transport or Zero Copy v2 transport. 
+However, there are some important functional differences between the two 
+versions:
+
+#. **Interoperability:** Zero Copy v1 is compatible with the 
+   :link_external_community_doc_pro_um:`Zero Copy Transfer Over Shared Memory <users_manual/SendingLDZeroCopy.htm>`
+   feature in |core_pro|, but not with |me_cert|. Zero Copy v2 is not 
+   compatible with |core_pro|, but is compatible with the Zero Copy transfer 
+   feature in |me_cert|. 
+
+   .. warning::
+
+      Zero Copy transfer is not supported on all versions of |me_cert|. Consult
+      the documentation in your |me_cert| installation for more information.
+
+#. **Sample synchronization:** Zero Copy v2 synchronizes samples between 
+   the *DataWriter* and the *DataReader*. This ensures that a *DataReader* 
+   cannot access a sample while it is being modified by the *DataWriter*. As 
+   a result, the *DataReader* does not need to call the API 
+   ``FooDataReader_is_data_consistent`` to verify whether the sample has been 
+   changed, because the API always returns TRUE. In contrast, Zero Copy v1 does 
+   not provide any consistency checks, making it necessary for you to call 
+   ``FooDataReader_is_data_consistent``.
+   
+   .. note::
+    
+      In Zero Copy v2, a slow *DataReader* may still miss samples if the 
+      *DataWriter* overwrites them. These missed samples will not be delivered 
+      to the reader. This is similar to Zero Copy v1, where samples can be 
+      missed, but v1 offers no guarantees of consistency between *DataWriter* 
+      and *DataReader*.
+
+#. **Volatile DataReaders:** When using Zero Copy v2, a volatile *DataReader* 
+   receives all the historical samples available in the *DataWriter*’s queue. 
+   Zero Copy v1 uses the ``depth`` that is set for historical samples.
+
+#. **Sample acknowledgement:** Zero Copy v2 does not support sample 
+   acknowledgments. The transport is inherently reliable, meaning that the 
+   *DataWriter*'s samples are immediately available to the *DataReader*. 
+   However, samples may be removed from the *DataWriter*'s cache when the 
+   queue reaches its ``history.depth``, even if the reader has not accessed 
+   them.
+
+#. **KEEP_ALL support:** Zero Copy v2 does not support the ``KEEP_ALL`` 
+   policy. Zero Copy v1 supports ``KEEP_ALL``.
+
+#. **Version priority:** If both Zero Copy v1 and v2 are enabled, |me|
+   will prioritize Zero Copy v1 over v2. 
+
+The following table summarizes the key differences between the two versions:
+
+.. list-table:: Zero Copy Compatibility
+   :widths: 50 25 25
+   :header-rows: 1
+
+   * - Feature
+     - Zero Copy v1
+     - Zero Copy v2
+   * - Compatibility with |core_pro|
+     - **✓**
+     - **✗**
+   * - Compatibility with |me_cert|
+     - **✗**
+     - **✓** [1]_
+   * - Sample synchronization
+     - **✗**
+     - **✓**
+   * - Sample acknowledgement
+     - **✓**
+     - **✗**
+   * - Support for ``KEEP_ALL``
+     - **✓**
+     - **✗**
+   * - Transfer of discovery data
+     - **✓** [2]_
+     - **✗**
+
+
+.. [1] Only if Zero Copy v2 is supported on the corresponding version of |me_cert|.
+.. [2] Discovery data is sent over the Shared Memory Transport (SHMEM), but it is not 
+       zero copied over.  
+
+Overview
+--------
+
+Zero Copy samples reside in a shared memory region accessible from
+multiple processes. When creating a 
+:link_connextmicro_dds_api_c_up_one:`FooDataWriter <structFooDataWriter.html>` 
+that supports Zero Copy transfer of user samples, a sample must be created 
+with a new non-DDS API (:link_connextmicro_dds_api_c_up_one:`FooDataWriter_get_loan() <group__DDSWriterModule.html>`). 
+This will return a 
+pointer A* to a sample ``Foo`` that lies inside a shared memory segment. A 
+reference to this sample will be sent to a receiving 
+:link_connextmicro_dds_api_c_up_one:`FooDataReader <structFooDataReader.html>` 
+across the shared memory. This 
+:link_connextmicro_dds_api_c_up_one:`FooDataReader <structFooDataReader.html>` 
+will attach to a shared memory segment, and a pointer B* to sample ``Foo`` will 
+be presented to the user. Because the two processes share different memory 
+spaces, A* and B* will be different but they will point to the same place in 
+RAM.
+
+This feature requires using new RTI DDS Extension APIs:
+
+- :link_connextmicro_dds_api_c_up_one:`FooDataWriter_get_loan() <group__DDSWriterModule.html>`
+- :link_connextmicro_dds_api_c_up_one:`FooDataWriter_discard_loan() <group__DDSWriterModule.html>`
+- :link_connextmicro_dds_api_c_up_one:`FooDataReader_is_data_consistent() <group__DDSReaderModule.html>`
+
+
+Getting started
+---------------
+
+To enable Zero Copy transfer (either v1 or v2), follow these steps:
+
+1. Annotate your type with the ``@transfer_mode(SHMEM_REF)`` annotation.
+ 
+   Currently, variable-length types (strings and sequences) are not 
+   supported for types using this transfer mode when a type is annotated 
+   with the PLAIN language binding (e.g., ``@language_binding(PLAIN)`` in IDL).
+
+   .. code-block:: idl
+
+     @transfer_mode(SHMEM_REF)
+     struct HelloWorld
+     {
+         long id;
+         char raw_image_data[1024 * 1024]; // 1 MB
+     };
+
+2. Register the :ref:`section-shared-memory-transport` 
+   OR the :ref:`section-zero-copy-v2-transport`.
+   References will be sent across the chosen transport.
+
+   .. note::
+
+      If both transports are registered, |me| will prioritize
+      the Shared Memory transport (SHMEM) over the Zero Copy v2 transport
+      as described in :ref:`section-zc-compatibility`.
+
+   .. warning::
+
+      If neither transport is registered AND your type is annotated with
+      ``@transfer_mode(SHMEM_REF)`` (which can occur when using your annotated
+      type with a version of |me| that doesn't support Zero Copy), two things
+      will happen:
+
+      #. |me| will not create a shared memory region for data samples, and;
+      #. Calls to :link_connextmicro_dds_api_c_up_one:`FooDataWriter_get_loan() <group__DDSWriterModule.html>`
+         will fail with ``PRECONDITION_NOT_MET``.
+
+      However, the *DataWriter* will still be created and can be used to send
+      samples without using Zero Copy transfer.
+
+3. Create a :link_connextmicro_dds_api_c_up_one:`FooDataWriter <structFooDataWriter.html>` 
+   for the above type.
+
+4. Get a loan on a sample using :link_connextmicro_dds_api_c_up_one:`FooDataWriter_get_loan() <group__DDSWriterModule.html>`.
+
+5. Write a sample using :link_connextmicro_dds_api_c_up_one:`FooDataWriter_write() <group__DDSWriterModule.html>`.
+
+For more information, see the example **HelloWorld_zero_copy**, or generate 
+an example for a type annotated with ``@transfer_mode(SHMEM_REF)``:
+
+.. code-block:: console
+
+  rtiddsgen -example -micro -language C HelloWorld.idl
+
+Writing samples
+...............
+
+The following code illustrates how to write samples annotated with 
+``@transfer_mode(SHMEM_REF)``:
+
+.. code-block:: c
+
+    for (int i = 0; i < 10; i++)
+    {
+        Foo* sample;
+        DDS_ReturnCode_t dds_rc;
+        /* NEW API
+           IMPORTANT - call get_loan each time when writing a NEW sample
+         */
+        dds_rc = FooDataWriter_get_loan(hw_datawriter, &sample);
+
+        if (dds_rc != DDS_RETCODE_OK)
+        {
+            printf("Failed to get a loan\n");
+            return -1;
+        }
+
+        /* After this function returns with DDS_RETCODE_OK,
+         * the middleware owns the sample
+         */
+        dds_rc = FooDataWriter_write(hw_datawriter, sample, &DDS_HANDLE_NIL);
+    }
+
+Reading samples
+...............
+
+The following code illustrates how to read samples annotated with 
+``@transfer_mode(SHMEM_REF)``:
+
+.. code-block:: c
+
+    DDS_ReturnCode_t dds_rc;
+    dds_rc = FooDataReader_take(...)
+
+    /* process sample here */
+    /* NEW API 
+       IMPORTANT - is_data_consistent will always return true when ZC v2 is being used 
+     */
+
+    dds_rc = FooDataReader_is_data_consistent(hw_reader,
+                                               &is_data_consistent,
+                                               sample,sample_info);
+
+    if (dds_rc == DDS_RETCODE_OK)
+    {	
+         if (is_data_consistent)
+         {
+             /* Sample is consistent. Processing of sample is valid */
+         }
+         else
+         {
+            /* Sample is NOT consistent. Any processing of the sample should
+             * be discarded and considered invalid.
+             */
+         }
+    }
+
+Synchronizing samples
+---------------------
+
+Zero Copy v1 and v2 handle sample synchronization differently. The following 
+sections explain these differences in detail.
+
+Zero Copy v1 synchronization
+............................
+
+In Zero Copy v1, no synchronization exists between the sender (*DataWriter*) 
+and the receiver (*DataReader*) for Zero Copy samples. This means that a 
+sample's content can be invalidated before the receiver has a chance to 
+read it.
+
+For example, consider creating a best-effort *DataWriter* with 
+``max_samples = 1``. When the *DataWriter* is initialized, the middleware 
+pre-allocates a pool of ``max_samples`` + 1 (2) samples in a shared memory 
+region. These samples are loaned to the *DataWriter* when calling
+:link_connextmicro_dds_api_c_up_one:`FooDataWriter_get_loan() <group__DDSWriterModule.html>`.
+
+The following code illustrates this:
+
+.. code-block:: c
+
+   DDS_ReturnCode_t ddsrc;
+   Foo* sample;
+
+   ddsrc = FooDataWriter_get_loan(dw, &sample); /* returns pointer to sample 1 */
+   sample->value = 10000;
+   ddsrc = FooDataWriter_write(datawriter, sample, &DDS_HANDLE_NIL);
+   /*
+   * As this is a best-effort writer, the middleware immediately makes
+   * this sample available for reuse by another FooDataWriter_get_loan(...) call.
+   */
+
+   ddsrc = FooDataWriter_get_loan(dw, &sample); /* returns pointer to sample 2 */
+   sample->value = 20000;
+   ddsrc = FooDataWriter_write(datawriter, sample, &DDS_HANDLE_NIL);
+   /*
+   * Again, the sample is made available immediately for reuse.
+   */
+
+   /*
+   * At this point, the sample may have been received by the DataReader
+   * but not yet presented to the user.
+   */
+
+   ddsrc = FooDataWriter_get_loan(dw, &sample); /* returns pointer to sample 1 */
+   /* 
+   * sample->value will now contain 10000 because the sample is reused 
+   * from a pool with only 2 buffers.
+   *
+   * Additionally, references to both sample 1 and sample 2 might already
+   * have been received by the middleware on the *DataReader* side and stored
+   * in its internal cache. However, these samples may not yet have been delivered
+   * to the application. If sample->value is modified to 999 at this point,
+   * a subsequent call to *read()* or *take()* from the Subscriber will return 999,
+   * not the expected 10000. This happens because both the Publisher and Subscriber
+   * share the same memory region.
+   * 
+   * Use `FooDataReader_is_data_consistent` to verify sample consistency and avoid
+   * this issue.
+   *
+   * Note: A sample becomes invalidated right after `FooDataWriter_get_loan(dw, &sample)`
+   * is completed. If the sample address has already been written to and has not yet
+   * been read by the receiver, the previously written data is invalidated.
+   */
+
+   ddsrc = FooDataWriter_write(datawriter, sample, &DDS_HANDLE_NIL);
+
+Zero Copy v2 synchronization
+............................
+
+Zero Copy v2 provides synchronization between the *DataWriter* and 
+*DataReader*. Since the queue size is limited, samples are reused once the 
+queue is full. However, if a *DataWriter* modifies a sample before the 
+*DataReader* has accessed it, that sample will not be presented to the user. 
+Additionally, samples currently being read by the *DataReader* are locked, 
+preventing the *DataWriter* from accessing them.
+
+Consider the following example with ``max_samples = 1`` (internally, the 
+middleware will allocate 2 samples):
+
+.. code-block:: c
+
+   ddsrc = FooDataWriter_get_loan(dw, &sample); /* returns pointer to sample 1 */
+   sample->value = 10000;
+   ddsrc = FooDataWriter_write(datawriter, sample, &DDS_HANDLE_NIL);
+
+   ddsrc = FooDataWriter_get_loan(dw, &sample); /* returns pointer to sample 2 */
+   sample->value = 20000;
+   ddsrc = FooDataWriter_write(datawriter, sample, &DDS_HANDLE_NIL);
+
+   /* Both samples are now available to the user, but the Reader may not have accessed them yet. */
+
+   ddsrc = FooDataWriter_get_loan(dw, &sample); /* returns pointer to sample 1 */
+   sample->value = 30000;
+   ddsrc = FooDataWriter_write(datawriter, sample, &DDS_HANDLE_NIL);
+
+If the *DataReader* takes all the samples:
+
+.. code-block:: c
+
+   FooDataReader_take(reader,
+                     &sample_seq, &info_seq,
+                     DDS_LENGTH_UNLIMITED,
+                     DDS_ANY_SAMPLE_STATE,
+                     DDS_ANY_VIEW_STATE,
+                     DDS_ANY_INSTANCE_STATE);
+
+It will only receive two samples with values of ``20000`` and ``30000``, 
+respectively.
+
+If both the samples are currently being accessed by the user by calling 
+:link_connextmicro_dds_api_c_up_one:`FooDataReader_read() <group__DDSReaderModule.html>` 
+or :link_connextmicro_dds_api_c_up_one:`FooDataReader_take() <group__DDSReaderModule.html>`,
+they will be locked. Any attempt to call
+:link_connextmicro_dds_api_c_up_one:`FooDataWriter_get_loan() <group__DDSWriterModule.html>` 
+on the *DataWriter* will result in an 
+``OUT_OF_RESOURCES`` error.
+
+Caveats
+-------
+
+- After you call :link_connextmicro_dds_api_c_up_one:`FooDataWriter_write() <group__DDSWriterModule.html>`, 
+  the middleware takes ownership of the sample. It
+  is no longer safe to make any changes to the sample that was written. If, for
+  whatever reason, you call :link_connextmicro_dds_api_c_up_one:`FooDataWriter_get_loan() <group__DDSWriterModule.html>` 
+  but never write the sample,
+  you must call :link_connextmicro_dds_api_c_up_one:`FooDataWriter_discard_loan() <group__DDSWriterModule.html>` 
+  to return the sample back to the
+  :link_connextmicro_dds_api_c_up_one:`FooDataWriter <structFooDataWriter.html>`.
+  Otherwise, subsequently calling :link_connextmicro_dds_api_c_up_one:`FooDataWriter_get_loan() <group__DDSWriterModule.html>` 
+  may fail, because the 
+  :link_connextmicro_dds_api_c_up_one:`FooDataWriter <structFooDataWriter.html>` 
+  has no samples to loan.
+
+- The current maximum supported sample size is a little under the maximum value of a
+  signed 32-bit integer. For that reason, do not use any samples greater than
+  2000000000 bytes.

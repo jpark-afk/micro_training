@@ -1,0 +1,286 @@
+\doxysubsection{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data Struct Reference}
+\hypertarget{structDDS__SubscriptionBuiltinTopicData}{}\label{structDDS__SubscriptionBuiltinTopicData}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+
+
+Entry created when a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} is discovered in association with its Subscriber.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+discovery.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a14599622a1aeb8a442addb89a5e11a31}{key}}
+\begin{DoxyCompactList}\small\item\em DCPS key to distinguish entries. This is used to configure the object ID of the remote \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a557c986c6fd6c59172630fe7fd8548f9}{participant\+\_\+key}}
+\begin{DoxyCompactList}\small\item\em DCPS key of the participant to which the Data\+Reader belongs. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a0efa9df748625b49236c97b2a3d931a7}{topic\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em Name of the related \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a55f18ae15068f9cd4a00d9b1d76f7280}{type\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em Name of the type attached to the \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DeadlineQosPolicy}{DDS\+\_\+\+Deadline\+Qos\+Policy}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a596c3889d7832089acfc6bc993933294}{deadline}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Reader. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__OwnershipQosPolicy}{DDS\+\_\+\+Ownership\+Qos\+Policy}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a2474a9d4c4668abad2b408fea10e3fed}{ownership}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Reader. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LatencyBudgetQosPolicy}{DDS\+\_\+\+Latency\+Budget\+Qos\+Policy}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a287fcbce93a86d3d4eab693fc0a62341}{latency\+\_\+budget}}
+\begin{DoxyCompactList}\small\item\em Latency budget policy, \doxylink{group__DDSLatencyBudgetQosModule}{LATENCY\+\_\+\+BUDGET}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__ReliabilityQosPolicy}{DDS\+\_\+\+Reliability\+Qos\+Policy}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a84ad8f24bfc84563082e5708b15d5103}{reliability}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Reader. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LivelinessQosPolicy}{DDS\+\_\+\+Liveliness\+Qos\+Policy}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a713277aec1eed944de33226f92f24460}{liveliness}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Reader. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DurabilityQosPolicy}{DDS\+\_\+\+Durability\+Qos\+Policy}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a54e08da9c9a243553008d6639840fb9d}{durability}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Reader. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DestinationOrderQosPolicy}{DDS\+\_\+\+Destination\+Order\+Qos\+Policy}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a7e371141c97ca6dd30c4bec75263554f}{destination\+\_\+order}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Reader. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a2a4fe2c8a4dc7d7d74fa47674f266284}{unicast\+\_\+locator}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Custom unicast locator that the endpoint can specify. The default locator will be used if this is not specified. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a5593bce181602594b70f069d0b906f74}{multicast\+\_\+locator}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Custom multicast locator that the endpoint can specify. The default locator will be used if this is not specified. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PresentationQosPolicy}{DDS\+\_\+\+Presentation\+Qos\+Policy}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_aa088b37585057d548739d168989a06d4}{presentation}}
+\begin{DoxyCompactList}\small\item\em Policy of the Subscriber to which the Data\+Reader belongs. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DataRepresentationQosPolicy}{DDS\+\_\+\+Data\+Representation\+Qos\+Policy}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a9d8eb3dfa3459d5bc3f64714e24923a8}{representation}}
+\begin{DoxyCompactList}\small\item\em Data representation policy, \doxylink{group__DDSDataRepresentationQosModule}{DATA\+\_\+\+REPRESENTATION}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PartitionQosPolicy}{DDS\+\_\+\+Partition\+Qos\+Policy}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a424ff83753397bb5be1149947e9c9931}{partition}}
+\begin{DoxyCompactList}\small\item\em Policy of the Subscriber to which the Data\+Reader belongs. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__UserDataQosPolicy}{DDS\+\_\+\+User\+Data\+Qos\+Policy}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_ad18ba165bfc8e733aaec2ff0c57d6d40}{user\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Data\+Reader. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__GroupDataQosPolicy}{DDS\+\_\+\+Group\+Data\+Qos\+Policy}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_ae9d9f7b777d8621b6f09354f47fb9f7d}{group\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Policy of the Subscriber to which the Data\+Reader belongs. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__TopicDataQosPolicy}{DDS\+\_\+\+Topic\+Data\+Qos\+Policy}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_a61213decf9e41ddcbc853d7575f7d623}{topic\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Policy of the related Topic. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__ContentFilterProperty}{DDS\+\_\+\+Content\+Filter\+Property}} \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData_ac5dbada9acc9a4a02fc0faa176e6a8b2}{content\+\_\+filter}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_experimental}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}experimental\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} All of the information required for a Data\+Writer to perform writer-\/side filtering for a Data\+Reader. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Entry created when a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} is discovered in association with its Subscriber. 
+
+Data associated with the built-\/in topic \doxylink{group__DDSSubscriptionBuiltInTopicModule_ga8ec8298fd7aeca2884745db2c94e7aa8}{DDS\+\_\+\+SUBSCRIPTION\+\_\+\+TOPIC\+\_\+\+NAME}. It contains QoS policies and additional information that apply to the remote \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} the related \doxylink{group__DDSSubscriberModule_ga2755712602505786a23baef5a42d6782}{DDS\+\_\+\+Subscriber}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSSubscriptionBuiltInTopicModule_ga8ec8298fd7aeca2884745db2c94e7aa8}{DDS\+\_\+\+SUBSCRIPTION\+\_\+\+TOPIC\+\_\+\+NAME} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a14599622a1aeb8a442addb89a5e11a31}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!key@{key}}
+\index{key@{key}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{key}{key}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a14599622a1aeb8a442addb89a5e11a31} 
+struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::key}
+
+
+
+DCPS key to distinguish entries. This is used to configure the object ID of the remote \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. 
+
+Key GUID must be first \Hypertarget{structDDS__SubscriptionBuiltinTopicData_a557c986c6fd6c59172630fe7fd8548f9}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!participant\_key@{participant\_key}}
+\index{participant\_key@{participant\_key}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{participant\_key}{participant\_key}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a557c986c6fd6c59172630fe7fd8548f9} 
+struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::participant\+\_\+key}
+
+
+
+DCPS key of the participant to which the Data\+Reader belongs. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a0efa9df748625b49236c97b2a3d931a7}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!topic\_name@{topic\_name}}
+\index{topic\_name@{topic\_name}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{topic\_name}{topic\_name}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a0efa9df748625b49236c97b2a3d931a7} 
+char\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::topic\+\_\+name}
+
+
+
+Name of the related \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}. 
+
+The length of this string is limited to 255 characters. 
+
+The memory for this field is managed as described in \doxysectlink{group__DDSStringClass_DDSStringClass_conventions}{Conventions}{1}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{group__DDSStringClass_DDSStringClass_conventions}{Conventions}{1} 
+\end{DoxySeeAlso}
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a55f18ae15068f9cd4a00d9b1d76f7280}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!type\_name@{type\_name}}
+\index{type\_name@{type\_name}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{type\_name}{type\_name}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a55f18ae15068f9cd4a00d9b1d76f7280} 
+char\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::type\+\_\+name}
+
+
+
+Name of the type attached to the \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}. 
+
+The length of this string is limited to 255 characters. 
+
+The memory for this field is managed as described in \doxysectlink{group__DDSStringClass_DDSStringClass_conventions}{Conventions}{1}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{group__DDSStringClass_DDSStringClass_conventions}{Conventions}{1} 
+\end{DoxySeeAlso}
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a596c3889d7832089acfc6bc993933294}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!deadline@{deadline}}
+\index{deadline@{deadline}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{deadline}{deadline}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a596c3889d7832089acfc6bc993933294} 
+struct \mbox{\hyperlink{structDDS__DeadlineQosPolicy}{DDS\+\_\+\+Deadline\+Qos\+Policy}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::deadline}
+
+
+
+Policy of the corresponding Data\+Reader. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a2474a9d4c4668abad2b408fea10e3fed}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!ownership@{ownership}}
+\index{ownership@{ownership}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{ownership}{ownership}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a2474a9d4c4668abad2b408fea10e3fed} 
+struct \mbox{\hyperlink{structDDS__OwnershipQosPolicy}{DDS\+\_\+\+Ownership\+Qos\+Policy}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::ownership}
+
+
+
+Policy of the corresponding Data\+Reader. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a287fcbce93a86d3d4eab693fc0a62341}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!latency\_budget@{latency\_budget}}
+\index{latency\_budget@{latency\_budget}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{latency\_budget}{latency\_budget}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a287fcbce93a86d3d4eab693fc0a62341} 
+struct \mbox{\hyperlink{structDDS__LatencyBudgetQosPolicy}{DDS\+\_\+\+Latency\+Budget\+Qos\+Policy}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::latency\+\_\+budget}
+
+
+
+Latency budget policy, \doxylink{group__DDSLatencyBudgetQosModule}{LATENCY\+\_\+\+BUDGET}. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a84ad8f24bfc84563082e5708b15d5103}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!reliability@{reliability}}
+\index{reliability@{reliability}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{reliability}{reliability}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a84ad8f24bfc84563082e5708b15d5103} 
+struct \mbox{\hyperlink{structDDS__ReliabilityQosPolicy}{DDS\+\_\+\+Reliability\+Qos\+Policy}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::reliability}
+
+
+
+Policy of the corresponding Data\+Reader. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a713277aec1eed944de33226f92f24460}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!liveliness@{liveliness}}
+\index{liveliness@{liveliness}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{liveliness}{liveliness}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a713277aec1eed944de33226f92f24460} 
+struct \mbox{\hyperlink{structDDS__LivelinessQosPolicy}{DDS\+\_\+\+Liveliness\+Qos\+Policy}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::liveliness}
+
+
+
+Policy of the corresponding Data\+Reader. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a54e08da9c9a243553008d6639840fb9d}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!durability@{durability}}
+\index{durability@{durability}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{durability}{durability}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a54e08da9c9a243553008d6639840fb9d} 
+struct \mbox{\hyperlink{structDDS__DurabilityQosPolicy}{DDS\+\_\+\+Durability\+Qos\+Policy}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::durability}
+
+
+
+Policy of the corresponding Data\+Reader. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a7e371141c97ca6dd30c4bec75263554f}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!destination\_order@{destination\_order}}
+\index{destination\_order@{destination\_order}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{destination\_order}{destination\_order}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a7e371141c97ca6dd30c4bec75263554f} 
+struct \mbox{\hyperlink{structDDS__DestinationOrderQosPolicy}{DDS\+\_\+\+Destination\+Order\+Qos\+Policy}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::destination\+\_\+order}
+
+
+
+Policy of the corresponding Data\+Reader. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a2a4fe2c8a4dc7d7d74fa47674f266284}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!unicast\_locator@{unicast\_locator}}
+\index{unicast\_locator@{unicast\_locator}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{unicast\_locator}{unicast\_locator}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a2a4fe2c8a4dc7d7d74fa47674f266284} 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::unicast\+\_\+locator}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Custom unicast locator that the endpoint can specify. The default locator will be used if this is not specified. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a5593bce181602594b70f069d0b906f74}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!multicast\_locator@{multicast\_locator}}
+\index{multicast\_locator@{multicast\_locator}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{multicast\_locator}{multicast\_locator}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a5593bce181602594b70f069d0b906f74} 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::multicast\+\_\+locator}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Custom multicast locator that the endpoint can specify. The default locator will be used if this is not specified. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_aa088b37585057d548739d168989a06d4}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!presentation@{presentation}}
+\index{presentation@{presentation}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{presentation}{presentation}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_aa088b37585057d548739d168989a06d4} 
+struct \mbox{\hyperlink{structDDS__PresentationQosPolicy}{DDS\+\_\+\+Presentation\+Qos\+Policy}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::presentation}
+
+
+
+Policy of the Subscriber to which the Data\+Reader belongs. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a9d8eb3dfa3459d5bc3f64714e24923a8}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!representation@{representation}}
+\index{representation@{representation}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{representation}{representation}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a9d8eb3dfa3459d5bc3f64714e24923a8} 
+struct \mbox{\hyperlink{structDDS__DataRepresentationQosPolicy}{DDS\+\_\+\+Data\+Representation\+Qos\+Policy}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::representation}
+
+
+
+Data representation policy, \doxylink{group__DDSDataRepresentationQosModule}{DATA\+\_\+\+REPRESENTATION}. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a424ff83753397bb5be1149947e9c9931}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!partition@{partition}}
+\index{partition@{partition}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{partition}{partition}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a424ff83753397bb5be1149947e9c9931} 
+struct \mbox{\hyperlink{structDDS__PartitionQosPolicy}{DDS\+\_\+\+Partition\+Qos\+Policy}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::partition}
+
+
+
+Policy of the Subscriber to which the Data\+Reader belongs. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_ad18ba165bfc8e733aaec2ff0c57d6d40}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_ad18ba165bfc8e733aaec2ff0c57d6d40} 
+struct \mbox{\hyperlink{structDDS__UserDataQosPolicy}{DDS\+\_\+\+User\+Data\+Qos\+Policy}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::user\+\_\+data}
+
+
+
+Policy of the corresponding Data\+Reader. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_ae9d9f7b777d8621b6f09354f47fb9f7d}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!group\_data@{group\_data}}
+\index{group\_data@{group\_data}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{group\_data}{group\_data}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_ae9d9f7b777d8621b6f09354f47fb9f7d} 
+struct \mbox{\hyperlink{structDDS__GroupDataQosPolicy}{DDS\+\_\+\+Group\+Data\+Qos\+Policy}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::group\+\_\+data}
+
+
+
+Policy of the Subscriber to which the Data\+Reader belongs. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_a61213decf9e41ddcbc853d7575f7d623}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!topic\_data@{topic\_data}}
+\index{topic\_data@{topic\_data}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{topic\_data}{topic\_data}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_a61213decf9e41ddcbc853d7575f7d623} 
+struct \mbox{\hyperlink{structDDS__TopicDataQosPolicy}{DDS\+\_\+\+Topic\+Data\+Qos\+Policy}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::topic\+\_\+data}
+
+
+
+Policy of the related Topic. 
+
+\Hypertarget{structDDS__SubscriptionBuiltinTopicData_ac5dbada9acc9a4a02fc0faa176e6a8b2}\index{DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}!content\_filter@{content\_filter}}
+\index{content\_filter@{content\_filter}!DDS\_SubscriptionBuiltinTopicData@{DDS\_SubscriptionBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{content\_filter}{content\_filter}}
+{\footnotesize\ttfamily \label{structDDS__SubscriptionBuiltinTopicData_ac5dbada9acc9a4a02fc0faa176e6a8b2} 
+struct \mbox{\hyperlink{structDDS__ContentFilterProperty}{DDS\+\_\+\+Content\+Filter\+Property}} DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data\+::content\+\_\+filter}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_experimental}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}experimental\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} All of the information required for a Data\+Writer to perform writer-\/side filtering for a Data\+Reader. 
+
+If the content filtering feature is not enabled, then this field is unused. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSFILTERModule_ga78e6991395a89e1a00e08038c23112d4}{DDS\+\_\+\+Filter\+Plugin\+Factory\+\_\+register} for how to enable the content filtering feature 
+\end{DoxySeeAlso}

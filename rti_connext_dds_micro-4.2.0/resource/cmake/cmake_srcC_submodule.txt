@@ -1,0 +1,321 @@
+###############################################################################
+# Copyright (c) Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+#
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may2016 tk Written
+################################################################################
+if (RTI_CMAKE_SOURCE OR TEST_BUNDLE)
+    return()
+endif()
+
+
+IF (DEFINED RTI_SHARED_SUBMODULE)
+        FOREACH(f ${RTI_SHARED_SRC})
+            IF (${RTIME_DEVTREE} AND NOT ${RTI_SHARED_NO_COPY})
+                RESOLVE_SHARED_COPY_COMMAND(SHARED_COPY_CMD
+                                            ${RTI_SHARED_HOME}/${RTI_SHARED_MODULE}/srcC/${RTI_SHARED_SUBMODULE}/${f}
+                                            ${RTI_MODULE_SRCROOT}/srcC/${RTI_SUBMODULE_NAME}/${f})
+
+                ADD_CUSTOM_COMMAND(OUTPUT ${RTI_MODULE_SRCROOT}/srcC/${RTI_SUBMODULE_NAME}/${f}
+                                   COMMAND ${SHARED_COPY_CMD}
+                )
+            ENDIF()
+
+            IF (${RTIME_DEVTREE})
+                LIST(APPEND ${RTI_MODULE_NAME}_SRC_C
+                            ${RTI_MODULE_SRCROOT}/srcC/${RTI_SUBMODULE_NAME}/${f})
+                SET_PROPERTY(SOURCE ${RTI_MODULE_SRCROOT}/srcC/${RTI_SUBMODULE_NAME}/${f}
+                             PROPERTY RTI_GENERATED true)
+            ELSE()
+                LIST(APPEND ${RTI_MODULE_NAME}_SRC_C
+                            ${RTI_MODULE_SRCROOT}/${RTI_SUBMODULE_NAME}/${f})
+                SET_PROPERTY(SOURCE ${RTI_MODULE_SRCROOT}/${RTI_SUBMODULE_NAME}/${f}
+                             APPEND PROPERTY RTI_GENERATED true)
+            ENDIF()
+
+        ENDFOREACH()
+
+        FOREACH(f ${RTI_SHARED_SRC_PATCHED})
+            IF (${RTIME_DEVTREE})
+                LIST(APPEND ${RTI_MODULE_NAME}_SRC_C
+                            ${RTI_MODULE_SRCROOT}/srcC/${RTI_SUBMODULE_NAME}/${f})
+            ELSE()
+                LIST(APPEND ${RTI_MODULE_NAME}_SRC_C
+                            ${RTI_MODULE_SRCROOT}/${RTI_SUBMODULE_NAME}/${f})
+            ENDIF()
+        ENDFOREACH()
+
+        FOREACH(f ${RTI_SHARED_HDR})
+            IF (${RTIME_DEVTREE} AND NOT ${RTI_SHARED_NO_COPY})
+                RESOLVE_SHARED_COPY_COMMAND(SHARED_COPY_CMD
+                                            ${RTI_SHARED_HOME}/${RTI_SHARED_MODULE}/srcC/${RTI_SHARED_SUBMODULE}/${f}
+                                            ${RTI_MODULE_SRCROOT}/srcC/${RTI_SUBMODULE_NAME}/${f})
+
+               ADD_CUSTOM_COMMAND(OUTPUT ${RTI_MODULE_SRCROOT}/srcC/${RTI_SUBMODULE_NAME}/${f}
+                                   COMMAND ${SHARED_COPY_CMD}
+                )
+            ENDIF()
+            IF (${RTIME_DEVTREE})
+                LIST(APPEND ${RTI_MODULE_NAME}_SRC_H
+                            ${RTI_MODULE_SRCROOT}/srcC/${RTI_SUBMODULE_NAME}/${f})
+
+                SET_PROPERTY(SOURCE ${RTI_MODULE_SRCROOT}/srcC/${RTI_SUBMODULE_NAME}/${f}
+                             APPEND PROPERTY RTI_GENERATED true)
+            ELSE()
+                LIST(APPEND ${RTI_MODULE_NAME}_SRC_H
+                            ${RTI_MODULE_SRCROOT}/${RTI_SUBMODULE_NAME}/${f})
+                SET_PROPERTY(SOURCE ${RTI_MODULE_SRCROOT}/${RTI_SUBMODULE_NAME}/${f}
+                             APPEND PROPERTY RTI_GENERATED true)
+
+            ENDIF()
+        ENDFOREACH()
+        FOREACH(f ${RTI_SHARED_HDR_PATCHED})
+            IF (${RTIME_DEVTREE})
+                LIST(APPEND ${RTI_MODULE_NAME}_SRC_H
+                            ${RTI_MODULE_SRCROOT}/srcC/${RTI_SUBMODULE_NAME}/${f})
+            ELSE()
+                LIST(APPEND ${RTI_MODULE_NAME}_SRC_H
+                            ${RTI_MODULE_SRCROOT}/${RTI_SUBMODULE_NAME}/${f})
+            ENDIF()
+        ENDFOREACH()
+ENDIF()
+
+FOREACH(srcdir "" /srcC /srcCxx)
+    IF (EXISTS ${RTI_MODULE_SRCROOT}${srcdir}/${RTI_SUBMODULE_NAME})
+        SET(SRC_ROOT "${RTI_MODULE_SRCROOT}${srcdir}/${RTI_SUBMODULE_NAME}")
+
+        FOREACH(forig ${RTI_SUBMODULE_SRC} ${RTI_SUBMODULE_SRC_CC})
+            STRING(REPLACE "\\" "/" f ${forig})
+
+            IF ((${f} MATCHES "^/.*") OR (${f} MATCHES "^[A-Z]:/.*"))
+                LIST(APPEND ${RTI_MODULE_NAME}_SRC_C ${f})
+                LIST(APPEND ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_SRC ${f})
+            ELSE()
+            LIST(APPEND ${RTI_MODULE_NAME}_SRC_C ${SRC_ROOT}/${f})
+            LIST(APPEND ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_SRC ${SRC_ROOT}/${f})
+            ENDIF()
+        ENDFOREACH()
+
+        FOREACH(forig ${RTI_SUBMODULE_HDR})
+            STRING(REPLACE "\\" "/" f ${forig})
+
+            IF ((${forig} MATCHES "^/.*") OR (${f} MATCHES "^[A-Z]:/.*"))
+                LIST(APPEND ${RTI_MODULE_NAME}_SRC_H ${f})
+                LIST(APPEND ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_HDR ${f})
+            ELSE()
+            LIST(APPEND ${RTI_MODULE_NAME}_SRC_H ${SRC_ROOT}/${f})
+            LIST(APPEND ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_HDR ${SRC_ROOT}/${f})
+            ENDIF()
+        ENDFOREACH()
+
+        IF (NOT ${srcdir} STREQUAL "")
+            STRING(REPLACE "/" "" srcdirg ${srcdir})
+        ENDIF()
+
+        SOURCE_GROUP(\\${RTI_MODULE_NAME}\\${srcdirg}\\${RTI_SUBMODULE_NAME}
+                 FILES ${${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_SRC}
+                       ${${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_HDR}
+                       ${RTI_SUBMODULE_IDL} ${RTI_SUBMODULE_XML_APPGEN})
+
+        LIST(LENGTH RTI_SUBMODULE_IDL idl_count)
+        IF (${idl_count} GREATER 0)
+            SET(IDL_OUTPUT_DIR ${RTI_MODULE_OUTPUT_SRC}${srcdir}/${RTI_SUBMODULE_NAME})
+            LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${IDL_OUTPUT_DIR})
+            MICRO_ADD_IDL(IDL_GEN_C IDL_GEN_H RTI_SUBMODULE_IDL SRC_ROOT ${srcdir} ${IDL_OUTPUT_DIR})
+            LIST(APPEND ${RTI_MODULE_NAME}_SRC_C    ${IDL_GEN_C})
+            LIST(APPEND ${RTI_MODULE_NAME}_SRC_H    ${IDL_GEN_H})
+            LIST(APPEND ${RTI_MODULE_NAME}_SRC_IDL  ${IDL_GEN_C} ${IDL_GEN_H})
+            SET_PROPERTY(SOURCE ${IDL_GEN_C} ${IDL_GEN_H}
+                         APPEND PROPERTY RTI_GENERATED true)
+        ENDIF()
+
+        LIST(LENGTH RTI_SUBMODULE_XML_APPGEN xml_count)
+        IF (${xml_count} GREATER 0)
+            SET(XML_APPGEN_OUTPUT_DIR ${RTI_MODULE_OUTPUT_SRC}${srcdir}/${RTI_SUBMODULE_NAME})
+            LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${XML_APPGEN_OUTPUT_DIR})
+            MICRO_ADD_XML_APPGEN(XML_APPGEN_GEN_C XML_APPGEN_GEN_H RTI_SUBMODULE_XML_APPGEN SRC_ROOT ${srcdir} ${XML_APPGEN_OUTPUT_DIR})
+            LIST(APPEND ${RTI_MODULE_NAME}_SRC_C    ${XML_APPGEN_GEN_C})
+            LIST(APPEND ${RTI_MODULE_NAME}_SRC_H    ${XML_APPGEN_GEN_H})
+            LIST(APPEND ${RTI_MODULE_NAME}_SRC_IDL  ${XML_APPGEN_GEN_C} ${XML_APPGEN_GEN_H})
+            SET_PROPERTY(SOURCE ${XML_APPGEN_GEN_C} ${XML_APPGEN_GEN_H}
+                         APPEND PROPERTY RTI_GENERATED true)
+        ENDIF()
+
+        IF (DEFINED RTI_SUBMODULE_QUACK_TS)
+            MICRO_ADD_QUACK_TS(RTI_SUBMODULE_QUACK_TS_GEN
+                               RTI_SUBMODULE_QUACK_TS
+                               SRC_ROOT ${srcdir}
+                               "${RTIME_QUACK_TEST_ROOT}/${RTI_MODULE_NAME}/${RTI_SUBMODULE_NAME}")
+            LIST(APPEND ${RTI_MODULE_NAME}_QUACK_TS ${RTI_SUBMODULE_QUACK_TS_GEN})
+            SET_PROPERTY(SOURCE ${RTI_SUBMODULE_QUACK_TS_GEN} PROPERTY RTI_GENERATED true)
+        ENDIF()
+
+        IF (DEFINED RTI_SUBMODULE_QUACK_TI)
+            MICRO_ADD_QUACK_TI(RTI_SUBMODULE_QUACK_TI_GEN
+                               RTI_SUBMODULE_QUACK_TI
+                               SRC_ROOT ${srcdir}
+                               "${RTIME_QUACK_TEST_ROOT}/${RTI_MODULE_NAME}/${RTI_SUBMODULE_NAME}")
+            LIST(APPEND ${RTI_MODULE_NAME}_QUACK_TI ${RTI_SUBMODULE_QUACK_TI_GEN})
+            SET_PROPERTY(SOURCE ${RTI_SUBMODULE_QUACK_TI_GEN} PROPERTY RTI_GENERATED true)
+        ENDIF()
+
+    ENDIF()
+
+    FOREACH(idl ${RTI_MODULE_PUBLIC_HDR_IDL_EXPORT})
+            LIST(APPEND ${RTI_MODULE_NAME}_IDL_EXPORT
+                        ${IDL_OUTPUT_DIR}/${idl}.h
+                        ${IDL_OUTPUT_DIR}/${idl}Plugin.h
+                        ${IDL_OUTPUT_DIR}/${idl}Support.h)
+    ENDFOREACH()
+
+    FOREACH(xml ${RTI_MODULE_PUBLIC_HDR_XML_APPGEN_EXPORT})
+            LIST(APPEND ${RTI_MODULE_NAME}_XML_APPGEN_EXPORT
+                        ${IDL_OUTPUT_DIR}/${xml}.h
+                        ${IDL_OUTPUT_DIR}/${xml}Plugin.h
+                        ${IDL_OUTPUT_DIR}/${xml}Support.h)
+    ENDFOREACH()
+
+    IF (DEFINED ${RTI_MODULE_NAME}_IDL_EXPORT)
+        LIST(REMOVE_DUPLICATES ${RTI_MODULE_NAME}_IDL_EXPORT)
+    ENDIF()
+
+    IF (EXISTS
+    ${RTI_MODULE_SRCROOT}${srcdir}/${RTI_SUBMODULE_NAME}/test/CMakeLists.txt)
+        SET(SRC_ROOT "${RTI_MODULE_SRCROOT}${srcdir}/${RTI_SUBMODULE_NAME}/test")
+        INCLUDE(${SRC_ROOT}/CMakeLists.txt)
+
+        FOREACH(f ${RTI_SUBMODULE_TEST_SRC})
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_C ${SRC_ROOT}/${f})
+            LIST(APPEND ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_TEST_SRC ${SRC_ROOT}/${f})
+        ENDFOREACH()
+
+        FOREACH(f ${RTI_SUBMODULE_TEST_HDR})
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_H ${SRC_ROOT}/${f})
+            LIST(APPEND ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_TEST_HDR ${SRC_ROOT}/${f})
+        ENDFOREACH()
+
+        IF (NOT ${srcdir} STREQUAL "")
+            STRING(REPLACE "/" "" srcdirg ${srcdir})
+        ENDIF()
+
+        SOURCE_GROUP(\\${RTI_MODULE_NAME}\\${srcdirg}\\${RTI_SUBMODULE_NAME}\\test
+                     FILES
+                     ${${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_TEST_SRC}
+                     ${${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_TEST_HDR}
+                     ${RTI_SUBMODULE_TEST_IDL})
+
+        LIST(LENGTH RTI_SUBMODULE_TEST_IDL idl_count)
+        IF (${idl_count} GREATER 0)
+            SET(IDL_OUTPUT_DIR ${RTI_MODULE_OUTPUT_SRC}${srcdir}/${RTI_SUBMODULE_NAME}/test)
+            LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${IDL_OUTPUT_DIR})
+            MICRO_ADD_IDL(IDL_GEN_C IDL_GEN_H RTI_SUBMODULE_TEST_IDL SRC_ROOT ${srcdir} ${IDL_OUTPUT_DIR})
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_C ${IDL_GEN_C})
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_H ${IDL_GEN_H})
+            SET_PROPERTY(SOURCE ${IDL_GEN_C} ${IDL_GEN_H}
+                         APPEND PROPERTY RTI_GENERATED true)
+        ENDIF()
+
+        LIST(LENGTH RTI_SUBMODULE_TEST_XML_APPGEN xml_count)
+        IF (${xml_count} GREATER 0)
+            SET(XML_APPGEN_OUTPUT_DIR ${RTI_MODULE_OUTPUT_SRC}${srcdir}/${RTI_SUBMODULE_NAME}/test)
+            LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${XML_APPGEN_OUTPUT_DIR})
+            MICRO_ADD_XML_APPGEN(XML_APPGEN_GEN_C XML_APPGEN_GEN_H RTI_SUBMODULE_TEST_XML_APPGEN SRC_ROOT ${srcdir} ${XML_APPGEN_OUTPUT_DIR})
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_C ${XML_APPGEN_GEN_C})
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_H ${XML_APPGEN_GEN_H})
+            SET_PROPERTY(SOURCE ${XML_APPGEN_GEN_C} ${XML_APPGEN_GEN_H}
+                         APPEND PROPERTY RTI_GENERATED true)
+        ENDIF()
+
+        IF (DEFINED RTI_SUBMODULE_TEST_QUACK_TS)
+            MICRO_ADD_QUACK_TS(RTI_SUBMODULE_TEST_QUACK_TS_GEN
+                               RTI_SUBMODULE_TEST_QUACK_TS
+                               SRC_ROOT ${srcdir}
+                               "${RTIME_QUACK_TEST_ROOT}/${RTI_MODULE_NAME}/${RTI_SUBMODULE_NAME}/test")
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_QUACK_TS ${RTI_SUBMODULE_TEST_QUACK_TS_GEN})
+            SET_PROPERTY(SOURCE ${RTI_SUBMODULE_TEST_QUACK_TS_GEN} PROPERTY RTI_GENERATED true)
+        ENDIF()
+
+        IF (DEFINED RTI_SUBMODULE_TEST_QUACK_TI)
+            MICRO_ADD_QUACK_TI(RTI_SUBMODULE_TEST_QUACK_TI_GEN
+                               RTI_SUBMODULE_TEST_QUACK_TI
+                               SRC_ROOT ${srcdir}
+                               "${RTIME_QUACK_TEST_ROOT}/${RTI_MODULE_NAME}/${RTI_SUBMODULE_NAME}/test")
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_QUACK_TI ${RTI_SUBMODULE_TEST_QUACK_TI_GEN})
+            SET_PROPERTY(SOURCE ${RTI_SUBMODULE_TEST_QUACK_TI_GEN} PROPERTY RTI_GENERATED true)
+        ENDIF()
+
+    ENDIF()
+ENDFOREACH()
+
+SET(SM_HAS_GENERATED_FILES FALSE)
+SET(${RTI_SUBMODULE_NAME}_GENERATED)
+
+SET(iter_list
+    ${${RTI_SUBMODULE_NAME}_SRC_C}
+    ${${RTI_SUBMODULE_NAME}_SRC_H}
+
+)
+IF (RTIME_UTEST_QUACK_ENABLE)
+    LIST(APPEND iter_list
+        ${RTI_SUBMODULE_QUACK_TI_GEN}
+        ${RTI_SUBMODULE_QUACK_TS_GEN}
+    )
+ENDIF()
+
+FOREACH(f ${iter_list})
+    GET_PROPERTY(rti_generated
+                 SOURCE ${f}
+                 PROPERTY RTI_GENERATED
+                 SET)
+    IF (rti_generated)
+        SET(HAS_GENERATED_FILES TRUE)
+        LIST(APPEND ${RTI_SUBMODULE_NAME}_GENERATED
+            ${f}
+        )
+    ENDIF()
+ENDFOREACH()
+
+IF (${HAS_GENERATED_FILES})
+    SET_PROPERTY(GLOBAL APPEND PROPERTY
+        ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_HAS_GENERATE true
+    )
+
+    ADD_CUSTOM_TARGET(${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_GENERATE
+        DEPENDS ${${RTI_SUBMODULE_NAME}_GENERATED}
+    )
+ENDIF()
+
+UNSET(RTI_SUBMODULE_QUACK_TS)
+UNSET(RTI_SUBMODULE_QUACK_TI)
+UNSET(RTI_SUBMODULE_QUACK_TS_GEN)
+UNSET(RTI_SUBMODULE_TEST_QUACK_TS)
+UNSET(RTI_SUBMODULE_TEST_QUACK_TI)
+UNSET(RTI_SUBMODULE_TEST_QUACK_TS_GEN)
+UNSET(RTI_SUBMODULE_TEST_SRC)
+UNSET(RTI_SUBMODULE_TEST_SRC_CC)
+UNSET(RTI_SUBMODULE_TEST_HDR)
+UNSET(IDL_SOURCE)
+UNSET(IDL_SOURCE_CXX)
+UNSET(RTI_SUBMODULE_SRC)
+UNSET(RTI_SUBMODULE_SRC_CC)
+UNSET(RTI_SUBMODULE_HDR)
+UNSET(RTI_SUBMODULE_IDL)
+UNSET(RTI_SUBMODULE_TEST_IDL)
+UNSET(RTI_SHARED_SRC)
+UNSET(RTI_SHARED_HDR)
+UNSET(RTI_SHARED_HDR_PATCHED)
+UNSET(RTI_SHARED_SRC_PATCHED)
+UNSET(RTI_SUBMODULE_XML_APPGEN)
+UNSET(RTI_SHARED_SUBMODULE)

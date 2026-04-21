@@ -1,0 +1,26 @@
+################################################################################
+#
+# Copyright (c) 2017-2024 Real-Time Innovations, Inc. All rights reserved.
+#
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+# This architecture is expected to be compiled on a native machine with the
+# default compiler
+IF (${TARGET_HELP})
+    MESSAGE("TARGET\n\n VOS\n")
+    MESSAGE("DESCRIPTION\n")
+    MESSAGE(" The VOS target supports self-hosted builds on VOS")
+    MESSAGE(" targets")
+    MESSAGE("\nARGUMENTS\n")
+    MESSAGE("\nEXAMPLES\n")
+    MESSAGE(" --target VOS --name i686VOS17.2gcc3.4.6\n")
+ENDIF()
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Platform/vos.tc)
+
+# FOR VOS, rely on the default compiler flags.

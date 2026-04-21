@@ -1,0 +1,50 @@
+\doxysubsection{DDS\+\_\+\+Sec\+Transform\+\_\+\+Configuration Struct Reference}
+\hypertarget{structDDS__SecTransform__Configuration}{}\label{structDDS__SecTransform__Configuration}\index{DDS\_SecTransform\_Configuration@{DDS\_SecTransform\_Configuration}}
+
+
+A structure for configuration this Transform PSL.  
+
+
+
+
+{\ttfamily \#include $<$psk\+\_\+ossl\+\_\+transform.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structDDS__SecTransform__Configuration_a26c537738adf7bc933279ac251dbdad2}{provider\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em A 0-\/terminated string with the name of the crypto provider to use. or NULL for the default provider. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structPSK__ErrListener}{PSK\+\_\+\+Err\+Listener}} \mbox{\hyperlink{structDDS__SecTransform__Configuration_a978c01587db972ac824f1638c5953457}{err\+\_\+listener}}
+\begin{DoxyCompactList}\small\item\em Configuration items for an error callback mechanism. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+A structure for configuration this Transform PSL. 
+
+The values of the fields in this structure influence how the Transform PSL behaves. The details of what the impact is, is known to the implementation of the PSL only.
+
+The configuration has to be provided at creation time and is immutable.
+
+See Also PSK\+\_\+\+OSSL\+\_\+get\+\_\+default\+\_\+configuration 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__SecTransform__Configuration_a26c537738adf7bc933279ac251dbdad2}\index{DDS\_SecTransform\_Configuration@{DDS\_SecTransform\_Configuration}!provider\_name@{provider\_name}}
+\index{provider\_name@{provider\_name}!DDS\_SecTransform\_Configuration@{DDS\_SecTransform\_Configuration}}
+\doxyparagraph{\texorpdfstring{provider\_name}{provider\_name}}
+{\footnotesize\ttfamily \label{structDDS__SecTransform__Configuration_a26c537738adf7bc933279ac251dbdad2} 
+const char\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Sec\+Transform\+\_\+\+Configuration\+::provider\+\_\+name}
+
+
+
+A 0-\/terminated string with the name of the crypto provider to use. or NULL for the default provider. 
+
+\Hypertarget{structDDS__SecTransform__Configuration_a978c01587db972ac824f1638c5953457}\index{DDS\_SecTransform\_Configuration@{DDS\_SecTransform\_Configuration}!err\_listener@{err\_listener}}
+\index{err\_listener@{err\_listener}!DDS\_SecTransform\_Configuration@{DDS\_SecTransform\_Configuration}}
+\doxyparagraph{\texorpdfstring{err\_listener}{err\_listener}}
+{\footnotesize\ttfamily \label{structDDS__SecTransform__Configuration_a978c01587db972ac824f1638c5953457} 
+struct \mbox{\hyperlink{structPSK__ErrListener}{PSK\+\_\+\+Err\+Listener}} DDS\+\_\+\+Sec\+Transform\+\_\+\+Configuration\+::err\+\_\+listener}
+
+
+
+Configuration items for an error callback mechanism. 
+

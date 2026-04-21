@@ -1,0 +1,281 @@
+.. _section-micro_and_core:
+
+Working with |me_h| and |core_pro_h|
+====================================
+
+In some cases, it may be necessary to write an application that is
+compiled against both |me| and |core_pro|. In general this is
+not easy to do because |me| supports a very limited set of features
+compared to |core_pro|.
+
+However, due to the nature of the DDS API and the philosophy of declaring
+behavior through QoS profiles instead of using different APIs, it may be
+possible to share common code. In particular, |core_pro| supports configuration
+through QoS profile files, which eases the job of writing portable code.
+
+Supported DDS Features
+----------------------
+
+|me| supports a subset of the DDS DCPS standard. A brief overview of the
+supported features are listed here. For a detailed list, please refer to the
+:link_connextmicro_dds_api_c_up_one:`C API Reference <index.html>` and :link_connextmicro_dds_api_cpp_up_one:`C++ API Reference <index.html>`.
+
+DDS Entity Support
+..................
+
+|me| supports the following DDS entities. Please refer to the documentation
+for details.
+
+.. TODO: PDF links
+
+* :link_connextmicro_dds_api_c_up_one:`DomainParticipantFactory <group__DDSDomainParticipantFactoryModule.html>`
+* :link_connextmicro_dds_api_c_up_one:`DomainParticipant        <group__DDSDomainParticipantModule.html>`
+* :link_connextmicro_dds_api_c_up_one:`Topic      <group__DDSTopicEntityModule.html>`
+* :link_connextmicro_dds_api_c_up_one:`Publisher  <group__DDSPublisherModule.html>`
+* :link_connextmicro_dds_api_c_up_one:`Subscriber <group__DDSSubscriberModule.html>`
+* :link_connextmicro_dds_api_c_up_one:`DataWriter <group__DDSWriterModule.html>`
+* :link_connextmicro_dds_api_c_up_one:`DataReader <group__DDSReaderModule.html>`
+
+DDS QoS Policy Support
+......................
+
+|me| supports the following DDS Qos Policies. Please refer to the
+documentation for details.
+
+.. TODO: PDF links
+
+* :link_connextmicro_dds_api_c_up_one:`DDS_DataReaderProtocolQosPolicy       <structDDS__DataReaderProtocolQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_DataReaderResourceLimitsQosPolicy <structDDS__DataReaderResourceLimitsQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_DataWriterProtocolQosPolicy       <structDDS__DataWriterProtocolQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_DataWriterResourceLimitsQosPolicy <structDDS__DataWriterResourceLimitsQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_DeadlineQosPolicy                 <structDDS__DeadlineQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_DiscoveryQosPolicy                <structDDS__DiscoveryQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_DomainParticipantResourceLimitsQosPolicy <structDDS__DomainParticipantResourceLimitsQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_DurabilityQosPolicy               <structDDS__DurabilityQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_DestinationOrderQosPolicy         <structDDS__DestinationOrderQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_EntityFactoryQosPolicy            <structDDS__EntityFactoryQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_HistoryQosPolicy                  <structDDS__HistoryQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_LivelinessQosPolicy               <structDDS__LivelinessQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_OwnershipQosPolicy                <structDDS__OwnershipQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_OwnershipStrengthQosPolicy        <structDDS__OwnershipStrengthQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_ReliabilityQosPolicy              <structDDS__ReliabilityQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_ResourceLimitsQosPolicy           <structDDS__ResourceLimitsQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_RtpsReliableWriterProtocol_t      <structDDS__RtpsReliableWriterProtocol__t.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_SystemResourceLimitsQosPolicy     <structDDS__SystemResourceLimitsQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_TopicDataQosPolicy                <structDDS__TopicDataQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_TransportQosPolicy                <structDDS__TransportQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_UserDataQosPolicy                 <structDDS__UserDataQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_UserTrafficQosPolicy              <structDDS__UserTrafficQosPolicy.html>`
+* :link_connextmicro_dds_api_c_up_one:`DDS_WireProtocolQosPolicy             <structDDS__WireProtocolQosPolicy.html>`
+
+Development Environment
+-----------------------
+
+There are no conflicts between |me| and |core_pro| with respect to library
+names, header files, etc. It is advisable to keep the two installations separate,
+which is the normal case.
+
+|me| uses the environment variable RTIMEHOME to locate the root of the
+|me| installation.
+
+|core_pro| uses the environment variable NDDSHOME to locate the root of the
+|core_pro| installation.
+
+Non-standard APIs
+-----------------
+
+The DDS specification omits many APIs and policies necessary to configure
+a DDS application, such as transport, discovery, memory, logging, etc. In
+general, |me| and |core_pro| do not share APIs for these functions.
+
+It is recommended to configure |core_pro| using QoS profiles as much as possible.
+
+QoS Policies
+------------
+
+QoS policies defined by the DDS standard behave the same between |me| and
+|core_pro|. However, note that |me| does not always support all
+the values for a policy and in particular unlimited resources are not supported.
+
+Unsupported QoS policies are the most likely reason for not being able to
+switch between |me| and |core_pro|.
+
+Standard APIs
+-------------
+
+APIs that are defined by the standard behave the same between |me| and
+|core_pro|.
+
+IDL Files
+---------
+
+|me| and |core_pro| use the same IDL compiler (rtiddsgen)
+and |me| typically ships with the latest version. However,
+|me| and |core_pro| use different templates to generate code and it
+is not possible to share the generated code. Thus, while the same IDL can
+be used, the generated output must be saved in different locations.
+
+.. _section-interoperability:
+
+Interoperability
+----------------
+
+|me| and |core_pro| interoperate on the wire unless noted
+otherwise.
+
+Discovery
+.........
+
+When trying to establish communication between an |me| application that uses
+the Dynamic Participant Static Endpoint (DPSE) discovery module and an RTI
+product based on |core_pro|, every participant in the DDS system must be configured
+with a unique participant name. While the static discovery functionality provided
+by |core_pro| allows participants on different hosts to share the same name, |me|
+requires every participant to have a different name to help keep the complexity
+of its implementation suitable for smaller targets.
+
+Also, |core| *DataWriters* that are configured to send compressed data will not
+match with |me| *DataReaders*, since |me| does not support sending or receiving 
+compressed data. See :link_external_community_doc_pro_um:`DATA_REPRESENTATION QosPolicy in the Core Libraries User's Manual <users_manual/DATAREPRESENTATION_Qos.htm>`
+for more information on the |core| compression feature.
+
+Transports
+..........
+
+When interoperating with |core_pro|, |me| must specify at least one 
+unicast transport for each *DataWriter* and *DataReader*, either from 
+:link_connextmicro_dds_api_c_up_one:`DDS_DomainParticipantQos::transports <structDDS__DomainParticipantQos.html>` 
+or the endpoint :link_connextmicro_dds_api_c_up_one:`DDS_DataReaderQos::transport <structDDS__DataReaderQos.html>` 
+and :link_connextmicro_dds_api_c_up_one:`DDS_DataWriterQos::transport <structDDS__DataWriterQos.html>`, 
+as it expects to use the unicast transport's RTPS port mapping to determine 
+automatic participant IDs if needed. This also affects |me| itself, 
+where participant IDs must be set manually if only multicast transports 
+are enabled.
+
+Also, when interoperating with |core_pro|, only one multicast transport 
+can be specified per *DataReader* of |me|.
+
+|core_h| Tools
+--------------
+
+In general, |me| is compatible with RTI tools and other products. The 
+following sections provide additional information for each product.
+
+Admin Console
+.............
+
+Admin Console can discover and display |me| applications that use full
+dynamic discovery (DPDE). When using static discovery (DPSE), it is required
+to use the Limited Bandwidth Endpoint Discovery (LBED) that is available as a
+separate product for |core_pro|. With the library a configuration
+file with the discovery configuration must be provided (just as in
+the case for products such as Routing Service, etc.). This is provided
+through the QoS XML file.
+
+Data can be visualized from |me| *DataWriters*. Keep in mind that |me|
+does not currently distribute type information and the type information has
+to be provided through an XML file using the "Create Subscription" dialog.
+Unlike some other products, this information cannot be provided through the
+QoS XML file. To provide the data types to Admin Console, first run the code
+generator with the ``-convertToXml`` option:
+
+::
+
+    rtiddsgen -convertToXml <file>
+
+Then click on the “Load Data Types from XML file” hyperlink in the
+"Create Subscription" dialog and add the generated IDL file.
+
+Other Features Supported:
+
+- Match analysis is supported.
+- Discovery-based QoS are shown.
+
+The following resource-limits in |me| must be incremented as follows when
+using Admin Console:
+
+- Add 24 to DDS_DomainParticipantResourceLimitsQosPolicy::remote_reader_allocation
+- Add 24 to DDS_DomainParticipantResourceLimitsQosPolicy::remote_writer_allocation
+- Add 1  to DDS_DomainParticipantResourceLimitsQosPolicy::remote_participant_allocation
+- Add 1  to DDS_DomainParticipantResourceLimitsQosPolicy::remote_participant_allocation if data-visualization is used
+
+|me| does not currently support any administration capabilities or services,
+and does not match with the Admin Console *DataReaders* and *DataWriters*.
+However, if matching *DataReaders* and *DataWriters* are created, e.g., by the
+application, the following resource must be updated:
+
+- Add 48 to DDS_DomainParticipantResourceLimitsQosPolicy::matching_writer_reader_pair_allocation
+
+Distributed Logger
+..................
+
+This product is not supported by |me|.
+
+LabVIEW
+.......
+
+The LabVIEW toolkit uses |core_pro|, and it must be configured as any other
+|core_pro| application. A possible option is to use the builtin |core_pro|
+profile: BuiltinQosLib::Generic.ConnextMicroCompatibility.
+
+Monitor
+.......
+
+This product is not supported by |me|.
+
+Recording Service
+.................
+
+RTI Recorder
+^^^^^^^^^^^^
+
+RTI Recorder is compatible with |me| in the following ways:
+
+- If static endpoint discovery is used, Recorder is compatible starting
+  with version 5.1.0.3 and onwards.
+- If dynamic endpoint discovery is used, Recorder is compatible with |me|
+  the same way it is with any other DDS application.
+- In both cases, type information has to be provided via XML. Read
+  :link_external_community_kb:`Recording Data with RTI Connext Micro <recording-topics-rti-connext-dds-micro-applications-rti-recording-service>` for more information.
+
+RTI Replay
+^^^^^^^^^^
+
+RTI Replay is compatible with |me| in the following ways:
+
+- If static endpoint discovery is used, Replay is compatible starting with
+  version 5.1.0.3 and onwards.
+- If dynamic endpoint discovery is used, Replay is compatible with |me|
+  the same way it is with any other DDS application.
+- In both cases, type information has to be provided via XML. Read
+  :link_external_community_kb:`Recording Data with RTI Connext Micro <recording-topics-rti-connext-dds-micro-applications-rti-recording-service>`
+  for more information on how to convert from IDL to XML.
+
+RTI Converter
+^^^^^^^^^^^^^
+
+Databases recorded with |me| contains no type information in the
+DCPSPublication table, but the type information can be provided via XML. Read
+:link_external_community_kb:`Recording Data with RTI Connext Micro <recording-topics-rti-connext-dds-micro-applications-rti-recording-service>`
+for more information on how to convert from IDL to XML.
+
+Wireshark
+.........
+
+Wireshark fully supports |me|.
+
+
+Persistence Service
+...................
+
+|me| only supports VOLATILE and TRANSIENT_LOCAL durability and does not
+support the use of Persistence Service.
+
+
+.. _section-appgen-interoperability:
+
+Application Generation Using XML
+................................
+
+An application defined in XML can be shared between |me| and |core_pro|, with 
+the limitations documented in :ref:`section-appgen`.

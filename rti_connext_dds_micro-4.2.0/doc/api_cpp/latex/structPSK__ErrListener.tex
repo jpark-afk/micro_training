@@ -1,0 +1,44 @@
+\doxysubsection{PSK\+\_\+\+Err\+Listener Struct Reference}
+\hypertarget{structPSK__ErrListener}{}\label{structPSK__ErrListener}\index{PSK\_ErrListener@{PSK\_ErrListener}}
+
+
+A structure for holding callback pointers in case of an error.  
+
+
+
+
+{\ttfamily \#include $<$psk\+\_\+ossl\+\_\+transform.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structPSK__ErrListener_af5df22e8bbf01d0a335e9e379d35e502}{callback}} )(const char \texorpdfstring{$\ast$}{*}msg, size\+\_\+t msg\+\_\+len, void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structPSK__ErrListener_a947996d27d0f893454bdb0e352bf1404}{user\+\_\+ptr}})
+\begin{DoxyCompactList}\small\item\em Prototype for callback to be invoked in case of error. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structPSK__ErrListener_a947996d27d0f893454bdb0e352bf1404}{user\+\_\+ptr}}
+\begin{DoxyCompactList}\small\item\em Pointer to be used in error callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+A structure for holding callback pointers in case of an error. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structPSK__ErrListener_af5df22e8bbf01d0a335e9e379d35e502}\index{PSK\_ErrListener@{PSK\_ErrListener}!callback@{callback}}
+\index{callback@{callback}!PSK\_ErrListener@{PSK\_ErrListener}}
+\doxyparagraph{\texorpdfstring{callback}{callback}}
+{\footnotesize\ttfamily \label{structPSK__ErrListener_af5df22e8bbf01d0a335e9e379d35e502} 
+int(\texorpdfstring{$\ast$}{*} PSK\+\_\+\+Err\+Listener\+::callback) (const char \texorpdfstring{$\ast$}{*}msg, size\+\_\+t msg\+\_\+len, void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structPSK__ErrListener_a947996d27d0f893454bdb0e352bf1404}{user\+\_\+ptr}})}
+
+
+
+Prototype for callback to be invoked in case of error. 
+
+This method is invoked for any error that has been recorded in the PSK Transformation PSL. If its return value is not 0, the queue of errors continues to be processed (with the associated callback invocations). If its return value is 0, the walking over errors is cancelled. \Hypertarget{structPSK__ErrListener_a947996d27d0f893454bdb0e352bf1404}\index{PSK\_ErrListener@{PSK\_ErrListener}!user\_ptr@{user\_ptr}}
+\index{user\_ptr@{user\_ptr}!PSK\_ErrListener@{PSK\_ErrListener}}
+\doxyparagraph{\texorpdfstring{user\_ptr}{user\_ptr}}
+{\footnotesize\ttfamily \label{structPSK__ErrListener_a947996d27d0f893454bdb0e352bf1404} 
+void\texorpdfstring{$\ast$}{*} PSK\+\_\+\+Err\+Listener\+::user\+\_\+ptr}
+
+
+
+Pointer to be used in error callback. 
+

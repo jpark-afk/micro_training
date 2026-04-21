@@ -1,0 +1,243 @@
+What's New in 4.0.0
+===================
+
+|rti_me| 4.0.0 is an Engineering Release, based on release 3.0.3.
+
+The following features are new since |me| 3.0.3.
+
+.. MICRO-5840
+
+Enhanced performance for asynchronous DataWriters
+-------------------------------------------------
+
+This release reduces the contention between *DataWriters* and the asynchronous 
+publication thread (used for flow-control of samples and publishing fragmented 
+samples). Previously, *DataWriters* would block while the asynchronous 
+publication thread was sending data. In this release, the asynchronous 
+publication thread uses a separate critical section from the *DataWriter*'s 
+write API, which allows the *DataWriter* to write samples while the 
+asynchronous publication thread is sending data.
+
+Please note the following limitations:
+
+* It is not possible to send and receive data at the same time.
+* The asynchronous publication thread and the *DataWriter* will contend for 
+  the same critical section when the asynchronous publication thread starts
+  or finishes sending a sample. This is because the *DataWriter* is loaning 
+  samples to the asynchronous publication thread instead of copying them, and 
+  the ownership transfer of samples from the *DataWriter* to the asynchronous 
+  publication thread (and from the asynchronous publication thread to the 
+  *DataWriter*) is protected.
+
+In addition, The User's Manual has not been updated for this release; some
+sections do not reflect the impact of these changes. Specifically, note the 
+following:
+
+* Each *DataWriter* allocates 1 additional mutex.
+* Each *DomainParticipant* allocates 2 additional mutexes, plus 1 mutex per 
+  flow-controller (3 by default).
+* Each *DataWriter* allocates an additional (``max_routes_per_reader`` * 
+  ``max_fragmented_samples`` * ``max_remote_readers`` * 464) bytes. Future 
+  releases may reduce this.
+
+.. MICRO-5634
+
+Further control which entities communicate with each other using new Partition QoS policy 
+-----------------------------------------------------------------------------------------
+The PARTITION QoS policy provides a method to prevent *Entities* that have
+otherwise compatible QoS policies from matching—and thus communicating
+with—each other. Much in the same way that only applications within the same DDS
+domain will communicate with each other, only *Entities* that belong to the
+same partition can talk to each other.
+
+See information on :ref:`section-partitions` in the User's Manual chapter for more 
+information.
+
+.. MICRO-5627
+
+Store additional entity-related information that is passed between applications during discovery using new User/Topic/Group Data QoS policies
+---------------------------------------------------------------------------------------------------------------------------------------------
+*Connext Micro* now provides areas where your 
+application can store additional information related to DDS *Entities*. How 
+this information is used is up to user code. *Connext Micro* distributes this
+information to other applications as part of the discovery proces; however,
+*Connext Micro* does not interpret the information. Use 
+cases are usually application-to-application identification, authentication,
+authorization, and encryption.
+
+There are three User Discovery Data QoS policies:
+
+-  USER_DATA: associated with *DomainParticipants*, *DataWriters*, and 
+   *DataReaders*.
+-  TOPIC_DATA: associated with *Topics*.
+-  GROUP_DATA: associated with *Publishers* and *Subscribers*.
+
+See information on :ref:`section-user-discovery-data` in the User's Manual chapter for more
+information.
+
+.. MICRO-4062
+
+Verify that locally created participant GUIDs are unique within a DomainParticipantFactory
+------------------------------------------------------------------------------------------
+
+When a *DomainParticipant* is created, |me| now checks that 
+the GUID is not already in use by another *DomainParticipant* created from 
+the same *DomainParticipantFactory*.
+
+Micro Application Generator (MAG)
+---------------------------------
+
+Support for Partition QoS policy in MAG
+.......................................
+
+.. MAG-155
+
+Micro Application Generator (MAG) now supports the PARTITION QoS policy. 
+Instead of ignoring the Partition QoS values, as it did in previous releases, 
+MAG now parses the values configured in XML and adds those values when 
+generating the code. 
+
+The following partition-related *DomainParticipant* QoS resource limits are also
+now supported:
+
+- **max_partitions**
+- **max_partition_cumulative_characters**
+- **max_partition_string_size**
+- **max_partition_string_allocation**
+
+See the :ref:`section-partitions` chapter in the User's Manual for more information 
+on this QoS policy.
+
+Support for GROUP_DATA, USER_DATA, and TOPIC_DATA QoS policies in MAG
+.....................................................................
+
+.. MAG-154
+
+Micro Application Generator (MAG) now supports the GROUP_DATA, USER_DATA, and
+TOPIC_DATA QoS policies. Instead of ignoring these QoS values, as it did in 
+previous releases, MAG now parses the values configured in XML and adds those 
+values when generating the code. 
+
+MAG also supports the group_data, user_data, and topic_data elements:
+
+- **user_data** in the *DomainParticipant*, *DataWriter*, and *DataReader* QoS
+- **topic_data** in the *Topic* QoS
+- **group_data** in the *Publisher* and *Subscriber* QoS
+- The following *DomainParticipant* QoS resource limits:
+
+  - **participant_user_data_max_length**
+  - **participant_user_data_max_count**
+  - **topic_data_max_length**
+  - **topic_data_max_count**
+  - **publisher_group_data_max_length**
+  - **publisher_group_data_max_count**
+  - **subscriber_group_data_max_length**
+  - **subscriber_group_data_max_count**
+  - **writer_user_data_max_length**
+  - **writer_user_data_max_count**
+  - **reader_user_data_max_length**
+  - **reader_user_data_max_count**
+
+See the :ref:`section-user-discovery-data` chapter in the User's Manual for more information 
+on these QoS policies.
+
+Support for environment variable expansion in MAG
+.................................................
+
+.. MAG-52
+
+Now you can refer to an environment variable set in the command shell within an
+XML tag. When MAG parses the configuration file, it will expand the environment
+variable. The way to refer to the environment variable is as follows:
+
+.. code-block:: console 
+
+   $(MY_VARIABLE)
+
+For example:
+
+.. code-block:: console 
+
+   <name>$(MY_VARIABLE)</name>
+
+Being able to refer to an environment variable within an XML file increases XML
+reusability. For example, this will allow you to specify the initial peers, so
+you do not need to use multiple XML files or XML profiles per application.
+
+Only check for QoS policies that are used by your system definition
+...................................................................
+
+.. MAG-123
+
+In previous releases, MAG checked whether all of the QoS policies passed to the 
+tool were supported by |me|. This has been changed to only check for QoS policies
+that are used by the system defined in the ``<domain_participant_library>``.
+
+XML fields of type duration have unset tags default to 0 with a warning log message
+...................................................................................
+
+.. MAG-126
+
+The duration type tag has two subfields, ``<sec>`` and ``<nanosec>``. 
+Some QoS policies that use these fields, such as the DEADLINE QoS Policy,
+set the default duration to INFINITE. Therefore, if you had set just one
+of these fields (such as ``<sec>``, but not ``<nanosec>``, or vice-versa),
+the resulting duration value was still INFINITE.
+
+Now if you set only one of these
+fields (``<sec>`` or ``<nanosec>``) in the XML file, the other value defaults
+to 0. (If you set neither one of them, the default duration for that policy
+would be used.) A warning message will also be logged by the parser specifying
+the parent tag, the missing subfield, and the line number.
+
+Support for resource limits in DomainParticipantFactoryQos
+..........................................................
+
+.. MAG-130
+
+This release allows you to configure the resource limits of the
+DomainParticipantFactoryQos (**max_participants**) in XML.
+
+By default, MAG updates the resource limits of the 
+DomainParticipantFactoryQos so that MAG can at least support the entities
+defined in the XML file. However, if your applications communicate with
+more remote entities than those specified in the XML file, you may need
+to manually update the resource limits.
+In that case, you need to use the ``-dontUpdateResourceLimits`` command-line
+option. That will prevent MAG from automatically updating the
+resource limits for the *DomainParticipantFactory*, *DomainParticipants*, 
+*DataReaders*, and *DataWriters*. 
+
+
+Instance replacement changes affect XML files in MAG
+....................................................
+
+.. MAG-136
+
+The type used by ``<instance_replacement>`` in MAG has been changed from a
+single type to a complex type. Because of this change, XML files used by MAG
+in previous releases won't work out of the box in this release. For example,
+the following XML based on MAG in previous releases won't work in the current
+release:
+
+.. code-block:: XML
+
+    <datareader_qos>
+        <reader_resource_limits>
+            <instance_replacement>OLDEST_INSTANCE_REPLACEMENT</instance_replacement>
+        </reader_resource_limits>
+    </datareader_qos>
+
+You need to update it to the following:
+
+.. code-block:: XML
+
+    <datareader_qos>
+        <reader_resource_limits>
+            <instance_replacement>
+                <alive_instance_removal>ANY_INSTANCE_REMOVAL</alive_instance_removal>
+                <disposed_instance_removal>ANY_INSTANCE_REMOVAL</disposed_instance_removal>
+                <no_writers_instance_removal>ANY_INSTANCE_REMOVAL</no_writers_instance_removal>
+            </instance_replacement>
+        </reader_resource_limits>
+    </datareader_qos>

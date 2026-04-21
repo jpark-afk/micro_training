@@ -1,0 +1,70 @@
+What's New in 4.0.1
+===================
+
+|rti_me| 4.0.1 is an Early Access Release, based on release 4.0.0.
+
+The following features are new since |me| 4.0.0.
+
+.. MAG-167
+
+Enable or disable padding bits with PROPERTY QoS policy in DomainParticipant and Data Writer
+--------------------------------------------------------------------------------------------
+
+Micro Application Generator (MAG) adds support for enabling and disabling 
+sending padding bits. This feature is part of a fix for a data corruption 
+issue; see :ref:`MICRO-5930` for more information.
+
+Padding bits can be set with the following property, via the 
+:link_connextmicro_dds_api_c_up_one:`PROPERTY <group__DDSPropertyQosModule.html>` 
+QoS policy:
+
+* :link_connextmicro_dds_api_c_up_one:`dds.xtypes.compliance_mask <group__NDDSGlobalPropertyModule.html>`, 
+  to enable or disable padding bits for the *DomainParticipant* or *DataWriter*. The 
+  only valid values supported by MAG for this property are 0 and 0x00000008. 
+  MAG will report an error if a different value is set.
+
+.. note::
+  
+  In previous releases, MAG ignored :link_connextmicro_dds_api_c_up_one:`PROPERTY <group__DDSPropertyQosModule.html>` 
+  QoS values, but now it parses all PROPERTY QoS values configured in XML 
+  and adds those values when generating the code. However, it ignores every 
+  PROPERTY QoS property that is not **dds.xtypes.compliance_mask**. Future |me| 
+  releases may add support for additional properties.
+
+
+.. MICRO-2466
+
+Generate examples with new template options for Code Generator
+--------------------------------------------------------------
+
+In this release, some examples that were previously included in a 
+|me| installation have been removed. Instead, examples can 
+be generated from templates included with the *RTI Code Generator*.
+
+This release introduces two new *Code Generator* command-line options, 
+``-showTemplates`` and ``-exampleTemplates``.
+
+The ``-showTemplates`` option prints and generates an XML file containing 
+a list of available example templates in your |me| installation, organized 
+per language.
+
+The ``-exampleTemplate`` option generates an example you specify, instead of 
+the default one.
+
+When you use the ``-exampleTemplate`` option, you can specify one of the 
+example templates in ``$RTIMEHOME/rtiddsgen/resource/templates/example/<language>/<templateName>/``. 
+You may also create your own templates and place them in this directory.
+
+You must also use one of the following command-line options:
+
+* ``-create examplefiles``
+* ``-update examplefiles``
+* ``-example``
+
+*Code Generator* will then generate the example you specified. For example:
+
+.. code-block:: none
+
+  rtiddsgen -language C++ -example -exampleTemplate <exampleTemplateName> foo.idl
+
+For more information, please refer to :ref:`example_generation`.

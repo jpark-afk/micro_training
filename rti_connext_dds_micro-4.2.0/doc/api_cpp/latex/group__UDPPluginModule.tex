@@ -1,0 +1,156 @@
+\doxysubsection{UDP Transport API}
+\hypertarget{group__UDPPluginModule}{}\label{group__UDPPluginModule}\index{UDP Transport API@{UDP Transport API}}
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structUDP__NatEntry}{UDP\+\_\+\+Nat\+Entry}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Properties for a Network Address Translation entry \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structUDP__NatEntrySeq}{UDP\+\_\+\+Nat\+Entry\+Seq}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Declares IDL sequence\texorpdfstring{$<$}{<}\doxylink{structUDP__NatEntry}{UDP\+\_\+\+Nat\+Entry}\texorpdfstring{$>$}{>} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structUDP__InterfaceTableEntry}{UDP\+\_\+\+Interface\+Table\+Entry}}
+\begin{DoxyCompactList}\small\item\em Generic structure to describe a network interface. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structUDP__InterfaceTableEntrySeq}{UDP\+\_\+\+Interface\+Table\+Entry\+Seq}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Declares IDL sequence\texorpdfstring{$<$}{<}\doxylink{structUDP__InterfaceTableEntry}{UDP\+\_\+\+Interface\+Table\+Entry}\texorpdfstring{$>$}{>} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structUDP__InterfaceFactoryProperty}{UDP\+\_\+\+Interface\+Factory\+Property}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Properties for the UDP Transport. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classUDPInterfaceFactory}{UDPInterface\+Factory}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A UDP transport factory that will be used by a Domain\+Participant to create a UDP interface. Only one UDP interface can be registered with the Domain\+Participant\+Factory. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classUDPInterfaceTable}{UDPInterface\+Table}}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__UDPPluginModule_ga24babd90f6f98dc51b6daa40b5e3e3b8}{UDP\+\_\+\+INTERFACE\+\_\+\+MAX\+\_\+\+IFNAME}}~64
+\begin{DoxyCompactList}\small\item\em Maximum length of a UDP network interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__UDPPluginModule_ga2ed628b672fdd898f5798a2716bb2638}{UDP\+\_\+\+INTERFACE\+\_\+\+INTERFACE\+\_\+\+UP\+\_\+\+FLAG}}~0x1U
+\begin{DoxyCompactList}\small\item\em Generic flag to indicate if a network stack is up. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__UDPPluginModule_gaa763bb309ddc3cb16a31186d22919948}{UDP\+\_\+\+INTERFACE\+\_\+\+INTERFACE\+\_\+\+MULTICAST\+\_\+\+FLAG}}~0x2U
+\begin{DoxyCompactList}\small\item\em Generic flag to indicate if a network stack supports multicast. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__UDPPluginModule_ga97fa9ecd2c635786b06c1ba61de046c0}{UDP\+\_\+\+INTERFACE\+\_\+\+MAX\+\_\+\+NETMASK\+\_\+\+BITS}}~(32U)
+\begin{DoxyCompactList}\small\item\em The maximum number of bits in a UDP netmask. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__UDPPluginModule_gae5f8c2644149dca31f6a16c8fbb2f10c}{UDP\+\_\+\+Interface\+Factory\+Property\+\_\+initialize}} (struct \mbox{\hyperlink{structUDP__InterfaceFactoryProperty}{UDP\+\_\+\+Interface\+Factory\+Property}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Initialize a UDP factory property. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__UDPPluginModule_ga3d1a667b40fcda065fea01a388e9e55f}{UDP\+\_\+\+Interface\+Factory\+Property\+\_\+finalize}} (struct \mbox{\hyperlink{structUDP__InterfaceFactoryProperty}{UDP\+\_\+\+Interface\+Factory\+Property}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Finalize a UDP factory property. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{group__UDPPluginModule_ga97970074c7bce17a27b6ef0c77b55528}{UDPInterface\+Table\+::add\+\_\+entry}} (struct \mbox{\hyperlink{structUDP__InterfaceTableEntrySeq}{UDP\+\_\+\+Interface\+Table\+Entry\+Seq}} \texorpdfstring{$\ast$}{*}seq, \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} address, \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} netmask, const char \texorpdfstring{$\ast$}{*}ifname, \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} flags)
+\begin{DoxyCompactList}\small\item\em Add an entry to the list of available interfaces. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  The UDP transport implements the RTI Connext DDS Micro NETIO interface and supports UDPv4. Please refer to the User Manual for information about how to use the UDP transport.
+
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__UDPPluginModule_ga24babd90f6f98dc51b6daa40b5e3e3b8}\index{UDP Transport API@{UDP Transport API}!UDP\_INTERFACE\_MAX\_IFNAME@{UDP\_INTERFACE\_MAX\_IFNAME}}
+\index{UDP\_INTERFACE\_MAX\_IFNAME@{UDP\_INTERFACE\_MAX\_IFNAME}!UDP Transport API@{UDP Transport API}}
+\doxyparagraph{\texorpdfstring{UDP\_INTERFACE\_MAX\_IFNAME}{UDP\_INTERFACE\_MAX\_IFNAME}}
+{\footnotesize\ttfamily \label{group__UDPPluginModule_ga24babd90f6f98dc51b6daa40b5e3e3b8} 
+\#define UDP\+\_\+\+INTERFACE\+\_\+\+MAX\+\_\+\+IFNAME~64}
+
+
+
+Maximum length of a UDP network interface. 
+
+\Hypertarget{group__UDPPluginModule_ga2ed628b672fdd898f5798a2716bb2638}\index{UDP Transport API@{UDP Transport API}!UDP\_INTERFACE\_INTERFACE\_UP\_FLAG@{UDP\_INTERFACE\_INTERFACE\_UP\_FLAG}}
+\index{UDP\_INTERFACE\_INTERFACE\_UP\_FLAG@{UDP\_INTERFACE\_INTERFACE\_UP\_FLAG}!UDP Transport API@{UDP Transport API}}
+\doxyparagraph{\texorpdfstring{UDP\_INTERFACE\_INTERFACE\_UP\_FLAG}{UDP\_INTERFACE\_INTERFACE\_UP\_FLAG}}
+{\footnotesize\ttfamily \label{group__UDPPluginModule_ga2ed628b672fdd898f5798a2716bb2638} 
+\#define UDP\+\_\+\+INTERFACE\+\_\+\+INTERFACE\+\_\+\+UP\+\_\+\+FLAG~0x1U}
+
+
+
+Generic flag to indicate if a network stack is up. 
+
+\Hypertarget{group__UDPPluginModule_gaa763bb309ddc3cb16a31186d22919948}\index{UDP Transport API@{UDP Transport API}!UDP\_INTERFACE\_INTERFACE\_MULTICAST\_FLAG@{UDP\_INTERFACE\_INTERFACE\_MULTICAST\_FLAG}}
+\index{UDP\_INTERFACE\_INTERFACE\_MULTICAST\_FLAG@{UDP\_INTERFACE\_INTERFACE\_MULTICAST\_FLAG}!UDP Transport API@{UDP Transport API}}
+\doxyparagraph{\texorpdfstring{UDP\_INTERFACE\_INTERFACE\_MULTICAST\_FLAG}{UDP\_INTERFACE\_INTERFACE\_MULTICAST\_FLAG}}
+{\footnotesize\ttfamily \label{group__UDPPluginModule_gaa763bb309ddc3cb16a31186d22919948} 
+\#define UDP\+\_\+\+INTERFACE\+\_\+\+INTERFACE\+\_\+\+MULTICAST\+\_\+\+FLAG~0x2U}
+
+
+
+Generic flag to indicate if a network stack supports multicast. 
+
+\Hypertarget{group__UDPPluginModule_ga97fa9ecd2c635786b06c1ba61de046c0}\index{UDP Transport API@{UDP Transport API}!UDP\_INTERFACE\_MAX\_NETMASK\_BITS@{UDP\_INTERFACE\_MAX\_NETMASK\_BITS}}
+\index{UDP\_INTERFACE\_MAX\_NETMASK\_BITS@{UDP\_INTERFACE\_MAX\_NETMASK\_BITS}!UDP Transport API@{UDP Transport API}}
+\doxyparagraph{\texorpdfstring{UDP\_INTERFACE\_MAX\_NETMASK\_BITS}{UDP\_INTERFACE\_MAX\_NETMASK\_BITS}}
+{\footnotesize\ttfamily \label{group__UDPPluginModule_ga97fa9ecd2c635786b06c1ba61de046c0} 
+\#define UDP\+\_\+\+INTERFACE\+\_\+\+MAX\+\_\+\+NETMASK\+\_\+\+BITS~(32U)}
+
+
+
+The maximum number of bits in a UDP netmask. 
+
+
+
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__UDPPluginModule_gae5f8c2644149dca31f6a16c8fbb2f10c}\index{UDP Transport API@{UDP Transport API}!UDP\_InterfaceFactoryProperty\_initialize@{UDP\_InterfaceFactoryProperty\_initialize}}
+\index{UDP\_InterfaceFactoryProperty\_initialize@{UDP\_InterfaceFactoryProperty\_initialize}!UDP Transport API@{UDP Transport API}}
+\doxyparagraph{\texorpdfstring{UDP\_InterfaceFactoryProperty\_initialize()}{UDP\_InterfaceFactoryProperty\_initialize()}}
+{\footnotesize\ttfamily \label{group__UDPPluginModule_gae5f8c2644149dca31f6a16c8fbb2f10c} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} UDP\+\_\+\+Interface\+Factory\+Property\+\_\+initialize (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structUDP__InterfaceFactoryProperty}{UDP\+\_\+\+Interface\+Factory\+Property}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Initialize a UDP factory property. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em self} & Property to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure 
+\end{DoxyReturn}
+\Hypertarget{group__UDPPluginModule_ga3d1a667b40fcda065fea01a388e9e55f}\index{UDP Transport API@{UDP Transport API}!UDP\_InterfaceFactoryProperty\_finalize@{UDP\_InterfaceFactoryProperty\_finalize}}
+\index{UDP\_InterfaceFactoryProperty\_finalize@{UDP\_InterfaceFactoryProperty\_finalize}!UDP Transport API@{UDP Transport API}}
+\doxyparagraph{\texorpdfstring{UDP\_InterfaceFactoryProperty\_finalize()}{UDP\_InterfaceFactoryProperty\_finalize()}}
+{\footnotesize\ttfamily \label{group__UDPPluginModule_ga3d1a667b40fcda065fea01a388e9e55f} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} UDP\+\_\+\+Interface\+Factory\+Property\+\_\+finalize (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structUDP__InterfaceFactoryProperty}{UDP\+\_\+\+Interface\+Factory\+Property}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Finalize a UDP factory property. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em self} & Property to finalize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure 
+\end{DoxyReturn}
+\Hypertarget{group__UDPPluginModule_ga97970074c7bce17a27b6ef0c77b55528}\index{UDP Transport API@{UDP Transport API}!add\_entry@{add\_entry}}
+\index{add\_entry@{add\_entry}!UDP Transport API@{UDP Transport API}}
+\doxyparagraph{\texorpdfstring{add\_entry()}{add\_entry()}}
+{\footnotesize\ttfamily \label{group__UDPPluginModule_ga97970074c7bce17a27b6ef0c77b55528} 
+static bool UDPInterface\+Table\+::add\+\_\+entry (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structUDP__InterfaceTableEntrySeq}{UDP\+\_\+\+Interface\+Table\+Entry\+Seq}} \texorpdfstring{$\ast$}{*}}]{seq}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}}]{address}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}}]{netmask}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{ifname}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}}]{flags}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Add an entry to the list of available interfaces. 
+
+This function can be used to add an interface to the if\+\_\+table in the \doxylink{structUDP__InterfaceFactoryProperty}{UDP\+\_\+\+Interface\+Factory\+Property}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em seq} & The sequence to add the entry to\\
+\hline
+\mbox{\texttt{ in}}  & {\em address} & The UDPv4 interface address to add in host order\\
+\hline
+\mbox{\texttt{ in}}  & {\em netmask} & The interface netmask, maximum of \doxylink{group__UDPPluginModule_ga97fa9ecd2c635786b06c1ba61de046c0}{UDP\+\_\+\+INTERFACE\+\_\+\+MAX\+\_\+\+NETMASK\+\_\+\+BITS} bits.\\
+\hline
+\mbox{\texttt{ in}}  & {\em ifname} & The interface name. Cannot exceed \doxylink{group__UDPPluginModule_ga24babd90f6f98dc51b6daa40b5e3e3b8}{UDP\+\_\+\+INTERFACE\+\_\+\+MAX\+\_\+\+IFNAME} including NUL.\\
+\hline
+\mbox{\texttt{ in}}  & {\em flags} & Bitmap of \doxylink{group__UDPPluginModule_ga2ed628b672fdd898f5798a2716bb2638}{UDP\+\_\+\+INTERFACE\+\_\+\+INTERFACE\+\_\+\+UP\+\_\+\+FLAG} and/or \doxylink{group__UDPPluginModule_gaa763bb309ddc3cb16a31186d22919948}{UDP\+\_\+\+INTERFACE\+\_\+\+INTERFACE\+\_\+\+MULTICAST\+\_\+\+FLAG} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+

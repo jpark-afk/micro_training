@@ -1,0 +1,35 @@
+APIs (C or Traditional C++)
+===========================
+
+:minor:`[Minor]` Unexpected behavior when copying a DDS_UnsignedShortSeq with 0 length
+--------------------------------------------------------------------------------------
+
+When copying a ``DDS_UnsignedShortSeq`` with 0 length, the destination 
+sequence length was not set to 0.
+
+[RTI Issue ID MICRO-2756]
+
+:minor:`[Minor]` Missing C++ APIs for discovery operations
+----------------------------------------------------------
+
+The following functions were missing from the C++ API: 
+
+- :link_connextmicro_dds_api_cpp_up_two:`get_discovered_participants <classDDSDomainParticipant.html>`
+- :link_connextmicro_dds_api_cpp_up_two:`get_discovered_participant_data <classDDSDomainParticipant.html>`
+- :link_connextmicro_dds_api_cpp_up_two:`get_matched_subscriptions <classDDSDataWriter.html>`
+- :link_connextmicro_dds_api_cpp_up_two:`get_matched_subscription_data <classDDSDataWriter.html>`
+- :link_connextmicro_dds_api_cpp_up_two:`get_matched_publications <classDDSDataReader.html>`
+- :link_connextmicro_dds_api_cpp_up_two:`get_matched_publication_data <classDDSDataReader.html>`
+
+For more information on these functions, please refer to the 
+:link_connextmicro_dds_api_cpp_up_two:`C++ API Reference <index.html>`.
+
+[RTI Issue ID MICRO-6462]
+
+:trivial:`[Trivial]` C++ examples used the undocumented get_reference API
+-------------------------------------------------------------------------
+
+The C++ examples used the undocumented ``get_reference`` API. C++ examples 
+now use the ``[]`` operator.
+
+[RTI Issue ID MICRO-3104]

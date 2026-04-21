@@ -1,0 +1,17 @@
+\doxysubsubsubsection{max\+\_\+instances}
+\hypertarget{group__DDSUserManuals__ResourceModule__drqos__max__instances}{}\label{group__DDSUserManuals__ResourceModule__drqos__max__instances}\index{max\_instances@{max\_instances}}
+\begin{DoxyParagraph}{NAME}
+\doxylink{structDDS__ResourceLimitsQosPolicy_ab7339605f314f50c7cb658426ff64cdb}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+instances}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{DESCRIPTION}
+\doxylink{structDDS__ResourceLimitsQosPolicy_ab7339605f314f50c7cb658426ff64cdb}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+instances} limits the maximum number of instances a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} can manage. Instance state is one of the most expensive resources to maintain as well as often being the highest one.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+The resources allocated by an instance is normally only released when an instance is disposed {\itshape and} all known owners have unregistered the instance, please refer to \doxylink{group__DDSWriterModule_ga3a211e52209a0dd62d5496edb71de193}{Foo\+Data\+Writer\+\_\+unregister\+\_\+instance} and \doxylink{group__DDSWriterModule_ga42d4b049c182fc447da3f666d1ec05f7}{Foo\+Data\+Writer\+\_\+dispose}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+The \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_ac29b5e108cb7850f99662b74cdb36d58}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::instance\+\_\+replacement} policy is useful to maintain state for only the last N instances and when it is not necessary to keep samples in the \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} history cache. When the \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_ac29b5e108cb7850f99662b74cdb36d58}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::instance\+\_\+replacement} policy is set to replace the oldest instance (\doxylink{group__DDSDataReaderResourceLimitsQosModule_ggaf9e17bc2037d1bcb2f100526364afe14a53d930a5bacfc51b0708c1f47a291165}{DDS\+\_\+\+REPLACE\+\_\+\+OLDEST\+\_\+\+INSTANCE\+\_\+\+REPLACEMENT\+\_\+\+QOS}), information about the oldest instance is automatically removed and the newly discovered instance is received. The disadvantage is that \doxylink{group__DDSInstanceStateModule_ggaf2264cae1aa8cd66490debfdc5e0c360a72ebdc6f53c9a7588458b48e3ea66507}{DDS\+\_\+\+NOT\+\_\+\+ALIVE\+\_\+\+NO\+\_\+\+WRITERS\+\_\+\+INSTANCE\+\_\+\+STATE} state cannot be maintained. The \doxylink{group__DDSInstanceStateModule_ggaf2264cae1aa8cd66490debfdc5e0c360a51e7b0651e135e656327002e41787dbf}{DDS\+\_\+\+NOT\+\_\+\+ALIVE\+\_\+\+DISPOSED\+\_\+\+INSTANCE\+\_\+\+STATE} is maintained for an instance that is accepted (either there is space or another instance is replaced), regardless of whether any samples have previously been received.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{SEE ALSO}
+\doxylink{group__DDSDataReaderResourceLimitsQosModule_gaf9e17bc2037d1bcb2f100526364afe14}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Instance\+Replacement\+Kind} instance\+\_\+replacement 
+\end{DoxyParagraph}

@@ -1,0 +1,34 @@
+Reliability Protocol and Wire Representation
+============================================
+
+.. Release Notes from this point.
+
+:critical:`[Critical]` Failed to deliver samples when prior samples were lost
+-----------------------------------------------------------------------------
+|me| would sometimes fail to deliver samples to a
+*DataReader* if the last processed sample was a HEARTBEAT message which
+indicated lost samples.
+
+[RTI Issue ID MICRO-7317]
+
+:major:`[Major]` Delayed or failed to deliver large samples on unreliable networks
+----------------------------------------------------------------------------------
+The :link_connextmicro_dds_api_c_up_two:`RELIABILITY <group__DDSReliabilityQosModule.html>`
+protocol may have struggled to repair lost data fragments. In unreliable network
+conditions, fragmented samples of large data could be delayed or fail to deliver
+at all if the samples were written faster than they could be repaired. Now, the
+:link_connextmicro_dds_api_c_up_two:`RELIABILITY <group__DDSReliabilityQosModule.html>`
+protocol for lost fragments has been improved so that fragmented samples are
+repaired quickly on an unreliable network.
+
+[RTI Issue ID MICRO-8255]
+
+:minor:`[Minor]` Piggyback heartbeats were not included when using asynchronous publication
+-------------------------------------------------------------------------------------------
+*DataWriters* did not include piggyback heartbeats with non-fragmented samples
+when using asynchronous publication. They are now included at the rate
+configured by 
+:link_connextmicro_dds_api_c_up_two:`DDS_RtpsReliableWriterProtocol_t::heartbeats_per_max_samples <structDDS__RtpsReliableWriterProtocol__t.html>`,
+regardless of the publication mode.
+
+[RTI Issue ID MICRO-8173]

@@ -1,0 +1,43 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2024-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+# This architecture is expected to be compiled on a native machine with the
+# default compiler
+SET(CMAKE_SYSTEM_NAME Linux)
+
+IF (${TARGET_HELP})
+    MESSAGE("TARGET\n\n i86Linux4gcc7.3.0CERT\n")
+    MESSAGE("DESCRIPTION\n")
+    MESSAGE(" The i86Linux4gcc7.3.0CERT target supports Cert compatible builds on Linux")
+    MESSAGE(" targets")
+    MESSAGE("\nARGUMENTS\n")
+    MESSAGE(" This target interprets RTIME_TARGET_NAME as follows:")
+    MESSAGE(" - if gcc is part of the name the GCC compiler is assumed")
+    MESSAGE("\nEXAMPLES\n")
+    MESSAGE(" --target i86Linux4gcc7.3.0CERT\n")
+ENDIF()
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Platform/linux.tc)
+
+IF (NOT ${TARGET_HELP})
+    IF (${RTIME_TARGET_NAME} MATCHES "gcc")
+        INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/gcc.tc)
+    ELSE()
+        MESSAGE(FATAL_ERROR "Unknown compiler specified in ${RTIME_TARGET_NAME}")
+    ENDIF()
+ELSE()
+    INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/gcc.tc)
+ENDIF()
+
+SET(RTIME_OSAPI_PLATFORM posix)
+
+SET(RTIME_CERT TRUE)
+

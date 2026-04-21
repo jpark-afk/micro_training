@@ -1,0 +1,35 @@
+\doxysubsection{DDSDomain\+Entity Class Reference}
+\hypertarget{classDDSDomainEntity}{}\label{classDDSDomainEntity}\index{DDSDomainEntity@{DDSDomainEntity}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Abstract base class for all DDS entities except for the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+infrastructure.\+hxx$>$}
+
+Inheritance diagram for DDSDomain\+Entity\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classDDSDomainEntity}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Additional Inherited Members}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{classDDSEntity}{DDSEntity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSEntity_ac8f6cb9f8f0d2eac1daed34b6eb60e11}{enable}} ()
+\begin{DoxyCompactList}\small\item\em Enables the \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classDDSStatusCondition}{DDSStatus\+Condition}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSEntity_a1a0f08bee56cbd55a299b92cde333a74}{get\+\_\+statuscondition}} ()
+\begin{DoxyCompactList}\small\item\em Return the \doxylink{classDDSStatusCondition}{DDSStatus\+Condition} associated with a particular \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} \mbox{\hyperlink{classDDSEntity_ade1b0388ee69bf07981a70e5b17cc857}{get\+\_\+status\+\_\+changes}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the list of communication statuses in the \doxylink{classDDSEntity}{DDSEntity} that are triggered. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{classDDSEntity_af45327c05987d9ff5beb7271b00ed883}{get\+\_\+instance\+\_\+handle}} ()
+\begin{DoxyCompactList}\small\item\em Allows access to the \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} associated with the \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Abstract base class for all DDS entities except for the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. 
+
+Its sole purpose is to {\itshape conceptually} express that \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} is a special kind of \doxylink{classDDSEntity}{DDSEntity} that acts as a container of all other \doxylink{classDDSEntity}{DDSEntity} but itself cannot contain other \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. 

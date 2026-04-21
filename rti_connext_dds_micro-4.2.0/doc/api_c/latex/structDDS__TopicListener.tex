@@ -1,0 +1,60 @@
+\doxysubsection{DDS\+\_\+\+Topic\+Listener Struct Reference}
+\hypertarget{structDDS__TopicListener}{}\label{structDDS__TopicListener}\index{DDS\_TopicListener@{DDS\_TopicListener}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{structDDS__Listener}{DDS\+\_\+\+Listener} for \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} entities.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+topic.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__Listener}{DDS\+\_\+\+Listener}} \mbox{\hyperlink{structDDS__TopicListener_a91c7df496e25c48bf39bd31f8ce3cbce}{as\+\_\+listener}}
+\begin{DoxyCompactList}\small\item\em The superclass instance of this \doxylink{structDDS__TopicListener}{DDS\+\_\+\+Topic\+Listener}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSTopicEntityModule_ga8279afe8d3fcf33ddc5094ef14259242}{DDS\+\_\+\+Topic\+Listener\+\_\+\+Inconsistent\+Topic\+Callback}} \mbox{\hyperlink{structDDS__TopicListener_a49929c5787daed35b1dfb05756c8e4af}{on\+\_\+inconsistent\+\_\+topic}}
+\begin{DoxyCompactList}\small\item\em Handle the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1cdc1326d8bc09a1be3a8045f080fa88}{DDS\+\_\+\+INCONSISTENT\+\_\+\+TOPIC\+\_\+\+STATUS} status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{structDDS__Listener}{DDS\+\_\+\+Listener} for \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} entities. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1cdc1326d8bc09a1be3a8045f080fa88}{DDS\+\_\+\+INCONSISTENT\+\_\+\+TOPIC\+\_\+\+STATUS}, \doxylink{structDDS__InconsistentTopicStatus}{DDS\+\_\+\+Inconsistent\+Topic\+Status} 
+\end{DoxyParagraph}
+This is the interface that can be implemented by an application-\/provided class and then registered with the \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} such that the application can be notified by RTI Connext DDS Micro of relevant status changes. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSStatusTypesModule}{Status Kinds} 
+
+\doxylink{structDDS__Listener}{DDS\+\_\+\+Listener} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__TopicListener_a91c7df496e25c48bf39bd31f8ce3cbce}\index{DDS\_TopicListener@{DDS\_TopicListener}!as\_listener@{as\_listener}}
+\index{as\_listener@{as\_listener}!DDS\_TopicListener@{DDS\_TopicListener}}
+\doxyparagraph{\texorpdfstring{as\_listener}{as\_listener}}
+{\footnotesize\ttfamily \label{structDDS__TopicListener_a91c7df496e25c48bf39bd31f8ce3cbce} 
+struct \mbox{\hyperlink{structDDS__Listener}{DDS\+\_\+\+Listener}} DDS\+\_\+\+Topic\+Listener\+::as\+\_\+listener}
+
+
+
+The superclass instance of this \doxylink{structDDS__TopicListener}{DDS\+\_\+\+Topic\+Listener}. 
+
+\Hypertarget{structDDS__TopicListener_a49929c5787daed35b1dfb05756c8e4af}\index{DDS\_TopicListener@{DDS\_TopicListener}!on\_inconsistent\_topic@{on\_inconsistent\_topic}}
+\index{on\_inconsistent\_topic@{on\_inconsistent\_topic}!DDS\_TopicListener@{DDS\_TopicListener}}
+\doxyparagraph{\texorpdfstring{on\_inconsistent\_topic}{on\_inconsistent\_topic}}
+{\footnotesize\ttfamily \label{structDDS__TopicListener_a49929c5787daed35b1dfb05756c8e4af} 
+\mbox{\hyperlink{group__DDSTopicEntityModule_ga8279afe8d3fcf33ddc5094ef14259242}{DDS\+\_\+\+Topic\+Listener\+\_\+\+Inconsistent\+Topic\+Callback}} DDS\+\_\+\+Topic\+Listener\+::on\+\_\+inconsistent\+\_\+topic}
+
+
+
+Handle the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1cdc1326d8bc09a1be3a8045f080fa88}{DDS\+\_\+\+INCONSISTENT\+\_\+\+TOPIC\+\_\+\+STATUS} status. 
+
+This callback is called when a remote \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} is discovered but is inconsistent with the locally created \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} of the same topic name. 

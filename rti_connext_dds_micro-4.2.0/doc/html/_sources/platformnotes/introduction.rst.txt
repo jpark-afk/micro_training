@@ -1,0 +1,654 @@
+.. _section-platform_introdution:
+
+Introduction
+============
+
+This section provides platform-specific instructions that you will need to
+build and run |rti_me| applications.
+
+For each supported operating system (OS), this section describes:
+
+* Supported combinations of OS versions, CPUs, and compilers
+* How to build your application, including:
+
+  * Required |me| and system libraries
+  * Required compiler and linker flags
+  * Details on how the |me| libraries were built
+
+To see a list of all supported platforms, refer to :ref:`rl_supported`.
+
+Library types
+-------------
+
+|me| provides precompiled binaries for supported architectures. This section
+explains the different library types and gives a general description of the
+binaries shipped by RTI.
+
+In this section, the following terms are used:
+
+- *toolchain* refers to the compiler, linker, and archiver for a specific CPU
+  architecture, excluding dependencies in standard header files and libraries.
+- *platform* refers to the hardware, BSPs,  OS kernel, and C/C++ libraries
+  that are not included in the toolchain (such as ``libc``, ``libc++``, and the
+  network stack).
+
+RTI builds two types of binaries for |me|: integrated libraries and split libraries.
+RTI may include either or both types of binaries for a given target architecture.
+
+Integrated libraries
+....................
+
+All |me| target packages include a core library called ``rti_me``. The ``rti_me``
+library includes all the required basic functionality for |me|.
+
+The term “integrated library” refers to an ``rti_me`` library where all the OS
+integration and network stack integration is compiled directly into ``rti_me``.
+This means that it is not possible to change how the OS and network integration
+has been written without recompiling the entire library. This is illustrated below:
+
+.. figure:: /images/IntegratedLibrary_Overview.png
+   :width: 70%
+   :align: center
+
+   An overview of rti_me as an integrated library
+
+.. note::
+
+  All binaries provided for |me| version 4.0.1 and below are integrated
+  libraries.
+
+Split libraries
+...............
+
+In contrast to an integrated library, split libraries consist of a
+Platform Independent Library (PIL) and a Platform Support Library (PSL).
+
+The PIL is an ``rti_me`` library that includes all functionality for
+|me| except for platform integration code.
+
+The PSL consists of two libraries that support OS integration
+and network stack integration:
+
+- The OS Platform Support Library (``ospsl``): Contains the required OS support,
+  such as mutex and semaphore support. This library is very limited in functionality.
+- The Network Support Library (``netiopsl``): Includes support for transports,
+  such as UDPv4.
+
+The ``ospsl`` and ``netiopsl`` libraries are collectively referred to as the
+PSL (even though it is more than one library).
+
+This is illustrated below:
+
+.. figure:: /images/PIL_Overview.png
+   :width: 70%
+   :align: center
+
+   An overview of split libraries
+
+The main benefit of split libraries is that different PSLs can be written for
+the same PIL without having to recompile the platform-independent code.
+
+.. note::
+
+  The PIL is compiled without standard C header files and is only
+  dependent on the toolchain. This is different from the integrated
+  libraries, which are compiled with standard C header files.
+
+  The PSL is always compiled against the standard C
+  header files, as well as other platform-dependent header files.
+
+.. _section-libraries:
+
+Library descriptions
+--------------------
+
+The following libraries are included in the target bundle. Note that the
+names listed below do not include platform-specific prefixes or suffixes.
+
+Depending on the target architecture, the library name is prefixed with lib
+and the library suffix also varies between target architectures, such as .so
+and .dylib.
+
+The following naming conventions are also used:
+
+- Static libraries have a z suffix.
+- Shared libraries do not have an additional suffix.
+- Debug libraries have a d suffix.
+- Release libraries do not have an additional suffix.
+
+For example:
+
+- ``rti_mezd`` indicates a static debug library.
+- ``rti_me`` indicates a dynamically linked release library.
+
+.. list-table:: Target Bundle Libraries
+  :header-rows: 1
+  :widths: 30 70
+
+  * - Library Name
+    - Description
+  * - ``rti_me``
+    - The core library, including the DDS C API.
+  * - ``rti_me_discdpse``
+    - The Dynamic Participant Static Endpoint (DPSE) plugin.
+  * - ``rti_me_discdpde``
+    - The Dynamic Participant Dynamic Endpoint (DPDE) plugin.
+  * - ``rti_me_rhsm``
+    - The Reader History plugin.
+  * - ``rti_me_whsm``
+    - The Writer History plugin.
+  * - ``rti_me_netiosdm``
+    - The Zero Copy v1 over shared memory transport library plugin.
+  * - ``rti_me_netioshmem``
+    - The Shared Memory Transport plugin.
+  * - ``rti_me_appgen``
+    - The Application Generation plugin.
+  * - ``rti_me_cpp``
+    - The C++ API.
+  * - ``rti_me_ospsl``
+    - The OS PSL.
+  * - ``rti_me_netiopsl``
+    - The C NETIO PSL.
+  * - ``rti_me_netiopsl_cpp``
+    - The C++ NETIO PSL library.
+  * - ``rti_me_netiozcopy``
+    - The Zero Copy v2 transport library plugin (not supported on all platforms).
+  * - ``rti_me_ddsfilter``
+    - The content filtering library.
+  * - ``rti_me_ddsxtypes``
+    - The X-Types library.
+  * - ``rti_me_ddspsk``
+    - The Lightweight Security Plugin PIL (installed separately, not supported
+      on all platforms).
+  * - ``rti_me_pskpsl``
+    - The Lightweight Security Plugin Transform PSL (installed separately, not
+      supported on all platforms).
+
+Build profiles
+--------------
+
+You can optionally build |me| with a CERT profile. This restricts
+|me| to only include features that are available or planned for
+|me_cert|; for more information, see :ref:`section-cert-compatibility`.
+
+Any architecture ending with CERT is built with the CERT profile enabled.
+
+Some features are only available on specific platforms; see the
+footnotes in the table below.
+
+.. list-table:: Features by Profile
+   :widths: 50 25 25
+   :header-rows: 1
+
+   * - Feature/Capability
+     - Non-CERT Profile
+     - CERT Profile
+   * - Dynamic Participant Discovery
+     - **✓**
+     - **✓**
+   * - Static Endpoint Discovery
+     - **✓**
+     - **✓**
+   * - Dynamic Endpoint Discovery
+     - **✓**
+     -
+   * - C++ API
+     - **✓**
+     -
+   * - Shared Memory Transport (SHMEM)
+     - **✓** [1]_
+     -
+   * - Zero Copy v1
+     - **✓** [1]_
+     -
+   * - Zero Copy v2
+     - **✓** [1]_ [2]_
+     - **✓** [1]_ [2]_
+   * - Micro Application Generator (MAG)
+     - **✓**
+     -
+   * - Content Filtering
+     - **✓**
+     -
+   * - Lightweight Security Plugin
+     - **✓** [3]_
+     - **✓** [3]_
+   * - X-Types
+     - **✓**
+     -
+
+.. [1] Not supported on FreeRTOS platforms.
+.. [2] Not supported on Windows and macOS platforms.
+.. [3] Not supported on macOS and FreeRTOS platforms.
+
+Supported libraries by platform
+-------------------------------
+
+The following table shows which |me| libraries are supported on each
+platform (RTI architecture).
+
+.. list-table:: Supported Libraries by Platform
+   :widths: 40 30 30
+   :header-rows: 1
+   :class: longtable
+
+   * - Platform
+     - RTI Architecture
+     - Supported Libraries
+   * - Windows 10 x64
+     - x86_64lePEvs2017
+     - ``rti_me``
+
+       ``rti_me_whsm``
+
+       ``rti_me_rhsm``
+
+       ``rti_me_discdpse``
+
+       ``rti_me_discdpde``
+
+       ``rti_me_netiosdm``
+
+       ``rti_me_netioshmem``
+
+       ``rti_me_appgen``
+
+       ``rti_me_cpp``
+
+       ``rti_me_ddsxtypes``
+
+       ``rti_me_ddsfilter``
+
+       ``rti_me_ddspsk``
+   * -
+     - x86_64lePEvs2017CERT
+     - ``rti_me``
+
+       ``rti_me_ddspsk``
+   * - macOS 14 x64
+     - x86_64leMachOclang15.0
+     - ``rti_me``
+
+       ``rti_me_whsm``
+
+       ``rti_me_rhsm``
+
+       ``rti_me_discdpse``
+
+       ``rti_me_discdpde``
+
+       ``rti_me_netiosdm``
+
+       ``rti_me_netioshmem``
+
+       ``rti_me_appgen``
+
+       ``rti_me_cpp``
+
+       ``rti_me_ddsxtypes``
+
+       ``rti_me_ddsfilter``
+   * -
+     - x86_64leMachOclang15.0CERT
+     - ``rti_me``
+   * - macOS 14 arm64
+     - armv8leMachOclang15.0
+     - ``rti_me``
+
+       ``rti_me_whsm``
+
+       ``rti_me_rhsm``
+
+       ``rti_me_discdpse``
+
+       ``rti_me_discdpde``
+
+       ``rti_me_netiosdm``
+
+       ``rti_me_netioshmem``
+
+       ``rti_me_appgen``
+
+       ``rti_me_cpp``
+
+       ``rti_me_ddsxtypes``
+
+       ``rti_me_ddsfilter``
+   * -
+     - armv8leMachOclang15.0CERT
+     - ``rti_me``
+   * - Ubuntu 22.04 x64
+     - x86_64leElfgcc12.3.0
+     - ``rti_me``
+
+       ``rti_me_whsm``
+
+       ``rti_me_rhsm``
+
+       ``rti_me_discdpse``
+
+       ``rti_me_discdpde``
+
+       ``rti_me_netiosdm``
+
+       ``rti_me_netioshmem``
+
+       ``rti_me_netiozcopy``
+
+       ``rti_me_appgen``
+
+       ``rti_me_cpp``
+
+       ``rti_me_ddsxtypes``
+
+       ``rti_me_ddsfilter``
+
+       ``rti_me_ddspsk``
+   * -
+     - x86_64leElfgcc12.3.0CERT
+     - ``rti_me``
+
+       ``rti_me_netiozcopy``
+
+       ``rti_me_ddspsk``
+   * - Ubuntu 18.04 ARMv8
+     - armv8leElfgcc7.3.0
+     - ``rti_me``
+
+       ``rti_me_whsm``
+
+       ``rti_me_rhsm``
+
+       ``rti_me_discdpse``
+
+       ``rti_me_discdpde``
+
+       ``rti_me_netiosdm``
+
+       ``rti_me_netioshmem``
+
+       ``rti_me_netiozcopy``
+
+       ``rti_me_appgen``
+
+       ``rti_me_cpp``
+
+       ``rti_me_ddsxtypes``
+
+       ``rti_me_ddsfilter``
+
+       ``rti_me_ddspsk``
+   * -
+     - armv8leElfgcc7.3.0CERT
+     - ``rti_me``
+
+       ``rti_me_netiozcopy``
+
+       ``rti_me_ddspsk``
+   * - Yocto 5.15.96
+     - armv8aleElfgcc11.3.1
+     - ``rti_me``
+
+       ``rti_me_whsm``
+
+       ``rti_me_rhsm``
+
+       ``rti_me_discdpse``
+
+       ``rti_me_discdpde``
+
+       ``rti_me_netiosdm``
+
+       ``rti_me_netioshmem``
+
+       ``rti_me_netiozcopy``
+
+       ``rti_me_appgen``
+
+       ``rti_me_cpp``
+
+       ``rti_me_ddsxtypes``
+
+       ``rti_me_ddsfilter``
+
+       ``rti_me_ddspsk``
+   * -
+     - armv8aleElfgcc11.3.1CERT
+     - ``rti_me``
+
+       ``rti_me_netiozcopy``
+
+       ``rti_me_ddspsk``
+   * - QNX 7.1 ARMv8
+     - armv8leElfqnx_qcc8.3.0
+     - ``rti_me``
+
+       ``rti_me_whsm``
+
+       ``rti_me_rhsm``
+
+       ``rti_me_discdpse``
+
+       ``rti_me_discdpde``
+
+       ``rti_me_netiosdm``
+
+       ``rti_me_netioshmem``
+
+       ``rti_me_netiozcopy``
+
+       ``rti_me_appgen``
+
+       ``rti_me_cpp``
+
+       ``rti_me_ddsxtypes``
+
+       ``rti_me_ddsfilter``
+
+       ``rti_me_ddspsk``
+   * -
+     - armv8leElfqnx_qcc8.3.0CERT
+     - ``rti_me``
+
+       ``rti_me_netiozcopy``
+
+       ``rti_me_ddspsk``
+   * - QOS 2.2.1 (QNX OS for Safety)
+     - armv8leElfqcc8.3.0
+     - ``rti_me``
+
+       ``rti_me_whsm``
+
+       ``rti_me_rhsm``
+
+       ``rti_me_discdpse``
+
+       ``rti_me_discdpde``
+
+       ``rti_me_netiosdm``
+
+       ``rti_me_netioshmem``
+
+       ``rti_me_netiozcopy``
+
+       ``rti_me_appgen``
+
+       ``rti_me_cpp``
+
+       ``rti_me_ddsxtypes``
+
+       ``rti_me_ddsfilter``
+
+       ``rti_me_ddspsk``
+   * -
+     - armv8leElfqcc8.3.0CERT
+     - ``rti_me``
+
+       ``rti_me_netiozcopy``
+
+       ``rti_me_ddspsk``
+   * - FreeRTOS 10.0.0 ARMv7E-M
+     - armv7emleElfgcc10.3.1
+     - ``rti_me``
+
+       ``rti_me_whsm``
+
+       ``rti_me_rhsm``
+
+       ``rti_me_discdpse``
+
+       ``rti_me_discdpde``
+
+       ``rti_me_appgen``
+
+       ``rti_me_cpp``
+
+       ``rti_me_ddsxtypes``
+
+       ``rti_me_ddsfilter``
+   * -
+     - armv7emleElfgcc10.3.1CERT
+     - ``rti_me``
+
+Supported transports by platform
+--------------------------------
+
+The following table shows which transports are supported on each architecture.
+
+.. list-table:: Supported Transports by Platform
+   :widths: 15 35 10 10 10 10 10
+   :header-rows: 1
+
+   * - Platform
+     - RTI Architecture
+     - Intra
+     - UDPv4
+     - SHMEM
+     - Zero Copy v1
+     - Zero Copy v2
+   * - Windows 10 x64
+     - x86_64lePEvs2017
+     - **✓**
+     - **✓**
+     - **✓**
+     - **✓**
+     -
+   * -
+     - x86_64lePEvs2017CERT
+     - **✓**
+     - **✓**
+     -
+     -
+     -
+   * - macOS 14 x64
+     - x86_64leMachOclang15.0
+     - **✓**
+     - **✓**
+     - **✓**
+     - **✓**
+     -
+   * -
+     - x86_64leMachOclang15.0CERT
+     - **✓**
+     - **✓**
+     -
+     -
+     -
+   * - macOS 14 arm64
+     - armv8leMachOclang15.0
+     - **✓**
+     - **✓**
+     - **✓**
+     - **✓**
+     -
+   * -
+     - armv8leMachOclang15.0CERT
+     - **✓**
+     - **✓**
+     -
+     -
+     -
+   * - Ubuntu 22.04 x64
+     - x86_64leElfgcc12.3.0
+     - **✓**
+     - **✓**
+     - **✓**
+     - **✓**
+     - **✓**
+   * -
+     - x86_64leElfgcc12.3.0CERT
+     - **✓**
+     - **✓**
+     -
+     -
+     - **✓**
+   * - Ubuntu 18.04 ARMv8
+     - armv8leElfgcc7.3.0
+     - **✓**
+     - **✓**
+     - **✓**
+     - **✓**
+     - **✓**
+   * -
+     - armv8leElfgcc7.3.0CERT
+     - **✓**
+     - **✓**
+     -
+     -
+     - **✓**
+   * - Auto Yocto Linux BSP 37.0
+     - armv8aleElfgcc11.3.1
+     - **✓**
+     - **✓**
+     - **✓**
+     - **✓**
+     - **✓**
+   * -
+     - armv8aleElfgcc11.3.1CERT
+     - **✓**
+     - **✓**
+     -
+     -
+     - **✓**
+   * - QNX 7.1 ARMv8
+     - armv8leElfqnx_qcc8.3.0
+     - **✓**
+     - **✓**
+     - **✓**
+     - **✓**
+     - **✓**
+   * -
+     - armv8leElfqnx_qcc8.3.0CERT
+     - **✓**
+     - **✓**
+     -
+     -
+     - **✓**
+   * - QOS 2.2.1 (QNX OS for Safety)
+     - armv8leElfqcc8.3.0
+     - **✓**
+     - **✓**
+     - **✓**
+     - **✓**
+     - **✓**
+   * -
+     - armv8leElfqcc8.3.0CERT
+     - **✓**
+     - **✓**
+     -
+     -
+     - **✓**
+   * - FreeRTOS 10.4.6 ARMv7E-M
+     - armv7emleElfgcc10.3.1
+     - **✓**
+     - **✓**
+     -
+     -
+     -
+   * -
+     - armv7emleElfgcc10.3.1CERT
+     - **✓**
+     - **✓**
+     -
+     -
+     -

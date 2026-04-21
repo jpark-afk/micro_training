@@ -1,0 +1,213 @@
+.. highlight:: c
+
+Threading Model
+===============
+
+Introduction
+------------
+  
+This section describes the threading model, the use of critical 
+sections, and how to configure thread parameters in |rti_me|. Please note 
+that the information contained in this document applies to application 
+development using |me|. 
+
+.. For information regarding *porting* 
+   the |me| thread API to a new OS, please refer to 
+   :ref:`porting`. 
+
+This section includes:
+
+ - :ref:`thread_arch`
+ - :ref:`thread_model`
+ - :ref:`thread_cs`
+ 
+.. _thread_arch:
+ 
+Architectural Overview
+----------------------
+
+|rti_me| consists of a core library and a number of components. The core 
+library provides a porting layer, frequently used data-structures and 
+abstractions, and the DDS API. Components provide additional functionality 
+such as UDP communication, DDS discovery plugins, DDS history caches, etc.
+
+.. code-block:: none
+
+   +-------+                                      \ 
+   | DDS_C |                                       }  C API
+   +-------+                                      /
+      
+   +-------+ +-------+ +------+ +------+          \
+   | DPSE  | | DPDE  | | WHSM | | RHSM |          |
+   +-------+ +-------+ +------+ +------+          |
+   +-------+ +-------+ +------+ +------+ +-----+   } Optional components
+   | LOOP  | | UDP(*)| | RTPS | | DRI  | | DWI |  |  (platform independent)
+   +-------+ +-------+ +------+ +------+ +-----+  |      
+                                                  /
+                                                  
+   +-------+ +-------+ +------+ +------+          \  Core Services (always
+   | REDA  | |  CDR  | | DB   | | RT   |           } present, platform
+   +-------+ +-------+ +------+ +------+          /  independent) 
+   
+   +-----------------------------------+          \
+   |               OSAPI               |           } Platform dependent module
+   +-----------------------------------+          /                                       
+
+   (*) The UDP transport relies on a BSD socket API 
+
+.. _thread_model:
+   
+Threading Model
+---------------
+
+|rti_me| is architected in a way that makes it possible to create a port of 
+|me| that uses no threads, for example on platforms with no operating 
+system. Thus, the following discussion can only be guaranteed to be true 
+for |me| libraries from RTI.
+
+OSAPI Threads
+.............
+
+The |me| OSAPI layer creates one thread per OS process. This thread 
+manages all the |me| timers, such as deadline and liveliness timers. 
+This thread is created by the |me| OSAPI System when the 
+:link_connextmicro_dds_api_c_up_one:`OSAPI_System_initialize() <group__OSAPI__SystemClass.html>` function is called. When the |me| DDS API is 
+used :link_connextmicro_dds_api_c_up_one:`DomainParticipantFactory_get_instance() <group__DDSDomainParticipantFactoryModule.html>` calls this function once.
+
+Configuring OSAPI Threads
+'''''''''''''''''''''''''
+
+The timer thread is configured through the :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemProperty <structOSAPI__SystemProperty.html>` structure and 
+any changes must be made before :link_connextmicro_dds_api_c_up_one:`OSAPI_System_initialize() <group__OSAPI__SystemClass.html>` is called. 
+In |me|, :link_connextmicro_dds_api_c_up_one:`DomainParticipantFactory_get_instance() <group__DDSDomainParticipantFactoryModule.html>` calls 
+:link_connextmicro_dds_api_c_up_one:`OSAPI_System_initialize() <group__OSAPI__SystemClass.html>`. Thus, if it is necessary to change the system timer 
+thread settings, it must be done before :link_connextmicro_dds_api_c_up_one:`DomainParticipantFactory_get_instance() <group__DDSDomainParticipantFactoryModule.html>` 
+is called the first time.
+
+Please refer to :link_connextmicro_dds_api_c_up_one:`OSAPI_Thread <group__OSAPI__ThreadClass.html>` for supported thread options. Note
+that not all options are supported by all platforms.
+
+.. code-block:: c
+
+    struct OSAPI_SystemProperty sys_property = OSAPI_SystemProperty_INITIALIZER; 
+    
+    if (!OSAPI_System_get_property(&sys_property)) 
+    { 
+        /* ERROR */ 
+    } 
+
+    /* Please refer to OSAPI_ThreadOptions for possible options */
+    sys.property.timer_property.thread.options = ....; 
+    
+    /* The stack-size is platform dependent, it is passed directly to the OS */
+    sys.property.timer_property.thread.stack_size = ....
+    
+    /* The priority is platform dependent, it is passed directly to the OS */    
+    sys.property.timer_property.thread.priority = ....
+    
+    if (!OSAPI_System_set_property(&sys_property)) 
+    { 
+        /* ERROR */ 
+    } 
+
+.. _thread_cs:
+	
+UDP Transport Threads
+.....................
+
+Of the components that RTI provides, only the UDP component creates threads. 
+The UDP transport creates one receive thread for each unique UDP 
+receive address and port. Thus, three UDP threads are created by default:
+
+- A multicast receive thread for discovery data (assuming multicast 
+  is available and enabled)
+- A unicast receive thread for discovery data
+- A unicast receive thread for user-data
+    
+Additional threads may be created depending on the transport configuration
+for a *DomainParticipant*, *DataReader* and *DataWriter*. The UDP transport creates
+threads based on the following criteria:
+
+- Each unique unicast port creates a new thread
+- Each unique multicast address *and* port creates a new thread
+
+For example, if a *DataReader* specifies its own multicast receive address
+a new receive thread will be created.
+
+Configuring UDP Receive Threads
+'''''''''''''''''''''''''''''''
+
+All threads in the UDP transport share the same thread settings. It is 
+important to note that all the UDP properties must be set before the UDP
+transport is registered. |me| pre-registers the UDP transport with default
+settings when the :link_connextmicro_dds_api_c_up_one:`DomainParticipantFactory <group__DDSDomainParticipantFactoryModule.html>` is initialized. To change the 
+UDP thread settings, use the following code.
+
+.. code-block:: c
+
+    RT_Registry_T *registry = NULL; 
+    DDS_DomainParticipantFactory *factory = NULL; 
+    struct UDP_InterfaceFactoryProperty *udp_property = NULL; 
+    
+    factory = DDS_DomainParticipantFactory_get_instance();
+    
+    udp_property = (struct UDP_InterfaceFactoryProperty *)
+                        malloc(sizeof(struct UDP_InterfaceFactoryProperty)); 
+    *udp_property = UDP_INTERFACE_FACTORY_PROPERTY_DEFAULT; 
+    
+    registry = DDS_DomainParticipantFactory_get_registry(factory); 
+    
+    if (!RT_Registry_unregister(registry, "_udp", NULL, NULL)) 
+    { 
+        /* ERROR */ 
+    } 
+    
+    /* Please refer to OSAPI_ThreadOptions for possible options */
+    udp_property->recv_thread.options = ...; 
+    
+    /* The stack-size is platform dependent, it is passed directly to the OS */
+    udp_property->recv_thread.stack_size = ....
+    
+    /* The priority is platform dependent, it is passed directly to the OS */    
+    udp_property->recv_thread.priority = ....
+    
+    if (!RT_Registry_register(registry, "_udp", 
+                              UDP_InterfaceFactory_get_interface(), 
+                              (struct RT_ComponentFactoryProperty*)udp_property, 
+                              NULL)) 
+    { 
+        /* ERROR */ 
+    }
+
+
+General Thread Configuration
+............................
+
+The |me| architecture consists of a number of components and layers, 
+and each layer and component has its own properties. It is important
+to remember that the layers and components are configured independently 
+of each other, as opposed to configuring everything through DDS. This design 
+makes it possible to relatively easily swap out one part of the library for 
+another.
+
+All threads created based on |me| OSAPI APIs use the same 
+:link_connextmicro_dds_api_c_up_one:`OSAPI_ThreadProperty <structOSAPI__ThreadProperty.html>` structure.
+ 
+Critical Sections
+-----------------
+
+|rti_me| may create multiple threads, but from an application point of view 
+there is only a single critical section protecting all DDS resources. Note that 
+although |me| may create multiple mutexes, these are used to protect resources 
+in the OSAPI layer and are thus not relevant when using the public DDS APIs.
+
+Calling DDS APIs from listeners
+...............................
+
+When DDS is executing in a listener, it holds a critical section. Thus it is
+important to return as quickly as possible to avoid stalling network I/O.
+
+There are no deadlock scenarios when calling |me| DDS APIs from a listener. 
+However, there are no checks on whether or not an API call will cause 
+problems, such as deleting a participant when processing data in 
+:link_connextmicro_dds_api_c_up_one:`on_data_available <structDDS__DataReaderListener.html>` from a reader within the same participant.

@@ -1,0 +1,267 @@
+\doxysubsubsubsection{Shared Memory Segment API}
+\hypertarget{group__NETIO__SharedMemorySegmentClass}{}\label{group__NETIO__SharedMemorySegmentClass}\index{Shared Memory Segment API@{Shared Memory Segment API}}
+
+
+Allow access to a shared memory segment (memory block) so that multiple processes can read-\/and write a common memory area.  
+
+
+\doxysubsubsubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structNETIO__SharedMemorySegmentHeader}{NETIO\+\_\+\+Shared\+Memory\+Segment\+Header}}
+\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+RTIBool \mbox{\hyperlink{group__NETIO__SharedMemorySegmentClass_ga683fdddd12563b0305cc015df12e9a3f}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create\+\_\+or\+\_\+attach}} (struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}status\+\_\+out, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} key, \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} size, \mbox{\hyperlink{group__OSAPI__ProcessClass_ga5ba06ebd0dcc795ae1072cbbba08ce1c}{OSAPI\+\_\+\+Process\+Id}} pid\+\_\+in)
+\begin{DoxyCompactList}\small\item\em Attempts to create a new shared memory segment. If the segment already exists and the creator process is dead, attach and recycle it. \end{DoxyCompactList}\item 
+RTIBool \mbox{\hyperlink{group__NETIO__SharedMemorySegmentClass_gae9be1467351b0b87ef72815ac0d6fe2e}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create}} (struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}status\+\_\+out, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} key, \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} size, \mbox{\hyperlink{group__OSAPI__ProcessClass_ga5ba06ebd0dcc795ae1072cbbba08ce1c}{OSAPI\+\_\+\+Process\+Id}} pid\+\_\+in)
+\begin{DoxyCompactList}\small\item\em Creates a new shared memory segment with the provided key and returns the handle to access it. \end{DoxyCompactList}\item 
+RTIBool \mbox{\hyperlink{group__NETIO__SharedMemorySegmentClass_ga92217e47ec772fdb2b7f4508eeaff741}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+delete}} (struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em deletes the shared memory segment previously create with \doxylink{group__NETIO__SharedMemorySegmentClass_gae9be1467351b0b87ef72815ac0d6fe2e}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create}. If the segment is still attached, it is detached first. \end{DoxyCompactList}\item 
+RTIBool \mbox{\hyperlink{group__NETIO__SharedMemorySegmentClass_ga5ebdaf9e416e1a7fc123a8aef67b0f2b}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+attach}} (struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}status\+\_\+out, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} key)
+\begin{DoxyCompactList}\small\item\em Attach to the shared memory previously initialized with \doxylink{group__NETIO__SharedMemorySegmentClass_ga683fdddd12563b0305cc015df12e9a3f}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create\+\_\+or\+\_\+attach} and returns a handle to it. \end{DoxyCompactList}\item 
+RTIBool \mbox{\hyperlink{group__NETIO__SharedMemorySegmentClass_gadfd0d55c207709e932e3b0e6f0370155}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+detach}} (struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em Detach from the shared memory previously created with \doxylink{group__NETIO__SharedMemorySegmentClass_ga5ebdaf9e416e1a7fc123a8aef67b0f2b}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+attach}. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__NETIO__SharedMemorySegmentClass_gad8d93dc70f288511bd15fbc8349c0ad2}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+get\+\_\+address}} (struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em Get the address of the shared memory attached by the handle. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{group__NETIO__SharedMemorySegmentClass_ga46336059d71e9dca127f48f66cc7d3e1}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+get\+\_\+size}} (struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em Get the size (available for user data) of the shared memory segment. \end{DoxyCompactList}\item 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} \mbox{\hyperlink{group__NETIO__SharedMemorySegmentClass_ga9929093f74f477535a1141f516a8dac6}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+get\+\_\+max\+\_\+size}} (void)
+\begin{DoxyCompactList}\small\item\em Maximum allowable size of a shared memory segment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+Allow access to a shared memory segment (memory block) so that multiple processes can read-\/and write a common memory area. 
+
+
+
+\doxysubsubsubsubsection{Function Documentation}
+\Hypertarget{group__NETIO__SharedMemorySegmentClass_ga683fdddd12563b0305cc015df12e9a3f}\index{Shared Memory Segment API@{Shared Memory Segment API}!NETIO\_SharedMemorySegment\_create\_or\_attach@{NETIO\_SharedMemorySegment\_create\_or\_attach}}
+\index{NETIO\_SharedMemorySegment\_create\_or\_attach@{NETIO\_SharedMemorySegment\_create\_or\_attach}!Shared Memory Segment API@{Shared Memory Segment API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemorySegment\_create\_or\_attach()}{NETIO\_SharedMemorySegment\_create\_or\_attach()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemorySegmentClass_ga683fdddd12563b0305cc015df12e9a3f} 
+RTIBool NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create\+\_\+or\+\_\+attach (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}}]{status\+\_\+out}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}}]{key}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}}]{size}{, }\item[{\mbox{\hyperlink{group__OSAPI__ProcessClass_ga5ba06ebd0dcc795ae1072cbbba08ce1c}{OSAPI\+\_\+\+Process\+Id}}}]{pid\+\_\+in}{}\end{DoxyParamCaption})}
+
+
+
+Attempts to create a new shared memory segment. If the segment already exists and the creator process is dead, attach and recycle it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em handle} & The shared memory segment handle to initialize.\\
+\hline
+\mbox{\texttt{ out}}  & {\em status\+\_\+out} & Optional\+: if not NULL is set to the reason why the call has succeeded or failed. In particular, 
+\begin{DoxyItemize}
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+PRECONDITION}} = precondition check failed. 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+UNKNOWN}} = an error occurred in the os-\/specific shared memory implementation (see error log for details). 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+ALREADY\+\_\+\+CLAIMED}} = someone is already sitting on this address. 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+CREATED}} = the segment has been created new. 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+ATTACHED}} = the segment was reused from an existing one.
+
+
+\end{DoxyItemize}\\
+\hline
+\mbox{\texttt{ in}}  & {\em key} & Key to identify the shared memory segment Across processes. Other processes should call \doxylink{group__NETIO__SharedMemorySegmentClass_ga5ebdaf9e416e1a7fc123a8aef67b0f2b}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+attach} with the same key to attach to this segment.\\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & Size of memory to be initialized.\\
+\hline
+\mbox{\texttt{ in}}  & {\em pid\+\_\+in} & PID of the process that calls this method.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE if success, or RTI\+\_\+\+FALSE if something failed. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}, and \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+
+\Hypertarget{group__NETIO__SharedMemorySegmentClass_gae9be1467351b0b87ef72815ac0d6fe2e}\index{Shared Memory Segment API@{Shared Memory Segment API}!NETIO\_SharedMemorySegment\_create@{NETIO\_SharedMemorySegment\_create}}
+\index{NETIO\_SharedMemorySegment\_create@{NETIO\_SharedMemorySegment\_create}!Shared Memory Segment API@{Shared Memory Segment API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemorySegment\_create()}{NETIO\_SharedMemorySegment\_create()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemorySegmentClass_gae9be1467351b0b87ef72815ac0d6fe2e} 
+RTIBool NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}}]{status\+\_\+out}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}}]{key}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}}]{size}{, }\item[{\mbox{\hyperlink{group__OSAPI__ProcessClass_ga5ba06ebd0dcc795ae1072cbbba08ce1c}{OSAPI\+\_\+\+Process\+Id}}}]{pid\+\_\+in}{}\end{DoxyParamCaption})}
+
+
+
+Creates a new shared memory segment with the provided key and returns the handle to access it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em handle} & The shared memory segment handle to initialize. \\
+\hline
+\mbox{\texttt{ out}}  & {\em status\+\_\+out} & Optional\+: if not NULL is set to the reason why the call has succeeded or failed. In particular, 
+\begin{DoxyItemize}
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+PRECONDITION}} = precondition check failed. 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+UNKNOWN}} = an error occurred in the os-\/specific shared memory implementation (see error log for details). 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+ALREADY\+\_\+\+CLAIMED}} = segment already exist (no checks is performed whether the creator is still alive or not). 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+CREATED}} = the segment has been successfully created.
+
+
+\end{DoxyItemize}\\
+\hline
+\mbox{\texttt{ in}}  & {\em key} & {\bfseries{Key}} to identify the shared memory segment across processes. Other processes should call \doxylink{group__NETIO__SharedMemorySegmentClass_ga5ebdaf9e416e1a7fc123a8aef67b0f2b}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+attach} with the same key to attach to this segment.\\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & {\bfseries{Size}} of memory to be initialized.\\
+\hline
+\mbox{\texttt{ in}}  & {\em pid\+\_\+in} & {\bfseries{PID}} of the process that calls this method.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE if success, or RTI\+\_\+\+FALSE if something failed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Depending on the underlying OS, the key may need to be transformed to the actual representation needed by the operating system 
+\end{DoxyNote}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}, and \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+
+\Hypertarget{group__NETIO__SharedMemorySegmentClass_ga92217e47ec772fdb2b7f4508eeaff741}\index{Shared Memory Segment API@{Shared Memory Segment API}!NETIO\_SharedMemorySegment\_delete@{NETIO\_SharedMemorySegment\_delete}}
+\index{NETIO\_SharedMemorySegment\_delete@{NETIO\_SharedMemorySegment\_delete}!Shared Memory Segment API@{Shared Memory Segment API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemorySegment\_delete()}{NETIO\_SharedMemorySegment\_delete()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemorySegmentClass_ga92217e47ec772fdb2b7f4508eeaff741} 
+RTIBool NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+delete (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+deletes the shared memory segment previously create with \doxylink{group__NETIO__SharedMemorySegmentClass_gae9be1467351b0b87ef72815ac0d6fe2e}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create}. If the segment is still attached, it is detached first. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & The shared memory segment handle identifying the segment to detach\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if either the precondition was not met or the shared memory segment couldn\textquotesingle{}t be removed (i.\+e. the user running this app is not the owner or creator).
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function does not perform any control on the ownership of the segment. If you attach to a segment, then when you call this function the segment will be destroyed (if you have enough permission to complete the operation)
+
+When you create a segment with \doxylink{group__NETIO__SharedMemorySegmentClass_gae9be1467351b0b87ef72815ac0d6fe2e}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create} or with \doxylink{group__NETIO__SharedMemorySegmentClass_ga683fdddd12563b0305cc015df12e9a3f}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create\+\_\+or\+\_\+attach}, you can delete it by calling directly NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+delete without calling \doxylink{group__NETIO__SharedMemorySegmentClass_gadfd0d55c207709e932e3b0e6f0370155}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+detach}.
+\end{DoxyNote}
+Once called this function (even if it returns RTI\+\_\+\+FALSE) you cannot use anymore this shared memory segment. \Hypertarget{group__NETIO__SharedMemorySegmentClass_ga5ebdaf9e416e1a7fc123a8aef67b0f2b}\index{Shared Memory Segment API@{Shared Memory Segment API}!NETIO\_SharedMemorySegment\_attach@{NETIO\_SharedMemorySegment\_attach}}
+\index{NETIO\_SharedMemorySegment\_attach@{NETIO\_SharedMemorySegment\_attach}!Shared Memory Segment API@{Shared Memory Segment API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemorySegment\_attach()}{NETIO\_SharedMemorySegment\_attach()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemorySegmentClass_ga5ebdaf9e416e1a7fc123a8aef67b0f2b} 
+RTIBool NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+attach (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}}]{status\+\_\+out}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Attach to the shared memory previously initialized with \doxylink{group__NETIO__SharedMemorySegmentClass_ga683fdddd12563b0305cc015df12e9a3f}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create\+\_\+or\+\_\+attach} and returns a handle to it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em handle} & The shared memory segment handle to initialize.\\
+\hline
+\mbox{\texttt{ out}}  & {\em status\+\_\+out} & Optional. If not NULL, will be set to\+: 
+\begin{DoxyItemize}
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+PRECONDITION}} = precondition check failed. 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+UNKNOWN}} = an error occurred in the os-\/specific shared memory implementation (see error log for details). 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+NO\+\_\+\+ENTRY}} = no such a segment. 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+FAIL\+\_\+\+REASON\+\_\+\+OUT\+\_\+\+OF\+\_\+\+MEMORY}} = out of memory allocating the handle structure. 
+\item {\bfseries{OSAPI\+\_\+\+SHARED\+\_\+\+MEMORY\+\_\+\+ATTACHED}} = segment attached successfully. 
+\end{DoxyItemize}\\
+\hline
+\mbox{\texttt{ in}}  & {\em key} & Key to identify the shared memory segment across processes. Must match that used by other processes calling \doxylink{group__NETIO__SharedMemorySegmentClass_ga683fdddd12563b0305cc015df12e9a3f}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create\+\_\+or\+\_\+attach} or \doxylink{group__NETIO__SharedMemorySegmentClass_ga5ebdaf9e416e1a7fc123a8aef67b0f2b}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+attach()}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if an error occurred. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__NETIO__SharedMemorySegmentClass_gadfd0d55c207709e932e3b0e6f0370155}\index{Shared Memory Segment API@{Shared Memory Segment API}!NETIO\_SharedMemorySegment\_detach@{NETIO\_SharedMemorySegment\_detach}}
+\index{NETIO\_SharedMemorySegment\_detach@{NETIO\_SharedMemorySegment\_detach}!Shared Memory Segment API@{Shared Memory Segment API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemorySegment\_detach()}{NETIO\_SharedMemorySegment\_detach()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemorySegmentClass_gadfd0d55c207709e932e3b0e6f0370155} 
+RTIBool NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+detach (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+Detach from the shared memory previously created with \doxylink{group__NETIO__SharedMemorySegmentClass_ga5ebdaf9e416e1a7fc123a8aef67b0f2b}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+attach}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & The shared memory segment handle identifying the segment to detach\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success. RTI\+\_\+\+FALSE if the precondition was not met.
+\end{DoxyReturn}
+The shared memory segment is always detached. Once the precondition is met, no errors will be generated.
+
+Once called this function (even if it returns RTI\+\_\+\+FALSE) you cannot use anymore this shared memory segment, except for destroying it. \Hypertarget{group__NETIO__SharedMemorySegmentClass_gad8d93dc70f288511bd15fbc8349c0ad2}\index{Shared Memory Segment API@{Shared Memory Segment API}!NETIO\_SharedMemorySegment\_get\_address@{NETIO\_SharedMemorySegment\_get\_address}}
+\index{NETIO\_SharedMemorySegment\_get\_address@{NETIO\_SharedMemorySegment\_get\_address}!Shared Memory Segment API@{Shared Memory Segment API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemorySegment\_get\_address()}{NETIO\_SharedMemorySegment\_get\_address()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemorySegmentClass_gad8d93dc70f288511bd15fbc8349c0ad2} 
+char \texorpdfstring{$\ast$}{*} NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+get\+\_\+address (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+Get the address of the shared memory attached by the handle. 
+
+\begin{DoxyPrecond}{Precondition}
+Handle in the ATTACHED state.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+none
+\end{DoxyPostcond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & Handle to the shared memory segment obtained from an \doxylink{group__NETIO__SharedMemorySegmentClass_ga5ebdaf9e416e1a7fc123a8aef67b0f2b}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+attach} or a \doxylink{group__NETIO__SharedMemorySegmentClass_ga683fdddd12563b0305cc015df12e9a3f}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create\+\_\+or\+\_\+attach}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the address that can be used to read and write the memory. For performance this function never checks pre-\/conditions. It is the caller\textquotesingle{}s responsibility to ensure the handle is NON null and ATTACHED. A NULL handle will cause a seg-\/fault. An un-\/attached handle may give invalid values for the \doxylink{group__NETIO__SharedMemorySegmentClass_ga46336059d71e9dca127f48f66cc7d3e1}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+get\+\_\+size} 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__NETIO__SharedMemorySegmentClass_ga46336059d71e9dca127f48f66cc7d3e1}\index{Shared Memory Segment API@{Shared Memory Segment API}!NETIO\_SharedMemorySegment\_get\_size@{NETIO\_SharedMemorySegment\_get\_size}}
+\index{NETIO\_SharedMemorySegment\_get\_size@{NETIO\_SharedMemorySegment\_get\_size}!Shared Memory Segment API@{Shared Memory Segment API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemorySegment\_get\_size()}{NETIO\_SharedMemorySegment\_get\_size()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemorySegmentClass_ga46336059d71e9dca127f48f66cc7d3e1} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{struct NETIO\+\_\+\+Shared\+Memory\+Segment\+Handle \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+Get the size (available for user data) of the shared memory segment. 
+
+This size will match the one passed to the \doxylink{group__NETIO__SharedMemorySegmentClass_ga683fdddd12563b0305cc015df12e9a3f}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create\+\_\+or\+\_\+attach} call
+
+\begin{DoxyPrecond}{Precondition}
+Handle in the ATTACHED state.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+none
+\end{DoxyPostcond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & Handle to the shared memory segment obtained from an \doxylink{group__NETIO__SharedMemorySegmentClass_ga5ebdaf9e416e1a7fc123a8aef67b0f2b}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+attach} or a \doxylink{group__NETIO__SharedMemorySegmentClass_ga683fdddd12563b0305cc015df12e9a3f}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+create\+\_\+or\+\_\+attach} call.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of bytes that can be read/written stating at the address provided by \doxylink{group__NETIO__SharedMemorySegmentClass_gad8d93dc70f288511bd15fbc8349c0ad2}{NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+get\+\_\+address}. For performance this function never checks pre-\/conditions. It is the caller\textquotesingle{}s responsibility to ensure the handle is NON null and ATTACHED. A NULL handle will cause a seg-\/fault. An un-\/attached handle may give invalid values for the size. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+
+\Hypertarget{group__NETIO__SharedMemorySegmentClass_ga9929093f74f477535a1141f516a8dac6}\index{Shared Memory Segment API@{Shared Memory Segment API}!NETIO\_SharedMemorySegment\_get\_max\_size@{NETIO\_SharedMemorySegment\_get\_max\_size}}
+\index{NETIO\_SharedMemorySegment\_get\_max\_size@{NETIO\_SharedMemorySegment\_get\_max\_size}!Shared Memory Segment API@{Shared Memory Segment API}}
+\doxyparagraph{\texorpdfstring{NETIO\_SharedMemorySegment\_get\_max\_size()}{NETIO\_SharedMemorySegment\_get\_max\_size()}}
+{\footnotesize\ttfamily \label{group__NETIO__SharedMemorySegmentClass_ga9929093f74f477535a1141f516a8dac6} 
+NETIOPSLDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} NETIO\+\_\+\+Shared\+Memory\+Segment\+\_\+get\+\_\+max\+\_\+size (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Maximum allowable size of a shared memory segment. 
+
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+

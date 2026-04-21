@@ -1,0 +1,105 @@
+\doxysubsection{DDS\+\_\+\+Filter\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__FilterQosPolicy}{}\label{structDDS__FilterQosPolicy}\index{DDS\_FilterQosPolicy@{DDS\_FilterQosPolicy}}
+
+
+Configures the content filter capabilities and resource limits for a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} and all of its child entities.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+content\+\_\+filter.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+RT\+\_\+\+Component\+Factory\+Id\+\_\+T \mbox{\hyperlink{structDDS__FilterQosPolicy_abf99b0bab461715b53ffdaabaa162f01}{name}}
+\begin{DoxyCompactList}\small\item\em Name of the filter plugin factory to use. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__FilterResourceLimits}{DDS\+\_\+\+Filter\+Resource\+Limits}} \mbox{\hyperlink{structDDS__FilterQosPolicy_a8d4a071eaa21afa7fff692e1e3e39a8b}{resource\+\_\+limits}}
+\begin{DoxyCompactList}\small\item\em Resource limits for content filtering. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{structDDS__FilterQosPolicy_a2cc05388484155dd9f830df89dbc6231}{disable\+\_\+writer\+\_\+filtering}}
+\begin{DoxyCompactList}\small\item\em Controls whether writer-\/side filtering is disabled. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{structDDS__FilterQosPolicy_a9af20360d9c30f686562c48dfacf4eab}{disable\+\_\+builtin\+\_\+sql\+\_\+filter}}
+\begin{DoxyCompactList}\small\item\em Controls whether the built-\/in SQL filter is disabled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Configures the content filter capabilities and resource limits for a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} and all of its child entities. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = NO ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} ~\newline
+ 
+\end{DoxyParagraph}
+\hypertarget{structDDS__FilterQosPolicy_DDSFilterQosModule_usage}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{structDDS__FilterQosPolicy_DDSFilterQosModule_usage}
+By default if the content filtering feature is enabled, then every \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} and its child entities will support content filtering. This policy allows the feature or parts of the feature to be disabled for a specific \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. 
+
+It is also used to configure the resource limits for all content filters that are created by the child entities of the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. Reducing the resource limits can be useful to reduce the memory usage of the filter, or the limits can be increased to allow for more complex filters to be used. 
+
+A \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} will fail to be created if it specifies a \doxylink{structDDS__ContentFilterQosPolicy}{DDS\+\_\+\+Content\+Filter\+Qos\+Policy} that is not compatible with the resource limits specified in this policy for its parent \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. 
+
+A \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will be unable to perform writer-\/side filtering for any \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} that specifies a content filter that is not compatible with the resource limits specified in this policy for its parent \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSFILTERModule_ga78e6991395a89e1a00e08038c23112d4}{DDS\+\_\+\+Filter\+Plugin\+Factory\+\_\+register} for how to enable the content filtering feature 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__FilterQosPolicy_abf99b0bab461715b53ffdaabaa162f01}\index{DDS\_FilterQosPolicy@{DDS\_FilterQosPolicy}!name@{name}}
+\index{name@{name}!DDS\_FilterQosPolicy@{DDS\_FilterQosPolicy}}
+\doxyparagraph{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{structDDS__FilterQosPolicy_abf99b0bab461715b53ffdaabaa162f01} 
+RT\+\_\+\+Component\+Factory\+Id\+\_\+T DDS\+\_\+\+Filter\+Qos\+Policy\+::name}
+
+
+
+Name of the filter plugin factory to use. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSFilterQosModule_gab14ba039f73c9fb7805c1d24e334038a}{DDS\+\_\+\+FILTER\+\_\+\+PLUGIN\+\_\+\+FACTORY\+\_\+\+DEFAULT\+\_\+\+NAME} 
+
+If the Filter\+Plugin\+Factory is registered with this name, then the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} will use that filter plugin to support content filtering. 
+
+If it is cleared (set to an empty string), then content filtering is disabled for the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} and all of its child entities. 
+
+If it is set to a different name than \doxylink{group__DDSFilterQosModule_gab14ba039f73c9fb7805c1d24e334038a}{DDS\+\_\+\+FILTER\+\_\+\+PLUGIN\+\_\+\+FACTORY\+\_\+\+DEFAULT\+\_\+\+NAME}, and that factory cannot be found, then the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} will fail to be created with this policy. \Hypertarget{structDDS__FilterQosPolicy_a8d4a071eaa21afa7fff692e1e3e39a8b}\index{DDS\_FilterQosPolicy@{DDS\_FilterQosPolicy}!resource\_limits@{resource\_limits}}
+\index{resource\_limits@{resource\_limits}!DDS\_FilterQosPolicy@{DDS\_FilterQosPolicy}}
+\doxyparagraph{\texorpdfstring{resource\_limits}{resource\_limits}}
+{\footnotesize\ttfamily \label{structDDS__FilterQosPolicy_a8d4a071eaa21afa7fff692e1e3e39a8b} 
+struct \mbox{\hyperlink{structDDS__FilterResourceLimits}{DDS\+\_\+\+Filter\+Resource\+Limits}} DDS\+\_\+\+Filter\+Qos\+Policy\+::resource\+\_\+limits}
+
+
+
+Resource limits for content filtering. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSFilterQosModule_ga6cf73a64fb49070500e6b99a18c39e89}{DDS\+\_\+\+FILTER\+\_\+\+RESOURCE\+\_\+\+LIMITS\+\_\+\+DEFAULT} 
+
+Defines the resource constraints for the content filters created by the child entities of a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. \Hypertarget{structDDS__FilterQosPolicy_a2cc05388484155dd9f830df89dbc6231}\index{DDS\_FilterQosPolicy@{DDS\_FilterQosPolicy}!disable\_writer\_filtering@{disable\_writer\_filtering}}
+\index{disable\_writer\_filtering@{disable\_writer\_filtering}!DDS\_FilterQosPolicy@{DDS\_FilterQosPolicy}}
+\doxyparagraph{\texorpdfstring{disable\_writer\_filtering}{disable\_writer\_filtering}}
+{\footnotesize\ttfamily \label{structDDS__FilterQosPolicy_a2cc05388484155dd9f830df89dbc6231} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Filter\+Qos\+Policy\+::disable\+\_\+writer\+\_\+filtering}
+
+
+
+Controls whether writer-\/side filtering is disabled. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE 
+
+When set to DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE, prevents all child \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} entities of a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} from performing writer-\/side filtering. This reduces the memory usage of the content filtering feature, but also prevents the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} from filtering data before it is sent to a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} that has a content filter. \Hypertarget{structDDS__FilterQosPolicy_a9af20360d9c30f686562c48dfacf4eab}\index{DDS\_FilterQosPolicy@{DDS\_FilterQosPolicy}!disable\_builtin\_sql\_filter@{disable\_builtin\_sql\_filter}}
+\index{disable\_builtin\_sql\_filter@{disable\_builtin\_sql\_filter}!DDS\_FilterQosPolicy@{DDS\_FilterQosPolicy}}
+\doxyparagraph{\texorpdfstring{disable\_builtin\_sql\_filter}{disable\_builtin\_sql\_filter}}
+{\footnotesize\ttfamily \label{structDDS__FilterQosPolicy_a9af20360d9c30f686562c48dfacf4eab} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Filter\+Qos\+Policy\+::disable\+\_\+builtin\+\_\+sql\+\_\+filter}
+
+
+
+Controls whether the built-\/in SQL filter is disabled. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE 
+
+By default, a built-\/in SQL content filter is enabled that allows filtering based on SQL-\/like expressions. 
+
+When set to DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE, this disables the built-\/in SQL content filter from being automatically enabled. 

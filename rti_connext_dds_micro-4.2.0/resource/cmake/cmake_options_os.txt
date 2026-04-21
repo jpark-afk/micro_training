@@ -1,0 +1,83 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Platform options file
+#
+# Modification History
+# --------------------
+# 12sep2016 tk Written
+################################################################################
+
+# Define these here so they are always available.
+
+SET(RTIME_OSAPI_AUTO    "<auto detect>")
+SET(RTIME_OSAPI_DEFAULT ${RTIME_OSAPI_AUTO})
+SET(RTIME_OSAPI_POSIX     "posix")
+SET(RTIME_OSAPI_GENERIC   "generic")
+SET(RTIME_OSAPI_VXWORKS   "vxworks")
+SET(RTIME_OSAPI_AUTOSAR   "autosar")
+SET(RTIME_OSAPI_WINDOWS   "windows")
+SET(RTIME_OSAPI_FREERTOS  "freertos")
+SET(RTIME_OSAPI_THREADX   "threadx")
+SET(RTIME_OSAPI_VX653     "arinc653:vxworks653")
+SET(RTIME_OSAPI_DEOS653   "arinc653:deos653")
+
+IF (RTIME_PSL)
+    RETURN()
+ENDIF()
+
+IF (RTIME_PRINT_CONFIG)
+    RTI_MESSAGE_STATUS("RTIME_OSAPI_PLATFORM ...............: ${RTIME_OSAPI_PLATFORM}")
+    RETURN()
+ENDIF()
+
+#== Look for available platforms
+SET(RTIME_OSAPI_MODULE "osapi.2.0")
+
+GET_MODULE_DIR(${RTIME_OSAPI_MODULE} osdir)
+
+IF (DEFINED _RTIME_OSAPI_PLATFORM)
+    SET(RTIME_OSAPI_DEFAULT "${_RTIME_OSAPI_PLATFORM}")
+ENDIF()
+
+SET(RTIME_OSAPI_PLATFORM ${RTIME_OSAPI_DEFAULT} CACHE STRING "Target platform")
+
+LIST(APPEND RTIME_OSAPI_PLATFORM_LIST ${RTIME_OSAPI_AUTO})
+
+IF (${RTIME_DEVTREE})
+    FILE(GLOB platforms LIST_DIRECTORIES FALSE 
+         ${RTIME_SOURCE_ROOT}/${osdir}/include/osapi/*osapi_os_*.h)
+ELSE()
+    FILE(GLOB platforms LIST_DIRECTORIES FALSE 
+         ${RTIME_SOURCE_ROOT}/include/osapi/*osapi_os_*.h)
+ENDIF()
+
+FOREACH(x ${platforms})
+        GET_FILENAME_COMPONENT(osname ${x} NAME)
+        STRING(REGEX REPLACE ".*osapi_os_(.*).h" "\\1" os ${osname})
+        LIST(APPEND RTIME_OSAPI_PLATFORM_LIST ${os})
+        SET(${os}_FILE ${osname})
+ENDFOREACH()
+
+SET_PROPERTY(CACHE RTIME_OSAPI_PLATFORM PROPERTY 
+             STRINGS ${RTIME_OSAPI_PLATFORM_LIST})
+
+IF (NOT ${RTIME_OSAPI_PLATFORM} MATCHES ${RTIME_OSAPI_AUTO})
+    IF(${RTIME_OSAPI_PLATFORM} MATCHES "(.*):(.*)")
+        SET(RTIME_OSAPI_PLATFORM ${CMAKE_MATCH_1})
+        SET(RTIME_OSAPI_PLATFORM_INCLUDE "osapi_os_${CMAKE_MATCH_2}.h")
+    ELSE()
+        SET(RTIME_OSAPI_PLATFORM ${CMAKE_MATCH_1})
+        SET(RTIME_OSAPI_PLATFORM_INCLUDE ${${RTIME_OSAPI_PLATFORM}_FILE})
+    ENDIF()
+    #ADD_DEFINITIONS(-DOSAPI_OS_DEF_H=${RTIME_OSAPI_PLATFORM_INCLUDE})
+ENDIF()
+

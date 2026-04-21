@@ -1,0 +1,1149 @@
+\doxysubsection{DDSDomain\+Participant Class Reference}
+\hypertarget{classDDSDomainParticipant}{}\label{classDDSDomainParticipant}\index{DDSDomainParticipant@{DDSDomainParticipant}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Container for all \doxylink{classDDSDomainEntity}{DDSDomain\+Entity} objects.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+domain.\+hxx$>$}
+
+Inheritance diagram for DDSDomain\+Participant\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classDDSDomainParticipant}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classDDSEntity}{DDSEntity}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_a23c444cf47aefc650471fb39006e8c45}{as\+\_\+entity}} ()=0
+\begin{DoxyCompactList}\small\item\em Access a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}\textquotesingle{}s supertype instance. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSPublisher}{DDSPublisher}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_aaacb6b36e1948b048b3fdbb7426564e5}{create\+\_\+publisher}} (const \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \&qos, \mbox{\hyperlink{classDDSPublisherListener}{DDSPublisher\+Listener}} \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} mask)=0
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{classDDSPublisher}{DDSPublisher} with the desired QoS policies and attaches to it the specified \doxylink{classDDSPublisherListener}{DDSPublisher\+Listener}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_ae4ccd860faa7c68fa85b3f21c02d5830}{delete\+\_\+publisher}} (\mbox{\hyperlink{classDDSPublisher}{DDSPublisher}} \texorpdfstring{$\ast$}{*}p)=0
+\begin{DoxyCompactList}\small\item\em Deletes an existing \doxylink{classDDSPublisher}{DDSPublisher}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSSubscriber}{DDSSubscriber}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_a6471be74c8baf2f9fda88d75d6c528a8}{create\+\_\+subscriber}} (const \mbox{\hyperlink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos}} \&qos, \mbox{\hyperlink{classDDSSubscriberListener}{DDSSubscriber\+Listener}} \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} mask)=0
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{classDDSSubscriber}{DDSSubscriber} with the desired QoS policies and attaches to it the specified \doxylink{classDDSSubscriberListener}{DDSSubscriber\+Listener}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_ac9eb541be08b93656033c2d3257a62f4}{delete\+\_\+subscriber}} (\mbox{\hyperlink{classDDSSubscriber}{DDSSubscriber}} \texorpdfstring{$\ast$}{*}s)=0
+\begin{DoxyCompactList}\small\item\em Deletes an existing \doxylink{classDDSSubscriber}{DDSSubscriber}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSTopic}{DDSTopic}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}{create\+\_\+topic}} (const char \texorpdfstring{$\ast$}{*}topic\+\_\+name, const char \texorpdfstring{$\ast$}{*}type\+\_\+name, const \mbox{\hyperlink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos}} \&qos, \mbox{\hyperlink{classDDSTopicListener}{DDSTopic\+Listener}} \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} mask)=0
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{classDDSTopic}{DDSTopic} with the desired QoS policies \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_ae86a86830b38cd267d9d0cd7bd989478}{delete\+\_\+topic}} (\mbox{\hyperlink{classDDSTopic}{DDSTopic}} \texorpdfstring{$\ast$}{*}topic)=0
+\begin{DoxyCompactList}\small\item\em Deletes a \doxylink{classDDSTopic}{DDSTopic}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSTopic}{DDSTopic}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_af05bc43378482c32da6dd8ad8cdea377}{find\+\_\+topic}} (const char \texorpdfstring{$\ast$}{*}topic\+\_\+name, const \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \&timeout)=0
+\begin{DoxyCompactList}\small\item\em Finds an existing (or ready to exist) \doxylink{classDDSTopic}{DDSTopic}, based on its name. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_acfbcc38598b22d5571e19a7736bc633a}{get\+\_\+qos}} (\mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Get the participant QoS. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_afd325a74b01eb3198d3bf4b12275b1cc}{set\+\_\+qos}} (const \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Change the QoS of this domain participant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_a7220dec35922a06b23cf2dde4a81ff0b}{get\+\_\+default\+\_\+publisher\+\_\+qos}} (\mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Copy the default \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} values into the provided \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} instance. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_ada8c9be16acb389be9a2a5759f2f9c30}{set\+\_\+default\+\_\+publisher\+\_\+qos}} (const \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Set the default \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} values for this domain participant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_a4f914a8c3b962c97925b8999d9e69ef6}{get\+\_\+default\+\_\+subscriber\+\_\+qos}} (\mbox{\hyperlink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Copy the default \doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos} values into the provided \doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos} instance. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_a230f256b05f50a6eed34a2caeda87cf5}{set\+\_\+default\+\_\+subscriber\+\_\+qos}} (const \mbox{\hyperlink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Set the default \doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos} values for this domain participant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_a21c7a2a72f48d20d3a85b5e3672af803}{get\+\_\+default\+\_\+topic\+\_\+qos}} (\mbox{\hyperlink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Copies the default \doxylink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos} values for this domain participant into the given \doxylink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos} instance. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_a537054c769b8cb09c73de64abce7ad61}{set\+\_\+default\+\_\+topic\+\_\+qos}} (const \mbox{\hyperlink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Set the default \doxylink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos} values for this domain participant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSTopicDescription}{DDSTopic\+Description}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_a803acdd87a12986ec00d0d0fa576541c}{lookup\+\_\+topicdescription}} (const char \texorpdfstring{$\ast$}{*}topic\+\_\+name)=0
+\begin{DoxyCompactList}\small\item\em Lookup an existing locally-\/created \doxylink{classDDSTopicDescription}{DDSTopic\+Description}, based on its name. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSPublisher}{DDSPublisher}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_a910d73cfeed5883f942aa6df0d489b1b}{lookup\+\_\+publisher\+\_\+by\+\_\+name}} (const char \texorpdfstring{$\ast$}{*}publisher\+\_\+name)=0
+\begin{DoxyCompactList}\small\item\em Retrieves a \doxylink{classDDSPublisher}{DDSPublisher} by its entity name within this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSSubscriber}{DDSSubscriber}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_a5f6b9b6256903472e8ff5f362e36124a}{lookup\+\_\+subscriber\+\_\+by\+\_\+name}} (const char \texorpdfstring{$\ast$}{*}subscriber\+\_\+name)=0
+\begin{DoxyCompactList}\small\item\em Retrieves a \doxylink{classDDSSubscriber}{DDSSubscriber} by its entity name within this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_a9551a4ae436f29bb90d16529eaa36a3a}{lookup\+\_\+datawriter\+\_\+by\+\_\+name}} (const char \texorpdfstring{$\ast$}{*}datawriter\+\_\+full\+\_\+name)=0
+\begin{DoxyCompactList}\small\item\em Retrieves a \doxylink{classDDSDataWriter}{DDSData\+Writer} by its entity name within this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_a5b4b7267375804d519e20d21ae701f06}{lookup\+\_\+datareader\+\_\+by\+\_\+name}} (const char \texorpdfstring{$\ast$}{*}datareader\+\_\+full\+\_\+name)=0
+\begin{DoxyCompactList}\small\item\em Retrieves a \doxylink{classDDSDataReader}{DDSData\+Reader} by its entity name within this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_a38271f0e046ef131a994dab7f255b2be}{assert\+\_\+liveliness}} ()=0
+\begin{DoxyCompactList}\small\item\em Manually asserts the liveliness of this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_a2a2363401aff0bae9db29b3e4caadaa6}{delete\+\_\+contained\+\_\+entities}} ()=0
+\begin{DoxyCompactList}\small\item\em Delete all the entities that were created by means of the "{}create"{} operations on the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_a8b3171bd5b731d936560ba4de4c9887c}{register\+\_\+type}} (const char \texorpdfstring{$\ast$}{*}type\+\_\+name, \mbox{\hyperlink{structDDS__TypePluginI}{DDS\+\_\+\+Type\+PluginI}} \texorpdfstring{$\ast$}{*}plugin)=0
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application to communicate to RTI Connext DDS Micro the existence of a data type. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structDDS__TypePluginI}{DDS\+\_\+\+Type\+PluginI}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_af802a04c071cb0aebda71d9eaef46f28}{unregister\+\_\+type}} (const char \texorpdfstring{$\ast$}{*}type\+\_\+name)=0
+\begin{DoxyCompactList}\small\item\em Allows an application to unregister a data type from RTI Connext DDS Micro. After calling unregister\+\_\+type, no further communication using that type is possible. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_acaebedd33d2edddd13e911a9848ef62a}{set\+\_\+listener}} (const \mbox{\hyperlink{classDDSDomainParticipantListener}{DDSDomain\+Participant\+Listener}} \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} mask)=0
+\begin{DoxyCompactList}\small\item\em Sets the participant listener. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSDomainParticipantListener}{DDSDomain\+Participant\+Listener}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_ac8745b1d95aceb9f1a97fb5bfda072b5}{get\+\_\+listener}} ()=0
+\begin{DoxyCompactList}\small\item\em Get the participant listener. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_ae4aa63a4df14beb2543f7806a2404a3a}{get\+\_\+discovered\+\_\+participants}} (\mbox{\hyperlink{structDDS__InstanceHandleSeq}{DDS\+\_\+\+Instance\+Handle\+Seq}} \&participant\+\_\+handles)=0
+\begin{DoxyCompactList}\small\item\em Returns a sequence containing \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} for all the remote \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} that have been discovered by the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_adccd2790f88973f31becf932802d1e60}{get\+\_\+discovered\+\_\+participant\+\_\+data}} (\mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data}} \&participant\+\_\+data, const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&participant\+\_\+handle)=0
+\begin{DoxyCompactList}\small\item\em Returns information about a remote \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} that has been discovered by the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_a02ef8d2fa30233e2581e21ec9daacf45}{get\+\_\+current\+\_\+time}} (\mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \&current\+\_\+time)=0
+\begin{DoxyCompactList}\small\item\em Returns the current value of the time. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_ad035618f6542b3ff088656f221686ef9}{add\+\_\+peer}} (const char \texorpdfstring{$\ast$}{*}peer)=0
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Attempt to contact one or more additional peer participants. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_a55b50282258764d5e63463f79b23b2e6}{get\+\_\+default\+\_\+flowcontroller\+\_\+property}} (\mbox{\hyperlink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t}} \&prop)=0
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Copies the default \doxylink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t} values for this domain participant into the given \doxylink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t} instance. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_a311d86e291f82ae402c4095094ce9780}{set\+\_\+default\+\_\+flowcontroller\+\_\+property}} (const \mbox{\hyperlink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t}} \&prop)=0
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Set the default \doxylink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t} values for this domain participant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSFlowController}{DDSFlow\+Controller}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_a7ab6fb3f729d0abf769e28198e3388cd}{create\+\_\+flowcontroller}} (const char \texorpdfstring{$\ast$}{*}name, const \mbox{\hyperlink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t}} \&prop)=0
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Creates a \doxylink{classDDSFlowController}{DDSFlow\+Controller} with the desired property. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDomainParticipant_a91e367ab7cbb78c112179f9b228bf4bd}{delete\+\_\+flowcontroller}} (\mbox{\hyperlink{classDDSFlowController}{DDSFlow\+Controller}} \texorpdfstring{$\ast$}{*}fc)=0
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Deletes an existing \doxylink{classDDSFlowController}{DDSFlow\+Controller}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSFlowController}{DDSFlow\+Controller}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDomainParticipant_aa0a414744e3b66495d58408c7ab70c57}{lookup\+\_\+flowcontroller}} (const char \texorpdfstring{$\ast$}{*}name)=0
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Looks up an existing locally-\/created \doxylink{classDDSFlowController}{DDSFlow\+Controller}, based on its name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{classDDSEntity}{DDSEntity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSEntity_ac8f6cb9f8f0d2eac1daed34b6eb60e11}{enable}} ()
+\begin{DoxyCompactList}\small\item\em Enables the \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classDDSStatusCondition}{DDSStatus\+Condition}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSEntity_a1a0f08bee56cbd55a299b92cde333a74}{get\+\_\+statuscondition}} ()
+\begin{DoxyCompactList}\small\item\em Return the \doxylink{classDDSStatusCondition}{DDSStatus\+Condition} associated with a particular \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} \mbox{\hyperlink{classDDSEntity_ade1b0388ee69bf07981a70e5b17cc857}{get\+\_\+status\+\_\+changes}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the list of communication statuses in the \doxylink{classDDSEntity}{DDSEntity} that are triggered. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{classDDSEntity_af45327c05987d9ff5beb7271b00ed883}{get\+\_\+instance\+\_\+handle}} ()
+\begin{DoxyCompactList}\small\item\em Allows access to the \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} associated with the \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Container for all \doxylink{classDDSDomainEntity}{DDSDomain\+Entity} objects. 
+
+The Domain\+Participant object plays several roles\+: 
+
+-\/ It acts as a container for all other \doxylink{classDDSEntity}{DDSEntity} objects. 
+
+-\/ It acts as {\itshape factory} for the \doxylink{classDDSPublisher}{DDSPublisher}, \doxylink{classDDSSubscriber}{DDSSubscriber}, \doxylink{classDDSTopic}{DDSTopic} and \doxylink{classDDSEntity}{DDSEntity} objects. 
+
+-\/ It represents the participation of the application on a communication plane that isolates applications running on the same set of physical computers from each other. A domain establishes a virtual network linking all applications that share the same {\ttfamily domain\+Id} and isolating them from applications running on different domains. In this way, several independent distributed applications can coexist in the same physical network without interfering, or even being aware of each other. 
+
+The following operations may be called even if the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} is not enabled. Other operations will fail with the value \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED} if called on a disabled Domain\+Participant\+: \begin{DoxyItemize}
+\item Operations defined at the base-\/class level namely, \doxylink{classDDSDomainParticipant_afd325a74b01eb3198d3bf4b12275b1cc}{set\+\_\+qos()}, \doxylink{classDDSDomainParticipant_acfbcc38598b22d5571e19a7736bc633a}{get\+\_\+qos()}, \doxylink{classDDSDomainParticipant_acaebedd33d2edddd13e911a9848ef62a}{set\+\_\+listener()}, \doxylink{classDDSDomainParticipant_ac8745b1d95aceb9f1a97fb5bfda072b5}{get\+\_\+listener()}, and \doxylink{classDDSEntity_ac8f6cb9f8f0d2eac1daed34b6eb60e11}{enable()}. \item Factory operations\+: \doxylink{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}{create\+\_\+topic()}, \doxylink{classDDSDomainParticipant_aaacb6b36e1948b048b3fdbb7426564e5}{create\+\_\+publisher()}, \doxylink{classDDSDomainParticipant_a6471be74c8baf2f9fda88d75d6c528a8}{create\+\_\+subscriber()}, \doxylink{classDDSDomainParticipant_ae86a86830b38cd267d9d0cd7bd989478}{delete\+\_\+topic()}, \doxylink{classDDSDomainParticipant_ae4ccd860faa7c68fa85b3f21c02d5830}{delete\+\_\+publisher()}, \doxylink{classDDSDomainParticipant_ac9eb541be08b93656033c2d3257a62f4}{delete\+\_\+subscriber()}, \doxylink{classDDSDomainParticipant_a2a2363401aff0bae9db29b3e4caadaa6}{delete\+\_\+contained\+\_\+entities()}. \end{DoxyItemize}
+\begin{DoxyParagraph}{QoS\+:}
+\doxylink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule}{Status Kinds} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Listener\+:}
+\doxylink{classDDSDomainParticipantListener}{DDSDomain\+Participant\+Listener} 
+\end{DoxyParagraph}
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classDDSDomainParticipant_a23c444cf47aefc650471fb39006e8c45}\index{DDSDomainParticipant@{DDSDomainParticipant}!as\_entity@{as\_entity}}
+\index{as\_entity@{as\_entity}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{as\_entity()}{as\_entity()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a23c444cf47aefc650471fb39006e8c45} 
+virtual \mbox{\hyperlink{classDDSEntity}{DDSEntity}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::as\+\_\+entity (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Access a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}\textquotesingle{}s supertype instance. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}\textquotesingle{}s supertype \doxylink{classDDSEntity}{DDSEntity} instance 
+\end{DoxyReturn}
+\Hypertarget{classDDSDomainParticipant_aaacb6b36e1948b048b3fdbb7426564e5}\index{DDSDomainParticipant@{DDSDomainParticipant}!create\_publisher@{create\_publisher}}
+\index{create\_publisher@{create\_publisher}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{create\_publisher()}{create\_publisher()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_aaacb6b36e1948b048b3fdbb7426564e5} 
+virtual \mbox{\hyperlink{classDDSPublisher}{DDSPublisher}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::create\+\_\+publisher (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \&}]{qos}{, }\item[{\mbox{\hyperlink{classDDSPublisherListener}{DDSPublisher\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{, }\item[{\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}}}]{mask}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates a \doxylink{classDDSPublisher}{DDSPublisher} with the desired QoS policies and attaches to it the specified \doxylink{classDDSPublisherListener}{DDSPublisher\+Listener}. 
+
+\begin{DoxyPrecond}{Precondition}
+The specified QoS policies must be consistent, or the operation will fail and no \doxylink{classDDSPublisher}{DDSPublisher} will be created. 
+\end{DoxyPrecond}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} QoS to be used for creating the new \doxylink{classDDSPublisher}{DDSPublisher}. The special value \doxylink{group__DDSDomainParticipantModule_gae3a52c1b7488c9a9b5e162a61a351e78}{DDS\+\_\+\+PUBLISHER\+\_\+\+QOS\+\_\+\+DEFAULT} can be used to indicate that the \doxylink{classDDSPublisher}{DDSPublisher} should be created with the default \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} set in the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}.  \\
+\hline
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Listener to be attached to the newly created \doxylink{classDDSPublisher}{DDSPublisher}. \\
+\hline
+{\em mask} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Changes of communication status to be invoked on the listener. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+newly created publisher object or NULL on failure. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{group__DDSQosTypesModule_DDSQosTypesModule_usage}{Specifying QoS on entities}{1} for information on setting QoS before entity creation 
+
+\doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} for rules on consistency among QoS 
+
+\doxylink{group__DDSDomainParticipantModule_gae3a52c1b7488c9a9b5e162a61a351e78}{DDS\+\_\+\+PUBLISHER\+\_\+\+QOS\+\_\+\+DEFAULT} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_ae4ccd860faa7c68fa85b3f21c02d5830}\index{DDSDomainParticipant@{DDSDomainParticipant}!delete\_publisher@{delete\_publisher}}
+\index{delete\_publisher@{delete\_publisher}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{delete\_publisher()}{delete\_publisher()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_ae4ccd860faa7c68fa85b3f21c02d5830} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::delete\+\_\+publisher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSPublisher}{DDSPublisher}} \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Deletes an existing \doxylink{classDDSPublisher}{DDSPublisher}. 
+
+\begin{DoxyPrecond}{Precondition}
+The \doxylink{classDDSPublisher}{DDSPublisher} must not have any attached \doxylink{classDDSDataWriter}{DDSData\+Writer} objects. If there are existing \doxylink{classDDSDataWriter}{DDSData\+Writer} objects, it will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+
+\doxylink{classDDSPublisher}{DDSPublisher} must have been created by this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}, or else it will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Listener installed on the \doxylink{classDDSPublisher}{DDSPublisher} will not be called after this method completes successfully. 
+\end{DoxyPostcond}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{classDDSPublisher}{DDSPublisher} to be deleted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyReturn}
+\Hypertarget{classDDSDomainParticipant_a6471be74c8baf2f9fda88d75d6c528a8}\index{DDSDomainParticipant@{DDSDomainParticipant}!create\_subscriber@{create\_subscriber}}
+\index{create\_subscriber@{create\_subscriber}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{create\_subscriber()}{create\_subscriber()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a6471be74c8baf2f9fda88d75d6c528a8} 
+virtual \mbox{\hyperlink{classDDSSubscriber}{DDSSubscriber}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::create\+\_\+subscriber (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos}} \&}]{qos}{, }\item[{\mbox{\hyperlink{classDDSSubscriberListener}{DDSSubscriber\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{, }\item[{\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}}}]{mask}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates a \doxylink{classDDSSubscriber}{DDSSubscriber} with the desired QoS policies and attaches to it the specified \doxylink{classDDSSubscriberListener}{DDSSubscriber\+Listener}. 
+
+\begin{DoxyPrecond}{Precondition}
+The specified QoS policies must be consistent, or the operation will fail and no \doxylink{classDDSSubscriber}{DDSSubscriber} will be created. 
+\end{DoxyPrecond}
+
+
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. If \doxylink{group__DDSDomainParticipantModule_ga3c20eb7d1a9415848fc49cf3cc62db9a}{DDS\+\_\+\+SUBSCRIBER\+\_\+\+QOS\+\_\+\+DEFAULT} is used for {\ttfamily qos}, it is not safe to create the publisher while another thread may be simultaneously calling \doxylink{classDDSDomainParticipant_a230f256b05f50a6eed34a2caeda87cf5}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+subscriber\+\_\+qos}. 
+\end{DoxyParagraph}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} QoS to be used for creating the new \doxylink{classDDSSubscriber}{DDSSubscriber}. The special value \doxylink{group__DDSDomainParticipantModule_ga3c20eb7d1a9415848fc49cf3cc62db9a}{DDS\+\_\+\+SUBSCRIBER\+\_\+\+QOS\+\_\+\+DEFAULT} can be used to indicate that the \doxylink{classDDSSubscriber}{DDSSubscriber} should be created with the default \doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos} set in the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}.  \\
+\hline
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Listener to be attached to the newly created \doxylink{classDDSSubscriber}{DDSSubscriber}. \\
+\hline
+{\em mask} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Changes of communication status to be invoked on the listener. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+newly created subscriber object or NULL on failure. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{group__DDSQosTypesModule_DDSQosTypesModule_usage}{Specifying QoS on entities}{1} for information on setting QoS before entity creation 
+
+\doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos} for rules on consistency among QoS 
+
+\doxylink{group__DDSDomainParticipantModule_ga3c20eb7d1a9415848fc49cf3cc62db9a}{DDS\+\_\+\+SUBSCRIBER\+\_\+\+QOS\+\_\+\+DEFAULT} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_ac9eb541be08b93656033c2d3257a62f4}\index{DDSDomainParticipant@{DDSDomainParticipant}!delete\_subscriber@{delete\_subscriber}}
+\index{delete\_subscriber@{delete\_subscriber}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{delete\_subscriber()}{delete\_subscriber()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_ac9eb541be08b93656033c2d3257a62f4} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::delete\+\_\+subscriber (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSSubscriber}{DDSSubscriber}} \texorpdfstring{$\ast$}{*}}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Deletes an existing \doxylink{classDDSSubscriber}{DDSSubscriber}. 
+
+\begin{DoxyPrecond}{Precondition}
+The \doxylink{classDDSSubscriber}{DDSSubscriber} must not have any attached \doxylink{classDDSDataReader}{DDSData\+Reader} objects. If there are existing \doxylink{classDDSDataReader}{DDSData\+Reader} objects, it will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} 
+
+The \doxylink{classDDSSubscriber}{DDSSubscriber} must have been created by this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}, or else it will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+A Listener installed on the \doxylink{classDDSSubscriber}{DDSSubscriber} will not be called after this method completes successfully. 
+\end{DoxyPostcond}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{classDDSSubscriber}{DDSSubscriber} to be deleted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyReturn}
+\Hypertarget{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}\index{DDSDomainParticipant@{DDSDomainParticipant}!create\_topic@{create\_topic}}
+\index{create\_topic@{create\_topic}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{create\_topic()}{create\_topic()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f} 
+virtual \mbox{\hyperlink{classDDSTopic}{DDSTopic}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::create\+\_\+topic (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{topic\+\_\+name}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{type\+\_\+name}{, }\item[{const \mbox{\hyperlink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos}} \&}]{qos}{, }\item[{\mbox{\hyperlink{classDDSTopicListener}{DDSTopic\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{, }\item[{\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}}}]{mask}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates a \doxylink{classDDSTopic}{DDSTopic} with the desired QoS policies 
+
+\begin{DoxyPrecond}{Precondition}
+The application is not allowed to create two \doxylink{classDDSTopicDescription}{DDSTopic\+Description} objects with the same {\ttfamily topic\+\_\+name} attached to the same \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. If the application attempts this, this method will fail and return a NULL topic. 
+
+The specified QoS policies must be consistent, or the operation will fail and no \doxylink{classDDSTopic}{DDSTopic} will be created. 
+
+Prior to creating a \doxylink{classDDSTopic}{DDSTopic}, the type must have been registered with RTI Connext DDS Micro. This is done using the \doxylink{classDDSDomainParticipant_a8b3171bd5b731d936560ba4de4c9887c}{DDSDomain\+Participant\+::register\+\_\+type} operation on a derived class of the \doxylink{structDDS__TypePluginI}{DDS\+\_\+\+Type\+PluginI} interface. 
+\end{DoxyPrecond}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to create a topic while another thread is trying to lookup that topic description with \doxylink{classDDSDomainParticipant_a803acdd87a12986ec00d0d0fa576541c}{DDSDomain\+Participant\+::lookup\+\_\+topicdescription}. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. If \doxylink{group__DDSDomainParticipantModule_ga5b73472dd746c52ccf4edc7ad4e0f179}{DDS\+\_\+\+TOPIC\+\_\+\+QOS\+\_\+\+DEFAULT} is used for {\ttfamily qos}, it is not safe create the publisher while another thread may be simultaneously calling \doxylink{classDDSDomainParticipant_a537054c769b8cb09c73de64abce7ad61}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+topic\+\_\+qos}. 
+\end{DoxyParagraph}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name for the new topic, must not exceed 255 characters. Cannot be NULL. \\
+\hline
+{\em type\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The type to which the new \doxylink{classDDSTopic}{DDSTopic} will be bound. Cannot be NULL. \\
+\hline
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} QoS to be used for creating the new \doxylink{classDDSTopic}{DDSTopic}. The special value \doxylink{group__DDSDomainParticipantModule_ga5b73472dd746c52ccf4edc7ad4e0f179}{DDS\+\_\+\+TOPIC\+\_\+\+QOS\+\_\+\+DEFAULT} can be used to indicate that the \doxylink{classDDSTopic}{DDSTopic} should be created with the default \doxylink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos} set in the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}.  \\
+\hline
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Listener to be attached to the newly created \doxylink{classDDSTopic}{DDSTopic}. \\
+\hline
+{\em mask} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Changes of communication status to be invoked on the listener. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+newly created topic, or NULL on failure 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{group__DDSQosTypesModule_DDSQosTypesModule_usage}{Specifying QoS on entities}{1} for information on setting QoS before entity creation 
+
+\doxylink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos} for rules on consistency among QoS 
+
+\doxylink{group__DDSDomainParticipantModule_ga5b73472dd746c52ccf4edc7ad4e0f179}{DDS\+\_\+\+TOPIC\+\_\+\+QOS\+\_\+\+DEFAULT} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_ae86a86830b38cd267d9d0cd7bd989478}\index{DDSDomainParticipant@{DDSDomainParticipant}!delete\_topic@{delete\_topic}}
+\index{delete\_topic@{delete\_topic}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{delete\_topic()}{delete\_topic()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_ae86a86830b38cd267d9d0cd7bd989478} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::delete\+\_\+topic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSTopic}{DDSTopic}} \texorpdfstring{$\ast$}{*}}]{topic}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Deletes a \doxylink{classDDSTopic}{DDSTopic}. 
+
+\begin{DoxyPrecond}{Precondition}
+If the \doxylink{classDDSTopic}{DDSTopic} does not belong to the application\textquotesingle{}s \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}, this operation fails with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+
+Make sure no objects are using the topic. More specifically, there must be no existing \doxylink{classDDSDataReader}{DDSData\+Reader}, or \doxylink{classDDSDataWriter}{DDSData\+Writer}, objects belonging to the same \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} that are using the \doxylink{classDDSTopic}{DDSTopic}. If delete\+\_\+topic is called on a \doxylink{classDDSTopic}{DDSTopic} with any of these existing objects attached to it, it will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Listener installed on the \doxylink{classDDSTopic}{DDSTopic} will not be called after this method completes successfully. 
+\end{DoxyPostcond}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{classDDSTopic}{DDSTopic} to be deleted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} 
+\end{DoxyReturn}
+\Hypertarget{classDDSDomainParticipant_af05bc43378482c32da6dd8ad8cdea377}\index{DDSDomainParticipant@{DDSDomainParticipant}!find\_topic@{find\_topic}}
+\index{find\_topic@{find\_topic}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{find\_topic()}{find\_topic()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_af05bc43378482c32da6dd8ad8cdea377} 
+virtual \mbox{\hyperlink{classDDSTopic}{DDSTopic}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::find\+\_\+topic (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{topic\+\_\+name}{, }\item[{const \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \&}]{timeout}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Finds an existing (or ready to exist) \doxylink{classDDSTopic}{DDSTopic}, based on its name. 
+
+If a \doxylink{classDDSTopic}{DDSTopic} of the same name already exists, it gives access to it, otherwise it waits until either another mechanism creates it, or else completes when the specified {\ttfamily timeout} occurs. 
+
+\doxylink{classDDSTopic}{DDSTopic} obtained by \doxylink{classDDSDomainParticipant_af05bc43378482c32da6dd8ad8cdea377}{DDSDomain\+Participant\+::find\+\_\+topic} must also be deleted by means of \doxylink{classDDSDomainParticipant_ae86a86830b38cd267d9d0cd7bd989478}{DDSDomain\+Participant\+::delete\+\_\+topic}. If \doxylink{classDDSTopic}{DDSTopic} is obtained multiple times by means of \doxylink{classDDSDomainParticipant_af05bc43378482c32da6dd8ad8cdea377}{DDSDomain\+Participant\+::find\+\_\+topic} or \doxylink{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}{DDSDomain\+Participant\+::create\+\_\+topic}, it must also be deleted that same number of times using \doxylink{classDDSDomainParticipant_ae86a86830b38cd267d9d0cd7bd989478}{DDSDomain\+Participant\+::delete\+\_\+topic} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name of the \doxylink{classDDSTopic}{DDSTopic} to search for. Cannot be NULL. \\
+\hline
+{\em timeout} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The time to wait if the \doxylink{classDDSTopic}{DDSTopic} doesn\textquotesingle{}t exist already.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the topic, if it exists, or NULL 
+\end{DoxyReturn}
+\Hypertarget{classDDSDomainParticipant_acfbcc38598b22d5571e19a7736bc633a}\index{DDSDomainParticipant@{DDSDomainParticipant}!get\_qos@{get\_qos}}
+\index{get\_qos@{get\_qos}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{get\_qos()}{get\_qos()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_acfbcc38598b22d5571e19a7736bc633a} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::get\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the participant QoS. 
+
+This method may potentially allocate memory depending on the sequences contained in some QoS policies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} QoS to be filled up.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{dds_cpp_infrastructure.hxx_Entity_get_qos}{get\+\_\+qos (abstract)}{2} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_afd325a74b01eb3198d3bf4b12275b1cc}\index{DDSDomainParticipant@{DDSDomainParticipant}!set\_qos@{set\_qos}}
+\index{set\_qos@{set\_qos}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{set\_qos()}{set\_qos()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_afd325a74b01eb3198d3bf4b12275b1cc} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::set\+\_\+qos (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Change the QoS of this domain participant. 
+
+The \doxylink{structDDS__DomainParticipantQos_a1fda50d3d2d8e95e07408a9bec2cd8ec}{DDS\+\_\+\+Domain\+Participant\+Qos\+::entity\+\_\+factory} can be changed. The other policies are immutable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Set of policies to be applied to \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. Policies must be consistent. Immutable policies cannot be changed after \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} is enabled. The special value \doxylink{group__DDSDomainParticipantFactoryModule_ga0c587ecb4ea971926411f5514199d084}{DDS\+\_\+\+PARTICIPANT\+\_\+\+QOS\+\_\+\+DEFAULT} can be used to indicate that the QoS of the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} should be changed to match the current default \doxylink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos} set in the \doxylink{classDDSDomainParticipantFactory}{DDSDomain\+Participant\+Factory}.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a6e50f4433cf3e47737f4d317d0a4a707}{DDS\+\_\+\+RETCODE\+\_\+\+IMMUTABLE\+\_\+\+POLICY} if immutable policy is changed, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} if policies are inconsistent 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos} for rules on consistency among QoS 
+
+\doxysectlink{dds_cpp_infrastructure.hxx_Entity_set_qos}{set\+\_\+qos (abstract)}{2} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_a7220dec35922a06b23cf2dde4a81ff0b}\index{DDSDomainParticipant@{DDSDomainParticipant}!get\_default\_publisher\_qos@{get\_default\_publisher\_qos}}
+\index{get\_default\_publisher\_qos@{get\_default\_publisher\_qos}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{get\_default\_publisher\_qos()}{get\_default\_publisher\_qos()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a7220dec35922a06b23cf2dde4a81ff0b} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::get\+\_\+default\+\_\+publisher\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Copy the default \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} values into the provided \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} instance. 
+
+The retrieved {\ttfamily qos} will match the set of values specified on the last successful call to \doxylink{classDDSDomainParticipant_ada8c9be16acb389be9a2a5759f2f9c30}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+publisher\+\_\+qos}, or else, if the call was never made, the default values listed in \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}. 
+
+This method may potentially allocate memory depending on the sequences contained in some QoS policies. 
+
+If \doxylink{group__DDSDomainParticipantModule_gae3a52c1b7488c9a9b5e162a61a351e78}{DDS\+\_\+\+PUBLISHER\+\_\+\+QOS\+\_\+\+DEFAULT} is specified as the {\ttfamily qos} parameter when \doxylink{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}{DDSDomain\+Participant\+::create\+\_\+topic} is called, the default value of the QoS set in the factory, equivalent to the value obtained by calling \doxylink{classDDSDomainParticipant_a7220dec35922a06b23cf2dde4a81ff0b}{DDSDomain\+Participant\+::get\+\_\+default\+\_\+publisher\+\_\+qos}, will be used to create the \doxylink{classDDSPublisher}{DDSPublisher}. 
+
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to retrieve the default QoS value from a domain participant while another thread may be simultaneously calling \doxylink{classDDSDomainParticipant_ada8c9be16acb389be9a2a5759f2f9c30}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+publisher\+\_\+qos} 
+\end{DoxyParagraph}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Qos to be filled up.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDomainParticipantModule_gae3a52c1b7488c9a9b5e162a61a351e78}{DDS\+\_\+\+PUBLISHER\+\_\+\+QOS\+\_\+\+DEFAULT} 
+
+\doxylink{classDDSDomainParticipant_aaacb6b36e1948b048b3fdbb7426564e5}{DDSDomain\+Participant\+::create\+\_\+publisher} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_ada8c9be16acb389be9a2a5759f2f9c30}\index{DDSDomainParticipant@{DDSDomainParticipant}!set\_default\_publisher\_qos@{set\_default\_publisher\_qos}}
+\index{set\_default\_publisher\_qos@{set\_default\_publisher\_qos}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{set\_default\_publisher\_qos()}{set\_default\_publisher\_qos()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_ada8c9be16acb389be9a2a5759f2f9c30} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::set\+\_\+default\+\_\+publisher\+\_\+qos (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Set the default \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} values for this domain participant. 
+
+This default value will be used for newly created \doxylink{classDDSPublisher}{DDSPublisher} if \doxylink{group__DDSDomainParticipantModule_gae3a52c1b7488c9a9b5e162a61a351e78}{DDS\+\_\+\+PUBLISHER\+\_\+\+QOS\+\_\+\+DEFAULT} is specified as the {\ttfamily qos} parameter when \doxylink{classDDSDomainParticipant_aaacb6b36e1948b048b3fdbb7426564e5}{DDSDomain\+Participant\+::create\+\_\+publisher} is called. 
+
+\begin{DoxyPrecond}{Precondition}
+The specified QoS policies must be consistent, or else the operation will have no effect and fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+\end{DoxyPrecond}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to retrieve the default QoS value from a domain participant while another thread may be simultaneously calling \doxylink{classDDSDomainParticipant_a7220dec35922a06b23cf2dde4a81ff0b}{DDSDomain\+Participant\+::get\+\_\+default\+\_\+publisher\+\_\+qos} or calling \doxylink{classDDSDomainParticipant_aaacb6b36e1948b048b3fdbb7426564e5}{DDSDomain\+Participant\+::create\+\_\+publisher} with \doxylink{group__DDSDomainParticipantModule_gae3a52c1b7488c9a9b5e162a61a351e78}{DDS\+\_\+\+PUBLISHER\+\_\+\+QOS\+\_\+\+DEFAULT} as the {\ttfamily qos} parameter. 
+\end{DoxyParagraph}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Default qos to be set. The special value \doxylink{group__DDSDomainParticipantModule_gae3a52c1b7488c9a9b5e162a61a351e78}{DDS\+\_\+\+PUBLISHER\+\_\+\+QOS\+\_\+\+DEFAULT} may be passed as {\ttfamily qos} to indicate that the default QoS should be reset back to the initial values the factory would used if \doxylink{classDDSDomainParticipant_ada8c9be16acb389be9a2a5759f2f9c30}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+publisher\+\_\+qos} had never been called.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDomainParticipantModule_gae3a52c1b7488c9a9b5e162a61a351e78}{DDS\+\_\+\+PUBLISHER\+\_\+\+QOS\+\_\+\+DEFAULT} 
+
+\doxylink{classDDSDomainParticipant_aaacb6b36e1948b048b3fdbb7426564e5}{DDSDomain\+Participant\+::create\+\_\+publisher} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_a4f914a8c3b962c97925b8999d9e69ef6}\index{DDSDomainParticipant@{DDSDomainParticipant}!get\_default\_subscriber\_qos@{get\_default\_subscriber\_qos}}
+\index{get\_default\_subscriber\_qos@{get\_default\_subscriber\_qos}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{get\_default\_subscriber\_qos()}{get\_default\_subscriber\_qos()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a4f914a8c3b962c97925b8999d9e69ef6} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::get\+\_\+default\+\_\+subscriber\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Copy the default \doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos} values into the provided \doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos} instance. 
+
+The retrieved {\ttfamily qos} will match the set of values specified on the last successful call to \doxylink{classDDSDomainParticipant_a230f256b05f50a6eed34a2caeda87cf5}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+subscriber\+\_\+qos}, or else, if the call was never made, the default values listed in \doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos}. 
+
+This method may potentially allocate memory depending on the sequences contained in some QoS policies. 
+
+If \doxylink{group__DDSDomainParticipantModule_ga3c20eb7d1a9415848fc49cf3cc62db9a}{DDS\+\_\+\+SUBSCRIBER\+\_\+\+QOS\+\_\+\+DEFAULT} is specified as the {\ttfamily qos} parameter when \doxylink{classDDSDomainParticipant_a6471be74c8baf2f9fda88d75d6c528a8}{DDSDomain\+Participant\+::create\+\_\+subscriber} is called, the default value of the QoS set in the factory, equivalent to the value obtained by calling \doxylink{classDDSDomainParticipant_a4f914a8c3b962c97925b8999d9e69ef6}{DDSDomain\+Participant\+::get\+\_\+default\+\_\+subscriber\+\_\+qos}, will be used to create the \doxylink{classDDSSubscriber}{DDSSubscriber}. 
+
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to retrieve the default QoS value from a domain participant while another thread may be simultaneously calling \doxylink{classDDSDomainParticipant_a230f256b05f50a6eed34a2caeda87cf5}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+subscriber\+\_\+qos} 
+\end{DoxyParagraph}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Qos to be filled up.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDomainParticipantModule_ga3c20eb7d1a9415848fc49cf3cc62db9a}{DDS\+\_\+\+SUBSCRIBER\+\_\+\+QOS\+\_\+\+DEFAULT} 
+
+\doxylink{classDDSDomainParticipant_a6471be74c8baf2f9fda88d75d6c528a8}{DDSDomain\+Participant\+::create\+\_\+subscriber} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_a230f256b05f50a6eed34a2caeda87cf5}\index{DDSDomainParticipant@{DDSDomainParticipant}!set\_default\_subscriber\_qos@{set\_default\_subscriber\_qos}}
+\index{set\_default\_subscriber\_qos@{set\_default\_subscriber\_qos}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{set\_default\_subscriber\_qos()}{set\_default\_subscriber\_qos()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a230f256b05f50a6eed34a2caeda87cf5} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::set\+\_\+default\+\_\+subscriber\+\_\+qos (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Set the default \doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos} values for this domain participant. 
+
+This default value will be used for newly created \doxylink{classDDSSubscriber}{DDSSubscriber} if \doxylink{group__DDSDomainParticipantModule_ga3c20eb7d1a9415848fc49cf3cc62db9a}{DDS\+\_\+\+SUBSCRIBER\+\_\+\+QOS\+\_\+\+DEFAULT} is specified as the {\ttfamily qos} parameter when \doxylink{classDDSDomainParticipant_a6471be74c8baf2f9fda88d75d6c528a8}{DDSDomain\+Participant\+::create\+\_\+subscriber} is called. 
+
+\begin{DoxyPrecond}{Precondition}
+The specified QoS policies must be consistent, or else the operation will have no effect and fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+\end{DoxyPrecond}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to retrieve the default QoS value from a domain participant while another thread may be simultaneously calling \doxylink{classDDSDomainParticipant_a4f914a8c3b962c97925b8999d9e69ef6}{DDSDomain\+Participant\+::get\+\_\+default\+\_\+subscriber\+\_\+qos} or calling \doxylink{classDDSDomainParticipant_a6471be74c8baf2f9fda88d75d6c528a8}{DDSDomain\+Participant\+::create\+\_\+subscriber} with \doxylink{group__DDSDomainParticipantModule_ga3c20eb7d1a9415848fc49cf3cc62db9a}{DDS\+\_\+\+SUBSCRIBER\+\_\+\+QOS\+\_\+\+DEFAULT} as the {\ttfamily qos} parameter. 
+\end{DoxyParagraph}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Default qos to be set. The special value \doxylink{group__DDSDomainParticipantModule_ga3c20eb7d1a9415848fc49cf3cc62db9a}{DDS\+\_\+\+SUBSCRIBER\+\_\+\+QOS\+\_\+\+DEFAULT} may be passed as {\ttfamily qos} to indicate that the default QoS should be reset back to the initial values the factory would used if \doxylink{classDDSDomainParticipant_a230f256b05f50a6eed34a2caeda87cf5}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+subscriber\+\_\+qos} had never been called.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+\end{DoxyReturn}
+\Hypertarget{classDDSDomainParticipant_a21c7a2a72f48d20d3a85b5e3672af803}\index{DDSDomainParticipant@{DDSDomainParticipant}!get\_default\_topic\_qos@{get\_default\_topic\_qos}}
+\index{get\_default\_topic\_qos@{get\_default\_topic\_qos}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{get\_default\_topic\_qos()}{get\_default\_topic\_qos()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a21c7a2a72f48d20d3a85b5e3672af803} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::get\+\_\+default\+\_\+topic\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Copies the default \doxylink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos} values for this domain participant into the given \doxylink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos} instance. 
+
+The retrieved {\ttfamily qos} will match the set of values specified on the last successful call to \doxylink{classDDSDomainParticipant_a537054c769b8cb09c73de64abce7ad61}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+topic\+\_\+qos}, or else, if the call was never made, the default values listed in \doxylink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos}. 
+
+This method may potentially allocate memory depending on the sequences contained in some QoS policies. 
+
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to retrieve the default QoS value from a domain participant while another thread may be simultaneously calling \doxylink{classDDSDomainParticipant_a21c7a2a72f48d20d3a85b5e3672af803}{DDSDomain\+Participant\+::get\+\_\+default\+\_\+topic\+\_\+qos} or calling \doxylink{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}{DDSDomain\+Participant\+::create\+\_\+topic} with \doxylink{group__DDSDomainParticipantModule_ga5b73472dd746c52ccf4edc7ad4e0f179}{DDS\+\_\+\+TOPIC\+\_\+\+QOS\+\_\+\+DEFAULT} as the {\ttfamily qos} parameter. 
+\end{DoxyParagraph}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Default qos to be retrieved.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDomainParticipantModule_ga5b73472dd746c52ccf4edc7ad4e0f179}{DDS\+\_\+\+TOPIC\+\_\+\+QOS\+\_\+\+DEFAULT} 
+
+\doxylink{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}{DDSDomain\+Participant\+::create\+\_\+topic} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_a537054c769b8cb09c73de64abce7ad61}\index{DDSDomainParticipant@{DDSDomainParticipant}!set\_default\_topic\_qos@{set\_default\_topic\_qos}}
+\index{set\_default\_topic\_qos@{set\_default\_topic\_qos}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{set\_default\_topic\_qos()}{set\_default\_topic\_qos()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a537054c769b8cb09c73de64abce7ad61} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::set\+\_\+default\+\_\+topic\+\_\+qos (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Set the default \doxylink{structDDS__TopicQos}{DDS\+\_\+\+Topic\+Qos} values for this domain participant. 
+
+This default value will be used for newly created \doxylink{classDDSTopic}{DDSTopic} if \doxylink{group__DDSDomainParticipantModule_ga5b73472dd746c52ccf4edc7ad4e0f179}{DDS\+\_\+\+TOPIC\+\_\+\+QOS\+\_\+\+DEFAULT} is specified as the {\ttfamily qos} parameter when \doxylink{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}{DDSDomain\+Participant\+::create\+\_\+topic} is called. 
+
+\begin{DoxyPrecond}{Precondition}
+The specified QoS policies must be consistent, or else the operation will have no effect and fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+\end{DoxyPrecond}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to retrieve the default QoS value from a domain participant while another thread may be simultaneously calling \doxylink{classDDSDomainParticipant_a21c7a2a72f48d20d3a85b5e3672af803}{DDSDomain\+Participant\+::get\+\_\+default\+\_\+topic\+\_\+qos} or calling \doxylink{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}{DDSDomain\+Participant\+::create\+\_\+topic} with \doxylink{group__DDSDomainParticipantModule_ga5b73472dd746c52ccf4edc7ad4e0f179}{DDS\+\_\+\+TOPIC\+\_\+\+QOS\+\_\+\+DEFAULT} as the {\ttfamily qos} parameter. 
+\end{DoxyParagraph}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Default qos to be set. The special value \doxylink{group__DDSDomainParticipantModule_ga5b73472dd746c52ccf4edc7ad4e0f179}{DDS\+\_\+\+TOPIC\+\_\+\+QOS\+\_\+\+DEFAULT} may be passed as {\ttfamily qos} to indicate that the default QoS should be reset back to the initial values the factory would have used if \doxylink{classDDSDomainParticipant_a537054c769b8cb09c73de64abce7ad61}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+topic\+\_\+qos} had never been called.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDomainParticipantModule_ga5b73472dd746c52ccf4edc7ad4e0f179}{DDS\+\_\+\+TOPIC\+\_\+\+QOS\+\_\+\+DEFAULT} 
+
+\doxylink{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}{DDSDomain\+Participant\+::create\+\_\+topic} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_a803acdd87a12986ec00d0d0fa576541c}\index{DDSDomainParticipant@{DDSDomainParticipant}!lookup\_topicdescription@{lookup\_topicdescription}}
+\index{lookup\_topicdescription@{lookup\_topicdescription}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{lookup\_topicdescription()}{lookup\_topicdescription()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a803acdd87a12986ec00d0d0fa576541c} 
+virtual \mbox{\hyperlink{classDDSTopicDescription}{DDSTopic\+Description}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::lookup\+\_\+topicdescription (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{topic\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Lookup an existing locally-\/created \doxylink{classDDSTopicDescription}{DDSTopic\+Description}, based on its name. 
+
+The returned topic can either be enabled or disabled. 
+
+The operation \doxylink{classDDSDomainParticipant_a803acdd87a12986ec00d0d0fa576541c}{DDSDomain\+Participant\+::lookup\+\_\+topicdescription} searches among the locally created topics and returns a pointer to a \doxylink{classDDSTopicDescription}{DDSTopic\+Description}. It is possible to delete the \doxylink{classDDSTopicDescription}{DDSTopic\+Description} returned by \doxylink{classDDSDomainParticipant_a803acdd87a12986ec00d0d0fa576541c}{DDSDomain\+Participant\+::lookup\+\_\+topicdescription}, provided it has no readers or writers, but then it is really deleted and subsequent lookups will fail. 
+
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to lookup a topic description while another thread is creating that topic. 
+\end{DoxyParagraph}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name of \doxylink{classDDSTopicDescription}{DDSTopic\+Description} to search for. This string must be no more than 255 characters. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the topic description if it has already been created locally, or NULL otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classDDSDomainParticipant_a910d73cfeed5883f942aa6df0d489b1b}\index{DDSDomainParticipant@{DDSDomainParticipant}!lookup\_publisher\_by\_name@{lookup\_publisher\_by\_name}}
+\index{lookup\_publisher\_by\_name@{lookup\_publisher\_by\_name}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{lookup\_publisher\_by\_name()}{lookup\_publisher\_by\_name()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a910d73cfeed5883f942aa6df0d489b1b} 
+virtual \mbox{\hyperlink{classDDSPublisher}{DDSPublisher}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::lookup\+\_\+publisher\+\_\+by\+\_\+name (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{publisher\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Retrieves a \doxylink{classDDSPublisher}{DDSPublisher} by its entity name within this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} 
+
+This returned \doxylink{classDDSPublisher}{DDSPublisher} is either enabled or disabled. 
+
+Every \doxylink{classDDSPublisher}{DDSPublisher} in the system has an entity name which is configured and stored in the Entity\+Name policy, ENTITY\+\_\+\+NAME. 
+
+This operation retrieves a \doxylink{classDDSPublisher}{DDSPublisher} within the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} given the entity\textquotesingle{}s name. If there are several \doxylink{classDDSPublisher}{DDSPublisher} with the same name within the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}, this function returns the first matching occurrence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em publisher\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Entity name of the \doxylink{classDDSPublisher}{DDSPublisher}. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first \doxylink{classDDSPublisher}{DDSPublisher} found with the specified name or NULL if it is not found. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to lookup a \doxylink{classDDSPublisher}{DDSPublisher} in one thread while another thread is simultaneously creating or destroying that \doxylink{classDDSPublisher}{DDSPublisher}. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSDomainParticipant_a5f6b9b6256903472e8ff5f362e36124a}\index{DDSDomainParticipant@{DDSDomainParticipant}!lookup\_subscriber\_by\_name@{lookup\_subscriber\_by\_name}}
+\index{lookup\_subscriber\_by\_name@{lookup\_subscriber\_by\_name}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{lookup\_subscriber\_by\_name()}{lookup\_subscriber\_by\_name()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a5f6b9b6256903472e8ff5f362e36124a} 
+virtual \mbox{\hyperlink{classDDSSubscriber}{DDSSubscriber}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::lookup\+\_\+subscriber\+\_\+by\+\_\+name (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{subscriber\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Retrieves a \doxylink{classDDSSubscriber}{DDSSubscriber} by its entity name within this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} 
+
+This returned \doxylink{classDDSSubscriber}{DDSSubscriber} is either enabled or disabled. 
+
+Every \doxylink{classDDSSubscriber}{DDSSubscriber} in the system has an entity name which is configured and stored in the Entity\+Name policy, ENTITY\+\_\+\+NAME. 
+
+This operation retrieves a \doxylink{classDDSSubscriber}{DDSSubscriber} within the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} given the entity\textquotesingle{}s name. If there are several \doxylink{classDDSSubscriber}{DDSSubscriber} with the same name within the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}, this function returns the first matching occurrence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subscriber\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Entity name of the \doxylink{classDDSSubscriber}{DDSSubscriber}. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first \doxylink{classDDSSubscriber}{DDSSubscriber} found with the specified name or NULL if it is not found. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to lookup a \doxylink{classDDSSubscriber}{DDSSubscriber} in one thread while another thread is simultaneously creating or destroying that \doxylink{classDDSSubscriber}{DDSSubscriber}. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSDomainParticipant_a9551a4ae436f29bb90d16529eaa36a3a}\index{DDSDomainParticipant@{DDSDomainParticipant}!lookup\_datawriter\_by\_name@{lookup\_datawriter\_by\_name}}
+\index{lookup\_datawriter\_by\_name@{lookup\_datawriter\_by\_name}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{lookup\_datawriter\_by\_name()}{lookup\_datawriter\_by\_name()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a9551a4ae436f29bb90d16529eaa36a3a} 
+virtual \mbox{\hyperlink{classDDSDataWriter}{DDSData\+Writer}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::lookup\+\_\+datawriter\+\_\+by\+\_\+name (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{datawriter\+\_\+full\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Retrieves a \doxylink{classDDSDataWriter}{DDSData\+Writer} by its entity name within this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} 
+
+This returned \doxylink{classDDSDataWriter}{DDSData\+Writer} is either enabled or disabled. 
+
+Every \doxylink{classDDSDataWriter}{DDSData\+Writer} in the system has an entity name which is configured and stored in the Entity\+Name policy, ENTITY\+\_\+\+NAME. 
+
+This operation retrieves a \doxylink{classDDSDataWriter}{DDSData\+Writer} within the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} given the entity\textquotesingle{}s name. If there are several \doxylink{classDDSDataWriter}{DDSData\+Writer} with the same name within the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}, this function returns the first matching occurrence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em datawriter\+\_\+full\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Entity name of the \doxylink{classDDSDataWriter}{DDSData\+Writer}. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first \doxylink{classDDSDataWriter}{DDSData\+Writer} found with the specified name or NULL if it is not found. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to lookup a \doxylink{classDDSDataWriter}{DDSData\+Writer} in one thread while another thread is simultaneously creating or destroying that \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSDomainParticipant_a5b4b7267375804d519e20d21ae701f06}\index{DDSDomainParticipant@{DDSDomainParticipant}!lookup\_datareader\_by\_name@{lookup\_datareader\_by\_name}}
+\index{lookup\_datareader\_by\_name@{lookup\_datareader\_by\_name}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{lookup\_datareader\_by\_name()}{lookup\_datareader\_by\_name()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a5b4b7267375804d519e20d21ae701f06} 
+virtual \mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::lookup\+\_\+datareader\+\_\+by\+\_\+name (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{datareader\+\_\+full\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Retrieves a \doxylink{classDDSDataReader}{DDSData\+Reader} by its entity name within this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} 
+
+This returned \doxylink{classDDSDataReader}{DDSData\+Reader} is either enabled or disabled. 
+
+Every \doxylink{classDDSDataReader}{DDSData\+Reader} in the system has an entity name which is configured and stored in the Entity\+Name policy, ENTITY\+\_\+\+NAME. 
+
+This operation retrieves a \doxylink{classDDSDataReader}{DDSData\+Reader} within the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} given the entity\textquotesingle{}s name. If there are several \doxylink{classDDSDataReader}{DDSData\+Reader} with the same name within the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}, this function returns the first matching occurrence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em datareader\+\_\+full\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Entity name of the \doxylink{classDDSDataReader}{DDSData\+Reader}. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first \doxylink{classDDSDataReader}{DDSData\+Reader} found with the specified name or NULL if it is not found. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to lookup a \doxylink{classDDSDataReader}{DDSData\+Reader} in one thread while another thread is simultaneously creating or destroying that \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSDomainParticipant_a38271f0e046ef131a994dab7f255b2be}\index{DDSDomainParticipant@{DDSDomainParticipant}!assert\_liveliness@{assert\_liveliness}}
+\index{assert\_liveliness@{assert\_liveliness}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{assert\_liveliness()}{assert\_liveliness()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a38271f0e046ef131a994dab7f255b2be} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::assert\+\_\+liveliness (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Manually asserts the liveliness of this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. 
+
+This is used in combination with the \doxylink{structDDS__LivelinessQosPolicy}{DDS\+\_\+\+Liveliness\+Qos\+Policy} to indicate to RTI Connext DDS Micro that the entity remains active. 
+
+You need to use this operation if the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} cointains \doxylink{classDDSDataWriter}{DDSData\+Writer} entities with the \doxylink{structDDS__LivelinessQosPolicy_a03b38bf501032dec5e022778f8a9a4da}{DDS\+\_\+\+Liveliness\+Qos\+Policy\+::kind} set to \doxylink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a5519eb00b713987173ff0858e7e3c1f0}{DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+PARTICIPANT\+\_\+\+LIVELINESS\+\_\+\+QOS} and it only affects the liveliness of those \doxylink{classDDSDataWriter}{DDSData\+Writer} entities. Otherwise, it has no effect. 
+
+{\bfseries{Note\+:}} writing data via the \doxylink{structFooDataWriter_ab2c44dd15f5daf7eddf3773239101478}{Foo\+Data\+Writer\+::write} or \doxylink{structFooDataWriter_a2d8af76eb0a89175785d696879566bbb}{Foo\+Data\+Writer\+::write\+\_\+w\+\_\+timestamp} operation asserts liveliness on the \doxylink{classDDSDataWriter}{DDSData\+Writer} itself and its \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. Consequently the use of \doxylink{classDDSDomainParticipant_a38271f0e046ef131a994dab7f255b2be}{assert\+\_\+liveliness()} is only needed if the application is not writing data regularly. 
+
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__LivelinessQosPolicy}{DDS\+\_\+\+Liveliness\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_a2a2363401aff0bae9db29b3e4caadaa6}\index{DDSDomainParticipant@{DDSDomainParticipant}!delete\_contained\_entities@{delete\_contained\_entities}}
+\index{delete\_contained\_entities@{delete\_contained\_entities}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{delete\_contained\_entities()}{delete\_contained\_entities()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a2a2363401aff0bae9db29b3e4caadaa6} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::delete\+\_\+contained\+\_\+entities (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Delete all the entities that were created by means of the "{}create"{} operations on the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. 
+
+This operation deletes all contained \doxylink{classDDSPublisher}{DDSPublisher}, \doxylink{classDDSSubscriber}{DDSSubscriber}, and \doxylink{classDDSTopic}{DDSTopic}. 
+
+Prior to deleting each contained entity, this operation will recursively call the corresponding delete\+\_\+contained\+\_\+entities operation on each contained entity (if applicable). This pattern is applied recursively. In this manner the operation \doxylink{classDDSDomainParticipant_a2a2363401aff0bae9db29b3e4caadaa6}{delete\+\_\+contained\+\_\+entities()} on the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} will end up deleting all the entities recursively contained in the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}, that is also the \doxylink{classDDSDataWriter}{DDSData\+Writer}, and \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+The operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} if any of the contained entities is in a state where it cannot be deleted. 
+
+If \doxylink{classDDSDomainParticipant_a2a2363401aff0bae9db29b3e4caadaa6}{delete\+\_\+contained\+\_\+entities()} completes successfully, the application may delete the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} knowing that it has no contained entities. 
+
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyReturn}
+\Hypertarget{classDDSDomainParticipant_a8b3171bd5b731d936560ba4de4c9887c}\index{DDSDomainParticipant@{DDSDomainParticipant}!register\_type@{register\_type}}
+\index{register\_type@{register\_type}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{register\_type()}{register\_type()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a8b3171bd5b731d936560ba4de4c9887c} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::register\+\_\+type (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{type\+\_\+name}{, }\item[{\mbox{\hyperlink{structDDS__TypePluginI}{DDS\+\_\+\+Type\+PluginI}} \texorpdfstring{$\ast$}{*}}]{plugin}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application to communicate to RTI Connext DDS Micro the existence of a data type. 
+
+The {\itshape generated} implementation of the operation embeds all the knowledge that has to be communicated to the middleware in order to make it able to manage the contents of data of that type. This includes in particular the key definition that will allow RTI Connext DDS Micro to distinguish different instances of the same type. 
+
+The same \doxylink{structDDS__TypePluginI}{DDS\+\_\+\+Type\+PluginI} can be registered multiple times with a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} using the same or different values for the {\ttfamily type\+\_\+name}. If {\ttfamily register\+\_\+type} is called multiple times on the same \doxylink{structDDS__TypePluginI}{DDS\+\_\+\+Type\+PluginI} with the same \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} and {\ttfamily type\+\_\+name}, the second (and subsequent) registrations are ignored by the operation fails with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a4f3bc70d86031a38bba356c4b534979f}{DDS\+\_\+\+RETCODE\+\_\+\+OK}. 
+
+\begin{DoxyPrecond}{Precondition}
+Cannot use the same {\ttfamily type\+\_\+name} to register two different \doxylink{structDDS__TypePluginI}{DDS\+\_\+\+Type\+PluginI} with the same \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}, or else the operation will fail and \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} will be returned. 
+\end{DoxyPrecond}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em type\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the type name under with the data type {\ttfamily Foo} is registered with the participant; this type name is used when creating a new \doxylink{classDDSTopic}{DDSTopic}. (See \doxylink{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}{DDSDomain\+Participant\+::create\+\_\+topic}.) The name may not be NULL or longer than 255 characters. \\
+\hline
+{\em plugin} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the {\ttfamily Foo} type plugin to register the data type with. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES}. 
+\end{DoxyReturn}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}{DDSDomain\+Participant\+::create\+\_\+topic} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_af802a04c071cb0aebda71d9eaef46f28}\index{DDSDomainParticipant@{DDSDomainParticipant}!unregister\_type@{unregister\_type}}
+\index{unregister\_type@{unregister\_type}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{unregister\_type()}{unregister\_type()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_af802a04c071cb0aebda71d9eaef46f28} 
+virtual \mbox{\hyperlink{structDDS__TypePluginI}{DDS\+\_\+\+Type\+PluginI}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::unregister\+\_\+type (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{type\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Allows an application to unregister a data type from RTI Connext DDS Micro. After calling unregister\+\_\+type, no further communication using that type is possible. 
+
+The {\itshape generated} implementation of the operation removes all the information about a type from RTI Connext DDS Micro. No further communication using that type is possible. 
+
+\begin{DoxyPrecond}{Precondition}
+A type with {\ttfamily type\+\_\+name} is registered with the participant and all \doxylink{classDDSTopic}{DDSTopic} objects referencing the type have been destroyed. If the type is not registered with the participant, or if any \doxylink{classDDSTopic}{DDSTopic} is associated with the type, the operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ac47a8e813f6e5d652f67dbc551b9f62e}{DDS\+\_\+\+RETCODE\+\_\+\+ERROR}. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+All information about the type is removed from RTI Connext DDS Micro. No further communication using this type is possible. 
+\end{DoxyPostcond}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em type\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the type name under with the data type {\ttfamily Foo} is registered with the participant. The name should match a name that has been previously used to register a type with the participant. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ac47a8e813f6e5d652f67dbc551b9f62e}{DDS\+\_\+\+RETCODE\+\_\+\+ERROR} 
+\end{DoxyReturn}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDomainParticipant_a8b3171bd5b731d936560ba4de4c9887c}{DDSDomain\+Participant\+::register\+\_\+type} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_acaebedd33d2edddd13e911a9848ef62a}\index{DDSDomainParticipant@{DDSDomainParticipant}!set\_listener@{set\_listener}}
+\index{set\_listener@{set\_listener}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{set\_listener()}{set\_listener()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_acaebedd33d2edddd13e911a9848ef62a} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::set\+\_\+listener (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDDSDomainParticipantListener}{DDSDomain\+Participant\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{, }\item[{\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}}}]{mask}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Sets the participant listener. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Listener to be installed on entity. \\
+\hline
+{\em mask} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Changes of communication status to be invoked on the listener.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{MT Safety\+:}
+Unsafe. This method is not synchronized with the listener callbacks, so it is possible to set a new listener on a participant when the old listener is in a callback. 
+\end{DoxyParagraph}
+Care should therefore be taken not to delete any listener that has been set on an enabled participant unless some application-\/specific means are available of ensuring that the old listener cannot still be in use.  
+
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{dds_cpp_infrastructure.hxx_Entity_set_listener}{set\+\_\+listener (abstract)}{2} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_ac8745b1d95aceb9f1a97fb5bfda072b5}\index{DDSDomainParticipant@{DDSDomainParticipant}!get\_listener@{get\_listener}}
+\index{get\_listener@{get\_listener}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{get\_listener()}{get\_listener()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_ac8745b1d95aceb9f1a97fb5bfda072b5} 
+virtual \mbox{\hyperlink{classDDSDomainParticipantListener}{DDSDomain\+Participant\+Listener}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::get\+\_\+listener (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the participant listener. 
+
+\begin{DoxyReturn}{Returns}
+Existing listener attached to the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. 
+\end{DoxyReturn}
+\Hypertarget{classDDSDomainParticipant_ae4aa63a4df14beb2543f7806a2404a3a}\index{DDSDomainParticipant@{DDSDomainParticipant}!get\_discovered\_participants@{get\_discovered\_participants}}
+\index{get\_discovered\_participants@{get\_discovered\_participants}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{get\_discovered\_participants()}{get\_discovered\_participants()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_ae4aa63a4df14beb2543f7806a2404a3a} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::get\+\_\+discovered\+\_\+participants (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__InstanceHandleSeq}{DDS\+\_\+\+Instance\+Handle\+Seq}} \&}]{participant\+\_\+handles}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns a sequence containing \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} for all the remote \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} that have been discovered by the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em participant\+\_\+handles} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} sequence of \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} where the result will be stored. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\Hypertarget{classDDSDomainParticipant_adccd2790f88973f31becf932802d1e60}\index{DDSDomainParticipant@{DDSDomainParticipant}!get\_discovered\_participant\_data@{get\_discovered\_participant\_data}}
+\index{get\_discovered\_participant\_data@{get\_discovered\_participant\_data}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{get\_discovered\_participant\_data()}{get\_discovered\_participant\_data()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_adccd2790f88973f31becf932802d1e60} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::get\+\_\+discovered\+\_\+participant\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData}{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data}} \&}]{participant\+\_\+data}{, }\item[{const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&}]{participant\+\_\+handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns information about a remote \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} that has been discovered by the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em participant\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} information about the remote \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. \\
+\hline
+{\em participant\+\_\+handle} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} identifying the remote \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\Hypertarget{classDDSDomainParticipant_a02ef8d2fa30233e2581e21ec9daacf45}\index{DDSDomainParticipant@{DDSDomainParticipant}!get\_current\_time@{get\_current\_time}}
+\index{get\_current\_time@{get\_current\_time}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{get\_current\_time()}{get\_current\_time()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a02ef8d2fa30233e2581e21ec9daacf45} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::get\+\_\+current\+\_\+time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \&}]{current\+\_\+time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns the current value of the time. 
+
+The current value of the time that RTI Connext DDS Micro uses to time-\/stamp \doxylink{classDDSDataWriter}{DDSData\+Writer} and to set the reception-\/timestamp for the data updates that it receives. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+time} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Current time to be filled up.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\Hypertarget{classDDSDomainParticipant_ad035618f6542b3ff088656f221686ef9}\index{DDSDomainParticipant@{DDSDomainParticipant}!add\_peer@{add\_peer}}
+\index{add\_peer@{add\_peer}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{add\_peer()}{add\_peer()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_ad035618f6542b3ff088656f221686ef9} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::add\+\_\+peer (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{peer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Attempt to contact one or more additional peer participants. 
+
+Add the given peer description to the list of peers with which this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} will try to communicate. 
+
+This method may be called at any time after this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} has been created, before or after it has been enabled. If it is called after \doxylink{classDDSEntity_ac8f6cb9f8f0d2eac1daed34b6eb60e11}{DDSEntity\+::enable}, an attempt will be made to contact the new peer(s) immediately. If it is called before, the peer description will simply be added to the list that was populated by \doxylink{structDDS__DiscoveryQosPolicy_a7f767e8bb620e6ae873479d9975accbf}{DDS\+\_\+\+Discovery\+Qos\+Policy\+::initial\+\_\+peers}; the first attempted contact will take place after this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} is enabled. 
+
+Adding a peer description with this method does not guarantee that any peer(s) discovered as a result will exactly correspond to those described\+: 
+
+\begin{DoxyItemize}
+\item This \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} will attempt to discover peer participants at the given locations but may not succeed if no such participants are available. Such a situation will not result in an error result from this method, which will not wait for contact attempt(s) to be made. \item If remote participants such as are described by the given peer description are discovered, the distributed application is configured with asymmetric peer lists, and \doxylink{structDDS__DiscoveryQosPolicy_a0b53178426ae877ea27b90c70cedaec7}{DDS\+\_\+\+Discovery\+Qos\+Policy\+::accept\+\_\+unknown\+\_\+peers} is set to \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} may actually discover {\itshape more} peers than are described in the given peer description. \end{DoxyItemize}
+
+
+Adding a peer description with this method has no effect on the \doxylink{structDDS__DiscoveryQosPolicy_a7f767e8bb620e6ae873479d9975accbf}{DDS\+\_\+\+Discovery\+Qos\+Policy\+::initial\+\_\+peers}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em peer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} New peer descriptor to be added.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__DiscoveryQosPolicy_a7f767e8bb620e6ae873479d9975accbf}{DDS\+\_\+\+Discovery\+Qos\+Policy\+::initial\+\_\+peers} 
+
+\+::\doxylink{group__DDSParticipantBuiltInTopicModule_ga532b695705a43fdd8ee714261771a838}{DDS\+\_\+\+PARTICIPANT\+\_\+\+TOPIC\+\_\+\+NAME} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_a55b50282258764d5e63463f79b23b2e6}\index{DDSDomainParticipant@{DDSDomainParticipant}!get\_default\_flowcontroller\_property@{get\_default\_flowcontroller\_property}}
+\index{get\_default\_flowcontroller\_property@{get\_default\_flowcontroller\_property}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{get\_default\_flowcontroller\_property()}{get\_default\_flowcontroller\_property()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a55b50282258764d5e63463f79b23b2e6} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::get\+\_\+default\+\_\+flowcontroller\+\_\+property (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t}} \&}]{prop}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Copies the default \doxylink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t} values for this domain participant into the given \doxylink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t} instance. 
+
+The retrieved {\ttfamily property} will match the set of values specified on the last successful call to \doxylink{classDDSDomainParticipant_a311d86e291f82ae402c4095094ce9780}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+flowcontroller\+\_\+property}, or else, if the call was never made, the default values listed in \doxylink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t}. 
+
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to retrieve the default flow controller properties from a Domain\+Participant while another thread may be simultaneously calling \doxylink{classDDSDomainParticipant_a311d86e291f82ae402c4095094ce9780}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+flowcontroller\+\_\+property} 
+\end{DoxyParagraph}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em prop} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Default property to be retrieved.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDomainParticipantModule_gaa1c04b8c62ee5286f5a695c1dbd5ecb5}{DDS\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+PROPERTY\+\_\+\+DEFAULT} 
+
+\doxylink{classDDSDomainParticipant_a7ab6fb3f729d0abf769e28198e3388cd}{DDSDomain\+Participant\+::create\+\_\+flowcontroller} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_a311d86e291f82ae402c4095094ce9780}\index{DDSDomainParticipant@{DDSDomainParticipant}!set\_default\_flowcontroller\_property@{set\_default\_flowcontroller\_property}}
+\index{set\_default\_flowcontroller\_property@{set\_default\_flowcontroller\_property}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{set\_default\_flowcontroller\_property()}{set\_default\_flowcontroller\_property()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a311d86e291f82ae402c4095094ce9780} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::set\+\_\+default\+\_\+flowcontroller\+\_\+property (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t}} \&}]{prop}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Set the default \doxylink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t} values for this domain participant. 
+
+This default value will be used for newly created \doxylink{classDDSFlowController}{DDSFlow\+Controller} if \doxylink{group__DDSDomainParticipantModule_gaa1c04b8c62ee5286f5a695c1dbd5ecb5}{DDS\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+PROPERTY\+\_\+\+DEFAULT} is specified as the {\ttfamily property} parameter when \doxylink{classDDSDomainParticipant_a7ab6fb3f729d0abf769e28198e3388cd}{DDSDomain\+Participant\+::create\+\_\+flowcontroller} is called. 
+
+\begin{DoxyPrecond}{Precondition}
+The specified property values must be consistent, or else the operation will have no effect and fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+\end{DoxyPrecond}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to set the default flow controller properties for a Domain\+Participant while another thread may be simultaneously calling \doxylink{classDDSDomainParticipant_a311d86e291f82ae402c4095094ce9780}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+flowcontroller\+\_\+property} , \doxylink{classDDSDomainParticipant_a55b50282258764d5e63463f79b23b2e6}{DDSDomain\+Participant\+::get\+\_\+default\+\_\+flowcontroller\+\_\+property} or calling \doxylink{classDDSDomainParticipant_a7ab6fb3f729d0abf769e28198e3388cd}{DDSDomain\+Participant\+::create\+\_\+flowcontroller} with \doxylink{group__DDSDomainParticipantModule_gaa1c04b8c62ee5286f5a695c1dbd5ecb5}{DDS\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+PROPERTY\+\_\+\+DEFAULT} as the {\ttfamily qos} parameter. 
+\end{DoxyParagraph}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em prop} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Default property to be set. The special value \doxylink{group__DDSDomainParticipantModule_gaa1c04b8c62ee5286f5a695c1dbd5ecb5}{DDS\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+PROPERTY\+\_\+\+DEFAULT} may be passed as {\ttfamily property} to indicate that the default property should be reset to the default values the factory would use if \doxylink{classDDSDomainParticipant_a311d86e291f82ae402c4095094ce9780}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+flowcontroller\+\_\+property} had never been called.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDomainParticipantModule_gaa1c04b8c62ee5286f5a695c1dbd5ecb5}{DDS\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+PROPERTY\+\_\+\+DEFAULT} 
+
+\doxylink{classDDSDomainParticipant_a7ab6fb3f729d0abf769e28198e3388cd}{DDSDomain\+Participant\+::create\+\_\+flowcontroller} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDomainParticipant_a7ab6fb3f729d0abf769e28198e3388cd}\index{DDSDomainParticipant@{DDSDomainParticipant}!create\_flowcontroller@{create\_flowcontroller}}
+\index{create\_flowcontroller@{create\_flowcontroller}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{create\_flowcontroller()}{create\_flowcontroller()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a7ab6fb3f729d0abf769e28198e3388cd} 
+virtual \mbox{\hyperlink{classDDSFlowController}{DDSFlow\+Controller}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::create\+\_\+flowcontroller (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{const \mbox{\hyperlink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t}} \&}]{prop}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Creates a \doxylink{classDDSFlowController}{DDSFlow\+Controller} with the desired property. 
+
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. If \doxylink{group__DDSDomainParticipantModule_gaa1c04b8c62ee5286f5a695c1dbd5ecb5}{DDS\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+PROPERTY\+\_\+\+DEFAULT} is used for {\ttfamily property}, it is not safe to create the flow controller while another thread may be simultaneously calling \doxylink{classDDSDomainParticipant_a311d86e291f82ae402c4095094ce9780}{DDSDomain\+Participant\+::set\+\_\+default\+\_\+flowcontroller\+\_\+property} or trying to lookup that flow controller with \doxylink{classDDSDomainParticipant_aa0a414744e3b66495d58408c7ab70c57}{DDSDomain\+Participant\+::lookup\+\_\+flowcontroller}.    
+\end{DoxyParagraph}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} name of the \doxylink{classDDSFlowController}{DDSFlow\+Controller} to create. A \doxylink{classDDSDataWriter}{DDSData\+Writer} is associated with a \doxylink{classDDSFlowController}{DDSFlow\+Controller} by name. Limited to 255 characters. \\
+\hline
+{\em prop} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} property to be used for creating the new \doxylink{classDDSFlowController}{DDSFlow\+Controller}. The special value \doxylink{group__DDSDomainParticipantModule_gaa1c04b8c62ee5286f5a695c1dbd5ecb5}{DDS\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+PROPERTY\+\_\+\+DEFAULT} can be used to indicate that the \doxylink{classDDSFlowController}{DDSFlow\+Controller} should be created with the default \doxylink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t} set in the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}.  \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+Newly created flow controller object or NULL on failure.  
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__FlowControllerProperty__t}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t} for rules on consistency among property  
+
+\doxylink{group__DDSDomainParticipantModule_gaa1c04b8c62ee5286f5a695c1dbd5ecb5}{DDS\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+PROPERTY\+\_\+\+DEFAULT} 
+
+\doxylink{classDDSDomainParticipant_a55b50282258764d5e63463f79b23b2e6}{DDSDomain\+Participant\+::get\+\_\+default\+\_\+flowcontroller\+\_\+property}  
+\end{DoxySeeAlso}
+The created \doxylink{classDDSFlowController}{DDSFlow\+Controller} is associated with a \doxylink{classDDSDataWriter}{DDSData\+Writer} via \doxylink{structDDS__PublishModeQosPolicy_ae1d0fe3d8d81f5f0a207709a9fc51bac}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::flow\+\_\+controller\+\_\+name}. A single Flow\+Controller may service multiple Data\+Writers instances, even if they belong to a different \doxylink{classDDSPublisher}{DDSPublisher}. The {\ttfamily property} determines how the Flow\+Controller shapes the network traffic. 
+
+\begin{DoxyPrecond}{Precondition}
+The specified {\ttfamily property} must be consistent, or the operation will fail and no \doxylink{classDDSFlowController}{DDSFlow\+Controller} will be created. 
+\end{DoxyPrecond}
+\Hypertarget{classDDSDomainParticipant_a91e367ab7cbb78c112179f9b228bf4bd}\index{DDSDomainParticipant@{DDSDomainParticipant}!delete\_flowcontroller@{delete\_flowcontroller}}
+\index{delete\_flowcontroller@{delete\_flowcontroller}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{delete\_flowcontroller()}{delete\_flowcontroller()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_a91e367ab7cbb78c112179f9b228bf4bd} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSDomain\+Participant\+::delete\+\_\+flowcontroller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSFlowController}{DDSFlow\+Controller}} \texorpdfstring{$\ast$}{*}}]{fc}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Deletes an existing \doxylink{classDDSFlowController}{DDSFlow\+Controller}. 
+
+\begin{DoxyPrecond}{Precondition}
+The \doxylink{classDDSFlowController}{DDSFlow\+Controller} must not have any attached \doxylink{classDDSDataWriter}{DDSData\+Writer} objects. If there are any attached \doxylink{classDDSDataWriter}{DDSData\+Writer} objects, it will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+
+The \doxylink{classDDSFlowController}{DDSFlow\+Controller} must have been created by this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}, or else it will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The \doxylink{classDDSFlowController}{DDSFlow\+Controller} is deleted if this method completes successfully. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to delete an entity while another thread may be simultaneously calling an API that uses the entity. 
+\end{DoxyParagraph}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em fc} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The \doxylink{classDDSFlowController}{DDSFlow\+Controller} to be deleted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyReturn}
+\Hypertarget{classDDSDomainParticipant_aa0a414744e3b66495d58408c7ab70c57}\index{DDSDomainParticipant@{DDSDomainParticipant}!lookup\_flowcontroller@{lookup\_flowcontroller}}
+\index{lookup\_flowcontroller@{lookup\_flowcontroller}!DDSDomainParticipant@{DDSDomainParticipant}}
+\doxyparagraph{\texorpdfstring{lookup\_flowcontroller()}{lookup\_flowcontroller()}}
+{\footnotesize\ttfamily \label{classDDSDomainParticipant_aa0a414744e3b66495d58408c7ab70c57} 
+virtual \mbox{\hyperlink{classDDSFlowController}{DDSFlow\+Controller}} \texorpdfstring{$\ast$}{*} DDSDomain\+Participant\+::lookup\+\_\+flowcontroller (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Looks up an existing locally-\/created \doxylink{classDDSFlowController}{DDSFlow\+Controller}, based on its name. 
+
+Looks up a previously created \doxylink{classDDSFlowController}{DDSFlow\+Controller}, including the built-\/in ones. Once a \doxylink{classDDSFlowController}{DDSFlow\+Controller} has been deleted, subsequent lookups will fail. 
+
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. It is not safe to lookup a flow controller description while another thread is creating that flow controller. 
+\end{DoxyParagraph}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name of \doxylink{classDDSFlowController}{DDSFlow\+Controller} to search for. Limited to 255 characters. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The flow controller if it has already been created locally, or NULL otherwise. 
+\end{DoxyReturn}

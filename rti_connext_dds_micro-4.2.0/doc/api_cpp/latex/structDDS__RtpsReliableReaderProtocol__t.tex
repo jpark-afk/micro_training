@@ -1,0 +1,51 @@
+\doxysubsection{DDS\+\_\+\+Rtps\+Reliable\+Reader\+Protocol\+\_\+t Struct Reference}
+\hypertarget{structDDS__RtpsReliableReaderProtocol__t}{}\label{structDDS__RtpsReliableReaderProtocol__t}\index{DDS\_RtpsReliableReaderProtocol\_t@{DDS\_RtpsReliableReaderProtocol\_t}}
+
+
+Qos related to reliable reader protocol defined in RTPS.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \mbox{\hyperlink{structDDS__RtpsReliableReaderProtocol__t_a9c299ef4fe921b91a7bdedadcd38c2a8}{nack\+\_\+period}}
+\begin{DoxyCompactList}\small\item\em The period at which to send NACKs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Qos related to reliable reader protocol defined in RTPS. 
+
+It is used to configure the reliable reader according to RTPS protocol. 
+
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = N/A ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{QoS\+:}
+\doxylink{structDDS__DataReaderProtocolQosPolicy}{DDS\+\_\+\+Data\+Reader\+Protocol\+Qos\+Policy} ~\newline
+ 
+\end{DoxyParagraph}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__RtpsReliableReaderProtocol__t_a9c299ef4fe921b91a7bdedadcd38c2a8}\index{DDS\_RtpsReliableReaderProtocol\_t@{DDS\_RtpsReliableReaderProtocol\_t}!nack\_period@{nack\_period}}
+\index{nack\_period@{nack\_period}!DDS\_RtpsReliableReaderProtocol\_t@{DDS\_RtpsReliableReaderProtocol\_t}}
+\doxyparagraph{\texorpdfstring{nack\_period}{nack\_period}}
+{\footnotesize\ttfamily \label{structDDS__RtpsReliableReaderProtocol__t_a9c299ef4fe921b91a7bdedadcd38c2a8} 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} DDS\+\_\+\+Rtps\+Reliable\+Reader\+Protocol\+\_\+t\+::nack\+\_\+period}
+
+
+
+The period at which to send NACKs. 
+
+A reliable reader will send periodic NACKs at this rate when it first matches with a reliable writer. The reader will stop sending NACKs when it has received all available historical data from the writer. Note that this NACK period only determines the rate at which NACKs are sent until the first HB is received from the writer. When the first HB is received, the writer\textquotesingle{}s HB period determines how fast historical data is sent. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 50 ms ~\newline
+ 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1 nanosec, 1 year\mbox{]} 

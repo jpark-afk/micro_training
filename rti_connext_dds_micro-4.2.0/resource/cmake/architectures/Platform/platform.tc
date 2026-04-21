@@ -1,0 +1,25 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may2016 tk Written
+################################################################################
+IF (${RTIME_TARGET_NAME} MATCHES "_cert")
+    SET_PROPERTY(DIRECTORY APPEND PROPERTY 
+                 COMPILE_DEFINITIONS
+                 RTI_CERT)
+    SET(RTIME_CERT TRUE CACHE BOOL 
+        "Checking this option builds Micro as a single static library with only the Micro Cert APIs enabled"
+    )    
+ENDIF()

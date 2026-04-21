@@ -1,0 +1,277 @@
+\doxysubsubsubsection{Time Support}
+\hypertarget{group__DDSTimeSupportModule}{}\label{group__DDSTimeSupportModule}\index{Time Support@{Time Support}}
+
+
+Time and duration types and defines.  
+
+
+\doxysubsubsubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type for {\itshape time} representation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type for {\itshape duration} representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DDSTimeSupportModule_gac99dcc849b77a82c132b902492fa7b03}{DDS\+\_\+\+TIME\+\_\+\+ZERO}}
+\begin{DoxyCompactList}\small\item\em The default instant in time\+: zero seconds and zero nanoseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSTimeSupportModule_gaff724115f9b1b505164991c10537d6b0}{DDS\+\_\+\+Time\+\_\+greater\+\_\+than}} (const struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \texorpdfstring{$\ast$}{*}l, const struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \texorpdfstring{$\ast$}{*}r)
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSTimeSupportModule_gaaa55eb5d6329d461e1fb84f4b8701c42}{DDS\+\_\+\+Time\+\_\+is\+\_\+zero}} (const struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \texorpdfstring{$\ast$}{*}time)
+\begin{DoxyCompactList}\small\item\em Check if time is zero. \end{DoxyCompactList}\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSTimeSupportModule_ga1a8775e5a663b438429b09a7cca970b1}{DDS\+\_\+\+Duration\+\_\+is\+\_\+infinite}} (const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}duration)
+\item 
+DDSCDll\+Export int \mbox{\hyperlink{group__DDSTimeSupportModule_ga9e82a6445988d03a05ca77ffd4db1881}{DDS\+\_\+\+Duration\+\_\+compare}} (const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}left, const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}right)
+\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSTimeSupportModule_gaec8114fbf7e0c15eed2287c86e29c187}{DDS\+\_\+\+Duration\+\_\+equal}} (const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}other)
+\item 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSTimeSupportModule_gaa61ec45c91c5ca6ab9ab2b94b79491cd}{DDS\+\_\+\+Duration\+\_\+is\+\_\+zero}} (const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}duration)
+\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+DDSCDll\+Variable const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSTimeSupportModule_gad1f63fbf5b167b09589510e0e81f26f8}{DDS\+\_\+\+TIME\+\_\+\+INVALID\+\_\+\+SEC}}
+\begin{DoxyCompactList}\small\item\em A sentinel indicating an invalid second of time. \end{DoxyCompactList}\item 
+DDSCDll\+Variable const \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} \mbox{\hyperlink{group__DDSTimeSupportModule_ga2090c9f89522e9ce31a4a3663ad9e8ca}{DDS\+\_\+\+TIME\+\_\+\+INVALID\+\_\+\+NSEC}}
+\begin{DoxyCompactList}\small\item\em A sentinel indicating an invalid nano-\/second of time. \end{DoxyCompactList}\item 
+DDSCDll\+Variable const struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \mbox{\hyperlink{group__DDSTimeSupportModule_ga54e729d66462fdec8e4fd9d15708373c}{DDS\+\_\+\+TIME\+\_\+\+INVALID}}
+\begin{DoxyCompactList}\small\item\em A sentinel indicating an invalid time. \end{DoxyCompactList}\item 
+DDSCDll\+Variable const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSTimeSupportModule_gaafed03f6b64b0968a4e5687646dba9d8}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE\+\_\+\+SEC}}
+\begin{DoxyCompactList}\small\item\em An infinite second period of time. \end{DoxyCompactList}\item 
+DDSCDll\+Variable const \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} \mbox{\hyperlink{group__DDSTimeSupportModule_gab0e877da28166cf61148a80621cb6c4a}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE\+\_\+\+NSEC}}
+\begin{DoxyCompactList}\small\item\em An infinite nano-\/second period of time. \end{DoxyCompactList}\item 
+DDSCDll\+Variable const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \mbox{\hyperlink{group__DDSTimeSupportModule_gac74d319dbdb844da5b8b1ee76a843bcb}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE}}
+\begin{DoxyCompactList}\small\item\em An infinite period of time. \end{DoxyCompactList}\item 
+DDSCDll\+Variable const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSTimeSupportModule_gafde825dac7258cdef192ce1ceb1272df}{DDS\+\_\+\+DURATION\+\_\+\+ZERO\+\_\+\+SEC}}
+\begin{DoxyCompactList}\small\item\em A zero-\/length second period of time. \end{DoxyCompactList}\item 
+DDSCDll\+Variable const \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} \mbox{\hyperlink{group__DDSTimeSupportModule_ga1e7dd30e6f9f2dad4526aebcbc61c7b4}{DDS\+\_\+\+DURATION\+\_\+\+ZERO\+\_\+\+NSEC}}
+\begin{DoxyCompactList}\small\item\em A zero-\/length nano-\/second period of time. \end{DoxyCompactList}\item 
+DDSCDll\+Variable const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \mbox{\hyperlink{group__DDSTimeSupportModule_ga6d02d99106495a9401a62cc8724526d6}{DDS\+\_\+\+DURATION\+\_\+\+ZERO}}
+\begin{DoxyCompactList}\small\item\em A zero-\/length period of time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+Time and duration types and defines. 
+
+
+
+\doxysubsubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__DDSTimeSupportModule_gac99dcc849b77a82c132b902492fa7b03}\index{Time Support@{Time Support}!DDS\_TIME\_ZERO@{DDS\_TIME\_ZERO}}
+\index{DDS\_TIME\_ZERO@{DDS\_TIME\_ZERO}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_TIME\_ZERO}{DDS\_TIME\_ZERO}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_gac99dcc849b77a82c132b902492fa7b03} 
+\#define DDS\+\_\+\+TIME\+\_\+\+ZERO}
+
+
+
+The default instant in time\+: zero seconds and zero nanoseconds. 
+
+
+
+\doxysubsubsubsubsection{Function Documentation}
+\Hypertarget{group__DDSTimeSupportModule_gaff724115f9b1b505164991c10537d6b0}\index{Time Support@{Time Support}!DDS\_Time\_greater\_than@{DDS\_Time\_greater\_than}}
+\index{DDS\_Time\_greater\_than@{DDS\_Time\_greater\_than}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_Time\_greater\_than()}{DDS\_Time\_greater\_than()}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_gaff724115f9b1b505164991c10537d6b0} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Time\+\_\+greater\+\_\+than (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{l}{, }\item[{const struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{r}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if the first time is greater than the second. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSTimeSupportModule_gaaa55eb5d6329d461e1fb84f4b8701c42}\index{Time Support@{Time Support}!DDS\_Time\_is\_zero@{DDS\_Time\_is\_zero}}
+\index{DDS\_Time\_is\_zero@{DDS\_Time\_is\_zero}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_Time\_is\_zero()}{DDS\_Time\_is\_zero()}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_gaaa55eb5d6329d461e1fb84f4b8701c42} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Time\+\_\+is\+\_\+zero (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{time}{}\end{DoxyParamCaption})}
+
+
+
+Check if time is zero. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if the given time is equal to \doxylink{group__DDSTimeSupportModule_gac99dcc849b77a82c132b902492fa7b03}{DDS\+\_\+\+TIME\+\_\+\+ZERO} or \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} otherwise. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__DDSTimeSupportModule_ga54e729d66462fdec8e4fd9d15708373c}{DDS\+\_\+\+TIME\+\_\+\+INVALID}}, \mbox{\hyperlink{group__DDSTimeSupportModule_ga2090c9f89522e9ce31a4a3663ad9e8ca}{DDS\+\_\+\+TIME\+\_\+\+INVALID\+\_\+\+NSEC}}, and \mbox{\hyperlink{group__DDSTimeSupportModule_gad1f63fbf5b167b09589510e0e81f26f8}{DDS\+\_\+\+TIME\+\_\+\+INVALID\+\_\+\+SEC}}.
+
+\Hypertarget{group__DDSTimeSupportModule_ga1a8775e5a663b438429b09a7cca970b1}\index{Time Support@{Time Support}!DDS\_Duration\_is\_infinite@{DDS\_Duration\_is\_infinite}}
+\index{DDS\_Duration\_is\_infinite@{DDS\_Duration\_is\_infinite}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_Duration\_is\_infinite()}{DDS\_Duration\_is\_infinite()}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_ga1a8775e5a663b438429b09a7cca970b1} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Duration\+\_\+is\+\_\+infinite (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{duration}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if the given duration is of infinite length. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSTimeSupportModule_ga9e82a6445988d03a05ca77ffd4db1881}\index{Time Support@{Time Support}!DDS\_Duration\_compare@{DDS\_Duration\_compare}}
+\index{DDS\_Duration\_compare@{DDS\_Duration\_compare}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_Duration\_compare()}{DDS\_Duration\_compare()}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_ga9e82a6445988d03a05ca77ffd4db1881} 
+DDSCDll\+Export int DDS\+\_\+\+Duration\+\_\+compare (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{left}{, }\item[{const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{right}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Duration to compare. Cannot be NULL.\\
+\hline
+{\em right} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Duration to compare. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the two durations are equal, the function returns 0. If left is greater than right the function returns a positive number; otherwise, it returns a negative number. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}, and \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+
+\Hypertarget{group__DDSTimeSupportModule_gaec8114fbf7e0c15eed2287c86e29c187}\index{Time Support@{Time Support}!DDS\_Duration\_equal@{DDS\_Duration\_equal}}
+\index{DDS\_Duration\_equal@{DDS\_Duration\_equal}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_Duration\_equal()}{DDS\_Duration\_equal()}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_gaec8114fbf7e0c15eed2287c86e29c187} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Duration\+\_\+equal (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{other}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Duration to compare. Cannot be NULL.\\
+\hline
+{\em other} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Duration to be compared to this one. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE if the two objects contain the same value, DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE otherwise. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__DDSTimeSupportModule_ga6d02d99106495a9401a62cc8724526d6}{DDS\+\_\+\+DURATION\+\_\+\+ZERO}}, \mbox{\hyperlink{group__DDSTimeSupportModule_ga1e7dd30e6f9f2dad4526aebcbc61c7b4}{DDS\+\_\+\+DURATION\+\_\+\+ZERO\+\_\+\+NSEC}}, and \mbox{\hyperlink{group__DDSTimeSupportModule_gafde825dac7258cdef192ce1ceb1272df}{DDS\+\_\+\+DURATION\+\_\+\+ZERO\+\_\+\+SEC}}.
+
+\Hypertarget{group__DDSTimeSupportModule_gaa61ec45c91c5ca6ab9ab2b94b79491cd}\index{Time Support@{Time Support}!DDS\_Duration\_is\_zero@{DDS\_Duration\_is\_zero}}
+\index{DDS\_Duration\_is\_zero@{DDS\_Duration\_is\_zero}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_Duration\_is\_zero()}{DDS\_Duration\_is\_zero()}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_gaa61ec45c91c5ca6ab9ab2b94b79491cd} 
+DDSCDll\+Export \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Duration\+\_\+is\+\_\+zero (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{duration}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if the given duration is of zero length. 
+\end{DoxyReturn}
+
+
+\doxysubsubsubsubsection{Variable Documentation}
+\Hypertarget{group__DDSTimeSupportModule_gad1f63fbf5b167b09589510e0e81f26f8}\index{Time Support@{Time Support}!DDS\_TIME\_INVALID\_SEC@{DDS\_TIME\_INVALID\_SEC}}
+\index{DDS\_TIME\_INVALID\_SEC@{DDS\_TIME\_INVALID\_SEC}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_TIME\_INVALID\_SEC}{DDS\_TIME\_INVALID\_SEC}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_gad1f63fbf5b167b09589510e0e81f26f8} 
+DDSCDll\+Variable const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+TIME\+\_\+\+INVALID\+\_\+\+SEC\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+A sentinel indicating an invalid second of time. 
+
+
+
+Referenced by \mbox{\hyperlink{group__DDSTimeSupportModule_gaaa55eb5d6329d461e1fb84f4b8701c42}{DDS\+\_\+\+Time\+\_\+is\+\_\+zero()}}.
+
+\Hypertarget{group__DDSTimeSupportModule_ga2090c9f89522e9ce31a4a3663ad9e8ca}\index{Time Support@{Time Support}!DDS\_TIME\_INVALID\_NSEC@{DDS\_TIME\_INVALID\_NSEC}}
+\index{DDS\_TIME\_INVALID\_NSEC@{DDS\_TIME\_INVALID\_NSEC}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_TIME\_INVALID\_NSEC}{DDS\_TIME\_INVALID\_NSEC}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_ga2090c9f89522e9ce31a4a3663ad9e8ca} 
+DDSCDll\+Variable const \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} DDS\+\_\+\+TIME\+\_\+\+INVALID\+\_\+\+NSEC\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+A sentinel indicating an invalid nano-\/second of time. 
+
+
+
+Referenced by \mbox{\hyperlink{group__DDSTimeSupportModule_gaaa55eb5d6329d461e1fb84f4b8701c42}{DDS\+\_\+\+Time\+\_\+is\+\_\+zero()}}.
+
+\Hypertarget{group__DDSTimeSupportModule_ga54e729d66462fdec8e4fd9d15708373c}\index{Time Support@{Time Support}!DDS\_TIME\_INVALID@{DDS\_TIME\_INVALID}}
+\index{DDS\_TIME\_INVALID@{DDS\_TIME\_INVALID}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_TIME\_INVALID}{DDS\_TIME\_INVALID}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_ga54e729d66462fdec8e4fd9d15708373c} 
+DDSCDll\+Variable const struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} DDS\+\_\+\+TIME\+\_\+\+INVALID\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+A sentinel indicating an invalid time. 
+
+
+
+Referenced by \mbox{\hyperlink{group__DDSTimeSupportModule_gaaa55eb5d6329d461e1fb84f4b8701c42}{DDS\+\_\+\+Time\+\_\+is\+\_\+zero()}}.
+
+\Hypertarget{group__DDSTimeSupportModule_gaafed03f6b64b0968a4e5687646dba9d8}\index{Time Support@{Time Support}!DDS\_DURATION\_INFINITE\_SEC@{DDS\_DURATION\_INFINITE\_SEC}}
+\index{DDS\_DURATION\_INFINITE\_SEC@{DDS\_DURATION\_INFINITE\_SEC}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_DURATION\_INFINITE\_SEC}{DDS\_DURATION\_INFINITE\_SEC}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_gaafed03f6b64b0968a4e5687646dba9d8} 
+DDSCDll\+Variable const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+DURATION\+\_\+\+INFINITE\+\_\+\+SEC\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+An infinite second period of time. 
+
+\Hypertarget{group__DDSTimeSupportModule_gab0e877da28166cf61148a80621cb6c4a}\index{Time Support@{Time Support}!DDS\_DURATION\_INFINITE\_NSEC@{DDS\_DURATION\_INFINITE\_NSEC}}
+\index{DDS\_DURATION\_INFINITE\_NSEC@{DDS\_DURATION\_INFINITE\_NSEC}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_DURATION\_INFINITE\_NSEC}{DDS\_DURATION\_INFINITE\_NSEC}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_gab0e877da28166cf61148a80621cb6c4a} 
+DDSCDll\+Variable const \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} DDS\+\_\+\+DURATION\+\_\+\+INFINITE\+\_\+\+NSEC\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+An infinite nano-\/second period of time. 
+
+\Hypertarget{group__DDSTimeSupportModule_gac74d319dbdb844da5b8b1ee76a843bcb}\index{Time Support@{Time Support}!DDS\_DURATION\_INFINITE@{DDS\_DURATION\_INFINITE}}
+\index{DDS\_DURATION\_INFINITE@{DDS\_DURATION\_INFINITE}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_DURATION\_INFINITE}{DDS\_DURATION\_INFINITE}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_gac74d319dbdb844da5b8b1ee76a843bcb} 
+DDSCDll\+Variable const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} DDS\+\_\+\+DURATION\+\_\+\+INFINITE\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+An infinite period of time. 
+
+\Hypertarget{group__DDSTimeSupportModule_gafde825dac7258cdef192ce1ceb1272df}\index{Time Support@{Time Support}!DDS\_DURATION\_ZERO\_SEC@{DDS\_DURATION\_ZERO\_SEC}}
+\index{DDS\_DURATION\_ZERO\_SEC@{DDS\_DURATION\_ZERO\_SEC}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_DURATION\_ZERO\_SEC}{DDS\_DURATION\_ZERO\_SEC}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_gafde825dac7258cdef192ce1ceb1272df} 
+DDSCDll\+Variable const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+DURATION\+\_\+\+ZERO\+\_\+\+SEC\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+A zero-\/length second period of time. 
+
+
+
+Referenced by \mbox{\hyperlink{group__DDSTimeSupportModule_gaec8114fbf7e0c15eed2287c86e29c187}{DDS\+\_\+\+Duration\+\_\+equal()}}.
+
+\Hypertarget{group__DDSTimeSupportModule_ga1e7dd30e6f9f2dad4526aebcbc61c7b4}\index{Time Support@{Time Support}!DDS\_DURATION\_ZERO\_NSEC@{DDS\_DURATION\_ZERO\_NSEC}}
+\index{DDS\_DURATION\_ZERO\_NSEC@{DDS\_DURATION\_ZERO\_NSEC}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_DURATION\_ZERO\_NSEC}{DDS\_DURATION\_ZERO\_NSEC}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_ga1e7dd30e6f9f2dad4526aebcbc61c7b4} 
+DDSCDll\+Variable const \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} DDS\+\_\+\+DURATION\+\_\+\+ZERO\+\_\+\+NSEC\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+A zero-\/length nano-\/second period of time. 
+
+
+
+Referenced by \mbox{\hyperlink{group__DDSTimeSupportModule_gaec8114fbf7e0c15eed2287c86e29c187}{DDS\+\_\+\+Duration\+\_\+equal()}}.
+
+\Hypertarget{group__DDSTimeSupportModule_ga6d02d99106495a9401a62cc8724526d6}\index{Time Support@{Time Support}!DDS\_DURATION\_ZERO@{DDS\_DURATION\_ZERO}}
+\index{DDS\_DURATION\_ZERO@{DDS\_DURATION\_ZERO}!Time Support@{Time Support}}
+\doxyparagraph{\texorpdfstring{DDS\_DURATION\_ZERO}{DDS\_DURATION\_ZERO}}
+{\footnotesize\ttfamily \label{group__DDSTimeSupportModule_ga6d02d99106495a9401a62cc8724526d6} 
+DDSCDll\+Variable const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} DDS\+\_\+\+DURATION\+\_\+\+ZERO\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+A zero-\/length period of time. 
+
+
+
+Referenced by \mbox{\hyperlink{group__DDSTimeSupportModule_gaec8114fbf7e0c15eed2287c86e29c187}{DDS\+\_\+\+Duration\+\_\+equal()}}.
+

@@ -1,0 +1,66 @@
+\doxysubsection{DDS\+\_\+\+Offered\+Deadline\+Missed\+Status Struct Reference}
+\hypertarget{structDDS__OfferedDeadlineMissedStatus}{}\label{structDDS__OfferedDeadlineMissedStatus}\index{DDS\_OfferedDeadlineMissedStatus@{DDS\_OfferedDeadlineMissedStatus}}
+
+
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa84f12530ffc8d6e68906054b06972342}{DDS\+\_\+\+OFFERED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS}  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+publication.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__OfferedDeadlineMissedStatus_a17262425aea25d6dfe4b6162d596c2b0}{total\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em Total cumulative count of the number of times the \doxylink{classDDSDataWriter}{DDSData\+Writer} failed to write within its offered deadline. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__OfferedDeadlineMissedStatus_a996c66a2e5072f20a0850fd94ecc433c}{total\+\_\+count\+\_\+change}}
+\begin{DoxyCompactList}\small\item\em The incremental changes in total\+\_\+count since the last time the listener was called or the status was read. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{structDDS__OfferedDeadlineMissedStatus_acd00bafe297f4563cb55f1dda96bfa4d}{last\+\_\+instance\+\_\+handle}}
+\begin{DoxyCompactList}\small\item\em Handle to the last instance in the \doxylink{classDDSDataWriter}{DDSData\+Writer} for which an offered deadline was missed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa84f12530ffc8d6e68906054b06972342}{DDS\+\_\+\+OFFERED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS} 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSDataWriter}{DDSData\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Listener\+:}
+\doxylink{classDDSDataWriterListener}{DDSData\+Writer\+Listener} 
+\end{DoxyParagraph}
+The deadline that the \doxylink{classDDSDataWriter}{DDSData\+Writer} has committed through its \doxylink{structDDS__DeadlineQosPolicy}{DDS\+\_\+\+Deadline\+Qos\+Policy} was not respected for a specific instance. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__OfferedDeadlineMissedStatus_a17262425aea25d6dfe4b6162d596c2b0}\index{DDS\_OfferedDeadlineMissedStatus@{DDS\_OfferedDeadlineMissedStatus}!total\_count@{total\_count}}
+\index{total\_count@{total\_count}!DDS\_OfferedDeadlineMissedStatus@{DDS\_OfferedDeadlineMissedStatus}}
+\doxyparagraph{\texorpdfstring{total\_count}{total\_count}}
+{\footnotesize\ttfamily \label{structDDS__OfferedDeadlineMissedStatus_a17262425aea25d6dfe4b6162d596c2b0} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Offered\+Deadline\+Missed\+Status\+::total\+\_\+count}
+
+
+
+Total cumulative count of the number of times the \doxylink{classDDSDataWriter}{DDSData\+Writer} failed to write within its offered deadline. 
+
+Missed deadlines accumulate; that is, each deadline period the {\ttfamily total\+\_\+count} will be incremented by one.
+
+total count \Hypertarget{structDDS__OfferedDeadlineMissedStatus_a996c66a2e5072f20a0850fd94ecc433c}\index{DDS\_OfferedDeadlineMissedStatus@{DDS\_OfferedDeadlineMissedStatus}!total\_count\_change@{total\_count\_change}}
+\index{total\_count\_change@{total\_count\_change}!DDS\_OfferedDeadlineMissedStatus@{DDS\_OfferedDeadlineMissedStatus}}
+\doxyparagraph{\texorpdfstring{total\_count\_change}{total\_count\_change}}
+{\footnotesize\ttfamily \label{structDDS__OfferedDeadlineMissedStatus_a996c66a2e5072f20a0850fd94ecc433c} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Offered\+Deadline\+Missed\+Status\+::total\+\_\+count\+\_\+change}
+
+
+
+The incremental changes in total\+\_\+count since the last time the listener was called or the status was read. 
+
+\Hypertarget{structDDS__OfferedDeadlineMissedStatus_acd00bafe297f4563cb55f1dda96bfa4d}\index{DDS\_OfferedDeadlineMissedStatus@{DDS\_OfferedDeadlineMissedStatus}!last\_instance\_handle@{last\_instance\_handle}}
+\index{last\_instance\_handle@{last\_instance\_handle}!DDS\_OfferedDeadlineMissedStatus@{DDS\_OfferedDeadlineMissedStatus}}
+\doxyparagraph{\texorpdfstring{last\_instance\_handle}{last\_instance\_handle}}
+{\footnotesize\ttfamily \label{structDDS__OfferedDeadlineMissedStatus_acd00bafe297f4563cb55f1dda96bfa4d} 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} DDS\+\_\+\+Offered\+Deadline\+Missed\+Status\+::last\+\_\+instance\+\_\+handle}
+
+
+
+Handle to the last instance in the \doxylink{classDDSDataWriter}{DDSData\+Writer} for which an offered deadline was missed. 
+

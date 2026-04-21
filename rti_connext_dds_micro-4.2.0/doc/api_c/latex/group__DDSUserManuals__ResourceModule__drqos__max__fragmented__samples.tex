@@ -1,0 +1,11 @@
+\doxysubsubsubsection{max\+\_\+fragmented\+\_\+samples}
+\hypertarget{group__DDSUserManuals__ResourceModule__drqos__max__fragmented__samples}{}\label{group__DDSUserManuals__ResourceModule__drqos__max__fragmented__samples}\index{max\_fragmented\_samples@{max\_fragmented\_samples}}
+\begin{DoxyParagraph}{NAME}
+\doxylink{structDDS__DataReaderResourceLimitsQosPolicy_ab829f0f900a4eb50dd796040f70afb26}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+fragmented\+\_\+samples}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{DESCRIPTION}
+\doxylink{structDDS__DataReaderResourceLimitsQosPolicy_ab829f0f900a4eb50dd796040f70afb26}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+fragmented\+\_\+samples} limits the maximum number of fragmented samples a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} can cache while waiting for all fragments. A fragmented sample must be fully received before it can be deserialized. If this resource limit is reached, new fragmented samples will be rejected.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+A default value equal to \doxylink{structDDS__ResourceLimitsQosPolicy_a90db906a3958146c5e22557db648e7ff}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+samples} will give the best results. However, if the data type is variable-\/sized where some samples may be fragmented and others not, this value can be set lower. 
+\end{DoxyParagraph}

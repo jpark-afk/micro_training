@@ -1,0 +1,60 @@
+\doxysubsubsubsubsection{RESOURCE\+\_\+\+LIMITS}
+\hypertarget{group__DDSResourceLimitsQosModule}{}\label{group__DDSResourceLimitsQosModule}\index{RESOURCE\_LIMITS@{RESOURCE\_LIMITS}}
+
+
+Specifies the resources that RTI Connext DDS Micro can consume in order to meet the requested QoS.  
+
+
+\doxysubsubsubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em Specifies the resources that RTI Connext DDS Micro can consume in order to meet the requested QoS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSResourceLimitsQosModule_ga58912505c0b73a5f1d3677eaf9ce9e6d}{DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED}}
+\begin{DoxyCompactList}\small\item\em A special value indicating an unlimited quantity. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSResourceLimitsQosModule_ga6933fba9f01758e62c667ddde633fdd1}{DDS\+\_\+\+LENGTH\+\_\+\+AUTO}}
+\begin{DoxyCompactList}\small\item\em A special value indicating the resource-\/limit is determined based on other settings. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSResourceLimitsQosModule_ga68388afc84c27d4163486d2a81801f69}{DDS\+\_\+\+SIZE\+\_\+\+AUTO}}
+\begin{DoxyCompactList}\small\item\em A special value indicating the resource-\/limit is determined based on other settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsubsection{Detailed Description}
+Specifies the resources that RTI Connext DDS Micro can consume in order to meet the requested QoS. 
+
+
+
+\doxysubsubsubsubsubsection{Variable Documentation}
+\Hypertarget{group__DDSResourceLimitsQosModule_ga58912505c0b73a5f1d3677eaf9ce9e6d}\index{RESOURCE\_LIMITS@{RESOURCE\_LIMITS}!DDS\_LENGTH\_UNLIMITED@{DDS\_LENGTH\_UNLIMITED}}
+\index{DDS\_LENGTH\_UNLIMITED@{DDS\_LENGTH\_UNLIMITED}!RESOURCE\_LIMITS@{RESOURCE\_LIMITS}}
+\doxyparagraph{\texorpdfstring{DDS\_LENGTH\_UNLIMITED}{DDS\_LENGTH\_UNLIMITED}}
+{\footnotesize\ttfamily \label{group__DDSResourceLimitsQosModule_ga58912505c0b73a5f1d3677eaf9ce9e6d} 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+A special value indicating an unlimited quantity. 
+
+\Hypertarget{group__DDSResourceLimitsQosModule_ga6933fba9f01758e62c667ddde633fdd1}\index{RESOURCE\_LIMITS@{RESOURCE\_LIMITS}!DDS\_LENGTH\_AUTO@{DDS\_LENGTH\_AUTO}}
+\index{DDS\_LENGTH\_AUTO@{DDS\_LENGTH\_AUTO}!RESOURCE\_LIMITS@{RESOURCE\_LIMITS}}
+\doxyparagraph{\texorpdfstring{DDS\_LENGTH\_AUTO}{DDS\_LENGTH\_AUTO}}
+{\footnotesize\ttfamily \label{group__DDSResourceLimitsQosModule_ga6933fba9f01758e62c667ddde633fdd1} 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+LENGTH\+\_\+\+AUTO\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+A special value indicating the resource-\/limit is determined based on other settings. 
+
+Some resource-\/limits can be derived from other limits using rules. However, the rules are usually conservative and typically the resulting limit is larger than needed. Thus, while this is a useful value when starting development, it should be adjusted properly when the exact limits are known. \Hypertarget{group__DDSResourceLimitsQosModule_ga68388afc84c27d4163486d2a81801f69}\index{RESOURCE\_LIMITS@{RESOURCE\_LIMITS}!DDS\_SIZE\_AUTO@{DDS\_SIZE\_AUTO}}
+\index{DDS\_SIZE\_AUTO@{DDS\_SIZE\_AUTO}!RESOURCE\_LIMITS@{RESOURCE\_LIMITS}}
+\doxyparagraph{\texorpdfstring{DDS\_SIZE\_AUTO}{DDS\_SIZE\_AUTO}}
+{\footnotesize\ttfamily \label{group__DDSResourceLimitsQosModule_ga68388afc84c27d4163486d2a81801f69} 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+SIZE\+\_\+\+AUTO\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+A special value indicating the resource-\/limit is determined based on other settings. 
+
+Some resource-\/limits can be derived from other limits. However, the rules for this are conservative, and the resulting limit is usually larger than needed. This is a useful value when starting development, but it should be adjusted properly when the exact limits are known. 

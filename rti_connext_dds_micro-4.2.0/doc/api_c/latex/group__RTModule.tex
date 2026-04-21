@@ -1,0 +1,109 @@
+\doxysubsection{RT Run-\/\+Time API}
+\hypertarget{group__RTModule}{}\label{group__RTModule}\index{RT Run-\/Time API@{RT Run-\/Time API}}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+RTDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__RTModule_gad1a378c09b495dda9a43847df44ff907}{RT\+\_\+\+Registry\+\_\+register}} (RT\+\_\+\+Registry\+\_\+T \texorpdfstring{$\ast$}{*}self, const char \texorpdfstring{$\ast$}{*}name, struct RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*}intf, struct RT\+\_\+\+Component\+Factory\+Property \texorpdfstring{$\ast$}{*}property, struct RT\+\_\+\+Component\+Factory\+Listener \texorpdfstring{$\ast$}{*}listener)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Register a factory of RT components \end{DoxyCompactList}\item 
+RTDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__RTModule_ga50da32d70faad2d64cd6953467a54920}{RT\+\_\+\+Registry\+\_\+unregister}} (RT\+\_\+\+Registry\+\_\+T \texorpdfstring{$\ast$}{*}self, const char \texorpdfstring{$\ast$}{*}name, struct RT\+\_\+\+Component\+Factory\+Property \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}property, struct RT\+\_\+\+Component\+Factory\+Listener \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}listener)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Remove a component factory from the registry \end{DoxyCompactList}\item 
+RTDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__RTModule_gaf92484026eb5043cbe18fac36bf46ecd}{RT\+\_\+\+Component\+Factory\+Id\+\_\+set\+\_\+name}} (RT\+\_\+\+Component\+Factory\+Id\+\_\+T \texorpdfstring{$\ast$}{*}id, const char \texorpdfstring{$\ast$}{*}const name)
+\begin{DoxyCompactList}\small\item\em Assign a name to a RT\+\_\+\+Component\+Factory\+Id\+\_\+T variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+The run-\/time module (RT) manages RTI Connext Micro modules. It provides a common interface to add, remove, and lookup components. 
+
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__RTModule_gad1a378c09b495dda9a43847df44ff907}\index{RT Run-\/Time API@{RT Run-\/Time API}!RT\_Registry\_register@{RT\_Registry\_register}}
+\index{RT\_Registry\_register@{RT\_Registry\_register}!RT Run-\/Time API@{RT Run-\/Time API}}
+\doxyparagraph{\texorpdfstring{RT\_Registry\_register()}{RT\_Registry\_register()}}
+{\footnotesize\ttfamily \label{group__RTModule_gad1a378c09b495dda9a43847df44ff907} 
+RTDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} RT\+\_\+\+Registry\+\_\+register (\begin{DoxyParamCaption}\item[{RT\+\_\+\+Registry\+\_\+T \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{struct RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*}}]{intf}{, }\item[{struct RT\+\_\+\+Component\+Factory\+Property \texorpdfstring{$\ast$}{*}}]{property}{, }\item[{struct RT\+\_\+\+Component\+Factory\+Listener \texorpdfstring{$\ast$}{*}}]{listener}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Register a factory of RT components 
+
+In order to make a component available, it is necessary to register a factory for the components. The factory is responsible for creating and deleting components. 
+
+The name of the factory must be unique. Otherwise, if a factory already exists with the the same name, the registration will fail. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name of the component factory \\
+\hline
+{\em intf} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Pointer to the implementation of the factory interface \\
+\hline
+{\em property} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Properties with which to create the factory \\
+\hline
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The listener to install with the factory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__RTModule_ga50da32d70faad2d64cd6953467a54920}{RT\+\_\+\+Registry\+\_\+unregister} 
+\end{DoxySeeAlso}
+\Hypertarget{group__RTModule_ga50da32d70faad2d64cd6953467a54920}\index{RT Run-\/Time API@{RT Run-\/Time API}!RT\_Registry\_unregister@{RT\_Registry\_unregister}}
+\index{RT\_Registry\_unregister@{RT\_Registry\_unregister}!RT Run-\/Time API@{RT Run-\/Time API}}
+\doxyparagraph{\texorpdfstring{RT\_Registry\_unregister()}{RT\_Registry\_unregister()}}
+{\footnotesize\ttfamily \label{group__RTModule_ga50da32d70faad2d64cd6953467a54920} 
+RTDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} RT\+\_\+\+Registry\+\_\+unregister (\begin{DoxyParamCaption}\item[{RT\+\_\+\+Registry\+\_\+T \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{struct RT\+\_\+\+Component\+Factory\+Property \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{property}{, }\item[{struct RT\+\_\+\+Component\+Factory\+Listener \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{listener}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Remove a component factory from the registry 
+
+After a component factory is unregistered, it will no longer be possible to create or delete components with the factory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name of the component factory \\
+\hline
+{\em property} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Properties with which the factory was created \\
+\hline
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The listener installed with the factory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__RTModule_gad1a378c09b495dda9a43847df44ff907}{RT\+\_\+\+Registry\+\_\+register} 
+\end{DoxySeeAlso}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__RTModule_gaf92484026eb5043cbe18fac36bf46ecd}\index{RT Run-\/Time API@{RT Run-\/Time API}!RT\_ComponentFactoryId\_set\_name@{RT\_ComponentFactoryId\_set\_name}}
+\index{RT\_ComponentFactoryId\_set\_name@{RT\_ComponentFactoryId\_set\_name}!RT Run-\/Time API@{RT Run-\/Time API}}
+\doxyparagraph{\texorpdfstring{RT\_ComponentFactoryId\_set\_name()}{RT\_ComponentFactoryId\_set\_name()}}
+{\footnotesize\ttfamily \label{group__RTModule_gaf92484026eb5043cbe18fac36bf46ecd} 
+RTDll\+Export \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} RT\+\_\+\+Component\+Factory\+Id\+\_\+set\+\_\+name (\begin{DoxyParamCaption}\item[{RT\+\_\+\+Component\+Factory\+Id\+\_\+T \texorpdfstring{$\ast$}{*}}]{id}{, }\item[{const char \texorpdfstring{$\ast$}{*}const}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Assign a name to a RT\+\_\+\+Component\+Factory\+Id\+\_\+T variable. 
+
+Use this function to assign a name to a RT\+\_\+\+Component\+Factory\+Id\+\_\+T variable, such as the name of the discovery plugin to use.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Id to initialize \\
+\hline
+{\em name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name to initialize with\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+

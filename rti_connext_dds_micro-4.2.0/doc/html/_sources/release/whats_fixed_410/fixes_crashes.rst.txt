@@ -1,0 +1,50 @@
+Crashes
+=======
+
+.. Release Notes from this point.
+
+:critical:`[Critical]` Segmentation fault occurred when an asynchronous publisher tried to send a missing data fragment
+-----------------------------------------------------------------------------------------------------------------------
+When an asynchronous publisher tried to send a data fragment that was no longer 
+available, a segmentation fault occurred. 
+
+[RTI Issue ID MICRO-7982]
+
+:critical:`[Critical]` Segmentation fault occurred when creating or finalizing a DataWriter or DataReader while using asynchronous publication
+----------------------------------------------------------------------------------------------------------------------------------------------
+A segmentation fault could have occurred when creating or finalizing a 
+*DataWriter* or *DataReader* if the built-in writers were using asynchronous
+publication. The built-in writers would automatically use asynchronous
+publication if the ``max_message_size`` property of the UDP transport was set 
+to a low value (~1400). This issue only occurred if the *DataWriter* or *DataReader* was 
+created or finalized while the *DomainParticipant* was matched with another 
+*DomainParticipant*.
+
+[RTI Issue ID MICRO-8111]
+
+:critical:`[Critical]` Potential race condition and crash occurred when a DataWriter waited for resources
+---------------------------------------------------------------------------------------------------------
+A race condition could occur when a *DataWriter* waited for resources to be
+freed while sending data asynchronously. This could cause a crash, since the
+*DataWriter* state was incorrectly updated. 
+
+[RTI Issue ID MICRO-8001]
+
+:critical:`[Critical]` Potential race condition and crash occurred when a DataWriter unmatched with a remote entity
+-------------------------------------------------------------------------------------------------------------------
+A race condition could occur when a *DataWriter* using asynchronous publishing
+unmatched with a remote entity while data was being sent to the same entity.
+This could cause a crash. 
+
+[RTI Issue ID MICRO-8170]
+
+:minor:`[Minor]` Integer overflow when setting MTU lower than 448 bytes
+-----------------------------------------------------------------------
+|me| could produce errors if the Maximum Transmission Unit
+(MTU) for any transport was set lower than 448 bytes. |me|
+now ensures that the MTU across all enabled transports is greater than
+448 bytes. If the MTU requirement is not met, entity creation will fail.
+
+[RTI Issue ID MICRO-7530]
+
+

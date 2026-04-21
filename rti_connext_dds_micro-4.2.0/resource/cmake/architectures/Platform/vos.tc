@@ -1,0 +1,33 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2016
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 01jun2017 tk Written
+################################################################################
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/platform.tc)
+SET(PLATFORM_LIBS pthread)
+
+IF (${TARGET_HELP})
+    MESSAGE("PLATFORM NOTES\n")
+    MESSAGE(" The following libraries are included for VOS:")
+    MESSAGE(" - ${PLATFORM_LIBS}")
+    MESSAGE("\n")
+ENDIF()
+
+SET_PROPERTY(DIRECTORY APPEND PROPERTY 
+             COMPILE_DEFINITIONS RTI_ENDIAN_BIG __SIZEOF_FLOAT__=4 __SIZEOF_DOUBLE__=8
+)
+
+SET(_RTIME_OSAPI_PLATFORM posix)
+SET(_RTIME_OSAPI_ENABLE_STRICT_POSIX TRUE)

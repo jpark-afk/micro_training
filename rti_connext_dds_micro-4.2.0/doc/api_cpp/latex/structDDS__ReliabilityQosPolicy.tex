@@ -1,0 +1,94 @@
+\doxysubsection{DDS\+\_\+\+Reliability\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__ReliabilityQosPolicy}{}\label{structDDS__ReliabilityQosPolicy}\index{DDS\_ReliabilityQosPolicy@{DDS\_ReliabilityQosPolicy}}
+
+
+Indicates the level of reliability offered/requested by RTI Connext DDS Micro.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSReliabilityQosModule_gaf09e82d431c2328186c7fb4b3fa9ad91}{DDS\+\_\+\+Reliability\+Qos\+Policy\+Kind}} \mbox{\hyperlink{structDDS__ReliabilityQosPolicy_a94debccb5177400ff7c39a8cb0252c16}{kind}}
+\begin{DoxyCompactList}\small\item\em Kind of reliability. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \mbox{\hyperlink{structDDS__ReliabilityQosPolicy_afb7c00e8e7734647152883fea621f7e9}{max\+\_\+blocking\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em For Readers\+: The maximum time a receive thread may block if the reader is out of resources. For Writers\+: The maximum time a writer may block on a write call. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Indicates the level of reliability offered/requested by RTI Connext DDS Micro. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSTopic}{DDSTopic}, \doxylink{classDDSDataReader}{DDSData\+Reader}, \doxylink{classDDSDataWriter}{DDSData\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}, \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa126ff1b38cdfc905353cb2dac57b6796}{DDS\+\_\+\+REQUESTED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = YES ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} ~\newline
+ 
+\end{DoxyParagraph}
+\hypertarget{structDDS__ReliabilityQosPolicy_DDSReliabilityQosModule_usage}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{structDDS__ReliabilityQosPolicy_DDSReliabilityQosModule_usage}
+This policy indicates the level of reliability requested by a \doxylink{classDDSDataReader}{DDSData\+Reader} or offered by a \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+
+These levels are ordered, \doxylink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91aae82431f2015239328733f3cb41d780d}{DDS\+\_\+\+BEST\+\_\+\+EFFORT\+\_\+\+RELIABILITY\+\_\+\+QOS} \texorpdfstring{$<$}{<} \doxylink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91ae5d04022c6405f9db6406489956d1923}{DDS\+\_\+\+RELIABLE\+\_\+\+RELIABILITY\+\_\+\+QOS}. A \doxylink{classDDSDataWriter}{DDSData\+Writer} offering a level is implicitly offering all levels below. 
+
+If the \doxylink{structDDS__ReliabilityQosPolicy_a94debccb5177400ff7c39a8cb0252c16}{DDS\+\_\+\+Reliability\+Qos\+Policy\+::kind} is set to \doxylink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91ae5d04022c6405f9db6406489956d1923}{DDS\+\_\+\+RELIABLE\+\_\+\+RELIABILITY\+\_\+\+QOS} , data-\/samples originating from a single \doxylink{classDDSDataWriter}{DDSData\+Writer} cannot be made available to the \doxylink{classDDSDataReader}{DDSData\+Reader} if there are previous data samples that have not been received yet due to a communication error. In other words, the service will repair the error and re-\/transmit data-\/samples as needed in order to reconstruct a correct snapshot of the \doxylink{classDDSDataWriter}{DDSData\+Writer} history before it is accessible by the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+If the \doxylink{structDDS__ReliabilityQosPolicy_a94debccb5177400ff7c39a8cb0252c16}{DDS\+\_\+\+Reliability\+Qos\+Policy\+::kind} is set to \doxylink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91aae82431f2015239328733f3cb41d780d}{DDS\+\_\+\+BEST\+\_\+\+EFFORT\+\_\+\+RELIABILITY\+\_\+\+QOS}, the service will not re-\/transmit missing data-\/samples. However for data-\/samples originating from any one Data\+Writer the service will ensure they are stored in the \doxylink{classDDSDataReader}{DDSData\+Reader} history in the same order they originated in the \doxylink{classDDSDataWriter}{DDSData\+Writer}. In other words, the \doxylink{classDDSDataReader}{DDSData\+Reader} may miss some data samples but it will never see the value of a data-\/object change from a newer value to an older value. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__HistoryQosPolicy}{DDS\+\_\+\+History\+Qos\+Policy} 
+
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\hypertarget{dds_c_infrastructure.h_DDSReliabilityQosModule_compatibility}{}\doxysubsubsection{\texorpdfstring{Compatibility}{Compatibility}}\label{dds_c_infrastructure.h_DDSReliabilityQosModule_compatibility}
+The value offered is considered compatible with the value requested if and only if the inequality {\itshape offered {\ttfamily kind} \texorpdfstring{$>$}{>}= requested {\ttfamily kind}} evaluates to \textquotesingle{}TRUE\textquotesingle{}. For the purposes of this inequality, the values of \doxylink{structDDS__ReliabilityQosPolicy_a94debccb5177400ff7c39a8cb0252c16}{DDS\+\_\+\+Reliability\+Qos\+Policy\+::kind} are considered ordered such that \doxylink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91aae82431f2015239328733f3cb41d780d}{DDS\+\_\+\+BEST\+\_\+\+EFFORT\+\_\+\+RELIABILITY\+\_\+\+QOS} \texorpdfstring{$<$}{<} \doxylink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91ae5d04022c6405f9db6406489956d1923}{DDS\+\_\+\+RELIABLE\+\_\+\+RELIABILITY\+\_\+\+QOS}. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__ReliabilityQosPolicy_a94debccb5177400ff7c39a8cb0252c16}\index{DDS\_ReliabilityQosPolicy@{DDS\_ReliabilityQosPolicy}!kind@{kind}}
+\index{kind@{kind}!DDS\_ReliabilityQosPolicy@{DDS\_ReliabilityQosPolicy}}
+\doxyparagraph{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily \label{structDDS__ReliabilityQosPolicy_a94debccb5177400ff7c39a8cb0252c16} 
+\mbox{\hyperlink{group__DDSReliabilityQosModule_gaf09e82d431c2328186c7fb4b3fa9ad91}{DDS\+\_\+\+Reliability\+Qos\+Policy\+Kind}} DDS\+\_\+\+Reliability\+Qos\+Policy\+::kind}
+
+
+
+Kind of reliability. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91aae82431f2015239328733f3cb41d780d}{DDS\+\_\+\+BEST\+\_\+\+EFFORT\+\_\+\+RELIABILITY\+\_\+\+QOS} \Hypertarget{structDDS__ReliabilityQosPolicy_afb7c00e8e7734647152883fea621f7e9}\index{DDS\_ReliabilityQosPolicy@{DDS\_ReliabilityQosPolicy}!max\_blocking\_time@{max\_blocking\_time}}
+\index{max\_blocking\_time@{max\_blocking\_time}!DDS\_ReliabilityQosPolicy@{DDS\_ReliabilityQosPolicy}}
+\doxyparagraph{\texorpdfstring{max\_blocking\_time}{max\_blocking\_time}}
+{\footnotesize\ttfamily \label{structDDS__ReliabilityQosPolicy_afb7c00e8e7734647152883fea621f7e9} 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} DDS\+\_\+\+Reliability\+Qos\+Policy\+::max\+\_\+blocking\+\_\+time}
+
+
+
+For Readers\+: The maximum time a receive thread may block if the reader is out of resources. For Writers\+: The maximum time a writer may block on a write call. 
+
+For a \doxylink{classDDSDataReader}{DDSData\+Reader}\+: A non-\/zero maximum blocking time enables the receive thread to block up to the maximum blocking time if a \doxylink{classDDSDataReader}{DDSData\+Reader} is out of resources when new data arrives. This is useful when the \doxylink{structDDS__HistoryQosPolicy_aef0fb3fd3579866be17d1a936f5e3729}{DDS\+\_\+\+History\+Qos\+Policy\+::depth} is equal to {\ttfamily max\+\_\+samples\+\_\+per\+\_\+instance} and the application is using a combination of loans and waitsets or polling. With a value of 0, the receive thread will not block. 
+
+For a \doxylink{classDDSDataWriter}{DDSData\+Writer}\+: This setting applies only to the case where \doxylink{structDDS__ReliabilityQosPolicy_a94debccb5177400ff7c39a8cb0252c16}{DDS\+\_\+\+Reliability\+Qos\+Policy\+::kind} = \doxylink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91ae5d04022c6405f9db6406489956d1923}{DDS\+\_\+\+RELIABLE\+\_\+\+RELIABILITY\+\_\+\+QOS}. \doxylink{structFooDataWriter_ab2c44dd15f5daf7eddf3773239101478}{Foo\+Data\+Writer\+::write} is allowed to block if the \doxylink{classDDSDataWriter}{DDSData\+Writer} does not have space to store the value written. 
+
+~\newline
+ ~\newline
+ 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 0ms on a \doxylink{classDDSDataReader}{DDSData\+Reader} {\bfseries{\mbox{[}default\mbox{]}}} 100ms on a \doxylink{classDDSDataWriter}{DDSData\+Writer} 
+
+~\newline
+ ~\newline
+ 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}0,1 year\mbox{]} for \doxylink{classDDSDataWriter}{DDSData\+Writer} and \doxylink{classDDSDataReader}{DDSData\+Reader} 
+
+~\newline
+ 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}

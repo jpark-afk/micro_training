@@ -1,0 +1,190 @@
+\doxysubsection{DDS\+\_\+\+Participant\+Builtin\+Topic\+Data Struct Reference}
+\hypertarget{structDDS__ParticipantBuiltinTopicData}{}\label{structDDS__ParticipantBuiltinTopicData}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+
+
+Object representing a remote Domain\+Participant.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+discovery.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_a87445bb2dcc8ce78c65bdfdc68930ffc}{key}}
+\begin{DoxyCompactList}\small\item\em DCPS key to distinguish entries. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__EntityNameQosPolicy}{DDS\+\_\+\+Entity\+Name\+Qos\+Policy}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_a9a0ba3542ddd58b6f2f56f15d2e9ac4d}{participant\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The participant name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_a814c8143a49a130f9ea41b840738a6a8}{dds\+\_\+builtin\+\_\+endpoints}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Bitmap of builtin endpoints supported by the participant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSDiscoveryModule_ga8d9bebb955bf031fe4f0fd6c79c94849}{DDS\+\_\+\+Protocol\+Version\+\_\+t}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_aa43e56ac72a721046c9bee8882a0758e}{rtps\+\_\+protocol\+\_\+version}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Version number of the RTPS wire protocol used. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__VendorId__t}{DDS\+\_\+\+Vendor\+Id\+\_\+t}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_a2a7b8d4da99b0808dd6a61003f78b58a}{rtps\+\_\+vendor\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} ID of vendor implementing the RTPS wire protocol. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_a24e3aa57dc41e7756130cd4be176125b}{default\+\_\+unicast\+\_\+locators}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Unicast locators used when individual entities do not specify unicast locators. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_a2d87b400a12631b790beb7b1c60091bd}{default\+\_\+multicast\+\_\+locators}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Multicast locators used when individual entities do not specify multicast locators. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_a6d5fd5945f2687e0995abb02210ea29e}{metatraffic\+\_\+unicast\+\_\+locators}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Unicast locators used for discovery metatraffic. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_a6effdc8b010bf81906598c31e80da87d}{metatraffic\+\_\+multicast\+\_\+locators}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Multicast locators used for discovery metatraffic. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_a6fc6dc881ea1f090042fb0c30ef20444}{liveliness\+\_\+lease\+\_\+duration}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Liveliness lease duration of participant. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__ProductVersion__t}{DDS\+\_\+\+Product\+Version\+\_\+t}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_a37ff2c7f722e4b8831ad1d66cbac2578}{product\+\_\+version}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} This is a vendor specific parameter. It gives the current version for RTI Connext DDS Micro. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__ChecksumProperty}{DDS\+\_\+\+Checksum\+Property}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_a5e858377a76deda56b3b23b545688642}{checksum}}
+\begin{DoxyCompactList}\small\item\em Checksum properties for the particpant. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PropertyQosPolicy}{DDS\+\_\+\+Property\+Qos\+Policy}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_a91f02a3edca55b3f7787301c18e0e287}{property}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name value pair properties to be stored with domain participant \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__UserDataQosPolicy}{DDS\+\_\+\+User\+Data\+Qos\+Policy}} \mbox{\hyperlink{structDDS__ParticipantBuiltinTopicData_acd2e4123cf3baaf7aba20bb18d195574}{user\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Policy of the corresponding Domain\+Participant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Object representing a remote Domain\+Participant. 
+
+Data associated with the built-\/in topic \+::\doxylink{group__DDSParticipantBuiltInTopicModule_ga532b695705a43fdd8ee714261771a838}{DDS\+\_\+\+PARTICIPANT\+\_\+\+TOPIC\+\_\+\+NAME}. It contains QoS policies and additional information that apply to the remote \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__ParticipantBuiltinTopicData_a87445bb2dcc8ce78c65bdfdc68930ffc}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!key@{key}}
+\index{key@{key}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{key}{key}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_a87445bb2dcc8ce78c65bdfdc68930ffc} 
+struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::key}
+
+
+
+DCPS key to distinguish entries. 
+
+\Hypertarget{structDDS__ParticipantBuiltinTopicData_a9a0ba3542ddd58b6f2f56f15d2e9ac4d}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!participant\_name@{participant\_name}}
+\index{participant\_name@{participant\_name}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{participant\_name}{participant\_name}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_a9a0ba3542ddd58b6f2f56f15d2e9ac4d} 
+struct \mbox{\hyperlink{structDDS__EntityNameQosPolicy}{DDS\+\_\+\+Entity\+Name\+Qos\+Policy}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::participant\+\_\+name}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The participant name. 
+
+This is the name of the discovered participant. \Hypertarget{structDDS__ParticipantBuiltinTopicData_a814c8143a49a130f9ea41b840738a6a8}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!dds\_builtin\_endpoints@{dds\_builtin\_endpoints}}
+\index{dds\_builtin\_endpoints@{dds\_builtin\_endpoints}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{dds\_builtin\_endpoints}{dds\_builtin\_endpoints}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_a814c8143a49a130f9ea41b840738a6a8} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::dds\+\_\+builtin\+\_\+endpoints}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Bitmap of builtin endpoints supported by the participant. 
+
+Each bit indicates a builtin endpoint that may be available on the participant for use in discovery. \Hypertarget{structDDS__ParticipantBuiltinTopicData_aa43e56ac72a721046c9bee8882a0758e}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!rtps\_protocol\_version@{rtps\_protocol\_version}}
+\index{rtps\_protocol\_version@{rtps\_protocol\_version}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{rtps\_protocol\_version}{rtps\_protocol\_version}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_aa43e56ac72a721046c9bee8882a0758e} 
+\mbox{\hyperlink{group__DDSDiscoveryModule_ga8d9bebb955bf031fe4f0fd6c79c94849}{DDS\+\_\+\+Protocol\+Version\+\_\+t}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::rtps\+\_\+protocol\+\_\+version}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Version number of the RTPS wire protocol used. 
+
+\Hypertarget{structDDS__ParticipantBuiltinTopicData_a2a7b8d4da99b0808dd6a61003f78b58a}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!rtps\_vendor\_id@{rtps\_vendor\_id}}
+\index{rtps\_vendor\_id@{rtps\_vendor\_id}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{rtps\_vendor\_id}{rtps\_vendor\_id}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_a2a7b8d4da99b0808dd6a61003f78b58a} 
+struct \mbox{\hyperlink{structDDS__VendorId__t}{DDS\+\_\+\+Vendor\+Id\+\_\+t}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::rtps\+\_\+vendor\+\_\+id}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} ID of vendor implementing the RTPS wire protocol. 
+
+\Hypertarget{structDDS__ParticipantBuiltinTopicData_a24e3aa57dc41e7756130cd4be176125b}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!default\_unicast\_locators@{default\_unicast\_locators}}
+\index{default\_unicast\_locators@{default\_unicast\_locators}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{default\_unicast\_locators}{default\_unicast\_locators}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_a24e3aa57dc41e7756130cd4be176125b} 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::default\+\_\+unicast\+\_\+locators}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Unicast locators used when individual entities do not specify unicast locators. 
+
+\Hypertarget{structDDS__ParticipantBuiltinTopicData_a2d87b400a12631b790beb7b1c60091bd}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!default\_multicast\_locators@{default\_multicast\_locators}}
+\index{default\_multicast\_locators@{default\_multicast\_locators}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{default\_multicast\_locators}{default\_multicast\_locators}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_a2d87b400a12631b790beb7b1c60091bd} 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::default\+\_\+multicast\+\_\+locators}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Multicast locators used when individual entities do not specify multicast locators. 
+
+\Hypertarget{structDDS__ParticipantBuiltinTopicData_a6d5fd5945f2687e0995abb02210ea29e}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!metatraffic\_unicast\_locators@{metatraffic\_unicast\_locators}}
+\index{metatraffic\_unicast\_locators@{metatraffic\_unicast\_locators}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{metatraffic\_unicast\_locators}{metatraffic\_unicast\_locators}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_a6d5fd5945f2687e0995abb02210ea29e} 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::metatraffic\+\_\+unicast\+\_\+locators}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Unicast locators used for discovery metatraffic. 
+
+\Hypertarget{structDDS__ParticipantBuiltinTopicData_a6effdc8b010bf81906598c31e80da87d}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!metatraffic\_multicast\_locators@{metatraffic\_multicast\_locators}}
+\index{metatraffic\_multicast\_locators@{metatraffic\_multicast\_locators}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{metatraffic\_multicast\_locators}{metatraffic\_multicast\_locators}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_a6effdc8b010bf81906598c31e80da87d} 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::metatraffic\+\_\+multicast\+\_\+locators}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Multicast locators used for discovery metatraffic. 
+
+\Hypertarget{structDDS__ParticipantBuiltinTopicData_a6fc6dc881ea1f090042fb0c30ef20444}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!liveliness\_lease\_duration@{liveliness\_lease\_duration}}
+\index{liveliness\_lease\_duration@{liveliness\_lease\_duration}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{liveliness\_lease\_duration}{liveliness\_lease\_duration}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_a6fc6dc881ea1f090042fb0c30ef20444} 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::liveliness\+\_\+lease\+\_\+duration}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Liveliness lease duration of participant. 
+
+\Hypertarget{structDDS__ParticipantBuiltinTopicData_a37ff2c7f722e4b8831ad1d66cbac2578}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!product\_version@{product\_version}}
+\index{product\_version@{product\_version}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{product\_version}{product\_version}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_a37ff2c7f722e4b8831ad1d66cbac2578} 
+struct \mbox{\hyperlink{structDDS__ProductVersion__t}{DDS\+\_\+\+Product\+Version\+\_\+t}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::product\+\_\+version}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} This is a vendor specific parameter. It gives the current version for RTI Connext DDS Micro. 
+
+\Hypertarget{structDDS__ParticipantBuiltinTopicData_a5e858377a76deda56b3b23b545688642}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!checksum@{checksum}}
+\index{checksum@{checksum}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{checksum}{checksum}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_a5e858377a76deda56b3b23b545688642} 
+struct \mbox{\hyperlink{structDDS__ChecksumProperty}{DDS\+\_\+\+Checksum\+Property}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::checksum}
+
+
+
+Checksum properties for the particpant. 
+
+\Hypertarget{structDDS__ParticipantBuiltinTopicData_a91f02a3edca55b3f7787301c18e0e287}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!property@{property}}
+\index{property@{property}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{property}{property}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_a91f02a3edca55b3f7787301c18e0e287} 
+struct \mbox{\hyperlink{structDDS__PropertyQosPolicy}{DDS\+\_\+\+Property\+Qos\+Policy}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::property}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name value pair properties to be stored with domain participant 
+
+\Hypertarget{structDDS__ParticipantBuiltinTopicData_acd2e4123cf3baaf7aba20bb18d195574}\index{DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!DDS\_ParticipantBuiltinTopicData@{DDS\_ParticipantBuiltinTopicData}}
+\doxyparagraph{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily \label{structDDS__ParticipantBuiltinTopicData_acd2e4123cf3baaf7aba20bb18d195574} 
+struct \mbox{\hyperlink{structDDS__UserDataQosPolicy}{DDS\+\_\+\+User\+Data\+Qos\+Policy}} DDS\+\_\+\+Participant\+Builtin\+Topic\+Data\+::user\+\_\+data}
+
+
+
+Policy of the corresponding Domain\+Participant. 
+

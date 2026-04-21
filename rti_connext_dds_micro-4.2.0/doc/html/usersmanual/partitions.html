@@ -1,0 +1,741 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.9. Partitions &mdash; RTI Connext Micro 4.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.10. Content Filtering" href="content_filtering.html" />
+    <link rel="prev" title="3.8. User Discovery Data" href="userdiscoverydata.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. User’s Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">3.2. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">3.3. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">3.4. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">3.5. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transports/index.html">3.6. Transports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">3.7. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html">3.8. User Discovery Data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.9. Partitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">3.9.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-partition-matching">3.9.2. Rules for PARTITION matching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pattern-matching-for-partition-names">3.9.3. Pattern matching for PARTITION names</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#regular-expression-matching">3.9.3.1. Regular Expression Matching</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example">3.9.4. Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#location-based-partitions">3.9.4.1. Location-based partitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#access-control-group-partitions">3.9.4.2. Access-control group partitions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#properties">3.9.5. Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resource-limits">3.9.6. Resource limits</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-for-runtime-allocation">3.9.6.1. Configuring for runtime allocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-for-preallocated-memory">3.9.6.2. Configuring for preallocated memory</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html">3.10. Content Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">3.11. Generating Type Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">3.12. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">3.13. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">3.14. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html">3.15. Sending Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html">3.16. Zero Copy Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html">3.17. FlatData Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html">3.18. Application Generation Using XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">3.19. Building Against FACE Conformance Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">3.20. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug.html">3.21. Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.22. Example Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html">3.23. Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">3.24. Memory Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">4. Platform Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building/index.html">5. Building Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micro_core.html">6. Working with Connext Micro and Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">12. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">3. </span>User’s Manual</a> &raquo;</li>
+        
+      <li><span class="section-number">3.9. </span>Partitions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/usersmanual/partitions.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="partitions">
+<span id="section-partitions"></span><h1><span class="section-number">3.9. </span>Partitions<a class="headerlink" href="#partitions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2><span class="section-number">3.9.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QoS provides a way to control which <em>Entities</em> will
+match—and thus communicate with—which other <em>Entities</em>. It can be used to
+prevent <em>Entities</em> that would have otherwise matched from talking to each
+other. Much in the same way that only applications within the same DDS domain
+will communicate with each other, only <em>Entities</em> that belong to the same
+partition can talk to each other.</p>
+<p>The <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QoS applies to <em>Publishers</em> and <em>Subscribers</em>.
+<em>DataWriters</em> and <em>DataReaders</em> belong to the partitions
+as set in the QoS of the <em>Publishers</em> and <em>Subscribers</em> that created them.</p>
+<p>The <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QoS consists of a set of partition names that identify the
+partitions of which the <em>Entity</em> is a member. These names can be concrete
+(e.g., ExamplePartition) or regular expression strings (e.g, Example*), and
+two <em>Entities</em> are considered to be in the same partition if one of the
+<em>Entities</em> has a concrete partition name matching one of the concrete or
+regular expression partition names of the other <em>Entity</em> (see
+<a class="reference internal" href="#section-pattern-matching"><span class="std std-ref">Pattern matching for PARTITION names</span></a>). By default, <em>DataWriters</em> and
+<em>DataReaders</em> (through their <em>Publisher/Subscriber</em>
+parents), belong to a single partition whose name is the empty string, “”.</p>
+<p>Conceptually, each partition name can be thought of as defining a
+“visibility plane” within the DDS domain. <em>DataWriters</em> will make their data
+available on all of the visibility planes that correspond to their
+<em>Publisher’s</em> partition names, and the <em>DataReaders</em> will see the data that
+is placed on all of the visibility planes that correspond to their
+<em>Subscriber’s</em> partition names.</p>
+<p><a class="reference internal" href="#partitions-diagram"><span class="std std-numref">Figure 3.4</span></a> illustrates the concept of PARTITION QoS at
+the <em>Publisher</em> and <em>Subscriber</em> level. In this figure, all <em>DataWriters</em>
+and <em>DataReaders</em> belong to the same DDS domain ID and
+<em>DomainParticipant</em> partition, and they use the same <em>Topic</em>.
+<em>DataWriter1</em> is configured to belong to three partitions: partition_A,
+partition_B, and partition_C. <em>DataWriter2</em> belongs to partition_C and
+partition_D.</p>
+<div class="figure align-center" id="id2" style="width: 90%">
+<span id="partitions-diagram"></span><img alt="../_images/Partitions.png" src="../_images/Partitions.png" />
+<p class="caption"><span class="caption-number">Figure 3.4 </span><span class="caption-text">Controlling Visibility of Data with PARTITION QoS</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>Similarly, <em>DataReader1</em> is configured to belong to partition_A and
+partition_B, and <em>DataReader2</em> belongs only to partition_C. Given this
+topology, the data written by <em>DataWriter1</em> is visible in partitions A,
+B, and C. The oval tagged with the number “S1” represents one DDS data
+sample written by <em>DataWriter1</em>.</p>
+<p>Similarly, the data written by <em>DataWriter2</em> is visible in partitions C
+and D. The oval tagged with the number “S2” represents one DDS data
+sample written by <em>DataWriter2</em>.</p>
+<p>The result is that the data written by <em>DataWriter1</em> will be received
+by both <em>DataReader1</em> and <em>DataReader2</em>, but the data written by
+<em>DataWriter2</em> will only be visible by <em>DataReader2</em>.</p>
+<p><em>Publishers</em> and <em>Subscribers</em> always belong to a partition. By default,
+<em>Publishers</em> and <em>Subscribers</em> belong to a single partition whose name is
+the empty string, “”. If you set the <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QoS to be an empty set,
+<em>Connext Micro</em> will assign the <em>Publisher</em> or <em>Subscriber</em> to the default partition,
+“”. Thus, for the example above, without using the <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QoS on any of
+the entities, <em>DataReaders</em> 1 and 2 would have received all data samples
+written by <em>DataWriters</em> 1 and 2.</p>
+</div>
+<div class="section" id="rules-for-partition-matching">
+<h2><span class="section-number">3.9.2. </span>Rules for PARTITION matching<a class="headerlink" href="#rules-for-partition-matching" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QosPolicy associates a set of partition names with the entity
+(<em>Publisher</em> or <em>Subscriber</em>). The partition names are concrete names (e.g.,
+ExamplePartition) or regular expression strings (e.g, Example*).</p>
+<p>With regard to the <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QoS, a <em>DataWriter</em> will communicate with a
+<em>DataReader</em> if and only if the following conditions apply:</p>
+<ol class="arabic simple">
+<li><p>The <em>DataWriter</em> and <em>DataReader</em> belong to <em>DomainParticipants</em> bound to
+the same DDS domain ID.</p></li>
+<li><p>The <em>DataWriter</em> and <em>DataReader</em> have matching <em>Topics</em>. That is, each is
+associated with a <em>Topic</em> with the same name and compatible data type.</p></li>
+<li><p>The QoS offered by the <em>DataWriter</em> is compatible with the QoS requested
+by the <em>DataReader</em>.</p></li>
+</ol>
+<p>Matching partition names is done by string pattern matching, and partition
+names are case-sensitive.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Failure to match partitions (on <em>Publisher</em> or <em>Subscriber</em>) is not
+considered an incompatible QoS and does not trigger any listeners or
+change any status conditions.</p>
+</div>
+</div>
+<div class="section" id="pattern-matching-for-partition-names">
+<span id="section-pattern-matching"></span><h2><span class="section-number">3.9.3. </span>Pattern matching for PARTITION names<a class="headerlink" href="#pattern-matching-for-partition-names" title="Permalink to this headline">¶</a></h2>
+<p>You may add strings that are regular expressions to the <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a>
+QosPolicy. A PARTITION.name is a regular expression if it contains
+any of the following unescaped special characters: <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">?</span></code>,
+<code class="docutils literal notranslate"><span class="pre">[</span></code>, <code class="docutils literal notranslate"><span class="pre">]</span></code>, <code class="docutils literal notranslate"><span class="pre">!</span></code>, or <code class="docutils literal notranslate"><span class="pre">^</span></code>. The PARTITION.name strings can be
+“concrete” names or regular expression strings; a PARTITION.name
+element that is a regular expression will only match against
+concrete strings found in a PARTITON.name element of a
+different <em>Entity’s</em> <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QosPolicy.</p>
+<p>If a <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QoS only contains regular expressions, then the <em>Entity</em> will
+be assigned automatically to the default partition with the empty string name
+(“”). Thus, a <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QoS that only contains the string <code class="docutils literal notranslate"><span class="pre">*</span></code> matches another
+<em>Entity’s</em> <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QoS that also only contains the string <code class="docutils literal notranslate"><span class="pre">*</span></code>, not because
+the regular expression strings are identical, but because they both belong to
+the default “” partition.</p>
+<p>For more on regular expressions, see <a class="reference internal" href="#regular-expression-matching"><span class="std std-ref">Regular Expression Matching</span></a> below.</p>
+<p>Two <em>Entities</em> are considered to have a partition in common if the sets of
+partitions associated with them have:</p>
+<ul class="simple">
+<li><p>At least one concrete partition name in common</p></li>
+<li><p>A regular expression in one <em>Entity</em> that matches a concrete partition name
+in another <em>Entity</em></p></li>
+</ul>
+<p>The programmatic representation of the <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QoS is shown in
+<a class="reference internal" href="#dds-partitionqospolicytable"><span class="std std-numref">Table 3.5</span></a>. The QosPolicy contains the single string
+sequence, name. Each element in the sequence can be a concrete name or a
+regular expression. The <em>Entity</em> will be assigned to the default “” partition
+if the sequence is empty, or if the sequence contains only regular expressions.</p>
+<table class="colwidths-given docutils align-default" id="dds-partitionqospolicytable">
+<caption><span class="caption-number">Table 3.5 </span><span class="caption-text">DDS_PartitionQosPolicy</span><a class="headerlink" href="#dds-partitionqospolicytable" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Field Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>DDS_StringSeq</p></td>
+<td><p>name</p></td>
+<td><p>Empty by default.</p>
+<p>There can be up to 64 names, with a maximum of 256 characters
+(including the NUL terminator), summed across all names.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>You can have one long partition string of 256 chars, or multiple shorter
+strings that add up to 256 or fewer characters. For example, you can have
+one string of 4 chars and one string of 252 chars.</p>
+<div class="section" id="regular-expression-matching">
+<span id="id1"></span><h3><span class="section-number">3.9.3.1. </span>Regular Expression Matching<a class="headerlink" href="#regular-expression-matching" title="Permalink to this headline">¶</a></h3>
+<p>The SQL expression format provided by <em>Connext Micro</em> supports the relational
+operator <strong>MATCH</strong>. It may only be used with string fields.
+The right-hand operator is a string pattern, which specifies
+a template that the left-hand field must match.</p>
+<p><strong>MATCH</strong> is case-sensitive. The following characters have special
+meaning, unless escaped by the escape character: <code class="docutils literal notranslate"><span class="pre">,\/?*[]-^!\%</span></code>.</p>
+<p>The pattern allows limited “wild card” matching under the rules in
+<a class="reference internal" href="#wild-card-matching"><span class="std std-numref">Table 3.6</span></a>.</p>
+<p>The syntax is similar to the POSIX® fnmatch syntax. (See
+<a class="reference external" href="http://www.opengroup.org/onlinepubs/000095399/functions/fnmatch.html">http://www.opengroup.org/onlinepubs/000095399/functions/fnmatch.html</a>.)</p>
+<span id="wild-card-matching"></span><table class="colwidths-given docutils align-default" id="id3">
+<caption><span class="caption-number">Table 3.6 </span><span class="caption-text">Wild Card Matching</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Character</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>,</p></td>
+<td><p><strong>NOT SUPPORTED</strong></p>
+<p>A , separates a list of alternate patterns. The field string is
+matched if it matches one or more of the patterns.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>/</p></td>
+<td><p><strong>NOT SUPPORTED</strong></p>
+<p>A / in the pattern string matches a / in the field string. It
+separates a sequence of mandatory substrings.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>?</p></td>
+<td><p>A ? in the patterns tring matches any single non-special characters
+in the field string.</p></td>
+</tr>
+<tr class="row-odd"><td><p>*</p></td>
+<td><p>A * in the pattern string matches 0 or more non-special characters
+in the field string.</p></td>
+</tr>
+<tr class="row-even"><td><p>%</p></td>
+<td><p><strong>NOT SUPPORTED</strong></p>
+<p>This special character is used to designate filter expression
+parameters.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Escape character for special characters.</p></td>
+</tr>
+<tr class="row-even"><td><p>[charlist]</p></td>
+<td><p>Matches any one of the characters in charlist.</p></td>
+</tr>
+<tr class="row-odd"><td><p>[!charlist] or [^charlist]</p></td>
+<td><p>Matches any one of the characters <em>not</em> in charlist.</p></td>
+</tr>
+<tr class="row-even"><td><p>[s-e]</p></td>
+<td><p>Matches any character from <strong>s</strong> to <strong>e</strong>, inclusive.</p></td>
+</tr>
+<tr class="row-odd"><td><p>[!s-e] or [^s-e]</p></td>
+<td><p>Matches any character <em>not</em> in the interval <strong>s</strong> to <strong>e</strong>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To use special characters as regular characters in regular
+expressions, you must escape them using the character <code class="docutils literal notranslate"><span class="pre">\</span></code>. For
+example, <code class="docutils literal notranslate"><span class="pre">A[</span></code> is considered a malformed expression and the result
+is undefined.</p>
+</div>
+</div>
+</div>
+<div class="section" id="example">
+<h2><span class="section-number">3.9.4. </span>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QosPolicy is useful to control which <em>DataWriters</em> can
+communicate with which <em>DataReaders</em> and vice versa—even if all of the
+<em>DataWriters</em> and <em>DataReaders</em> are for the same <em>Topic</em>. This facility
+is useful for creating temporary separation groups among <em>Entities</em>
+that would otherwise be connected to and exchange data each other.</p>
+<p>The code below illustrates how to set the <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QosPolicy on a
+<em>Publisher</em>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_PublisherQos</span><span class="w"> </span><span class="n">pub_qos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_PublisherQos_INITIALIZER</span><span class="p">;</span>
+<span class="w">   </span><span class="n">DDS_StringSeq_set_maximum</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pub_qos</span><span class="p">.</span><span class="n">partition</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">   </span><span class="n">DDS_StringSeq_set_length</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pub_qos</span><span class="p">.</span><span class="n">partition</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">   </span><span class="o">*</span><span class="n">DDS_StringSeq_get_reference</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pub_qos</span><span class="p">.</span><span class="n">partition</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;partition1&quot;</span><span class="p">);</span>
+<span class="w">   </span><span class="o">*</span><span class="n">DDS_StringSeq_get_reference</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pub_qos</span><span class="p">.</span><span class="n">partition</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;partition2&quot;</span><span class="p">);</span>
+
+<span class="n">publisher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipant_create_publisher</span><span class="p">(</span><span class="n">application</span><span class="o">-&gt;</span><span class="n">participant</span><span class="p">,</span><span class="o">&amp;</span><span class="n">pub_qos</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="n">DDS_STATUS_MASK_NONE</span><span class="p">);</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">publisher</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">   </span><span class="p">{</span>
+<span class="w">      </span><span class="p">...</span>
+<span class="w">   </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Using partitions, connectivity can be controlled based on
+location-based partitioning, access-control groups, or a
+combination of these and other application-defined criteria. We will
+examine some of these options via concrete examples.</p>
+<div class="section" id="location-based-partitions">
+<h3><span class="section-number">3.9.4.1. </span>Location-based partitions<a class="headerlink" href="#location-based-partitions" title="Permalink to this headline">¶</a></h3>
+<p>Assume you have a set of <em>Topics</em> in a traffic management system
+such as “TrafficAlert,” “AccidentReport,” and “CongestionStatus.”
+You may want to control the visibility of these <em>Topics</em> based on
+the actual location to which the information applies. You can do
+this by placing the <em>Publisher</em> in a partition that represents the
+area to which the information applies. This can be done using a
+string that includes the city, state, and country, such as
+“USA/California/Santa Clara.” A <em>Subscriber</em> can then choose whether
+it wants to see the alerts in a single city, the accidents in a set
+of states, or the congestion status across the US. Some concrete
+examples are shown in <a class="reference internal" href="#location-based-partition-example"><span class="std std-numref">Table 3.7</span></a>.</p>
+<span id="location-based-partition-example"></span><table class="colwidths-given docutils align-default" id="id4">
+<caption><span class="caption-number">Table 3.7 </span><span class="caption-text">Example of Using Location-Based Partitions</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Publisher Partitions</p></th>
+<th class="head"><p>Subscriber Partitions</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Specify a single partition name using the pattern:</p>
+<p>“&lt;country&gt;/&lt;state&gt;/&lt;city&gt;”</p>
+</td>
+<td><p>Specify multiple partition names, one per region of interest</p></td>
+<td><p>Limits the visibility of the data to <em>Subscribers</em> that
+express interest in the geographical region.</p></td>
+</tr>
+<tr class="row-odd"><td><p>“USA/California/Santa Clara”</p></td>
+<td><p>(<em>Subscriber</em> partition is irrelevant here.)</p></td>
+<td><p>Send only information for Santa Clara, California.</p></td>
+</tr>
+<tr class="row-even"><td><p>(Publisher partition is irrelevant here.)</p></td>
+<td><p>“USA/California/Santa Clara”</p></td>
+<td><p>Receive only information for Santa Clara, California.</p></td>
+</tr>
+<tr class="row-odd"><td><p>(Publisher partition is irrelevant here.)</p></td>
+<td><p>“USA/California/Santa Clara”</p>
+<p>“USA/California/Sunnyvale”</p>
+</td>
+<td><p>Receive information for Santa Clara or Sunnyvale, California.</p></td>
+</tr>
+<tr class="row-even"><td><p>(Publisher partition is irrelevant here.)</p></td>
+<td><p>“USA/California/*”</p>
+<p>“USA/Nevada/*”</p>
+</td>
+<td><p>Receive information for California or Nevada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>(Publisher partition is irrelevant here.)</p></td>
+<td><p>“USA/California/*”</p>
+<p>“USA/Nevada/Reno”</p>
+<p>“USA/Nevada/Las Vegas”</p>
+</td>
+<td><p>Receive information for California and two cities in Nevada.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="access-control-group-partitions">
+<h3><span class="section-number">3.9.4.2. </span>Access-control group partitions<a class="headerlink" href="#access-control-group-partitions" title="Permalink to this headline">¶</a></h3>
+<p>Suppose you have an application where access to the information must
+be restricted based on reader membership to access-control groups.
+You can map this group-controlled visibility to partitions by naming
+all the groups (e.g., executives, payroll, financial, general-staff,
+consultants, external-people) and assigning the <em>Publisher</em> to the
+set of partitions that represents which groups should have access to
+the information. The <em>Subscribers</em> specify the groups to which they
+belong, and the partition-matching behavior will ensure that the
+information is only distributed to <em>Subscribers</em> belonging to the
+appropriate groups. Some concrete examples are shown in
+<a class="reference internal" href="#access-control-partition-example"><span class="std std-numref">Table 3.8</span></a></p>
+<span id="access-control-partition-example"></span><table class="colwidths-given docutils align-default" id="id5">
+<caption><span class="caption-number">Table 3.8 </span><span class="caption-text">Example of Access-Control Group Partitions</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Publisher Partitions</p></th>
+<th class="head"><p>Subscriber Partitions</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Specify several partition names, one per group that is allowed
+access:</p></td>
+<td><p>Specify multiple partition names, one per group to which the
+<em>Subscriber</em> belongs.</p></td>
+<td><p>Limits the visibility of the data to <em>Subscribers</em> that belong
+to the access-groups specified by the <em>Publisher</em>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>“payroll”</p>
+<p>“financial”</p>
+</td>
+<td><p>(<em>Subscriber</em> partition is irrelevant here.)</p></td>
+<td><p>Makes information available only to <em>Subscribers</em> that have
+access to either financial or payroll information.</p></td>
+</tr>
+<tr class="row-even"><td><p>(Publisher partition is irrelevant here.)</p></td>
+<td><p>“executives”</p>
+<p>“financial”</p>
+</td>
+<td><p>Gain access to information that is intended for executives or
+people with access to the finances.</p></td>
+</tr>
+</tbody>
+</table>
+<p>A slight variation of this pattern could be used to confine the
+information based on security levels.</p>
+</div>
+</div>
+<div class="section" id="properties">
+<h2><span class="section-number">3.9.5. </span>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<p>This QosPolicy cannot be modified at runtime.</p>
+<p>Strictly speaking, this QosPolicy does not have request-offered
+semantics, although it is matched between <em>DataWriters</em> and
+<em>DataReaders</em>, and communication is established only if there is a
+match between partition names.</p>
+</div>
+<div class="section" id="resource-limits">
+<h2><span class="section-number">3.9.6. </span>Resource limits<a class="headerlink" href="#resource-limits" title="Permalink to this headline">¶</a></h2>
+<p>Before this QoS policy can be used, you must configure the following
+<a class="reference external" href="../../../doc/api_c/html/structDDS__DomainParticipantResourceLimitsQosPolicy.html">DomainParticipantResourceLimitsQosPolicy</a> fields:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">max_partitions</span></code>: sets the maximum number of partitions for each <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QoS.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_partition_cumulative_characters</span></code>: sets the maximum number of
+characters (per <em>DomainParticipant</em>) that can be used for the sum-total
+length of all partition names. Note that the NUL terminator in each
+string contributes to the character count.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_partition_string_size</span></code>: sets the maximum number of characters that
+can be used for each partition name. This can be set to a value greater than
+0 or DDS_LENGTH_UNLIMITED.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_partition_string_allocation</span></code>: sets the maximum total memory allocated
+to partition names across all <em>DomainParticipants</em>. This can be set to a
+value greater than 0 or DDS_LENGTH_UNLIMITED.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All applications in the DDS domain must have the same resource limit values
+in order to communicate. For example, if two applications have different
+values, and one application sets the <a class="reference external" href="../../../doc/api_c/html/group__DDSPartitionQosModule.html">PARTITION</a> QosPolicy to hold more
+partitions or longer names than set by another application, the
+matching <em>Entities</em> between the two applications will not connect. This is
+similar to the restrictions for the <a class="reference internal" href="userdiscoverydata.html#section-group-data"><span class="std std-ref">GROUP_DATA</span></a>,
+<a class="reference internal" href="userdiscoverydata.html#section-user-data"><span class="std std-ref">USER_DATA</span></a>, and <a class="reference internal" href="userdiscoverydata.html#section-topic-data"><span class="std std-ref">TOPIC_DATA</span></a> Qos Policies.</p>
+</div>
+<p>These fields collectively determine how your application manages partition memory.
+The subsections below explain how to configure your <a class="reference external" href="../../../doc/api_c/html/structDDS__DomainParticipantResourceLimitsQosPolicy.html">DomainParticipantResourceLimitsQosPolicy</a>
+for different behaviors.</p>
+<div class="section" id="configuring-for-runtime-allocation">
+<h3><span class="section-number">3.9.6.1. </span>Configuring for runtime allocation<a class="headerlink" href="#configuring-for-runtime-allocation" title="Permalink to this headline">¶</a></h3>
+<p>This configuration allows memory for PARTITION.name strings to be allocated
+and freed during runtime. Each PARTITION.name string can be of any size; however,
+the sum-total string length of all partition names is still limited by
+<code class="docutils literal notranslate"><span class="pre">max_partition_cumulative_characters</span></code>.</p>
+<p>For this behavior, set the following:</p>
+<ul class="simple">
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">max_partition_string_size</span></code> to DDS_LENGTH_UNLIMITED.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">max_partition_string_allocation</span></code> to DDS_LENGTH_UNLIMITED.</p></li>
+</ul>
+</div>
+<div class="section" id="configuring-for-preallocated-memory">
+<h3><span class="section-number">3.9.6.2. </span>Configuring for preallocated memory<a class="headerlink" href="#configuring-for-preallocated-memory" title="Permalink to this headline">¶</a></h3>
+<p>Preallocating memory gives you greater control over memory utilization. There
+are two possible configurations for preallocated memory: reusable and
+non-reusable.</p>
+<div class="section" id="reusable-preallocated-memory">
+<h4><span class="section-number">3.9.6.2.1. </span>Reusable preallocated memory<a class="headerlink" href="#reusable-preallocated-memory" title="Permalink to this headline">¶</a></h4>
+<p>In this configuration, memory for PARTITION.name strings is
+preallocated and will never be freed during operation. However, memory will
+be reused for PARTITION names that are added, internally deleted,
+and no longer needed. For example, if the application creates a Publisher
+with a unique PARTITION name instance and then deletes it, the application
+will reuse the memory that was storing the unique name (unless
+there are other uses of that name).</p>
+<p>For this behavior, set the following:</p>
+<ul class="simple">
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">max_partition_string_size</span></code> to a value greater than 0.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">max_partition_string_allocation</span></code> to a value greater than 0. This
+value must be large enough to store every instance of each PARTITION
+name that will be created or discovered.</p></li>
+</ul>
+<p>Note that each PARTITION name will take up memory equal to <code class="docutils literal notranslate"><span class="pre">max_partition_string_size</span></code>,
+regardless of the actual string length.</p>
+</div>
+<div class="section" id="non-reusable-preallocated-memory">
+<h4><span class="section-number">3.9.6.2.2. </span>Non-reusable preallocated memory<a class="headerlink" href="#non-reusable-preallocated-memory" title="Permalink to this headline">¶</a></h4>
+<p>In this configuration, memory for PARTITION.name strings is preallocated
+and will never be freed or reused.</p>
+<p>For this behavior, set the following:</p>
+<ul class="simple">
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">max_partition_string_size</span></code> to DDS_LENGTH_UNLIMITED.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">max_partition_string_allocation</span></code> to a value greater than 0. This
+value must be large enough to store every instance of each PARTITION
+name that is created and discovered.</p></li>
+</ul>
+<p>Note that each PARTITION name will take up memory equal to its exact string
+size.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="content_filtering.html" class="btn btn-neutral float-right" title="3.10. Content Filtering" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="userdiscoverydata.html" class="btn btn-neutral float-left" title="3.8. User Discovery Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2025, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

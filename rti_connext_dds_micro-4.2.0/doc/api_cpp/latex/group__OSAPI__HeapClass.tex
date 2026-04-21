@@ -1,0 +1,172 @@
+\doxysubsubsection{OSAPI Heap}
+\hypertarget{group__OSAPI__HeapClass}{}\label{group__OSAPI__HeapClass}\index{OSAPI Heap@{OSAPI Heap}}
+\doxysubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__OSAPI__HeapClass_gaf6db8625cf68a1a072f523783b462349}{OSAPI\+\_\+\+ALIGNMENT\+\_\+\+DEFAULT}}~(-\/1)
+\begin{DoxyCompactList}\small\item\em Certain methods allow a default alignment\+: this should be an alignment that follows the "{}malloc"{} alignment of the architecture (aligned sufficiently to store any C-\/structure efficiently). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPI__HeapClass_ga95eda8d3daf6f79a29a5146143e4d5d7}{OSAPI\+\_\+\+Heap\+\_\+is\+\_\+address\+\_\+aligned}}(location,  alignment)
+\begin{DoxyCompactList}\small\item\em Check if a particular address is aligned to an alignment. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPI__HeapClass_gaedb296c249503c0489062c4c8309448d}{OSAPI\+\_\+\+Heap\+\_\+align\+\_\+size\+\_\+up}}(size,  alignment)
+\begin{DoxyCompactList}\small\item\em Aligns a particular address to an alignment alignment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__HeapClass_gae9f23f5fe41c3dc635d2b091847aecb5}{OSAPI\+\_\+\+Heap\+\_\+allocate}} (\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} count, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size)
+\begin{DoxyCompactList}\small\item\em Allocates zero-\/initialized memory from the heap. \end{DoxyCompactList}\item 
+OSPSLDll\+Export void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__HeapClass_ga6bf37a33f211e6dc789d3f5d1486338a}{OSAPI\+\_\+\+Heap\+\_\+realloc}} (void \texorpdfstring{$\ast$}{*}ptr, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size)
+\begin{DoxyCompactList}\small\item\em Reallocate memory from the heap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__OSAPI__HeapClass_gafaf758c2340df0fe04fc6c832a40948d}{OSAPI\+\_\+\+Heap\+\_\+free}} (void \texorpdfstring{$\ast$}{*}ptr)
+\begin{DoxyCompactList}\small\item\em Frees memory allocated from the heap. \end{DoxyCompactList}\item 
+OSPSLDll\+Export void \mbox{\hyperlink{group__OSAPI__HeapClass_ga010de657ae48605d69e46f2c6b1b69b2}{OSAPI\+\_\+\+Heap\+\_\+allocate\+\_\+buffer}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}buffer, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size, OSAPI\+\_\+\+Alignment\+\_\+T alignment)
+\begin{DoxyCompactList}\small\item\em Allocate a block of memory of the provided size from the heap. \end{DoxyCompactList}\item 
+OSPSLDll\+Export void \mbox{\hyperlink{group__OSAPI__HeapClass_ga39354e7853b2aa509e9dbe8399f6f383}{OSAPI\+\_\+\+Heap\+\_\+free\+\_\+buffer}} (void \texorpdfstring{$\ast$}{*}buffer)
+\begin{DoxyCompactList}\small\item\em A static method to return a block (that was previously allocated with \doxylink{group__OSAPI__HeapClass_ga010de657ae48605d69e46f2c6b1b69b2}{OSAPI\+\_\+\+Heap\+\_\+allocate\+\_\+buffer}) to the heap. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+
+
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__OSAPI__HeapClass_gaf6db8625cf68a1a072f523783b462349}\index{OSAPI Heap@{OSAPI Heap}!OSAPI\_ALIGNMENT\_DEFAULT@{OSAPI\_ALIGNMENT\_DEFAULT}}
+\index{OSAPI\_ALIGNMENT\_DEFAULT@{OSAPI\_ALIGNMENT\_DEFAULT}!OSAPI Heap@{OSAPI Heap}}
+\doxyparagraph{\texorpdfstring{OSAPI\_ALIGNMENT\_DEFAULT}{OSAPI\_ALIGNMENT\_DEFAULT}}
+{\footnotesize\ttfamily \label{group__OSAPI__HeapClass_gaf6db8625cf68a1a072f523783b462349} 
+\#define OSAPI\+\_\+\+ALIGNMENT\+\_\+\+DEFAULT~(-\/1)}
+
+
+
+Certain methods allow a default alignment\+: this should be an alignment that follows the "{}malloc"{} alignment of the architecture (aligned sufficiently to store any C-\/structure efficiently). 
+
+\Hypertarget{group__OSAPI__HeapClass_ga95eda8d3daf6f79a29a5146143e4d5d7}\index{OSAPI Heap@{OSAPI Heap}!OSAPI\_Heap\_is\_address\_aligned@{OSAPI\_Heap\_is\_address\_aligned}}
+\index{OSAPI\_Heap\_is\_address\_aligned@{OSAPI\_Heap\_is\_address\_aligned}!OSAPI Heap@{OSAPI Heap}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Heap\_is\_address\_aligned}{OSAPI\_Heap\_is\_address\_aligned}}
+{\footnotesize\ttfamily \label{group__OSAPI__HeapClass_ga95eda8d3daf6f79a29a5146143e4d5d7} 
+\#define OSAPI\+\_\+\+Heap\+\_\+is\+\_\+address\+\_\+aligned(\begin{DoxyParamCaption}\item[{}]{location}{, }\item[{}]{alignment}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ (((\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\_UINT32}})((\textcolor{keywordtype}{char}*)(location)\ -\/\ (\textcolor{keywordtype}{char}*)OSAPI\_CC\_NullPtr)\ \%\ (alignment))\ ==\ 0)}
+
+\end{DoxyCode}
+
+
+Check if a particular address is aligned to an alignment. 
+
+\Hypertarget{group__OSAPI__HeapClass_gaedb296c249503c0489062c4c8309448d}\index{OSAPI Heap@{OSAPI Heap}!OSAPI\_Heap\_align\_size\_up@{OSAPI\_Heap\_align\_size\_up}}
+\index{OSAPI\_Heap\_align\_size\_up@{OSAPI\_Heap\_align\_size\_up}!OSAPI Heap@{OSAPI Heap}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Heap\_align\_size\_up}{OSAPI\_Heap\_align\_size\_up}}
+{\footnotesize\ttfamily \label{group__OSAPI__HeapClass_gaedb296c249503c0489062c4c8309448d} 
+\#define OSAPI\+\_\+\+Heap\+\_\+align\+\_\+size\+\_\+up(\begin{DoxyParamCaption}\item[{}]{size}{, }\item[{}]{alignment}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (((size)\ +\ ((alignment)\ -\/\ 1U))\ \&\ (\string~((alignment)\ -\/\ 1U)))}
+
+\end{DoxyCode}
+
+
+Aligns a particular address to an alignment alignment. 
+
+
+
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__OSAPI__HeapClass_gae9f23f5fe41c3dc635d2b091847aecb5}\index{OSAPI Heap@{OSAPI Heap}!OSAPI\_Heap\_allocate@{OSAPI\_Heap\_allocate}}
+\index{OSAPI\_Heap\_allocate@{OSAPI\_Heap\_allocate}!OSAPI Heap@{OSAPI Heap}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Heap\_allocate()}{OSAPI\_Heap\_allocate()}}
+{\footnotesize\ttfamily \label{group__OSAPI__HeapClass_gae9f23f5fe41c3dc635d2b091847aecb5} 
+void \texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+Heap\+\_\+allocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}}}]{count}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}}}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Allocates zero-\/initialized memory from the heap. 
+
+The function allocates {\ttfamily count} elements of size {\ttfamily size} and sets the memory region to 0.
+
+NOTE\+: This operation assumes the specified size to be \texorpdfstring{$>$}{>} 0; this operation is never used directly but it is only accessed by using one of the other allocate operations of OSAPI\+\_\+\+Heap (e.\+g. allocate\+\_\+struct, allocate\+\_\+array, allocate\+\_\+string...); these operations are implemented as macros and accept a "{}type"{} argument which is always converted to a size \texorpdfstring{$>$}{>} 0 using the sizeof operator.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em count} & The number of elements to allocate.\\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & The size of the element; size is assumed to be always greater than 0.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+. A pointer to a contiguous memory area guaranteed to be large enough store {\ttfamily count} elements of size {\ttfamily size}.
+\end{DoxyReturn}
+See Also \doxylink{group__OSAPI__HeapClass_gafaf758c2340df0fe04fc6c832a40948d}{OSAPI\+\_\+\+Heap\+\_\+free} \Hypertarget{group__OSAPI__HeapClass_ga6bf37a33f211e6dc789d3f5d1486338a}\index{OSAPI Heap@{OSAPI Heap}!OSAPI\_Heap\_realloc@{OSAPI\_Heap\_realloc}}
+\index{OSAPI\_Heap\_realloc@{OSAPI\_Heap\_realloc}!OSAPI Heap@{OSAPI Heap}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Heap\_realloc()}{OSAPI\_Heap\_realloc()}}
+{\footnotesize\ttfamily \label{group__OSAPI__HeapClass_ga6bf37a33f211e6dc789d3f5d1486338a} 
+OSPSLDll\+Export void \texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+Heap\+\_\+realloc (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ptr}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}}}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Reallocate memory from the heap. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ptr} & Currently allocated buffer\\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & The new desired size\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+. A pointer to a contiguous memory area guaranteed to be large enough store size bytes, NULL if the reallocation failed.
+\end{DoxyReturn}
+See Also \doxylink{group__OSAPI__HeapClass_gafaf758c2340df0fe04fc6c832a40948d}{OSAPI\+\_\+\+Heap\+\_\+free} \Hypertarget{group__OSAPI__HeapClass_gafaf758c2340df0fe04fc6c832a40948d}\index{OSAPI Heap@{OSAPI Heap}!OSAPI\_Heap\_free@{OSAPI\_Heap\_free}}
+\index{OSAPI\_Heap\_free@{OSAPI\_Heap\_free}!OSAPI Heap@{OSAPI Heap}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Heap\_free()}{OSAPI\_Heap\_free()}}
+{\footnotesize\ttfamily \label{group__OSAPI__HeapClass_gafaf758c2340df0fe04fc6c832a40948d} 
+void OSAPI\+\_\+\+Heap\+\_\+free (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ptr}{}\end{DoxyParamCaption})}
+
+
+
+Frees memory allocated from the heap. 
+
+The function frees memory previously allocated with \doxylink{group__OSAPI__HeapClass_gae9f23f5fe41c3dc635d2b091847aecb5}{OSAPI\+\_\+\+Heap\+\_\+allocate} back to the heap.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ptr} & Pointer to region previous allocated with \doxylink{group__OSAPI__HeapClass_gae9f23f5fe41c3dc635d2b091847aecb5}{OSAPI\+\_\+\+Heap\+\_\+allocate}\\
+\hline
+\end{DoxyParams}
+See Also \doxylink{group__OSAPI__HeapClass_gae9f23f5fe41c3dc635d2b091847aecb5}{OSAPI\+\_\+\+Heap\+\_\+allocate} 
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+
+\Hypertarget{group__OSAPI__HeapClass_ga010de657ae48605d69e46f2c6b1b69b2}\index{OSAPI Heap@{OSAPI Heap}!OSAPI\_Heap\_allocate\_buffer@{OSAPI\_Heap\_allocate\_buffer}}
+\index{OSAPI\_Heap\_allocate\_buffer@{OSAPI\_Heap\_allocate\_buffer}!OSAPI Heap@{OSAPI Heap}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Heap\_allocate\_buffer()}{OSAPI\_Heap\_allocate\_buffer()}}
+{\footnotesize\ttfamily \label{group__OSAPI__HeapClass_ga010de657ae48605d69e46f2c6b1b69b2} 
+OSPSLDll\+Export void OSAPI\+\_\+\+Heap\+\_\+allocate\+\_\+buffer (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}}}]{size}{, }\item[{OSAPI\+\_\+\+Alignment\+\_\+T}]{alignment}{}\end{DoxyParamCaption})}
+
+
+
+Allocate a block of memory of the provided size from the heap. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em buffer} & Cannot be NULL. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & Must be \texorpdfstring{$>$}{>} 0. \\
+\hline
+\mbox{\texttt{ in}}  & {\em alignment} & Power of 2 and \texorpdfstring{$>$}{>}0 or OSAPI\+\_\+\+ALIGNMENT\+\_\+\+DEFAULT. \\
+\hline
+\end{DoxyParams}
+If the alignment is OSAPI\+\_\+\+ALIGNMENT\+\_\+\+DEFAULT, the returned pointer must have "{}default alignment"{} (meaning that any C-\/structure can start at the beginning of the buffer). \Hypertarget{group__OSAPI__HeapClass_ga39354e7853b2aa509e9dbe8399f6f383}\index{OSAPI Heap@{OSAPI Heap}!OSAPI\_Heap\_free\_buffer@{OSAPI\_Heap\_free\_buffer}}
+\index{OSAPI\_Heap\_free\_buffer@{OSAPI\_Heap\_free\_buffer}!OSAPI Heap@{OSAPI Heap}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Heap\_free\_buffer()}{OSAPI\_Heap\_free\_buffer()}}
+{\footnotesize\ttfamily \label{group__OSAPI__HeapClass_ga39354e7853b2aa509e9dbe8399f6f383} 
+OSPSLDll\+Export void OSAPI\+\_\+\+Heap\+\_\+free\+\_\+buffer (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buffer}{}\end{DoxyParamCaption})}
+
+
+
+A static method to return a block (that was previously allocated with \doxylink{group__OSAPI__HeapClass_ga010de657ae48605d69e46f2c6b1b69b2}{OSAPI\+\_\+\+Heap\+\_\+allocate\+\_\+buffer}) to the heap. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em buffer} & If NULL, no op. \\
+\hline
+\end{DoxyParams}

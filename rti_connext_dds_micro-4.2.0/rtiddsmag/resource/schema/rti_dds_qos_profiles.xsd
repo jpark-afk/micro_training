@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ (c) Copyright, Real-Time Innovations, 2009-2016.
+ All rights reserved.
+ No duplications, whole or partial, manual or electronic, may be made
+ without express written permission.  Any such copies, or
+ revisions thereof, must display this notice unaltered.
+ This code contains trade secrets of Real-Time Innovations, Inc.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <xs:include schemaLocation="definitions/rti_dds_qos_profiles_definitions.xsd"/>
+
+    <xs:element name="dds">
+       <xs:complexType>
+           <xs:choice minOccurs="0" maxOccurs="unbounded">
+               <!-- User Env -->
+               <xs:element name="configuration_variables"
+                            type="KeyValuePairSeq">
+                   <xs:annotation>
+                       <xs:documentation>
+                           <![CDATA[
+                           Defines a set of default values for user variables.
+                           The values specified in this section can be overridden
+                           by environment variables.
+                           ]]>
+                       </xs:documentation>
+                   </xs:annotation>
+               </xs:element>
+               <xs:element name="qos_library"
+                            type="qosLibrary"/>
+           </xs:choice>
+           <xs:attribute name="version"
+                          type="xs:string"
+                          use="optional"
+                          default="7.3.0"/>
+       </xs:complexType>
+    </xs:element>
+</xs:schema>

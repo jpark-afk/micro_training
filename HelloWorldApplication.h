@@ -34,14 +34,14 @@
 struct Application
 {
     DDS_DomainParticipant *participant;
-    char topic_name[255];
-    char type_name[255];
+    char topic_name[RTPS_PATHNAME_LEN_MAX + 1];
+    char type_name[RTPS_PATHNAME_LEN_MAX + 1];
     DDS_Long sleep_time;
     DDS_Long count;
     DDS_Topic *topic;
 };
 
-extern void 
+extern void
 Application_help(char *appname);
 
 extern struct Application*
@@ -50,7 +50,7 @@ Application_create(
     const char *remote_participant_name,
     DDS_Long domain_id,
     char *udp_intf,
-    char *peer, 
+    char *peer,
     DDS_Long sleep_time,
     DDS_Long count);
 

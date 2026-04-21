@@ -1,0 +1,72 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2022-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+SET(CMAKE_SYSTEM_NAME QNX)
+SET(CMAKE_SYSTEM_VERSION 7.1)
+SET(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
+
+# This tool-chain file assumes that lin-qos22-vcast-blm-env.sh has been sourced first
+
+SET(RTIME_PLATFORM_SUPPORTS_ZCOPY_V2 TRUE CACHE BOOL "Platform supports ZCOPYv2")
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Platform/qnx.tc)
+
+SET(CMAKE_CXX_COMPILER $ENV{QNX_HOST}/usr/bin/qcc)
+SET(CMAKE_C_COMPILER $ENV{QNX_HOST}/usr/bin/qcc)
+
+#SET(CMAKE_AR $ENV{QNX_HOST}/usr/bin/ntoaarch64-ar)
+SET(RTIME_OBJDUMP $ENV{QNX_HOST}/usr/bin/ntoaarch64-objdump)
+SET(RTIME_OBJDUMP_OPT --disassemble-all)
+SET(RTIME_OBJDUMPCHKSUM $ENV{QNX_HOST}/usr/bin/ntoaarch64-objdump)
+SET(RTIME_OBJDUMPCHKSUM_OPT --section=.text --section=.data --section=.rodata --disassemble-all)
+SET(RTIME_OBJ_SUFFIX o)
+SET(RTIME_AR_EXRACT -x)
+SET(RTIME_AR $ENV{QNX_HOST}/usr/bin/ntoaarch64-ar)
+
+SET(CMAKE_C_FLAGS
+        "-lang-c -Vgcc/8.3.0,gcc_ntoaarch64le -Y_gpp -std=c99 \
+        -fsigned-char \
+        -Winit-self -fstrict-aliasing -Wmissing-declarations -Wall \
+        -Wextra -Wpedantic -Wshadow -Wcast-align -Wunused \
+        -Wconversion -Wsign-conversion -Wlogical-op \
+        -Wdouble-promotion -fsigned-char -Wstrict-prototypes"
+    CACHE INTERNAL "CMAKE_C_FLAGS" FORCE
+)
+
+SET(CMAKE_CXX_FLAGS
+        "-lang-c++ -Vgcc/8.3.0,gcc_ntoaarch64le -Y_gpp -DNDEBUG \
+        -fsigned-char \
+        -Winit-self -fstrict-aliasing -Wmissing-declarations -Wall \
+        -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wcast-align \
+        -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion \
+        -Wlogical-op  -Wdouble-promotion"
+    CACHE INTERNAL "CMAKE_CXX_FLAGS" FORCE
+)
+
+SET(CMAKE_C_FLAGS_RELEASE
+        "-O2"
+    CACHE INTERNAL "CMAKE_C_FLAGS_RELEASE" FORCE
+)
+
+SET(CMAKE_CXX_FLAGS_RELEASE
+        "-O2"
+    CACHE INTERNAL "CMAKE_CXX_FLAGS_RELEASE" FORCE
+)
+
+SET(RTIME_OSAPI_PLATFORM posix)
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+
+IF (NOT DEFINED RTIME_UDP_ENABLE_MULTICAST)
+    SET(RTIME_UDP_ENABLE_MULTICAST TRUE)
+ENDIF()

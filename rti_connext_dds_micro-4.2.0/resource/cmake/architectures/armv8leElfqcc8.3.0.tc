@@ -1,0 +1,35 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2022-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+SET(CMAKE_SYSTEM_NAME RTIME_QNX_PI)
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/qcc_pi.tc)
+
+INCLUDE_QCC_COMPILER_PIL("8.3.0" "" "" "" "")
+
+IF (${TARGET_HELP})
+    MESSAGE("TARGET\n\n ${CMAKE_CURRENT_LIST_FILE}\n")
+    MESSAGE("DESCRIPTION\n")
+    MESSAGE("FLAGS\n")
+    MESSAGE("CMAKE_C_FLAGS=${CMAKE_C_FLAGS}\n")
+    MESSAGE("CMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}\n")
+    MESSAGE("CMAKE_CXX_FLAGS_RELEASE=${CMAKE_CXX_FLAGS_RELEASE}\n")
+    MESSAGE("CMAKE_CXX_FLAGS_DEBUG=${CMAKE_CXX_FLAGS_DEBUG}\n")
+    MESSAGE("\nARGUMENTS\n")
+    MESSAGE("\nEXAMPLES\n")
+    RETURN()
+ENDIF()
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+
+SET(RTIME_PLATFORM_SUPPORTS_ZCOPY_V2 TRUE CACHE BOOL "Platform supports ZCOPYv2")

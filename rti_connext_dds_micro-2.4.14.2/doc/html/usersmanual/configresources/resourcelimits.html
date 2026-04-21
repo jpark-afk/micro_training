@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.9.2. Resource Limits &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4.9.3. Dynamic Memory Allocation" href="dmemoryallocation.html" />
+    <link rel="prev" title="4.9.1. Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User’s Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../libraryinit.html">4.1. Initializing the Connext Micro Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html">4.2. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../entities.html">4.3. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sending.html">4.4. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../receiving.html">4.5. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../domains.html">4.6. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transports/index.html">4.7. Transports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../discovery.html">4.8. Discovery</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.9. Configuring Resource Limits</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.9.1. Introduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.9.2. Resource Limits</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#domainparticipantfactoryqos">4.9.2.1. DomainParticipantFactoryQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">4.9.2.2. DomainParticipantQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">4.9.2.3. DataReaderQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">4.9.2.4. DataWriterQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#udp-transport">4.9.2.5. UDP Transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dynamic-participant-static-endpoint-dpse">4.9.2.6. Dynamic Participant Static Endpoint (DPSE)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dynamic-participant-dynamic-endpoint-dpde">4.9.2.7. Dynamic Participant Dynamic Endpoint (DPDE)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#memory-map">4.9.2.8. Memory Map</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dmemoryallocation.html">4.9.3. Dynamic Memory Allocation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="internalresourceallocation.html">4.9.4. Internal Resource Allocation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../rtiddsgen.html">4.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../threads.html">4.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../batching.html">4.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../msgintegrity.html">4.13. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sequences.html">4.14. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug.html">4.15. Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../limits.html">4.16. Connext Micro Hardcoded Resource Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../face.html">4.17. Building Against FACE Conformance Libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../building/index.html">5. Building and Porting Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html"><span class="section-number">4. </span>User’s Manual</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">4.9. </span>Configuring Resource Limits</a> &raquo;</li>
+        
+      <li><span class="section-number">4.9.2. </span>Resource Limits</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/usersmanual/configresources/resourcelimits.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="resource-limits">
+<h1><span class="section-number">4.9.2. </span>Resource Limits<a class="headerlink" href="#resource-limits" title="Permalink to this headline">¶</a></h1>
+<p>All resource limits in <em>Connext Micro</em> are specified in a QoS policy or property.
+Please refer to the links to the API Reference below for more details,
+and refer to the <a class="reference internal" href="#micro-memory-map">Micro Memory Map</a> below for an overview of how the memory
+is used by each resource limit.</p>
+<div class="section" id="domainparticipantfactoryqos">
+<h2><span class="section-number">4.9.2.1. </span>DomainParticipantFactoryQos<a class="headerlink" href="#domainparticipantfactoryqos" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference external" href="../../../../doc/api_c/html/structDDS__DomainParticipantFactoryQos.html">DomainParticipantFactoryQos</a> for more detail.</p>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">4.9.2.2. </span>DomainParticipantQos<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="../../../../doc/api_c/html/structDDS__DomainParticipantResourceLimitsQosPolicy.html">DomainParticipantQos</a> controls resources that
+are applicable to the entire DomainParticipant. All the resources specified
+in the DomainParticipantQos are allocated when the DomainParticipant is created
+with the <a class="reference external" href="../../../../doc/api_c/html/group__DDSDomainParticipantFactoryModule.html">DDS_DomainParticipantFactory_create_participant()</a> call.</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">4.9.2.3. </span>DataReaderQos<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="../../../../doc/api_c/html/structDDS__DataReaderResourceLimitsQosPolicy.html">DataReaderQos</a> controls the resources used by
+the DDS_DataReader. Each DDS_DataReader allocates its own resources, even
+DDS_DataReader’s of the same DDS_Topic. For this reason is it advised to
+limit the number of DDS_DataReader’s per DDS_Topic to one.</p>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">4.9.2.4. </span>DataWriterQos<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="../../../../doc/api_c/html/structDDS__DataWriterResourceLimitsQosPolicy.html">DataWriterQos</a> controls the resources allocated
+by a DDS_DataWriter. Each DDS_DataWriter allocates its own resources, even
+DDS_DataWriters of the same DDS_Topic. For this reason is it advised to limit
+the number of DDS_DataWriters per topic to one.</p>
+</div>
+<div class="section" id="udp-transport">
+<h2><span class="section-number">4.9.2.5. </span>UDP Transport<a class="headerlink" href="#udp-transport" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference external" href="../../../../doc/api_c/html/structUDP__InterfaceFactoryProperty.html">UDP Transport</a> for more details.</p>
+</div>
+<div class="section" id="dynamic-participant-static-endpoint-dpse">
+<h2><span class="section-number">4.9.2.6. </span>Dynamic Participant Static Endpoint (DPSE)<a class="headerlink" href="#dynamic-participant-static-endpoint-dpse" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="../../../../doc/api_c/html/structDPSE__DiscoveryPluginProperty.html">Dynamic Participant Static Endpoint (DPSE)</a>
+discovery plugin creates one DDS_DataWriter and one DDS_DataReader for the
+ParticipantBuiltinTopicData. The memory for the plugin includes the
+memory allocated by the DDS_DataReader and DDS_DataWriter. The memory allocated
+by the properties must be added for total memory usage.</p>
+</div>
+<div class="section" id="dynamic-participant-dynamic-endpoint-dpde">
+<h2><span class="section-number">4.9.2.7. </span>Dynamic Participant Dynamic Endpoint (DPDE)<a class="headerlink" href="#dynamic-participant-dynamic-endpoint-dpde" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="../../../../doc/api_c/html/structDPDE__DiscoveryPluginProperty.html">Dynamic Participant Dynamic Endpoint (DPDE)</a>
+discovery plugin creates one DDS_DataWriter and one DDS_DataReader for each
+ParticipantBuiltinTopicData, PublicationBuiltinTopicData, and
+SubscriptionBuiltinTopicData. The memory for the plugin includes the
+memory allocated by these DDS_DataReaders and DDS_DataWriters. The memory allocated
+by the properties must be added for total memory usage.</p>
+</div>
+<div class="section" id="memory-map">
+<span id="micro-memory-map"></span><h2><span class="section-number">4.9.2.8. </span>Memory Map<a class="headerlink" href="#memory-map" title="Permalink to this headline">¶</a></h2>
+<img alt="../../_images/MicroMemoryMap.png" src="../../_images/MicroMemoryMap.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dmemoryallocation.html" class="btn btn-neutral float-right" title="4.9.3. Dynamic Memory Allocation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="4.9.1. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

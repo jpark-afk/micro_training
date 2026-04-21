@@ -1,0 +1,71 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2016
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may16 tk Written
+################################################################################
+#-Wshadow -Wnon-virtual-dtor -Wcast-align -Wall -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wlogical-op -Wuseless-cast -Wdouble-promotion  -Wold-style-cast -Wextra
+SET(CC_COMMON   "-std=c99  -Wextra -Wall -Winit-self  -fstrict-aliasing -Wmissing-declarations")
+# -std=c++98
+SET(CXX_COMMON   "  -Wextra -Wall -Winit-self ")
+
+IF (${RTIME_TARGET_NAME} MATCHES "_gcov")
+    SET(CC_COMMON   "${CC_COMMON} --coverage ")
+    SET(CXX_COMMON  "${CXX_COMMON} --coverage ")
+ENDIF()
+
+SET(CC_DEBUG    "${CC_COMMON}  -O0 -g")
+SET(CC_RELEASE  "${CC_COMMON} -O ")
+SET(CXX_DEBUG    "${CXX_COMMON} -O0 -g")
+SET(CXX_RELEASE  "${CXX_COMMON} -O ")
+
+IF (${RTIME_TARGET_NAME} MATCHES "x64")
+    SET(CC_ARCH "-m64 -arch x86_64")
+ELSEIF (${RTIME_TARGET_NAME} MATCHES "i86")
+    SET(CC_ARCH "-m32 -arch i386")
+ENDIF()
+
+SET(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} ${CC_DEBUG} ${CC_ARCH}" CACHE INTERNAL "CMAKE_C_FLAGS_DEBUG" FORCE)
+SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} ${CXX_DEBUG} ${CC_ARCH}" CACHE INTERNAL "CMAKE_CXX_FLAGS_DEBUG" FORCE)
+SET(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS} ${CC_RELEASE} ${CC_ARCH} -DNDEBUG" CACHE INTERNAL "CMAKE_C_FLAGS_RELEASE" FORCE)
+SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} ${CXX_RELEASE} ${CC_ARCH} -DNDEBUG" CACHE INTERNAL "CMAKE_CXX_FLAGS_RELEASE" FORCE)
+
+IF (${RTIME_TARGET_NAME} MATCHES "_sloc")
+    set(CMAKE_C_CREATE_PREPROCESSED_SOURCE "<CMAKE_C_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -C -E <SOURCE> > <PREPROCESSED_SOURCE>" CACHE INTERNAL "CMAKE_C_CREATE_PREPROCESSED_SOURCE" FORCE)
+    set(CMAKE_CXX_CREATE_PREPROCESSED_SOURCE "<CMAKE_CXX_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -C -E <SOURCE> > <PREPROCESSED_SOURCE>" CACHE INTERNAL "CMAKE_CXX_CREATE_PREPROCESSED_SOURCE"  FORCE)
+ENDIF()
+
+SET(RTIME_OBJDUMP objdump)
+SET(RTIME_OBJDUMP_OPT --no-symbolic-operands;--non-verbose;--no-leading-addr;--no-leading-headers;-disassemble-all)
+SET(RTIME_OBJDUMPCHKSUM objdump)
+SET(RTIME_OBJDUMPCHKSUM_OPT --section __TEXT,__DATA --no-symbolic-operands;--non-verbose;--no-leading-addr;--no-leading-headers;-disassemble-all)
+SET(RTIME_OBJ_SUFFIX o)
+SET(RTIME_AR_EXRACT -x)
+SET(RTIME_AR ${CMAKE_AR})
+
+IF (${TARGET_HELP})
+    MESSAGE("COMPILER NOTES\n")
+    MESSAGE(" The following clang specific flags are used based on RTIME_TARGET_NAME\n")        
+    MESSAGE(" - If x64 is part of the name 64 bit is used")
+    MESSAGE(" - If i86 is part of the name 32 bit is used")
+    MESSAGE(" - If i86 or x64 is not found, the default is used\n")
+    MESSAGE(" The following flags are added:")
+    MESSAGE(" - For C Debug libraries:  ${CC_DEBUG}")
+    MESSAGE(" - For C++ Debug libraries:  ${CXX_DEBUG}")
+    MESSAGE(" - For C Release libraries:  ${CC_RELEASE}")
+    MESSAGE(" - For C++ Release libraries:  ${CXX_RELEASE}\n\n")
+    RETURN()
+ENDIF()
+
+SET(_RTIME_CC stdc)

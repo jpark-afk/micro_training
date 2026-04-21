@@ -1,0 +1,337 @@
+.. _porting:
+
+Porting |rti_me_h|
+==================
+
+|rti_me| has been engineered for reasonable portability to platforms and
+environments which RTI does not have access to. This porting
+guide describes the features required by |me| to run. The target audience
+is developers familiar with general OS concepts, the standard C library, 
+and embedded systems. 
+
+|me| uses an abstraction layer to support running on a number
+of platforms. The abstraction layer, OSAPI, is an abstraction of
+functionality typically found in one or more of the following
+libraries and services:
+
+- Operating System calls
+- Device drivers
+- Standard C library
+
+The OSAPI module is designed to be relatively easy to move to a new
+platform. All functionality, with the exception of the UDP transport 
+which must be ported, is contained within this single module. 
+It should be noted  that although some functions may not seem relevant on 
+a particular platform, they must still be implemented as they are used 
+by other modules. For example, the port running on Stellaris with no OS 
+support still needs to implement a threading model.
+
+Please note that the OSAPI module is not designed to be a general purpose
+abstraction layer; its sole purpose is to support the execution of |me|.
+
+Updating from |me_h| 2.4.8 and earlier
+--------------------------------------
+
+In |rti_me| 2.4.9, a few changes were made to simplify incorporating new ports.
+To upgrade an existing port to work with 2.4.9, follow these rules:
+
+- Any changes to osapi_config.h should be placed in its own file (see 
+  `Directory Structure`_).
+- Define the OSAPI_OS_DEF_H preprocessor directive to include the file (
+  refer to `OS and CC Definition Files`_).
+- For compiler-specific definitions, please refer to 
+  `OS and CC Definition Files`_.
+- Please refer to `Heap Porting Guide`_ for changes to the Heap routines
+  that need to be ported.
+
+Directory Structure
+-------------------
+
+The source shipped with |me| is identical to the source developed and
+tested by RTI (with the exception of the the line-endings difference between
+the Unix and Windows source-bundles).
+
+The source-bundle directory structure is as follows::
+
+ RTIMEHOME--+-- CmakeLists.txt
+            |
+            +-- build -- cmake --+-- Debug --+-- <ARCH> -- <project-files>
+            |                    |
+            |                    |
+            |                    +-- Release --+-- <ARCH> -- <project-files>
+            +-- doc --
+            |
+            +-- example
+            |
+            +-- include
+            |
+            +-- lib +-- <ARCH> -- <libraries>
+            |
+            +-- resource --+-- cmake 
+            |              |
+            |              +-- scripts
+            |
+            +-- rtiddsgen
+            |
+            +-- src
+
+The include directory contains the external interfaces, those that are
+available to other modules. The src directory contains the implementation 
+files. Please refer to :doc:`building` for how to build
+the source code. 
+
+The remainder of this document focuses on the files that are needed to 
+add a new port. The following directory structure is expected::
+
+ ---+-- include --+-- osapi --+-- osapi_os_\<port\>.h
+    |                         |
+    |                         +-- osapi_cc_<compiler>.h
+    | 
+    +-- src --+-- osapi --+-- common -- <common files> 
+                          |
+                          +-- <port> --+-- <port>Heap.c
+                                       |
+                                       +-- <port>Mutex.c
+                                       |
+                                       +-- <port>Process.c
+                                       |
+                                       +-- <port>Semaphore.c
+                                       |
+                                       +-- <port>String.c
+                                       |
+                                       +-- <port>System.c
+                                       |
+                                       +-- <port>Thread.c
+                                       |
+                                       +-- <port>shmSegment.c
+                                       |
+                                       +-- <port>shmMutex.c
+
+The *osapi_os_<port>.h* file contains OS specific definitions for
+various data-types. The \<port> name should be short and in lower case, for
+example *myos*. 
+
+The *osapi_cc_<compiler>.h* file contains compiler specific 
+definitions. The \<compiler> name should be short and in lower case, for
+example *mycc*. The osapi_cc_stdc.h file properly detects
+GCC and MSVC and it is not necessary to provide a new file if one of 
+these compilers is used.
+
+The \<port>Heap.c, \<port>Mutex.c, \<port>Process.c, \<port>Semaphore.c,
+\<port>String.c and \<port>System.c files shall contain the implementation
+of the required APIs.
+
+NOTE: It is *not* recommended to modify source files shipped with
+|me|. Instead if it is desired to start with code supplied by RTI
+it is recommended to *copy* the corresponding sub-directory,
+for example posix, and rename it. This way it is easier to upgrade |me|
+while keeping existing ports.
+
+OS and CC Definition Files
+--------------------------
+
+The *include/osapi/osapi_os_<port>.h* file contains 
+OS and platform specific definitions used by OSAPI and other modules. 
+To include the platform specific file, define **OSAPI_OS_DEF_H** as a 
+preprocessor directive.
+
+:: 
+
+    -DOSAPI_OS_DEF_H=\"osapi_os_<port>.h\"
+
+It should be noted that |me| does not use auto-detection
+programs to detect the host and target build environment and only 
+relies on predefined macros to determine the target environment. If |me|
+cannot determine the target environment, it is necessary to manually
+configure the correct OS definition file by defining **OSAPI_OS_DEF_H** (see
+above).
+
+The *include/osapi/osapi_cc_<compiler>.h* file contains 
+compiler specific definitions used by OSAPI and other modules. 
+To include the platform specific file, define **OSAPI_CC_DEF_H** as a 
+preprocessor directive. 
+
+::
+
+    -DOSAPI_CC_DEF_H=\"osapi_cc_<compiler>.h\"
+
+Endianness of some platforms is determined automatically via the platform specific file, but
+for others either **RTI_ENDIAN_LITTLE** or **RTI_ENDIAN_BIG** must be defined manually for 
+little-endian or big-endian, respectively.
+
+Heap Porting Guide
+------------------
+
+|me| uses the heap to allocate memory for internal data-structures. With
+a few exceptions, |me| does *not* return memory to the heap. Instead,
+|me| uses internal pools to quickly allocate and free memory for specific
+types. Only the initial memory is allocated directly from the heap.
+The following functions must be ported:
+
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_Heap_allocate_buffer <group__OSAPI__HeapClass.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_Heap_free_buffer <group__OSAPI__HeapClass.html>`
+
+However, if the OS and C library supports the standard malloc and free APIs
+define the following in the *osapi_os_<port>.h* file::
+
+    #define OSAPI_ENABLE_STDC_ALLOC   (1)
+    #define OSAPI_ENABLE_STDC_REALLOC (1)
+    #define OSAPI_ENABLE_STDC_FREE    (1)
+
+Please refer to the :link_connextmicro_dds_api_c_up_one:`OSAPI_Heap <group__OSAPI__HeapClass.html>` API for definition of the behavior.
+The available source code contains implementation in the file *osapi/<port>/<port>Heap.c*.
+  
+Mutex Porting Guide
+-------------------
+
+|me| relies on mutex support to protect internal data-structures from
+corruption when accessed from multiple threads.
+  
+The following functions must be ported:
+
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_Mutex_new <group__OSAPI__MutexClass.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_Mutex_delete <group__OSAPI__MutexClass.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_Mutex_take_os <group__OSAPI__MutexClass.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_Mutex_give_os <group__OSAPI__MutexClass.html>`
+  
+Please refer to the :link_connextmicro_dds_api_c_up_one:`OSAPI_Mutex <group__OSAPI__MutexClass.html>` API for definition of the behavior.
+The available source code contains implementation in the file *osapi/<port>/<port>Mutex.c*
+  
+Semaphore Porting Guide
+-----------------------
+  
+|me| relies on semaphore support for thread control. If |me| is running
+on a non pre-emptive operating system with no support for IPC and
+thread synchronization, it is possible to implement these functions as
+no-ops. Please refer to `Thread Porting Guide`_ for details regarding
+threading.
+  
+The following functions must be ported:
+
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_Semaphore_new <group__OSAPI__SemaphoreClass.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_Semaphore_delete <group__OSAPI__SemaphoreClass.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_Semaphore_take <group__OSAPI__SemaphoreClass.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_Semaphore_give <group__OSAPI__SemaphoreClass.html>`
+  
+Please refer to the :link_connextmicro_dds_api_c_up_one:`OSAPI_Semaphore <group__OSAPI__SemaphoreClass.html>` API for definition of the
+behavior. The available source code contains implementation in the file 
+*osapi/<port>/<port>Semaphore.c*.
+  
+Process Porting Guide
+---------------------
+
+|me| only uses the process API to retrieve a unique ID for the
+applications.
+  
+The following functions must be ported:
+
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_Process_getpid <osapi__process_8h.html>`
+  
+Please refer to the :link_connextmicro_dds_api_c_up_one:`OSAPI_Process_getpid <osapi__process_8h.html>` API for definition of the
+behavior. The available source code contains implementation in the file 
+*osapi/<port>/<port>Process.c*.
+  
+System Porting Guide
+--------------------
+
+The system API consists of functions which are more related to the
+hardware on which |me| is running than on the operating system. As of
+|me| 2.3.1, the system API is implemented as an interface as opposed
+to the previous pure function implementation. This change makes it easier
+to adapt |me| to different hardware platforms without having to write a
+new port.
+  
+The system interface is defined in :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI <structOSAPI__SystemI.html>`, and a port must implement
+all the methods in this structure. In addition, the function
+:link_connextmicro_dds_api_c_up_one:`OSAPI_System_get_native_interface <group__OSAPI__SystemClass.html>` must be implemented. This function
+must return the system interface for the port (called the native system
+interface).
+  
+The semantics for the methods in the interface are exactly as defined
+by the corresponding system function. For example, the method
+OSAPI_SystemI::get_time must behave exactly as that described by
+:link_connextmicro_dds_api_c_up_one:`OSAPI_System_get_time <group__OSAPI__SystemClass.html>`.
+  
+The following system interface methods must be implemented in the
+:link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI <structOSAPI__SystemI.html>` structure:
+
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI::get_timer_resolution <structOSAPI__SystemI.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI::get_time <structOSAPI__SystemI.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI::start_timer <structOSAPI__SystemI.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI::stop_timer <structOSAPI__SystemI.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI::generate_uuid <structOSAPI__SystemI.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI::get_hostname <structOSAPI__SystemI.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI::initialize <structOSAPI__SystemI.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI::finalize <structOSAPI__SystemI.html>`
+
+Please refer to the :link_connextmicro_dds_api_c_up_one:`OSAPI_System <group__OSAPI__SystemClass.html>` API for definition of the
+behavior. The available source code contains implementation in the file: 
+*osapi/<port>/<port>System.c*.
+  
+Migrating a 2.2.x port to 2.3.x
+...............................
+   
+In |me| 2.3.x, changes where made to how the system API is
+implemented. Because of these changes, existing ports must be updated, and
+this section describes how to make a |me| 2.2.x port compatible with |me|
+2.3.x.
+
+If you have ported |me| 2.2.x the following steps will make it compatible
+with version 2.3.x:
+
+- Rename the following functions and make them private to your
+  source code. For example, rename OSAPI_System_get_time
+  to OSAPI_MyPortSystem_get_time etc.
+
+  - :link_connextmicro_dds_api_c_up_one:`OSAPI_System_get_time <group__OSAPI__SystemClass.html>`
+  - :link_connextmicro_dds_api_c_up_one:`OSAPI_System_get_timer_resolution <group__OSAPI__SystemClass.html>`
+  - :link_connextmicro_dds_api_c_up_one:`OSAPI_System_start_timer <group__OSAPI__SystemClass.html>`
+  - :link_connextmicro_dds_api_c_up_one:`OSAPI_System_stop_timer <group__OSAPI__SystemClass.html>`
+  - :link_connextmicro_dds_api_c_up_one:`OSAPI_System_generate_uuid <group__OSAPI__SystemClass.html>`
+  
+- Implement the following new methods.
+
+  - :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI::get_hostname <structOSAPI__SystemI.html>`
+  - :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI::initialize <structOSAPI__SystemI.html>`
+  - :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI::finalize <structOSAPI__SystemI.html>`
+
+- Create a system structure for your port using the following
+  template::
+  
+             struct OSAPI_MyPortSystem
+            {
+                struct OSAPI_System _parent;
+
+                Your system variable
+            };
+
+            static struct OSAPI_MyPortSystem OSAPI_System_g;
+
+            /* OSAPI_System_gv_system is a global system variable used by the
+             * generic system API. Thus, the name must be exactly as
+             * shown here.
+             */
+            struct OSAPI_System * OSAPI_System_gv_system = &OSAPI_System_g._parent;
+
+- Implement :link_connextmicro_dds_api_c_up_one:`OSAPI_System_get_native_interface <group__OSAPI__SystemClass.html>` method and fill
+  the :link_connextmicro_dds_api_c_up_one:`OSAPI_SystemI <structOSAPI__SystemI.html>` structure with all the system methods.
+
+Thread Porting Guide
+--------------------
+
+The thread API is used by |me| to create threads. Currently only the
+UDP transport uses threads and it is a goal to keep the generic |me|
+core library free of threads. Thus, if |me| is ported to an environment
+with no thread support, the thread API can be stubbed out. However, note that
+the UDP transport must be ported accordingly in this case; that is, all
+thread code must be removed and replaced with code appropriate for the
+environment.
+  
+The following functions must be ported:
+  
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_Thread_create <group__OSAPI__ThreadClass.html>`
+- :link_connextmicro_dds_api_c_up_one:`OSAPI_Thread_sleep <group__OSAPI__ThreadClass.html>`
+
+Please refer to the :link_connextmicro_dds_api_c_up_one:`OSAPI_Thread <group__OSAPI__ThreadClass.html>` API for definition of the
+behavior. The available source code contains implementation in the file 
+*srcC/osapi/<platform>/Thread.c*.

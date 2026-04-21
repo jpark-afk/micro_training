@@ -1,0 +1,74 @@
+Installing |rti_me_h|
+=====================
+
+RTI distributes |me| with two different installation methods:
+
+#. As a standalone package, ``rti_connext_dds_micro-<version>.zip``, where 
+   ``<version>`` matches the product version (such as 2.4.14.2). If you 
+   downloaded this package, please read :ref:`section-install-package`.
+#. As part of a *Connext Drive* installation. If you installed *Connext 
+   Drive*, please read :ref:`section-install-drive`.
+
+.. _section-install-package:
+
+Installing the |me_h| package
+-----------------------------
+
+Once you unzip the package ``rti_connext_dds_micro-<version>.zip``, you will 
+create a directory named ``rti_connext_dds_micro-<version>``. This installation 
+directory contains this documentation, the *rtiddsgen* code generation tool, 
+and source code.
+
+|me| requires a Java Run-Time Environment (JRE) compatible with version 1.8.0_121 or higher 
+to run *rtiddsgen*. Please refer to :ref:`section-rtiddsgen` for more 
+information about how to set up the JRE for use with *rtiddsgen*.
+
+If a compatible JRE run-time environment is not already installed, you can 
+install one from one of the following bundles available from the `RTI Customer
+Portal <https://support.rti.com/s/login/>`_:
+
+* ``rti_connext_dds_micro-<version>-jre-x64Darwin.zip``: JRE for x64 Darwin
+* ``rti_connext_dds_micro-<version>-jre-arm64Darwin.zip``: JRE for arm64 Darwin
+* ``rti_connext_dds_micro-<version>-jre-i86Win32.zip``: JRE for i86 Windows
+* ``rti_connext_dds_micro-<version>-jre-x64Linux.zip``: JRE for x64 Linux
+* ``rti_connext_dds_micro-<version>-jre-x64Win64.zip``: JRE for x64 Windows
+
+.. note::
+    
+  If you already have a |core_pro| or *Connext Drive* installation, a 
+  compatible JRE is available in:
+
+  ``<Connext Drive or Connext Professional installation>/resource/app/jre``
+
+.. _section-install-drive:
+
+Installing |me_h| from Connext Drive
+------------------------------------
+
+When |me| is installed as part of *Connext Drive*, no further installation is 
+required. 
+
+In the *Connext Drive* installation directory you will see a directory named
+``rti_connext_dds_micro-<version>``. This is the installation directory for 
+|me| and contains this documentation, the *rtiddsgen* code generation tool, 
+and source code.
+
+.. note::
+    
+  If you have an evaluation version of *Connext Drive*, the source code is not 
+  available. Instead, you will see a ``lib`` directory with precompiled 
+  evaluation libraries.
+
+*rtiddsgen* requires a JRE to run. The default JRE is included in the 
+*Connext Drive* installation under ``resource/app/jre``. 
+Please refer to :ref:`section-rtiddsgen` for more information about how 
+to set up the JRE for use with *rtiddsgen*.
+
+.. warning::
+
+  We strongly recommend that you copy the |me| installation directory outside of 
+  the *Connext Drive* installation when building the source. It may not be 
+  desirable to build |me| libraries inside the *Connext Drive* directory due to 
+  patches, lack of write access, or other factors. 
+
+

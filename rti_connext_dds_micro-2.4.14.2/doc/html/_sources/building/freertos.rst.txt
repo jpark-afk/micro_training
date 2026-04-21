@@ -1,0 +1,102 @@
+.. _building_freertos:
+
+Building the |me_h| Source for FreeRTOS
+=======================================
+
+Introduction
+------------
+
+This section explains the environment used to run |me| on FreeRTOS + lwIP
+and is organized as follows:
+
+- `Overview`_
+- `Configuration`_
+- `CMake Support`_
+
+Overview
+--------
+
+|me| is known to run on the FreeRTOS operating system with the lwIP protocol stack.
+STM32F769I-DISC0 has been chosen as reference hardware. This development
+kit has a STM32F769NIH6 microcontroller with 2 Mbytes of Flash memory and 512 
+Kbytes of RAM. For a full description, please refer to the microcontroller 
+documentation.
+
+STM provides a toolchain called SW4STM32. SW4STM32 is a free multi-OS software 
+environment based on Eclipse, which supports the full range of STM32 
+microcontrollers and associated boards. SW4STM32 includes the GCC 
+C/C++ compiler, a GDB-based debugger, and an Eclipse-based IDE.
+
+STM also provides STM32CubeF7. STM32CubeF7 gathers all the generic 
+embedded software components required to develop an application on 
+the STM32F7 microcontrollers in a single package. 
+
+STM32CubeF7 also includes many examples and demonstration applications. 
+The example *LwIP_HTTP_Server_Socket_RTOS* is particularly useful as it 
+provides a working FreeRTOS + lwIP configuration.
+
+The following versions of the different components have been used:
+
+- SW4STM32 version 2.1
+- STM32Cube_FW_F7 version V1.7.0
+- FreeRTOS version V9.0.0
+- lwIP version V2.0.0
+
+Configuration
+-------------
+
+Example lwIP and FreeRTOS configurations are provided below for reference.
+This configuration must be tuned according to your needs. Details about 
+how to configure these third-party components can be found in the 
+FreeRTOS and lwIP documentation.
+
+- Example configuration for lwIP:
+
+.. literalinclude:: ../examples/lwipopts.h
+    :language: c
+
+- Example configuration for FreeRTOS:
+
+.. literalinclude:: ../examples/FreeRTOSConfig.h
+    :language: c
+
+
+CMake Support
+-------------
+
+|me| includes support to compile libraries for FreeRTOS using `CMake <https://cmake.org/>`_ .
+It is assumed that the |me| source-bundle has been downloaded and 
+installed and that `CMake <https://cmake.org/>`_ is available.
+
+.. only:: not cert
+
+    1. Make sure `CMake <https://cmake.org/>`_ is in the path.
+
+    2. Define the following environment variables:
+
+        - CONFIG_PATH : Path where the FreeRTOSConfig.h and lwipopts.h files are located.
+
+        - FREERTOS_PATH : Path to FreeRTOS source code and header files.
+
+        - LWIP_PATH : Path to lwIP source code and header files.
+
+        - PATH : Update your path with the location of the C and C++ compiler. By default
+          arm-none-eabi-gcc and arm-none-eabi-g++ are used as C and C++ compilers.
+
+    3. Enter the following command:
+
+        ::
+        
+            cd <rti_me install directory>
+            resource/scripts/rtime-make --target FreeRTOS --name cortexm7FreeRTOS9.0gcc7.3.1 -G "Unix Makefiles" --build
+  
+    4. The |me| libraries are available in:
+    
+        ::
+
+            <rti_me install directory>/lib/cortexm7FreeRTOS9.0gcc7.3.1
+
+
+NOTE: rtime-make uses the name specified with --name to determine a few
+settings needed by |me|. Please refer to :ref:`prepare` for details.
+

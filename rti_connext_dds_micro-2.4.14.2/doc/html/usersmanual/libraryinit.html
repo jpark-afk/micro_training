@@ -1,0 +1,422 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.1. Initializing the Connext Micro Library &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.2. Data Types" href="types.html" />
+    <link rel="prev" title="4. User’s Manual" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. User’s Manual</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.1. Initializing the Connext Micro Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rtiddsgen">4.1.1. rtiddsgen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-me-h-system-api">4.1.2. The Connext Micro System API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#component-registration">4.1.3. Component Registration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">4.2. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">4.3. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">4.4. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">4.5. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">4.6. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transports/index.html">4.7. Transports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">4.8. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configresources/index.html">4.9. Configuring Resource Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">4.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">4.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">4.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">4.13. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">4.14. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug.html">4.15. Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">4.16. Connext Micro Hardcoded Resource Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">4.17. Building Against FACE Conformance Libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../building/index.html">5. Building and Porting Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">4. </span>User’s Manual</a> &raquo;</li>
+        
+      <li><span class="section-number">4.1. </span>Initializing the Connext Micro Library</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/usersmanual/libraryinit.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="initializing-the-me-h-library">
+<h1><span class="section-number">4.1. </span>Initializing the Connext Micro Library<a class="headerlink" href="#initializing-the-me-h-library" title="Permalink to this headline">¶</a></h1>
+<p><em>Connext Micro</em> has been designed to integrate with a wide range of operating systems,
+network stacks, and CPUs. For this reason, <em>Connext Micro</em> places few restrictions
+on how it is integrated. The memory management API
+defined by <em>Connext Micro</em> may be implemented using standard C libray APIs such as
+<em>malloc()</em> and <em>free()</em>, or something hardware specific relying on memory being
+allocated from a specific memory region.</p>
+<p>In order to allow a degree of flexibility, integrations may be
+configurable at run-time. This configuration may require validation
+before it is safe to make specific calls, such as allocating memory.</p>
+<p>In order to guarantee consistency accross all integrations for when it is safe
+to call APIs, <em>Connext Micro</em> requires that its library is initialized
+with <em>DDS_DomainParticipantFactory_get_instance</em> before any public APIs are
+called, unless an API is documented to be safe to call before
+<em>DDS_DomainParticipantFactory_get_instance</em>.
+<em>DDS_DomainParticipantFactory_get_instance</em> initializes an integration,
+providing an opportunity for integrations to validate its configuration.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This restriction is not limited to DDS APIs, but extends to <strong>all</strong>
+public APIs, such as sequence APIs, type-support APIs, string APIs,
+and component APIs.</p>
+</div>
+<p><em>Connext Micro</em> is initialized with a successful call to
+<em>DDS_DomainParticipantFactory_get_instance</em>. On success,
+<em>DDS_DomainParticipantFactory_get_instance</em> returns a
+reference to a <em>DDS_DomainParticipantFactory</em>; on failure, ‘nil’ is
+returned:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">DDS_DomainParticipantFactory</span><span class="w"> </span><span class="o">*</span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipantFactory_get_instance</span><span class="p">();</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">factory</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* something failed, exit */</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Safe to call other public APIs */</span>
+</pre></div>
+</div>
+<p>After a successful call to <em>DDS_DomainParticipantFactory_get_instance</em>, public
+APIs are safe to call as documented. APIs that <strong>must not</strong> be called before
+<em>DDS_DomainParticipantFactory_get_instance</em> have the following additional
+description:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>API Restriction:
+This function must only be called after DDS_DomainParticipantFactory_get_instance.
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>DDS_DomainParticipantFactory_get_instance</em> is not guarenteed to be
+thread-safe.</p>
+</div>
+<div class="section" id="rtiddsgen">
+<h2><span class="section-number">4.1.1. </span>rtiddsgen<a class="headerlink" href="#rtiddsgen" title="Permalink to this headline">¶</a></h2>
+<p><em>rtiddsgen</em> is the type support compiler included with <em>Connext Micro</em>. <em>rtiddsgen</em>
+generates code to send and receive data types across the network, as well as
+to allocate memory to store data types in memory. These memory allocations
+use the memory management APIs defined by <em>Connext Micro</em>.</p>
+<p>Because each integration determines how these APIs are implemented,
+it is important that TypeSupport APIs are <strong>not</strong> called until <em>Connext Micro</em> has been
+initialized. APIs such as <em>FooTypeSupport_create_data</em> and
+<em>FooTypeSupport_delete_data</em> are <strong>not</strong> safe to call until after a successful
+call to <em>DDS_DomainParticipantFactory_get_instance</em>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">DDS_DomainParticipantFactory</span><span class="w"> </span><span class="o">*</span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="n">Foo</span><span class="w"> </span><span class="o">*</span><span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="cm">/* NOT ALLOWED */</span>
+<span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FooTypeSupport_create_data</span><span class="p">();</span>
+
+<span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipantFactory_get_instance</span><span class="p">();</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">factory</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* something failed, exit */</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* ALLOWED */</span>
+<span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FooTypeSupport_create_data</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sample</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* something failed, exit */</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Calls other public APIs */</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-me-h-system-api">
+<h2><span class="section-number">4.1.2. </span>The Connext Micro System API<a class="headerlink" href="#the-me-h-system-api" title="Permalink to this headline">¶</a></h2>
+<p>The <em>Connext Micro</em> System API enables applications to configure the behavior of <em>Connext Micro</em> at
+runtime. Which configuration options are available depends on the specific
+integration.</p>
+<p>However, because the <em>Connext Micro</em> system must be configured <strong>before</strong>
+<em>Connext Micro</em> is initialized, it is safe to call public System APIs before
+<em>DDS_DomainParticipantFactory_get_instance</em>, such as <em>OSAPI_System_get_property</em>
+and <em>OSAPI_System_set_property</em>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">OSAPI_SystemProperty</span><span class="w"> </span><span class="n">sys_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OSAPI_SystemProperty_INITIALIZER</span><span class="p">;</span>
+<span class="n">DDS_DomainParticipantFactory</span><span class="w"> </span><span class="o">*</span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">OSAPI_System_get_property</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sys_property</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* error */</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* Set sys_property */</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">OSAPI_System_set_property</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sys_property</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* error */</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipantFactory_get_instance</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">factory</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* error */</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="component-registration">
+<h2><span class="section-number">4.1.3. </span>Component Registration<a class="headerlink" href="#component-registration" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> consists of core APIs and additional components that extend its
+functionality. <em>Connext Micro</em> includes two components which <strong>must</strong>
+always be registered with <em>Connext Micro</em> before any DDS entities can be created:
+the <em>writer</em> and <em>reader</em> history caches. The following code sample
+demonstrates how to register these:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;wh_sm/wh_sm_history.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rh_sm/rh_sm_history.h&quot;</span>
+
+
+<span class="n">DDS_DomainParticipantFactory</span><span class="w"> </span><span class="o">*</span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="n">RT_Registry_T</span><span class="w"> </span><span class="o">*</span><span class="n">registry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipantFactory_get_instance</span><span class="p">();</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">factory</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* something failed, exit */</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">registry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipantFactory_get_registry</span><span class="p">(</span><span class="n">factory</span><span class="p">);</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">registry</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* something failed, exit */</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">RT_Registry_register</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="n">DDSHST_WRITER_DEFAULT_HISTORY_NAME</span><span class="p">,</span>
+<span class="w">                          </span><span class="n">WHSM_HistoryFactory_get_interface</span><span class="p">(),</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* something failed, exit */</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">RT_Registry_register</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="n">DDSHST_READER_DEFAULT_HISTORY_NAME</span><span class="p">,</span>
+<span class="w">                          </span><span class="n">RHSM_HistoryFactory_get_interface</span><span class="p">(),</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* something failed, exit */</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><em>Connext Micro</em> includes other components, such as <a class="reference internal" href="discovery.html"><span class="doc">Discovery</span></a> plugins and the
+<a class="reference internal" href="transports/UDP.html"><span class="doc">UDP Transport</span></a>. These are documented in other sections.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="types.html" class="btn btn-neutral float-right" title="4.2. Data Types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="4. User’s Manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

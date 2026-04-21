@@ -1,0 +1,261 @@
+
+.. _transport_rtps:
+
+RTPS  
+====
+
+The RTPS transport encapsulates user-data in RTPS messages and parses 
+received RTPS messages for user-data. This chapter describes 
+how to configure RTPS.
+
+
+Registration of RTPS
+--------------------
+
+RTPS is automatically registered when a `DDS_DomainParticipantFactory` is
+initialized with `DDS_DomainParticipantFactory_get_instance()`. In order to 
+change the RTPS configuration, it is necessary to first unregister it from the
+participant factory, set the properties, and then register RTPS with the new
+properties. This process is identical to other plugins in |me|, such as the
+UDP transport and discovery plugins.
+ 
+The following code shows the steps:
+
+        ::
+                    
+            int main(int argc,char *argv)
+            {
+                struct RTPS_InterfaceFactoryProperty *rtps_property = NULL;
+                DDS_DomainParticipantFactory *factory = NULL;
+                RT_Registry_T *registry = NULL;
+                struct RTPS_InterfaceFactoryProperty *rtps_property = NULL;
+                            
+                /* get the Domain Participant factory and registry*/
+                factory = DDS_DomainParticipantFactory_get_instance();
+            
+                registry =  DDS_DomainParticipantFactory_get_registry
+                                (DDS_DomainParticipantFactory_get_instance());
+            
+            
+                /* unregister the RTPS transport */
+                if (!RT_Registry_unregister(registry, NETIO_DEFAULT_RTPS_NAME,
+                                            NULL,NULL))
+                {
+                    printf("failed to unregister rtps\n");
+                    return 0;
+                }
+                
+                rtps_property = (struct RTPS_InterfaceFactoryProperty *)
+                        malloc(sizeof(struct RTPS_InterfaceFactoryProperty));
+                        
+                if (rtps_property == NULL)
+                {
+                    printf("failed to allocate rtps properties\n");
+                    return 0;           
+                }
+                
+                /* Set the new properties and register RTPS again */
+                
+                if (!RT_Registry_register(registry, NETIO_DEFAULT_RTPS_NAME,
+                            RTPS_InterfaceFactory_get_interface(),
+                            (struct RT_ComponentFactoryProperty*)rtps_property,
+                             NULL))
+                {
+                    printf("failed to register rtps\n");
+                    return 0;
+                }
+            
+                            
+                DDS_DomainParticipantFactory_create_participant(
+                   factory, domain_id,&dp_qos, NULL,DDS_STATUS_MASK_NONE);
+            }
+
+Please note that the RTPS properties *must* be valid for the *entire* 
+life-cycle of the participant factory because RTPS *does not* make an 
+internal copy. This saves memory when properties are stored in preallocated
+memory (for example in ROM).
+
+
+Overriding the Builtin RTPS Checksum Functions
+-----------------------------------------------
+
+Some applications may require specialized functions to guarantee 
+message integrity or may have special hardware that supports faster 
+checksum calculations. |me| provides a way for users to override the
+builtin checksum functions. Note that if a different checksum is calculated
+it may prevent interoperability with other DDS implementations. 
+
+ 
+Checksum function definition
+............................
+
+
+A checksum function must define a structure of the following type:
+
+    ::    
+    
+        typedef struct RTPS_ChecksumClass
+        {
+            RTPS_ChecksumClassId_T class_id;
+            void *context;
+            RTPS_CalculateChecksum_T calculate_checksum;
+        } RTPS_ChecksumClass_T;
+
+
+The type has three members:
+
+#. class_id - The class ID must be:
+
+     - RTPS_CHECKSUM_CLASSID_BUILTIN32 for the 32-bit checksum.
+     - RTPS_CHECKSUM_CLASSID_BUILTIN64 for the 64-bit checksum.
+     - RTPS_CHECKSUM_CLASSID_BUILTIN128 for the 128-bit checksum.
+   
+#. context - An opaque object for you to provide context for 
+   this function. This context will be passed to the `calculate_checksum` 
+   every time it is called.
+   
+#. checksum_calculate - The function pointer to the checksum function. The 
+   function is defined as
+      
+        ::
+        
+            typedef RTI_BOOL
+            (*RTPS_ChecksumCalculate_T)(void *context,
+                                        const struct REDA_Buffer *buf,
+                                        RTI_UINT32 buf_length,
+                                        RTPS_Checksum_T *checksum);
+
+
+    - context: |me| will pass in the context as defined in the class.
+    
+    - buf: An array of REDA_Buffer. Each REDA_Buffer includes a pointer and size of the buffer.
+    
+    - buf_length: The size of the array.
+    
+    RTPS_Checksum_T checksum: This is the out parameter of this function. 
+    It is a union defined as follows:
+
+        ::
+                
+            typedef union RTPS_Checksum
+            {
+                    RTI_UINT32 checksum32;
+                    RTI_UINT64 checksum64;
+                    RTI_UINT8 checksum128[16];
+            } RTPS_Checksum_T;
+
+
+Please note the following *important* information regarding the output values:
+
+#. The number returned in checksum32 is assumed to be in *host order* endinaness. 
+#. The number returned in checksum64 is assumed to be in *host order* endinaness.
+#. checksum128 is treated as an octet array.
+
+Example
+-------
+       
+Below is an example implementation of a custom CRC-32 function using the 
+Intel intrinsic functions. It shows the QoS that needs to be set, as well 
+as how to override the builtin checksum function. 
+
+        ::
+        
+            RTI_BOOL
+            CrcClassTest_custom_crc32_other(void *context,
+                                            const struct REDA_Buffer *buf,
+                                            unsigned int buf_length,
+                                            union RTPS_CrcChecksum *checksum)            
+            {
+                RTI_UINT32 crc = 0;
+                unsigned char *data = (unsigned char *) buf[0].pointer;
+                RTI_UINT32 length = buf[0].length;
+                int k;
+            
+                UNUSED_ARG(k);
+                UNUSED_ARG(context);
+                UNUSED_ARG(buf_length);
+            
+                for (k = 0; k < length; k++) 
+                {
+                    crc = _mm_crc32_u8(crc, data[k]);
+                }
+            
+                checksum->checksum32 = crc;
+            
+                return RTI_TRUE;
+            }
+            
+            
+            int main(int argc,char *argv)
+            {
+                struct DDS_DomainParticipantQos dp_qos =     
+                        DDS_DomainParticipantQos_INITIALIZER;
+                struct RTPS_InterfaceFactoryProperty *rtps_property = NULL;
+                DDS_DomainParticipantFactory *factory = NULL;
+                RT_Registry_T *registry = NULL;
+                struct RTPS_InterfaceFactoryProperty *rtps_property = NULL;
+                
+                /* Instantiate a RTPS_CrcClass for your custom function*/
+                struct RTPS_ChecksumClass custom_crc32 = 
+                {
+                    RTPS_CHECKSUM_CLASSID_BUILTIN32, /*class_id*/
+                    NULL, /*context*/
+                    CrcClassTest_custom_crc32_other /*Custom function*/
+                };
+            
+                /* get the Domain Participant factory and registry*/
+                factory = DDS_DomainParticipantFactory_get_instance();
+            
+                registry =  DDS_DomainParticipantFactory_get_registry
+                                (DDS_DomainParticipantFactory_get_instance());
+            
+            
+                /* unregister the RTPS transport */
+                if (!RT_Registry_unregister(registry, NETIO_DEFAULT_RTPS_NAME,
+                                            NULL,NULL))
+                {
+                    printf("failed to unregister rtps\n");
+                    return 0;
+                }
+                
+                rtps_property = (struct RTPS_InterfaceFactoryProperty *)
+                        malloc(sizeof(struct RTPS_InterfaceFactoryProperty));
+                        
+                if (rtps_property == NULL)
+                {
+                    printf("failed to allocate rtps properties\n");
+                    return 0;           
+                }
+            
+            
+                /* the rtps property takes the structure with the custom 
+                 * function
+                 */
+                 
+                *rtps_property = RTPS_INTERFACE_FACTORY_DEFAULT;
+                rtps_property->checksum.allow_builtin_override = RTI_TRUE;
+                rtps_property->checksum.builtin_checksum32_class = custom_crc32;
+                
+                /* register the RTPS transport */
+                if (!RT_Registry_register(registry, NETIO_DEFAULT_RTPS_NAME,
+                            RTPS_InterfaceFactory_get_interface(),
+                            (struct RT_ComponentFactoryProperty*)rtps_property,
+                             NULL))
+                {
+                    printf("failed to register rtps\n");
+                    return 0;
+                }
+            
+            
+                /* modify the domain participant qos */
+                dp_qos.protocol.compute_crc = DDS_BOOLEAN_TRUE;
+                dp_qos.protocol.check_crc = DDS_BOOLEAN_TRUE;
+                dp_qos.protocol.require_crc = DDS_BOOLEAN_TRUE;
+                dp_qos.protocol.computed_crc_kind =  DDS_CHECKSUM_BUILTIN32;
+                dp_qos.protocol.allowed_crc_mask = DDS_CHECKSUM_BUILTIN32;
+            
+                /* use the qos and the factory to create a participant */
+                
+                DDS_DomainParticipantFactory_create_participant(
+                   factory, domain_id,&dp_qos, NULL,DDS_STATUS_MASK_NONE);
+            }

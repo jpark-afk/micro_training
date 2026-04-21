@@ -1,0 +1,405 @@
+﻿.. _section-introduction:
+
+Introduction
+============
+
+What is |rti_me_h|?
+-------------------
+
+|rti_me| is network middleware for distributed real-time applications. It
+provides the communications service programmers need to distribute
+time-critical data between embedded and/or enterprise devices or nodes.
+|me| uses the publish-subscribe communications model to make data
+distribution efficient and robust. |me| simplifies application development,
+deployment and maintenance and provides fast, predictable distribution of
+time-critical data over a variety of transport networks. With |me|, you can:
+
+- Perform complex one-to-many and many-to-many network communications.
+- Customize application operation to meet various real-time, reliability,
+  and quality-of-service goals.
+- Provide application-transparent fault tolerance and application robustness.
+- Use a variety of transports.
+
+|me| implements the Data-Centric Publish-Subscribe (DCPS) API within
+the OMG’s Data Distribution Service (DDS) for Real-Time Systems. DDS is the
+first standard developed for the needs of real-time systems. DCPS provides
+an efficient way to transfer data in a distributed system.
+
+With |me|, systems designers and programmers start with a fault-tolerant
+and flexible communications infrastructure that will work over a wide
+variety of computer hardware, operating systems, languages, and networking
+transport protocols. |me| is highly configurable so programmers can adapt
+it to meet the application’s specific communication requirements.
+
+
+.. only:: not cert
+
+    |rti_me_cert_h| versus |rti_me_h|
+    ................................. 
+    
+    |rti_me| and |rti_me_cert| originate from the same source base, but as of 
+    |me| 2.4.6 the two are maintained as two independent releases. The
+    latest release with certification evidence is |me_cert| 2.4.5. However, 
+    features that exist in |me| and |me_cert| behave identically and the
+    source code is written following identical guidelines. |me_cert| 
+    only supports a subset of the features found in |me|. In the API
+    reference manuals, APIs that are supported by |me_cert| are clearly marked.
+    
+    Optional Certification Package
+    ..............................
+    
+    An optional Certification Package is available for systems that require 
+    certification to DO-178C or other safety standards. This package includes 
+    the artifacts required by a certification authority. The Certification 
+    Package is licensed separately from Connext DDS Cert.
+    
+    To use an existing Certification Package, an application must be linked 
+    against the same libraries included in the Certification Package. 
+    Contact RTI Support, support@rti.com, for details.
+
+
+
+Publish-Subscribe Middleware
+............................
+
+|me| is based on a publish-subscribe communications model. Publish-subscribe
+(PS) middleware provides a simple and intuitive way to distribute data. It
+decouples the software that creates and sends data—the data publishers—from
+the software that receives and uses the data—the data subscribers. Publishers
+simply declare their intent to send and then publish the data. Subscribers
+declare their intent to receive, then the data is automatically delivered by
+the middleware. Despite the simplicity of the model, PS middleware can
+handle complex patterns of information flow. The use of PS middleware results
+in simpler, more modular distributed applications. Perhaps most importantly,
+PS middleware can automatically handle all network chores, including
+connections, failures, and network changes, eliminating the need for user
+applications to program of all those special <cases. What experienced network
+middleware developers know is that handling special cases accounts for over
+80% of the effort and code.
+
+Supported DDS Features
+----------------------
+
+.. only:: not cert
+  
+    |me| supports a subset of the DDS DCPS standard. A brief overview of the
+    supported features are listed here. For a detailed list, please refer to the
+    :link_connextmicro_dds_api_c:`C API Reference <index.html>` and :link_connextmicro_dds_api_cpp:`C++ API Reference <index.html>`. 
+
+.. only:: cert
+
+    |me| supports a subset of the DDS DCPS standard. A brief overview of the
+    supported features are listed here.For a detailed list, please refer to the
+    :link_connextmicro_dds_api_c:`C API Reference <index.html>`.
+
+
+DDS Entity Support
+..................
+
+|me| supports the following DDS entities. Please refer to the documentation
+for details.
+
+.. TODO: PDF links
+
+* :link_connextmicro_dds_api_c:`DomainParticipantFactory <group__DDSDomainParticipantFactoryModule.html>`
+* :link_connextmicro_dds_api_c:`DomainParticipant        <group__DDSDomainParticipantModule.html>`
+* :link_connextmicro_dds_api_c:`Topic      <group__DDSTopicEntityModule.html>`
+* :link_connextmicro_dds_api_c:`Publisher  <group__DDSPublisherModule.html>`
+* :link_connextmicro_dds_api_c:`Subscriber <group__DDSSubscriberModule.html>`
+* :link_connextmicro_dds_api_c:`DataWriter <group__DDSWriterModule.html>`
+* :link_connextmicro_dds_api_c:`DataReader <group__DDSReaderModule.html>`
+
+DDS QoS Policy Support
+......................
+
+|me| supports the following DDS Qos Policies. Please refer to the
+documentation for details.
+
+* :link_connextmicro_dds_api_c:`DDS_DataReaderProtocolQosPolicy       <structDDS__DataReaderProtocolQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_DataReaderResourceLimitsQosPolicy <structDDS__DataReaderResourceLimitsQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_DataWriterProtocolQosPolicy       <structDDS__DataWriterProtocolQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_DataWriterResourceLimitsQosPolicy <structDDS__DataWriterResourceLimitsQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_DeadlineQosPolicy                 <structDDS__DeadlineQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_DiscoveryQosPolicy                <structDDS__DiscoveryQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_DomainParticipantResourceLimitsQosPolicy <structDDS__DomainParticipantResourceLimitsQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_DurabilityQosPolicy               <structDDS__DurabilityQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_DestinationOrderQosPolicy         <structDDS__DestinationOrderQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_EntityFactoryQosPolicy            <structDDS__EntityFactoryQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_HistoryQosPolicy                  <structDDS__HistoryQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_LivelinessQosPolicy               <structDDS__LivelinessQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_OwnershipQosPolicy                <structDDS__OwnershipQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_OwnershipStrengthQosPolicy        <structDDS__OwnershipStrengthQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_ReliabilityQosPolicy              <structDDS__ReliabilityQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_ResourceLimitsQosPolicy           <structDDS__ResourceLimitsQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_RtpsReliableWriterProtocol_t      <structDDS__RtpsReliableWriterProtocol__t.html>`
+* :link_connextmicro_dds_api_c:`DDS_SystemResourceLimitsQosPolicy     <structDDS__SystemResourceLimitsQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_TransportQosPolicy                <structDDS__TransportQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_UserTrafficQosPolicy              <structDDS__UserTrafficQosPolicy.html>`
+* :link_connextmicro_dds_api_c:`DDS_WireProtocolQosPolicy             <structDDS__WireProtocolQosPolicy.html>`
+
+Standards and Interoperability
+------------------------------
+
+|me| implements the Object Management Group (OMG) Data Distribution Service 
+(DDS) standard (version 1.4), and the Real-Time Publish-Subscribe (RTPS) wire 
+interoperabilty protocol standard (version 2.2).  
+
+|me| supports a subset of the submessages defined by the Real-Time 
+Publish-Subscribe (RTPS) interoperability specification.  Data fragment 
+submessages are not supported. The messages are compatible with Wireshark and 
+its RTPS packet dissector.
+  
+|me|, |rti_me_micro|, and |core| are wire-interoperable, unless stated 
+otherwise  (see below), and API compatible for APIs specified by the 
+DDS standard. For non-standard APIs, |me|, |rti_me_micro|, and 
+|core| are incompatible. 
+Please refer to :ref:`section-micro_and_core` for more information.
+
+DDS Wire Compatibility
+......................
+
+|me| is compliant with RTPS 2.2, but does not support and ignore the
+following RTPS sub-messages:
+
+.. only:: not cert
+
+    +--------------------+-----------+--------------+------------------+
+    | Submessage         | Supported | DDS Standard | Connext DDS Core |
+    +====================+===========+==============+==================+
+    | DATA_FRAG          | No        | Yes          | Yes              |
+    +--------------------+-----------+--------------+------------------+
+    | NACK_FRAG          | No        | Yes          | Yes              |
+    +--------------------+-----------+--------------+------------------+
+    | HEARTBEAT_FRAG     | No        | Yes          | No               |
+    +--------------------+-----------+--------------+------------------+
+    | INFO_SRC           | No        | Yes          | Yes              |
+    +--------------------+-----------+--------------+------------------+
+    | INFO_REPLY         | No        | Yes          | Yes              |
+    +--------------------+-----------+--------------+------------------+
+    | INFO_REPLY_IPV4    | No        | Yes          | Yes              |
+    +--------------------+-----------+--------------+------------------+
+
+.. only:: cert
+
+    +--------------------+-----------+--------------+------------------+
+    | Submessage         | Supported | DDS Standard | Connext DDS Core |
+    +====================+===========+==============+==================+
+    | DATA_FRAG          | No        | Yes          | Yes              |
+    +--------------------+-----------+--------------+------------------+
+    | NACK_FRAG          | No        | Yes          | Yes              |
+    +--------------------+-----------+--------------+------------------+
+    | HEARTBEAT_FRAG     | No        | Yes          | No               |
+    +--------------------+-----------+--------------+------------------+
+    | DATA_BATCH         | No        | No           | Yes              |
+    +--------------------+-----------+--------------+------------------+
+    | HEARTBEAT_BATCH    | No        | No           | No               |
+    +--------------------+-----------+--------------+------------------+
+    | INFO_SRC           | No        | Yes          | Yes              |
+    +--------------------+-----------+--------------+------------------+
+    | INFO_REPLY         | No        | Yes          | Yes              |
+    +--------------------+-----------+--------------+------------------+
+    | INFO_REPLY_IPV4    | No        | Yes          | Yes              |
+    +--------------------+-----------+--------------+------------------+
+
+
+Profile / Feature
+.................
+
+|me| does not support mutable Qos policies. 
+
++------------------------------+----------------+--------------+------------------+
+| Submessage                   | Supported      | DDS Standard | Connext DDS Core |
++==============================+================+==============+==================+
+| USER_DATA                    | No             | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| TOPIC_DATA                   | No             | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| DURABILITY                   | Partially (1)  | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| PRESENTATION                 | Partially (2)  | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| DEADLINE                     | Yes            | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| LATENCY_BUDGET               | No             | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| LIVELINESS                   | Partially (3)  | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| TIME_BASED_FILTER            | No             | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| PARTITION                    | No             | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| RELIABILITY                  | Yes (4)        | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| TRANSPORT_PRIORITY           | No             | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| LIFESPAN                     | No             | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| DESTINATION_ORDER            | Partially (5)  | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| HISTORY                      | Partially (6)  | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| RESOURCE_LIMITS              | Yes (7)        | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| ENTITY_FACTORY               | Yes            | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| WRITER_DATA_LIFECYCLE        | No             | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| READER_DATA_LIFECYCLE        | No             | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| OWNERSHIP                    | Yes            | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| OWNERSHIP_STRENGTH           | Yes            | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| DURABILITY_SERVICE           | No             | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| ContentFilteredTopic         | No             | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| QueryCondition               | No             | Yes          | Yes              |
++------------------------------+----------------+--------------+------------------+
+| MultiTopic                   | No             | Yes          | No               |
++------------------------------+----------------+--------------+------------------+
+| ASYNCHRONOUS_PUBLISHER       | No             | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| AVAILABILITY                 | No             | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| BATCH                        | Only reception | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| DATA_READER_PROTOCOL         | rtps_object_id | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| DATA_WRITER_PROTOCOL         | Partially (8)  | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| DISCOVERY                    | Yes            | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| DISCOVERY_CONFIG             | No             | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| ENTITY_NAME                  | Partially (9)  | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| EVENT                        | No             | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| LOCATORFILTER                | No             | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| LOGGING                      | No             | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| MULTICHANNEL                 | No             | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| PROPERTY                     | No             | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| PUBLISH_MODE                 | No             | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| RECEIVER_POOL                | No             | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| SERVICE                      | No             | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| TYPE_CONSISTENCY_ENFORCEMENT | No             | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| TYPESUPPORT                  | Yes            | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+| WIRE_PROTOCOL                | Yes            | No           | Yes              |
++------------------------------+----------------+--------------+------------------+
+
+NOTES:
+
+1. VOLATILE and TRANSIENT_LOCAL
+2. No, DW offers access_scope = TOPIC, coherent_access = FALSE and ordered_access = TRUE 
+   DR requests access_scope = INSTANCE, coherent_access = FALSE and ordered_access = FALSE
+3. AUTOMATIC (infinite only), MANUAL_BY_PARTICIPANT (infinite only), MANUAL_BY_TOPIC (finite and infinite)  
+4. BEST_EFFORT and RELIABLE, only max_blocking_time=0
+5. DataWriter: Yes, DataReader only supports BY_RECEPTION_TIMESTAMP
+6. Only KEEP_LAST
+7. Only finite resource limits 
+8. The following are supported:
+
+   - heartbeat_period
+   - heartbeats_per_max_samples
+   - max_heartbeat_retries
+   - max_send_window_size
+   - rtps_object_id
+     
+9. DomainParticipant only
+
+DDS API Support
+...............
+
+For supported APIs, please refer to:
+
+- :link_connextmicro_dds_api_c:`C API Reference <index.html>`
+
+.. only:: not cert
+
+    - :link_connextmicro_dds_api_cpp:`C++ API Reference <index.html>`
+
+
+RTI Connext DDS Documentation
+-----------------------------
+
+Throughout this document, we may suggest reading sections in other *RTI Connext DDS* documents.
+These documents are in your *RTI Connext DDS* installation directory under
+**rti-connext-dds-<version>/doc/manuals**. A quick way to find them is from *RTI Launcher's*
+Help panel, select "Browse Connext Documentation".
+
+Since installation directories vary per user, links are not provided to these documents
+on your local machine. However, we do provide links to documents on the |rti_community_documentation|_
+site for users with Internet access.
+
+New users can start by reading Parts 1 (Introduction) and 2 (Core Concepts) in the :link_external_community_doc_pro_um:`RTI Connext DDS Core Libraries User's Manual <index.htm>`.
+These sections teach basic DDS concepts applicable to all RTI middleware, including |rti_core_pro| and |rti_me|.
+You can open the :link_external_community_doc_pro_um:`RTI Connext DDS Core Libraries User's Manual <index.htm>` from *RTI Launcher's* Help panel.
+
+The |rti_community|_ provides many resources for users of DDS and the RTI Connext family of products.
+
+
+OMG DDS Specification
+---------------------
+
+For the original DDS reference, the OMG DDS specification can be found in the
+`OMG Specifications <https://www.omg.org/spec>`_ under "Data Distribution Service".
+
+Other Products
+--------------
+
+|rti_me| is one of several products in the *RTI Connext* family of products:
+ 
+|rti_me_cert| is a subset of |rti_me_micro|. |me_cert| does not include the 
+following features because Certification Evidence is not yet available for 
+them. If you require Certification Evidence for any of these features, 
+please contact RTI.
+
+- C++ language API.
+- Multi-platform support.
+- Dynamic endpoint discovery.
+- delete() APIs (e.g. delete_datareader()).
+- Batching.
+- UDP Transformations.
+    
+|rti_core_pro| addresses the sophisticated databus 
+requirements in complex systems including an API compliant with the 
+Object Management Group (OMG) Data Distribution Service (DDS) 
+specification. DDS is the leading data-centric publish/subscribe (DCPS) 
+messaging standard for integrating distributed real-time applications. 
+|core_pro| is the  dominant industry implementation with 
+benefits including:
+
+- OMG-compliant DDS API
+- Advanced features to address complex systems
+- Advanced Quality of Service (QoS) support
+- Comprehensive platform and network transport support
+- Seamless interoperability with \rtime
+    
+|rti_core_pro| includes rich integration capabilities:
+
+- Data transformation
+- Integration support for standards including JMS, SQL databases, file,
+  socket, Excel, OPC, STANAG, LabVIEW, Web Services and more
+- Ability for users to create custom integration adapters
+- Optional integration with Oracle, MySQL and other relational databases
+- Tools for visualizing, debugging and managing all systems in real-time
+
+|rti_core_pro| also includes a rich set of tools to
+accelerate debugging and testing while easing management of deployed
+systems. These components include:
+
+- Administration Console
+- Distributed Logger
+- Monitor
+- Monitoring Library
+- Recording Service

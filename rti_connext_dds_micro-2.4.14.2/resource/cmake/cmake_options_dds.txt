@@ -1,0 +1,38 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2016
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# DDS options file
+#
+# Modification History
+# --------------------
+# 15nov2016 tk Written
+################################################################################
+IF (RTIME_PRINT_CONFIG)
+    RTI_MESSAGE_STATUS("RTIME_DDS_DISABLE_APPLICATION_INFO .: ${RTIME_DDS_DISABLE_APPLICATION_INFO}")
+    RETURN()
+ENDIF()
+
+SET(RTIME_DDS_DISABLE_PARTICIPANT_INFO_DOC 
+"Checking this option disables sending DDS participant information, such as
+application name, process id, hostname, target name etc., as part of the 
+participant discovery data.")
+
+IF (NOT DEFINED RTIME_DDS_DISABLE_APPLICATION_INFO)
+    SET(RTIME_DDS_DISABLE_APPLICATION_INFO FALSE CACHE BOOL ${RTIME_DDS_DISABLE_PARTICIPANT_INFO_DOC})
+ELSE()
+    SET(RTIME_DDS_DISABLE_APPLICATION_INFO ${RTIME_DDS_DISABLE_APPLICATION_INFO} CACHE BOOL ${RTIME_DDS_DISABLE_PARTICIPANT_INFO_DOC})
+ENDIF()
+
+IF (${RTIME_DDS_DISABLE_APPLICATION_INFO})
+    ADD_DEFINITIONS(-DDDS_DISABLE_PARTICIPANT_INFO=1)
+ENDIF()
+
+

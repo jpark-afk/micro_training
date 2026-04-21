@@ -1,0 +1,519 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.3. Connext Micro for QNX &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.4. Building the Connext Micro Source for FreeRTOS" href="freertos.html" />
+    <link rel="prev" title="5.2. Building the Connext Micro Source" href="building.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">4. User’s Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. Building and Porting Connext Micro</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="platforms.html">5.1. RTI Connext Micro Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">5.2. Building the Connext Micro Source</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.3. Connext Micro for QNX</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">5.3.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qnx-platform-notes">5.3.2. QNX Platform Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#heap">5.3.2.1. Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mutex">5.3.2.2. Mutex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#semaphores">5.3.2.3. Semaphores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#timers">5.3.2.4. Timers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time">5.3.2.5. Time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#threads">5.3.2.6. Threads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sockets">5.3.2.7. Sockets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#os-resource-usage">5.3.3. OS Resource Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-environment">5.3.4. Build environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-with-rtime-make">5.3.5. Compiling with rtime-make</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">5.4. Building the Connext Micro Source for FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threadx.html">5.5. Building the Connext Micro Source for ThreadX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosar.html">5.6. Connext Micro on AUTOSAR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">5.7. Porting RTI Connext Micro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="port_validation.html">5.8. Port Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cert_compatibility.html">5.9. Building Connext Micro with compatibility for Connext Cert</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">5. </span>Building and Porting Connext Micro</a> &raquo;</li>
+        
+      <li><span class="section-number">5.3. </span>Connext Micro for QNX</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/building/qnx.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="me-h-for-qnx">
+<h1><span class="section-number">5.3. </span>Connext Micro for QNX<a class="headerlink" href="#me-h-for-qnx" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2><span class="section-number">5.3.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This chapter includes details regarding how <em>Connext Micro</em> is supported on QNX.
+Please note that this  documentation does <em>not</em>  include information regarding
+installation  of QNX itself. Please consult your QNX documentation for
+how to install QNX.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#qnx-platform-notes">QNX Platform Notes</a></p></li>
+<li><p><a class="reference internal" href="#os-resource-usage">OS Resource Usage</a></p></li>
+<li><p><a class="reference internal" href="#build-environment">Build environment</a></p></li>
+<li><p><a class="reference internal" href="#compiling-with-rtime-make">Compiling with rtime-make</a></p></li>
+</ul>
+</div>
+<div class="section" id="qnx-platform-notes">
+<h2><span class="section-number">5.3.2. </span>QNX Platform Notes<a class="headerlink" href="#qnx-platform-notes" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> uses an abstract platform API that must be ported to different platforms.
+This section discusses the impementation of the platform abtractions
+on the QNX platform.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#heap" id="id2">Heap</a></p></li>
+<li><p><a class="reference internal" href="#mutex" id="id3">Mutex</a></p></li>
+<li><p><a class="reference internal" href="#semaphores" id="id4">Semaphores</a></p></li>
+<li><p><a class="reference internal" href="#timers" id="id5">Timers</a></p></li>
+<li><p><a class="reference internal" href="#time" id="id6">Time</a></p></li>
+<li><p><a class="reference internal" href="#threads" id="id7">Threads</a></p></li>
+<li><p><a class="reference internal" href="#sockets" id="id8">Sockets</a></p></li>
+</ul>
+</div>
+<div class="section" id="heap">
+<h3><a class="toc-backref" href="#id2"><span class="section-number">5.3.2.1. </span>Heap</a><a class="headerlink" href="#heap" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> allocates memory using the <cite>malloc</cite> API. This  memory is managed
+internally by <em>Connext Micro</em> and is not freed.</p>
+</div>
+<div class="section" id="mutex">
+<h3><a class="toc-backref" href="#id3"><span class="section-number">5.3.2.2. </span>Mutex</a><a class="headerlink" href="#mutex" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> uses recursive mutexes to protect its critical sections. Because all
+<em>Connext Micro</em> APIs are synchronous, a mutex <cite>take</cite> operation blocks until the mutex
+becomes available. It is unexptected behavior if a mutex does not become
+available.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>QNX creates all mutexes such that priority inversion does not
+occur (SSR-3286-0760, Document QMS3286, QNX OS for Safety 2.1).</p>
+</div>
+</div>
+<div class="section" id="semaphores">
+<h3><a class="toc-backref" href="#id4"><span class="section-number">5.3.2.3. </span>Semaphores</a><a class="headerlink" href="#semaphores" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> uses a semaphore to implement the DDS WaitSet. One semaphore is
+implemented with a condition variable while another sempahore is implemented
+with an internal timer (e.g. a <em>DDS_WaitSet</em> with a finite duration) that
+signals the condition variable upon timeout.</p>
+<p>The resolution of a semaphore is rounded up to the nearest clock tick + 1.
+Thus, a semaphore may take up to 2 clock ticks (at most) extra to time out.
+The timeout is tied to the tick-time mentioned in <a class="reference internal" href="#timers">Timers</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Connext Micro</em> does not support multiple threads blocking on a semaphore. None of
+the public <em>Connext Micro</em> APIs would cause multiple threads to block on the same
+semaphore.</p>
+</div>
+</div>
+<div class="section" id="timers">
+<h3><a class="toc-backref" href="#id5"><span class="section-number">5.3.2.4. </span>Timers</a><a class="headerlink" href="#timers" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> implements its own software timers to support timed events such as
+periodic participant announcements and checking for missed deadlines.</p>
+<p>The timer resolution for <em>Connext Micro</em> timers is 10 milliseonds. This cannot
+be changed without recompiling <em>Connext Micro</em>.</p>
+<p><em>Connext Micro</em> requires an external (to <em>Connext Micro</em>) clock tick to run its internal timers.
+On QNX, this clock tick is implemented with a POSIX real-time timer and
+the SIGRTMIN signal. This cannot be changed.</p>
+<p>When the SIGRTMIN signal is raised, a timer handler signals a semaphore, which
+wakes up a separate thread that runs the timers. Thus, the timers are updated
+in a separate thread, not in the context of the signal handler.</p>
+<p>In addition to runnning the internal timers, <em>Connext Micro</em> maintains an internal clock
+that is started when <em>Connext Micro</em> is first initialized, and which is incremented in each
+clock-tick. The clock-tick is maintained as a 32-bit signed second counter and
+a 32-bit unsigned nanosecond counter.</p>
+<p>This internal clock is known as the “tick-time” and is a function of the number
+of clock-ticks, not the actual time. The tick-time is used to control semaphore
+timeout, deadline, and liveliness.</p>
+</div>
+<div class="section" id="time">
+<h3><a class="toc-backref" href="#id6"><span class="section-number">5.3.2.5. </span>Time</a><a class="headerlink" href="#time" title="Permalink to this headline">¶</a></h3>
+<p>DDS APIs use the time of day to timestamp samples. On QNX, this timestamp is
+retrieved using <em>gettimeofday</em>. Note that no check is performed on the
+returned time of day (such as time going backwards).</p>
+<p>The time is also used to determine the interval between two samples when
+the sample ordering is per source timestamp on the <em>DataWriter</em>.</p>
+</div>
+<div class="section" id="threads">
+<h3><a class="toc-backref" href="#id7"><span class="section-number">5.3.2.6. </span>Threads</a><a class="headerlink" href="#threads" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> creates threads to run timers and process data received from the network.</p>
+<p>By default, threads are created with the:</p>
+<ul class="simple">
+<li><p><em>PTHREAD_EXPLICIT_SCHED</em> attribute.</p></li>
+<li><p><em>PTHREAD_CREATE_DETACHED</em> attribute.</p></li>
+<li><p>OS default stack size.</p></li>
+<li><p>priority inheritied from spawning thread.</p></li>
+</ul>
+<p>If the OSAPI_ThreadOptions <em>OSAPI_THREAD_REALTIME_PRIORITY</em> is used, the
+following attributes are set as well:</p>
+<ul class="simple">
+<li><p><em>PTHREAD_SCOPE_SYSTEM</em></p></li>
+<li><p><em>SCHED_FIFO</em></p></li>
+</ul>
+<p>Two types of thread priorties can be set:</p>
+<ul>
+<li><p><strong>Absolute</strong></p>
+<p>A priority equal to or larger than zero is used as is, and must be within
+the range allowed by the OS.</p>
+</li>
+<li><p><strong>Calculated</strong></p>
+<p>A priority between [<em>OSAPI_THREAD_PRIORITY_LOW</em>, <em>OSAPI_THREAD_PRIORITY_HIGH</em>]
+is calculated using the following formula:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>OS.min_priority + (((OS.max_priority - OS.min_priority) * priority_level)/OSAPI_THREAD_PRIORITY_HIGH);
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="sockets">
+<h3><a class="toc-backref" href="#id8"><span class="section-number">5.3.2.7. </span>Sockets</a><a class="headerlink" href="#sockets" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> creates a single socket to send data with and one socket for each
+receive thread created. If a multicast address is specified to receive
+data on, multicast loopback is automatically enabled.</p>
+</div>
+</div>
+<div class="section" id="os-resource-usage">
+<h2><span class="section-number">5.3.3. </span>OS Resource Usage<a class="headerlink" href="#os-resource-usage" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> uses OS resources to implement the <em>Connext Micro</em> abstraction layer. The following
+table outlines the type and amount of resources used by different entities and
+objects:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Entity</p></th>
+<th class="head"><p>mutex</p></th>
+<th class="head"><p>condition</p></th>
+<th class="head"><p>timer</p></th>
+<th class="head"><p>socket</p></th>
+<th class="head"><p>threads</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>DDS_DomainParticipantFactory</p></td>
+<td><p>3</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>DDS_DomainParticipant</p></td>
+<td><p>2</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>DDS_DataReader</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>DDS_DataWriter</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>DDS_Publisher</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>DDS_Subscriber</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>DDS_WaitSet</p></td>
+<td><p>3</p></td>
+<td><p>2</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>DDS_GuardCondition</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>UDP Transport Send
+(per Participant)</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>UDP Transport Receive
+(per Receive locator)</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1 per
+Receive
+locator</p></td>
+</tr>
+</tbody>
+</table>
+<p>Resources:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>mutex - POSIX mutex created with <code class="docutils literal notranslate"><span class="pre">pthread_mutex_init</span></code></p></li>
+<li><p>condition - POSIX condition variable created with <code class="docutils literal notranslate"><span class="pre">pthread_cond_init</span></code></p></li>
+<li><p>timer - POSIX real-time timer create with <code class="docutils literal notranslate"><span class="pre">timer_create</span></code> and using the
+signal SIGMINRT.</p></li>
+<li><p>socket - socket created with <code class="docutils literal notranslate"><span class="pre">socket</span></code></p></li>
+<li><p>threads - POSIX thread created with <code class="docutils literal notranslate"><span class="pre">pthread_create</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="build-environment">
+<h2><span class="section-number">5.3.4. </span>Build environment<a class="headerlink" href="#build-environment" title="Permalink to this headline">¶</a></h2>
+<p>Source is included with <em>Connext Micro</em> and it is possible to compile
+<em>Connext Micro</em> from source. However, in the case of <em>Connext Cert</em> <strong>only binaries</strong>
+provided as part of the Certification Data Package are valid with the
+certification evidence. Compiling the source may be useful for development
+purposes.</p>
+<p><em>Connext Micro</em> is typically cross-compiled for QNX from a Linux host machine. Before
+<em>Connext Micro</em> can be compiled with the supplied <cite>cmake</cite> files, it is required to run
+the QNX setup script located in the QNX installation directory. For example,
+in a Linux environment:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source qnxsdp-env.sh
+</pre></div>
+</div>
+</div>
+<div class="section" id="compiling-with-rtime-make">
+<h2><span class="section-number">5.3.5. </span>Compiling with rtime-make<a class="headerlink" href="#compiling-with-rtime-make" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> includes <cite>cmake</cite> files for the following QNX architectures:</p>
+<ul class="simple">
+<li><p>armv8QNX7.0.4qcc_gpp5.4.0 - QNX SDP 7, ARMv8</p></li>
+<li><p>armv8QOS2.1qcc_gpp5.4.0 - QNX OS for Safety 2.1, ARMv8</p></li>
+</ul>
+<p>To compile for these architectures, execute the following command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>resource/scripts/rtime-make --target &lt;architecture&gt; --build --config Release
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="freertos.html" class="btn btn-neutral float-right" title="5.4. Building the Connext Micro Source for FreeRTOS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="building.html" class="btn btn-neutral float-left" title="5.2. Building the Connext Micro Source" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

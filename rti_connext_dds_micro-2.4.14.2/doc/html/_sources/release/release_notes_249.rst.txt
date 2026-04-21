@@ -1,0 +1,267 @@
+What's New in 2.4.9
+===================
+
+Improved Support for adding new Ports
+-------------------------------------
+
+Some changes were made to how |me| includes different ports. In versions
+before 2.4.9 new ports would typically update osapi_config.h and add 
+a new directory with an implementation for the required OSAPI functions. As of
+2.4.9 osapi_config.h was re-factored and OS and compiler specific functions
+were moved to two new files:
+
+- osapi_os_<osname>.h This file contains OS specific information. RTI ships three
+  files: osapi_os_posix.h, osapi_os_windows.h and osapi_os_vxworks.h. It is
+  recommended to add a new osapi_os_<osname>.h file when a new OS is added.
+  
+- osapi_cc_<osname>.h This file contains compiler specific informations. RTI
+  ship osapi_cc_stds.c which works with Microsoft Visual Studio, clang and GCC.
+
+Please refer to \ref OSAPIUserManuals_PortingModule for details.
+
+Updated Build Environment to Build RTI Connext Micro
+----------------------------------------------------
+
+|me| now includes better support for adding CMake tool-chain 
+files and also includes a better infrastructure to manage multiple builds of 
+|me|. It is strongly encouraged to read \ref OSAPIUserManuals_SourceModule 
+for details to get familiar with the new build environment.
+
+Example CMake Tool-chain Files for Cross-Compilation
+----------------------------------------------------
+
+|me| ships with a more cmake tool-chain files for Linux, Darwin, Windows and
+VxWorks. Please refer to \ref OSAPIUserManuals_SourceModule for details.
+
+[RTI Issue ID MICRO-706]
+
+Host Bundle without the Java RunTime Available
+----------------------------------------------
+
+A new smaller host bundle that does not include Java Runtime Environments (JRE) 
+is now available for download.  A host bundle with JREs included is still 
+available.
+
+With Java being necessary for the rtiddsgen utility, rtiddsgen now picks Java 
+based on the following order:
+
+- New rtiddsgen command line option -jre
+
+- JREHOME environment variable
+
+- JAVA_HOME environment variable
+
+- JRE shipped with the host bundle
+
+- PATH environment variable
+
+[RTI Issue ID MICRO-1520]
+
+
+Support for 64-bit Platforms
+----------------------------
+
+|me| was written for 32 bit architectures and is for all practical purposes
+a 32 bit application. There is no advantage to compiling |me| for a 64 bit
+architecture and the only reason to do so is if |me| must execute in a 64 bit
+environment for other reasons, such as other applications being 64 bit or
+64 bit libraries not being available.
+
+|me| is compiled and tested on various 64 bit architectures (iOS, MacOS, 
+Windows, Linux, VxWorks). However, when doing so the following must be kept 
+in mind:
+
+- |me| does not work with any data-type larger than what the transport
+  supports and up to a maximum of 2 GB.
+  
+- Timestamps in |me| are limited to seconds encoded as a signed 32 bit 
+  integer.
+  
+POSIX Compliance Improvements
+-----------------------------
+
+|me| supports various POSIX like operating systems. Due to small
+differences in the implementations not all POSIX like are equal and OS 
+specific adaptations are necessary.
+
+As of 2.4.9 |me|'s POSIX OSAPI implementation conforms to:
+ 
+- POSIX Std 1003.1, 2004 Edition (_POSIX_C_SOURCE 200112L)
+
+- X/Open 6 (_XOPEN_SOURCE 600)
+
+The |me| UDP transport uses ioctl calls to enable certain socket features. 
+The required flags are in non-standard header-files on some operating system. 
+In addition, not all POSIX-like operating systems support all the features. 
+|me| checks which OS it is compiled for by testing the presence of 
+preprocessor flags. As of 2.4.9 |me| has been built and tested on the 
+following operating systems that supports a POSIX API (osapi_os.h):
+
+- Linux (_linux_)
+
+- Mac OS X (10.6 and later) ((_APPLE) && defined(\MACH_))
+
+- QNX 6.x (_QNXNTO_)
+
+- VOS (_VOS_)
+
+- iOS (((_APPLE) && defined(\MACH_))
+
+- Android (_linux_ && _ANDROID_)
+
+NOTE: An additional compile option to enable certain non-POSIX features can 
+be enabled to unchecking the RTIME_OSAPI_ENABLE_STRICT_POSIX option in the
+cmake-gui or by defining the C preprocessor flag -DOSAPI_ENABLE_STRICT_POSIX=1
+
+C++ Support for find_topic() 
+----------------------------
+
+The operation DDS_DomainParticipant_find_topic() is now natively 
+supported by the C++ API as DDSDomainParticipant::find_topic().
+
+Types Are Automatically Unregistered Upon Deleting Contained Entities
+---------------------------------------------------------------------
+
+In previous releases, types must be unregistered manually from a 
+DomainParticipant before the participant can be deleted. Now in this release, 
+all registered types are automatically unregistered when calling 
+DDS_DomainParticipant_delete_contained_entitites().
+
+NOTE: It is legal to register the same type multiple times as long as it 
+is registered with the same type-plugin. If manually 
+unregistering a type, the type must be unregistered the same number of times as 
+it was registered. DDS_DomainParticipant_delete_contained_entitites() ignores 
+the number of times a type has been registered since all entities using a type 
+are deleted first.
+
+
+What's Fixed in 2.4.9
+=====================
+
+Improved Documentation 
+----------------------
+
+The |me| documentation has been improved for the following topics:
+
+- Compiling the |me| source (\ref OSAPIUserManuals_SourceModule)
+
+- Filtering of samples by a DDS DataReader (\ref UserManuals_MicroAndCore)
+
+- How to use |me| with RTI Recorder (\ref UserManuals_MicroAndCore)
+
+- Compatibility between |me| and other RTI Products (\ref UserManuals_MicroAndCore)
+
+[RTI Issue ID MICRO-711, MICRO-1521, MICRO-1538, MICRO-1555]
+
+Losing Participant Liveliness Stops Communication
+-------------------------------------------------
+
+Previously, given a DomainParticipant "P1" whose endpoints are communicating with 
+other endpoints belonging to other DomainParticipants, when P1 detected 
+liveliness lost with one other DomainParticipant, communication incorrectly 
+stopped with endpoints belonging to other DomainParticipants as well.   
+
+[RTI Issue ID MICRO-1543]
+
+
+DDSTopic::narrow() Returned Incorrect Value in C++
+---------------------------------------------------
+The function lookup_topicdescription() returned a DDSTopicDescription that 
+caused DDSTopic::narrow() to segmentation fault when this DDSTopicDescription
+was passed to other functions.
+
+DDSTopic::narrow() now correctly returns a DDSTopic when passed a 
+DDSTopicDescription found with lookup_topicdescription().
+
+[RTI Issue ID MICRO-1544]
+
+PRECONDITION_NOT_MET Returned by deleted_topic() When Topic Is Not Use
+----------------------------------------------------------------------
+
+delete_topic() incorrectly returned PRECONDITION_NOT_MET if there where 
+multiple references to it (for example via find_topic()). This has been 
+corrected and delete_topic() now returns DDS_RETCODE_OK if there are 
+multiple references, but the reference count can be decremented.
+
+[RTI Issue ID MICRO-1545]
+
+Instance Resources Not Reclaimed When Unregistered 
+--------------------------------------------------
+
+When an instance is unregistered on the data writer that is best-effort 
+with infinite deadline or using TRANSIENT_LOCAL durability, the 
+data writer fails to free the resources being used. As a result, new instances 
+cannot be written. This has been fixed and when an instance is unregistered 
+all resources associated with the key is released.
+
+[RTI Issue ID MICRO-1546]
+
+Invalid Memory Read Reported in Log.c
+-------------------------------------
+
+Some memory profile tools reported an invalid read in Log.c. This was caused
+by an invalid pointer access when the log buffer was full and has been 
+corrected. 
+
+[RTI Issue ID MICRO-1550] 
+
+Unsupported Functions When Compiling With RTI_CERT Has Been Removed From Generated Code
+---------------------------------------------------------------------------------------
+
+Code generated by rtiddsgen to support user data types has been updated to 
+properly support compilation with the flag RTI_CERT. All unsupported operations 
+(e.g. FooTypeSupport_delete_data) are now excluded when RTI_CERT is specified.
+
+[RTI Issue ID MICRO-1558] 
+
+
+The HelloWorld_cert Example Now Compiles When Linked Against a Library Built With RTI_CERT
+------------------------------------------------------------------------------------------
+
+The HelloWorld_cert called functions that were not supported by libraries
+built with RTI_CERT. This has been corrected. 
+
+[RTI Issue ID MICRO-1561] 
+
+
+Hostnames Are No Longer Validated
+---------------------------------
+
+Previously in |me| 2.4.6, a function to validate IP hostnames as 
+defined by RFC-952 was added and called before passing them to the OS. However, 
+this function was too restrictive and excluded valid service names. Hostname 
+validation is now only done directly by the OS.
+
+[RTI Issue ID MICRO-1563]
+
+
+A Participant May Not Be Rediscovered In Case Of Asymmetric Liveliness Loss
+---------------------------------------------------------------------------
+
+This problem was only present when using dynamic discovery.
+
+Consider two participants A and B. In the previous release, if A lost liveliness 
+with B, but B did not lose liveliness with A, then A did not completely 
+rediscover B when their connection was reestablished.  The problem was that 
+since B had not lost liveliness with A, when a connection was reestablished, B 
+thought A was already up to date on endpoint discovery. Hence, A did not 
+rediscover the endpoints in B.  This release has fixed this issue.
+
+[RTI Issue ID MICRO-1571]
+
+A Non-keyed Endpoint Matches a Keyed Endpoint
+---------------------------------------------
+
+When performing matching between A DataReader and DataWriter the entity kind
+was not checked. This means a keyed DataReader would match a non-keyed 
+DataWriter and a non-keyed DataReader would match an keyed DataWriter.
+
+This issue would can happen if two different IDLs files are used to 
+create DataReaders and DataWriters of the same topic and type. 
+
+Note that |me| does not support type validation. If two (or more) IDLs are 
+used to describe the same keyed type there is no check that the key-fields are 
+the same. Thus, even with this issue resolved there are still potential pitfalls 
+with multiple IDLs for the same type.
+
+[RTI Issue ID MICRO-1574]

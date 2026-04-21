@@ -1,0 +1,237 @@
+What's New in 2.4.10
+====================
+
+Generate Example Application with rtiddsgen 
+-------------------------------------------
+
+It is now possible to generate an example application for RTI Connext Micro
+using rtiddsgen. To generate an example:
+
+::
+    rtiddsgen -language C | C++ -micro -example <IDL File>
+
+A CMakeLists.txt file is generated that can be used with rtime-make:
+
+::
+    rtime-make [options] --srcdir <path to CMakeLists.txt>  
+
+Please refer to the generated README.txt file for details.
+
+
+BY_SOURCE_TIMESTAMP_DESTINATIONORDER Support on DataWriter
+----------------------------------------------------------
+
+The DataReader and DataWriter Qos policy now includes the 
+DDS_DestinationOrderQosPolicy:
+
+- The DDS DataReader only supports BY_RECEPTION_DESTINATION_ORDER (the default value).
+
+- The DDS DataWriter supports BY_RECEPTION_TIMESTAMP_DESTINATION_ORDER and 
+  BY_SOURCE_TIMESTAMP_DESTINATION_ORDER.
+      
+Please refer to the DDS reference manual for details.
+
+[RTI Issue ID MICRO-1597]
+
+What's Fixed in 2.4.10
+======================
+
+Linker Warning for Missing PDB Files
+------------------------------------
+
+The i86Win32VS2010 libraries shipped with |me| did not include PDB files. 
+For this reason, when compiling an application a warning similar to the following 
+may have been shown:
+
+::
+    rti_mezd.lib(BuiltinTopicData.obj) : warning LNK4099: PDB 'dds_czd.pdb' 
+    was not found with 'rti_mezd.lib(BuiltinTopicData.obj)' or at 
+    '\<path\>\\dds_czd.pdb'; linking object as if no debug info
+
+The warning was harmless and only indicates that debug information was missing 
+for the linked libraries.
+
+[RTI Issue ID MICRO-1556]
+
+Linking with Dynamic Windows C Run-Time (CRT)
+---------------------------------------------
+
+All shipped |me| libraries for Windows platforms (static release/debug, 
+dynamic release/debug) now link with the dynamic Windows C Run-Time (CRT). 
+Previously, the static |me| libraries statically linked the CRT.
+
+An existing Windows project that is linking with the |me| static libraries
+must update the RunTime Library settings. 
+
+In Visual Studio, select C/C++, Code Generation, Runtime Library, select:
+
+- Multi-threaded DLL (/MD) instead of Multi-threaded (/MT) for static release libraries.
+ 
+- Multi-threaded Debug DLL (/MDd) instead of Multi-threaded Debug (/MTd) for static debug libraries. 
+
+For command-line compilation, use:
+
+- /MD instead of /MT for static release libraries.
+
+- /MDd instead of /MTd for static debug libraries.
+
+In addition, it may be necessary to ignore the static run-time libraries in 
+their static configurations. In Visual Studio, select Linker, Input in the 
+project properties and add libcmtd;libcmt to the 
+'Ignore Specific Default Libraries' entry. 
+
+For command-line linking, add /NODEFAULTLIB:"libcmtd" /NODEFAULTLIB:"libcmt" 
+to the linker options.  
+
+[RTI Issue ID MICRO-1572]
+
+
+DDS_Publisher_create_datawriter() May Fail to Create a New Datawriter
+---------------------------------------------------------------------
+
+When an application reaches the local_writer_allocation resource limit, where 
+subsequent calls to DDS_Publisher_create_datawriter() fail to create a new 
+DataWriter, calling DDS_Publisher_delete_datawriter() should reclaim 
+resources of the deleted DataWriter and allow the creation of a new 
+DataWriter. However, in the previous release, in certain cases there was a 
+problem with reclaiming DataWriter resources that prevented the creation of 
+a new DataWriter.
+
+Deleting a DataWriter or DataReader involves acknowledgements from 
+matched applications. Thus, calling DDS_Publisher_delete_datawriter() is
+not an instantaneous operation so resources may not be available immediately. 
+When this case occurs, calling DDS_Publisher_create_datawriter() after 
+a short duration may be successful. The maximum time
+for a resource to be released is the maximum time a response is expected
+from a matched application based on the DPDE discovery plugin configuration
+for the built-in discovery endpoints. 
+
+[RTI Issue ID MICRO-1579]
+
+DataReader May Not Reclaim NOT_ALIVE Instances when DataWriter Deleted or Liveliness Lost
+-----------------------------------------------------------------------------------------
+
+Applications using read()/take() in on_data_available may not have received 
+NOT_ALIVE_NO_WRITERS for instances that changed state to NOT_ALIVE_NO_WRITERS 
+when a deleted data writer or data reader lost liveliness with a data writer 
+caused the change. This has been fixed.
+
+[RTI Issue ID MICRO-1580]
+
+
+A Datawriter may fail to release instance resources if a peer is inactive while the Participant liveliness expires
+------------------------------------------------------------------------------------------------------------------
+
+A reliable DataWriter can mark a matched DataReader as inactive if the 
+DataReader fails to respond to heartbeats, as configured by max_heartbeat_retries. 
+However, if a DataReader is  marked as inactive and the Participant liveliness for the DataReader's 
+Participant expires, a DataWriter afterwards may have failed to reclaim instances 
+resources if unregister_instance() was called. This has been fixed.
+
+[RTI Issue ID MICRO-1581]
+
+A Reliable DataWriter With max_samples_per_instance = 1 May Run Out of Resources After Multiple Unregistrations of Single Instance
+----------------------------------------------------------------------------------------------------------------------------------
+
+A reliable DataWriter with max_samples_per_instance = 1 may have run out of 
+instance  resources if the same instance is unregistered multiple times before 
+an acknowledgement is received from a matched DataReader. This has been fixed.
+
+[RTI Issue ID MICRO-1583]
+
+Connext Micro Fails to Discover Endpoints created by Connext Core if the Endpoints are Deleted or Modified
+----------------------------------------------------------------------------------------------------------
+
+If an application developed with RTI Connext Core used set_qos() on an 
+enabled endpoint or deleted and created new endpoints before |me| 
+had discovered the deleted endpoints, |me| failed to discovery new 
+endpoints. This has been fixed.
+
+[RTI Issue ID MICRO-1588]
+
+Incorrect Log Output in a Complete Log Message could not be Stored
+------------------------------------------------------------------
+
+If there was insufficient space to store a complete log-message, the default 
+display function would incorrectly try to print log-data beyond the 
+log-buffer. This has been fixed.
+
+[RTI Issue ID MICRO-1589]
+
+Possible Segmentation Fault when Unregistering TRANSIENT_LOCAL Instance
+-----------------------------------------------------------------------
+
+Calling unregister_instance() on the same TRANSIENT_LOCAL instance may have 
+caused a segmentation fault. The segmentation fault occured when a call to 
+unregister_instance() is acknowledged and a later call on unregister_instance() 
+for the same instance had not been acknowledged yet. For the segmentation fault 
+to occur there must be more than 1 call to unregister_instance() within the 
+history depth. This has been fixed.
+
+[RTI Issue ID MICRO-1590] 
+
+Support to map IDL modules to C++ namespaces in generated type-plugins
+----------------------------------------------------------------------
+
+The rtiddsgen included by this release will correctly generate C++ code 
+for data types defined within IDL modules, when passed the "-namespace" 
+argument. Consider the following IDL:
+
+::
+
+    module A {
+      struct Foo {
+        long bar;
+      };
+    };
+    
+    module B {
+      struct Foo {
+        long bar;
+      };
+    };
+
+C++ code generated by previous releases of rtiddsgen for this IDL input 
+would fail to build if the "-namespace" argument was used to map each IDL 
+module to a C++ namespace.
+
+Some of the automatically generated data types were incorrectly being 
+exported with C linkage, effectively disabling the C++ namespaces. This 
+would cause duplicate symbols to be detected if two types with the same 
+name were defined in two different modules.
+
+[RTI Issue ID MICRO-1600]
+
+Possible Memory Access Violation when Receiving Malformed RTPS Message
+----------------------------------------------------------------------
+
+When a received RTPS message had its message and submessage headers 
+processed, |me| incorrectly did not validate for all cases that there was 
+sufficient space in the message's receive buffer before accessing a field 
+of a header. Consequently, reception of certain malformed messages could 
+have resulted in memory access violations. The problem has been fixed by 
+always validating for sufficient buffer.  This has been fixed.
+
+[RTI Issue ID MICRO-1614]
+
+
+In Some Cases an Incorrect Timeout Calculation Caused 100% CPU Load 
+-------------------------------------------------------------------
+
+Some combinations of timeouts, clock resolution and resource-limits may have
+caused an incorrect timeout to be scheduled causing an infinite loop in the 
+timer thread.
+
+If multiple timers expires at the same time and the timeout is exactly:
+
+::
+    (dp_qos.resource_limits.remote_participant_allocation +
+    (3*dp_qos.resource_limits.local_writer_allocation) +
+    (3*dp_qos.resource_limits.local_reader_allocation) +
+    1) / 2 * timer_resolution
+
+
+the next timeout may be scheduled for immediate timeout, causing the 
+timer thread to consume excessive CPU.
+
+[RTI Issue ID MICRO-1617]

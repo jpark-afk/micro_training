@@ -1,0 +1,32 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2020
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+SET(CMAKE_SYSTEM_NAME VxWorks)
+INCLUDE(Platform/VxWorks)
+
+IF (${TARGET_HELP})
+    MESSAGE("TARGET\n\n VxWorks\n")
+    MESSAGE("DESCRIPTION\n")
+    MESSAGE(" The VxWorks target can be used for cross-compiling for VxWorks")
+    MESSAGE(" targets. The compiler and options are determined based on the")
+    MESSAGE(" RTIME_TARGET_NAME and the WIND envrionment variables. Thus, ")
+    MESSAGE(" either the WIND environment variables are set manually, or ")
+    MESSAGE(" the wrenv script has been run first.")
+    MESSAGE("\nARGUMENTS\n")
+    MESSAGE(" This target interprets RTIME_TARGET_NAME as follows:")
+    MESSAGE(" - If ppc is part of the name, the PPC tool-chain is used")
+    MESSAGE(" - If arm is part of the name, the ARM tool-chain is used")
+    MESSAGE(" - If mips is part of the name, the MIPS tool-chain is used")
+    MESSAGE(" - If pentium is part of the name, the Pentium tool-chain is used")
+    MESSAGE("\nEXAMPLES\n")
+    MESSAGE(" --target VxWorks --name ppc604Vx6.9gcc4.3.3\n")
+    MESSAGE(" --target VxWorks --name mips32Vx6.9gcc4.3.3\n")
+ENDIF()

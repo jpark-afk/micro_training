@@ -1,0 +1,81 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2016
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Compiler options file
+#
+# Modification History
+# --------------------
+# 14oct2016 tk Written
+################################################################################
+IF (RTIME_PRINT_CONFIG)
+    RETURN()
+ENDIF()
+
+INCLUDE(TestBigEndian)
+
+#== Look for available platforms
+SET(RTIME_OSAPI_MODULE "osapi.2.0")
+
+GET_MODULE_DIR(${RTIME_OSAPI_MODULE} osdir)
+
+SET(RTIME_CC_AUTO    "<auto detect>")
+SET(RTIME_CC_DEFAULT ${RTIME_CC_AUTO})
+
+IF (DEFINED _RTIME_CC)
+    SET(RTIME_CC_DEFAULT "${_RTIME_CC}")
+ENDIF()
+
+SET(RTIME_OSAPI_COMPILER_DOC 
+"Select the C/C++ Compiler definitions. The stdc supports GCC and MSVC")
+
+SET(RTIME_OSAPI_COMPILER ${RTIME_CC_DEFAULT} CACHE STRING ${RTIME_OSAPI_COMPILER_DOC})
+
+LIST(APPEND RTIME_OSAPI_COMPILER_LIST ${RTIME_CC_AUTO})
+
+IF (${RTIME_DEVTREE})
+    FILE(GLOB compilers LIST_DIRECTORIES FALSE 
+        ${RTIME_SOURCE_ROOT}/${osdir}/include/osapi/*osapi_cc_*.h)
+ELSE()
+    FILE(GLOB compilers LIST_DIRECTORIES FALSE 
+         ${RTIME_SOURCE_ROOT}/include/osapi/*osapi_cc_*.h)
+ENDIF()
+
+FOREACH(x ${compilers})
+        GET_FILENAME_COMPONENT(ccname ${x} NAME)
+        STRING(REGEX REPLACE ".*osapi_cc_(.*).h" "\\1" cc ${ccname})
+        LIST(APPEND RTIME_OSAPI_COMPILER_LIST ${cc})
+        SET(${cc}_FILE ${ccname})
+ENDFOREACH()
+
+SET_PROPERTY(CACHE RTIME_OSAPI_COMPILER PROPERTY 
+             STRINGS ${RTIME_OSAPI_COMPILER_LIST})
+
+IF (NOT ${RTIME_OSAPI_COMPILER} MATCHES ${RTIME_CC_AUTO})
+    ADD_DEFINITIONS(-DOSAPI_CC_DEF_H=${${RTIME_OSAPI_COMPILER}_FILE})
+ENDIF()
+
+# This sets the compiler byte order. It might be needed for
+# old gcc versions which do not define __BYTE_ORDER__
+IF (NOT DEFINED RTI_ENDIAN_BIG AND NOT DEFINED RTI_ENDIAN_LITTLE)
+    TEST_BIG_ENDIAN(RTI_CMAKE_TEST_ENDIAN)
+    IF (DEFINED RTI_CMAKE_TEST_ENDIAN)
+        IF (${RTI_CMAKE_TEST_ENDIAN})
+            ADD_DEFINITIONS(-DRTI_ENDIAN_BIG=1)
+        ELSE()
+            ADD_DEFINITIONS(-DRTI_ENDIAN_LITTLE=1)
+        ENDIF()
+    ENDIF()
+ELSEIF(DEFINED RTI_ENDIAN_BIG)
+    ADD_DEFINITIONS(-DRTI_ENDIAN_BIG=1)
+ELSEIF(DEFINED RTI_ENDIAN_LITTLE)
+    ADD_DEFINITIONS(-DRTI_ENDIAN_LITTLE=1)
+ENDIF()
+

@@ -1,0 +1,137 @@
+.. highlight:: c
+
+Building Against FACE Conformance Libraries
+===========================================
+
+This section describes how to build |me| using the FACE\ :sup:`TM` conformance 
+test tools.
+
+Requirements
+------------
+
+|me_h| Source Code
+..................
+
+The |me| source code is available from `RTI's Support portal <http://support.rti.com>`_.
+
+FACE Conformance Tools
+......................
+
+RTI does not distribute the FACE conformance tools.
+
+CMake
+.....
+
+The |me| source is distributed with a **CMakeList.txt** project file. CMake
+is an easy to use tool that generates makefiles or project files for various 
+build-tools, such has UNIX makefiles, Microsoft® Visual Studio® project files,
+and Xcode.
+ 
+CMake can be downloaded from https://www.cmake.org.
+
+FACE Golden Libraries
+---------------------
+
+The FACE conformance tools use a set of golden libraries. There are different
+golden libraries for different FACE services, languages and profiles. 
+|me| *only* conforms to the safetyExt and safety profile of OSS using 
+the C language.
+
+Building the FACE Golden Libraries
+..................................
+
+The FACE conformance tools ship with their own set of tools to build the 
+golden libraries. Please follow the instructions provided by FACE. In order
+to build the FACE golden libraries, it is necessary to port to the required
+platform. RTI has only tested |me| on Linux 2.6 systems with GCC 4.4.5. 
+The complete list of files modified by RTI are included 
+below in source form. 
+
+
+Building the |me_h| Source
+--------------------------
+
+The following instructions show how to built the |me| source:
+
+- Extract the source-code. Please note that the remaining instructions assume 
+  that only a single platform is built from the source. 
+
+- In the top-level source directory, enter the following::
+ 
+    shell> cmake-gui .
+    
+  This will start the CMake GUI where all build configuration takes place.
+
+- Click the "Configure" button.
+
+- Select UNIX Makefiles from the drop-down list.
+
+- Select "Use default compilers" or "Specify native compilers" as required. Press "Done."
+
+- Click "Configure" again. There should not be any red lines. If there are, 
+  click "Configure" again. 
+  
+  NOTE: A red line means that a variable has not been
+  configured. Some options could add new variables. Thus, if you change an 
+  option a new red lines may appear. In this case configure the variable and 
+  press "Configure."
+
+- Expand the CMAKE and RTIMICRO options and configure how to build |me|::
+
+    CMAKE_BUILD_TYPE: Debug or blank. If Debug is used, the |me| debug 
+                      libraries are built.
+                      
+    RTIMICRO_BUILD_API: C or C++
+       C   - Include the C API. For FACE, only C is supported.
+       C++ - Include the C++ API.
+       
+    RTIMICRO_BUILD_DISCOVERY_MODULE: Dynamic | Static | Both
+       Dynamic - Include the dynamic discovery module.
+       Static  - Include the static discovery module.
+       Both    - Include both discovery modules.
+         
+    RTIMICRO_BUILD_LIBRARY_BUILD: 
+       Single    - Build a single library.
+       RTI style - Build the same libraries RTI normally ships. This is useful
+                   if RTI libraries are already being used and you want to use
+                   the libraries built from source.
+                     
+    RTIMICRO_BUILD_LIBRARY_TYPE: 
+        Static -  Build static libraries.
+        Shared -  Build shared libraries.
+        
+    RTIMICRO_BUILD_LIBRARY_PLATFORM_MODULE: POSIX
+    
+    RTIMICRO_BUILD_LIBRARY_TARGET_NAME: <target name>
+       Enter a string as the name of the target. This is also used as the
+       name of the directory where the built libraries are placed. 
+       If you are building libraries to replace the libraries shipped by RTI, 
+       you can use the RTI target name here. It is then possible to set 
+       RTIMEHOME to the source tree (if RTI style is selected for 
+       RTIMICRO_BUILD_LIBRARY_BUILD).
+
+    RTIMICRO_BUILD_ENABLE_FACE_COMPLIANCE: Select level of FACE compliance
+        None            - No compliance required
+        General         - Build for compliance with the FACE general profile
+        Safety Extended - Build for compliance with the FACE safety extended profile
+        Safety          - Build for compliance with the FACE safety profile 
+        
+    RTIMICRO_BUILD_LINK_FACE_GOLDEBLIBS: 
+        Check if linking against the static FACE conformance test libraries.
+        NOTE: This check-box is only available if FACE compliance is different
+        from "None".
+        
+    RTIMICRO_BUILD_LINK_FACE_GOLDEBLIBS:
+        If the  RTIMICRO_BUILD_LINK_FACE_GOLDEBLIBS is checked the path to the
+        top-level FACE root must be specified here.
+
+- Click "Configure".
+
+- Click "Generate".
+
+- Build the generated project.
+
+- Libraries are placed in **lib/<RTIMICRO_BUILD_LIBRARY_TARGET_NAME>**.
+
+
+

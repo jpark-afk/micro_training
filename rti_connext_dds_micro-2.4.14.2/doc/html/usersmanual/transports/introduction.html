@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.7.1. Introduction &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4.7.2. Transport Limits" href="limits.html" />
+    <link rel="prev" title="4.7. Transports" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User’s Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../libraryinit.html">4.1. Initializing the Connext Micro Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html">4.2. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../entities.html">4.3. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sending.html">4.4. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../receiving.html">4.5. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../domains.html">4.6. DDS Domains</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.7. Transports</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.7.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html">4.7.2. Transport Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="registration.html">4.7.3. Transport Registration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addresses.html">4.7.4. Transport Addresses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RTPS.html">4.7.5. RTPS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="INTRA.html">4.7.6. INTRA Transport</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UDP.html">4.7.7. UDP Transport</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../discovery.html">4.8. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configresources/index.html">4.9. Configuring Resource Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rtiddsgen.html">4.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../threads.html">4.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../batching.html">4.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../msgintegrity.html">4.13. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sequences.html">4.14. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug.html">4.15. Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../limits.html">4.16. Connext Micro Hardcoded Resource Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../face.html">4.17. Building Against FACE Conformance Libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../building/index.html">5. Building and Porting Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html"><span class="section-number">4. </span>User’s Manual</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">4.7. </span>Transports</a> &raquo;</li>
+        
+      <li><span class="section-number">4.7.1. </span>Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/usersmanual/transports/introduction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1><span class="section-number">4.7.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>In <em>RTI</em> <em>Connext Micro</em>, DDS entities exchange information using transports. Transports
+exhange data with peer transports, and <em>Connext Micro</em> entities can generally exchange
+information using different types of transports, e.g. UDPv4 or a serial port.
+All transports send and receive RTPS messages encapsulated in the transport’s
+native format, e.g. UDP packets.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This version of <em>Connext Micro</em> only supports UDPv4 and a special transport for
+internal communication within a DDS <em>DomainParticipant</em>.</p>
+</div>
+<p><em>Connext Micro</em> has a pluggable-transport architecture. The core of <em>Connext Micro</em> is
+transport agnostic; it does not make any assumptions about the actual
+transports used to send and receive messages. Instead, <em>Connext Micro</em> uses an
+abstract “transport API” to interact with the transport plugins that
+implement that API. A transport plugin implements the abstract transport
+API, and performs the actual work of sending and receiving messages
+over a physical transport.</p>
+<p>A transport can send and receive on addresses as defined by the concrete
+transport. For example, the <em>Connext Micro</em> UDP transport can listen to and send to
+UDPv4 ports and addresses. In order to establish communication between two
+transports, the addresses that the transport can listen to must be determined
+and announced to other <em>DomainParticipants</em> that want to communicate with it.
+This section describes how the addresses are reserved and how these addresses
+are used by the DDS layer in <em>Connext Micro</em>.</p>
+<p>While the NETIO interface is not limited to DDS, the rest of this document
+is written in the context of how <em>Connext Micro</em> uses the NETIO interfaces as part
+of the DDS implementation.</p>
+<p>Note that <em>Connext Micro</em> does not support RTPS fragmentation and is limited
+to IDL data types less than or equal to 63000 bytes <strong>or</strong> the
+maximum transmission unit (MTU) of the underlying transport, whichever is
+smaller.</p>
+<p>Also note that <em>Connext Micro</em> does not query the MTU size from the registered
+transport plugins. If an IDL data-type exceeds the MTU size, the data
+will be silently discarded.</p>
+<p><em>Connext Micro</em> does not track the maximum receive unit (MRU) of other nodes in the
+system. Therefore, <em>Connext Micro</em> relies on consistent configuration accross all
+the nodes in the system in order to successfully send and receive data.
+For example, if a <em>Connext Micro</em> node has a MRU of 8000 bytes and another <em>Connext Micro</em> node
+sends 9000 bytes (with a sufficiently large MTU), the data will be sent,
+but not received.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="limits.html" class="btn btn-neutral float-right" title="4.7.2. Transport Limits" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="4.7. Transports" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

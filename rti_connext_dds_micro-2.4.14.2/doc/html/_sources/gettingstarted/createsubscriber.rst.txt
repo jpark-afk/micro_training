@@ -1,0 +1,24 @@
+Create Subscriber
+=================
+
+.. highlight:: c
+
+A subscribing application needs to create a DDS *Subscriber* 
+and then a *DataReader* for each *Topic* to which it wants to subscribe.
+
+In |me|, SubscriberQos_ in general contains no policies that need to be
+customized, while DataReaderQos_ does contain several customizable policies.
+
+::
+
+    DDS_Subscriber *subscriber = NULL;
+    subscriber = DDS_DomainParticipant_create_subscriber(participant,
+                                                         &DDS_SUBSCRIBER_QOS_DEFAULT,
+                                                         NULL,
+                                                         DDS_STATUS_MASK_NONE);
+    if (subscriber == NULL)
+    {
+        /* failure */
+    }
+
+For more information, see the :doc:`../usersmanual/receiving` section in the User's Manual.

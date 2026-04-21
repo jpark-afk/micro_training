@@ -1,0 +1,27 @@
+var structOSAPI__PortProperty =
+[
+    [ "timer_resolution_ms", "structOSAPI__PortProperty.html#aed5a417ea71382a6bc359a54cce10102", null ],
+    [ "number_of_heap_areas", "structOSAPI__PortProperty.html#ae1c982de1ec7691cbde00dc20b9e1cd1", null ],
+    [ "heap_area_size", "structOSAPI__PortProperty.html#ab01c7d46f3742d95fc7a230fae30b635", null ],
+    [ "heap_area", "structOSAPI__PortProperty.html#ad14b68834187f6918d36f4e196ffac45", null ],
+    [ "sync_type", "structOSAPI__PortProperty.html#a90aa83abfc48a87a013272760139cfe0", null ],
+    [ "first_resource_id", "structOSAPI__PortProperty.html#a73162d12ac4965950bbac3faf561f0bb", null ],
+    [ "last_resource_id", "structOSAPI__PortProperty.html#a7db958e2efc64857227d320613f74c01", null ],
+    [ "spinlock_id", "structOSAPI__PortProperty.html#a160abf035d75082b1b3f59f87b87722c", null ],
+    [ "semaphore_max_count", "structOSAPI__PortProperty.html#a900ee47de11662db2d83a7f2c15bf259", null ],
+    [ "first_give_event", "structOSAPI__PortProperty.html#a7b41dfc02037e7d1d6d44499af6c06de", null ],
+    [ "first_timeout_event", "structOSAPI__PortProperty.html#a5e88e2a075c1bb8089cc7b1f8b9bec5c", null ],
+    [ "first_alarm", "structOSAPI__PortProperty.html#af6015bdc0ac6de162e5e264616e9c0a7", null ],
+    [ "use_socket_owner", "structOSAPI__PortProperty.html#a3ffaadaa2761c4e315a04cf61c6f3671", null ],
+    [ "max_receive_sockets", "structOSAPI__PortProperty.html#a46cfa9a9c9697a5ca588b83fc4700efc", null ],
+    [ "number_of_rcv_buffers", "structOSAPI__PortProperty.html#aa8ca947c7eccd4aa5901526eabc7a74c", null ],
+    [ "rcv_buffer_size", "structOSAPI__PortProperty.html#a0254762f7a794f3f52a935cd9fb2dbfd", null ],
+    [ "get_socket", "structOSAPI__PortProperty.html#af949e9a29666c95240a73f98745d8fc3", null ],
+    [ "send_data", "structOSAPI__PortProperty.html#a9a4640ac1eefa9b9560beaf8dc0f38e2", null ],
+    [ "max_local_addr_id", "structOSAPI__PortProperty.html#aa45eddde613365b44e0217d9698d3806", null ],
+    [ "use_udp_thread", "structOSAPI__PortProperty.html#a75751f86dc607dab8b9a5ec5df3a0435", null ],
+    [ "udp_receive_task_id", "structOSAPI__PortProperty.html#a1ac4843afa607c559d6a62bc58482f11", null ],
+    [ "udp_packet_received_event", "structOSAPI__PortProperty.html#ac1da5a5d4dda36a1dadf1d60fda5acfb", null ],
+    [ "log_dst_address", "group__OSAPI__AutosarClass.html#gac0ce3e2573e28995c95d3cc39da47f7e", null ],
+    [ "log_dst_port", "group__OSAPI__AutosarClass.html#gabfe206731e55446dba39105c05ec902b", null ]
+];

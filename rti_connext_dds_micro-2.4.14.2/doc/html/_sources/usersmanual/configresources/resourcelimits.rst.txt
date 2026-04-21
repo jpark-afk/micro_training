@@ -1,0 +1,68 @@
+
+Resource Limits
+===============
+
+All resource limits in |me| are specified in a QoS policy or property.
+Please refer to the links to the API Reference below for more details, 
+and refer to the `Micro Memory Map`_ below for an overview of how the memory
+is used by each resource limit.
+
+DomainParticipantFactoryQos
+---------------------------
+
+See :link_connextmicro_dds_api_c_up_two:`DomainParticipantFactoryQos <structDDS__DomainParticipantFactoryQos.html>` for more detail.
+
+DomainParticipantQos
+--------------------
+
+The :link_connextmicro_dds_api_c_up_two:`DomainParticipantQos <structDDS__DomainParticipantResourceLimitsQosPolicy.html>` controls resources that 
+are applicable to the entire DomainParticipant. All the resources specified 
+in the DomainParticipantQos are allocated when the DomainParticipant is created 
+with the :link_connextmicro_dds_api_c_up_two:`DDS_DomainParticipantFactory_create_participant() <group__DDSDomainParticipantFactoryModule.html>` call.
+
+DataReaderQos
+-------------
+
+The :link_connextmicro_dds_api_c_up_two:`DataReaderQos <structDDS__DataReaderResourceLimitsQosPolicy.html>` controls the resources used by 
+the DDS_DataReader. Each DDS_DataReader allocates its own resources, even 
+DDS_DataReader's of the same DDS_Topic. For this reason is it advised to 
+limit the number of DDS_DataReader's per DDS_Topic to one.
+
+DataWriterQos
+-------------
+
+The :link_connextmicro_dds_api_c_up_two:`DataWriterQos <structDDS__DataWriterResourceLimitsQosPolicy.html>` controls the resources allocated 
+by a DDS_DataWriter. Each DDS_DataWriter allocates its own resources, even 
+DDS_DataWriters of the same DDS_Topic. For this reason is it advised to limit 
+the number of DDS_DataWriters per topic to one.
+
+UDP Transport
+-------------
+
+See :link_connextmicro_dds_api_c_up_two:`UDP Transport <structUDP__InterfaceFactoryProperty.html>` for more details.
+
+Dynamic Participant Static Endpoint (DPSE)
+------------------------------------------
+
+The :link_connextmicro_dds_api_c_up_two:`Dynamic Participant Static Endpoint (DPSE) <structDPSE__DiscoveryPluginProperty.html>` 
+discovery plugin creates one DDS_DataWriter and one DDS_DataReader for the 
+ParticipantBuiltinTopicData. The memory for the plugin includes the 
+memory allocated by the DDS_DataReader and DDS_DataWriter. The memory allocated 
+by the properties must be added for total memory usage.
+
+Dynamic Participant Dynamic Endpoint (DPDE)
+-------------------------------------------
+
+The :link_connextmicro_dds_api_c_up_two:`Dynamic Participant Dynamic Endpoint (DPDE) <structDPDE__DiscoveryPluginProperty.html>` 
+discovery plugin creates one DDS_DataWriter and one DDS_DataReader for each 
+ParticipantBuiltinTopicData, PublicationBuiltinTopicData, and 
+SubscriptionBuiltinTopicData. The memory for the plugin includes the 
+memory allocated by these DDS_DataReaders and DDS_DataWriters. The memory allocated 
+by the properties must be added for total memory usage.
+
+.. _`Micro Memory Map`:
+
+Memory Map
+----------
+
+.. image:: ../../images/MicroMemoryMap.png

@@ -1,0 +1,63 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2020
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+SET(CMAKE_SYSTEM_NAME QNX)
+
+# This tool-chain file assumes that qnx700-env.sh has been sourced first 
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Platform/qnx.tc)
+
+#os_system = QNX7.0.0
+#target_arch = armv8
+#stddefs.mk makes ARM64 little endian
+#cpu = ARM64
+#compiler = qcc
+#compver = 5.4.0
+#abr = _gpp
+#abrver =
+
+#target = $(target_arch)$(os_system)$(compiler)$(abr)$(abrver)$(compver)
+
+#qccTarget = gcc/$(compver),gcc_ntoaarch64le
+
+#MESSAGE("$ENV{QNX_HOST}/usr/bin/ntoarmv7-g++")
+
+#usr/bin/qcc -V$(qccTarget) -Y$(abr) $(qccverbosity) -V$(qccTarget) -Y$(abr)
+ 
+SET(CMAKE_CXX_COMPILER $ENV{QNX_HOST}/usr/bin/qcc)
+SET(CMAKE_C_COMPILER $ENV{QNX_HOST}/usr/bin/qcc)
+
+#SET(CMAKE_AR $ENV{QNX_HOST}/usr/bin/ntoaarch64-ar)
+SET(RTIME_OBJDUMP $ENV{QNX_HOST}/usr/bin/ntoaarch64-objdump)
+SET(RTIME_OBJDUMP_OPT --disassemble-all)
+SET(RTIME_OBJDUMPCHKSUM $ENV{QNX_HOST}/usr/bin/ntoaarch64-objdump)
+SET(RTIME_OBJDUMPCHKSUM_OPT --section=.text --section=.data --section=.rodata --disassemble-all)
+SET(RTIME_OBJ_SUFFIX o)
+SET(RTIME_AR_EXRACT -x)
+SET(RTIME_AR $ENV{QNX_HOST}/usr/bin/ntoaarch64-ar)
+
+#SET(CMAKE_C_COMPILE_OPTIONS_TARGET "-lang-c -Vgcc/5.4.0,gcc_ntoaarch64le -Y_gpp")
+#SET(CMAKE_CXX_COMPILE_OPTIONS_TARGET "-lang-c++ -Vgcc/5.4.0,gcc_ntoaarch64le -Y_gpp")
+
+SET(CMAKE_C_FLAGS "-lang-c -Vgcc/5.4.0,gcc_ntoaarch64le -Y_gpp -std=c99 -Winit-self -fstrict-aliasing -Wmissing-declarations -Wall -Wextra -Wpedantic -Wshadow -Wcast-align -Wunused -Wconversion -Wsign-conversion -Wlogical-op -Wdouble-promotion" CACHE INTERNAL "CMAKE_C_FLAGS" FORCE)
+SET(CMAKE_CXX_FLAGS "-lang-c++ -Vgcc/5.4.0,gcc_ntoaarch64le -Y_gpp -DNDEBUG -Winit-self -fstrict-aliasing -Wmissing-declarations -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wlogical-op  -Wdouble-promotion" CACHE INTERNAL "CMAKE_CXX_FLAGS" FORCE)
+SET(CMAKE_C_FLAGS_RELEASE "-DNDEBUG" CACHE INTERNAL "CMAKE_C_FLAGS_RELEASE" FORCE)
+SET(CMAKE_CXX_FLAGS_RELEASE "-DNDEBUG" CACHE INTERNAL "CMAKE_CXX_FLAGS_RELEASE" FORCE)
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+
+IF (NOT DEFINED RTIME_UDP_ENABLE_MULTICAST)
+    SET(RTIME_UDP_ENABLE_MULTICAST TRUE)
+ENDIF()
+

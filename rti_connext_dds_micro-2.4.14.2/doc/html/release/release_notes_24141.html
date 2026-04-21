@@ -1,0 +1,702 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.4.1. What’s New in 2.4.14.1 &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.4.3. What’s New in 2.4.14" href="release_notes_2414.html" />
+    <link rel="prev" title="8.4. Previous Releases" href="previous_release.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">4. User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building/index.html">5. Building and Porting Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="supported_platforms.html">8.1. Supported Platforms and Programming Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24142.html">8.2. What’s New in 2.4.14.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24142.html#what-s-fixed-in-2-4-14-2">8.3. What’s Fixed in 2.4.14.2</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="previous_release.html">8.4. Previous Releases</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">8.4.1. What’s New in 2.4.14.1</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#important-interoperability-changes">8.4.1.1. Important Interoperability Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-fixed-in-2-4-14-1">8.4.2. What’s Fixed in 2.4.14.1</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#invalid-samples-in-batched-data-did-not-count-as-lost-samples">8.4.2.1. Invalid samples in batched data did not count as ‘lost samples’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#local-variables-in-header-file-may-have-caused-compiler-warning">8.4.2.2. Local variables in header file may have caused compiler warning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#non-default-timer-resolutions-may-have-caused-an-incorrect-timeout">8.4.2.3. Non-default timer resolutions may have caused an incorrect timeout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#missing-checks-for-max-routes-per-reader-and-max-routes-per-writer">8.4.2.4. Missing checks for <em>max_routes_per_reader</em> and <em>max_routes_per_writer</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#missing-null-checks-for-enabled-transports">8.4.2.5. Missing NULL checks for <em>enabled_transports</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#possible-exception-due-to-misaligned-rtps-header">8.4.2.6. Possible exception due to misaligned RTPS header</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dds-subscriptionbuiltintopicdata-copy-did-not-copy-the-presentationqospolicy">8.4.2.7. <em>DDS_SubscriptionBuiltinTopicData_copy</em> did not copy the PresentationQosPolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#possible-failure-to-start-timer">8.4.2.8. Possible failure to start timer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-timestamp-now-set-to-0-if-timestamp-cannot-be-retrieved">8.4.2.9. Sample timestamp now set to 0 if timestamp cannot be retrieved</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qos-copy-functions-did-not-validate-input-arguments">8.4.2.10. <em>Qos_copy</em> functions did not validate input arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unused-parameter-domain-participant-resource-limits-matching-reader-writer-pair-allocation-removed">8.4.2.11. Unused parameter <em>DOMAIN_PARTICIPANT_RESOURCE_LIMITS.matching_reader_writer_pair_allocation</em> removed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dds-domainparticpant-add-peer-may-have-returned-success-on-failure">8.4.2.12. <em>DDS_DomainParticpant_add_peer</em> may have returned success on failure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dds-stringseq-copy-did-not-validate-input-arguments">8.4.2.13. <em>DDS_StringSeq_copy</em> did not validate input arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#memory-leak-in-c-classes-for-builtin-topic-data-types-and-certain-qoses">8.4.2.14. Memory leak in C++ classes for builtin topic data types and certain QoSes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#possible-null-pointer-exception-in-generated-code-if-the-system-was-out-of-memory">8.4.2.15. Possible NULL pointer exception in generated code if the system was out of memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-datawriter-could-run-out-of-resources-if-sample-was-not-added-to-cache">8.4.2.16. A DataWriter could run out of resources if sample was not added to cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#missing-source-code-files">8.4.2.17. Missing source code files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#possible-serialization-beyond-stream-buffer">8.4.2.18. Possible serialization beyond stream buffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reliability-max-blocking-time-must-be-zero">8.4.2.19. <em>RELIABILITY.max_blocking_time</em> must be zero</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#possible-datareader-or-datawriter-creation-failure-with-multiple-domainparticipants">8.4.2.20. Possible DataReader or DataWriter creation failure with multiple DomainParticipants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#incorrect-lease-duration-may-have-been-used-for-a-discovered-participant">8.4.2.21. Incorrect <em>lease_duration</em> may have been used for a discovered participant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#missing-consistency-check-for-destination-order-source-timestamp-tolerance">8.4.2.22. Missing consistency check for <em>DESTINATION_ORDER.source_timestamp_tolerance</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#improved-error-detection-for-unresolved-addresses">8.4.2.23. Improved error detection for unresolved addresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dds-statuscondition-set-enabled-statuses-did-not-trigger-if-an-active-condition-was-enabled">8.4.2.24. <em>DDS_StatusCondition_set_enabled_statuses</em> did not trigger if an active condition was enabled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#race-condition-in-dds-enable-apis">8.4.2.25. Race condition in DDS <em>enable</em> APIs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dds-waitset-may-have-timed-out-later-than-timeout-value">8.4.2.27. DDS WaitSet may have timed out later than timeout value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#system-resource-limits-max-components-qos-policy-cannot-be-changed">8.4.2.28. SYSTEM_RESOURCE_LIMITS.max_components QoS policy cannot be changed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#incorrect-heartbeat-sent-before-first-sample-when-first-write-sequence-number-is-not-1">8.4.2.29. Incorrect heartbeat sent before first sample when first_write_sequence_number is not 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#robustness-check-added-to-verify-that-participant-guids-are-unique-within-a-domainparticipantfactory">8.4.2.30. Robustness check added to verify that participant GUIDs are unique within a DomainParticipantFactory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dds-entity-enable-was-not-thread-safe-for-a-domainparticipant">8.4.2.31. DDS_Entity_enable was not thread-safe for a DomainParticipant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#missing-input-verification-for-api-functions">8.4.2.32. Missing input verification for API functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#incorrect-return-values-from-reda-string">8.4.2.33. Incorrect return values from REDA_String</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#incorrect-return-values-from-qos-apis">8.4.2.34. Incorrect return values from QoS APIs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dds-wstring-cmp-did-not-match-the-implementation-name-dds-wstring-compare">8.4.2.35. DDS_Wstring_cmp did not match the implementation name DDS_Wstring_compare</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#race-condition-during-participant-discovery">8.4.2.36. Race condition during participant discovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-datawriter-with-best-effort-and-transient-local-may-run-out-of-resources">8.4.2.37. A DataWriter with BEST_EFFORT and TRANSIENT_LOCAL may run out of resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#me-h-may-have-repeated-requesting-a-sample-that-was-no-longer-available-from-a-datawriter">8.4.2.38. Connext Micro may have repeated requesting a sample that was no longer available from a DataWriter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dds-subscriber-lookup-datareader-may-return-a-datareader-that-was-created-by-a-different-subscriber">8.4.2.39. DDS_Subscriber_lookup_datareader may return a DataReader that was created by a different Subscriber</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dds-publisher-lookup-datawriter-may-return-a-datawriter-that-was-created-by-a-different-publisher">8.4.2.40. DDS_Publisher_lookup_datawriter may return a DataWriter that was created by a different Publisher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-reliable-datawriter-may-ignore-requests-to-resend-samples">8.4.2.41. A reliable DataWriter may ignore requests to resend samples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compiler-warning-due-to-reliance-on-deprecated-implicit-copy-constructor-for-c">8.4.2.42. Compiler warning due to reliance on deprecated implicit copy constructor for C++</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtps-message-may-have-been-rejected">8.4.2.43. RTPS message may have been rejected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#warning-about-hostname-not-supported-in-posixsystem-c">8.4.2.44. Warning about hostname not supported in posixSystem.c</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#false-positive-compiler-warning">8.4.2.45. False positive compiler warning</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2414.html">8.4.3. What’s New in 2.4.14</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2414.html#what-s-fixed-in-2-4-14">8.4.4. What’s Fixed in 2.4.14</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2412.html">8.4.5. What’s New in 2.4.12</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2412.html#what-s-fixed-in-2-4-12">8.4.6. What’s Fixed in 2.4.12</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2411.html">8.4.7. What’s New in 2.4.11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2411.html#what-s-fixed-in-2-4-11">8.4.8. What’s Fixed in 2.4.11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24104.html">8.4.9. What’s New in 2.4.10.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24104.html#what-s-fixed-in-2-4-10-4">8.4.10. What’s Fixed in 2.4.10.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24101.html">8.4.11. What’s New in 2.4.10.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24101.html#what-s-fixed-in-2-4-10-1">8.4.12. What’s Fixed in 2.4.10.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2410.html">8.4.13. What’s New in 2.4.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2410.html#what-s-fixed-in-2-4-10">8.4.14. What’s Fixed in 2.4.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_249.html">8.4.15. What’s New in 2.4.9</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_249.html#what-s-fixed-in-2-4-9">8.4.16. What’s Fixed in 2.4.9</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_248.html">8.4.17. What’s New in 2.4.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_248.html#what-s-fixed-in-2-4-8">8.4.18. What’s Fixed in 2.4.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_247.html">8.4.19. What’s New in 2.4.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_247.html#what-s-fixed-in-2-4-7">8.4.20. What’s Fixed in 2.4.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_246.html">8.4.21. What’s New in 2.4.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_246.html#what-s-fixed-in-2-4-6">8.4.22. What’s Fixed in 2.4.6</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="known_issues.html">8.5. Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">8. </span>Release Notes</a> &raquo;</li>
+        
+          <li><a href="previous_release.html"><span class="section-number">8.4. </span>Previous Releases</a> &raquo;</li>
+        
+      <li><span class="section-number">8.4.1. </span>What’s New in 2.4.14.1</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/release/release_notes_24141.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="what-s-new-in-2-4-14-1">
+<h1><span class="section-number">8.4.1. </span>What’s New in 2.4.14.1<a class="headerlink" href="#what-s-new-in-2-4-14-1" title="Permalink to this headline">¶</a></h1>
+<p>2.4.14.1 is a cumulative bug fix release and does not include any new features.</p>
+<div class="section" id="important-interoperability-changes">
+<h2><span class="section-number">8.4.1.1. </span>Important Interoperability Changes<a class="headerlink" href="#important-interoperability-changes" title="Permalink to this headline">¶</a></h2>
+<p>This release of <em>Connext Micro</em> includes the following changes in API compatability with
+previous release:</p>
+<ul class="simple">
+<li><p><em>DDS_DomainParticipantFactory_get_instance</em> <strong>must</strong> be called before other
+APIs. This is required to ensure that a platform integration is properly
+configured and initialized before other APIs are called. APIs that need
+special attention have an additional attribute <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Restriction</span></code> to
+indicate any restrictions.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="what-s-fixed-in-2-4-14-1">
+<h1><span class="section-number">8.4.2. </span>What’s Fixed in 2.4.14.1<a class="headerlink" href="#what-s-fixed-in-2-4-14-1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="invalid-samples-in-batched-data-did-not-count-as-lost-samples">
+<h2><span class="section-number">8.4.2.1. </span>Invalid samples in batched data did not count as ‘lost samples’<a class="headerlink" href="#invalid-samples-in-batched-data-did-not-count-as-lost-samples" title="Permalink to this headline">¶</a></h2>
+<p>Invalid samples in batched data were not counted as lost samples, and
+did not trigger <em>Connext Micro</em> to call <em>on_sample_lost()</em> when the
+“on_sample_lost” notification was enabled.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2289]</p>
+</div>
+<div class="section" id="local-variables-in-header-file-may-have-caused-compiler-warning">
+<h2><span class="section-number">8.4.2.2. </span>Local variables in header file may have caused compiler warning<a class="headerlink" href="#local-variables-in-header-file-may-have-caused-compiler-warning" title="Permalink to this headline">¶</a></h2>
+<p>Local variables were incorrectly defined in ReaderHistory.c and may have
+caused a compiler warning.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2785]</p>
+</div>
+<div class="section" id="non-default-timer-resolutions-may-have-caused-an-incorrect-timeout">
+<h2><span class="section-number">8.4.2.3. </span>Non-default timer resolutions may have caused an incorrect timeout<a class="headerlink" href="#non-default-timer-resolutions-may-have-caused-an-incorrect-timeout" title="Permalink to this headline">¶</a></h2>
+<p>Compiling <em>Connext Micro</em> with a non-default timer resolution may have caused incorrect
+timeouts.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2794]</p>
+</div>
+<div class="section" id="missing-checks-for-max-routes-per-reader-and-max-routes-per-writer">
+<h2><span class="section-number">8.4.2.4. </span>Missing checks for <em>max_routes_per_reader</em> and <em>max_routes_per_writer</em><a class="headerlink" href="#missing-checks-for-max-routes-per-reader-and-max-routes-per-writer" title="Permalink to this headline">¶</a></h2>
+<p>The <em>DDS_DataReaderQos.reader_resource_limits.max_routes_per_writer</em> and
+<em>DDS_DataWriterQos.writer_resource_limits.max_routes_per_reader</em> were
+missing a check that the values were in the range [1,2000]. They were
+also missing from the methods <em>DDS_DataReaderQos_is_equal</em> and
+<em>DDS_DataWriterQos_is_equal</em> respectively.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2830, MICRO-2937]</p>
+</div>
+<div class="section" id="missing-null-checks-for-enabled-transports">
+<h2><span class="section-number">8.4.2.5. </span>Missing NULL checks for <em>enabled_transports</em><a class="headerlink" href="#missing-null-checks-for-enabled-transports" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, it was not checked that the <em>enabled_transports</em>
+QoS policy setting did not contain NULL pointers.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-3117]</p>
+</div>
+<div class="section" id="possible-exception-due-to-misaligned-rtps-header">
+<h2><span class="section-number">8.4.2.6. </span>Possible exception due to misaligned RTPS header<a class="headerlink" href="#possible-exception-due-to-misaligned-rtps-header" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, if multiple RTPS messages were received in the same UDP
+payload, a misaligned RTPS message header could cause an exception.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>RTI</em> <em>Connext Micro</em> does not send multiple RTPS messages in the same UDP payload.</p>
+</div>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2866]</p>
+</div>
+<div class="section" id="dds-subscriptionbuiltintopicdata-copy-did-not-copy-the-presentationqospolicy">
+<h2><span class="section-number">8.4.2.7. </span><em>DDS_SubscriptionBuiltinTopicData_copy</em> did not copy the PresentationQosPolicy<a class="headerlink" href="#dds-subscriptionbuiltintopicdata-copy-did-not-copy-the-presentationqospolicy" title="Permalink to this headline">¶</a></h2>
+<p>The <em>DDS_SubscriptionBuiltinTopicData_copy</em> function did not copy the
+PresentationQosPolicy.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2897]</p>
+</div>
+<div class="section" id="possible-failure-to-start-timer">
+<h2><span class="section-number">8.4.2.8. </span>Possible failure to start timer<a class="headerlink" href="#possible-failure-to-start-timer" title="Permalink to this headline">¶</a></h2>
+<p>On architctures using the <em>posix</em> port of <em>Connext Micro</em>, the DomainParticipantFactory
+may have failed to initialize if compiled to use signals or if
+CLOCK_MONOTONIC was not available.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2904]</p>
+</div>
+<div class="section" id="sample-timestamp-now-set-to-0-if-timestamp-cannot-be-retrieved">
+<h2><span class="section-number">8.4.2.9. </span>Sample timestamp now set to 0 if timestamp cannot be retrieved<a class="headerlink" href="#sample-timestamp-now-set-to-0-if-timestamp-cannot-be-retrieved" title="Permalink to this headline">¶</a></h2>
+<p>If the reception timestamp for a sample cannot be retrieved, the reception
+timestamp is set to 0.</p>
+<p>[RTI Issue ID MICRO-2909]</p>
+</div>
+<div class="section" id="qos-copy-functions-did-not-validate-input-arguments">
+<h2><span class="section-number">8.4.2.10. </span><em>Qos_copy</em> functions did not validate input arguments<a class="headerlink" href="#qos-copy-functions-did-not-validate-input-arguments" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, the <em>Qos_copy</em> APIs did not validate that the
+input arguments were not NULL.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2913]</p>
+</div>
+<div class="section" id="unused-parameter-domain-participant-resource-limits-matching-reader-writer-pair-allocation-removed">
+<h2><span class="section-number">8.4.2.11. </span>Unused parameter <em>DOMAIN_PARTICIPANT_RESOURCE_LIMITS.matching_reader_writer_pair_allocation</em> removed<a class="headerlink" href="#unused-parameter-domain-participant-resource-limits-matching-reader-writer-pair-allocation-removed" title="Permalink to this headline">¶</a></h2>
+<p>The QoS policy setting <em>DOMAIN_PARTICIPANT_RESOURCE_LIMITS.matching_reader_writer_pair_allocation</em>
+was not used and has been removed from the <em>DOMAIN_PARTICIPANT_RESOURCE_LIMITS</em>
+structure.</p>
+<p>[RTI Issue ID MICRO-2915]</p>
+</div>
+<div class="section" id="dds-domainparticpant-add-peer-may-have-returned-success-on-failure">
+<h2><span class="section-number">8.4.2.12. </span><em>DDS_DomainParticpant_add_peer</em> may have returned success on failure<a class="headerlink" href="#dds-domainparticpant-add-peer-may-have-returned-success-on-failure" title="Permalink to this headline">¶</a></h2>
+<p><em>DDS_DomainParticpant_add_peer</em> may have returned success even if the peer
+was not added.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2929]</p>
+</div>
+<div class="section" id="dds-stringseq-copy-did-not-validate-input-arguments">
+<h2><span class="section-number">8.4.2.13. </span><em>DDS_StringSeq_copy</em> did not validate input arguments<a class="headerlink" href="#dds-stringseq-copy-did-not-validate-input-arguments" title="Permalink to this headline">¶</a></h2>
+<p>In previous versions, <em>DDS_StringSeq_copy</em> did not check that the
+source and destination arguments were different before copying.</p>
+<p>This issue has been resolved.</p>
+<p>In addition, the documentation for <em>Seq_copy</em> has been updated to
+clearly state that overlapping memory regions are not supported, with
+the exception of copying to itself.</p>
+<p>[RTI Issue ID MICRO-2964]</p>
+</div>
+<div class="section" id="memory-leak-in-c-classes-for-builtin-topic-data-types-and-certain-qoses">
+<h2><span class="section-number">8.4.2.14. </span>Memory leak in C++ classes for builtin topic data types and certain QoSes<a class="headerlink" href="#memory-leak-in-c-classes-for-builtin-topic-data-types-and-certain-qoses" title="Permalink to this headline">¶</a></h2>
+<p>SupportMethodsGen.hxx did not implement a destructor, which could
+have caused a memory leak when using the C++ API for builtin topic data
+types and certain QoSes.</p>
+<p>This problem has been fixed.</p>
+<p>[RTI Issue ID MICRO-2971]</p>
+</div>
+<div class="section" id="possible-null-pointer-exception-in-generated-code-if-the-system-was-out-of-memory">
+<h2><span class="section-number">8.4.2.15. </span>Possible NULL pointer exception in generated code if the system was out of memory<a class="headerlink" href="#possible-null-pointer-exception-in-generated-code-if-the-system-was-out-of-memory" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, it was possible to get a NULL pointer exception in the
+generated code if the system was out of memory during initialization.</p>
+<p>This issue would have occurred during DDS entity creation, as memory is
+only allocated during entity creation.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2986]</p>
+</div>
+<div class="section" id="a-datawriter-could-run-out-of-resources-if-sample-was-not-added-to-cache">
+<h2><span class="section-number">8.4.2.16. </span>A DataWriter could run out of resources if sample was not added to cache<a class="headerlink" href="#a-datawriter-could-run-out-of-resources-if-sample-was-not-added-to-cache" title="Permalink to this headline">¶</a></h2>
+<p>In rare cases, a <em>DataWriter</em> could run out of resources if a sample
+could be successfully serialized, but not added to the writer cache.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-3034]</p>
+</div>
+<div class="section" id="missing-source-code-files">
+<h2><span class="section-number">8.4.2.17. </span>Missing source code files<a class="headerlink" href="#missing-source-code-files" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, the following source code files were missing:</p>
+<ul class="simple">
+<li><p>UDPTransformations.c</p></li>
+<li><p>UDPTransformations.h</p></li>
+<li><p>DPSEVersion.c</p></li>
+</ul>
+<p>This problem has been fixed.</p>
+<p>[RTI Issue ID MICRO-3042]</p>
+</div>
+<div class="section" id="possible-serialization-beyond-stream-buffer">
+<h2><span class="section-number">8.4.2.18. </span>Possible serialization beyond stream buffer<a class="headerlink" href="#possible-serialization-beyond-stream-buffer" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, <em>CDR_Stream_check_size</em> did not check for underflow.
+As a result, it was possible to serialize data beyond the buffer boundary
+if the buffer assigned to the stream was too small.</p>
+<p>This is only an issue for applications assigning too small of a
+buffer to a stream.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO 3147, MICRO-3200]</p>
+</div>
+<div class="section" id="reliability-max-blocking-time-must-be-zero">
+<h2><span class="section-number">8.4.2.19. </span><em>RELIABILITY.max_blocking_time</em> must be zero<a class="headerlink" href="#reliability-max-blocking-time-must-be-zero" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, a non-zero <em>RELIABILITY.max_blocking_time</em>
+was supported on a <em>DataReader</em>. This feature is not supported in
+this release.</p>
+<p>[RTI Issue ID MICRO-3148]</p>
+</div>
+<div class="section" id="possible-datareader-or-datawriter-creation-failure-with-multiple-domainparticipants">
+<h2><span class="section-number">8.4.2.20. </span>Possible DataReader or DataWriter creation failure with multiple DomainParticipants<a class="headerlink" href="#possible-datareader-or-datawriter-creation-failure-with-multiple-domainparticipants" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, creating <em>DataReaders</em> or <em>DataWriters</em> in different threads
+for different <em>DomainParticipants</em> could fail due to a race condition.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-3151]</p>
+</div>
+<div class="section" id="incorrect-lease-duration-may-have-been-used-for-a-discovered-participant">
+<h2><span class="section-number">8.4.2.21. </span>Incorrect <em>lease_duration</em> may have been used for a discovered participant<a class="headerlink" href="#incorrect-lease-duration-may-have-been-used-for-a-discovered-participant" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, if the <em>lease_duration</em> was not sent by a remote
+<em>DomainParticipant</em>, a previously received value was used instead.</p>
+<p>This issue has been resolved.</p>
+<p>Note that RTI’s DDS implementations send the <em>lease_duration</em>.</p>
+<p>[RTI Issue ID MICRO-3254]</p>
+</div>
+<div class="section" id="missing-consistency-check-for-destination-order-source-timestamp-tolerance">
+<h2><span class="section-number">8.4.2.22. </span>Missing consistency check for <em>DESTINATION_ORDER.source_timestamp_tolerance</em><a class="headerlink" href="#missing-consistency-check-for-destination-order-source-timestamp-tolerance" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, a check that <em>DESTINATION_ORDER.source_timestamp_tolerance</em>
+was normalized was missing (nanosecond &lt; 1 seconds).</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-3272]</p>
+</div>
+<div class="section" id="improved-error-detection-for-unresolved-addresses">
+<h2><span class="section-number">8.4.2.23. </span>Improved error detection for unresolved addresses<a class="headerlink" href="#improved-error-detection-for-unresolved-addresses" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, an unresolved address was ignored. In this release,
+if an address cannot be resolved, it results in a failure. This means that
+all addresses passed to the <em>add_peer</em> API and the <em>enabled_transports</em>
+QoS policy must be valid, otherwise entity creation will fail.</p>
+<p>[RTI Issue ID MICRO-3276]</p>
+</div>
+<div class="section" id="dds-statuscondition-set-enabled-statuses-did-not-trigger-if-an-active-condition-was-enabled">
+<h2><span class="section-number">8.4.2.24. </span><em>DDS_StatusCondition_set_enabled_statuses</em> did not trigger if an active condition was enabled<a class="headerlink" href="#dds-statuscondition-set-enabled-statuses-did-not-trigger-if-an-active-condition-was-enabled" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, if a StatusCondition enabled by a call to
+<em>DDS_StatusCondition_set_enabled_statuses</em> was already active,
+the StatusCondition did not trigger.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-3308]</p>
+</div>
+<div class="section" id="race-condition-in-dds-enable-apis">
+<h2><span class="section-number">8.4.2.25. </span>Race condition in DDS <em>enable</em> APIs<a class="headerlink" href="#race-condition-in-dds-enable-apis" title="Permalink to this headline">¶</a></h2>
+<p>In previouses releases, a race condition existed if the same DDS entity was
+enabled from multiple threads at the same time.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-3311]</p>
+</div>
+<div class="section" id="dds-waitset-may-have-timed-out-later-than-timeout-value">
+<h2><span class="section-number">8.4.2.27. </span>DDS WaitSet may have timed out later than timeout value<a class="headerlink" href="#dds-waitset-may-have-timed-out-later-than-timeout-value" title="Permalink to this headline">¶</a></h2>
+<p>In very rare cases, an error message taking a mutex may have been logged
+when using the POSIX real-time timers. This may have resulted in a delayed
+timeout for <em>DDS_WaitSets</em>.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-3330]</p>
+</div>
+<div class="section" id="system-resource-limits-max-components-qos-policy-cannot-be-changed">
+<h2><span class="section-number">8.4.2.28. </span>SYSTEM_RESOURCE_LIMITS.max_components QoS policy cannot be changed<a class="headerlink" href="#system-resource-limits-max-components-qos-policy-cannot-be-changed" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, the documentation incorrectly specified that the
+<code class="docutils literal notranslate"><span class="pre">SYSTEM_RESOURCE_LIMITS.max_components</span></code> QoS policy could be changed. This has
+been corrected to state that it cannot be changed. The default value has also
+been increased to 64.</p>
+<p>[RTI Issue ID MICRO-4102]</p>
+</div>
+<div class="section" id="incorrect-heartbeat-sent-before-first-sample-when-first-write-sequence-number-is-not-1">
+<h2><span class="section-number">8.4.2.29. </span>Incorrect heartbeat sent before first sample when first_write_sequence_number is not 1<a class="headerlink" href="#incorrect-heartbeat-sent-before-first-sample-when-first-write-sequence-number-is-not-1" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, if the <code class="docutils literal notranslate"><span class="pre">DataWriterQos.protocol.rtps_reliable_writer.first_write_sequence_number</span></code>
+was different from the default value of 1, heartbeats sent before the first
+sample was written would indicate 1 as the first sample available. This would
+cause a <em>DataReader</em> to wait for samples with a sequence number less than
+<code class="docutils literal notranslate"><span class="pre">DataWriterQos.protocol.rtps_reliable_writer.first_write_sequence_number</span></code>
+until a heartbeat with the correct first sequence number was received.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-4081]</p>
+</div>
+<div class="section" id="robustness-check-added-to-verify-that-participant-guids-are-unique-within-a-domainparticipantfactory">
+<h2><span class="section-number">8.4.2.30. </span>Robustness check added to verify that participant GUIDs are unique within a DomainParticipantFactory<a class="headerlink" href="#robustness-check-added-to-verify-that-participant-guids-are-unique-within-a-domainparticipantfactory" title="Permalink to this headline">¶</a></h2>
+<p>A check has been added to <code class="docutils literal notranslate"><span class="pre">DomainParticipantFactory_create_participant</span></code>
+to validate that <em>DomainParticipants</em> created within the same
+<code class="docutils literal notranslate"><span class="pre">DomainParticipantFactory</span></code> have unique GUIDs, and return <cite>nil</cite> if this is not the
+case.</p>
+<p>[RTI Issue ID MICRO-4062]</p>
+</div>
+<div class="section" id="dds-entity-enable-was-not-thread-safe-for-a-domainparticipant">
+<h2><span class="section-number">8.4.2.31. </span>DDS_Entity_enable was not thread-safe for a DomainParticipant<a class="headerlink" href="#dds-entity-enable-was-not-thread-safe-for-a-domainparticipant" title="Permalink to this headline">¶</a></h2>
+<p><em>DDS_Entity_enable</em> was not thread-safe, which may
+have led to race conditions. This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-3381]</p>
+</div>
+<div class="section" id="missing-input-verification-for-api-functions">
+<h2><span class="section-number">8.4.2.32. </span>Missing input verification for API functions<a class="headerlink" href="#missing-input-verification-for-api-functions" title="Permalink to this headline">¶</a></h2>
+<p>The following functions did not have a precondition check:</p>
+<ul class="simple">
+<li><p><em>DDS_PublicationBuiltinTopicData_initialize()</em></p></li>
+<li><p><em>DDS_SubscriptionBuiltinTopicData_initialize()</em></p></li>
+<li><p><em>DDS_ParticipantBuiltinTopicData_initialize()</em></p></li>
+</ul>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-3442]</p>
+</div>
+<div class="section" id="incorrect-return-values-from-reda-string">
+<h2><span class="section-number">8.4.2.33. </span>Incorrect return values from REDA_String<a class="headerlink" href="#incorrect-return-values-from-reda-string" title="Permalink to this headline">¶</a></h2>
+<p><em>REDA_String_compare</em> and <em>REDA_String_ncompare</em> would return incorrect values
+when NULL was passed in as one of the parameters. This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-3461]</p>
+</div>
+<div class="section" id="incorrect-return-values-from-qos-apis">
+<h2><span class="section-number">8.4.2.34. </span>Incorrect return values from QoS APIs<a class="headerlink" href="#incorrect-return-values-from-qos-apis" title="Permalink to this headline">¶</a></h2>
+<p>The following functions have been corrected to return
+<em>DDS_RETCODE_BAD_PARAMETER</em> instead of <em>DDS_RETCODE_PRECONDITION_NOT_MET</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>DDS_DomainParticipantFactoryQos_copy</em></p></li>
+<li><p><em>DDS_DomainParticipantFactoryQos_initialize</em></p></li>
+<li><p><em>DDS_DomainParticipantQos_copy</em></p></li>
+<li><p><em>DDS_DomainParticipantQos_initialize</em></p></li>
+<li><p><em>DDS_SubscriberQos_copy</em></p></li>
+<li><p><em>DDS_SubscriberQos_initialize</em></p></li>
+<li><p><em>DDS_DataReaderQos_copy</em></p></li>
+<li><p><em>DDS_DataReaderQos_initialize</em></p></li>
+</ul>
+</div></blockquote>
+<p>[RTI Issue ID MICRO-3572]</p>
+</div>
+<div class="section" id="dds-wstring-cmp-did-not-match-the-implementation-name-dds-wstring-compare">
+<h2><span class="section-number">8.4.2.35. </span>DDS_Wstring_cmp did not match the implementation name DDS_Wstring_compare<a class="headerlink" href="#dds-wstring-cmp-did-not-match-the-implementation-name-dds-wstring-compare" title="Permalink to this headline">¶</a></h2>
+<p>The DDS Wstring compare function was incorrectly documented as
+being <code class="docutils literal notranslate"><span class="pre">DDS_Wstring_cmp</span></code> instead of <code class="docutils literal notranslate"><span class="pre">DDS_Wstring_compare</span></code>.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-3529]</p>
+</div>
+<div class="section" id="race-condition-during-participant-discovery">
+<h2><span class="section-number">8.4.2.36. </span>Race condition during participant discovery<a class="headerlink" href="#race-condition-during-participant-discovery" title="Permalink to this headline">¶</a></h2>
+<p>A race condition existed during participant discovery.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-3365]</p>
+</div>
+<div class="section" id="a-datawriter-with-best-effort-and-transient-local-may-run-out-of-resources">
+<h2><span class="section-number">8.4.2.37. </span>A DataWriter with BEST_EFFORT and TRANSIENT_LOCAL may run out of resources<a class="headerlink" href="#a-datawriter-with-best-effort-and-transient-local-may-run-out-of-resources" title="Permalink to this headline">¶</a></h2>
+<p>A DataWriter with BEST_EFFORT and TRANSIENT_LOCAL QoS policies may run out
+of resources when <code class="docutils literal notranslate"><span class="pre">DataWriterQos.resource_limits.max_samples_per_instance</span>
+<span class="pre">&gt;</span> <span class="pre">1</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Resending of historical samples
+(<code class="docutils literal notranslate"><span class="pre">DataWriterQos.durability.kind</span> <span class="pre">=</span> <span class="pre">TRANSIENT_LOCAL</span></code>) requires a
+<code class="docutils literal notranslate"><span class="pre">DataWriterQos.reliability.kind</span> <span class="pre">=</span> <span class="pre">RELIABLE</span></code> Qos Policy. Thus, the
+combination of BEST_EFFORT and TRANSIENT_LOCAL is not useful, although it
+is a legal combination.</p>
+</div>
+<p>[RTI Issue ID MICRO-4508]</p>
+</div>
+<div class="section" id="me-h-may-have-repeated-requesting-a-sample-that-was-no-longer-available-from-a-datawriter">
+<h2><span class="section-number">8.4.2.38. </span>Connext Micro may have repeated requesting a sample that was no longer available from a DataWriter<a class="headerlink" href="#me-h-may-have-repeated-requesting-a-sample-that-was-no-longer-available-from-a-datawriter" title="Permalink to this headline">¶</a></h2>
+<p>If <em>Connext Micro</em> detects a missing sample when using <code class="docutils literal notranslate"><span class="pre">DDS_RELIABLE_RELIABILITY_QOS</span></code>
+reliability, it will request the sample to be resent, but if the sample is
+no longer available from the DataWriter, the DataWriter may send a GAP message
+to indicate the sample is not longer available.</p>
+<p><em>Connext Micro</em> failed to interpret the GAP message correctly if the first sequence number
+in the GAP message was equal to the bitmap base of the GAP message. In this
+case, <em>Connext Micro</em> failed to ignore the no-longer-available sample and kept
+sending a request for the sample.</p>
+<p>This problem has been fixed.</p>
+<p>[RTI Issue ID MICRO-4668]</p>
+</div>
+<div class="section" id="dds-subscriber-lookup-datareader-may-return-a-datareader-that-was-created-by-a-different-subscriber">
+<h2><span class="section-number">8.4.2.39. </span>DDS_Subscriber_lookup_datareader may return a DataReader that was created by a different Subscriber<a class="headerlink" href="#dds-subscriber-lookup-datareader-may-return-a-datareader-that-was-created-by-a-different-subscriber" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">DDS_Subscriber_lookup_datareader</span></code> API searches for a DataReader for a
+given TopicDescription created by the Subscriber. However, in previous releases,
+the returned DataReader could belong to a different Subscriber if multiple
+DataReaders were created for the same Topic in different Subscribers.</p>
+<p>This problem has been fixed.</p>
+<p>[RTI Issue ID MICRO-4569]</p>
+</div>
+<div class="section" id="dds-publisher-lookup-datawriter-may-return-a-datawriter-that-was-created-by-a-different-publisher">
+<h2><span class="section-number">8.4.2.40. </span>DDS_Publisher_lookup_datawriter may return a DataWriter that was created by a different Publisher<a class="headerlink" href="#dds-publisher-lookup-datawriter-may-return-a-datawriter-that-was-created-by-a-different-publisher" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">DDS_Publisher_lookup_datawriter</span></code> API searches for a DataWriter for a
+given Topic created by the Publisher. However, in previous releases, the
+returned DataWriter could belong to a different Publisher if multiple DataWriters
+were created for the same Topic in different Publishers.</p>
+<p>This problem has been fixed.</p>
+<p>[RTI Issue ID MICRO-4570]</p>
+</div>
+<div class="section" id="a-reliable-datawriter-may-ignore-requests-to-resend-samples">
+<h2><span class="section-number">8.4.2.41. </span>A reliable DataWriter may ignore requests to resend samples<a class="headerlink" href="#a-reliable-datawriter-may-ignore-requests-to-resend-samples" title="Permalink to this headline">¶</a></h2>
+<p>If a DataWriter has received multiple requests to resend samples before its
+periodic heartbeat period expires, the DataWriter may ignore the request if
+the requested sample has been sent and is also the first expected sample by
+the requesting DataReader.</p>
+<p>This problem has been fixed.</p>
+<p>[RTI Issue ID MICRO-5183]</p>
+</div>
+<div class="section" id="compiler-warning-due-to-reliance-on-deprecated-implicit-copy-constructor-for-c">
+<h2><span class="section-number">8.4.2.42. </span>Compiler warning due to reliance on deprecated implicit copy constructor for C++<a class="headerlink" href="#compiler-warning-due-to-reliance-on-deprecated-implicit-copy-constructor-for-c" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, compiling with C++ could produce the following warning:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>warning: definition of implicit copy constructor
+</pre></div>
+</div>
+<p>This issue has been fixed. This release adds copy constructors for C++ classes
+where the use of implicit implicit copy constructors have been deprecated.</p>
+<p>[RTI Issue ID MICRO-5340]</p>
+</div>
+<div class="section" id="rtps-message-may-have-been-rejected">
+<h2><span class="section-number">8.4.2.43. </span>RTPS message may have been rejected<a class="headerlink" href="#rtps-message-may-have-been-rejected" title="Permalink to this headline">¶</a></h2>
+<p>An RTPS message may have been rejected if it had a HDR_EXT and the last RTPS
+submessage had a length that is not a multiple of 4.</p>
+<p>This issue has been fixed.</p>
+<p>[RTI Issue ID MICRO-5387]</p>
+</div>
+<div class="section" id="warning-about-hostname-not-supported-in-posixsystem-c">
+<h2><span class="section-number">8.4.2.44. </span>Warning about hostname not supported in posixSystem.c<a class="headerlink" href="#warning-about-hostname-not-supported-in-posixsystem-c" title="Permalink to this headline">¶</a></h2>
+<p>Compiling posixSystem.c could produce the following warning:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>warning: RTI Micro does not support retrieving the hostname for CERT. Set hostname manually [-Wcpp]
+</pre></div>
+</div>
+<p>This warning was unnecessary and has been removed.</p>
+<p>[RTI Issue ID MICRO-5412]</p>
+</div>
+<div class="section" id="false-positive-compiler-warning">
+<h2><span class="section-number">8.4.2.45. </span>False positive compiler warning<a class="headerlink" href="#false-positive-compiler-warning" title="Permalink to this headline">¶</a></h2>
+<p>Compiling with GCC 11 could produce the following warning:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>warning: ‘presentation’ may be used uninitialized [-Wmaybe-uninitialized]
+</pre></div>
+</div>
+<p>This was a false positive since <code class="docutils literal notranslate"><span class="pre">presentation</span></code> was deserialized. This
+problem has been fixed.</p>
+<p>[RTI Issue ID MICRO-5428]</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="release_notes_2414.html" class="btn btn-neutral float-right" title="8.4.3. What’s New in 2.4.14" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="previous_release.html" class="btn btn-neutral float-left" title="8.4. Previous Releases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

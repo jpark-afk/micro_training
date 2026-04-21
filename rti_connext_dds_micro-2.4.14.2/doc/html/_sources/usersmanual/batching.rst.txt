@@ -1,0 +1,129 @@
+.. highlight:: xml
+
+Batching
+========
+
+This section is organized as follows:
+
+ - :ref:`batching_overview`
+ - :ref:`batching_interoperability`
+ - :ref:`batching_performance`
+ - :ref:`batching_example_configuration`
+
+.. _batching_overview:
+
+Overview
+--------
+
+Batching refers to a mechanism that allows |rti_me| to collect
+multiple user data DDS samples to be sent in a single network packet, to take
+advantage of the efficiency of sending larger packets and thus increase
+effective throughput.
+
+|me| supports receiving batches of user data DDS samples,
+but does not support any mechanism to collect and send batches of user
+data.
+
+Receiving batches of user samples is transparent to the application, which
+receives the samples as if the samples had been received one at a time.
+Note though that the reception sequence number refers to the sample
+sequence number, not the RTPS sequence number used to send RTPS messages.
+The RTPS sequence number is the batch sequence number for the entire batch.
+
+A |me| *DataReader* can receive both batched and non-batched samples.
+
+For a more detailed explanation, please refer to :link_external_community_doc_pro_um:`the BATCH QosPolicy section <index.htm#users_manual/BATCH_Qos.htm>`
+in the :link_external_community_doc_pro_um:`RTI Connext DDS Core Libraries User's Manual <index.htm>`
+(available :link_external_community_doc_pro_um:`here <index.htm#users_manual/BATCH_Qos.htm>` if you have
+Internet access).
+
+.. _batching_interoperability:
+
+Interoperability
+----------------
+
+|rti_core_pro| supports both sending and receiving batches, whereas
+|rti_me| supports only receiving batches. Thus,
+this feature primarily exists in |me| to interoperate
+with |rti_core| applications that have enabled batching. An
+|me| *DataReader* can receive both batched and
+non-batched samples.
+
+.. _batching_performance:
+
+Performance
+-----------
+
+The purpose of batching is to increase throughput when writing small DDS
+samples at a high rate. In such cases, throughput can be increased several-fold,
+approaching much more closely the physical limitations of the underlying network
+transport.
+
+However, collecting DDS samples into a batch implies that they are not sent on
+the network immediately when the application writes them; this can potentially
+increase latency. But, if the application sends data faster than the
+network can support, an increased proportion of the network's available
+bandwidth will be spent on acknowledgements and DDS sample resends. In this
+case, reducing that overhead by turning on batching could decrease latency
+while increasing throughput.
+
+.. _batching_example_configuration:
+
+Example Configuration
+---------------------
+
+This section includes several examples that explain how to enable
+batching in |rti_core_pro|. For more detailed and advanced configuration,
+please refer to the :link_external_community_doc_pro_um:`RTI Connext DDS Core Libraries User's Manual <index.htm>`.
+
+- This configuration ensures that a batch will be sent with a maximum
+  of 10 samples::
+
+    <datawriter_qos>
+        <publication_name>
+            <name>HelloWorldDataWriter</name>
+        </publication_name>
+        <batch>
+            <enable>true</enable>
+            <max_samples>10</max_samples>
+        </batch>
+    </datawriter_qos>
+
+- This configuration ensures that a batch is automatically flushed
+  after the delay specified by max_flush_delay. The delay is measured from
+  the time the first sample in the batch is written by the application::
+
+    <datawriter_qos>
+        <publication_name>
+            <name>HelloWorldDataWriter</name>
+        </publication_name>
+        <batch>
+            <enable>true</enable>
+            <max_flush_delay>
+                <sec>1</sec>
+                <nanosec>0</nanosec>
+            </max_flush_delay>
+        </batch>
+    </datawriter_qos>
+
+- The following configuration ensures that a batch is flushed automatically
+  when max_data_bytes is reached (in this example 8192).
+
+  ::
+
+    <datawriter_qos>
+        <publication_name>
+            <name>HelloWorldDataWriter</name>
+        </publication_name>
+        <batch>
+            <enable>true</enable>
+            <max_data_bytes>8192</max_data_bytes>
+        </batch>
+    </datawriter_qos>
+
+Note that max_data_bytes does not include the metadata associated with the
+batch samples.
+
+Batches must contain whole samples. If a new batch is started and its initial
+sample causes the serialized size to exceed max_data_bytes, |rti_core_pro|
+will send the sample in a single batch.

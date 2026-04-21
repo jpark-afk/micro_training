@@ -1,0 +1,132 @@
+What's New in 2.4.10.4
+======================
+
+Batching (reception only)
+-------------------------
+This release includes batching reception. Please refer to the new user manual
+for Batching for details.
+
+C++ examples
+------------
+A new C++ example using Waitsets (HelloWorld_dpde_waitset) is included.
+
+
+What's Fixed in 2.4.10.4
+========================
+
+Improve KEEP_LAST
+-----------------
+To reclaim resources in version 2.4.10 and earlier the DataReader cache tries to
+remove the oldest sample only. If that is on loan it cannot be removed and in case
+a new sample is received it cannot be added to the DataReader cache.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1754]
+
+
+Locator might be duplicated when NAT is configured
+--------------------------------------------------
+When Network Address Translation (NAT) is configured in the transport UDP properties,
+a duplicated locator might be sent in discovery packets.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1756]
+
+
+Segmentation fault might happen when a DataReader cannot be created
+-------------------------------------------------------------------
+If the creation of a DataReader fails before all fields in the DataReader structure
+are initialized, a NULL pointer access may have occur while finalizing the already
+created objects.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1755]
+
+CMake reports error if CMake version 2.8.10.2 or 2.8.10.1 is used
+-----------------------------------------------------------------
+RTI Connext DDS Micro buildable sources could not be compiled with CMake 2.8.10.1
+or 2.8.10.2.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1748]
+
+
+Wrong TUDP locator kind sent when using UDP transformations
+-----------------------------------------------------------
+
+When using UDP transformations the locator kind was always set as 0, intead of the configured
+value in \ref UDP_InterfaceFactoryProperty.transform_locator_kind
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1685]
+
+Compile shipped examples for a 64 bits architecture
+---------------------------------------------------
+Before this release shipped examples makefiles could only compile 
+32 bits architectures. Makefiles have been modified to support also 64 bits 
+architectures.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1628]
+
+OSAPI_Heap_realloc() Windows implementation fixed
+-------------------------------------------------
+The Windows implementation of function OSAPI_Heap_realloc() had a precondition to check
+for a NULL pointer as input parameter. This is wrong as in this case the function shall
+allocate a new buffer (equivalent to malloc()).
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1655]
+
+Use API DDSDomainParticipant::delete_contained_entities() in C++ examples
+-------------------------------------------------------------------------
+
+Shipped C++ examples now use DDSDomainParticipant::delete_contained_entities()
+to delete all DSS entities in a DDS Participant. This is easier than using 
+DDSDomainParticipant::delete_topic(), DDSDomainParticipant::unregister_type(), etc.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1656]
+
+Memory leak in shipped examples fixed
+-------------------------------------
+
+Shipped examples were not releasing correctly some of the allocated structures
+when application finalized.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1676]
+
+C++ shipped examples might release an object twice.
+---------------------------------------------------
+
+C++ shipped examples might release an object twice in case of error.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1677]
+
+Backwards Compatability
+```````````````````````
+
+Change in on_before_sample_deserialize callback.
+''''''''''''''''''''''''''''''''''''''''''''''''
+
+In 2.4.10 and earlier the stream passed to <b>on_before_sample_deserialize</b>
+callback started at the encapsulation header followed by user data. However, 
+with the added support for batched samples this is no longer possible. 
+Instead the stream now starts at the user-data payload. Note that the only 
+supported encapsulation format for user-data is CDR. This may change in 
+future versions.
+
+The examples have been updated to reflect the change. Please refer to the 
+examples for details.

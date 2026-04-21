@@ -1,0 +1,30 @@
+Transport Limits
+----------------
+
+The following limitations apply to all |me| transports.
+
+IDL Data Types and Size
+.......................
+
+|me| does not support RTPS fragmentation and is limited
+to IDL data types less than or equal to 63000 bytes *or* the 
+maximum transmission unit (MTU) of the underlying transport, 
+whichever is smaller.
+
+Maximum Transmission Unit (MTU)
+...............................
+
+|me| does not query the MTU size from the registered transport plugins. 
+If the MTU size is exceeded, the data will be silently discarded. 
+
+Maximum Receive Unit (MRU)
+..........................
+
+|me| does not track the maximum receive unit (MRU) of other nodes in the 
+system. Therefore, |me| relies on consistent configuration accross all
+the nodes in the system in order to successfully send and receive data.
+For example, if a node has a MRU of 8000 bytes and another node 
+sends 9000 bytes (with a sufficiently large MTU), the data will be sent, 
+but not received.
+  
+

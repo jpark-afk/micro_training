@@ -1,0 +1,35 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+INCLUDE(CMakeForceCompiler)
+
+SET(CMAKE_SYSTEM_NAME Linux)
+SET(CMAKE_SYSTEM_PROCESSOR ppce500mc)
+
+# Overwrite using -DFREESCALE_ROOT="path/to/freescale" from CMake
+IF (NOT DEFINED FREESCALE_ROOT)
+    SET(FREESCALE_ROOT "/local/applications/freescale/v1.4/x86_64/sysroots")
+ENDIF()
+
+MESSAGE("FREESCALE_ROOT: ${FREESCALE_ROOT}")
+
+SET(COMPILER_PATH "${FREESCALE_ROOT}/x86_64-fsl_networking_sdk-linux/usr/bin/ppce500mc-fsl_networking-linux")
+SET(CMAKE_CXX_COMPILER "${COMPILER_PATH}/powerpc-fsl_networking-linux-g++")
+SET(CMAKE_C_COMPILER   "${COMPILER_PATH}/powerpc-fsl_networking-linux-gcc")
+SET(CMAKE_SYSROOT "/local/applications/freescale/v1.4/x86_64/sysroots/ppce500mc-fsl_networking-linux")
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Platform/linux.tc)
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/gcc.tc)
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)

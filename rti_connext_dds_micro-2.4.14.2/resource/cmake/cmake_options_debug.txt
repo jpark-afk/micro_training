@@ -1,0 +1,59 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2016
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Logging options file
+
+# Modification History
+# --------------------
+# 12sep2016 tk Written
+################################################################################
+IF (RTIME_PRINT_CONFIG)
+    RTI_MESSAGE_STATUS("RTIME_OSAPI_ENABLE_LOG .............: ${RTIME_OSAPI_ENABLE_LOG}")
+    RTI_MESSAGE_STATUS("RTIME_OSAPI_ENABLE_PRECONDITION ....: ${RTIME_OSAPI_ENABLE_PRECONDITION}")
+    RETURN()
+ENDIF()
+
+#== Debug information
+LIST(APPEND DEBUG_OPTIONS "Include" "Exclude" "Default")
+
+SET(RTIME_OSAPI_ENABLE_LOG "Default" CACHE STRING "Include/Exclude Logging")
+SET_PROPERTY(CACHE RTIME_OSAPI_ENABLE_LOG PROPERTY STRINGS ${DEBUG_OPTIONS})
+
+SET(RTIME_OSAPI_ENABLE_TRACE "Default" CACHE STRING "Include/Exclude Trace information")
+SET_PROPERTY(CACHE RTIME_OSAPI_ENABLE_TRACE PROPERTY STRINGS ${DEBUG_OPTIONS})
+
+SET(RTIME_OSAPI_ENABLE_PRECONDITION "Default" CACHE STRING "Include/Exclude Precondition checks")
+SET_PROPERTY(CACHE RTIME_OSAPI_ENABLE_PRECONDITION PROPERTY STRINGS ${DEBUG_OPTIONS})
+
+IF (${RTIME_OSAPI_ENABLE_TRACE} STREQUAL "Include")
+    MESSAGE("Update RTIME_OSAPI_ENABLE_LOG") 
+    SET_PROPERTY(CACHE RTIME_OSAPI_ENABLE_LOG PROPERTY VALUE "Include")
+    MESSAGE("Update RTIME_OSAPI_ENABLE_LOG=${RTIME_OSAPI_ENABLE_LOG}") 
+ENDIF()
+
+IF (${RTIME_OSAPI_ENABLE_LOG} STREQUAL "Include")
+    ADD_DEFINITIONS(-DOSAPI_ENABLE_LOG=1)
+ELSEIF(${RTIME_OSAPI_ENABLE_LOG} STREQUAL "Exclude")
+    ADD_DEFINITIONS(-DOSAPI_ENABLE_LOG=0)
+ENDIF()
+
+IF (${RTIME_OSAPI_ENABLE_TRACE} STREQUAL "Include")
+    ADD_DEFINITIONS(-DOSAPI_ENABLE_TRACE=1)
+ELSEIF(${RTIME_OSAPI_ENABLE_LOG} STREQUAL "Exclude")
+    ADD_DEFINITIONS(-DOSAPI_ENABLE_TRACE=0)
+ENDIF()
+
+IF (${RTIME_OSAPI_ENABLE_PRECONDITION} STREQUAL "Include")
+    ADD_DEFINITIONS(-DOSAPI_ENABLE_PRECONDITION=1)
+ELSEIF(${RTIME_OSAPI_ENABLE_LOG} STREQUAL "Exclude")
+    ADD_DEFINITIONS(-DOSAPI_ENABLE_PRECONDITION=0)
+ENDIF()
+

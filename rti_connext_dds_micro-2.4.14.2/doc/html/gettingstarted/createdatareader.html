@@ -1,0 +1,531 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.8. Create DataReader &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.9. Examples" href="examples.html" />
+    <link rel="prev" title="3.7. Create Subscriber" href="createsubscriber.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="definedatatype.html">3.1. Define a Data Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generatesupportcode.html">3.2. Generate Type Support Code with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configureUDPtransport.html">3.3. Configure UDP Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createdomainparticipant.html">3.4. Create DomainParticipant, Topic, and Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createpublisher.html">3.5. Create Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createdatawriter.html">3.6. Create DataWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createsubscriber.html">3.7. Create Subscriber</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.8. Create DataReader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dpse-discovery-assert-remote-publication">3.8.1. DPSE Discovery: Assert Remote Publication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#receiving-samples">3.8.2. Receiving Samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filtering-samples">3.8.3. Filtering Samples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.9. Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_generation.html">3.10. Example Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">4. User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building/index.html">5. Building and Porting Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">3. </span>Getting Started</a> &raquo;</li>
+        
+      <li><span class="section-number">3.8. </span>Create DataReader</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/gettingstarted/createdatareader.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="create-datareader">
+<h1><span class="section-number">3.8. </span>Create DataReader<a class="headerlink" href="#create-datareader" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">DDS_DataReader</span><span class="w"> </span><span class="o">*</span><span class="n">datareader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">DDS_DataReaderQos</span><span class="w"> </span><span class="n">dr_qos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DataReaderQos_INITIALIZER</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">DDS_DataReaderListener</span><span class="w"> </span><span class="n">dr_listener</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DataReaderListener_INITIALIZER</span><span class="p">;</span>
+
+<span class="cm">/* Configure Reader Qos */</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">protocol</span><span class="p">.</span><span class="n">rtps_object_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span><span class="p">;</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">max_instances</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">max_samples_per_instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">max_samples</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">dr_qos</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">max_samples_per_instance</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dr_qos</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">max_instances</span><span class="p">;</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">reader_resource_limits</span><span class="p">.</span><span class="n">max_remote_writers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">reader_resource_limits</span><span class="p">.</span><span class="n">max_remote_writers_per_instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">history</span><span class="p">.</span><span class="n">depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">durability</span><span class="p">.</span><span class="n">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_VOLATILE_DURABILITY_QOS</span><span class="p">;</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">reliability</span><span class="p">.</span><span class="n">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_RELIABLE_RELIABILITY_QOS</span><span class="p">;</span>
+
+<span class="cm">/* Set listener callbacks */</span>
+<span class="n">dr_listener</span><span class="p">.</span><span class="n">on_data_available</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HelloWorldSubscriber_on_data_available</span><span class="p">;</span>
+<span class="n">dr_listener</span><span class="p">.</span><span class="n">on_subscription_matched</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HelloWorldSubscriber_on_subscription_matched</span><span class="p">;</span>
+
+<span class="n">datareader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_Subscriber_create_datareader</span><span class="p">(</span><span class="n">subscriber</span><span class="p">,</span>
+<span class="w">                                              </span><span class="n">DDS_Topic_as_topicdescription</span><span class="p">(</span><span class="n">topic</span><span class="p">),</span>
+<span class="w">                                              </span><span class="o">&amp;</span><span class="n">dr_qos</span><span class="p">,</span>
+<span class="w">                                              </span><span class="o">&amp;</span><span class="n">dr_listener</span><span class="p">,</span>
+<span class="w">                                              </span><span class="n">DDS_DATA_AVAILABLE_STATUS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DDS_SUBSCRIPTION_MATCHED_STATUS</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">datareader</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* failure */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <a class="reference external" href="../../api_c/html/structDDS__DataReaderListener.html">DataReaderListener</a> has its callbacks selectively enabled by the DDS
+status mask.  In the example, the mask has set the <a class="reference external" href="../../api_c/html/group__DDSStatusTypesModule.html">DDS_SUBSCRIPTION_MATCHED_STATUS</a>
+and <a class="reference external" href="../../api_c/html/group__DDSStatusTypesModule.html">DDS_DATA_AVAILABLE_STATUS</a> statuses, and accordingly the <a class="reference external" href="../../api_c/html/structDDS__DataReaderListener.html">DataReaderListener</a> has its
+<a class="reference external" href="../../api_c/html/structDDS__DataReaderListener.html">on_subscription_matched</a> and <a class="reference external" href="../../api_c/html/structDDS__DataReaderListener.html">on_data_available</a> assigned to callback functions.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">HelloWorldSubscriber_on_subscription_matched</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">listener_data</span><span class="p">,</span>
+<span class="w">                                                  </span><span class="n">DDS_DataReader</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">reader</span><span class="p">,</span>
+<span class="w">                                                  </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_SubscriptionMatchedStatus</span><span class="w"> </span><span class="o">*</span><span class="n">status</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="o">-&gt;</span><span class="n">current_count_change</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Matched a publisher</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Unmatched a publisher</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">HelloWorldSubscriber_on_data_available</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">listener_data</span><span class="p">,</span>
+<span class="w">                                            </span><span class="n">DDS_DataReader</span><span class="o">*</span><span class="w"> </span><span class="n">reader</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">HelloWorldDataReader</span><span class="w"> </span><span class="o">*</span><span class="n">hw_reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HelloWorldDataReader_narrow</span><span class="p">(</span><span class="n">reader</span><span class="p">);</span>
+<span class="w">    </span><span class="n">DDS_ReturnCode_t</span><span class="w"> </span><span class="n">retcode</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_SampleInfo</span><span class="w"> </span><span class="o">*</span><span class="n">sample_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">HelloWorld</span><span class="w"> </span><span class="o">*</span><span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_SampleInfoSeq</span><span class="w"> </span><span class="n">info_seq</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="n">DDS_SEQUENCE_INITIALIZER</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_SampleInfo</span><span class="p">);</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">HelloWorldSeq</span><span class="w"> </span><span class="n">sample_seq</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="n">DDS_SEQUENCE_INITIALIZER</span><span class="p">(</span><span class="n">HelloWorld</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">TAKE_MAX_SAMPLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="p">;</span>
+<span class="w">    </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">retcode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HelloWorldDataReader_take</span><span class="p">(</span><span class="n">hw_reader</span><span class="p">,</span>
+<span class="w">       </span><span class="o">&amp;</span><span class="n">sample_seq</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">info_seq</span><span class="p">,</span><span class="w"> </span><span class="n">TAKE_MAX_SAMPLES</span><span class="p">,</span>
+<span class="w">       </span><span class="n">DDS_ANY_SAMPLE_STATE</span><span class="p">,</span><span class="w"> </span><span class="n">DDS_ANY_VIEW_STATE</span><span class="p">,</span><span class="w"> </span><span class="n">DDS_ANY_INSTANCE_STATE</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">retcode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DDS_RETCODE_OK</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;failed to take data: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">retcode</span><span class="p">);</span>
+<span class="w">        </span><span class="k">goto</span><span class="w"> </span><span class="n">done</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* Print each valid sample taken */</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">HelloWorldSeq_get_length</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sample_seq</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">sample_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_SampleInfoSeq_get_reference</span><span class="p">(</span><span class="o">&amp;</span><span class="n">info_seq</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sample_info</span><span class="o">-&gt;</span><span class="n">valid_data</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HelloWorldSeq_get_reference</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sample_seq</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Sample received</span><span class="se">\n\t</span><span class="s">msg: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sample</span><span class="o">-&gt;</span><span class="n">msg</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;not valid data</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">HelloWorldDataReader_return_loan</span><span class="p">(</span><span class="n">hw_reader</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sample_seq</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">info_seq</span><span class="p">);</span>
+
+<span class="w"> </span><span class="nl">done</span><span class="p">:</span>
+<span class="w">    </span><span class="n">HelloWorldSeq_finalize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sample_seq</span><span class="p">);</span>
+<span class="w">    </span><span class="n">DDS_SampleInfoSeq_finalize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">info_seq</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="dpse-discovery-assert-remote-publication">
+<h2><span class="section-number">3.8.1. </span>DPSE Discovery: Assert Remote Publication<a class="headerlink" href="#dpse-discovery-assert-remote-publication" title="Permalink to this headline">¶</a></h2>
+<p>A subscribing application using <a class="reference external" href="../../api_c/html/group__DPSEModule.html">DPSE</a> discovery must specify the other
+<em>DataWriters</em> that its <em>DataReaders</em> are allowed to discover.  Like the API
+for asserting a remote participant, the <a class="reference external" href="../../api_c/html/group__DPSEModule.html">DPSE</a> API for asserting a remote
+publication must be called for each remote <em>DataWriter</em> that a <em>DataReader</em>
+may discover.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_PublicationBuiltinTopicData</span><span class="w"> </span><span class="n">rem_publication_data</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">DDS_PublicationBuiltinTopicData_INITIALIZER</span><span class="p">;</span>
+
+<span class="cm">/* Set Writer&#39;s protocol.rtps_object_id */</span>
+<span class="n">rem_publication_data</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="n">DDS_BUILTIN_TOPIC_KEY_OBJECT_ID</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+
+<span class="n">rem_publication_data</span><span class="p">.</span><span class="n">topic_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;Example HelloWorld&quot;</span><span class="p">);</span>
+<span class="n">rem_publication_data</span><span class="p">.</span><span class="n">type_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;HelloWorld&quot;</span><span class="p">);</span>
+
+<span class="n">rem_publication_data</span><span class="p">.</span><span class="n">reliability</span><span class="p">.</span><span class="n">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_RELIABLE_RELIABILITY_QOS</span><span class="p">;</span>
+
+<span class="n">retcode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DPSE_RemotePublication_assert</span><span class="p">(</span><span class="n">participant</span><span class="p">,</span>
+<span class="w">                                        </span><span class="s">&quot;Participant_1&quot;</span><span class="p">,</span>
+<span class="w">                                        </span><span class="o">&amp;</span><span class="n">rem_publication_data</span><span class="p">,</span>
+<span class="w">                                        </span><span class="n">HelloWorld_get_key_kind</span><span class="p">(</span><span class="n">HelloWorldTypePlugin_get</span><span class="p">(),</span>
+<span class="w">                                        </span><span class="nb">NULL</span><span class="p">)));</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">retcode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DDS_RETCODE_OK</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* failure */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Asserting a remote publication requires configuration of all QoS policies
+necessary to determine matching.</p>
+</div>
+<div class="section" id="receiving-samples">
+<h2><span class="section-number">3.8.2. </span>Receiving Samples<a class="headerlink" href="#receiving-samples" title="Permalink to this headline">¶</a></h2>
+<p>Accessing received samples can be done in a few ways:</p>
+<ul class="simple">
+<li><p><strong>Polling</strong>.  Do read or take within a periodic polling loop.</p></li>
+<li><p><strong>Listener</strong>.  When a new sample is received, the <a class="reference external" href="../../api_c/html/structDDS__DataReaderListener.html">DataReaderListener</a>’s
+<a class="reference external" href="../../api_c/html/structDDS__DataReaderListener.html">on_data_available</a> is called.  Processing is done in the context of the
+middleware’s receive thread.  See the above
+HelloWorldSubscriber_on_data_available callback for example code.</p></li>
+<li><p><strong>Waitset</strong>.  Create a waitset, attach it to a status condition with
+the data_available status enabled, and wait for a received sample to
+trigger the waitset.  Processing is done in the context of the user’s
+application thread. (Note: the code snippet below is taken from the shipped
+HelloWorld_dpde_waitset example).</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">DDS_WaitSet</span><span class="w"> </span><span class="o">*</span><span class="n">waitset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">DDS_Duration_t</span><span class="w"> </span><span class="n">wait_timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="cm">/* 10 seconds */</span>
+<span class="n">DDS_StatusCondition</span><span class="w"> </span><span class="o">*</span><span class="n">dr_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">DDS_ConditionSeq</span><span class="w"> </span><span class="n">active_conditions</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">DDS_SEQUENCE_INITIALIZER</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_ConditionSeq</span><span class="p">);</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">DDS_ConditionSeq_initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">active_conditions</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* failure */</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">DDS_ConditionSeq_set_maximum</span><span class="p">(</span><span class="o">&amp;</span><span class="n">active_conditions</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* failure */</span>
+<span class="p">}</span>
+
+<span class="n">waitset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_WaitSet_new</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">waitset</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* failure */</span>
+<span class="p">}</span>
+
+<span class="n">dr_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_Entity_get_statuscondition</span><span class="p">(</span><span class="n">DDS_DataReader_as_entity</span><span class="p">(</span><span class="n">datareader</span><span class="p">));</span>
+
+<span class="n">retcode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_StatusCondition_set_enabled_statuses</span><span class="p">(</span><span class="n">dr_condition</span><span class="p">,</span>
+<span class="w">                                                   </span><span class="n">DDS_DATA_AVAILABLE_STATUS</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">retcode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DDS_RETCODE_OK</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* failure */</span>
+<span class="p">}</span>
+
+<span class="n">retcode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_WaitSet_attach_condition</span><span class="p">(</span><span class="n">waitset</span><span class="p">,</span>
+<span class="w">                                       </span><span class="n">DDS_StatusCondition_as_condition</span><span class="p">(</span><span class="n">dr_condition</span><span class="p">));</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">retcode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DDS_RETCODE_OK</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* failure */</span>
+<span class="p">}</span>
+
+<span class="n">retcode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_WaitSet_wait</span><span class="p">(</span><span class="n">waitset</span><span class="p">,</span><span class="w"> </span><span class="n">active_conditions</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">wait_timeout</span><span class="p">);</span>
+
+<span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">retcode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">DDS_RETCODE_OK</span><span class="p">:</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="cm">/* This WaitSet only has a single condition attached to it</span>
+<span class="cm">         * so we can implicitly assume the DataReader&#39;s status condition</span>
+<span class="cm">         * to be active (with the enabled DATA_AVAILABLE status) upon</span>
+<span class="cm">         * successful return of wait().</span>
+<span class="cm">         * If more than one conditions were attached to the WaitSet,</span>
+<span class="cm">         * the returned sequence must be examined using the</span>
+<span class="cm">         * commented out code instead of the following.</span>
+<span class="cm">         */</span>
+
+<span class="w">         </span><span class="n">HelloWorldSubscriber_take_data</span><span class="p">(</span><span class="n">HelloWorldDataReader_narrow</span><span class="p">(</span><span class="n">datareader</span><span class="p">));</span>
+
+<span class="w">         </span><span class="cm">/*</span>
+<span class="cm">         DDS_Long active_len = DDS_ConditionSeq_get_length(&amp;active_conditions);</span>
+<span class="cm">         for (i = active_len - 1; i &gt;= 0; --i)</span>
+<span class="cm">         {</span>
+<span class="cm">             DDS_Condition *active_condition =</span>
+<span class="cm">                 *DDS_ConditionSeq_get_reference(&amp;active_conditions, i);</span>
+
+<span class="cm">             if (active_condition ==</span>
+<span class="cm">                     DDS_StatusCondition_as_condition(dr_condition))</span>
+<span class="cm">             {</span>
+<span class="cm">                 total_samples += HelloWorldSubscriber_take_data(</span>
+<span class="cm">                                HelloWorldDataReader_narrow(datareader));</span>
+<span class="cm">             }</span>
+<span class="cm">             else if (active_condition == some_other_condition)</span>
+<span class="cm">             {</span>
+<span class="cm">                 do_something_else();</span>
+<span class="cm">             }</span>
+<span class="cm">         }</span>
+<span class="cm">         */</span>
+<span class="w">         </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">DDS_RETCODE_TIMEOUT</span><span class="p">:</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;WaitSet_wait timed out</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;ERROR in WaitSet_wait: retcode=%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">retcode</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filtering-samples">
+<h2><span class="section-number">3.8.3. </span>Filtering Samples<a class="headerlink" href="#filtering-samples" title="Permalink to this headline">¶</a></h2>
+<p>In lieu of supporting Content-Filtered Topics, a <a class="reference external" href="../../api_c/html/structDDS__DataReaderListener.html">DataReaderListener</a> in <em>Connext Micro</em>
+provides callbacks to do application-level filtering per sample.</p>
+<ul class="simple">
+<li><p><strong>on_before_sample_deserialize</strong>. Through this callback, a received
+sample is presented to the application before it has been deserialized or
+stored in the <em>DataReader</em>’s queue.</p></li>
+<li><p><strong>on_before_sample_commit</strong>.  Through this callback, a received sample
+is presented to the application after it has been deserialized but before
+it has been stored in the <em>DataReader</em>’s queue.</p></li>
+</ul>
+<p>You control the callbacks’ sample_dropped parameter; upon exiting either
+callback, the <em>DataReader</em> will drop the sample if sample_dropped is true.
+Consequently, dropped samples are not stored in the <em>DataReader</em>’s queue and
+are not available to be read or taken.</p>
+<p>Neither callback is associated with a DDS Status.  Rather, each is enabled
+when assigned, to a non-NULL callback.</p>
+<p>NOTE: Because it is called after the sample has been deserialized, <a class="reference external" href="../../api_c/html/structDDS__DataReaderListener.html">on_before_sample_commit</a>
+provides an additional <a class="reference external" href="../../api_c/html/structDDS__SampleLostStatus.html">sample_info</a> parameter, containing some of the usual sample
+information that would be available when the sample is read or taken.</p>
+<p>The HelloWorld_dpde example’s subscriber has this <a class="reference external" href="../../api_c/html/structDDS__DataReaderListener.html">on_before_sample_commit</a>
+callback:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">DDS_Boolean</span><span class="w"> </span><span class="nf">HelloWorldSubscriber_on_before_sample_commit</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">listener_data</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DDS_DataReader</span><span class="w"> </span><span class="o">*</span><span class="n">reader</span><span class="p">,</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">sample</span><span class="p">,</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_SampleInfo</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">sample_info</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DDS_Boolean</span><span class="w"> </span><span class="o">*</span><span class="n">dropped</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">HelloWorld</span><span class="w"> </span><span class="o">*</span><span class="n">hw_sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">HelloWorld</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">sample</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* Drop samples with even-numbered count in msg */</span>
+<span class="w">    </span><span class="n">HelloWorldSubscriber_filter_sample</span><span class="p">(</span><span class="n">hw_sample</span><span class="p">,</span><span class="w"> </span><span class="n">dropped</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">dropped</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Sample filtered, before commit</span><span class="se">\n\t</span><span class="s">DROPPED - msg: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">               </span><span class="n">hw_sample</span><span class="o">-&gt;</span><span class="n">msg</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">DDS_BOOLEAN_TRUE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">...</span>
+
+<span class="n">dr_listener</span><span class="p">.</span><span class="n">on_before_sample_commit</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">HelloWorldSubscriber_on_before_sample_commit</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>For more information, see the <a class="reference internal" href="../usersmanual/receiving.html"><span class="doc">Receiving Data</span></a> section
+in the User’s Manual.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="examples.html" class="btn btn-neutral float-right" title="3.9. Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="createsubscriber.html" class="btn btn-neutral float-left" title="3.7. Create Subscriber" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

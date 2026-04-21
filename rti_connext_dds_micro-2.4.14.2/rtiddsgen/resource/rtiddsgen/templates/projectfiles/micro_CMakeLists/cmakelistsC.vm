@@ -1,0 +1,158 @@
+## $Id$
+##
+## (c) Copyright, Real-Time Innovations, Inc. 2017.  All rights reserved.
+## No duplications, whole or partial, manual or electronic, may be made
+## without prior written permission.  Any such copies, or
+## revisions thereof, must display this notice unaltered.
+## This code contains trade secrets of Real-Time Innovations, Inc.
+##
+## modification history:
+## ---------------------
+## 2.4.10,22jun17,fmt feature/MICRO-1540 Generate Micro examples with rtiddsgen -example
+##========================================================================
+
+CMAKE_MINIMUM_REQUIRED(VERSION 3.12)
+
+ADD_DEFINITIONS(#foreach($define in ${additionalDefines}) -D${define}#end)
+LINK_DIRECTORIES(#foreach($path in ${additionalLibraryPaths}) ${path}#end)
+INCLUDE_DIRECTORIES(#[[$]]#{CMAKE_CURRENT_SOURCE_DIR})
+#if($global.language.contains("C++"))
+PROJECT(${global.idlFileName} CXX)
+SET(SOURCE_EXTENSION cxx)
+#else
+PROJECT(${global.idlFileName} C)
+SET(SOURCE_EXTENSION c)
+#end
+
+IF (#[[$]]#{CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    SET(PLATFORM_LIBS dl nsl m pthread rt)
+    ADD_DEFINITIONS(-DRTI_LINUX)
+ELSEIF (#[[$]]#{CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    SET(PLATFORM_LIBS dl m pthread )
+    ADD_DEFINITIONS(-DRTI_DARWIN)
+ELSEIF (#[[$]]#{CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    SET(PLATFORM_LIBS netapi32.lib advapi32.lib user32.lib winmm.lib WS2_32.lib)
+    ADD_DEFINITIONS(-DRTI_WIN32)
+ENDIF()
+
+SET(RTIDDSGEN #[[$]]#ENV{RTIMEHOME}/rtiddsgen/scripts/rtiddsgen)
+
+SET_PROPERTY(GLOBAL PROPERTY RULE_MESSAGES OFF)
+
+SET(IDL_SOURCE_C ${global.idlFileName}.idl)
+
+SET(IDL_PATH #[[$]]#{CMAKE_CURRENT_SOURCE_DIR})
+
+SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/objs/#[[$]]#{RTIME_TARGET_NAME})
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/objs/#[[$]]#{RTIME_TARGET_NAME})
+SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/objs/#[[$]]#{RTIME_TARGET_NAME})
+
+IF (CMAKE_GENERATOR MATCHES "Visual Studio")
+    #[[#]]#Visual studio needs to run commands using 'call'
+    #[[#]]#if there is more than one dependency
+    SET(COMMAND_PREFIX call)
+    SET(CMAKE_EXE_LINKER_FLAGS "#[[$]]#{CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:libc.lib" CACHE INTERNAL "CMAKE_EXE_LINKER_FLAGS" FORCE)
+    ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
+ELSE()
+    SET(COMMAND_PREFIX)
+ENDIF()
+
+SET(RTI_LIB_PREFIX rti_me)
+SET(RTI_LIB_SUFFIX)
+
+IF (NOT (DEFINED RTI_SHARED_LIB))
+    IF (#[[$]]#{CMAKE_BUILD_TYPE} MATCHES "[Rr]elease")
+        SET(RTI_LIB_SUFFIX "z")
+        SET(RTI_DEBUG_BUILD FALSE)
+        ADD_DEFINITIONS(-DNDEBUG)
+    ELSE()
+        SET(RTI_LIB_SUFFIX "zd")
+        SET(RTI_DEBUG_BUILD TRUE)
+    ENDIF()
+ELSE()
+    IF (#[[$]]#{CMAKE_BUILD_TYPE} MATCHES "[Rr]elease")
+        SET(RTI_LIB_SUFFIX "")
+        SET(RTI_DEBUG_BUILD FALSE)
+        ADD_DEFINITIONS(-DNDEBUG)
+    ELSE()
+        SET(RTI_LIB_SUFFIX "d")
+        SET(RTI_DEBUG_BUILD TRUE)
+    ENDIF()
+ENDIF()
+
+IF (RTIME_CERT)
+    SET(MICRO_C_LIBS rti_me${RTI_LIB_SUFFIX})
+    ADD_DEFINITIONS(-DRTI_CERT)
+ELSE()
+#if($global.language.contains("C++"))
+    SET(MICRO_C_LIBS rti_me_cpp#[[$]]#{RTI_LIB_SUFFIX}
+                     rti_me_rhsm#[[$]]#{RTI_LIB_SUFFIX}
+#else
+    SET(MICRO_C_LIBS rti_me_rhsm#[[$]]#{RTI_LIB_SUFFIX}
+#end
+                     rti_me_whsm#[[$]]#{RTI_LIB_SUFFIX}
+                     rti_me_discdpse#[[$]]#{RTI_LIB_SUFFIX}
+                     rti_me_discdpde#[[$]]#{RTI_LIB_SUFFIX}
+                     rti_me${RTI_LIB_SUFFIX}
+                     #foreach($library in ${additionalRtiLibraries})${library}{RTI_LIB_SUFFIX} #end
+                     #foreach($library in ${additionalLibraries}) ${library}#end
+                     )
+ENDIF()
+
+MESSAGE("RTIME_TARGET_NAME = #[[$]]#{RTIME_TARGET_NAME}")
+
+INCLUDE_DIRECTORIES(#[[$]]#ENV{RTIMEHOME}/include #[[$]]#ENV{RTIMEHOME}/include/rti_me)
+LINK_DIRECTORIES(#[[$]]#ENV{RTIMEHOME}/lib/#[[$]]#{RTIME_TARGET_NAME})
+
+FOREACH(idl #[[$]]#{IDL_SOURCE_C})
+    GET_FILENAME_COMPONENT(filename ${idl} NAME)
+    STRING(REGEX REPLACE "\\.idl" "" basename ${filename})
+    LIST(APPEND IDL_GEN_C #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${basename}.#[[$]]#{SOURCE_EXTENSION}
+                          #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${basename}Plugin.#[[$]]#{SOURCE_EXTENSION}
+                          #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${basename}Support.#[[$]]#{SOURCE_EXTENSION})
+
+    LIST(APPEND IDL_GEN_H #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${basename}.h
+                          #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${basename}Plugin.h
+                          #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${basename}Support.h)
+
+    IF (RTIME_IDL_ADD_REGENERATE_TYPESUPPORT_RULE)
+        IF (NOT EXISTS ${idl})
+            MESSAGE(FATAL_ERROR "${idl} does not exist.")
+        ELSEIF(IS_DIRECTORY ${idl})
+            MESSAGE(FATAL_ERROR "${idl} is not a file.")
+        ENDIF()
+
+        ADD_CUSTOM_COMMAND(OUTPUT #[[$]]#{IDL_GEN_C} ${IDL_GEN_H}
+#if(${global.namespace})
+                           COMMAND #[[$]]#{COMMAND_PREFIX} #[[$]]#{RTIDDSGEN} -namespace -language ${global.language}
+#else
+                           COMMAND #[[$]]#{COMMAND_PREFIX} #[[$]]#{RTIDDSGEN} -language ${global.language}
+#end
+                                   -micro -verbosity 1 -update typefiles
+                                   -d #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}
+                                   #[[$]]#{IDL_PATH}/#[[$]]#{idl}
+                           DEPENDS #[[$]]#{IDL_PATH}/#[[$]]#{idl}
+                           COMMENT "Regeneration type support plugin from #[[$]]#{idl}"
+                          )
+        SET_SOURCE_FILES_PROPERTIES(#[[$]]#{IDL_GEN_C} #[[$]]#{IDL_GEN_H} PROPERTIES GENERATED 1)
+    ENDIF()
+ENDFOREACH()
+
+ADD_EXECUTABLE(${global.idlFileName}_publisher
+               #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${global.idlFileName}_publisher.#[[$]]#{SOURCE_EXTENSION}
+               #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${global.idlFileName}Application.#[[$]]#{SOURCE_EXTENSION}
+               #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${global.idlFileName}Application.h
+               #foreach($source in ${additionalSourceFiles}) #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${source}#end
+               #foreach($header in ${additionalHeaderFiles}) #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${header}#end
+               #[[$]]#{IDL_GEN_C} #[[$]]#{IDL_GEN_H})
+
+ADD_EXECUTABLE(${global.idlFileName}_subscriber
+               #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${global.idlFileName}_subscriber.${SOURCE_EXTENSION}
+               #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${global.idlFileName}Application.${SOURCE_EXTENSION}
+               #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${global.idlFileName}Application.h
+               #foreach($source in ${additionalSourceFiles}) #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${source}#end
+               #foreach($header in ${additionalHeaderFiles}) #[[$]]#{CMAKE_CURRENT_SOURCE_DIR}/${header}#end
+               #[[$]]#{IDL_GEN_C} #[[$]]#{IDL_GEN_H})
+
+TARGET_LINK_LIBRARIES(${global.idlFileName}_publisher  #[[$]]#{MICRO_C_LIBS} #[[$]]#{PLATFORM_LIBS})
+TARGET_LINK_LIBRARIES(${global.idlFileName}_subscriber #[[$]]#{MICRO_C_LIBS} #[[$]]#{PLATFORM_LIBS})

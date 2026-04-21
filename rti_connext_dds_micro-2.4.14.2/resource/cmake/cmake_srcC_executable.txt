@@ -1,0 +1,195 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2016
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may2016 tk Written
+################################################################################
+if (RTI_CMAKE_SOURCE)
+    return()
+endif()
+
+FOREACH(srcdir srcC srcCxx)
+    IF (EXISTS ${RTI_MODULE_SRCROOT}/${srcdir}/${RTI_SUBMODULE_NAME})
+        SET(SRC_ROOT "${RTI_MODULE_SRCROOT}/${srcdir}/${RTI_SUBMODULE_NAME}")
+        
+        FOREACH(f ${RTI_SUBMODULE_SRC} ${RTI_SUBMODULE_SRC_CC})
+            LIST(APPEND ${RTI_SUBMODULE_NAME}_SRC_C ${SRC_ROOT}/${f})
+            LIST(APPEND ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_SRC ${SRC_ROOT}/${f})            
+        ENDFOREACH()
+        
+        FOREACH(f ${RTI_SUBMODULE_HDR})
+            LIST(APPEND ${RTI_SUBMODULE_NAME}_SRC_H ${SRC_ROOT}/${f})
+            LIST(APPEND ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_HDR ${SRC_ROOT}/${f})
+        ENDFOREACH()
+
+        IF (NOT ${srcdir} STREQUAL "")
+            STRING(REPLACE "/" "" srcdirg ${srcdir})
+        ENDIF()
+
+        SOURCE_GROUP(\\${RTI_MODULE_NAME}\\${srcdirg}\\${RTI_SUBMODULE_NAME} 
+                 FILES ${${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_SRC} 
+                       ${${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_HDR} 
+                       ${RTI_SUBMODULE_IDL})  
+
+        LIST(LENGTH RTI_SUBMODULE_IDL idl_count)
+        IF (${idl_count} GREATER 0)
+            SET(IDL_OUTPUT_DIR ${RTI_MODULE_OUTPUT_SRC}/${srcdir}/${RTI_SUBMODULE_NAME})
+            LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${IDL_OUTPUT_DIR})
+                    
+            MICRO_ADD_IDL(IDL_GEN_C IDL_GEN_H RTI_SUBMODULE_IDL SRC_ROOT ${srcdir} ${IDL_OUTPUT_DIR})
+            LIST(APPEND ${RTI_SUBMODULE_NAME}_SRC_C  ${IDL_GEN_C})
+            LIST(APPEND ${RTI_SUBMODULE_NAME}_SRC_H  ${IDL_GEN_H})
+            SET_PROPERTY(SOURCE  ${IDL_GEN_H} ${IDL_GEN_C}
+                         PROPERTY RTI_GENERATED true)
+        ENDIF()
+    ENDIF()
+    
+    IF (EXISTS ${RTI_MODULE_SRCROOT}/${srcdir}/${RTI_SUBMODULE_NAME}/test/CMakeLists.txt)
+        SET(SRC_ROOT "${RTI_MODULE_SRCROOT}/${srcdir}/${RTI_SUBMODULE_NAME}/test")
+        INCLUDE(${SRC_ROOT}/CMakeLists.txt)
+    
+        FOREACH(f ${RTI_SUBMODULE_TEST_SRC})
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_C ${SRC_ROOT}/${f})
+            LIST(APPEND ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_TEST_SRC ${SRC_ROOT}/${f})
+        ENDFOREACH()
+    
+        FOREACH(f ${RTI_SUBMODULE_TEST_HDR})
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_H ${SRC_ROOT}/${f})
+            LIST(APPEND ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_TEST_HDR ${SRC_ROOT}/${f})
+        ENDFOREACH()
+
+        IF (NOT ${srcdir} STREQUAL "")
+            STRING(REPLACE "/" "" srcdirg ${srcdir})
+        ENDIF()
+
+        SOURCE_GROUP(\\${RTI_MODULE_NAME}\\${srcdirg}\\${RTI_SUBMODULE_NAME}\\test
+                     FILES 
+                     ${${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_TEST_SRC}
+                     ${${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_TEST_HDR} 
+                     ${RTI_SUBMODULE_TEST_IDL})
+                      
+        LIST(LENGTH RTI_SUBMODULE_TEST_IDL idl_count)
+        IF (${idl_count} GREATER 0)
+            SET(IDL_OUTPUT_DIR ${RTI_MODULE_OUTPUT_SRC}/${srcdir}/${RTI_SUBMODULE_NAME}/test)
+            LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${IDL_OUTPUT_DIR})  
+            MICRO_ADD_IDL(IDL_GEN_C IDL_GEN_H RTI_SUBMODULE_TEST_IDL SRC_ROOT ${srcdir} ${IDL_OUTPUT_DIR})
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_C ${IDL_GEN_C})
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_H ${IDL_GEN_H})
+            SET_PROPERTY(SOURCE  ${IDL_GEN_H} ${IDL_GEN_C}
+                         PROPERTY RTI_GENERATED true)
+        ENDIF()    
+    ENDIF()
+    
+ENDFOREACH()
+
+SET(RTI_SUBMODULE_EXECUTABLE_SHARED ${RTI_SUBMODULE_NAME}${RTI_TESTER_SUFFIX})
+SET(RTI_SUBMODULE_EXECUTABLE_STATIC ${RTI_SUBMODULE_NAME}${RTI_TESTER_SUFFIX})
+
+LIST(FIND LIBRARY_ARCHS ${RTIME_TARGET_NAME} el)
+
+#IF (${el} GREATER -1)
+    #MESSAGE("executable: ${RTI_SUBMODULE_EXECUTABLE_STATIC} ")
+
+    ADD_EXECUTABLE(${RTI_SUBMODULE_EXECUTABLE_STATIC} 
+                   ${${RTI_SUBMODULE_NAME}_SRC_C}
+                   ${${RTI_SUBMODULE_NAME}_SRC_H}
+                   ${${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_META_HEADERS_LOCAL_IDL})
+    
+    SET_TARGET_PROPERTIES(${RTI_SUBMODULE_EXECUTABLE_STATIC}
+                    PROPERTIES FOLDER ${CURRENT_MODULE_DIR})
+
+#    SET_TARGET_PROPERTIES(${RTI_SUBMODULE_EXECUTABLE_STATIC}
+#                        PROPERTIES CMAKE_SKIP_RPATH TRUE)
+
+    SET_PROPERTY(TARGET ${RTI_SUBMODULE_EXECUTABLE_STATIC}  APPEND
+                 PROPERTY COMPILE_DEFINITIONS
+                 RTIME_TARGET_NAME=\"${RTIME_TARGET_NAME}\"
+    )                                                   
+        
+#    FOREACH(mdin ${RTI_MODULE_IMPORTS} ${RTI_MODULE_DEPENDS})
+#        STRING(REGEX REPLACE "lib(.*)" "\\1" md ${mdin})
+#        SET_PROPERTY(TARGET ${RTI_SUBMODULE_EXECUTABLE_SHARED} APPEND
+#                     PROPERTY COMPILE_DEFINITIONS RTI_${md}_DLL_VARIABLE)
+#        
+#        IF (DEFINED ${mdin}_OBJECT_DEPENDS)
+#            FOREACH(mdin2 ${${mdin}_OBJECT_DEPENDS})
+#                SET_PROPERTY(TARGET ${RTI_SUBMODULE_EXECUTABLE_SHARED} APPEND
+#                    PROPERTY COMPILE_DEFINITIONS RTI_${mdin2}_DLL_VARIABLE)
+#            ENDFOREACH()
+#        ENDIF()
+#    ENDFOREACH()
+    
+    IF (${HAS_TARGET_INCLUDE_DIR})
+        TARGET_INCLUDE_DIRECTORIES(${RTI_SUBMODULE_EXECUTABLE_STATIC}  
+                                   PRIVATE ${RTI_MODULE_INCLUDE_DIRS})
+    ELSE()
+        INCLUDE_DIRECTORIES(${RTI_MODULE_INCLUDE_DIRS})    
+    ENDIF()
+        
+    FOREACH(md ${RTI_SUBMODULE_DEPENDS} ${RTI_MODULE_IMPORTS} ${RTI_LIBRARY_DEPENDS})
+        IF (DEFINED ${md}_EXPORT_NAME)
+            LIST(APPEND LIB_DEPS_STATIC ${${md}_EXPORT_NAME}${RTI_LIB_SUFFIX_STATIC} ) 
+            LIST(APPEND LIB_DEPS_DYNAMIC ${${md}_EXPORT_NAME}${RTI_LIB_SUFFIX_DYNAMIC} )                    
+        ELSE()   
+            LIST(APPEND LIB_DEPS_STATIC ${RTI_LIB_PREFIX}_${md}${RTI_LIB_SUFFIX_STATIC} ) 
+            LIST(APPEND LIB_DEPS_DYNAMIC ${RTI_LIB_PREFIX}_${md}${RTI_LIB_SUFFIX_DYNAMIC} )
+        ENDIF() 
+    ENDFOREACH()
+                
+    TARGET_LINK_LIBRARIES(${RTI_SUBMODULE_EXECUTABLE_STATIC} 
+                          ${LIB_DEPS_STATIC} ${PLATFORM_LIBS})
+
+    ADD_CUSTOM_COMMAND(TARGET ${RTI_SUBMODULE_EXECUTABLE_STATIC} POST_BUILD
+               COMMAND ${CMAKE_COMMAND} -E copy 
+               $<TARGET_FILE:${RTI_SUBMODULE_EXECUTABLE_STATIC}>
+                           ${RTI_MODULE_OUTPUT_SRC}/lib/${RTIME_TARGET_NAME}/$<TARGET_FILE_NAME:${RTI_SUBMODULE_EXECUTABLE_STATIC}>)
+
+#ENDIF()
+
+SET(SM_HAS_GENERATED_FILES FALSE)
+SET(${RTI_SUBMODULE_NAME}_GENERATED)
+
+FOREACH(f ${${RTI_SUBMODULE_NAME}_SRC_C} ${${RTI_SUBMODULE_NAME}_SRC_H})
+    GET_PROPERTY(rti_generated
+                 SOURCE ${f}
+                 PROPERTY RTI_GENERATED
+                 SET)
+    IF (rti_generated)
+        SET(HAS_GENERATED_FILES TRUE)
+        LIST(APPEND ${RTI_SUBMODULE_NAME}_GENERATED ${f})
+    ENDIF()
+ENDFOREACH()
+
+IF (${HAS_GENERATED_FILES})
+    SET_PROPERTY(GLOBAL APPEND PROPERTY ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_HAS_GENERATE true)
+    ADD_CUSTOM_TARGET(${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_GENERATE
+                      DEPENDS ${${RTI_SUBMODULE_NAME}_GENERATED})
+ENDIF()
+
+SET(SM_HAS_GENERATED_FILES FALSE)
+SET(${RTI_SUBMODULE_NAME}_GENERATED)
+SET(RTI_SUBMODULE_TEST_SRC)
+SET(RTI_SUBMODULE_TEST_SRC_CC)
+SET(RTI_SUBMODULE_TEST_HDR)
+SET(IDL_SOURCE)
+SET(IDL_SOURCE_CXX)
+SET(RTI_SUBMODULE_SRC)
+SET(RTI_SUBMODULE_SRC_CC)
+SET(RTI_SUBMODULE_HDR)
+SET(RTI_MODULE_PUBLIC_HDR_IDL_EXPORT)
+SET(IDL_GEN_C)
+SET(IDL_GEN_H)
+SET(RTI_SUBMODULE_IDL)
+SET(LIB_DEPS_STATIC)
+SET(LIB_DEPS_DYNAMIC)

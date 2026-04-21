@@ -1,0 +1,555 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.4. Previous Releases &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.4.1. What’s New in 2.4.14.1" href="release_notes_24141.html" />
+    <link rel="prev" title="8.2. What’s New in 2.4.14.2" href="release_notes_24142.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">4. User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building/index.html">5. Building and Porting Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="supported_platforms.html">8.1. Supported Platforms and Programming Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24142.html">8.2. What’s New in 2.4.14.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24142.html#what-s-fixed-in-2-4-14-2">8.3. What’s Fixed in 2.4.14.2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8.4. Previous Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24141.html">8.4.1. What’s New in 2.4.14.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24141.html#what-s-fixed-in-2-4-14-1">8.4.2. What’s Fixed in 2.4.14.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2414.html">8.4.3. What’s New in 2.4.14</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2414.html#what-s-fixed-in-2-4-14">8.4.4. What’s Fixed in 2.4.14</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2412.html">8.4.5. What’s New in 2.4.12</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2412.html#what-s-fixed-in-2-4-12">8.4.6. What’s Fixed in 2.4.12</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2411.html">8.4.7. What’s New in 2.4.11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2411.html#what-s-fixed-in-2-4-11">8.4.8. What’s Fixed in 2.4.11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24104.html">8.4.9. What’s New in 2.4.10.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24104.html#what-s-fixed-in-2-4-10-4">8.4.10. What’s Fixed in 2.4.10.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24101.html">8.4.11. What’s New in 2.4.10.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24101.html#what-s-fixed-in-2-4-10-1">8.4.12. What’s Fixed in 2.4.10.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2410.html">8.4.13. What’s New in 2.4.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2410.html#what-s-fixed-in-2-4-10">8.4.14. What’s Fixed in 2.4.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_249.html">8.4.15. What’s New in 2.4.9</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_249.html#what-s-fixed-in-2-4-9">8.4.16. What’s Fixed in 2.4.9</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_248.html">8.4.17. What’s New in 2.4.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_248.html#what-s-fixed-in-2-4-8">8.4.18. What’s Fixed in 2.4.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_247.html">8.4.19. What’s New in 2.4.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_247.html#what-s-fixed-in-2-4-7">8.4.20. What’s Fixed in 2.4.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_246.html">8.4.21. What’s New in 2.4.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_246.html#what-s-fixed-in-2-4-6">8.4.22. What’s Fixed in 2.4.6</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="known_issues.html">8.5. Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">8. </span>Release Notes</a> &raquo;</li>
+        
+      <li><span class="section-number">8.4. </span>Previous Releases</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/release/previous_release.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="previous-releases">
+<h1><span class="section-number">8.4. </span>Previous Releases<a class="headerlink" href="#previous-releases" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_24141.html">8.4.1. What’s New in 2.4.14.1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#important-interoperability-changes">8.4.1.1. Important Interoperability Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_24141.html#what-s-fixed-in-2-4-14-1">8.4.2. What’s Fixed in 2.4.14.1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#invalid-samples-in-batched-data-did-not-count-as-lost-samples">8.4.2.1. Invalid samples in batched data did not count as ‘lost samples’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#local-variables-in-header-file-may-have-caused-compiler-warning">8.4.2.2. Local variables in header file may have caused compiler warning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#non-default-timer-resolutions-may-have-caused-an-incorrect-timeout">8.4.2.3. Non-default timer resolutions may have caused an incorrect timeout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#missing-checks-for-max-routes-per-reader-and-max-routes-per-writer">8.4.2.4. Missing checks for <em>max_routes_per_reader</em> and <em>max_routes_per_writer</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#missing-null-checks-for-enabled-transports">8.4.2.5. Missing NULL checks for <em>enabled_transports</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#possible-exception-due-to-misaligned-rtps-header">8.4.2.6. Possible exception due to misaligned RTPS header</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#dds-subscriptionbuiltintopicdata-copy-did-not-copy-the-presentationqospolicy">8.4.2.7. <em>DDS_SubscriptionBuiltinTopicData_copy</em> did not copy the PresentationQosPolicy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#possible-failure-to-start-timer">8.4.2.8. Possible failure to start timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#sample-timestamp-now-set-to-0-if-timestamp-cannot-be-retrieved">8.4.2.9. Sample timestamp now set to 0 if timestamp cannot be retrieved</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#qos-copy-functions-did-not-validate-input-arguments">8.4.2.10. <em>Qos_copy</em> functions did not validate input arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#unused-parameter-domain-participant-resource-limits-matching-reader-writer-pair-allocation-removed">8.4.2.11. Unused parameter <em>DOMAIN_PARTICIPANT_RESOURCE_LIMITS.matching_reader_writer_pair_allocation</em> removed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#dds-domainparticpant-add-peer-may-have-returned-success-on-failure">8.4.2.12. <em>DDS_DomainParticpant_add_peer</em> may have returned success on failure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#dds-stringseq-copy-did-not-validate-input-arguments">8.4.2.13. <em>DDS_StringSeq_copy</em> did not validate input arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#memory-leak-in-c-classes-for-builtin-topic-data-types-and-certain-qoses">8.4.2.14. Memory leak in C++ classes for builtin topic data types and certain QoSes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#possible-null-pointer-exception-in-generated-code-if-the-system-was-out-of-memory">8.4.2.15. Possible NULL pointer exception in generated code if the system was out of memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#a-datawriter-could-run-out-of-resources-if-sample-was-not-added-to-cache">8.4.2.16. A DataWriter could run out of resources if sample was not added to cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#missing-source-code-files">8.4.2.17. Missing source code files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#possible-serialization-beyond-stream-buffer">8.4.2.18. Possible serialization beyond stream buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#reliability-max-blocking-time-must-be-zero">8.4.2.19. <em>RELIABILITY.max_blocking_time</em> must be zero</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#possible-datareader-or-datawriter-creation-failure-with-multiple-domainparticipants">8.4.2.20. Possible DataReader or DataWriter creation failure with multiple DomainParticipants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#incorrect-lease-duration-may-have-been-used-for-a-discovered-participant">8.4.2.21. Incorrect <em>lease_duration</em> may have been used for a discovered participant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#missing-consistency-check-for-destination-order-source-timestamp-tolerance">8.4.2.22. Missing consistency check for <em>DESTINATION_ORDER.source_timestamp_tolerance</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#improved-error-detection-for-unresolved-addresses">8.4.2.23. Improved error detection for unresolved addresses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#dds-statuscondition-set-enabled-statuses-did-not-trigger-if-an-active-condition-was-enabled">8.4.2.24. <em>DDS_StatusCondition_set_enabled_statuses</em> did not trigger if an active condition was enabled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#race-condition-in-dds-enable-apis">8.4.2.25. Race condition in DDS <em>enable</em> APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#dds-waitset-may-have-timed-out-later-than-timeout-value">8.4.2.27. DDS WaitSet may have timed out later than timeout value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#system-resource-limits-max-components-qos-policy-cannot-be-changed">8.4.2.28. SYSTEM_RESOURCE_LIMITS.max_components QoS policy cannot be changed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#incorrect-heartbeat-sent-before-first-sample-when-first-write-sequence-number-is-not-1">8.4.2.29. Incorrect heartbeat sent before first sample when first_write_sequence_number is not 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#robustness-check-added-to-verify-that-participant-guids-are-unique-within-a-domainparticipantfactory">8.4.2.30. Robustness check added to verify that participant GUIDs are unique within a DomainParticipantFactory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#dds-entity-enable-was-not-thread-safe-for-a-domainparticipant">8.4.2.31. DDS_Entity_enable was not thread-safe for a DomainParticipant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#missing-input-verification-for-api-functions">8.4.2.32. Missing input verification for API functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#incorrect-return-values-from-reda-string">8.4.2.33. Incorrect return values from REDA_String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#incorrect-return-values-from-qos-apis">8.4.2.34. Incorrect return values from QoS APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#dds-wstring-cmp-did-not-match-the-implementation-name-dds-wstring-compare">8.4.2.35. DDS_Wstring_cmp did not match the implementation name DDS_Wstring_compare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#race-condition-during-participant-discovery">8.4.2.36. Race condition during participant discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#a-datawriter-with-best-effort-and-transient-local-may-run-out-of-resources">8.4.2.37. A DataWriter with BEST_EFFORT and TRANSIENT_LOCAL may run out of resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#me-h-may-have-repeated-requesting-a-sample-that-was-no-longer-available-from-a-datawriter">8.4.2.38. Connext Micro may have repeated requesting a sample that was no longer available from a DataWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#dds-subscriber-lookup-datareader-may-return-a-datareader-that-was-created-by-a-different-subscriber">8.4.2.39. DDS_Subscriber_lookup_datareader may return a DataReader that was created by a different Subscriber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#dds-publisher-lookup-datawriter-may-return-a-datawriter-that-was-created-by-a-different-publisher">8.4.2.40. DDS_Publisher_lookup_datawriter may return a DataWriter that was created by a different Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#a-reliable-datawriter-may-ignore-requests-to-resend-samples">8.4.2.41. A reliable DataWriter may ignore requests to resend samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#compiler-warning-due-to-reliance-on-deprecated-implicit-copy-constructor-for-c">8.4.2.42. Compiler warning due to reliance on deprecated implicit copy constructor for C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#rtps-message-may-have-been-rejected">8.4.2.43. RTPS message may have been rejected</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#warning-about-hostname-not-supported-in-posixsystem-c">8.4.2.44. Warning about hostname not supported in posixSystem.c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24141.html#false-positive-compiler-warning">8.4.2.45. False positive compiler warning</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_2414.html">8.4.3. What’s New in 2.4.14</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#important-interoperability-changes">8.4.3.1. Important Interoperability Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#datawriter-s-default-reliability-changed-to-reliable">8.4.3.2. DataWriter’s Default Reliability Changed to Reliable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#support-for-autosar-classic">8.4.3.3. Support for AUTOSAR Classic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#support-for-detecting-corrupted-rtps-messages">8.4.3.4. Support for detecting corrupted RTPS messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#port-validation-for-me-h">8.4.3.5. Port Validation for Connext Micro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#new-documentation-on-compiling-me-h-for-me-cert-h-compatibility">8.4.3.6. New Documentation on Compiling Connext Micro for Connext Cert Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#threadx-cmake-files-and-new-documentation-on-building-me-h-for-threadx-netx">8.4.3.7. ThreadX CMake Files and New Documentation on Building Connext Micro for ThreadX + NetX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#updated-example-cmakelists-txt-to-automatically-regenerate-code-when-idl-or-xml-file-changes">8.4.3.8. Updated Example CMakeLists.txt to Automatically Regenerate Code when IDL or XML File Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#message-logged-when-samples-received-out-of-order">8.4.3.9. Message Logged when Samples Received Out of Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#message-logged-when-sequence-numbers-received-more-than-once">8.4.3.10. Message Logged when Sequence Numbers Received More than Once</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#ability-to-send-logs-over-udp">8.4.3.11. Ability to Send Logs over UDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#rtime-make-provides-help-for-a-specific-target">8.4.3.12. rtime-make Provides Help for a Specific Target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#freertos-cmake-files">8.4.3.13. FreeRTOS CMake Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#improved-documentation-on-building-me-h-for-autosar-systems">8.4.3.14. Improved Documentation on Building Connext Micro for AUTOSAR Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#examples-used-undocumented-apis">8.4.3.15. Examples Used Undocumented APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#new-cmake-option-to-enable-real-time-timers-on-qnx-and-linux-systems">8.4.3.16. New CMake Option to Enable Real-Time Timers on QNX and Linux Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#new-showtemplates-and-exampletemplate-options-for-code-generator">8.4.3.17. New -showTemplates and -exampleTemplate options for Code Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#dynamic-memory-allocations-removed-from-dynamic-discovery-plugin">8.4.3.18. Dynamic memory allocations removed from Dynamic Discovery Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#reduced-default-socket-send-receive-buffer-size-for-qnx-systems">8.4.3.19. Reduced default socket send/receive buffer size for QNX systems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_2414.html#what-s-fixed-in-2-4-14">8.4.4. What’s Fixed in 2.4.14</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#small-enums-caused-serialization-errors">8.4.4.1. Small Enums Caused Serialization Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#wcast-function-type-and-wdeprecated-compiler-warnings">8.4.4.2. -Wcast-function-type and -Wdeprecated Compiler Warnings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#documentation-did-not-list-all-entities-that-support-transport-qospolicy">8.4.4.3. Documentation did not list all Entities that Support Transport QosPolicy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#generated-examples-registered-wrong-type-name">8.4.4.4. Generated Examples Registered Wrong Type Name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#for-c-types-generated-by-rtiddsgen-that-have-inheritance-the-parentcclass-was-also-declared-in-the-class-as-another-member">8.4.4.5. For C++ Types Generated by rtiddsgen that have Inheritance, the ParentCclass was also Declared in the Class as Another Member</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#domainparticipant-not-rediscovered-if-terminated-and-restarted-before-its-lease-duration-expired">8.4.4.6. DomainParticipant not Rediscovered if Terminated and Restarted Before its Lease Duration Expired</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#osapi-log-clear-did-not-zero-out-log-buffer-memory">8.4.4.7. OSAPI_Log_clear did not Zero Out Log Buffer Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#error-in-generated-c-c-code-when-two-members-of-different-enumerations-had-same-name">8.4.4.8. Error in Generated C/C++ Code when Two Members of Different Enumerations had Same Name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#incorrect-documentation-regarding-changeability-of-qos">8.4.4.9. Incorrect Documentation Regarding Changeability of QoS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#unexpected-behavior-when-copying-a-dds-unsignedshortseq-with-0-length">8.4.4.10. Unexpected Behavior when Copying a DDS_UnsignedShortSeq with 0 Length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#incorrect-range-documented-for-dds-resourcelimitsqospolicy-max-samples">8.4.4.11. Incorrect Range Documented for DDS_ResourceLimitsQosPolicy.max_samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#wrong-compiler-option-for-autosar-elektrobit-platform-caused-double-to-compile-as-4-bytes-instead-of-8">8.4.4.12. Wrong Compiler Option for AUTOSAR Elektrobit Platform caused ‘double’ to Compile as 4 Bytes instead of 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#log-message-with-random-characters-printed">8.4.4.13. Log Message with Random Characters Printed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#event-masks-of-semaphores-in-autosar-port-were-calculated-incorrectly">8.4.4.14. Event Masks of Semaphores in AUTOSAR Port were Calculated Incorrectly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#publication-matched-status-and-subscription-matched-status-may-never-have-triggered-a-waitset-if-the-status-was-enabled-after-the-domainparticipant-was-enabled">8.4.4.15. <em>PUBLICATION_MATCHED_STATUS</em> and <em>SUBSCRIPTION_MATCHED_STATUS</em> may never have triggered a WaitSet if the status was enabled after the <em>DomainParticipant</em> was enabled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#unicast-datareader-stopped-receiving-samples-after-datawriter-matched-with-a-multicast-datareader">8.4.4.16. Unicast DataReader stopped receiving samples after DataWriter matched with a multicast DataReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#a-rtps-max-window-size-not-divisible-by-32-may-have-resulted-in-retransmission-of-wrong-sequence-number">8.4.4.17. A RTPS <em>max_window_size</em> not divisible by 32 may have resulted in retransmission of wrong sequence number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#posix-mutex-implementation-did-not-conform-with-face-safety-profile">8.4.4.18. POSIX mutex implementation did not conform with FACE Safety Profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#waitset-with-timeout-of-0-did-not-return-immediately">8.4.4.19. Waitset with timeout of 0 did not return immediately</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2414.html#for-autosar-the-ip-address-is-now-used-to-generate-a-unique-domainparticipant-id">8.4.4.20. For AUTOSAR the IP address is now used to generate a unique DomainParticipant ID</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_2412.html">8.4.5. What’s New in 2.4.12</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#shared-udp-port-for-discovery-and-user-data-in-a-domainparticipant">8.4.5.1. Shared UDP port for discovery and user-data in a DomainParticipant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#domainparticipants-no-longer-allocate-dynamic-memory-during-deletion">8.4.5.2. DomainParticipants no longer allocate dynamic memory during deletion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#new-qos-parameter-to-set-maximum-outstanding-samples-allowed-for-remote-datawriter">8.4.5.3. New QoS parameter to set maximum outstanding samples allowed for remote DataWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#new-qos-parameter-to-adjust-preemptive-acknack-period">8.4.5.4. New QoS parameter to adjust preemptive ACKNACK period</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#deserialization-of-presentation-qos-policy">8.4.5.5. Deserialization of Presentation QoS policy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_2412.html#what-s-fixed-in-2-4-12">8.4.6. What’s Fixed in 2.4.12</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#examples-used-domainparticipant-register-type-instead-of-footypesupport-register-type">8.4.6.1. Examples used DomainParticipant_register_type instead of FooTypeSupport_register_type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#a-datareader-and-datawriter-with-incompatible-liveliness-kind-and-infinite-lease-duration-matched">8.4.6.2. A DataReader and DataWriter with incompatible liveliness kind and infinite lease_duration matched</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#warning-at-compilation-time-for-freertos-port">8.4.6.3. Warning at compilation time for FreeRTOS port</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#using-dds-not-alive-instance-state-caused-compilation-error-in-c-and-c">8.4.6.4. Using <cite>DDS_NOT_ALIVE_INSTANCE_STATE</cite> caused compilation error in C and C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#seq-copy-did-not-work-when-the-source-sequence-is-a-loaned-discontiguous-sequence">8.4.6.5. <cite>Seq_copy()</cite> did not work when the source sequence is a loaned/discontiguous sequence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#warnings-when-compiling-the-example-generated-by-code-generator">8.4.6.6. Warnings when compiling the example generated by Code Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#unable-to-generate-code-for-xml-or-xsd-defined-types">8.4.6.7. Unable to generate code for XML or XSD defined types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#linker-error-in-c-application-when-c-types-were-used">8.4.6.8. Linker error in C++ application when C types were used</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#failure-to-link-for-vxworks-rtp-using-shared-libraries-compiled-with-cmake">8.4.6.9. Failure to link for VxWorks RTP using shared libraries compiled with CMake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#rtiddsgen-may-have-failed-on-windows-systems-when-jre-was-specified">8.4.6.10. rtiddsgen may have failed on Windows systems when -jre was specified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#rtime-make-did-not-work-when-it-was-started-from-different-shell-than-bash">8.4.6.11. rtime-make did not work when it was started from different shell than Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#linker-error-when-using-shared-libraries-on-vxworks-systems">8.4.6.12. Linker error when using shared libraries on VxWorks systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#a-run-time-error-may-have-occurred-on-windows-or-when-compiling-for-face-when-using-hostnames-in-the-peer-list">8.4.6.13. A run-time error may have occurred on Windows or when compiling for FACE when using hostnames in the peer list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#entity-id-generation-was-not-thread-safe">8.4.6.14. Entity ID generation was not thread-safe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#domainparticipant-creation-failed-if-active-interface-had-invalid-ip">8.4.6.15. DomainParticipant creation failed if active interface had invalid IP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#rtime-make-did-not-work-when-there-was-a-space-in-the-installation-path">8.4.6.16. rtime-make did not work when there was a space in the installation path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#sample-filtering-methods-were-always-added-to-the-subscriber-code-for-c">8.4.6.17. Sample filtering methods were always added to the subscriber code for C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#failure-to-give-mutex-error">8.4.6.18. ‘Failure to give mutex’ error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#udp-interface-warning-using-valid-interfaces">8.4.6.19. UDP interface warning using valid interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#a-datareader-may-stop-receiving-samples-when-filtering-callbacks-are-used">8.4.6.20. A DataReader May Stop Receiving Samples When Filtering Callbacks Are Used</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#dds-waitset-wait-returned-dds-retcode-error-if-unblocked-with-no-active-conditions">8.4.6.21. DDS_WaitSet_wait() returned DDS_RETCODE_ERROR if unblocked with no active conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#large-timeout-values-may-have-caused-segmentation-fault">8.4.6.22. Large timeout values may have caused segmentation fault</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#helloworld-dpde-waitset-c-example-uses-wrong-loop-variable-for-printing-data">8.4.6.23. HelloWorld_dpde_waitset C++ example uses wrong loop variable for printing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#waitset-wait-returned-generic-error-when-returned-condition-sequence-exceeded-capacity">8.4.6.24. WaitSet_wait returned generic error when returned condition sequence exceeded capacity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#publication-handle-not-set-in-sampleinfo-structure-when-on-before-sample-commit-called">8.4.6.25. Publication handle not set in SampleInfo structure when on_before_sample_commit() called</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#duplicate-data-messages-are-sent-to-multicast-in-some-cases">8.4.6.26. Duplicate DATA messages are sent to multicast in some cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#guid-generation-on-qnx-for-processes-run-one-after-another-may-lead-to-duplicate-guids">8.4.6.27. GUID generation on QNX for processes run one after another may lead to duplicate GUIDs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#read-take-apis-returned-more-than-depth-samples-if-an-instance-returned-to-alive-without-application-reading-not-alive-sample">8.4.6.28. Read/take APIs returned more than <cite>depth</cite> samples if an instance returned to alive without application reading <cite>NOT_ALIVE</cite> sample</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#segmentation-fault-if-osapi-semaphore-give-was-called-from-one-thread-while-another-called-osapi-semaphore-delete">8.4.6.29. Segmentation fault if <cite>OSAPI_Semaphore_give()</cite> was called from one thread while another called <cite>OSAPI_Semaphore_delete()</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#communication-problems-between-connext-dds-professional-6-and-connext-dds-micro-2-4-11">8.4.6.30. Communication problems between Connext DDS Professional 6 and Connext DDS Micro 2.4.11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2412.html#osapi-system-get-ticktime-not-implemented-for-freertos">8.4.6.31. OSAPI_System_get_ticktime() not implemented for FreeRTOS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_2411.html">8.4.7. What’s New in 2.4.11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#support-for-threadx-netx">8.4.7.1. Support for ThreadX/NetX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#batching-reception-only">8.4.7.2. Batching (reception only)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#udp-transformations">8.4.7.3. UDP Transformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#optionally-exclude-builtin-udp-transport-from-compilation">8.4.7.4. Optionally exclude builtin UDP Transport from compilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#publication-handle-of-datawriter-now-provided-upon-datareaderlistener-sample-loss">8.4.7.5. Publication handle of DataWriter now provided upon DataReaderListener sample loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#datawriters-offer-topic-presentation">8.4.7.6. DataWriters offer TOPIC presentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#new-warning-if-a-configured-udp-transport-does-not-have-any-interface">8.4.7.7. New warning if a configured UDP transport does not have any interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_2411.html#what-s-fixed-in-2-4-11">8.4.8. What’s Fixed in 2.4.11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#micro-1814-incorrect-thread-id-returned-for-vxworks-rtp">8.4.8.1. MICRO-1814 Incorrect thread ID returned for VxWorks RTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#null-listener-and-non-empty-status-mask-not-allowed-for-c-datareader">8.4.8.2. NULL listener and non-empty status mask not allowed for C++ DataReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#accept-unknown-peers-did-not-work-when-shared-memory-transport-was-enabled-in-rti-connext-dds-pro">8.4.8.3. accept_unknown_peers did not work when Shared Memory transport was enabled in RTI Connext DDS Pro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#calling-fooseq-set-maximum-repeatedly-with-the-same-maximum-size-results-in-seg-fault">8.4.8.4. Calling FooSeq_set_maximum() repeatedly with the same maximum size results in seg-fault</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#cmake-reports-error-if-cmake-version-2-8-10-2-or-2-8-10-1-is-used">8.4.8.5. CMake reports error if CMake version 2.8.10.2 or 2.8.10.1 is used</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#os-error-code-errno-not-logged-if-sendto-returned-error">8.4.8.6. OS error code (errno) not logged if sendto() returned error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#codegen-might-generate-an-incorrect-pub-sub-example-if-opction-create-typefiles-is-not-used">8.4.8.7. Codegen might generate an incorrect pub/sub example if opction “-create typefiles” is not used</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#generated-examples-use-always-the-last-structure-in-the-idl">8.4.8.8. Generated examples use always the last structure in the idl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#instance-might-not-have-been-disposed-or-unregistered-under-some-conditions">8.4.8.9. Instance might not have been disposed or unregistered under some conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#reliable-endpoints-with-only-multicast-locators-may-not-communicate">8.4.8.10. Reliable Endpoints with only multicast locators may not communicate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#access-to-ddsentity-instance-handles-from-c-api">8.4.8.11. Access to DDSEntity instance handles from C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#syntax-changed-for-initial-peer-participant-index-range">8.4.8.12. Syntax changed for initial peer participant index range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#lookup-instance-is-not-thread-safe">8.4.8.13. lookup_instance() is not thread safe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#cmakelists-txt-and-readme-txt-created-when-they-should-not">8.4.8.14. CMakeLists.txt and README.txt created when they should not</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#no-communication-when-domainparticipant-used-same-guid-as-another-domainparticipant-in-different-domain">8.4.8.15. No communication when DomainParticipant used same GUID as another DomainParticipant in different domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#compiler-error-might-happen-when-lwip-is-used">8.4.8.16. Compiler error might happen when lwIP is used</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#wrong-c-code-generated-for-unkeyed-types-when-using-idl-modules-and-namespace-option">8.4.8.17. Wrong C++ code generated for unkeyed types when using IDL modules and -namespace option</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#dds-waitset-wait-does-not-work-if-osapi-semaphore-take-returns-an-error">8.4.8.18. DDS_WaitSet_wait does not work if OSAPI_Semaphore_take() returns an error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#log-buffer-could-overflow-on-64-bit-architectures-causing-application-crash">8.4.8.19. Log buffer could overflow on 64-bit architectures, causing application crash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#fix-api-realloc-in-windows-osapi">8.4.8.20. Fix API realloc in Windows OSAPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#new-samples-for-an-instance-may-not-be-received-if-an-instance-goes-back-to-alive-when-using-read">8.4.8.21. New samples for an instance may not be received if an instance goes back to ALIVE when using read()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#intra-transport-caused-subscription-matches-to-use-additional-resources">8.4.8.22. INTRA transport caused subscription matches to use additional resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#resolved-memory-leak-in-class-rtregistry">8.4.8.23. Resolved memory leak in class RTRegistry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#windows-debug-dlls-are-built-without-debug-information">8.4.8.24. Windows Debug DLLs are built without debug information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#use-hardcoded-build-id-when-not-compiling-with-cmake">8.4.8.25. Use hardcoded build ID when not compiling with CMake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#example-makefiles-do-not-support-64bit-compilation">8.4.8.26. Example makefiles do not support 64bit compilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2411.html#compilation-error-might-happen-when-code-is-generated-using-option-namespace">8.4.8.27. Compilation error might happen when code is generated using option -namespace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_24104.html">8.4.9. What’s New in 2.4.10.4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24104.html#batching-reception-only">8.4.9.1. Batching (reception only)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24104.html#c-examples">8.4.9.2. C++ examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_24104.html#what-s-fixed-in-2-4-10-4">8.4.10. What’s Fixed in 2.4.10.4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24104.html#improve-keep-last">8.4.10.1. Improve KEEP_LAST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24104.html#locator-might-be-duplicated-when-nat-is-configured">8.4.10.2. Locator might be duplicated when NAT is configured</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24104.html#segmentation-fault-might-happen-when-a-datareader-cannot-be-created">8.4.10.3. Segmentation fault might happen when a DataReader cannot be created</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24104.html#cmake-reports-error-if-cmake-version-2-8-10-2-or-2-8-10-1-is-used">8.4.10.4. CMake reports error if CMake version 2.8.10.2 or 2.8.10.1 is used</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24104.html#wrong-tudp-locator-kind-sent-when-using-udp-transformations">8.4.10.5. Wrong TUDP locator kind sent when using UDP transformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24104.html#compile-shipped-examples-for-a-64-bits-architecture">8.4.10.6. Compile shipped examples for a 64 bits architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24104.html#osapi-heap-realloc-windows-implementation-fixed">8.4.10.7. OSAPI_Heap_realloc() Windows implementation fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24104.html#use-api-ddsdomainparticipant-delete-contained-entities-in-c-examples">8.4.10.8. Use API DDSDomainParticipant::delete_contained_entities() in C++ examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24104.html#memory-leak-in-shipped-examples-fixed">8.4.10.9. Memory leak in shipped examples fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24104.html#c-shipped-examples-might-release-an-object-twice">8.4.10.10. C++ shipped examples might release an object twice.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_24101.html">8.4.11. What’s New in 2.4.10.1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24101.html#udp-transformations">8.4.11.1. UDP Transformations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_24101.html#what-s-fixed-in-2-4-10-1">8.4.12. What’s Fixed in 2.4.10.1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24101.html#race-condition-when-log-buffer-is-full-and-a-custom-log-handler-is-installed">8.4.12.1. Race Condition when Log Buffer is Full and a Custom Log-handler is Installed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_2410.html">8.4.13. What’s New in 2.4.10</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#generate-example-application-with-rtiddsgen">8.4.13.1. Generate Example Application with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#by-source-timestamp-destinationorder-support-on-datawriter">8.4.13.2. BY_SOURCE_TIMESTAMP_DESTINATIONORDER Support on DataWriter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_2410.html#what-s-fixed-in-2-4-10">8.4.14. What’s Fixed in 2.4.10</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#linker-warning-for-missing-pdb-files">8.4.14.1. Linker Warning for Missing PDB Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#linking-with-dynamic-windows-c-run-time-crt">8.4.14.2. Linking with Dynamic Windows C Run-Time (CRT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#dds-publisher-create-datawriter-may-fail-to-create-a-new-datawriter">8.4.14.3. DDS_Publisher_create_datawriter() May Fail to Create a New Datawriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#datareader-may-not-reclaim-not-alive-instances-when-datawriter-deleted-or-liveliness-lost">8.4.14.4. DataReader May Not Reclaim NOT_ALIVE Instances when DataWriter Deleted or Liveliness Lost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#a-datawriter-may-fail-to-release-instance-resources-if-a-peer-is-inactive-while-the-participant-liveliness-expires">8.4.14.5. A Datawriter may fail to release instance resources if a peer is inactive while the Participant liveliness expires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#a-reliable-datawriter-with-max-samples-per-instance-1-may-run-out-of-resources-after-multiple-unregistrations-of-single-instance">8.4.14.6. A Reliable DataWriter With max_samples_per_instance = 1 May Run Out of Resources After Multiple Unregistrations of Single Instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#connext-micro-fails-to-discover-endpoints-created-by-connext-core-if-the-endpoints-are-deleted-or-modified">8.4.14.7. Connext Micro Fails to Discover Endpoints created by Connext Core if the Endpoints are Deleted or Modified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#incorrect-log-output-in-a-complete-log-message-could-not-be-stored">8.4.14.8. Incorrect Log Output in a Complete Log Message could not be Stored</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#possible-segmentation-fault-when-unregistering-transient-local-instance">8.4.14.9. Possible Segmentation Fault when Unregistering TRANSIENT_LOCAL Instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#support-to-map-idl-modules-to-c-namespaces-in-generated-type-plugins">8.4.14.10. Support to map IDL modules to C++ namespaces in generated type-plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#possible-memory-access-violation-when-receiving-malformed-rtps-message">8.4.14.11. Possible Memory Access Violation when Receiving Malformed RTPS Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_2410.html#in-some-cases-an-incorrect-timeout-calculation-caused-100-cpu-load">8.4.14.12. In Some Cases an Incorrect Timeout Calculation Caused 100% CPU Load</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_249.html">8.4.15. What’s New in 2.4.9</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#improved-support-for-adding-new-ports">8.4.15.1. Improved Support for adding new Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#updated-build-environment-to-build-rti-connext-micro">8.4.15.2. Updated Build Environment to Build RTI Connext Micro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#example-cmake-tool-chain-files-for-cross-compilation">8.4.15.3. Example CMake Tool-chain Files for Cross-Compilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#host-bundle-without-the-java-runtime-available">8.4.15.4. Host Bundle without the Java RunTime Available</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#support-for-64-bit-platforms">8.4.15.5. Support for 64-bit Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#posix-compliance-improvements">8.4.15.6. POSIX Compliance Improvements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#c-support-for-find-topic">8.4.15.7. C++ Support for find_topic()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#types-are-automatically-unregistered-upon-deleting-contained-entities">8.4.15.8. Types Are Automatically Unregistered Upon Deleting Contained Entities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_249.html#what-s-fixed-in-2-4-9">8.4.16. What’s Fixed in 2.4.9</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#improved-documentation">8.4.16.1. Improved Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#losing-participant-liveliness-stops-communication">8.4.16.2. Losing Participant Liveliness Stops Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#ddstopic-narrow-returned-incorrect-value-in-c">8.4.16.3. DDSTopic::narrow() Returned Incorrect Value in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#precondition-not-met-returned-by-deleted-topic-when-topic-is-not-use">8.4.16.4. PRECONDITION_NOT_MET Returned by deleted_topic() When Topic Is Not Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#instance-resources-not-reclaimed-when-unregistered">8.4.16.5. Instance Resources Not Reclaimed When Unregistered</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#invalid-memory-read-reported-in-log-c">8.4.16.6. Invalid Memory Read Reported in Log.c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#unsupported-functions-when-compiling-with-rti-cert-has-been-removed-from-generated-code">8.4.16.7. Unsupported Functions When Compiling With RTI_CERT Has Been Removed From Generated Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#the-helloworld-cert-example-now-compiles-when-linked-against-a-library-built-with-rti-cert">8.4.16.8. The HelloWorld_cert Example Now Compiles When Linked Against a Library Built With RTI_CERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#hostnames-are-no-longer-validated">8.4.16.9. Hostnames Are No Longer Validated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#a-participant-may-not-be-rediscovered-in-case-of-asymmetric-liveliness-loss">8.4.16.10. A Participant May Not Be Rediscovered In Case Of Asymmetric Liveliness Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_249.html#a-non-keyed-endpoint-matches-a-keyed-endpoint">8.4.16.11. A Non-keyed Endpoint Matches a Keyed Endpoint</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_248.html">8.4.17. What’s New in 2.4.8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_248.html#what-s-fixed-in-2-4-8">8.4.18. What’s Fixed in 2.4.8</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_248.html#consistent-support-for-assignment-operator-in-c">8.4.18.1. Consistent support for assignment operator in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_248.html#dpse-api-renamed-to-avoid-conflict-with-assert">8.4.18.2. DPSE API renamed to avoid conflict with assert()</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_247.html">8.4.19. What’s New in 2.4.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_247.html#what-s-fixed-in-2-4-7">8.4.20. What’s Fixed in 2.4.7</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_247.html#statuses-are-passed-as-pointers-instead-of-references-to-ddsdomainparticipantlisteners">8.4.20.1. Statuses are passed as pointers instead of references to DDSDomainParticipantListeners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_247.html#missing-assignment-operator-in-rt-componentfactoryid">8.4.20.2. Missing assignment operator = in RT_ComponentFactoryId</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_247.html#cmake-c-flags-original-in-cmakelists-txt-misspelled">8.4.20.3. CMAKE_C_FLAGS_ORIGINAL in CMakeLists.txt misspelled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_247.html#missing-const-qualifier-for-the-sequence-operator">8.4.20.4. Missing const qualifier for the sequence [] operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_247.html#missing-primitive-idl-sequences-in-c">8.4.20.5. Missing primitive IDL sequences in C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_246.html">8.4.21. What’s New in 2.4.6</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#important-api-changes">8.4.21.1. Important API Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#run-time-memory-footprint-has-been-significantly-reduced">8.4.21.2. Run-time Memory Footprint Has Been Significantly Reduced</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#new-footypesupport-operations">8.4.21.3. New FooTypeSupport operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#all-public-c-api-now-natively-available-to-c-users">8.4.21.4. All public C API now natively available to C++ users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#status-data-passed-by-reference-to-c-listeners">8.4.21.5. Status data passed by reference to C++ listeners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#theparticipantfactory-now-available-to-c-users">8.4.21.6. TheParticipantFactory now available to C++ users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#status-types-now-available-in-dds-c-namespace">8.4.21.7. Status types now available in DDS:: C++ namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#foo-copy-data-takes-const-argument">8.4.21.8. Foo::copy_data() takes const argument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#conditionseq-added-to-c-dds-namespace">8.4.21.9. ConditionSeq added to C++ DDS namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#first-2-bytes-of-guid-assigned-to-vendor-id">8.4.21.10. First 2-Bytes Of GUID Assigned to Vendor ID</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes_246.html#what-s-fixed-in-2-4-6">8.4.22. What’s Fixed in 2.4.6</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#posix-threads-were-created-without-names">8.4.22.1. POSIX Threads Were Created Without Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#prerequisite-for-helloworld-android-updated-in-readme-txt">8.4.22.2. Prerequisite for HelloWorld_android updated in README.txt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#cpp-helloworld-dpde-example-does-not-overwrite-rtimehome">8.4.22.3. CPP/HelloWorld_dpde example does not overwrite RTIMEHOME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#transport-not-supporting-multicast-did-not-ignore-multicast">8.4.22.4. Transport Not Supporting Multicast Did Not Ignore Multicast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#discovery-messages-incorrectly-dropped-when-containing-non-standard-locators">8.4.22.5. Discovery Messages Incorrectly Dropped When Containing Non-Standard Locators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#heartbeat-not-sent-in-response-to-initial-acknack">8.4.22.6. HEARTBEAT Not Sent in Response To Initial ACKNACK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#incorrect-return-code-from-datareader-s-read-or-take-apis-when-max-outstanding-reads-exceeded">8.4.22.7. Incorrect Return Code From DataReader’s Read or Take APIs When Max_Outstanding_Reads Exceeded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#datareader-did-not-replace-historical-samples-when-max-samples-per-instance-equaled-history-depth">8.4.22.8. DataReader Did Not Replace Historical Samples When max_samples_per_instance Equaled History Depth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#a-disposed-instance-could-be-updated-by-a-datawriter-that-is-not-its-exclusive-owner">8.4.22.9. A Disposed Instance Could Be Updated By A DataWriter That Is Not Its Exclusive Owner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#fixed-code-generation-for-user-defined-enum-constants">8.4.22.10. Fixed code generation for user-defined enum constants.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#hostname-is-verified-as-specified-in-rfc-952-and-rfc-1123">8.4.22.11. Hostname is verified as specified in RFC-952 and RFC-1123</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#dds-foo-seq-apis-were-missing">8.4.22.12. DDS_&lt;Foo&gt;Seq APIs Were Missing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#datareader-could-reject-all-subsequent-samples-from-a-datawriter">8.4.22.13. DataReader Could Reject All Subsequent Samples From a DataWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#posix-thread-priorities-not-changeable">8.4.22.14. POSIX Thread Priorities Not Changeable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_246.html#rtps-data-submessages-with-k-flag-set-were-dropped">8.4.22.15. RTPS DATA Submessages with K-flag Set Were Dropped</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="release_notes_24141.html" class="btn btn-neutral float-right" title="8.4.1. What’s New in 2.4.14.1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="release_notes_24142.html" class="btn btn-neutral float-left" title="8.2. What’s New in 2.4.14.2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2016
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may2016 tk Written
+################################################################################
+###############################################################################
+#                            Configuration options
+###############################################################################
+
+SET(RTI_LIB_PREFIX rti_me)
+SET(RTI_LIB_SUFFIX_STATIC)
+SET(RTI_LIB_SUFFIX_DYNAMIC)
+
+IF (${CMAKE_BUILD_TYPE} MATCHES "[Rr]elease")
+    SET(RTI_LIB_SUFFIX_STATIC "z")
+    SET(RTI_LIB_SUFFIX_DYNAMIC "")
+    SET(RTI_DEBUG_BUILD FALSE)
+    ADD_DEFINITIONS(-DNDEBUG)
+    SET(RTI_TESTER_SUFFIX "")
+ELSE()
+    SET(RTI_LIB_SUFFIX_STATIC "zd")
+    SET(RTI_LIB_SUFFIX_DYNAMIC "d")
+    SET(RTI_DEBUG_BUILD TRUE)
+    SET(RTI_TESTER_SUFFIX "d")
+ENDIF()
+
+#===============================================================================
+# FUNCTION ..: GET_MODULE_DIR
+# SYNOPSIS ..: Determine if a module name should include the version or not
+#===============================================================================
+FUNCTION(GET_MODULE_DIR inname outname)
+    IF (${RTIME_DEVTREE})
+        SET(${outname} ${inname} PARENT_SCOPE)
+    ELSE()
+        STRING(REGEX REPLACE "([a-zA-Z_])\\.[0-9]+\\.[0-9]+" "\\1" 
+                        ${outname} ${inname})
+    ENDIF()
+ENDFUNCTION(GET_MODULE_DIR)
+
+#===============================================================================
+# FUNCTION ..: GET_MODULE_NAME
+# SYNOPSIS ..: Determine if a module name should include the version or not
+#===============================================================================
+FUNCTION(GET_MODULE_NAME inname outname)
+    STRING(REGEX REPLACE "([a-zA-Z_])\\.[0-9]+\\.[0-9]+" "\\1" 
+                        ${outname} ${inname})
+    SET(${outname} ${${outname}} PARENT_SCOPE)
+ENDFUNCTION(GET_MODULE_NAME)
+
+#===============================================================================
+# FUNCTION ..: INCLUDE_MODULE
+# SYNOPSIS ..:
+#===============================================================================
+FUNCTION(INCLUDE_MODULE module_dir)
+    GET_MODULE_NAME(${module_dir} module_name)
+    #MESSAGE("include ${module_dir}/CMakeLists.txt")
+    IF (${RTIME_DEVTREE})
+        SET(CURRENT_MODULE_DIR ${module_dir})
+        SET(CURRENT_MODULE_TEST_DIR ${module_dir})
+    ELSE()
+        IF ("${module_dir}" MATCHES "test")
+            SET(CURRENT_MODULE_DIR test/${module_name})
+        ELSE()
+            SET(CURRENT_MODULE_DIR src/${module_name})
+        ENDIF()
+        SET(CURRENT_MODULE_TEST_DIR test/${module_name})
+    ENDIF()
+    IF (${module_name} MATCHES "test")
+        INCLUDE(${CURRENT_MODULE_TEST_DIR}/CMakeLists.txt)
+    ELSE()
+        INCLUDE(${CURRENT_MODULE_DIR}/CMakeLists.txt)
+    ENDIF()
+
+    #NOTE: This depends on the tree being used
+    #MESSAGE("${module_dir}/include/${module_name}/CMakeLists.txt")
+    #INCLUDE (${module_dir}/include/${module_name}/CMakeLists.txt)
+
+    SET(${module_name}_SRC_C ${${module_name}_SRC_C} PARENT_SCOPE)
+    SET(${module_name}_SRC_H ${${module_name}_SRC_H} PARENT_SCOPE)    
+    GET_PROPERTY(m_generate GLOBAL  
+                 PROPERTY ${module_name}_HAS_GENERATE
+                 SET)
+                 
+    IF (m_generate)
+        SET(MODULE_GENERATE ${MODULE_GENERATE} ${module_name}_GENERATE PARENT_SCOPE)
+    ENDIF()
+    
+ 	SET(MODULE_LIST ${MODULE_LIST} ${module_name} PARENT_SCOPE)
+ENDFUNCTION(INCLUDE_MODULE)
+
+#===============================================================================
+# FUNCTION ..: INCLUDE_TEST_MODULE
+# SYNOPSIS ..:
+#===============================================================================
+FUNCTION(INCLUDE_TEST_MODULE module_dir)
+    GET_MODULE_NAME(${module_dir} module_name)
+    IF (${RTIME_DEVTREE})
+        SET(CURRENT_MODULE_DIR ${module_dir})
+    ELSE()
+        SET(CURRENT_MODULE_DIR test/${module_name})
+    ENDIF()
+
+    INCLUDE(${CURRENT_MODULE_DIR}/CMakeLists.txt)
+    IF(EXISTS ${CURRENT_MODULE_TEST_DIR}/CMakeLists.txt)
+        INCLUDE(${CURRENT_MODULE_TEST_DIR}/CMakeLists.txt)
+    ENDIF()
+
+    SET(${module_name}_SRC_C ${${module_name}_SRC_C} PARENT_SCOPE)
+    SET(${module_name}_SRC_H ${${module_name}_SRC_H} PARENT_SCOPE)
+ENDFUNCTION(INCLUDE_TEST_MODULE)
+
+#===============================================================================
+# FUNCTION ..: RESOLVE_SHARED_COPY_COMMAND
+# SYNOPSIS ..:
+#===============================================================================
+FUNCTION(RESOLVE_SHARED_COPY_COMMAND cmd src dst)
+#    MESSAGE("resolving command: ${src} ${dst}")
+#OR (${src} MATCHES "(.*)")
+    IF (${src} MATCHES "rsync://(.*):(.*)")
+        SET(RSYNC_HOST ${CMAKE_MATCH_1})
+        SET(RSYNC_PATH ${CMAKE_MATCH_2})
+        # Convert windows to unix paths for rsync
+        IF(${dst} MATCHES "^(.):/(.*)")
+            SET(dst "/${CMAKE_MATCH_1}/${CMAKE_MATCH_2}")
+        ENDIF()
+        SET(${cmd} rsync -e "ssh -o StrictHostKeyChecking=no" -qaz ${RSYNC_HOST}:${RSYNC_PATH} ${dst} PARENT_SCOPE)
+    ELSEIF ((${src} MATCHES "dir://(.*)") )
+        SET(${cmd} ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_MATCH_1} ${dst} PARENT_SCOPE)
+    ELSEIF (${src} MATCHES "(.*)")
+        SET(${cmd} ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_MATCH_1} ${dst} PARENT_SCOPE)
+    ENDIF()
+#    MESSAGE("resolved command: ${${cmd}}")
+ENDFUNCTION(RESOLVE_SHARED_COPY_COMMAND)
+
+#===============================================================================
+# FUNCTION ..: MICRO_ADD_IDL
+# SYNOPSIS ..:
+#===============================================================================
+FUNCTION(MICRO_ADD_IDL IDL_GEN_C IDL_GEN_H IDL ROOT SRCDIR IDL_OUTPUT_DIR)
+
+    SET(SRC_ROOT ${${ROOT}})
+    SET(IDL_SOURCE ${${IDL}})
+    SET(R_IDL_GEN_C)
+    SET(R_IDL_GEN_H)
+
+    IF (${SRCDIR} MATCHES "Cxx")
+        SET(LANGUAGE "C++")
+    ELSE()
+        SET(LANGUAGE "C")
+    ENDIF()
+    
+    LIST(LENGTH IDL_SOURCE l)
+    
+    IF (NOT ${l} GREATER 0)
+        RETURN()
+    ENDIF()
+     
+    FOREACH(idl ${IDL_SOURCE})
+        SET(L_IDL_GEN_C)
+        SET(L_IDL_GEN_H)
+
+        IF (${LANGUAGE} STREQUAL "C++")
+            SET(C_EXT "cxx")
+            SET(H_EXT "h")
+        ELSE()
+            SET(C_EXT "c")
+            SET(H_EXT "h")
+        ENDIF()
+
+        SET(NDDSGEN_OPT "")
+
+        # Any options for rtiddsgen after the file name?
+        # Options are separated from the filename using character ':'
+        # i.e. file.idl:-qualifiedEnumerator
+        IF (${idl} MATCHES "(.*):(.*)")
+            SET(idl ${CMAKE_MATCH_1})
+            SET(NDDSGEN_OPT ${CMAKE_MATCH_2})
+            STRING(REPLACE " " ";" NDDSGEN_OPT "${NDDSGEN_OPT}")
+        ENDIF()
+
+        STRING(REGEX REPLACE "\\.idl" "" basename ${idl})
+
+        LIST(APPEND L_IDL_GEN_C ${IDL_OUTPUT_DIR}/${basename}.${C_EXT}       
+                                ${IDL_OUTPUT_DIR}/${basename}Plugin.${C_EXT}
+                                ${IDL_OUTPUT_DIR}/${basename}Support.${C_EXT})
+                              
+        LIST(APPEND L_IDL_GEN_H ${IDL_OUTPUT_DIR}/${basename}.${H_EXT} 
+                                ${IDL_OUTPUT_DIR}/${basename}Plugin.${H_EXT} 
+                                ${IDL_OUTPUT_DIR}/${basename}Support.${H_EXT})
+        
+        IF (${basename} MATCHES ".*Ns.*")
+            LIST(APPEND NDDSGEN_OPT -namespace )
+        ENDIF()
+        
+#        IF (${basename} MATCHES ".*V1V2.*")
+#            LIST(APPEND NDDSGEN_OPT  -interpreted 1)
+#        ELSE()
+#            LIST(APPEND NDDSGEN_OPT  -interpreted 0)
+#        ENDIF()
+# -optimization 2 
+
+        IF ((NOT DEFINED TARGET_ONLY) OR (NOT ${TARGET_ONLY}))
+            ADD_CUSTOM_COMMAND(OUTPUT ${L_IDL_GEN_C} ${L_IDL_GEN_H}
+                               COMMAND ${CMAKE_COMMAND} -E make_directory ${IDL_OUTPUT_DIR}
+                               COMMAND ${RTIDDSGEN} ${RTIDDSGEN_OPT} -verbosity 1 
+                                            -micro -language ${LANGUAGE} 
+                                            -replace ${NDDSGEN_OPT} -I ${SRC_ROOT} 
+                                            -DNDDSGEN_EMPTY_VALUETYPE_NOT_SUPPORTED
+                                            -d ${IDL_OUTPUT_DIR} 
+                                            ${SRC_ROOT}/${basename}.idl
+                               VERBATIM
+                               DEPENDS ${SRC_ROOT}/${basename}.idl
+        )    
+        ENDIF()
+        
+        SET_SOURCE_FILES_PROPERTIES(${L_IDL_GEN_C} ${L_IDL_GEN_H} PROPERTIES GENERATED 1)
+        LIST(APPEND R_IDL_GEN_C ${L_IDL_GEN_C})
+        LIST(APPEND R_IDL_GEN_H ${L_IDL_GEN_H})
+    ENDFOREACH()
+    SET(IDL_GEN_C ${R_IDL_GEN_C} PARENT_SCOPE)
+    SET(IDL_GEN_H ${R_IDL_GEN_H} PARENT_SCOPE)
+ENDFUNCTION()
+
+#===============================================================================
+# FUNCTION ..: MICRO_ADD_XML_APPGEN
+# SYNOPSIS ..:
+#===============================================================================
+FUNCTION(MICRO_ADD_XML_APPGEN XML_APPGEN_GEN_C XML_APPGEN_GEN_H XML_APPGEN ROOT SRCDIR XML_APPGEN_OUTPUT_DIR)
+
+    SET(SRC_ROOT ${${ROOT}})
+    SET(XML_APPGEN_SOURCE ${${XML_APPGEN}})
+    SET(R_XML_APPGEN_GEN_C)
+    SET(R_XML_APPGEN_GEN_H)
+
+    IF (${SRCDIR} MATCHES "Cxx")
+        SET(LANGUAGE "C++")
+    ELSE()
+        SET(LANGUAGE "C")
+    ENDIF()
+    
+    LIST(LENGTH XML_APPGEN_SOURCE l)
+    
+    IF (NOT ${l} GREATER 0)
+        RETURN()
+    ENDIF()
+     
+    FOREACH(xml ${XML_APPGEN_SOURCE})
+        SET(L_XML_APPGEN_GEN_C)
+        SET(L_XML_APPGEN_GEN_H)
+        
+        STRING(REGEX REPLACE "\\.xml" "" basename ${xml})
+
+        IF (${LANGUAGE} STREQUAL "C")
+            LIST(APPEND L_XML_APPGEN_GEN_C ${XML_APPGEN_OUTPUT_DIR}/${basename}Appgen.c)
+            LIST(APPEND L_XML_APPGEN_GEN_H ${XML_APPGEN_OUTPUT_DIR}/${basename}Appgen.h)
+        ELSE()
+            LIST(APPEND L_XML_APPGEN_GEN_C ${XML_APPGEN_OUTPUT_DIR}/${basename}Appgen.c
+                                           ${XML_APPGEN_OUTPUT_DIR}/${basename}AppgenPlugin.cxx)
+            LIST(APPEND L_XML_APPGEN_GEN_H ${XML_APPGEN_OUTPUT_DIR}/${basename}Appgen.h
+                                           ${XML_APPGEN_OUTPUT_DIR}/${basename}AppgenPlugin.h)
+        ENDIF()
+
+        IF ((NOT DEFINED TARGET_ONLY) OR (NOT ${TARGET_ONLY}))
+            ADD_CUSTOM_COMMAND(OUTPUT ${L_XML_APPGEN_GEN_C} ${L_XML_APPGEN_GEN_H}
+                               COMMAND ${CMAKE_COMMAND} -E make_directory ${XML_APPGEN_OUTPUT_DIR}
+                               COMMAND ${RTIDDSMAG} ${RTIDDSMAG_OPT} -language ${LANGUAGE}
+                                                 -replace -dontUpdateResourceLimits
+                                                 -d ${XML_APPGEN_OUTPUT_DIR} ${SRC_ROOT}/${basename}.xml
+                                                 -referencedFile ${SRC_ROOT}/${basename}Qos.xml
+                               DEPENDS ${SRC_ROOT}/${basename}.xml
+            )    
+        ENDIF()
+        
+        SET_SOURCE_FILES_PROPERTIES(${L_XML_APPGEN_GEN_C} ${L_XML_APPGEN_GEN_H} PROPERTIES GENERATED 1)
+        LIST(APPEND R_XML_APPGEN_GEN_C ${L_XML_APPGEN_GEN_C})
+        LIST(APPEND R_XML_APPGEN_GEN_H ${L_XML_APPGEN_GEN_H})
+    ENDFOREACH()
+    SET(XML_APPGEN_GEN_C ${R_XML_APPGEN_GEN_C} PARENT_SCOPE)
+    SET(XML_APPGEN_GEN_H ${R_XML_APPGEN_GEN_H} PARENT_SCOPE)
+ENDFUNCTION()

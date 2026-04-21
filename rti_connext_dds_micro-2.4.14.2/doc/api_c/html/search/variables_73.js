@@ -1,0 +1,18 @@
+var searchData=
+[
+  ['sample_5finfo',['sample_info',['../structDDS__SampleLostStatus.html#ab2072b3218d0bb7d88fe9717ce77d066',1,'DDS_SampleLostStatus']]],
+  ['sample_5fstate',['sample_state',['../structDDS__SampleInfo.html#adfe9c2c74b14f914e5b7da022b07cb86',1,'DDS_SampleInfo']]],
+  ['sec',['sec',['../structDDS__Time__t.html#a53f0f709937e87105dd88bcf124876c2',1,'DDS_Time_t::sec()'],['../structDDS__Duration__t.html#a657203cce563e66c0114daed408ccc3c',1,'DDS_Duration_t::sec()']]],
+  ['semaphore_5fmax_5fcount',['semaphore_max_count',['../structOSAPI__PortProperty.html#a900ee47de11662db2d83a7f2c15bf259',1,'OSAPI_PortProperty']]],
+  ['send_5fdata',['send_data',['../structOSAPI__PortProperty.html#a9a4640ac1eefa9b9560beaf8dc0f38e2',1,'OSAPI_PortProperty']]],
+  ['sequence_5fnumber',['sequence_number',['../structDDS__ReliableSampleUnacknowledgedStatus.html#a422272d58291e351b9de4e867090b8ba',1,'DDS_ReliableSampleUnacknowledgedStatus']]],
+  ['serialize_5fdata',['serialize_data',['../structNDDS__Type__Plugin.html#a23f9d9900ba3310bf4725e895aa439aa',1,'NDDS_Type_Plugin']]],
+  ['source_5frules',['source_rules',['../structUDP__InterfaceFactoryProperty.html#ada54a383e944642e7c3cb93a45cac2f8',1,'UDP_InterfaceFactoryProperty']]],
+  ['source_5ftimestamp',['source_timestamp',['../structDDS__SampleInfo.html#a70566edcc3c48c0d7ee42962ffb81150',1,'DDS_SampleInfo']]],
+  ['source_5ftimestamp_5ftolerance',['source_timestamp_tolerance',['../structDDS__DestinationOrderQosPolicy.html#a692d1a1f1117dbb9eadb980a41f8a156',1,'DDS_DestinationOrderQosPolicy']]],
+  ['spinlock_5fid',['spinlock_id',['../structOSAPI__PortProperty.html#a160abf035d75082b1b3f59f87b87722c',1,'OSAPI_PortProperty']]],
+  ['stack_5fsize',['stack_size',['../structOSAPI__ThreadProperty.html#abb88a95476bfc60213bcb0b14bb6aded',1,'OSAPI_ThreadProperty']]],
+  ['start_5ftimer',['start_timer',['../structOSAPI__SystemI.html#a83ec3c07f33b83d00c5e1d7659a130f0',1,'OSAPI_SystemI']]],
+  ['stop_5ftimer',['stop_timer',['../structOSAPI__SystemI.html#a7af83bc9af138c5a66b735854687f7e2',1,'OSAPI_SystemI']]],
+  ['sync_5ftype',['sync_type',['../structOSAPI__PortProperty.html#a90aa83abfc48a87a013272760139cfe0',1,'OSAPI_PortProperty']]]
+];

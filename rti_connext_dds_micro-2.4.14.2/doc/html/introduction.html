@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Introduction &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Installation" href="installation/index.html" />
+    <link rel="prev" title="Welcome to RTI Connext Micro" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-rti-me-h">1.1. What is RTI Connext Micro?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rti-me-cert-h-versus-rti-me-h">1.1.1. RTI Connext Cert versus RTI Connext Micro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-certification-package">1.1.2. Optional Certification Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#publish-subscribe-middleware">1.1.3. Publish-Subscribe Middleware</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-dds-features">1.2. Supported DDS Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dds-entity-support">1.2.1. DDS Entity Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dds-qos-policy-support">1.2.2. DDS QoS Policy Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#standards-and-interoperability">1.3. Standards and Interoperability</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dds-wire-compatibility">1.3.1. DDS Wire Compatibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#profile-feature">1.3.2. Profile / Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dds-api-support">1.3.3. DDS API Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#rti-connext-dds-documentation">1.4. RTI Connext DDS Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#omg-dds-specification">1.5. OMG DDS Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-products">1.6. Other Products</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usersmanual/index.html">4. User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building/index.html">5. Building and Porting Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usersmanual/micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li><span class="section-number">1. </span>Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<span id="section-introduction"></span><h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-rti-me-h">
+<h2><span class="section-number">1.1. </span>What is RTI Connext Micro?<a class="headerlink" href="#what-is-rti-me-h" title="Permalink to this headline">¶</a></h2>
+<p><em>RTI</em> <em>Connext Micro</em> is network middleware for distributed real-time applications. It
+provides the communications service programmers need to distribute
+time-critical data between embedded and/or enterprise devices or nodes.
+<em>Connext Micro</em> uses the publish-subscribe communications model to make data
+distribution efficient and robust. <em>Connext Micro</em> simplifies application development,
+deployment and maintenance and provides fast, predictable distribution of
+time-critical data over a variety of transport networks. With <em>Connext Micro</em>, you can:</p>
+<ul class="simple">
+<li><p>Perform complex one-to-many and many-to-many network communications.</p></li>
+<li><p>Customize application operation to meet various real-time, reliability,
+and quality-of-service goals.</p></li>
+<li><p>Provide application-transparent fault tolerance and application robustness.</p></li>
+<li><p>Use a variety of transports.</p></li>
+</ul>
+<p><em>Connext Micro</em> implements the Data-Centric Publish-Subscribe (DCPS) API within
+the OMG’s Data Distribution Service (DDS) for Real-Time Systems. DDS is the
+first standard developed for the needs of real-time systems. DCPS provides
+an efficient way to transfer data in a distributed system.</p>
+<p>With <em>Connext Micro</em>, systems designers and programmers start with a fault-tolerant
+and flexible communications infrastructure that will work over a wide
+variety of computer hardware, operating systems, languages, and networking
+transport protocols. <em>Connext Micro</em> is highly configurable so programmers can adapt
+it to meet the application’s specific communication requirements.</p>
+<div class="section" id="rti-me-cert-h-versus-rti-me-h">
+<h3><span class="section-number">1.1.1. </span>RTI Connext Cert versus RTI Connext Micro<a class="headerlink" href="#rti-me-cert-h-versus-rti-me-h" title="Permalink to this headline">¶</a></h3>
+<p><em>RTI</em> <em>Connext Micro</em> and <em>RTI</em> <em>Connext Cert</em> originate from the same source base, but as of
+<em>Connext Micro</em> 2.4.6 the two are maintained as two independent releases. The
+latest release with certification evidence is <em>Connext Cert</em> 2.4.5. However,
+features that exist in <em>Connext Micro</em> and <em>Connext Cert</em> behave identically and the
+source code is written following identical guidelines. <em>Connext Cert</em>
+only supports a subset of the features found in <em>Connext Micro</em>. In the API
+reference manuals, APIs that are supported by <em>Connext Cert</em> are clearly marked.</p>
+</div>
+<div class="section" id="optional-certification-package">
+<h3><span class="section-number">1.1.2. </span>Optional Certification Package<a class="headerlink" href="#optional-certification-package" title="Permalink to this headline">¶</a></h3>
+<p>An optional Certification Package is available for systems that require
+certification to DO-178C or other safety standards. This package includes
+the artifacts required by a certification authority. The Certification
+Package is licensed separately from Connext DDS Cert.</p>
+<p>To use an existing Certification Package, an application must be linked
+against the same libraries included in the Certification Package.
+Contact RTI Support, <a class="reference external" href="mailto:support&#37;&#52;&#48;rti&#46;com">support<span>&#64;</span>rti<span>&#46;</span>com</a>, for details.</p>
+</div>
+<div class="section" id="publish-subscribe-middleware">
+<h3><span class="section-number">1.1.3. </span>Publish-Subscribe Middleware<a class="headerlink" href="#publish-subscribe-middleware" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> is based on a publish-subscribe communications model. Publish-subscribe
+(PS) middleware provides a simple and intuitive way to distribute data. It
+decouples the software that creates and sends data—the data publishers—from
+the software that receives and uses the data—the data subscribers. Publishers
+simply declare their intent to send and then publish the data. Subscribers
+declare their intent to receive, then the data is automatically delivered by
+the middleware. Despite the simplicity of the model, PS middleware can
+handle complex patterns of information flow. The use of PS middleware results
+in simpler, more modular distributed applications. Perhaps most importantly,
+PS middleware can automatically handle all network chores, including
+connections, failures, and network changes, eliminating the need for user
+applications to program of all those special &lt;cases. What experienced network
+middleware developers know is that handling special cases accounts for over
+80% of the effort and code.</p>
+</div>
+</div>
+<div class="section" id="supported-dds-features">
+<h2><span class="section-number">1.2. </span>Supported DDS Features<a class="headerlink" href="#supported-dds-features" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> supports a subset of the DDS DCPS standard. A brief overview of the
+supported features are listed here. For a detailed list, please refer to the
+<a class="reference external" href="../../doc/api_c/html/index.html">C API Reference</a> and <a class="reference external" href="../../doc/api_cpp/html/index.html">C++ API Reference</a>.</p>
+<div class="section" id="dds-entity-support">
+<h3><span class="section-number">1.2.1. </span>DDS Entity Support<a class="headerlink" href="#dds-entity-support" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> supports the following DDS entities. Please refer to the documentation
+for details.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../doc/api_c/html/group__DDSDomainParticipantFactoryModule.html">DomainParticipantFactory</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/group__DDSDomainParticipantModule.html">DomainParticipant</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/group__DDSTopicEntityModule.html">Topic</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/group__DDSPublisherModule.html">Publisher</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/group__DDSSubscriberModule.html">Subscriber</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/group__DDSWriterModule.html">DataWriter</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/group__DDSReaderModule.html">DataReader</a></p></li>
+</ul>
+</div>
+<div class="section" id="dds-qos-policy-support">
+<h3><span class="section-number">1.2.2. </span>DDS QoS Policy Support<a class="headerlink" href="#dds-qos-policy-support" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> supports the following DDS Qos Policies. Please refer to the
+documentation for details.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__DataReaderProtocolQosPolicy.html">DDS_DataReaderProtocolQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__DataReaderResourceLimitsQosPolicy.html">DDS_DataReaderResourceLimitsQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__DataWriterProtocolQosPolicy.html">DDS_DataWriterProtocolQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__DataWriterResourceLimitsQosPolicy.html">DDS_DataWriterResourceLimitsQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__DeadlineQosPolicy.html">DDS_DeadlineQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__DiscoveryQosPolicy.html">DDS_DiscoveryQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__DomainParticipantResourceLimitsQosPolicy.html">DDS_DomainParticipantResourceLimitsQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__DurabilityQosPolicy.html">DDS_DurabilityQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__DestinationOrderQosPolicy.html">DDS_DestinationOrderQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__EntityFactoryQosPolicy.html">DDS_EntityFactoryQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__HistoryQosPolicy.html">DDS_HistoryQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__LivelinessQosPolicy.html">DDS_LivelinessQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__OwnershipQosPolicy.html">DDS_OwnershipQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__OwnershipStrengthQosPolicy.html">DDS_OwnershipStrengthQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__ReliabilityQosPolicy.html">DDS_ReliabilityQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__ResourceLimitsQosPolicy.html">DDS_ResourceLimitsQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__RtpsReliableWriterProtocol__t.html">DDS_RtpsReliableWriterProtocol_t</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__SystemResourceLimitsQosPolicy.html">DDS_SystemResourceLimitsQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__TransportQosPolicy.html">DDS_TransportQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__UserTrafficQosPolicy.html">DDS_UserTrafficQosPolicy</a></p></li>
+<li><p><a class="reference external" href="../../doc/api_c/html/structDDS__WireProtocolQosPolicy.html">DDS_WireProtocolQosPolicy</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="standards-and-interoperability">
+<h2><span class="section-number">1.3. </span>Standards and Interoperability<a class="headerlink" href="#standards-and-interoperability" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> implements the Object Management Group (OMG) Data Distribution Service
+(DDS) standard (version 1.4), and the Real-Time Publish-Subscribe (RTPS) wire
+interoperabilty protocol standard (version 2.2).</p>
+<p><em>Connext Micro</em> supports a subset of the submessages defined by the Real-Time
+Publish-Subscribe (RTPS) interoperability specification.  Data fragment
+submessages are not supported. The messages are compatible with Wireshark and
+its RTPS packet dissector.</p>
+<p><em>Connext Micro</em>, RTI <em>Connext Micro</em>, and <em>Connext</em> are wire-interoperable, unless stated
+otherwise  (see below), and API compatible for APIs specified by the
+DDS standard. For non-standard APIs, <em>Connext Micro</em>, RTI <em>Connext Micro</em>, and
+<em>Connext</em> are incompatible.
+Please refer to <a class="reference internal" href="usersmanual/micro_core.html#section-micro-and-core"><span class="std std-ref">Working with RTI Connext Micro and RTI Connext</span></a> for more information.</p>
+<div class="section" id="dds-wire-compatibility">
+<h3><span class="section-number">1.3.1. </span>DDS Wire Compatibility<a class="headerlink" href="#dds-wire-compatibility" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> is compliant with RTPS 2.2, but does not support and ignore the
+following RTPS sub-messages:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 17%" />
+<col style="width: 22%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Submessage</p></th>
+<th class="head"><p>Supported</p></th>
+<th class="head"><p>DDS Standard</p></th>
+<th class="head"><p>Connext DDS Core</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>DATA_FRAG</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>NACK_FRAG</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>HEARTBEAT_FRAG</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>INFO_SRC</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>INFO_REPLY</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>INFO_REPLY_IPV4</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="profile-feature">
+<h3><span class="section-number">1.3.2. </span>Profile / Feature<a class="headerlink" href="#profile-feature" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> does not support mutable Qos policies.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 21%" />
+<col style="width: 18%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Submessage</p></th>
+<th class="head"><p>Supported</p></th>
+<th class="head"><p>DDS Standard</p></th>
+<th class="head"><p>Connext DDS Core</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>USER_DATA</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>TOPIC_DATA</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>DURABILITY</p></td>
+<td><p>Partially (1)</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>PRESENTATION</p></td>
+<td><p>Partially (2)</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>DEADLINE</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>LATENCY_BUDGET</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>LIVELINESS</p></td>
+<td><p>Partially (3)</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>TIME_BASED_FILTER</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>PARTITION</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>RELIABILITY</p></td>
+<td><p>Yes (4)</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>TRANSPORT_PRIORITY</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>LIFESPAN</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>DESTINATION_ORDER</p></td>
+<td><p>Partially (5)</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>HISTORY</p></td>
+<td><p>Partially (6)</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>RESOURCE_LIMITS</p></td>
+<td><p>Yes (7)</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>ENTITY_FACTORY</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>WRITER_DATA_LIFECYCLE</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>READER_DATA_LIFECYCLE</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>OWNERSHIP</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>OWNERSHIP_STRENGTH</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>DURABILITY_SERVICE</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>ContentFilteredTopic</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>QueryCondition</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>MultiTopic</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>ASYNCHRONOUS_PUBLISHER</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>AVAILABILITY</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>BATCH</p></td>
+<td><p>Only reception</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>DATA_READER_PROTOCOL</p></td>
+<td><p>rtps_object_id</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>DATA_WRITER_PROTOCOL</p></td>
+<td><p>Partially (8)</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>DISCOVERY</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>DISCOVERY_CONFIG</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>ENTITY_NAME</p></td>
+<td><p>Partially (9)</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>EVENT</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>LOCATORFILTER</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>LOGGING</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>MULTICHANNEL</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>PROPERTY</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>PUBLISH_MODE</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>RECEIVER_POOL</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>SERVICE</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>TYPE_CONSISTENCY_ENFORCEMENT</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>TYPESUPPORT</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>WIRE_PROTOCOL</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+</tbody>
+</table>
+<p>NOTES:</p>
+<ol class="arabic simple">
+<li><p>VOLATILE and TRANSIENT_LOCAL</p></li>
+<li><p>No, DW offers access_scope = TOPIC, coherent_access = FALSE and ordered_access = TRUE
+DR requests access_scope = INSTANCE, coherent_access = FALSE and ordered_access = FALSE</p></li>
+<li><p>AUTOMATIC (infinite only), MANUAL_BY_PARTICIPANT (infinite only), MANUAL_BY_TOPIC (finite and infinite)</p></li>
+<li><p>BEST_EFFORT and RELIABLE, only max_blocking_time=0</p></li>
+<li><p>DataWriter: Yes, DataReader only supports BY_RECEPTION_TIMESTAMP</p></li>
+<li><p>Only KEEP_LAST</p></li>
+<li><p>Only finite resource limits</p></li>
+<li><p>The following are supported:</p>
+<ul class="simple">
+<li><p>heartbeat_period</p></li>
+<li><p>heartbeats_per_max_samples</p></li>
+<li><p>max_heartbeat_retries</p></li>
+<li><p>max_send_window_size</p></li>
+<li><p>rtps_object_id</p></li>
+</ul>
+</li>
+<li><p>DomainParticipant only</p></li>
+</ol>
+</div>
+<div class="section" id="dds-api-support">
+<h3><span class="section-number">1.3.3. </span>DDS API Support<a class="headerlink" href="#dds-api-support" title="Permalink to this headline">¶</a></h3>
+<p>For supported APIs, please refer to:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../doc/api_c/html/index.html">C API Reference</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="../../doc/api_cpp/html/index.html">C++ API Reference</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="rti-connext-dds-documentation">
+<h2><span class="section-number">1.4. </span>RTI Connext DDS Documentation<a class="headerlink" href="#rti-connext-dds-documentation" title="Permalink to this headline">¶</a></h2>
+<p>Throughout this document, we may suggest reading sections in other <em>RTI Connext DDS</em> documents.
+These documents are in your <em>RTI Connext DDS</em> installation directory under
+<strong>rti-connext-dds-&lt;version&gt;/doc/manuals</strong>. A quick way to find them is from <em>RTI Launcher’s</em>
+Help panel, select “Browse Connext Documentation”.</p>
+<p>Since installation directories vary per user, links are not provided to these documents
+on your local machine. However, we do provide links to documents on the <a class="reference external" href="https://community.rti.com/documentation">RTI Documentation</a>
+site for users with Internet access.</p>
+<p>New users can start by reading Parts 1 (Introduction) and 2 (Core Concepts) in the <a class="reference external" href="https://community.rti.com/static/documentation/connext-dds/7.3.0/doc/manuals/connext_dds_professional/users_manual/index.htm">RTI Connext DDS Core Libraries User’s Manual</a>.
+These sections teach basic DDS concepts applicable to all RTI middleware, including <em>RTI Connext</em> <em>Professional</em> and <em>RTI</em> <em>Connext Micro</em>.
+You can open the <a class="reference external" href="https://community.rti.com/static/documentation/connext-dds/7.3.0/doc/manuals/connext_dds_professional/users_manual/index.htm">RTI Connext DDS Core Libraries User’s Manual</a> from <em>RTI Launcher’s</em> Help panel.</p>
+<p>The <a class="reference external" href="https://community.rti.com/">RTI Community</a> provides many resources for users of DDS and the RTI Connext family of products.</p>
+</div>
+<div class="section" id="omg-dds-specification">
+<h2><span class="section-number">1.5. </span>OMG DDS Specification<a class="headerlink" href="#omg-dds-specification" title="Permalink to this headline">¶</a></h2>
+<p>For the original DDS reference, the OMG DDS specification can be found in the
+<a class="reference external" href="https://www.omg.org/spec">OMG Specifications</a> under “Data Distribution Service”.</p>
+</div>
+<div class="section" id="other-products">
+<h2><span class="section-number">1.6. </span>Other Products<a class="headerlink" href="#other-products" title="Permalink to this headline">¶</a></h2>
+<p><em>RTI</em> <em>Connext Micro</em> is one of several products in the <em>RTI Connext</em> family of products:</p>
+<p><em>RTI</em> <em>Connext Cert</em> is a subset of RTI <em>Connext Micro</em>. <em>Connext Cert</em> does not include the
+following features because Certification Evidence is not yet available for
+them. If you require Certification Evidence for any of these features,
+please contact RTI.</p>
+<ul class="simple">
+<li><p>C++ language API.</p></li>
+<li><p>Multi-platform support.</p></li>
+<li><p>Dynamic endpoint discovery.</p></li>
+<li><p>delete() APIs (e.g. delete_datareader()).</p></li>
+<li><p>Batching.</p></li>
+<li><p>UDP Transformations.</p></li>
+</ul>
+<p><em>RTI Connext</em> <em>Professional</em> addresses the sophisticated databus
+requirements in complex systems including an API compliant with the
+Object Management Group (OMG) Data Distribution Service (DDS)
+specification. DDS is the leading data-centric publish/subscribe (DCPS)
+messaging standard for integrating distributed real-time applications.
+<em>Connext</em> <em>Professional</em> is the  dominant industry implementation with
+benefits including:</p>
+<ul class="simple">
+<li><p>OMG-compliant DDS API</p></li>
+<li><p>Advanced features to address complex systems</p></li>
+<li><p>Advanced Quality of Service (QoS) support</p></li>
+<li><p>Comprehensive platform and network transport support</p></li>
+<li><p>Seamless interoperability with rtime</p></li>
+</ul>
+<p><em>RTI Connext</em> <em>Professional</em> includes rich integration capabilities:</p>
+<ul class="simple">
+<li><p>Data transformation</p></li>
+<li><p>Integration support for standards including JMS, SQL databases, file,
+socket, Excel, OPC, STANAG, LabVIEW, Web Services and more</p></li>
+<li><p>Ability for users to create custom integration adapters</p></li>
+<li><p>Optional integration with Oracle, MySQL and other relational databases</p></li>
+<li><p>Tools for visualizing, debugging and managing all systems in real-time</p></li>
+</ul>
+<p><em>RTI Connext</em> <em>Professional</em> also includes a rich set of tools to
+accelerate debugging and testing while easing management of deployed
+systems. These components include:</p>
+<ul class="simple">
+<li><p>Administration Console</p></li>
+<li><p>Distributed Logger</p></li>
+<li><p>Monitor</p></li>
+<li><p>Monitoring Library</p></li>
+<li><p>Recording Service</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installation/index.html" class="btn btn-neutral float-right" title="2. Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to RTI Connext Micro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

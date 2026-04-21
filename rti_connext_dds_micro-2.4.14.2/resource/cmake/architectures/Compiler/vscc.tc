@@ -1,0 +1,65 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2016
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may2016 tk Written
+################################################################################
+
+IF (CMAKE_GENERATOR MATCHES "Visual Studio.*")
+    IF (${RTIME_TARGET_NAME} MATCHES "x64")
+        SET(CMAKE_GENERATOR_PLATFORM x64 CACHE INTERNAL "")
+    ELSEIF (${RTIME_TARGET_NAME} MATCHES "i86")
+        SET(CMAKE_GENERATOR_PLATFORM Win32 CACHE INTERNAL "")
+    ENDIF()
+ENDIF()
+
+SET(CC_COMMON   "/nologo /W3 ")
+SET(CXX_COMMON   "")
+SET(CC_DEBUG    "${CC_COMMON} /Zi /Od")
+SET(CC_RELEASE  "${CC_COMMON}")
+SET(CXX_DEBUG    "${CXX_COMMON} /Zi /Od")
+SET(CXX_RELEASE  "${CXX_COMMON} ")
+
+SET(_RTIME_CC stdc)
+
+SET(CMAKE_C_FLAGS_DEBUG "${CC_DEBUG} ${CC_ARCH}" 
+    CACHE INTERNAL "CMAKE_C_FLAGS_DEBUG" FORCE)
+
+SET(CMAKE_CXX_FLAGS_DEBUG "${CXX_DEBUG} ${CC_ARCH}" 
+    CACHE INTERNAL "CMAKE_CXX_FLAGS_DEBUG" FORCE)
+
+SET(CMAKE_C_FLAGS_RELEASE "${CC_RELEASE} ${CC_ARCH} -DNDEBUG" 
+    CACHE INTERNAL "CMAKE_C_FLAGS_RELEASE" FORCE)
+
+SET(CMAKE_CXX_FLAGS_RELEASE "${CXX_RELEASE} ${CC_ARCH} -DNDEBUG" 
+    CACHE INTERNAL "CMAKE_CXX_FLAGS_RELEASE" FORCE)
+
+SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:console /NODEFAULTLIB:libc.lib /OPT:NOREF" CACHE INTERNAL "CMAKE_EXE_LINKER_FLAGS" FORCE)
+
+IF (${TARGET_HELP})
+ELSE()
+    ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
+ENDIF()
+
+IF (${TARGET_HELP})
+    MESSAGE("COMPILER NOTES\n")
+    MESSAGE(" The following MSVC specific macro definition is always added:")
+    MESSAGE(" _CRT_SECURE_NO_WARNINGS\n")
+    MESSAGE(" The following flags are added:")
+    MESSAGE(" - For C Debug libraries:  ${CC_DEBUG}")
+    MESSAGE(" - For C++ Debug libraries:  ${CXX_DEBUG}")
+    MESSAGE(" - For C Release libraries:  ${CC_RELEASE}")
+    MESSAGE(" - For C++ Release libraries:  ${CXX_RELEASE}\n\n")
+    RETURN()
+ENDIF()

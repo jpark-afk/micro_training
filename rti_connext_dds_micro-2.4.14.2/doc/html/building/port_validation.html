@@ -1,0 +1,817 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.8. Port Validation &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.9. Building Connext Micro with compatibility for Connext Cert" href="cert_compatibility.html" />
+    <link rel="prev" title="5.7. Porting RTI Connext Micro" href="porting.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">4. User’s Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. Building and Porting Connext Micro</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="platforms.html">5.1. RTI Connext Micro Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">5.2. Building the Connext Micro Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qnx.html">5.3. Connext Micro for QNX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">5.4. Building the Connext Micro Source for FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threadx.html">5.5. Building the Connext Micro Source for ThreadX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosar.html">5.6. Connext Micro on AUTOSAR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">5.7. Porting RTI Connext Micro</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.8. Port Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">5.8.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overview">5.8.2. Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-port-validation-tests">5.8.3. Building the Port Validation Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#building-with-rtime-make">5.8.3.1. Building with rtime-make</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#manually-building-with-cmake">5.8.3.2. Manually building with CMake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#custom-build-environments">5.8.3.3. Custom Build Environments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-tests">5.8.4. Running the Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setting-up-a-config-file">5.8.4.1. Setting Up a Config File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-the-tests-using-a-configuration-file">5.8.4.2. Running the tests using a configuration file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test-results">5.8.4.3. Test Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">5.8.4.4. Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#embedded-platforms">5.8.5. Embedded Platforms</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autosar-systems">5.8.5.1. AUTOSAR Systems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freertos-systems">5.8.5.2. FreeRTOS Systems</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#porting-utest">5.8.6. Porting UTEST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cert_compatibility.html">5.9. Building Connext Micro with compatibility for Connext Cert</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">5. </span>Building and Porting Connext Micro</a> &raquo;</li>
+        
+      <li><span class="section-number">5.8. </span>Port Validation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/building/port_validation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="port-validation">
+<h1><span class="section-number">5.8. </span>Port Validation<a class="headerlink" href="#port-validation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2><span class="section-number">5.8.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This section explains how to build and run the <em>Connext Micro</em> Port Validation
+and is organized as follows:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview">Overview</a></p></li>
+<li><p><a class="reference internal" href="#building-the-port-validation-tests">Building the Port Validation Tests</a></p></li>
+<li><p><a class="reference internal" href="#running-the-tests">Running the Tests</a></p></li>
+<li><p><a class="reference internal" href="#embedded-platforms">Embedded Platforms</a></p></li>
+<li><p><a class="reference internal" href="#porting-utest">Porting UTEST</a></p></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><span class="section-number">5.8.2. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>After porting <em>Connext Micro</em>, it is important to confirm that your code works
+as expected. For this, <em>Connext Micro</em> comes with a suite of tests that you compile
+and run to validate your port.</p>
+<p>The tests only cover the functionality described in the porting
+instructions earlier in this chapter <a class="reference internal" href="porting.html#porting"><span class="std std-ref">Porting RTI Connext Micro</span></a>.</p>
+<p>The tests are a subset of the tests RTI runs internally. They are just
+exported for your use. RTI does not support any changes to the tests.
+The tests are built with RTI’s internal unit testing framework, ‘UTEST’.
+Everything needed to run the tests is shipped along with the rest of
+<em>Connext Micro</em>. The directory layout is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RTIMEHOME</span><span class="o">/----+----</span> <span class="n">CMakeLists</span><span class="o">.</span><span class="n">txt</span>
+              <span class="o">|</span>
+              <span class="o">+----</span> <span class="n">include</span>
+              <span class="o">|</span>
+              <span class="o">+----</span> <span class="n">src</span>
+              <span class="o">|</span>
+              <span class="o">+----</span> <span class="n">resource</span>
+              <span class="o">|</span>
+              <span class="o">+----</span> <span class="n">lib</span>
+              <span class="o">|</span>
+              <span class="o">+----</span> <span class="n">build</span>
+              <span class="o">|</span>
+              <span class="o">+----</span> <span class="n">test</span> <span class="o">--+--</span> <span class="n">test</span> <span class="o">--+--</span> <span class="n">setting</span> <span class="o">---</span> <span class="o">&lt;</span><span class="n">UTEST</span><span class="o">-</span><span class="n">SRC</span><span class="o">&gt;</span>
+                           <span class="o">|</span>
+                           <span class="o">+--</span> <span class="n">osapi</span> <span class="o">--+--</span> <span class="n">common</span> <span class="o">--</span> <span class="o">&lt;</span><span class="n">OSAPI</span><span class="o">-</span><span class="n">TEST</span><span class="o">-</span><span class="n">SRC</span><span class="o">&gt;</span>
+                           <span class="o">|</span>           <span class="o">|</span>
+                           <span class="o">|</span>           <span class="o">+--</span> <span class="n">test</span> <span class="o">----</span> <span class="o">&lt;</span><span class="n">OSAPITester</span><span class="o">&gt;</span>
+                           <span class="o">|</span>
+                           <span class="o">+--</span> <span class="n">netio</span> <span class="o">--+--</span> <span class="n">autosar</span> <span class="o">----</span> <span class="o">&lt;</span><span class="n">NETIO</span><span class="o">-</span><span class="n">TEST</span><span class="o">-</span><span class="n">SRC</span><span class="o">&gt;</span>
+                           <span class="o">|</span>           <span class="o">|</span>
+                           <span class="o">|</span>           <span class="o">+--</span> <span class="n">common</span> <span class="o">-----</span> <span class="o">&lt;</span><span class="n">NETIO</span><span class="o">-</span><span class="n">TEST</span><span class="o">-</span><span class="n">SRC</span><span class="o">&gt;</span>
+                           <span class="o">|</span>           <span class="o">|</span>
+                           <span class="o">|</span>           <span class="o">+--</span> <span class="n">test</span> <span class="o">-------</span> <span class="o">&lt;</span><span class="n">NETIOTester</span><span class="o">&gt;</span>
+                           <span class="o">|</span>           <span class="o">|</span>
+                           <span class="o">|</span>           <span class="o">+--</span> <span class="n">udp</span>  <span class="o">-------</span> <span class="o">&lt;</span><span class="n">NETIO</span><span class="o">-</span><span class="n">TEST</span><span class="o">-</span><span class="n">SRC</span><span class="o">&gt;</span>
+                           <span class="o">|</span>
+                           <span class="o">+--</span> <span class="n">include</span> <span class="o">---</span> <span class="n">test</span> <span class="o">----</span> <span class="o">&lt;</span><span class="n">UTEST</span><span class="o">-</span><span class="n">HDR</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The test folder includes four sub-folders. The ‘test’ and ‘include’
+folders contain the UTEST framework that is required to run the unit
+tests. ‘osapi’ and ‘netio’ both contain common folders (containing the
+test source), as well as test folders (containing the test files).</p>
+</div>
+<div class="section" id="building-the-port-validation-tests">
+<h2><span class="section-number">5.8.3. </span>Building the Port Validation Tests<a class="headerlink" href="#building-the-port-validation-tests" title="Permalink to this headline">¶</a></h2>
+<p>By default, the port validation tests are not built. We recommend
+that you review <a class="reference internal" href="building.html#building-micro"><span class="std std-ref">Building the Connext Micro Source</span></a>, since the same
+rules and considerations apply when building the port validation tests.</p>
+<p>If you will be using the ctest (<a class="reference external" href="https://cmake.org/">CMake</a> test driver
+program) set the domain ID used to run the tests using this environment
+variable in your terminal:</p>
+<p>On Linux and macOS systems:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">RTIME_TEST_CONFIG_ID</span><span class="o">=</span><span class="s2">&quot;&lt;your domain ID #&gt;&quot;</span>
+</pre></div>
+</div>
+<p>On Windows systems:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">RTIME_TEST_CONFIG_ID</span><span class="o">=</span><span class="s2">&quot;&lt;your domain ID #&gt;&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="building-with-rtime-make">
+<h3><span class="section-number">5.8.3.1. </span>Building with rtime-make<a class="headerlink" href="#building-with-rtime-make" title="Permalink to this headline">¶</a></h3>
+<p>Use the option <code class="docutils literal notranslate"><span class="pre">--test</span></code> when running ‘rtime-make’.</p>
+<p>On Linux and macOS systems:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">RTIMEHOME</span><span class="o">&gt;/</span><span class="n">resource</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span> <span class="o">--</span><span class="n">config</span> <span class="n">Debug</span> <span class="o">--</span><span class="n">target</span> <span class="bp">self</span> \
+<span class="o">--</span><span class="n">name</span> <span class="n">i86Linux2</span><span class="mf">.6</span><span class="n">gcc4</span><span class="mf">.4.5</span> <span class="o">-</span><span class="n">G</span> <span class="s2">&quot;Unix Makefiles&quot;</span> <span class="o">--</span><span class="n">build</span> <span class="o">--</span><span class="n">test</span>
+</pre></div>
+</div>
+<p>On Windows systems:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">RTIMEHOME</span><span class="o">&gt;</span>\<span class="n">resource</span>\<span class="n">scripts</span>\<span class="n">rtime</span><span class="o">-</span><span class="n">make</span><span class="o">.</span><span class="n">bat</span> <span class="o">--</span><span class="n">config</span> <span class="n">Debug</span> <span class="o">--</span><span class="n">target</span> <span class="bp">self</span> \
+<span class="o">--</span><span class="n">name</span> <span class="n">i86Win32VS2010</span> <span class="o">-</span><span class="n">G</span> <span class="s2">&quot;Visual Studio 10 2010&quot;</span> <span class="o">--</span><span class="n">build</span> <span class="o">--</span><span class="n">test</span>
+</pre></div>
+</div>
+<p>Explanation of arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--test</span></code> : <strong>Build the port validation tests.</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">Debug</span></code> : Create a Debug build.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--target</span> <span class="pre">&lt;target&gt;</span></code> : The target for the source files to be
+built. See <a class="reference internal" href="building.html#building-with-rtimemake"><span class="std std-ref">Building Connext Micro with rtime-make</span></a>
+for information on specifying the target architecture. “self”
+indicates that the host machine is also the target and <em>Connext Micro</em>
+will be built with the options that <a class="reference external" href="https://cmake.org/">CMake</a>
+automatically determines for the local compiler.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">&lt;name&gt;</span></code> : The name of the build. Use a descriptive name
+following the recommendations on naming in section
+<a class="reference internal" href="building.html#prepare"><span class="std std-ref">Preparing for a Build</span></a>.
+If <code class="docutils literal notranslate"><span class="pre">--name</span></code> is not specified, the value for <code class="docutils literal notranslate"><span class="pre">--target</span></code> will be used as
+the name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--build</span></code>: Build the generated project files.</p></li>
+</ul>
+</div>
+<div class="section" id="manually-building-with-cmake">
+<h3><span class="section-number">5.8.3.2. </span>Manually building with CMake<a class="headerlink" href="#manually-building-with-cmake" title="Permalink to this headline">¶</a></h3>
+<p>The process for building the port validation tests manually with <a class="reference external" href="https://cmake.org/">CMake</a>
+is the same as building the <em>Connext Micro</em> libraries manually with <a class="reference external" href="https://cmake.org/">CMake</a>.
+Follow the instructions in <a class="reference internal" href="building.html#manual-building-with-cmake"><span class="std std-ref">Manually Building with CMake</span></a>.
+To build the port validation tests, you just need to ensure that the
+flag RTI_BUILD_UNITTESTS is set to true, so use
+<code class="docutils literal notranslate"><span class="pre">-DRTI\_BUILD\_UNITTESTS=true</span></code> when invoking <a class="reference external" href="https://cmake.org/">CMake</a>.</p>
+</div>
+<div class="section" id="custom-build-environments">
+<h3><span class="section-number">5.8.3.3. </span>Custom Build Environments<a class="headerlink" href="#custom-build-environments" title="Permalink to this headline">¶</a></h3>
+<p>The preferred method to build <em>Connext Micro</em> is to use <a class="reference external" href="https://cmake.org/">CMake</a>.
+However, in some cases it may be more convenient, or even necessary, to use
+a custom build environment. Please refer to <a class="reference internal" href="building.html#custom-build-environment"><span class="std std-ref">Custom Build Environments</span></a>
+to learn how to import <em>Connext Micro</em> code.</p>
+<p>Additionally, in order to build the port validation tests the following steps
+are needed:</p>
+<ul class="simple">
+<li><p>Add compile-time definition ‘__autosar__’ (Only for AUTOSAR Systems).</p></li>
+<li><p>Add compile-time definition ‘__freertos__’ (Only for FreeRTOS Systems).</p></li>
+<li><p>Add the following include paths:</p>
+<ul>
+<li><p>&lt;RTIMEHOME&gt;/test/include</p></li>
+<li><p>&lt;RTIMEHOME&gt;/test/netio/autosar (Only for AUTOSAR Systems).</p></li>
+<li><p>&lt;RTIMEHOME&gt;/test/netio/common</p></li>
+<li><p>&lt;RTIMEHOME&gt;/test/netio/test</p></li>
+<li><p>&lt;RTIMEHOME&gt;/test/netio/udp</p></li>
+<li><p>&lt;RTIMEHOME&gt;/test/osapi/common</p></li>
+<li><p>&lt;RTIMEHOME&gt;/test/osapi/test</p></li>
+</ul>
+</li>
+<li><p>Import all source files from the folder &lt;RTIMEHOME&gt;/test/test</p></li>
+<li><p>To build the NETIO test, import all source files from the folder &lt;RTIMEHOME&gt;/test/netio</p></li>
+<li><p>To build the OSPIA test, import all source files from the folder &lt;RTIMEHOME&gt;/test/osapi</p></li>
+</ul>
+<p>As explained above, you need to build and run two images, one with NETIO tests
+and another one with OSAPI tests.</p>
+</div>
+</div>
+<div class="section" id="running-the-tests">
+<h2><span class="section-number">5.8.4. </span>Running the Tests<a class="headerlink" href="#running-the-tests" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="setting-up-a-config-file">
+<h3><span class="section-number">5.8.4.1. </span>Setting Up a Config File<a class="headerlink" href="#setting-up-a-config-file" title="Permalink to this headline">¶</a></h3>
+<p>Since both OSAPI and NETIO run system tests, a config file is required.
+A template file for the unit-test configuration can be found in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">RTIMEHOME</span><span class="o">&gt;/</span><span class="n">resource</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">cfg</span>
+</pre></div>
+</div>
+<p>The template looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">property</span>
+<span class="p">{</span>
+    <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow_interface_multicast</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">property</span> <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
+<span class="p">{</span>
+    <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow_interface</span><span class="o">=</span><span class="s2">&quot;lo&quot;</span><span class="p">;</span>
+    <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow_interface_address</span><span class="o">=</span><span class="mh">0x7F000001</span><span class="p">;</span>
+    <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow_interface_netmask</span><span class="o">=</span><span class="mh">0xffffff00</span><span class="p">;</span>
+    <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">multicast_if</span><span class="o">=</span><span class="s2">&quot;lo&quot;</span><span class="p">;</span>
+    <span class="n">osapi</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">my_hostname</span><span class="o">=</span><span class="s2">&quot;my_hostname&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Update the fields to reflect:</p>
+<ul class="simple">
+<li><p>Interface name, interface address and interface netmask</p></li>
+<li><p>Multicast</p></li>
+</ul>
+</div>
+<div class="section" id="running-the-tests-using-a-configuration-file">
+<h3><span class="section-number">5.8.4.2. </span>Running the tests using a configuration file<a class="headerlink" href="#running-the-tests-using-a-configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>For systems with <a class="reference external" href="https://cmake.org/">CMake</a>, after compiling
+the tests you can simply run this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`ctest`
+</pre></div>
+</div>
+<p>For extended output, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`ctest -V`
+</pre></div>
+</div>
+<p>You need to run this command from the <a class="reference external" href="https://cmake.org/">CMake</a>
+build directory, that would be &lt;RTIMEHOME&gt;/build/cmake/Debug|Release/&lt;arch&gt;.</p>
+<p>Otherwise you can run the executables directly with the following
+commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">test</span><span class="o">/</span><span class="nb">bin</span><span class="o">/&lt;</span><span class="n">arch</span><span class="o">&gt;/</span><span class="n">osapiTester</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">-</span><span class="nb">id</span> <span class="o">&lt;</span><span class="n">domain</span> <span class="nb">id</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">config</span> <span class="s2">&quot;./resource/test/test.cfg&quot;</span> <span class="o">-</span><span class="n">user</span> <span class="n">test</span>
+
+<span class="o">./</span><span class="n">test</span><span class="o">/</span><span class="nb">bin</span><span class="o">/&lt;</span><span class="n">arch</span><span class="o">&gt;/</span><span class="n">netioTester</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">-</span><span class="nb">id</span> <span class="o">&lt;</span><span class="n">domain</span> <span class="nb">id</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">config</span> <span class="s2">&quot;./resource/test/test.cfg&quot;</span> <span class="o">-</span><span class="n">user</span> <span class="n">test</span>
+</pre></div>
+</div>
+<p>Note: The environment variable RTIME_TEST_CONFIG_ID is only used when
+running the tests with ‘ctest’. When running the test executables
+directly, use the parameter <code class="docutils literal notranslate"><span class="pre">-id</span></code> to indicate the domain ID.</p>
+<div class="section" id="running-the-tests-on-platforms-without-a-file-system">
+<h4><span class="section-number">5.8.4.2.1. </span>Running the tests on platforms without a file system<a class="headerlink" href="#running-the-tests-on-platforms-without-a-file-system" title="Permalink to this headline">¶</a></h4>
+<p>On platforms without a file system, it is not possible to use a
+configuration file to run the port validation tests. In this case,
+the configuration can be passed as parameters to the test application,
+like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">test</span><span class="o">/</span><span class="nb">bin</span><span class="o">/&lt;</span><span class="n">arch</span><span class="o">&gt;/</span><span class="n">osapiTester</span> <span class="o">-</span><span class="nb">id</span> <span class="o">&lt;</span><span class="n">domain</span> <span class="nb">id</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="nb">property</span> <span class="n">osapi</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">my</span>\<span class="n">_hostname</span><span class="o">=&lt;</span><span class="n">hostname</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="nb">property</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow</span>\<span class="n">_interface</span><span class="o">=&lt;</span><span class="n">Interface</span> <span class="n">name</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="nb">property</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow</span>\<span class="n">_interface</span>\<span class="n">_address</span><span class="o">=&lt;</span><span class="n">Interface</span> <span class="n">IP</span> <span class="n">address</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="nb">property</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow</span>\<span class="n">_interface</span>\<span class="n">_netmask</span><span class="o">=&lt;</span><span class="n">Interface</span> <span class="n">mask</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="nb">property</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow</span>\<span class="n">_interface</span>\<span class="n">_multicast</span><span class="o">=&lt;</span><span class="mi">1</span>\<span class="o">|</span><span class="mi">0</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="nb">property</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">multicast</span>\<span class="n">_if</span><span class="o">=&lt;</span><span class="n">Multicast</span> <span class="n">Interface</span> <span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">test</span><span class="o">/</span><span class="nb">bin</span><span class="o">/&lt;</span><span class="n">arch</span><span class="o">&gt;/</span><span class="n">netioTester</span> <span class="o">-</span><span class="nb">id</span> <span class="o">&lt;</span><span class="n">domain</span> <span class="nb">id</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="nb">property</span> <span class="n">osapi</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">my</span>\<span class="n">_hostname</span><span class="o">=&lt;</span><span class="n">hostname</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="nb">property</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow</span>\<span class="n">_interface</span><span class="o">=&lt;</span><span class="n">Interface</span> <span class="n">name</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="nb">property</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow</span>\<span class="n">_interface</span>\<span class="n">_address</span><span class="o">=&lt;</span><span class="n">Interface</span> <span class="n">IP</span> <span class="n">address</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="nb">property</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow</span>\<span class="n">_interface</span>\<span class="n">_netmask</span><span class="o">=&lt;</span><span class="n">Interface</span> <span class="n">mask</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="nb">property</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow</span>\<span class="n">_interface</span>\<span class="n">_multicast</span><span class="o">=&lt;</span><span class="mi">1</span>\<span class="o">|</span><span class="mi">0</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="nb">property</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">multicast</span>\<span class="n">_if</span><span class="o">=&lt;</span><span class="n">Multicast</span> <span class="n">Interface</span> <span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="test-results">
+<h3><span class="section-number">5.8.4.3. </span>Test Results<a class="headerlink" href="#test-results" title="Permalink to this headline">¶</a></h3>
+<p>After running ‘ctest -V’, the output should be as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="mi">1</span>
+    <span class="n">Start</span> <span class="mi">1</span><span class="p">:</span> <span class="n">osapi</span>
+
+<span class="mi">1</span><span class="p">:</span> <span class="n">Test</span> <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">garrett</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">RTI</span><span class="o">/</span><span class="n">connextmicro</span><span class="o">/</span><span class="n">rti</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">release</span><span class="o">/</span><span class="n">connextmicro</span><span class="o">/</span><span class="mf">2.4.14</span><span class="o">/</span><span class="n">source</span><span class="o">/</span><span class="n">unix</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">cmake</span><span class="o">/</span><span class="n">unix</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">osapiTesterzd</span> <span class="s2">&quot;-id&quot;</span> <span class="s2">&quot;67&quot;</span> <span class="s2">&quot;-config&quot;</span> <span class="s2">&quot;./resource/test/test.cfg&quot;</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">Test</span> <span class="n">timeout</span> <span class="n">computed</span> <span class="n">to</span> <span class="n">be</span><span class="p">:</span> <span class="mf">9.99988e+06</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">hostname</span> <span class="ow">is</span> <span class="n">Foothill</span><span class="o">.</span><span class="n">local</span>
+<span class="mi">1</span><span class="p">:</span> <span class="nb">property</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow_interface_multicast</span> <span class="n">already</span> <span class="n">exists</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">time</span><span class="o">/</span><span class="n">interface</span> <span class="o">.................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">time</span><span class="o">/</span><span class="n">performance</span> <span class="o">...............................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">system</span><span class="o">/</span><span class="n">hostname</span> <span class="o">................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">system</span><span class="o">/</span><span class="n">lua</span> <span class="o">.....................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">mutex</span><span class="o">/</span><span class="n">basic</span> <span class="o">....................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">mutex</span><span class="o">/</span><span class="n">lua</span> <span class="o">......................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">semaphore</span><span class="o">/</span><span class="n">basic</span> <span class="o">................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">semaphore</span><span class="o">/</span><span class="n">thread</span> <span class="o">...............................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">semaphore</span><span class="o">/</span><span class="n">timeout</span> <span class="o">..............................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">semaphore</span><span class="o">/</span><span class="n">timeout_mt</span> <span class="o">...........................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">semaphore</span><span class="o">/</span><span class="n">lua</span> <span class="o">..................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">thread</span><span class="o">/</span><span class="n">basic</span> <span class="o">...................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">thread</span><span class="o">/</span><span class="n">advanced</span> <span class="o">................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">thread</span><span class="o">/</span><span class="n">priority</span> <span class="o">................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">thread</span><span class="o">/</span><span class="n">lua</span> <span class="o">.....................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">timer</span><span class="o">/</span><span class="mi">1</span><span class="n">s</span> <span class="o">.......................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">timer</span><span class="o">/</span><span class="mi">3</span><span class="n">s</span> <span class="o">.......................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">timer</span><span class="o">/</span><span class="n">MICRO</span><span class="o">-</span><span class="mi">221</span> <span class="o">................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">timer</span><span class="o">/</span><span class="n">MICRO</span><span class="o">-</span><span class="mi">240</span> <span class="o">................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">timer</span><span class="o">/</span><span class="n">MICRO</span><span class="o">-</span><span class="mi">839</span> <span class="o">................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">timer</span><span class="o">/</span><span class="n">MICRO</span><span class="o">-</span><span class="mi">1617</span> <span class="o">...............................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">timer</span><span class="o">/</span><span class="n">sec_nsec</span> <span class="o">.................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">timer</span><span class="o">/</span><span class="n">lua</span> <span class="o">......................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">process</span><span class="o">/</span><span class="n">pid_as_string</span> <span class="o">..........................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">process</span><span class="o">/</span><span class="n">getpid</span> <span class="o">.................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">osapi</span><span class="p">:</span><span class="n">TESTS</span> <span class="n">COMPLETED</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">2</span> <span class="n">Test</span> <span class="c1">#1: osapi ............................   Passed   73.49 sec</span>
+<span class="n">test</span> <span class="mi">2</span>
+    <span class="n">Start</span> <span class="mi">2</span><span class="p">:</span> <span class="n">netio</span>
+
+<span class="mi">2</span><span class="p">:</span> <span class="n">Test</span> <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">garrett</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">RTI</span><span class="o">/</span><span class="n">connextmicro</span><span class="o">/</span><span class="n">rti</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">release</span><span class="o">/</span><span class="n">connextmicro</span><span class="o">/</span><span class="mf">2.4.14</span><span class="o">/</span><span class="n">rti_me</span><span class="mf">.2.0</span><span class="o">/</span><span class="n">source</span><span class="o">/</span><span class="n">unix</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">cmake</span><span class="o">/</span><span class="n">unix</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">netioTesterzd</span> <span class="s2">&quot;-id&quot;</span> <span class="s2">&quot;67&quot;</span> <span class="s2">&quot;-config&quot;</span> <span class="s2">&quot;./resource/test/unittest.cfg&quot;</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">Test</span> <span class="n">timeout</span> <span class="n">computed</span> <span class="n">to</span> <span class="n">be</span><span class="p">:</span> <span class="mf">9.99988e+06</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">hostname</span> <span class="ow">is</span> <span class="n">Foothill</span><span class="o">.</span><span class="n">local</span>
+<span class="mi">2</span><span class="p">:</span> <span class="nb">property</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow_interface_multicast</span> <span class="n">already</span> <span class="n">exists</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">address</span><span class="o">/</span><span class="n">parser</span> <span class="o">.................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">address</span><span class="o">/</span><span class="n">resolver</span> <span class="o">...............................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">address</span><span class="o">/</span><span class="n">ifname</span> <span class="o">.................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">route</span><span class="o">/</span><span class="n">precondition</span> <span class="o">.............................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">route</span><span class="o">/</span><span class="n">lua</span> <span class="o">......................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">route</span><span class="o">/</span><span class="n">precondition</span> <span class="o">.............................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">route</span><span class="o">/</span><span class="n">route</span> <span class="o">....................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">route</span><span class="o">/</span><span class="n">default_mc_route</span> <span class="o">.........................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">route</span><span class="o">/</span><span class="n">lua</span> <span class="o">......................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">udp</span><span class="o">/</span><span class="n">route</span> <span class="o">......................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">udp</span><span class="o">/</span><span class="n">iftable</span> <span class="o">....................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">udp</span><span class="o">/</span><span class="n">unicast</span> <span class="o">....................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">udp</span><span class="o">/</span><span class="n">multicast</span> <span class="o">..................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">udp</span><span class="o">/</span><span class="n">multicast_reserve</span> <span class="o">..........................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">udp</span><span class="o">/</span><span class="n">nat</span> <span class="o">........................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">udp</span><span class="o">/</span><span class="n">max_message_size</span> <span class="o">...........................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">udp</span><span class="o">/</span><span class="n">strrchr</span> <span class="o">....................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">udp</span><span class="o">/</span><span class="n">lua</span> <span class="o">........................................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">packet</span><span class="o">/</span><span class="n">set_head_tail</span> <span class="o">...........................................</span><span class="p">:</span> <span class="n">Passed</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">netio</span><span class="p">:</span><span class="n">TESTS</span> <span class="n">COMPLETED</span>
+<span class="mi">2</span><span class="o">/</span><span class="mi">2</span> <span class="n">Test</span> <span class="c1">#2: netio ............................   Passed   80.75 sec</span>
+
+<span class="mi">100</span><span class="o">%</span> <span class="n">tests</span> <span class="n">passed</span><span class="p">,</span> <span class="mi">0</span> <span class="n">tests</span> <span class="n">failed</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>When a test fails, the output will be as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="p">:</span> <span class="n">system</span><span class="o">/</span><span class="n">hostname</span> <span class="o">................................................</span><span class="p">:</span> <span class="n">Failed</span> <span class="p">(</span><span class="n">FAILURE</span><span class="p">:</span> <span class="n">SystemTester</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">523</span> <span class="n">osapi</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">my_hostname</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">)</span>
+
+<span class="mi">2</span><span class="p">:</span> <span class="n">udp</span><span class="o">/</span><span class="n">iftable</span> <span class="o">....................................................</span><span class="p">:</span> <span class="n">Failed</span> <span class="p">(</span><span class="n">FAILURE</span><span class="p">:</span> <span class="n">UDPInterfaceTester</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">2397</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow_interface</span> <span class="nb">property</span> <span class="ow">not</span> <span class="n">found</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If a test fails, the test execution stops and any following tests will
+not run. In the above example, you can see that the tests OSAPI
+‘system/hostname’ and NETIO ‘udp/iftable’ failed.</p>
+</div>
+<div class="section" id="troubleshooting">
+<h3><span class="section-number">5.8.4.4. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h3>
+<p>If the tests fail on hostname and iftable such as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="p">:</span> <span class="n">system</span><span class="o">/</span><span class="n">hostname</span> <span class="o">.....................................................</span><span class="p">:</span> <span class="n">Failed</span> <span class="p">(</span><span class="n">FAILURE</span><span class="p">:</span> <span class="n">SystemTester</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">523</span> <span class="n">osapi</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">my_hostname</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">)</span>
+
+<span class="mi">2</span><span class="p">:</span> <span class="n">udp</span><span class="o">/</span><span class="n">iftable</span> <span class="o">.........................................................</span><span class="p">:</span> <span class="n">Failed</span> <span class="p">(</span><span class="n">FAILURE</span><span class="p">:</span> <span class="n">UDPInterfaceTester</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">2397</span> <span class="n">netio</span><span class="o">.</span><span class="n">udp</span><span class="o">.</span><span class="n">allow_interface</span> <span class="nb">property</span> <span class="ow">not</span> <span class="n">found</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>then you have incorrectly declared your domain ID. Refer to
+<a class="reference internal" href="#setting-up-a-config-file">Setting Up a Config File</a> for more information.</p>
+</div>
+</div>
+<div class="section" id="embedded-platforms">
+<h2><span class="section-number">5.8.5. </span>Embedded Platforms<a class="headerlink" href="#embedded-platforms" title="Permalink to this headline">¶</a></h2>
+<p>When developing for an embedded platform, you will commonly need to
+create an image with all the software: OS, BSP, middleware, user
+application, etc. In this situation, you must create static
+libraries only, instead of executables.</p>
+<p>Two static libraries are generated, one with the OSAPI tests and another
+with the NETIO tests. These are osapiTesterz(d) and netioTesterz(d) (the
+d suffix indicates whether it is a debug library if present or a
+release library if not present).</p>
+<p>You need to build two images, one using the OSAPI test library and
+another using the NETIO test library. We recommend building and running
+one release image using the release libraries and one debug image using
+the debug libraries.</p>
+<p>There is a third static library, rti_me_testz(d), which contains the
+UTEST framework. This library is needed to build both the OSAPI and
+NETIO tests.</p>
+<p>For example, to build NETIO tests, use the following libraries:</p>
+<ul class="simple">
+<li><p>netioTesterz(d)</p></li>
+<li><p>rti_me_testz(d)</p></li>
+<li><p>librti_mez(d)</p></li>
+</ul>
+<div class="section" id="autosar-systems">
+<h3><span class="section-number">5.8.5.1. </span>AUTOSAR Systems<a class="headerlink" href="#autosar-systems" title="Permalink to this headline">¶</a></h3>
+<p>Before continuing, you should become familiar with the configuration needed
+to run <em>Connext Micro</em> on an AUTOSAR system. We recommend that you review
+<a class="reference internal" href="autosar.html#building-autosar"><span class="std std-ref">Connext Micro on AUTOSAR</span></a>.</p>
+<p>The file &lt;RTIMEHOME&gt;/test/include/test/test_autosar.h contains the
+string definitions with all the properties that are used to run the port
+validation tests. That is, the following definition:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define DEVICE_ETH_IP_STR &quot;0xc0000002&quot;</span>
+</pre></div>
+</div>
+<p>can be used when the IP address configured on an AUTOSAR system is
+192.0.0.2. In your build system, you need to define the properties that
+do not match with your configuration. That is, you need to define
+<code class="docutils literal notranslate"><span class="pre">DEVICE_ETH_IP_STR</span></code>in your build system to use a different IP
+address.</p>
+<p>You need to add compile-time definition ‘__autosar__’.</p>
+<p>The specific configuration needed to run the port validation tests on an
+AUTOSAR system includes the following:</p>
+<ul class="simple">
+<li><p>The default timer task period used to run the AUTOSAR port validation
+tests is 10 ms. If your timer task is configured with a different
+periodicity, define ‘TIMER_TASK_PERIOD_MS’ with that periodicity
+value, in ms.</p></li>
+<li><p>The default IP address used by the AUTOSAR port validation tests is
+“0xc0000002”. If your AUTOSAR configuration uses a different IP
+address, define ‘DEVICE_ETH_IP_STR’ with the string representation
+of that IP address.</p></li>
+<li><p>The default IP mask used by the AUTOSAR port validation tests is
+“0xffffff00”. If your AUTOSAR configuration uses a different IP mask,
+define ‘DEVICE_ETH_IP_STR’ with the string representation of that
+IP mask.</p></li>
+<li><p>The AUTOSAR port validation tests need at least 140 KB of RAM to
+run. AUTOSAR system properties (OSAPI_SystemProperty) must be
+configured correctly with at least this amount of memory in the heap.
+You need to define variables ‘const uint32
+heap_area_size[NUMBER_OF_HEAP_AREAS];’ and ’char* const
+heap_area[NUMBER_OF_HEAP_AREAS];’. It is also possible to define
+NUMBER_OF_HEAP_AREAS in your build system (default value is 2).</p></li>
+<li><p>The AUTOSAR port validation tests use 2 semaphores. 2 timeout events,
+2 give events and 2 alarms are needed. You need to define
+‘RTIME_Semaphore_Give_Event’ with the ID of the first semaphore
+give event, ‘RTIME_Semaphore_Timeout_Event’ with the ID of the
+first semaphore timeout event, and ‘RTIME_Semaphore_Alarm’ with the
+ID of the first semaphore alarm.</p></li>
+<li><p>The AUTOSAR port validation tests can be configured to either use
+resources (for single core) or spinlock (for multicore)
+synchronization. The default is to use resources. You need to define
+‘RTIME_SYNC_TYPE’ with a different value in your build system.</p></li>
+<li><p>If using resources synchronization: the AUTOSAR port validation tests
+use 26 AUTOSAR resources. You need to define ‘RTIME_Resource01’ with
+the ID of the first resource and ‘RTIME_Resource26’ with the ID of
+the last resource.</p></li>
+<li><p>If using spinlock synchronization: you need to define
+‘RTIME_Spinlock’ with the spinlock ID.</p></li>
+<li><p>3 UDP sockets are created. The AUTOSAR configuration must allow that.</p></li>
+<li><p>The AUTOSAR port validation tests use SocketOwner ID 1 to create
+sockets. If your AUTOSAR configuration uses a different SocketOwner,
+you need to define ‘RTIME_SOCK_OWNER_ID’ with the ID of the
+SocketOwner that can be used to create sockets.</p></li>
+<li><p>The AUTOSAR port validation tests use ID 0 as the IP address
+identifier representing the local IP address and EthIf controller to
+bind the socket to. If your AUTOSAR configuration uses a different
+ID, you need to define ‘RTIME_LOCAL_ADDR_ID’ with the correct
+value.</p></li>
+<li><p>The ‘UDP receive task’ and ‘UDP receive event’ are mandatory. Some
+tests use them while some others don’t. You need to define their IDs
+using the macros ‘NETIO_Autosar_udp_receive_task’ and
+‘RTIME_UDP_Receive_Event’.</p></li>
+<li><p>The AUTOSAR port does not provide and does not need a
+‘OSAPI_Thread_sleep()’ function. But the AUTOSAR port validation
+tests do need that functionality. The implementation is based on an
+alarm and an event. OSAPI_Thread_sleep() sets an alarm with ID
+‘RTIME_Sleep_Alarm’ and waits until the event with ID
+‘RTIME_Sleep_Event’ is set.</p></li>
+<li><p>An alarm must be configured to set an event when it expires. It is
+important that the alarm is triggered by a counter based on a 1 ms tick
+and when the alarm expires. You need to define in your build system
+the alarm ID and the event ID using ‘RTIME_Sleep_Alarm’ and
+‘RTIME_Sleep_Event’.</p></li>
+<li><p>A task with the name ‘Micro_UnitTests_Task’ must be configured in
+the AUTOSAR configuration. This is the task that runs the port
+validation tests. The task shall have at least 32 KB stack. The
+implementation of this task is provided by the AUTOSAR port
+validation tests.</p></li>
+<li><p>Test results will be printed to the standard output used by
+‘printf()’.</p></li>
+</ul>
+</div>
+<div class="section" id="freertos-systems">
+<h3><span class="section-number">5.8.5.2. </span>FreeRTOS Systems<a class="headerlink" href="#freertos-systems" title="Permalink to this headline">¶</a></h3>
+<p>Before continuing, you should become familiar with the configuration needed
+to run <em>Connext Micro</em> on a FreeRTOS system. We recommend that you review
+<a class="reference internal" href="freertos.html#building-freertos"><span class="std std-ref">Building the Connext Micro Source for FreeRTOS</span></a>.</p>
+<p>The file &lt;RTIMEHOME&gt;/test/include/test/test_freertos.h contains the
+string definitions with all the properties that are used to run the port
+validation tests. That is, the following definition:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define DEVICE_ETH_IP_STR &quot;0xc0000002&quot;</span>
+</pre></div>
+</div>
+<p>can be used when the IP address configured on a FreeRTOS system is
+192.0.0.2. In your build system, you need to define the properties that
+do not match with your configuration. That is, you need to define
+<code class="docutils literal notranslate"><span class="pre">DEVICE_ETH_IP_STR</span></code>in your build system to use a different IP
+address.</p>
+<p>Some NETIO tests send UDP packet to the local IP address. For that reason
+it is necessary to set the following lwIP flag:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define LWIP_NETIF_LOOPBACK             1</span>
+</pre></div>
+</div>
+<p>You need to add compile-time definition ‘__freertos__’.</p>
+<p>We recommend that you create a separate thread and call the UTEST main
+function (UTEST_main()) for platforms without dynamic linking. This thread
+should have at least 32 KB of stack.</p>
+<p>An example implementation of that thread is:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">UTEST_freertos_main</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">param</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* Avoid compiler warning */</span>
+<span class="w">    </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">param</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* Wait until network is available */</span>
+<span class="cp">#ifdef USE_DHCP</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">DHCP_state</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DHCP_ADDRESS_ASSIGNED</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">OSAPI_Thread_sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="cp">#else</span>
+<span class="w">    </span><span class="n">vTaskDelay</span><span class="p">(</span><span class="mi">5000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">portTICK_RATE_MS</span><span class="p">);</span>
+<span class="cp">#endif</span>
+
+<span class="w">    </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">UTEST_main</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">vTaskDelete</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="porting-utest">
+<h2><span class="section-number">5.8.6. </span>Porting UTEST<a class="headerlink" href="#porting-utest" title="Permalink to this headline">¶</a></h2>
+<p>If you wrote a new <em>Connext Micro</em> port, you will also need to port the porting
+validation module. Most of the changes needed are only in the file
+&lt;RTIMEHOME&gt;/include/test/test_setting.h.</p>
+<ol class="arabic">
+<li><p>Check for a compiler flag that identifies your platform. For example,
+Linux would be <strong>__linux__</strong>. If your compiler does not provide such a
+flag, you can add a flag to your build system, i.e. <strong>my_platform</strong>.</p></li>
+<li><p>As explained in <a class="reference internal" href="#running-the-tests-on-platforms-without-a-file-system">Running the tests on platforms without a file system</a>,
+you can pass the test configuration through a file or through a string.
+Write a new section in the file &lt;RTIMEHOME&gt;/include/test/test_setting.h
+where you configure this. After this comment at the beginning of the file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">If</span> <span class="n">the</span> <span class="n">platform</span> <span class="n">has</span> <span class="ow">not</span> <span class="n">been</span> <span class="n">specified</span><span class="p">,</span> <span class="n">attempt</span> <span class="n">to</span> <span class="n">determine</span> <span class="n">it</span><span class="o">.</span> <span class="o">*/</span>
+</pre></div>
+</div>
+<p>Write a section like the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#if \_\_my_platform\_\_</span>
+<span class="c1">#ifndef MYCOMPANY_MYPLATFORM</span>
+<span class="c1">#define MYCOMPANY_MYPLATFORM</span>
+<span class="c1">#endif /* MYCOMPANY_MYPLATFORM */</span>
+<span class="c1">#include &quot;test_myplatform.h&quot;</span>
+<span class="c1">#define HAVE_CONFIG_FILE 0</span>
+<span class="c1">#define HAVE_ARG_STRING  1</span>
+<span class="c1">#ifdef HAVE_TEST_RESULTS_FILE</span>
+<span class="c1">#undef HAVE_TEST_RESULTS_FILE</span>
+<span class="c1">#endif</span>
+<span class="c1">#define HAVE_TEST_RESULTS_FILE 0</span>
+<span class="c1">#endif /* \_\_my_platform\_\_ */</span>
+</pre></div>
+</div>
+<p>The file “test_myplatform.h” is optional. You can create it to add
+any definitions that are useful for your tests.</p>
+<p>If your platform does not have a file system, the value of <cite>HAVE_CONFIG_FILE</cite>
+shall be 0 and the value of <cite>HAVE_ARG_STRING</cite> shall be 1. You also need to undef
+<cite>HAVE_TEST_RESULTS_FILE</cite>. If your platform has a file system, you might need
+to change the logic, but that is optional.</p>
+</li>
+<li><p>In the file &lt;RTIMEHOME&gt;/include/test/test_setting.h, define the maximum
+length of the system name, so the new platform is recognized by
+UTEST. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#elif defined(RTI_AUTOSAR)</span>
+<span class="c1">#define UTEST_SYSTEM_NAME_MAX_LENGTH 255</span>
+<span class="c1">#elif defined(MYCOMPANY_MYPLATFORM)</span>
+<span class="c1">#define UTEST_SYSTEM_NAME_MAX_LENGTH 255</span>
+<span class="c1">#else</span>
+<span class="c1">#error &quot;Unknown platform. Please port UT_System.c to this platform.&quot;</span>
+<span class="c1">#endif</span>
+</pre></div>
+</div>
+<p>The third and fourth lines are new. You can also include any platform header
+file in this new code.</p>
+</li>
+<li><p>If you have defined <code class="docutils literal notranslate"><span class="pre">HAVE_ARG_STRING</span></code>as 1, you need to provide
+the string that will be used as an argument. Create the file
+&lt;RTIMEHOME&gt;/include/test/test_myplatform.h with the following
+content:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define UTEST_ARG_STRING(argv0_) \</span>
+  <span class="s2">&quot;-property netio.udp.allow_interface_multicast=1 &quot;</span> \
+  <span class="s2">&quot;-property netio.udp.allow_interface=eth0 &quot;</span> \
+  <span class="s2">&quot;-property netio.udp.allow_interface_address=&quot;</span> <span class="n">DEVICE_ETH_IP_STR</span> <span class="s2">&quot; &quot;</span> \
+  <span class="s2">&quot;-property netio.udp.allow_interface_netmask=&quot;</span> <span class="n">DEVICE_MASK_STR</span> <span class="s2">&quot; &quot;</span> \
+  <span class="s2">&quot;-property netio.udp.multicast_if=eth0 &quot;</span> \
+  <span class="s2">&quot;-property osapi.system.my_hostname=Myplatform-host &quot;</span> \
+  <span class="s2">&quot;-id 80 &quot;</span>
+</pre></div>
+</div>
+<p>Depending on your platform, the property values might be different.
+For instance, if your platform doesn’t have multicast you will need
+to set <code class="docutils literal notranslate"><span class="pre">netio.udp.allow_interface_multicast=0</span></code>.</p>
+</li>
+<li><p>If your new platform supports dynamic linking, executable binaries
+with OSAPI and NETIO tests are generated when you build the port
+validation tests.</p></li>
+<li><p>If your new platform does not support dynamic linking, only static
+libraries with OSAPI and NETIO tests are generated when you build the
+port validation tests. These libraries provide a UTEST_main() function.
+We recommend that you create a separate thread and call that UTEST_main()
+function from that thread. This thread should have at least 32 KB
+of stack.</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cert_compatibility.html" class="btn btn-neutral float-right" title="5.9. Building Connext Micro with compatibility for Connext Cert" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="porting.html" class="btn btn-neutral float-left" title="5.7. Porting RTI Connext Micro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

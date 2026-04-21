@@ -1,0 +1,44 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2016
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may2016 tk Written
+################################################################################
+SET(CC_COMMON   "-std=c99  -Wextra -Wall -Winit-self  -fstrict-aliasing -Wmissing-declarations")
+SET(CXX_COMMON   "-std=c++98  -Wextra -Wall -Winit-self ")
+
+SET(CMAKE_C_FLAGS_DEBUG "${CC_DEBUG} ${CC_ARCH}" CACHE INTERNAL "CMAKE_C_FLAGS_DEBUG" FORCE)
+SET(CMAKE_CXX_FLAGS_DEBUG "${CXX_DEBUG} ${CC_ARCH}" CACHE INTERNAL "CMAKE_CXX_FLAGS_DEBUG" FORCE)
+SET(CMAKE_C_FLAGS_RELEASE "${CC_RELEASE} ${CC_ARCH} -DNDEBUG" CACHE INTERNAL "CMAKE_C_FLAGS_RELEASE" FORCE)
+SET(CMAKE_CXX_FLAGS_RELEASE "${CXX_RELEASE} ${CC_ARCH} -DNDEBUG" CACHE INTERNAL "CMAKE_CXX_FLAGS_RELEASE" FORCE)
+
+SET(_RTIME_CC stdc)
+SET(RTIME_OBJ_SUFFIX o)
+
+SET(CMAKE_OBJECTDUMPCHKSUM ${COMPILER_PATH}/${TASKING_ARCH}/bin/hldumptc)
+SET(CMAKE_OBJECTDUMPCHKSUM_OPT -F0Nsf)
+
+IF (${TARGET_HELP})
+    MESSAGE("COMPILER NOTES\n")
+    MESSAGE(" The following QCC specific flags are used based on RTIME_TARGET_NAME\n")        
+    MESSAGE(" - If x64 is part of the name 64 bit is used")
+    MESSAGE(" - If i86 is part of the name 32 bit is used")
+    MESSAGE(" - If i86 or x64 is not found, the default is used\n")
+    MESSAGE(" The following flags are added:")
+    MESSAGE(" - For C Debug libraries:  ${CC_DEBUG}")
+    MESSAGE(" - For C++ Debug libraries:  ${CXX_DEBUG}")
+    MESSAGE(" - For C Release libraries:  ${CC_RELEASE}")
+    MESSAGE(" - For C++ Release libraries:  ${CXX_RELEASE}\n\n")
+    RETURN()
+ENDIF()

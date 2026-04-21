@@ -1,0 +1,157 @@
+|me_h| Hardcoded Resource Limits
+================================
+
+Introduction
+------------
+
+|me| contains a few resource limits that are not configurable in a QoS policy 
+or property. Note that not every single constant used in |me| is addressed. 
+The focus is on resource limits that may prevent an application using |me| from
+behaving correctly. For example, the maximum number of participants that can
+be discovered on a node may impact an application. On the other hand, a
+resource limit that has no functional impact, for example the maximum
+length of the discovery plugin name, is not described in this document.
+
+When a resource limit is exceeded an error message is logged. An explanation
+can be found in the documentation. Note that some resource limits may be
+exceeded when calling an API and others may be exceeded as part of
+processing incoming data.  Thus, it may be necessary to look at log output
+to see the failure reason.
+
+Although |me| can be compiled from source it is recommended to
+consult with RTI before making any changes to the hard coded limits.
+
+Summary
+-------
+
++---------------------------------------------------------------------------------------------------------------+-------+
+| Resource                                                                                                      | Limit |
++===============================================================================================================+=======+
+| Number of domain participants per OS process                                                                  | 8     |
++---------------------------------------------------------------------------------------------------------------+-------+
+| Max topic name length                                                                                         | 255   |
++---------------------------------------------------------------------------------------------------------------+-------+
+| Max type  name length                                                                                         | 255   |
++---------------------------------------------------------------------------------------------------------------+-------+
+| Max number of discovery plugins used by a domain participant                                                  | 1     |
++---------------------------------------------------------------------------------------------------------------+-------+
+| Max number of announced receive addresses for discovery data by a domain participant                          | 4     |
++---------------------------------------------------------------------------------------------------------------+-------+
+| Max number of announced receive addresses for user-data data by a domain participant                          | 4     |
++---------------------------------------------------------------------------------------------------------------+-------+
+| Max number of addresses that can be received (per meta-unicast, meta-multicast, user-unicast, user-multicast) | 4     |
++---------------------------------------------------------------------------------------------------------------+-------+
+
+
+Operating Services API (OSAPI)
+------------------------------
+
+- The maximum number of object IDs are 2^32-1
+
+  -  DDS objects require a unique object_id. The encoding dictated by the
+     RTPS specification limits the number of DDS objects within a domain
+     participant to 2^24.
+  - User impact - None.
+
+- The maximum number of timers that can be created is 8
+
+  - Each DomainParticipant allocates 1 timer
+  
+    - User impact - The maximum number of domain participants in a single
+      OS process is limited to 8. This limit is based on empirical data;
+      only specialized applications such as tools typically use more than 2
+      domain participants.
+
+- |me| cannot run continously for longer than approximately 68 years.
+
+    - User impact - Do not run an application using |me| for longer than 
+      approximately 68 years before restarting it.
+      
+- |me| does not support a calendar time after January 1 2038.
+
+    - User impact 
+    
+      - The DESTINATION_ORDER source_timestamp relies on the 
+        difference between two timestamps to determine if two samples are
+        considered to have the same timestamp in case time has been adjusted 
+        backwards. A platform that relies on absolute time may not support this. 
+        It is possible to write samples with a manually specified
+        timestamp to mitigate this limitation.
+        
+      - Timestamp information for samples may be incorrect after January 1 2038.
+
+DDS C API
+---------
+
+- Maximum Topic name length - 255 (including NUL termination)
+
+  - The limit is specified as 256 including NUL termination in the
+    RTPS specification, refer to 9.6.2.2.2 in the RTPS specification
+    (OMG formal/2009-01-05).
+
+- Maximum Type name length - 255 (including NUL termination)
+
+  - The limit is specified as 256 including NUL termination in the RTPS
+    specification, refer to 9.6.2.2.2 in the RTPS specification
+    (OMG formal/2009-01-05).
+
+- Maximum number of matched data-writers (per data-reader) - 1,000,000
+
+  - This limit determines how many data-writers each data-reader can match.
+
+- Maximum number of matched data-readers (per data-writer) - 100,000,000
+
+  - This limit determines how many data-readers each data-writer can match.
+
+- Maximum number of locators of each type which can be sent in the participant announcement - 4
+
+  - This limit determines the number of unique network address that can
+    be advertised as part of discovery. The limit is per locator type.
+    That is, the limit is applicable to discovery and user-data
+    (total of 4 each)
+
+- Maximum number of discovery plugins which can be used by the domain participant - 1
+
+  - User impact: Must choose either static or dynamic discovery.
+
+- Maximum timeout for a DDS WaitSet is approximately 40 days.
+
+  - User impact:  After 40 days, the DDS WaitSet will time out, possibly with 
+                  no active conditions.
+  
+.. only:: not cert
+
+    Dynamic Discovery Plugin (DPDE)
+    -------------------------------
+    
+    - Maximum number of received locators - 4
+    
+      - This limit determines the number of unique network addresses that can
+        be advertised as part of discovery.
+        
+      - The limit is per locator type. That is, the same limit is applicable
+        to discovery unicast, discovery multicast, user-data unicast, and
+        user-data multicast.
+
+Static Discovery Plugin (DPSE)
+------------------------------
+
+- Maximum number of received locators - 4
+
+  - This limit determines the number of unique network address that can
+    be advertised as part of discovery.
+    
+  - The limit is per locator type. That is, the same limit is applicable
+    to discovery unicast, discovery multicast, user-data unicast, and
+    user-data multicast.
+
+RTPS Protocol Implementation (RTPS)
+-----------------------------------
+
+- Unlimited max_samples is defined as 100000000
+
+- Maximum number of external RTPS interfaces - 16
+
+  - This limits the number of participants to 16 per OS process.
+  
+  - This limit is reduced to 8 due to the OS limit.

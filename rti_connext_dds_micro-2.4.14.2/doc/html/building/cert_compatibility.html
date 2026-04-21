@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.9. Building Connext Micro with compatibility for Connext Cert &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Working with RTI Connext Micro and RTI Connext" href="../usersmanual/micro_core.html" />
+    <link rel="prev" title="5.8. Port Validation" href="port_validation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">4. User’s Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. Building and Porting Connext Micro</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="platforms.html">5.1. RTI Connext Micro Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">5.2. Building the Connext Micro Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qnx.html">5.3. Connext Micro for QNX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">5.4. Building the Connext Micro Source for FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threadx.html">5.5. Building the Connext Micro Source for ThreadX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosar.html">5.6. Connext Micro on AUTOSAR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">5.7. Porting RTI Connext Micro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="port_validation.html">5.8. Port Validation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.9. Building Connext Micro with compatibility for Connext Cert</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">5. </span>Building and Porting Connext Micro</a> &raquo;</li>
+        
+      <li><span class="section-number">5.9. </span>Building Connext Micro with compatibility for Connext Cert</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/building/cert_compatibility.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="building-me-h-with-compatibility-for-me-cert-h">
+<h1><span class="section-number">5.9. </span>Building Connext Micro with compatibility for Connext Cert<a class="headerlink" href="#building-me-h-with-compatibility-for-me-cert-h" title="Permalink to this headline">¶</a></h1>
+<p>It is possible to compile <em>Connext Micro</em> to support only the same set of APIs
+and features as <em>Connext Cert</em>. This is useful to enable the development
+of a safety-certified project using <em>Connext Micro</em> before the certification of
+<em>Connext Cert</em> is completed. Once <em>Connext Cert</em> certification is finished,
+it will be easier to switch from <em>Connext Micro</em> to <em>Connext Cert</em> if <em>Connext Micro</em> has
+been compiled with compatibility for <em>Connext Cert</em>.</p>
+<p>When compiling <em>Connext Micro</em> with compatibility for <em>Connext Cert</em>, the following
+restrictions apply:</p>
+<ul class="simple">
+<li><p>The C++ API is not supported.</p></li>
+<li><p>Dynamic Participant Dynamic Endpoint (<a class="reference external" href="../../api_c/html/group__DPDEModule.html">DPDE</a>) discovery is not
+compiled by default. To make application development easier,
+<a class="reference external" href="../../api_c/html/group__DPDEModule.html">DPDE</a> can be enabled (any application using this discovery cannot
+be certified). <a class="reference external" href="../../api_c/html/group__DPDEModule.html">DPDE</a> discovery is not certified.</p></li>
+<li><p>Memory deallocation is not possible.</p></li>
+<li><p>Any API that deallocates memory is not supported. In other words, any
+API whose name includes “finalize”, “free”, or “delete” is not
+supported (such as
+<code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantFactory_delete_participant()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantQos_finalize()</span></code>, <code class="docutils literal notranslate"><span class="pre">OSAPI_Heap_free()</span></code>).</p></li>
+<li><p>Only POSIX®-compliant systems (Linux, macOS, QNX, etc.), VxWorks and
+AUTOSAR are supported (Windows systems are not supported).</p></li>
+<li><p>Only static libraries are compiled. Dynamic libraries are not
+supported.</p></li>
+<li><p>Only one static library is built. While <em>Connext Micro</em> consists of different
+libraries for discovery, reader and writer history, etc, <em>Connext Cert</em>
+consists of only one library.</p></li>
+<li><p>Code generated by the <em>Connext Micro</em> code generator is compatible with
+<em>Connext Cert</em>, but the code must be generated again with the
+<em>Connext Cert</em> code generator.</p></li>
+<li><p>The Log module is only available in the debug build.</p></li>
+<li><p>The UDP transport shall be configured statically by using the API
+<code class="docutils literal notranslate"><span class="pre">UDP_InterfaceTable_add_entry()</span></code> and setting
+<code class="docutils literal notranslate"><span class="pre">UDP_InterfaceFactoryProperty.disable_auto_interface_config</span></code> equal
+to <code class="docutils literal notranslate"><span class="pre">RTI_TRUE</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OSAPI_Thread_sleep()</span></code> is not available.</p></li>
+<li><p>Batching reception is not supported.</p></li>
+<li><p>UDP Transformations are not supported.</p></li>
+</ul>
+<p>To compile <em>Connext Micro</em> with compatibility with <em>Connext Cert</em>, you only need to
+set the CMake flag RTIME_CERT when compiling. For example, the
+following command compiles <em>Connext Micro</em> on a Linux system with <em>Connext Cert</em>
+compatibility:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span> <span class="o">--</span><span class="n">target</span> <span class="n">Linux</span> <span class="o">--</span><span class="n">name</span> <span class="n">x64Linux4gcc9</span><span class="mf">.3.0</span>
+    <span class="o">--</span><span class="n">build</span> <span class="o">--</span><span class="n">config</span> <span class="n">Debug</span> <span class="o">-</span><span class="n">DRTIME_CERT</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The CMake flag RTIME_CERT instructs the build system to build <em>Connext Micro</em>
+with <em>Connext Cert</em> compatibility. In the previous example, a 64-bit debug
+library is generated in the directory <code class="docutils literal notranslate"><span class="pre">lib/x64Linux4gcc9.3.0</span></code>.</p>
+<p>Instead of using the flag -DRTIME_CERT=1, it is also possible to add
+the suffix “_cert” to the build name, and the build system will
+automatically set the RTIME_CERT flag. For example:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span> <span class="o">--</span><span class="n">target</span> <span class="n">Linux</span> <span class="o">--</span><span class="n">name</span>
+    <span class="n">x64Linux4gcc9</span><span class="mf">.3.0</span><span class="n">_cert</span> <span class="o">--</span><span class="n">build</span> <span class="o">--</span><span class="n">config</span> <span class="n">Release</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The previous command compiles a 64-bit release library in the directory
+<code class="docutils literal notranslate"><span class="pre">lib/x64Linux4gcc9.3.0_cert</span></code>.</p>
+<p>As mentioned earlier, it is possible to enable <a class="reference external" href="../../api_c/html/group__DPDEModule.html">DPDE</a> (Dynamic Participant
+Dynamic Endpoint) discovery, but this discovery is not certified so any
+application using it cannot be certified. To enable <a class="reference external" href="../../api_c/html/group__DPDEModule.html">DPDE</a>
+discovery when building <em>Connext Micro</em> with <em>Connext Cert</em> compatibility, simply
+add the following flag when compiling: <strong>-DRTIME_EXCLUDE_DPDE=0</strong>.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../usersmanual/micro_core.html" class="btn btn-neutral float-right" title="6. Working with RTI Connext Micro and RTI Connext" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="port_validation.html" class="btn btn-neutral float-left" title="5.8. Port Validation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

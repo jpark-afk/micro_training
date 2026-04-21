@@ -1,0 +1,27 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2020
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+INCLUDE(CMakeForceCompiler)
+
+SET(CMAKE_SYSTEM_NAME Linux)
+SET(CMAKE_SYSTEM_PROCESSOR arm)
+
+SET(COMPILER_PATH /local/applications/raspberrypi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin)
+SET(CMAKE_CXX_COMPILER ${COMPILER_PATH}/arm-linux-gnueabihf-g++)
+SET(CMAKE_C_COMPILER   ${COMPILER_PATH}/arm-linux-gnueabihf-gcc) 
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Platform/linux.tc)
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/gcc.tc)
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)

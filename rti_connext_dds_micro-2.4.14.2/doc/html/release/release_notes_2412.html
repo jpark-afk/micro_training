@@ -1,0 +1,579 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.4.5. What’s New in 2.4.12 &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.4.7. What’s New in 2.4.11" href="release_notes_2411.html" />
+    <link rel="prev" title="8.4.3. What’s New in 2.4.14" href="release_notes_2414.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">4. User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building/index.html">5. Building and Porting Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="supported_platforms.html">8.1. Supported Platforms and Programming Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24142.html">8.2. What’s New in 2.4.14.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24142.html#what-s-fixed-in-2-4-14-2">8.3. What’s Fixed in 2.4.14.2</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="previous_release.html">8.4. Previous Releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24141.html">8.4.1. What’s New in 2.4.14.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24141.html#what-s-fixed-in-2-4-14-1">8.4.2. What’s Fixed in 2.4.14.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2414.html">8.4.3. What’s New in 2.4.14</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2414.html#what-s-fixed-in-2-4-14">8.4.4. What’s Fixed in 2.4.14</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">8.4.5. What’s New in 2.4.12</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#shared-udp-port-for-discovery-and-user-data-in-a-domainparticipant">8.4.5.1. Shared UDP port for discovery and user-data in a DomainParticipant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#domainparticipants-no-longer-allocate-dynamic-memory-during-deletion">8.4.5.2. DomainParticipants no longer allocate dynamic memory during deletion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#new-qos-parameter-to-set-maximum-outstanding-samples-allowed-for-remote-datawriter">8.4.5.3. New QoS parameter to set maximum outstanding samples allowed for remote DataWriter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#new-qos-parameter-to-adjust-preemptive-acknack-period">8.4.5.4. New QoS parameter to adjust preemptive ACKNACK period</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deserialization-of-presentation-qos-policy">8.4.5.5. Deserialization of Presentation QoS policy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-fixed-in-2-4-12">8.4.6. What’s Fixed in 2.4.12</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples-used-domainparticipant-register-type-instead-of-footypesupport-register-type">8.4.6.1. Examples used DomainParticipant_register_type instead of FooTypeSupport_register_type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-datareader-and-datawriter-with-incompatible-liveliness-kind-and-infinite-lease-duration-matched">8.4.6.2. A DataReader and DataWriter with incompatible liveliness kind and infinite lease_duration matched</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#warning-at-compilation-time-for-freertos-port">8.4.6.3. Warning at compilation time for FreeRTOS port</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-dds-not-alive-instance-state-caused-compilation-error-in-c-and-c">8.4.6.4. Using <cite>DDS_NOT_ALIVE_INSTANCE_STATE</cite> caused compilation error in C and C++</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#seq-copy-did-not-work-when-the-source-sequence-is-a-loaned-discontiguous-sequence">8.4.6.5. <cite>Seq_copy()</cite> did not work when the source sequence is a loaned/discontiguous sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#warnings-when-compiling-the-example-generated-by-code-generator">8.4.6.6. Warnings when compiling the example generated by Code Generator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unable-to-generate-code-for-xml-or-xsd-defined-types">8.4.6.7. Unable to generate code for XML or XSD defined types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linker-error-in-c-application-when-c-types-were-used">8.4.6.8. Linker error in C++ application when C types were used</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#failure-to-link-for-vxworks-rtp-using-shared-libraries-compiled-with-cmake">8.4.6.9. Failure to link for VxWorks RTP using shared libraries compiled with CMake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtiddsgen-may-have-failed-on-windows-systems-when-jre-was-specified">8.4.6.10. rtiddsgen may have failed on Windows systems when -jre was specified</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtime-make-did-not-work-when-it-was-started-from-different-shell-than-bash">8.4.6.11. rtime-make did not work when it was started from different shell than Bash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linker-error-when-using-shared-libraries-on-vxworks-systems">8.4.6.12. Linker error when using shared libraries on VxWorks systems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-run-time-error-may-have-occurred-on-windows-or-when-compiling-for-face-when-using-hostnames-in-the-peer-list">8.4.6.13. A run-time error may have occurred on Windows or when compiling for FACE when using hostnames in the peer list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#entity-id-generation-was-not-thread-safe">8.4.6.14. Entity ID generation was not thread-safe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#domainparticipant-creation-failed-if-active-interface-had-invalid-ip">8.4.6.15. DomainParticipant creation failed if active interface had invalid IP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtime-make-did-not-work-when-there-was-a-space-in-the-installation-path">8.4.6.16. rtime-make did not work when there was a space in the installation path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-filtering-methods-were-always-added-to-the-subscriber-code-for-c">8.4.6.17. Sample filtering methods were always added to the subscriber code for C</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#failure-to-give-mutex-error">8.4.6.18. ‘Failure to give mutex’ error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#udp-interface-warning-using-valid-interfaces">8.4.6.19. UDP interface warning using valid interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-datareader-may-stop-receiving-samples-when-filtering-callbacks-are-used">8.4.6.20. A DataReader May Stop Receiving Samples When Filtering Callbacks Are Used</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dds-waitset-wait-returned-dds-retcode-error-if-unblocked-with-no-active-conditions">8.4.6.21. DDS_WaitSet_wait() returned DDS_RETCODE_ERROR if unblocked with no active conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#large-timeout-values-may-have-caused-segmentation-fault">8.4.6.22. Large timeout values may have caused segmentation fault</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#helloworld-dpde-waitset-c-example-uses-wrong-loop-variable-for-printing-data">8.4.6.23. HelloWorld_dpde_waitset C++ example uses wrong loop variable for printing data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#waitset-wait-returned-generic-error-when-returned-condition-sequence-exceeded-capacity">8.4.6.24. WaitSet_wait returned generic error when returned condition sequence exceeded capacity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#publication-handle-not-set-in-sampleinfo-structure-when-on-before-sample-commit-called">8.4.6.25. Publication handle not set in SampleInfo structure when on_before_sample_commit() called</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#duplicate-data-messages-are-sent-to-multicast-in-some-cases">8.4.6.26. Duplicate DATA messages are sent to multicast in some cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#guid-generation-on-qnx-for-processes-run-one-after-another-may-lead-to-duplicate-guids">8.4.6.27. GUID generation on QNX for processes run one after another may lead to duplicate GUIDs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#read-take-apis-returned-more-than-depth-samples-if-an-instance-returned-to-alive-without-application-reading-not-alive-sample">8.4.6.28. Read/take APIs returned more than <cite>depth</cite> samples if an instance returned to alive without application reading <cite>NOT_ALIVE</cite> sample</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#segmentation-fault-if-osapi-semaphore-give-was-called-from-one-thread-while-another-called-osapi-semaphore-delete">8.4.6.29. Segmentation fault if <cite>OSAPI_Semaphore_give()</cite> was called from one thread while another called <cite>OSAPI_Semaphore_delete()</cite></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#communication-problems-between-connext-dds-professional-6-and-connext-dds-micro-2-4-11">8.4.6.30. Communication problems between Connext DDS Professional 6 and Connext DDS Micro 2.4.11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#osapi-system-get-ticktime-not-implemented-for-freertos">8.4.6.31. OSAPI_System_get_ticktime() not implemented for FreeRTOS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2411.html">8.4.7. What’s New in 2.4.11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2411.html#what-s-fixed-in-2-4-11">8.4.8. What’s Fixed in 2.4.11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24104.html">8.4.9. What’s New in 2.4.10.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24104.html#what-s-fixed-in-2-4-10-4">8.4.10. What’s Fixed in 2.4.10.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24101.html">8.4.11. What’s New in 2.4.10.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24101.html#what-s-fixed-in-2-4-10-1">8.4.12. What’s Fixed in 2.4.10.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2410.html">8.4.13. What’s New in 2.4.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2410.html#what-s-fixed-in-2-4-10">8.4.14. What’s Fixed in 2.4.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_249.html">8.4.15. What’s New in 2.4.9</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_249.html#what-s-fixed-in-2-4-9">8.4.16. What’s Fixed in 2.4.9</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_248.html">8.4.17. What’s New in 2.4.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_248.html#what-s-fixed-in-2-4-8">8.4.18. What’s Fixed in 2.4.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_247.html">8.4.19. What’s New in 2.4.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_247.html#what-s-fixed-in-2-4-7">8.4.20. What’s Fixed in 2.4.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_246.html">8.4.21. What’s New in 2.4.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_246.html#what-s-fixed-in-2-4-6">8.4.22. What’s Fixed in 2.4.6</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="known_issues.html">8.5. Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">8. </span>Release Notes</a> &raquo;</li>
+        
+          <li><a href="previous_release.html"><span class="section-number">8.4. </span>Previous Releases</a> &raquo;</li>
+        
+      <li><span class="section-number">8.4.5. </span>What’s New in 2.4.12</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/release/release_notes_2412.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="what-s-new-in-2-4-12">
+<h1><span class="section-number">8.4.5. </span>What’s New in 2.4.12<a class="headerlink" href="#what-s-new-in-2-4-12" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="shared-udp-port-for-discovery-and-user-data-in-a-domainparticipant">
+<span id="micro-1901"></span><h2><span class="section-number">8.4.5.1. </span>Shared UDP port for discovery and user-data in a DomainParticipant<a class="headerlink" href="#shared-udp-port-for-discovery-and-user-data-in-a-domainparticipant" title="Permalink to this headline">¶</a></h2>
+<p>This release allows sharing a UDP port per DomainParticipant for discovery
+and user-traffic. The advantage is that <em>Connext Micro</em> will create a  single receive
+thread for unicast instead of two.</p>
+<p>The disadvantage is that this port mapping is not compliant with the DDS
+Interoperability Wire Protocol and communication with other DDS
+implementations might not be possible.</p>
+<p>This feature may only be used if multicast <em>or</em> unicast is used for both
+discovery and user traffic. If both unicast <em>and</em> multicast are enabled
+this feature cannot be used.</p>
+<p>To enable this feature assign the same value to both builtin
+and user port offsets in RtpsWellKnownPorts_t.</p>
+</div>
+<div class="section" id="domainparticipants-no-longer-allocate-dynamic-memory-during-deletion">
+<h2><span class="section-number">8.4.5.2. </span>DomainParticipants no longer allocate dynamic memory during deletion<a class="headerlink" href="#domainparticipants-no-longer-allocate-dynamic-memory-during-deletion" title="Permalink to this headline">¶</a></h2>
+<p>DomainParticipants will no longer allocate dynamic memory during deletion.</p>
+</div>
+<div class="section" id="new-qos-parameter-to-set-maximum-outstanding-samples-allowed-for-remote-datawriter">
+<h2><span class="section-number">8.4.5.3. </span>New QoS parameter to set maximum outstanding samples allowed for remote DataWriter<a class="headerlink" href="#new-qos-parameter-to-set-maximum-outstanding-samples-allowed-for-remote-datawriter" title="Permalink to this headline">¶</a></h2>
+<p>A new QoS parameter has been exposed for the endpoint discovery endpoints in
+the dynamic endpoint discovery plugin (DPDE). The new field,
+<cite>max_samples_per_remote_builtin_endpoint_writer</cite> in DPDE_DiscoveryPluginProperty,
+can be set to increase the number of samples a remote writer may have per
+builtin endpoint reader and thus decrease network traffic. Please refer to
+the <a class="reference external" href="../../api_c/html/group__DPDEModule.html">DPDE</a> for a description of this new parameter.</p>
+</div>
+<div class="section" id="new-qos-parameter-to-adjust-preemptive-acknack-period">
+<h2><span class="section-number">8.4.5.4. </span>New QoS parameter to adjust preemptive ACKNACK period<a class="headerlink" href="#new-qos-parameter-to-adjust-preemptive-acknack-period" title="Permalink to this headline">¶</a></h2>
+<p>A new QoS parameter has been introduced to expose the preemptive ACKNACK
+period on DataReaders. The new parameter is configured with:</p>
+<ul class="simple">
+<li><p><cite>DDS_DataReaderQos.protocol.rtps_reliable_reader.nack_period</cite> for user data readers</p></li>
+<li><p><cite>builtin_endpoint_reader_nack_period</cite> for the builtin discovery endpoints in the Dynamic discovery plugin</p></li>
+</ul>
+<p>Please refer to <a class="reference internal" href="../api/index.html#api-section"><span class="std std-ref">API Reference</span></a> API for details.</p>
+</div>
+<div class="section" id="deserialization-of-presentation-qos-policy">
+<h2><span class="section-number">8.4.5.5. </span>Deserialization of Presentation QoS policy<a class="headerlink" href="#deserialization-of-presentation-qos-policy" title="Permalink to this headline">¶</a></h2>
+<p>This release provides better support for the Presentation QoS policy.
+Previously this QoS policy was not supported by the DataWriter; the
+default value was assumed for a discovered DataReader, which caused an
+“Unknown QoS” warning when it was received. In this release, DataWriters
+will deserialize the Presentation QoS policy and check for compatibility.</p>
+</div>
+</div>
+<div class="section" id="what-s-fixed-in-2-4-12">
+<h1><span class="section-number">8.4.6. </span>What’s Fixed in 2.4.12<a class="headerlink" href="#what-s-fixed-in-2-4-12" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="examples-used-domainparticipant-register-type-instead-of-footypesupport-register-type">
+<h2><span class="section-number">8.4.6.1. </span>Examples used DomainParticipant_register_type instead of FooTypeSupport_register_type<a class="headerlink" href="#examples-used-domainparticipant-register-type-instead-of-footypesupport-register-type" title="Permalink to this headline">¶</a></h2>
+<p>In previous versions the examples registered types using
+“DDS_DomainParticipant_register_type()” instead of the recommended
+“FooTypeSupport_register_type()”. This version has updated the
+examples to use the recommended “FooTypeSupport_register_type()” instead.</p>
+<p>[RTI Issue ID MICRO-1922]</p>
+</div>
+<div class="section" id="a-datareader-and-datawriter-with-incompatible-liveliness-kind-and-infinite-lease-duration-matched">
+<h2><span class="section-number">8.4.6.2. </span>A DataReader and DataWriter with incompatible liveliness kind and infinite lease_duration matched<a class="headerlink" href="#a-datareader-and-datawriter-with-incompatible-liveliness-kind-and-infinite-lease-duration-matched" title="Permalink to this headline">¶</a></h2>
+<p>In previous versions <em>Connext Micro</em> allowed a DataWriter to match a DataReader if the
+liveliness kind was incompatible <em>but</em> the liveliness duration was infinite.
+However, the OMG DDS specification mandates stricter matching rules and in
+this version a DataReader and DataWriter will <em>only</em> match when
+both the liveliness duration and kind are compatible:</p>
+<ol class="arabic simple">
+<li><p>Requested Liveliness Lease duration is greater than or equal to the Offered lease duration.</p></li>
+<li><p>Requested Liveliness kind is less than or equal to the Offered Liveliness
+kind where AUTOMATIC_LIVELINESS_KIND &lt; MANUAL_BY_PARTICIPANT_LIVELINESS_KIND &lt; MANUAL_BY_TOPIC_LIVELINESS_KIND.</p></li>
+</ol>
+<p>Note that this did not affect communication between <em>Connext Micro</em> applications since
+with an infinite liveliness duration, the liveliness will never expire,
+regardless of kind.</p>
+<p>[RTI Issue ID MICRO-2007]</p>
+</div>
+<div class="section" id="warning-at-compilation-time-for-freertos-port">
+<h2><span class="section-number">8.4.6.3. </span>Warning at compilation time for FreeRTOS port<a class="headerlink" href="#warning-at-compilation-time-for-freertos-port" title="Permalink to this headline">¶</a></h2>
+<p>An incompatible pointer type warning was printed at compilation time when
+compiling for FreeRTOS. This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2090]</p>
+</div>
+<div class="section" id="using-dds-not-alive-instance-state-caused-compilation-error-in-c-and-c">
+<h2><span class="section-number">8.4.6.4. </span>Using <cite>DDS_NOT_ALIVE_INSTANCE_STATE</cite> caused compilation error in C and C++<a class="headerlink" href="#using-dds-not-alive-instance-state-caused-compilation-error-in-c-and-c" title="Permalink to this headline">¶</a></h2>
+<p>Using the constant DDS_NOT_ALIVE_INSTANCE_STATE caused a linker error due to
+a missing definition. This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2243]</p>
+</div>
+<div class="section" id="seq-copy-did-not-work-when-the-source-sequence-is-a-loaned-discontiguous-sequence">
+<h2><span class="section-number">8.4.6.5. </span><cite>Seq_copy()</cite> did not work when the source sequence is a loaned/discontiguous sequence<a class="headerlink" href="#seq-copy-did-not-work-when-the-source-sequence-is-a-loaned-discontiguous-sequence" title="Permalink to this headline">¶</a></h2>
+<p>Calling <cite>FooSeq_copy()</cite> on a loaned or discontiguous sequence did not work
+correctly. This issue has been fixed.</p>
+<p>[RTI Issue ID MICRO-2053]</p>
+</div>
+<div class="section" id="warnings-when-compiling-the-example-generated-by-code-generator">
+<h2><span class="section-number">8.4.6.6. </span>Warnings when compiling the example generated by Code Generator<a class="headerlink" href="#warnings-when-compiling-the-example-generated-by-code-generator" title="Permalink to this headline">¶</a></h2>
+<p>When compiling the example generated by rtiddsgen, the compiler may have given
+warnings about unused variables. The generated code has been updated
+to avoid these warnings.</p>
+<p>[RTI Issue ID MICRO-1700]</p>
+</div>
+<div class="section" id="unable-to-generate-code-for-xml-or-xsd-defined-types">
+<h2><span class="section-number">8.4.6.7. </span>Unable to generate code for XML or XSD defined types<a class="headerlink" href="#unable-to-generate-code-for-xml-or-xsd-defined-types" title="Permalink to this headline">¶</a></h2>
+<p>Previous releases of <em>Connext Micro</em> did not include the XML and XSD schemas required
+to generate type-support code from XML or XSD files. This issue has been
+resolved.</p>
+<p>[RTI Issue ID MICRO-1709]</p>
+</div>
+<div class="section" id="linker-error-in-c-application-when-c-types-were-used">
+<h2><span class="section-number">8.4.6.8. </span>Linker error in C++ application when C types were used<a class="headerlink" href="#linker-error-in-c-application-when-c-types-were-used" title="Permalink to this headline">¶</a></h2>
+<p>Compiling generated C type-support code as C++ caused compilation errors.
+This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-1750]</p>
+</div>
+<div class="section" id="failure-to-link-for-vxworks-rtp-using-shared-libraries-compiled-with-cmake">
+<h2><span class="section-number">8.4.6.9. </span>Failure to link for VxWorks RTP using shared libraries compiled with CMake<a class="headerlink" href="#failure-to-link-for-vxworks-rtp-using-shared-libraries-compiled-with-cmake" title="Permalink to this headline">¶</a></h2>
+<p>Due to use of incorrect compiler and linker options for VxWorks RTP mode
+a linker error occurred when compiling projects generated with CMake®. This
+issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-1909]</p>
+</div>
+<div class="section" id="rtiddsgen-may-have-failed-on-windows-systems-when-jre-was-specified">
+<h2><span class="section-number">8.4.6.10. </span>rtiddsgen may have failed on Windows systems when -jre was specified<a class="headerlink" href="#rtiddsgen-may-have-failed-on-windows-systems-when-jre-was-specified" title="Permalink to this headline">¶</a></h2>
+<p>The rtiddsen -jre option did not accept paths with spaces. This issue has
+been resolved.</p>
+<p>[RTI Issue ID MICRO-1952]</p>
+</div>
+<div class="section" id="rtime-make-did-not-work-when-it-was-started-from-different-shell-than-bash">
+<h2><span class="section-number">8.4.6.11. </span>rtime-make did not work when it was started from different shell than Bash<a class="headerlink" href="#rtime-make-did-not-work-when-it-was-started-from-different-shell-than-bash" title="Permalink to this headline">¶</a></h2>
+<p>rtime-make requires Bash on Unix systems. However it did not explicitly
+launch Bash and would fail if started from a Bash incompatible shell.
+This has been fixed.</p>
+<p>[RTI Issue ID MICRO-2013]</p>
+</div>
+<div class="section" id="linker-error-when-using-shared-libraries-on-vxworks-systems">
+<h2><span class="section-number">8.4.6.12. </span>Linker error when using shared libraries on VxWorks systems<a class="headerlink" href="#linker-error-when-using-shared-libraries-on-vxworks-systems" title="Permalink to this headline">¶</a></h2>
+<p>There was a linker error when compiling the examples for ppc604Vx6.9gcc4.3.3
+using shared libraries. The compiler reported that the libraries could not
+be found. This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-1841]</p>
+</div>
+<div class="section" id="a-run-time-error-may-have-occurred-on-windows-or-when-compiling-for-face-when-using-hostnames-in-the-peer-list">
+<h2><span class="section-number">8.4.6.13. </span>A run-time error may have occurred on Windows or when compiling for FACE when using hostnames in the peer list<a class="headerlink" href="#a-run-time-error-may-have-occurred-on-windows-or-when-compiling-for-face-when-using-hostnames-in-the-peer-list" title="Permalink to this headline">¶</a></h2>
+<p>Due to incorrect use of the getaddrinfo() API on Windows or POSIX
+when compiling for FACE, a run-time error may have occured when
+resolving hostnames. This issue has been fixed.</p>
+<p>[RTI Issue ID MICRO-1957]</p>
+</div>
+<div class="section" id="entity-id-generation-was-not-thread-safe">
+<h2><span class="section-number">8.4.6.14. </span>Entity ID generation was not thread-safe<a class="headerlink" href="#entity-id-generation-was-not-thread-safe" title="Permalink to this headline">¶</a></h2>
+<p>Entity ID generation for DataReaders and DataWriters was not thread-safe and
+may have lead to duplicate entity IDs. This problem has been resolved.</p>
+<p>[RTI Issue ID MICRO-2104]</p>
+</div>
+<div class="section" id="domainparticipant-creation-failed-if-active-interface-had-invalid-ip">
+<h2><span class="section-number">8.4.6.15. </span>DomainParticipant creation failed if active interface had invalid IP<a class="headerlink" href="#domainparticipant-creation-failed-if-active-interface-had-invalid-ip" title="Permalink to this headline">¶</a></h2>
+<p>An active interface without a valid IP address assigned may have caused
+DomainParticipant creation to fail. This problem has been resolved. Now if
+an interface with an invalid IP address is used, it will be ignored and the
+DomainParticipant will still be created.</p>
+<p>[RTI Issue ID MICRO-1602]</p>
+</div>
+<div class="section" id="rtime-make-did-not-work-when-there-was-a-space-in-the-installation-path">
+<h2><span class="section-number">8.4.6.16. </span>rtime-make did not work when there was a space in the installation path<a class="headerlink" href="#rtime-make-did-not-work-when-there-was-a-space-in-the-installation-path" title="Permalink to this headline">¶</a></h2>
+<p>The rtime-make script did not work when <em>Connext Micro</em> was installed in a directory
+path containing spaces. This issues has been resolved.</p>
+<p>[RTI Issue ID MICRO-1622]</p>
+</div>
+<div class="section" id="sample-filtering-methods-were-always-added-to-the-subscriber-code-for-c">
+<h2><span class="section-number">8.4.6.17. </span>Sample filtering methods were always added to the subscriber code for C<a class="headerlink" href="#sample-filtering-methods-were-always-added-to-the-subscriber-code-for-c" title="Permalink to this headline">¶</a></h2>
+<p>The generated subscriber example code always included code to filter
+sample-based fields in the IDL type. However, if the generated IDL file
+was modified to exclude these fields, the code would fail to compile. The
+generated code now includes instructions for how to filter instead.</p>
+<p>[RTI Issue ID MICRO-1980]</p>
+</div>
+<div class="section" id="failure-to-give-mutex-error">
+<h2><span class="section-number">8.4.6.18. </span>‘Failure to give mutex’ error<a class="headerlink" href="#failure-to-give-mutex-error" title="Permalink to this headline">¶</a></h2>
+<p>In Connext DDS Micro 2.4.11, a subtle race condition may have
+occurred on multi-core machines. When this happened, an error message
+about failing to give a mutex would be printed: error code (EC) 44 in
+module 1 (OSAPI). This problem has been resolved.</p>
+<p>[RTI Issue ID MICRO-2095]</p>
+</div>
+<div class="section" id="udp-interface-warning-using-valid-interfaces">
+<h2><span class="section-number">8.4.6.19. </span>UDP interface warning using valid interfaces<a class="headerlink" href="#udp-interface-warning-using-valid-interfaces" title="Permalink to this headline">¶</a></h2>
+<p>Connext DDS Micro logged a warning if no new interfaces were added for
+each address listed in enabled_transports. This applied to the
+enabled_transports field in the DiscoveryQosPolicy and UserTrafficQosPolicy
+in the DomainParticipantQos, and the DDS_TransportQosPolicy in the
+DataReaderQos and DataWriterQos. This problem has been resolved. Now
+Connext DDS Micro will only log a warning if no new interfaces are added
+per enabled transport.</p>
+<p>[RTI Issue ID MICRO-2018]</p>
+</div>
+<div class="section" id="a-datareader-may-stop-receiving-samples-when-filtering-callbacks-are-used">
+<h2><span class="section-number">8.4.6.20. </span>A DataReader May Stop Receiving Samples When Filtering Callbacks Are Used<a class="headerlink" href="#a-datareader-may-stop-receiving-samples-when-filtering-callbacks-are-used" title="Permalink to this headline">¶</a></h2>
+<p>When using <cite>on_before_deserialize(</cite>) or <cite>on_before_commit(</cite>) to drop samples
+the DataReader may have been depleted of resources and stop receiving data.
+This issue has been fixed.</p>
+<p>[RTI Issue ID MICRO-1930]</p>
+</div>
+<div class="section" id="dds-waitset-wait-returned-dds-retcode-error-if-unblocked-with-no-active-conditions">
+<h2><span class="section-number">8.4.6.21. </span>DDS_WaitSet_wait() returned DDS_RETCODE_ERROR if unblocked with no active conditions<a class="headerlink" href="#dds-waitset-wait-returned-dds-retcode-error-if-unblocked-with-no-active-conditions" title="Permalink to this headline">¶</a></h2>
+<p>An application that used a combination of polling a DataReader and blocking
+on a DDS_WaitSet may have caused <cite>DDS_WaitSet_wait()</cite> to return DDS_RETCODE_ERROR.
+This happened if the DDS_WaitSet was unblocked by an attached condition, but
+there were no active conditions. This problem has been resolved.</p>
+<p>[RTI Issue ID MICRO-2115]</p>
+</div>
+<div class="section" id="large-timeout-values-may-have-caused-segmentation-fault">
+<h2><span class="section-number">8.4.6.22. </span>Large timeout values may have caused segmentation fault<a class="headerlink" href="#large-timeout-values-may-have-caused-segmentation-fault" title="Permalink to this headline">¶</a></h2>
+<p>Timeout values larger than 2000s may have caused a segmentation
+fault during creation of DDS entities. This issue has been fixed.</p>
+<p>[RTI Issue ID MICRO-2192]</p>
+</div>
+<div class="section" id="helloworld-dpde-waitset-c-example-uses-wrong-loop-variable-for-printing-data">
+<h2><span class="section-number">8.4.6.23. </span>HelloWorld_dpde_waitset C++ example uses wrong loop variable for printing data<a class="headerlink" href="#helloworld-dpde-waitset-c-example-uses-wrong-loop-variable-for-printing-data" title="Permalink to this headline">¶</a></h2>
+<p>When multiple samples are loaned by calling take, the HelloWorld_dpde_waitset
+C++ example uses the wrong loop variable, <cite>i</cite>, with <cite>data_seq</cite> instead of the
+correct index <cite>b</cite>. This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2158]</p>
+</div>
+<div class="section" id="waitset-wait-returned-generic-error-when-returned-condition-sequence-exceeded-capacity">
+<h2><span class="section-number">8.4.6.24. </span>WaitSet_wait returned generic error when returned condition sequence exceeded capacity<a class="headerlink" href="#waitset-wait-returned-generic-error-when-returned-condition-sequence-exceeded-capacity" title="Permalink to this headline">¶</a></h2>
+<p>If the number of returned conditions exceeded the maximum size of the returned
+condition sequence, a generic error, DDS_RETCODE_ERROR, was returned instead
+of the expected error, DDS_RETCODE_OUT_OF_RESOURCES. This problem has been
+resolved.</p>
+<p>[RTI Issue ID MICRO-1933]</p>
+</div>
+<div class="section" id="publication-handle-not-set-in-sampleinfo-structure-when-on-before-sample-commit-called">
+<h2><span class="section-number">8.4.6.25. </span>Publication handle not set in SampleInfo structure when on_before_sample_commit() called<a class="headerlink" href="#publication-handle-not-set-in-sampleinfo-structure-when-on-before-sample-commit-called" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>publication_handle</cite> member of the DDS_SampleInfo structure passed to a
+DataReader’s <cite>on_before_sample_commit()</cite> function was not set. This issue has
+been fixed.</p>
+<p>[RTI Issue ID MICRO-2121]</p>
+</div>
+<div class="section" id="duplicate-data-messages-are-sent-to-multicast-in-some-cases">
+<h2><span class="section-number">8.4.6.26. </span>Duplicate DATA messages are sent to multicast in some cases<a class="headerlink" href="#duplicate-data-messages-are-sent-to-multicast-in-some-cases" title="Permalink to this headline">¶</a></h2>
+<p>Duplicate DATA messages were sent to multicast when multiple DataReaders were
+configured with multicast and unicast receive addresses. This issue has been
+fixed.</p>
+<p>[RTI Issue ID MICRO-2043]</p>
+</div>
+<div class="section" id="guid-generation-on-qnx-for-processes-run-one-after-another-may-lead-to-duplicate-guids">
+<h2><span class="section-number">8.4.6.27. </span>GUID generation on QNX for processes run one after another may lead to duplicate GUIDs<a class="headerlink" href="#guid-generation-on-qnx-for-processes-run-one-after-another-may-lead-to-duplicate-guids" title="Permalink to this headline">¶</a></h2>
+<p>On QNX systems, two processes run one after another in quick order may end up
+with the same GUID. The probability of GUID reuse has been reduced in this
+release.</p>
+<p>[RTI Issue ID MICRO-2109]</p>
+</div>
+<div class="section" id="read-take-apis-returned-more-than-depth-samples-if-an-instance-returned-to-alive-without-application-reading-not-alive-sample">
+<h2><span class="section-number">8.4.6.28. </span>Read/take APIs returned more than <cite>depth</cite> samples if an instance returned to alive without application reading <cite>NOT_ALIVE</cite> sample<a class="headerlink" href="#read-take-apis-returned-more-than-depth-samples-if-an-instance-returned-to-alive-without-application-reading-not-alive-sample" title="Permalink to this headline">¶</a></h2>
+<p>If an instance transitioned from <cite>NOT_ALIVE_NO_WRITERS</cite> or <cite>NOT_ALIVE_DISPOSED</cite>
+to <cite>ALIVE</cite> and the application did not read/take the sample indicating
+<cite>NOT_ALIVE_NO_WRITERS</cite> or <cite>NOT_ALIVE_DISPOSED</cite>, the number of samples returned
+would exceed the <cite>depth</cite> set by the History QoS policy. This issue has been fixed.</p>
+<p>[RTI Issue ID MICRO-2196]</p>
+</div>
+<div class="section" id="segmentation-fault-if-osapi-semaphore-give-was-called-from-one-thread-while-another-called-osapi-semaphore-delete">
+<h2><span class="section-number">8.4.6.29. </span>Segmentation fault if <cite>OSAPI_Semaphore_give()</cite> was called from one thread while another called <cite>OSAPI_Semaphore_delete()</cite><a class="headerlink" href="#segmentation-fault-if-osapi-semaphore-give-was-called-from-one-thread-while-another-called-osapi-semaphore-delete" title="Permalink to this headline">¶</a></h2>
+<p>An application may have terminated with a segmentation fault if
+<cite>OSAPI_Semaphore_give()</cite> was called from one thread while another called
+<cite>OSAPI_Semaphore_delete()</cite> on Unix-like systems. This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2209]</p>
+</div>
+<div class="section" id="communication-problems-between-connext-dds-professional-6-and-connext-dds-micro-2-4-11">
+<h2><span class="section-number">8.4.6.30. </span>Communication problems between Connext DDS Professional 6 and Connext DDS Micro 2.4.11<a class="headerlink" href="#communication-problems-between-connext-dds-professional-6-and-connext-dds-micro-2-4-11" title="Permalink to this headline">¶</a></h2>
+<p>Connext DDS Professional 6 advertises support for RTPS protocol version 2.3,
+while Connext DDS Micro 2.4.11 and earlier only accepted RTPS 2.1. Therefore
+tools such as Admin Console 6.0.0 did not properly discover entities from a
+Micro 2.4.11 application. This release of Connext DDS Micro complies with
+RTPS 2.1 and later minor versions (such as 2.3). Unsupported RTPS messages
+are ignored.</p>
+<p>[RTI Issue Id MICRO-2008]</p>
+</div>
+<div class="section" id="osapi-system-get-ticktime-not-implemented-for-freertos">
+<h2><span class="section-number">8.4.6.31. </span>OSAPI_System_get_ticktime() not implemented for FreeRTOS<a class="headerlink" href="#osapi-system-get-ticktime-not-implemented-for-freertos" title="Permalink to this headline">¶</a></h2>
+<p>OSAPI_System_get_ticktime() was not implemented for FreeRTOS. An
+application using a finite DDS deadline or liveliness would have a
+run-time failure. This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2240]</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="release_notes_2411.html" class="btn btn-neutral float-right" title="8.4.7. What’s New in 2.4.11" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="release_notes_2414.html" class="btn btn-neutral float-left" title="8.4.3. What’s New in 2.4.14" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

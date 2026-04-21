@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.4. Building the Connext Micro Source for FreeRTOS &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.5. Building the Connext Micro Source for ThreadX" href="threadx.html" />
+    <link rel="prev" title="5.3. Connext Micro for QNX" href="qnx.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">4. User’s Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. Building and Porting Connext Micro</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="platforms.html">5.1. RTI Connext Micro Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">5.2. Building the Connext Micro Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qnx.html">5.3. Connext Micro for QNX</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.4. Building the Connext Micro Source for FreeRTOS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">5.4.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overview">5.4.2. Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">5.4.3. Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmake-support">5.4.4. CMake Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="threadx.html">5.5. Building the Connext Micro Source for ThreadX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosar.html">5.6. Connext Micro on AUTOSAR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">5.7. Porting RTI Connext Micro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="port_validation.html">5.8. Port Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cert_compatibility.html">5.9. Building Connext Micro with compatibility for Connext Cert</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">5. </span>Building and Porting Connext Micro</a> &raquo;</li>
+        
+      <li><span class="section-number">5.4. </span>Building the Connext Micro Source for FreeRTOS</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/building/freertos.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="building-the-me-h-source-for-freertos">
+<span id="building-freertos"></span><h1><span class="section-number">5.4. </span>Building the Connext Micro Source for FreeRTOS<a class="headerlink" href="#building-the-me-h-source-for-freertos" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2><span class="section-number">5.4.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This section explains the environment used to run <em>Connext Micro</em> on FreeRTOS + lwIP
+and is organized as follows:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview">Overview</a></p></li>
+<li><p><a class="reference internal" href="#configuration">Configuration</a></p></li>
+<li><p><a class="reference internal" href="#cmake-support">CMake Support</a></p></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><span class="section-number">5.4.2. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> is known to run on the FreeRTOS operating system with the lwIP protocol stack.
+STM32F769I-DISC0 has been chosen as reference hardware. This development
+kit has a STM32F769NIH6 microcontroller with 2 Mbytes of Flash memory and 512
+Kbytes of RAM. For a full description, please refer to the microcontroller
+documentation.</p>
+<p>STM provides a toolchain called SW4STM32. SW4STM32 is a free multi-OS software
+environment based on Eclipse, which supports the full range of STM32
+microcontrollers and associated boards. SW4STM32 includes the GCC
+C/C++ compiler, a GDB-based debugger, and an Eclipse-based IDE.</p>
+<p>STM also provides STM32CubeF7. STM32CubeF7 gathers all the generic
+embedded software components required to develop an application on
+the STM32F7 microcontrollers in a single package.</p>
+<p>STM32CubeF7 also includes many examples and demonstration applications.
+The example <em>LwIP_HTTP_Server_Socket_RTOS</em> is particularly useful as it
+provides a working FreeRTOS + lwIP configuration.</p>
+<p>The following versions of the different components have been used:</p>
+<ul class="simple">
+<li><p>SW4STM32 version 2.1</p></li>
+<li><p>STM32Cube_FW_F7 version V1.7.0</p></li>
+<li><p>FreeRTOS version V9.0.0</p></li>
+<li><p>lwIP version V2.0.0</p></li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h2><span class="section-number">5.4.3. </span>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>Example lwIP and FreeRTOS configurations are provided below for reference.
+This configuration must be tuned according to your needs. Details about
+how to configure these third-party components can be found in the
+FreeRTOS and lwIP documentation.</p>
+<ul class="simple">
+<li><p>Example configuration for lwIP:</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef __LWIPOPTS_H__</span>
+<span class="cp">#define __LWIPOPTS_H__</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits.h&gt;</span>
+
+<span class="cp">#define NO_SYS                  0</span>
+
+<span class="cm">/* ---------- Memory options ---------- */</span>
+<span class="cp">#define MEM_ALIGNMENT           4</span>
+
+<span class="cp">#define MEM_SIZE                (50*1024)</span>
+
+<span class="cp">#define MEMP_NUM_PBUF           10</span>
+
+<span class="cp">#define MEMP_NUM_UDP_PCB        6</span>
+
+<span class="cp">#define MEMP_NUM_TCP_PCB        10</span>
+
+<span class="cp">#define MEMP_NUM_TCP_PCB_LISTEN 5</span>
+
+<span class="cp">#define MEMP_NUM_TCP_SEG        8</span>
+
+<span class="cp">#define MEMP_NUM_SYS_TIMEOUT    10</span>
+
+
+<span class="cm">/* ---------- Pbuf options ---------- */</span>
+<span class="cp">#define PBUF_POOL_SIZE          8</span>
+
+<span class="cp">#define PBUF_POOL_BUFSIZE       1524</span>
+
+<span class="cm">/* ---------- IPv4 options ---------- */</span>
+<span class="cp">#define LWIP_IPV4                1</span>
+
+<span class="cm">/* ---------- TCP options ---------- */</span>
+<span class="cp">#define LWIP_TCP                1</span>
+<span class="cp">#define TCP_TTL                 255</span>
+
+<span class="cp">#define TCP_QUEUE_OOSEQ         0</span>
+
+<span class="cp">#define TCP_MSS                 (1500 - 40)      </span><span class="cm">/* TCP_MSS = (Ethernet MTU - IP header size - TCP header size) */</span>
+
+<span class="cp">#define TCP_SND_BUF             (4*TCP_MSS)</span>
+
+<span class="cp">#define TCP_SND_QUEUELEN        (2* TCP_SND_BUF/TCP_MSS)</span>
+
+<span class="cp">#define TCP_WND                 (2*TCP_MSS)</span>
+
+
+<span class="cm">/* ---------- ICMP options ---------- */</span>
+<span class="cp">#define LWIP_ICMP               1</span>
+
+
+<span class="cm">/* ---------- DHCP options ---------- */</span>
+<span class="cp">#define LWIP_DHCP               1</span>
+
+
+<span class="cm">/* ---------- UDP options ---------- */</span>
+<span class="cp">#define LWIP_UDP                1</span>
+<span class="cp">#define UDP_TTL                 255</span>
+
+
+<span class="cm">/* ---------- Statistics options ---------- */</span>
+<span class="cp">#define LWIP_STATS 0</span>
+
+<span class="cm">/* ---------- link callback options ---------- */</span>
+<span class="cp">#define LWIP_NETIF_LINK_CALLBACK        1</span>
+
+<span class="cm">/*</span>
+<span class="cm">   --------------------------------------</span>
+<span class="cm">   ---------- Checksum options ----------</span>
+<span class="cm">   --------------------------------------</span>
+<span class="cm">*/</span>
+
+<span class="cm">/* </span>
+<span class="cm">The STM32F7xx allows computing and verifying checksums by hardware</span>
+<span class="cm">*/</span>
+<span class="cp">#define CHECKSUM_BY_HARDWARE </span>
+
+
+<span class="cp">#ifdef CHECKSUM_BY_HARDWARE</span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_GEN_IP==0: Generate checksums by hardware for outgoing IP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_GEN_IP                 0</span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_GEN_UDP==0: Generate checksums by hardware for outgoing UDP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_GEN_UDP                0</span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_GEN_TCP==0: Generate checksums by hardware for outgoing TCP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_GEN_TCP                0 </span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_CHECK_IP==0: Check checksums by hardware for incoming IP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_CHECK_IP               0</span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_CHECK_UDP==0: Check checksums by hardware for incoming UDP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_CHECK_UDP              0</span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_CHECK_TCP==0: Check checksums by hardware for incoming TCP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_CHECK_TCP              0</span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_CHECK_ICMP==0: Check checksums by hardware for incoming ICMP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_GEN_ICMP               0</span>
+<span class="cp">#else</span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_GEN_IP==1: Generate checksums in software for outgoing IP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_GEN_IP                 1</span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_GEN_UDP==1: Generate checksums in software for outgoing UDP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_GEN_UDP                1</span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_GEN_TCP==1: Generate checksums in software for outgoing TCP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_GEN_TCP                1</span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_CHECK_IP==1: Check checksums in software for incoming IP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_CHECK_IP               1</span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_CHECK_UDP==1: Check checksums in software for incoming UDP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_CHECK_UDP              1</span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_CHECK_TCP==1: Check checksums in software for incoming TCP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_CHECK_TCP              1</span>
+<span class="w">  </span><span class="cm">/* CHECKSUM_CHECK_ICMP==1: Check checksums by hardware for incoming ICMP packets.*/</span>
+<span class="w">  </span><span class="cp">#define CHECKSUM_GEN_ICMP               1</span>
+<span class="cp">#endif</span>
+
+
+<span class="cm">/*</span>
+<span class="cm">   ----------------------------------------------</span>
+<span class="cm">   ---------- Sequential layer options ----------</span>
+<span class="cm">   ----------------------------------------------</span>
+<span class="cm">*/</span>
+<span class="cp">#define LWIP_NETCONN                    1</span>
+
+<span class="cm">/*</span>
+<span class="cm">   ------------------------------------</span>
+<span class="cm">   ---------- Socket options ----------</span>
+<span class="cm">   ------------------------------------</span>
+<span class="cm">*/</span>
+<span class="cp">#define LWIP_SOCKET                     1</span>
+
+<span class="cm">/*</span>
+<span class="cm">   ---------------------------------</span>
+<span class="cm">   ---------- OS options ----------</span>
+<span class="cm">   ---------------------------------</span>
+<span class="cm">*/</span>
+
+<span class="cp">#define TCPIP_THREAD_NAME              &quot;TCP/IP&quot;</span>
+<span class="cp">#define TCPIP_THREAD_STACKSIZE          1000</span>
+<span class="cp">#define TCPIP_MBOX_SIZE                 6</span>
+<span class="cp">#define DEFAULT_UDP_RECVMBOX_SIZE       2000</span>
+<span class="cp">#define DEFAULT_TCP_RECVMBOX_SIZE       2000</span>
+<span class="cp">#define DEFAULT_ACCEPTMBOX_SIZE         2000</span>
+<span class="cp">#define DEFAULT_THREAD_STACKSIZE        500</span>
+<span class="cp">#define TCPIP_THREAD_PRIO               osPriorityHigh</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * LWIP_SO_RCVBUF==1: Enable SO_RCVBUF processing.</span>
+<span class="cm"> */</span>
+<span class="cp">#define LWIP_SO_RCVBUF                  1</span>
+
+
+<span class="cm">/**</span>
+<span class="cm"> * Instruct lwIP to use the errno provided by libc instead of the errno in lwIP.</span>
+<span class="cm"> * If your libc doesn&#39;t include errno, you might need to delete these macros.</span>
+<span class="cm"> */</span>
+<span class="cp">#undef LWIP_PROVIDE_ERRNO</span>
+<span class="cp">#define LWIP_ERRNO_INCLUDE &quot;errno.h&quot;</span>
+
+<span class="cp">#endif </span><span class="cm">/* __LWIPOPTS_H__ */</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Example configuration for FreeRTOS:</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>
+<span class="cp">#ifndef FREERTOS_CONFIG_H</span>
+<span class="cp">#define FREERTOS_CONFIG_H</span>
+
+<span class="cm">/*-----------------------------------------------------------</span>
+<span class="cm"> * Application specific definitions.</span>
+<span class="cm"> *</span>
+<span class="cm"> * These definitions should be adjusted for your application requirements.</span>
+<span class="cm"> *</span>
+<span class="cm"> * THESE PARAMETERS ARE DESCRIBED WITHIN THE &#39;CONFIGURATION&#39; SECTION OF THE</span>
+<span class="cm"> * FreeRTOS API DOCUMENTATION AVAILABLE ON THE FreeRTOS.org WEB SITE.</span>
+<span class="cm"> *</span>
+<span class="cm"> * See http://www.freertos.org/a00110.html.</span>
+<span class="cm"> *----------------------------------------------------------*/</span>
+
+<span class="cm">/* Ensure stdint is only used by the compiler, and not the assembler. */</span>
+<span class="cp">#if defined(__ICCARM__) || defined(__CC_ARM) || defined(__GNUC__)</span>
+<span class="w"> </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+<span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">SystemCoreClock</span><span class="p">;</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#define configUSE_PREEMPTION              1</span>
+<span class="cp">#define configUSE_IDLE_HOOK               0</span>
+<span class="cp">#define configUSE_TICK_HOOK               0</span>
+<span class="cp">#define configCPU_CLOCK_HZ                (SystemCoreClock)</span>
+<span class="cp">#define configTICK_RATE_HZ                ((TickType_t)1000)</span>
+<span class="cp">#define configMAX_PRIORITIES              (7)</span>
+<span class="cp">#define configMINIMAL_STACK_SIZE          ((uint16_t)128)</span>
+<span class="cp">#define configTOTAL_HEAP_SIZE             ((size_t)(400 * 1024))</span>
+<span class="cp">#define configMAX_TASK_NAME_LEN           (16)</span>
+<span class="cp">#define configUSE_TRACE_FACILITY          1</span>
+<span class="cp">#define configUSE_16_BIT_TICKS            0</span>
+<span class="cp">#define configIDLE_SHOULD_YIELD           1</span>
+<span class="cp">#define configUSE_MUTEXES                 1</span>
+<span class="cp">#define configQUEUE_REGISTRY_SIZE         8</span>
+<span class="cp">#define configCHECK_FOR_STACK_OVERFLOW    0</span>
+<span class="cp">#define configUSE_RECURSIVE_MUTEXES       1</span>
+<span class="cp">#define configUSE_MALLOC_FAILED_HOOK      0</span>
+<span class="cp">#define configUSE_APPLICATION_TASK_TAG    0</span>
+<span class="cp">#define configUSE_COUNTING_SEMAPHORES     1</span>
+<span class="cp">#define configGENERATE_RUN_TIME_STATS     0</span>
+
+<span class="cm">/* Co-routine definitions. */</span>
+<span class="cp">#define configUSE_CO_ROUTINES           0</span>
+<span class="cp">#define configMAX_CO_ROUTINE_PRIORITIES (2)</span>
+
+<span class="cm">/* Software timer definitions. */</span>
+<span class="cp">#define configUSE_TIMERS             1</span>
+<span class="cp">#define configTIMER_TASK_PRIORITY    (2)</span>
+<span class="cp">#define configTIMER_QUEUE_LENGTH     10</span>
+<span class="cp">#define configTIMER_TASK_STACK_DEPTH 1280</span>
+
+<span class="cm">/* Set the following definitions to 1 to include the API function, or zero</span>
+<span class="cm">to exclude the API function. */</span>
+<span class="cp">#define INCLUDE_vTaskPrioritySet       1</span>
+<span class="cp">#define INCLUDE_uxTaskPriorityGet      1</span>
+<span class="cp">#define INCLUDE_vTaskDelete            1</span>
+<span class="cp">#define INCLUDE_vTaskCleanUpResources  0</span>
+<span class="cp">#define INCLUDE_vTaskSuspend           1</span>
+<span class="cp">#define INCLUDE_vTaskDelayUntil        0</span>
+<span class="cp">#define INCLUDE_vTaskDelay             1</span>
+<span class="cp">#define INCLUDE_xTaskGetSchedulerState 1</span>
+
+<span class="cm">/* Cortex-M specific definitions. */</span>
+<span class="cp">#ifdef __NVIC_PRIO_BITS</span>
+<span class="w"> </span><span class="cm">/* __BVIC_PRIO_BITS will be specified when CMSIS is being used. */</span>
+<span class="w"> </span><span class="cp">#define configPRIO_BITS         __NVIC_PRIO_BITS</span>
+<span class="cp">#else</span>
+<span class="w"> </span><span class="cp">#define configPRIO_BITS         4        </span><span class="cm">/* 15 priority levels */</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#define configLIBRARY_LOWEST_INTERRUPT_PRIORITY   0xf</span>
+
+<span class="cp">#define configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY 5</span>
+
+<span class="cp">#define configKERNEL_INTERRUPT_PRIORITY   ( configLIBRARY_LOWEST_INTERRUPT_PRIORITY &lt;&lt; (8 - configPRIO_BITS) )</span>
+
+<span class="cp">#define configMAX_SYSCALL_INTERRUPT_PRIORITY  ( configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY &lt;&lt; (8 - configPRIO_BITS) )</span>
+<span class="w"> </span>
+<span class="cp">#define configASSERT( x ) if( ( x ) == 0 ) { taskDISABLE_INTERRUPTS(); for( ;; ); } </span>
+<span class="w"> </span>
+<span class="cp">#define vPortSVCHandler    SVC_Handler</span>
+<span class="cp">#define xPortPendSVHandler PendSV_Handler</span>
+
+<span class="cp">#endif </span><span class="cm">/* FREERTOS_CONFIG_H */</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="cmake-support">
+<h2><span class="section-number">5.4.4. </span>CMake Support<a class="headerlink" href="#cmake-support" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> includes support to compile libraries for FreeRTOS using <a class="reference external" href="https://cmake.org/">CMake</a> .
+It is assumed that the <em>Connext Micro</em> source-bundle has been downloaded and
+installed and that <a class="reference external" href="https://cmake.org/">CMake</a> is available.</p>
+<ol class="arabic">
+<li><p>Make sure <a class="reference external" href="https://cmake.org/">CMake</a> is in the path.</p></li>
+<li><p>Define the following environment variables:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>CONFIG_PATH : Path where the FreeRTOSConfig.h and lwipopts.h files are located.</p></li>
+<li><p>FREERTOS_PATH : Path to FreeRTOS source code and header files.</p></li>
+<li><p>LWIP_PATH : Path to lwIP source code and header files.</p></li>
+<li><p>PATH : Update your path with the location of the C and C++ compiler. By default
+arm-none-eabi-gcc and arm-none-eabi-g++ are used as C and C++ compilers.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Enter the following command:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">&lt;</span><span class="n">rti_me</span> <span class="n">install</span> <span class="n">directory</span><span class="o">&gt;</span>
+<span class="n">resource</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span> <span class="o">--</span><span class="n">target</span> <span class="n">FreeRTOS</span> <span class="o">--</span><span class="n">name</span> <span class="n">cortexm7FreeRTOS9</span><span class="mf">.0</span><span class="n">gcc7</span><span class="mf">.3.1</span> <span class="o">-</span><span class="n">G</span> <span class="s2">&quot;Unix Makefiles&quot;</span> <span class="o">--</span><span class="n">build</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>The <em>Connext Micro</em> libraries are available in:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">rti_me</span> <span class="n">install</span> <span class="n">directory</span><span class="o">&gt;/</span><span class="n">lib</span><span class="o">/</span><span class="n">cortexm7FreeRTOS9</span><span class="mf">.0</span><span class="n">gcc7</span><span class="mf">.3.1</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>NOTE: rtime-make uses the name specified with –name to determine a few
+settings needed by <em>Connext Micro</em>. Please refer to <a class="reference internal" href="building.html#prepare"><span class="std std-ref">Preparing for a Build</span></a> for details.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="threadx.html" class="btn btn-neutral float-right" title="5.5. Building the Connext Micro Source for ThreadX" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="qnx.html" class="btn btn-neutral float-left" title="5.3. Connext Micro for QNX" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

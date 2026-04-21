@@ -1,0 +1,61 @@
+Configure UDP Transport
+=======================
+
+.. highlight:: c
+
+You may need to configure the UDP transport component that is pre-registered
+by |rti_me|.  To change the properties of the UDP transport, first the UDP
+component has be unregistered, then the properties have to be updated, and
+finally the component must be re-registered with the updated properties.
+
+Example code:
+
+- Unregister the pre-registered UDP component:
+
+  ::
+  
+    /* Unregister the pre-registered UDP component */
+    if (!RT_Registry_unregister(registry, "_udp", NULL, NULL))
+    {
+        /* failure */
+    }
+
+- Configure UDP transport properties:
+
+  ::
+  
+    struct UDP_InterfaceFactoryProperty *udp_property = NULL;
+
+    udp_property = (struct UDP_InterfaceFactoryProperty *)
+        malloc(sizeof(struct UDP_InterfaceFactoryProperty));
+    if (udp_property != NULL)
+    {
+        *udp_property = UDP_INTERFACE_FACTORY_PROPERTY_DEFAULT;
+
+        /* allow_interface: Names of network interfaces allowed to send/receive.
+         * Allow one loopback (lo) and one NIC (eth0).
+         */
+        REDA_StringSeq_set_maximum(&udp_property->allow_interface,2);
+        REDA_StringSeq_set_length(&udp_property->allow_interface,2);
+
+        *REDA_StringSeq_get_reference(&udp_property->allow_interface,0) = DDS_String_dup("lo");
+        *REDA_StringSeq_get_reference(&udp_property->allow_interface,1) = DDS_String_dup("eth0");
+    }
+    else
+    {
+        /* failure */
+    }
+
+- Re-register UDP component with updated properties:
+
+  ::
+  
+    if (!RT_Registry_register(registry, "_udp",
+                         UDP_InterfaceFactory_get_interface(),
+                        (struct RT_ComponentFactoryProperty*)udp_property, NULL))
+    {
+        /* failure */
+    }
+
+For more details, see the :doc:`../usersmanual/transports/index` section 
+in the *User's Manual*.

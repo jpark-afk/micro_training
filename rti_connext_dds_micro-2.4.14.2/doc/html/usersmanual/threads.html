@@ -1,0 +1,484 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.11. Threading Model &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.12. Batching" href="batching.html" />
+    <link rel="prev" title="4.10. Generating Type Support with rtiddsgen" href="rtiddsgen.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. User’s Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraryinit.html">4.1. Initializing the Connext Micro Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">4.2. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">4.3. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">4.4. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">4.5. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">4.6. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transports/index.html">4.7. Transports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">4.8. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configresources/index.html">4.9. Configuring Resource Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">4.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.11. Threading Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.11.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#architectural-overview">4.11.2. Architectural Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thread-model">4.11.3. Threading Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#osapi-threads">4.11.3.1. OSAPI Threads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#udp-transport-threads">4.11.3.2. UDP Transport Threads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#general-thread-configuration">4.11.3.3. General Thread Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#thread-safety">4.11.4. Thread-Safety</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#calling-dds-apis-from-listeners-and-callbacks">4.11.4.1. Calling DDS APIs from listeners and callbacks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calling-dds-apis-from-a-type-plugin">4.11.4.2. Calling DDS APIs from a type-plugin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">4.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">4.13. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">4.14. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug.html">4.15. Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">4.16. Connext Micro Hardcoded Resource Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">4.17. Building Against FACE Conformance Libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../building/index.html">5. Building and Porting Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">4. </span>User’s Manual</a> &raquo;</li>
+        
+      <li><span class="section-number">4.11. </span>Threading Model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/usersmanual/threads.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="threading-model">
+<h1><span class="section-number">4.11. </span>Threading Model<a class="headerlink" href="#threading-model" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2><span class="section-number">4.11.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This section describes the threading model, the use of critical
+sections, and how to configure thread parameters in <em>RTI</em> <em>Connext Micro</em>. Please note
+that the information contained in this document applies to application
+development using <em>Connext Micro</em>. For information regarding <em>porting</em>
+the <em>Connext Micro</em> thread API to a new OS, please refer to
+<a class="reference internal" href="../building/porting.html#porting"><span class="std std-ref">Porting RTI Connext Micro</span></a>.</p>
+<p>This section includes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#thread-arch"><span class="std std-ref">Architectural Overview</span></a></p></li>
+<li><p><a class="reference internal" href="#thread-model"><span class="std std-ref">Threading Model</span></a></p></li>
+<li><p><a class="reference internal" href="#thread-cs"><span class="std std-ref">UDP Transport Threads</span></a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="architectural-overview">
+<span id="thread-arch"></span><h2><span class="section-number">4.11.2. </span>Architectural Overview<a class="headerlink" href="#architectural-overview" title="Permalink to this headline">¶</a></h2>
+<p><em>RTI</em> <em>Connext Micro</em> consists of a core library and a number of components. The core
+library provides a porting layer, frequently used data-structures and
+abstractions, and the DDS API. Components provide additional functionality
+such as UDP communication, DDS discovery plugins, DDS history caches, etc.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+-------+                                      \
+| DDS_C |                                       }  C API
++-------+                                      /
+
++-------+ +-------+ +------+ +------+          \
+| DPSE  | | DPDE  | | WHSM | | RHSM |          |
++-------+ +-------+ +------+ +------+          |
++-------+ +-------+ +------+ +------+ +-----+   } Optional components
+| LOOP  | | UDP(*)| | RTPS | | DRI  | | DWI |  |  (platform independent)
++-------+ +-------+ +------+ +------+ +-----+  |
+                                               /
+
++-------+ +-------+ +------+ +------+          \  Core Services (always
+| REDA  | |  CDR  | | DB   | | RT   |           } present, platform
++-------+ +-------+ +------+ +------+          /  independent)
+
++-----------------------------------+          \
+|               OSAPI               |           } Platform dependent module
++-----------------------------------+          /
+
+(*) The UDP transport relies on a BSD socket API
+</pre></div>
+</div>
+</div>
+<div class="section" id="thread-model">
+<span id="id2"></span><h2><span class="section-number">4.11.3. </span>Threading Model<a class="headerlink" href="#thread-model" title="Permalink to this headline">¶</a></h2>
+<p><em>RTI</em> <em>Connext Micro</em> is architected in a way that makes it possible to create a port of
+<em>Connext Micro</em> that uses no threads, for example on platforms with no operating
+system or where the OS itself creates the threads which calls into <em>Connext Micro</em>.
+Thus, the following discussion is only applicable to <em>Connext Micro</em> libraries from RTI
+that runs on operating systems where <em>Connext Micro</em> is allowed to  create threads.
+The platform specific notes provide additional information regarding
+integration with specific environments.</p>
+<div class="section" id="osapi-threads">
+<h3><span class="section-number">4.11.3.1. </span>OSAPI Threads<a class="headerlink" href="#osapi-threads" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Connext Micro</em> OSAPI layer creates one thread per OS process. This thread
+manages all the <em>Connext Micro</em> timers, such as deadline and liveliness timers.
+This thread is created by the <em>Connext Micro</em> OSAPI System when the
+<a class="reference external" href="../../api_c/html/group__OSAPI__SystemClass.html">OSAPI_System_initialize()</a> function is called. When the <em>Connext Micro</em> DDS API is
+used <a class="reference external" href="../../api_c/html/group__DDSDomainParticipantFactoryModule.html">DomainParticipantFactory_get_instance()</a> calls this function once.</p>
+<div class="section" id="configuring-osapi-threads">
+<h4><span class="section-number">4.11.3.1.1. </span>Configuring OSAPI Threads<a class="headerlink" href="#configuring-osapi-threads" title="Permalink to this headline">¶</a></h4>
+<p>The timer thread is configured through the <a class="reference external" href="../../api_c/html/structOSAPI__SystemProperty.html">OSAPI_SystemProperty</a>
+structure and any changes must be made before <a class="reference external" href="../../api_c/html/group__OSAPI__SystemClass.html">OSAPI_System_initialize()</a>
+is called. In <em>Connext Micro</em>, <a class="reference external" href="../../api_c/html/group__DDSDomainParticipantFactoryModule.html">DomainParticipantFactory_get_instance()</a> calls
+<a class="reference external" href="../../api_c/html/group__OSAPI__SystemClass.html">OSAPI_System_initialize()</a>. Thus, if it is necessary to change the
+system timer thread settings, it must be done before
+<a class="reference external" href="../../api_c/html/group__DDSDomainParticipantFactoryModule.html">DomainParticipantFactory_get_instance()</a> is called the first time.</p>
+<p>Please refer to <a class="reference external" href="../../api_c/html/group__OSAPI__ThreadClass.html">OSAPI_Thread</a> for supported thread options. Note
+that not all options are supported by all platforms.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">OSAPI_SystemProperty</span><span class="w"> </span><span class="n">sys_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OSAPI_SystemProperty_INITIALIZER</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">OSAPI_System_get_property</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sys_property</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* ERROR */</span>
+<span class="p">}</span>
+
+<span class="cm">/* Please refer to OSAPI_ThreadOptions for possible options */</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">property</span><span class="p">.</span><span class="n">timer_property</span><span class="p">.</span><span class="kr">thread</span><span class="p">.</span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">....;</span>
+
+<span class="cm">/* The stack-size is platform dependent, it is passed directly to the OS */</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">property</span><span class="p">.</span><span class="n">timer_property</span><span class="p">.</span><span class="kr">thread</span><span class="p">.</span><span class="n">stack_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">....</span>
+
+<span class="cm">/* The priority is platform dependent, it is passed directly to the OS */</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">property</span><span class="p">.</span><span class="n">timer_property</span><span class="p">.</span><span class="kr">thread</span><span class="p">.</span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">....</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">OSAPI_System_set_property</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sys_property</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* ERROR */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="udp-transport-threads">
+<span id="thread-cs"></span><h3><span class="section-number">4.11.3.2. </span>UDP Transport Threads<a class="headerlink" href="#udp-transport-threads" title="Permalink to this headline">¶</a></h3>
+<p>Of the components that RTI provides, only the UDP component creates threads.
+The UDP transport creates one receive thread for each unique UDP
+receive resource. Thus, two UDP threads are created by default:</p>
+<ul class="simple">
+<li><p>A unicast receive thread for discovery data</p></li>
+<li><p>A unicast receive thread for user-data</p></li>
+</ul>
+<p>Additional threads may be created depending on the transport configuration
+for a <em>DomainParticipant</em>, <em>DataReader</em> and <em>DataWriter</em>. The UDP
+transport creates threads based on the following criteria:</p>
+<ul class="simple">
+<li><p>Each unique unicast port creates a new thread</p></li>
+<li><p>Each unique multicast address <em>and</em> port creates a new thread</p></li>
+</ul>
+<p>For example, if a <em>DataReader</em> specifies its own multicast receive address
+a new receive thread will be created.</p>
+<div class="section" id="configuring-udp-receive-threads">
+<h4><span class="section-number">4.11.3.2.1. </span>Configuring UDP Receive Threads<a class="headerlink" href="#configuring-udp-receive-threads" title="Permalink to this headline">¶</a></h4>
+<p>All threads in the UDP transport share the same thread settings. It is
+important to note that all the UDP properties must be set before the UDP
+transport is registered. <em>Connext Micro</em> pre-registers the UDP transport with default
+settings when the <a class="reference external" href="../../api_c/html/group__DDSDomainParticipantFactoryModule.html">DomainParticipantFactory</a> is initialized. To change the
+UDP thread settings, use the following code.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">RT_Registry_T</span><span class="w"> </span><span class="o">*</span><span class="n">registry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="n">DDS_DomainParticipantFactory</span><span class="w"> </span><span class="o">*</span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">UDP_InterfaceFactoryProperty</span><span class="w"> </span><span class="o">*</span><span class="n">udp_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipantFactory_get_instance</span><span class="p">();</span>
+
+<span class="n">udp_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">UDP_InterfaceFactoryProperty</span><span class="w"> </span><span class="o">*</span><span class="p">)</span>
+<span class="w">                    </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">UDP_InterfaceFactoryProperty</span><span class="p">));</span>
+<span class="o">*</span><span class="n">udp_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UDP_INTERFACE_FACTORY_PROPERTY_DEFAULT</span><span class="p">;</span>
+
+<span class="n">registry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipantFactory_get_registry</span><span class="p">(</span><span class="n">factory</span><span class="p">);</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">RT_Registry_unregister</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;_udp&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* ERROR */</span>
+<span class="p">}</span>
+
+<span class="cm">/* Please refer to OSAPI_ThreadOptions for possible options */</span>
+<span class="n">udp_property</span><span class="o">-&gt;</span><span class="n">recv_thread</span><span class="p">.</span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+
+<span class="cm">/* The stack-size is platform dependent, it is passed directly to the OS */</span>
+<span class="n">udp_property</span><span class="o">-&gt;</span><span class="n">recv_thread</span><span class="p">.</span><span class="n">stack_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">....</span>
+
+<span class="cm">/* The priority is platform dependent, it is passed directly to the OS */</span>
+<span class="n">udp_property</span><span class="o">-&gt;</span><span class="n">recv_thread</span><span class="p">.</span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">....</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">RT_Registry_register</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;_udp&quot;</span><span class="p">,</span>
+<span class="w">                          </span><span class="n">UDP_InterfaceFactory_get_interface</span><span class="p">(),</span>
+<span class="w">                          </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">RT_ComponentFactoryProperty</span><span class="o">*</span><span class="p">)</span><span class="n">udp_property</span><span class="p">,</span>
+<span class="w">                          </span><span class="nb">NULL</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* ERROR */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="general-thread-configuration">
+<h3><span class="section-number">4.11.3.3. </span>General Thread Configuration<a class="headerlink" href="#general-thread-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Connext Micro</em> architecture consists of a number of components and layers,
+and each layer and component has its own properties. It is important
+to remember that the layers and components are configured independently
+of each other, as opposed to configuring everything through DDS. This design
+makes it possible to relatively easily swap out one part of the library for
+another.</p>
+<p>All threads created based on <em>Connext Micro</em> OSAPI APIs use the same
+<a class="reference external" href="../../api_c/html/structOSAPI__ThreadProperty.html">OSAPI_ThreadProperty</a> structure.</p>
+</div>
+</div>
+<div class="section" id="thread-safety">
+<h2><span class="section-number">4.11.4. </span>Thread-Safety<a class="headerlink" href="#thread-safety" title="Permalink to this headline">¶</a></h2>
+<p>All public APIs have a note about thread-safety included in the API
+reference manuals. It is important that an application does not violate
+thread-safety guidelines.</p>
+<p><em>RTI</em> <em>Connext Micro</em> may create multiple threads, but from an application point of view,
+there is only a single critical section protecting all DDS resources within
+a <em>DomainParticipant</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although <em>Connext Micro</em> may create multiple mutexes,
+these are used to protect resources in the OSAPI layer, and are thus not
+relevant when using the public DDS APIs.</p>
+</div>
+<div class="section" id="calling-dds-apis-from-listeners-and-callbacks">
+<h3><span class="section-number">4.11.4.1. </span>Calling DDS APIs from listeners and callbacks<a class="headerlink" href="#calling-dds-apis-from-listeners-and-callbacks" title="Permalink to this headline">¶</a></h3>
+<p>When DDS is executing in a listener, it holds a critical section. Thus it is
+important to return as quickly as possible to avoid stalling network I/O.</p>
+<p>There are no deadlock scenarios when a listener calls <em>Connext Micro</em> DDS APIs
+from the <strong>same</strong> <em>DomainParticipant</em> (and contained entities) that the listener
+was called from, as shown in the diagram below:</p>
+<a class="reference internal image-reference" href="../_images/ThreadSafety-OK.png"><img alt="../_images/ThreadSafety-OK.png" class="align-center" src="../_images/ThreadSafety-OK.png" style="width: 400px;" /></a>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is <strong>not</strong> safe to call DDS APIs from a <strong>different</strong> <em>DomainParticipant</em>
+than the one listener was called from, as shown in the diagram below. This may
+result in a deadlock situation.</p>
+<a class="reference internal image-reference" href="../_images/ThreadSafety-NOK.png"><img alt="../_images/ThreadSafety-NOK.png" class="align-center" src="../_images/ThreadSafety-NOK.png" style="width: 800px;" /></a>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There are no checks on whether or not an API call will cause problems, such
+as deleting a participant when processing data in <a class="reference external" href="../../api_c/html/structDDS__DataReaderListener.html">on_data_available</a> from a
+reader within the same participant.</p>
+</div>
+</div>
+<div class="section" id="calling-dds-apis-from-a-type-plugin">
+<h3><span class="section-number">4.11.4.2. </span>Calling DDS APIs from a type-plugin<a class="headerlink" href="#calling-dds-apis-from-a-type-plugin" title="Permalink to this headline">¶</a></h3>
+<p>A user type-plugin that is registered with the <em>DomainParticipant</em> is
+subject to the following rules:</p>
+<ul class="simple">
+<li><p>The key kind is constant.</p></li>
+<li><p>The plugin is constant for a given DDS entity (<em>Topic</em>, <em>DataWriter</em>,
+or <em>DataReader</em>).</p></li>
+<li><p>The plugin data must be protected if thread safety is a concern, as it
+is user data and not protected by <em>Connext Micro</em>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A type-plugin generated from an IDL file with the <em>rtiddsgen</em>
+IDL compiler included with <em>Connext Micro</em> will satisfy these rules.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="batching.html" class="btn btn-neutral float-right" title="4.12. Batching" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rtiddsgen.html" class="btn btn-neutral float-left" title="4.10. Generating Type Support with rtiddsgen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

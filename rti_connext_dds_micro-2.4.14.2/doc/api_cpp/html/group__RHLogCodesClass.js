@@ -1,0 +1,28 @@
+var group__RHLogCodesClass =
+[
+    [ "RHSM_LOG_OUTSTANDING_SAMPLE_EC", "group__RHLogCodesClass.html#ga59d13e4ac5c0da53296c9b7e3e7d3ea6", null ],
+    [ "RHSM_LOG_NO_PROPERTY_QOS_EC", "group__RHLogCodesClass.html#ga4445ec0af604b4d08392822b1a199b30", null ],
+    [ "RHSM_LOG_KEEP_ALL_HISTORY_NOT_SUPPORTED_EC", "group__RHLogCodesClass.html#ga2d4c2fe2539fb71bee0d26e970c6ad8c", null ],
+    [ "RHSM_LOG_MAX_SAMPLE_TOO_SMALL_EC", "group__RHLogCodesClass.html#ga72076b2810bafa63fee84937463b1009", null ],
+    [ "RHSM_LOG_TBF_NOT_SUPPORTED_EC", "group__RHLogCodesClass.html#ga5740aa7414801aee56f7a4b2f0049bf0", null ],
+    [ "RHSM_LOG_SAMPLE_INFO_POOL_EC", "group__RHLogCodesClass.html#ga085c4172ae0b2a11f69b52743f32e44b", null ],
+    [ "RHSM_LOG_SAMPLE_POOL_EC", "group__RHLogCodesClass.html#gae441b4bc9fbe76c38c3dd7c16656930e", null ],
+    [ "RHSM_LOG_SAMPLE_PTR_ARRAY_EC", "group__RHLogCodesClass.html#ga2db047684f9a201605e4a75bbc95c5d3", null ],
+    [ "RHSM_LOG_INFO_ARRAY_EC", "group__RHLogCodesClass.html#gaad45a7726b97e0850d56f68a89303682", null ],
+    [ "RHSM_LOG_GET_RECEPTION_TIMESTAMP_EC", "group__RHLogCodesClass.html#gaba17c3785c5db211c9e4a04c58a36e8a", null ],
+    [ "RHSM_LOG_INVALID_INSTANCE_REPLACEMENT_EC", "group__RHLogCodesClass.html#ga8dd9ed6a40795b4ca8595370ce412fbc", null ],
+    [ "RHSM_LOG_FAILED_TO_REMOVE_OLDEST_EC", "group__RHLogCodesClass.html#ga8b32191cfc51b046ef3a32fe7a2b7469", null ],
+    [ "RHSM_LOG_SAMPLE_POOL_EMPTY_EC", "group__RHLogCodesClass.html#ga4e2b3c69917485c715f5b62d575af453", null ],
+    [ "RHSM_LOG_RW_PRUNE_FAILED_EC", "group__RHLogCodesClass.html#ga001882aebfb14152708212c312bc2ddd", null ],
+    [ "RHSM_LOG_ENTRY_RESERVATION_FAILED_EC", "group__RHLogCodesClass.html#gae06cc11f55d84eb2e46aadaae8e15e5d", null ],
+    [ "RHSM_LOG_RETURN_SAMPLE_EC", "group__RHLogCodesClass.html#ga91d0bbcf045864f1888af4b9a3014b4c", null ],
+    [ "RHSM_LOG_HISTORY_UPDATE_EC", "group__RHLogCodesClass.html#ga68cfd16b06b09c415e86a017303750ed", null ],
+    [ "RHSM_LOG_GET_TIME_EC", "group__RHLogCodesClass.html#ga0dd5da5533925a52e071a9174a01a986", null ],
+    [ "RHSM_LOG_OBJECT_ALLOCATE_EC", "group__RHLogCodesClass.html#ga1ca42faef86e621a814dfe0155f73277", null ],
+    [ "RHSM_LOG_OBJECT_DELETE_EC", "group__RHLogCodesClass.html#gacecc3da27e9112418154831b0bddb0c2", null ],
+    [ "RHSM_LOG_OBJECT_INDEX_EC", "group__RHLogCodesClass.html#ga9e26f1d2ac4585916af54858a646976a", null ],
+    [ "RHSM_LOG_OBJECT_INVALID_EC", "group__RHLogCodesClass.html#gac21741994ce3f2edf8e6afe0a9de31ab", null ],
+    [ "RHSM_LOG_NO_PROPERTY_EC", "group__RHLogCodesClass.html#ga3f0f89406c62b36e0792411da052d978", null ],
+    [ "RHSM_LOG_DESTINATION_BY_SOURCE_NOT_SUPPORTED_EC", "group__RHLogCodesClass.html#ga39f1b3c0887b389b4325b43b446f76d0", null ],
+    [ "RHSM_LOG_RECOMMIT_FAILURE_EC", "group__RHLogCodesClass.html#ga0d71c1acb59d933e4c042cda5a798ef4", null ]
+];

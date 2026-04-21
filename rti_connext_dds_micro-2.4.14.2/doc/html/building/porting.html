@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.7. Porting RTI Connext Micro &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.8. Port Validation" href="port_validation.html" />
+    <link rel="prev" title="5.6. Connext Micro on AUTOSAR" href="autosar.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">4. User’s Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. Building and Porting Connext Micro</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="platforms.html">5.1. RTI Connext Micro Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">5.2. Building the Connext Micro Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qnx.html">5.3. Connext Micro for QNX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">5.4. Building the Connext Micro Source for FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threadx.html">5.5. Building the Connext Micro Source for ThreadX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosar.html">5.6. Connext Micro on AUTOSAR</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.7. Porting RTI Connext Micro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#updating-from-me-h-2-4-8-and-earlier">5.7.1. Updating from Connext Micro 2.4.8 and earlier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directory-structure">5.7.2. Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#os-and-cc-definition-files">5.7.3. OS and CC Definition Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#heap-porting-guide">5.7.4. Heap Porting Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mutex-porting-guide">5.7.5. Mutex Porting Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#semaphore-porting-guide">5.7.6. Semaphore Porting Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#process-porting-guide">5.7.7. Process Porting Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-porting-guide">5.7.8. System Porting Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#migrating-a-2-2-x-port-to-2-3-x">5.7.8.1. Migrating a 2.2.x port to 2.3.x</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#thread-porting-guide">5.7.9. Thread Porting Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="port_validation.html">5.8. Port Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cert_compatibility.html">5.9. Building Connext Micro with compatibility for Connext Cert</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">5. </span>Building and Porting Connext Micro</a> &raquo;</li>
+        
+      <li><span class="section-number">5.7. </span>Porting RTI Connext Micro</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/building/porting.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="porting-rti-me-h">
+<span id="porting"></span><h1><span class="section-number">5.7. </span>Porting RTI Connext Micro<a class="headerlink" href="#porting-rti-me-h" title="Permalink to this headline">¶</a></h1>
+<p><em>RTI</em> <em>Connext Micro</em> has been engineered for reasonable portability to platforms and
+environments which RTI does not have access to. This porting
+guide describes the features required by <em>Connext Micro</em> to run. The target audience
+is developers familiar with general OS concepts, the standard C library,
+and embedded systems.</p>
+<p><em>Connext Micro</em> uses an abstraction layer to support running on a number
+of platforms. The abstraction layer, OSAPI, is an abstraction of
+functionality typically found in one or more of the following
+libraries and services:</p>
+<ul class="simple">
+<li><p>Operating System calls</p></li>
+<li><p>Device drivers</p></li>
+<li><p>Standard C library</p></li>
+</ul>
+<p>The OSAPI module is designed to be relatively easy to move to a new
+platform. All functionality, with the exception of the UDP transport
+which must be ported, is contained within this single module.
+It should be noted  that although some functions may not seem relevant on
+a particular platform, they must still be implemented as they are used
+by other modules. For example, the port running on Stellaris with no OS
+support still needs to implement a threading model.</p>
+<p>Please note that the OSAPI module is not designed to be a general purpose
+abstraction layer; its sole purpose is to support the execution of <em>Connext Micro</em>.</p>
+<div class="section" id="updating-from-me-h-2-4-8-and-earlier">
+<h2><span class="section-number">5.7.1. </span>Updating from Connext Micro 2.4.8 and earlier<a class="headerlink" href="#updating-from-me-h-2-4-8-and-earlier" title="Permalink to this headline">¶</a></h2>
+<p>In <em>RTI</em> <em>Connext Micro</em> 2.4.9, a few changes were made to simplify incorporating new ports.
+To upgrade an existing port to work with 2.4.9, follow these rules:</p>
+<ul class="simple">
+<li><p>Any changes to osapi_config.h should be placed in its own file (see
+<a class="reference internal" href="#directory-structure">Directory Structure</a>).</p></li>
+<li><p>Define the OSAPI_OS_DEF_H preprocessor directive to include the file (
+refer to <a class="reference internal" href="#os-and-cc-definition-files">OS and CC Definition Files</a>).</p></li>
+<li><p>For compiler-specific definitions, please refer to
+<a class="reference internal" href="#os-and-cc-definition-files">OS and CC Definition Files</a>.</p></li>
+<li><p>Please refer to <a class="reference internal" href="#heap-porting-guide">Heap Porting Guide</a> for changes to the Heap routines
+that need to be ported.</p></li>
+</ul>
+</div>
+<div class="section" id="directory-structure">
+<h2><span class="section-number">5.7.2. </span>Directory Structure<a class="headerlink" href="#directory-structure" title="Permalink to this headline">¶</a></h2>
+<p>The source shipped with <em>Connext Micro</em> is identical to the source developed and
+tested by RTI (with the exception of the the line-endings difference between
+the Unix and Windows source-bundles).</p>
+<p>The source-bundle directory structure is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RTIMEHOME</span><span class="o">--+--</span> <span class="n">CmakeLists</span><span class="o">.</span><span class="n">txt</span>
+           <span class="o">|</span>
+           <span class="o">+--</span> <span class="n">build</span> <span class="o">--</span> <span class="n">cmake</span> <span class="o">--+--</span> <span class="n">Debug</span> <span class="o">--+--</span> <span class="o">&lt;</span><span class="n">ARCH</span><span class="o">&gt;</span> <span class="o">--</span> <span class="o">&lt;</span><span class="n">project</span><span class="o">-</span><span class="n">files</span><span class="o">&gt;</span>
+           <span class="o">|</span>                    <span class="o">|</span>
+           <span class="o">|</span>                    <span class="o">|</span>
+           <span class="o">|</span>                    <span class="o">+--</span> <span class="n">Release</span> <span class="o">--+--</span> <span class="o">&lt;</span><span class="n">ARCH</span><span class="o">&gt;</span> <span class="o">--</span> <span class="o">&lt;</span><span class="n">project</span><span class="o">-</span><span class="n">files</span><span class="o">&gt;</span>
+           <span class="o">+--</span> <span class="n">doc</span> <span class="o">--</span>
+           <span class="o">|</span>
+           <span class="o">+--</span> <span class="n">example</span>
+           <span class="o">|</span>
+           <span class="o">+--</span> <span class="n">include</span>
+           <span class="o">|</span>
+           <span class="o">+--</span> <span class="n">lib</span> <span class="o">+--</span> <span class="o">&lt;</span><span class="n">ARCH</span><span class="o">&gt;</span> <span class="o">--</span> <span class="o">&lt;</span><span class="n">libraries</span><span class="o">&gt;</span>
+           <span class="o">|</span>
+           <span class="o">+--</span> <span class="n">resource</span> <span class="o">--+--</span> <span class="n">cmake</span>
+           <span class="o">|</span>              <span class="o">|</span>
+           <span class="o">|</span>              <span class="o">+--</span> <span class="n">scripts</span>
+           <span class="o">|</span>
+           <span class="o">+--</span> <span class="n">rtiddsgen</span>
+           <span class="o">|</span>
+           <span class="o">+--</span> <span class="n">src</span>
+</pre></div>
+</div>
+<p>The include directory contains the external interfaces, those that are
+available to other modules. The src directory contains the implementation
+files. Please refer to <a class="reference internal" href="building.html"><span class="doc">Building the Connext Micro Source</span></a> for how to build
+the source code.</p>
+<p>The remainder of this document focuses on the files that are needed to
+add a new port. The following directory structure is expected:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---+--</span> <span class="n">include</span> <span class="o">--+--</span> <span class="n">osapi</span> <span class="o">--+--</span> <span class="n">osapi_os_</span>\<span class="o">&lt;</span><span class="n">port</span>\<span class="o">&gt;.</span><span class="n">h</span>
+   <span class="o">|</span>                         <span class="o">|</span>
+   <span class="o">|</span>                         <span class="o">+--</span> <span class="n">osapi_cc_</span><span class="o">&lt;</span><span class="n">compiler</span><span class="o">&gt;.</span><span class="n">h</span>
+   <span class="o">|</span>
+   <span class="o">+--</span> <span class="n">src</span> <span class="o">--+--</span> <span class="n">osapi</span> <span class="o">--+--</span> <span class="n">common</span> <span class="o">--</span> <span class="o">&lt;</span><span class="n">common</span> <span class="n">files</span><span class="o">&gt;</span>
+                         <span class="o">|</span>
+                         <span class="o">+--</span> <span class="o">&lt;</span><span class="n">port</span><span class="o">&gt;</span> <span class="o">--+--</span> <span class="o">&lt;</span><span class="n">port</span><span class="o">&gt;</span><span class="n">Heap</span><span class="o">.</span><span class="n">c</span>
+                                      <span class="o">|</span>
+                                      <span class="o">+--</span> <span class="o">&lt;</span><span class="n">port</span><span class="o">&gt;</span><span class="n">Mutex</span><span class="o">.</span><span class="n">c</span>
+                                      <span class="o">|</span>
+                                      <span class="o">+--</span> <span class="o">&lt;</span><span class="n">port</span><span class="o">&gt;</span><span class="n">Process</span><span class="o">.</span><span class="n">c</span>
+                                      <span class="o">|</span>
+                                      <span class="o">+--</span> <span class="o">&lt;</span><span class="n">port</span><span class="o">&gt;</span><span class="n">Semaphore</span><span class="o">.</span><span class="n">c</span>
+                                      <span class="o">|</span>
+                                      <span class="o">+--</span> <span class="o">&lt;</span><span class="n">port</span><span class="o">&gt;</span><span class="n">String</span><span class="o">.</span><span class="n">c</span>
+                                      <span class="o">|</span>
+                                      <span class="o">+--</span> <span class="o">&lt;</span><span class="n">port</span><span class="o">&gt;</span><span class="n">System</span><span class="o">.</span><span class="n">c</span>
+                                      <span class="o">|</span>
+                                      <span class="o">+--</span> <span class="o">&lt;</span><span class="n">port</span><span class="o">&gt;</span><span class="n">Thread</span><span class="o">.</span><span class="n">c</span>
+                                      <span class="o">|</span>
+                                      <span class="o">+--</span> <span class="o">&lt;</span><span class="n">port</span><span class="o">&gt;</span><span class="n">shmSegment</span><span class="o">.</span><span class="n">c</span>
+                                      <span class="o">|</span>
+                                      <span class="o">+--</span> <span class="o">&lt;</span><span class="n">port</span><span class="o">&gt;</span><span class="n">shmMutex</span><span class="o">.</span><span class="n">c</span>
+</pre></div>
+</div>
+<p>The <em>osapi_os_&lt;port&gt;.h</em> file contains OS specific definitions for
+various data-types. The &lt;port&gt; name should be short and in lower case, for
+example <em>myos</em>.</p>
+<p>The <em>osapi_cc_&lt;compiler&gt;.h</em> file contains compiler specific
+definitions. The &lt;compiler&gt; name should be short and in lower case, for
+example <em>mycc</em>. The osapi_cc_stdc.h file properly detects
+GCC and MSVC and it is not necessary to provide a new file if one of
+these compilers is used.</p>
+<p>The &lt;port&gt;Heap.c, &lt;port&gt;Mutex.c, &lt;port&gt;Process.c, &lt;port&gt;Semaphore.c,
+&lt;port&gt;String.c and &lt;port&gt;System.c files shall contain the implementation
+of the required APIs.</p>
+<p>NOTE: It is <em>not</em> recommended to modify source files shipped with
+<em>Connext Micro</em>. Instead if it is desired to start with code supplied by RTI
+it is recommended to <em>copy</em> the corresponding sub-directory,
+for example posix, and rename it. This way it is easier to upgrade <em>Connext Micro</em>
+while keeping existing ports.</p>
+</div>
+<div class="section" id="os-and-cc-definition-files">
+<h2><span class="section-number">5.7.3. </span>OS and CC Definition Files<a class="headerlink" href="#os-and-cc-definition-files" title="Permalink to this headline">¶</a></h2>
+<p>The <em>include/osapi/osapi_os_&lt;port&gt;.h</em> file contains
+OS and platform specific definitions used by OSAPI and other modules.
+To include the platform specific file, define <strong>OSAPI_OS_DEF_H</strong> as a
+preprocessor directive.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DOSAPI_OS_DEF_H</span><span class="o">=</span>\<span class="s2">&quot;osapi_os_&lt;port&gt;.h</span><span class="se">\&quot;</span>
+</pre></div>
+</div>
+<p>It should be noted that <em>Connext Micro</em> does not use auto-detection
+programs to detect the host and target build environment and only
+relies on predefined macros to determine the target environment. If <em>Connext Micro</em>
+cannot determine the target environment, it is necessary to manually
+configure the correct OS definition file by defining <strong>OSAPI_OS_DEF_H</strong> (see
+above).</p>
+<p>The <em>include/osapi/osapi_cc_&lt;compiler&gt;.h</em> file contains
+compiler specific definitions used by OSAPI and other modules.
+To include the platform specific file, define <strong>OSAPI_CC_DEF_H</strong> as a
+preprocessor directive.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DOSAPI_CC_DEF_H</span><span class="o">=</span>\<span class="s2">&quot;osapi_cc_&lt;compiler&gt;.h</span><span class="se">\&quot;</span>
+</pre></div>
+</div>
+<p>Endianness of some platforms is determined automatically via the platform specific file, but
+for others either <strong>RTI_ENDIAN_LITTLE</strong> or <strong>RTI_ENDIAN_BIG</strong> must be defined manually for
+little-endian or big-endian, respectively.</p>
+</div>
+<div class="section" id="heap-porting-guide">
+<h2><span class="section-number">5.7.4. </span>Heap Porting Guide<a class="headerlink" href="#heap-porting-guide" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> uses the heap to allocate memory for internal data-structures. With
+a few exceptions, <em>Connext Micro</em> does <em>not</em> return memory to the heap. Instead,
+<em>Connext Micro</em> uses internal pools to quickly allocate and free memory for specific
+types. Only the initial memory is allocated directly from the heap.
+The following functions must be ported:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__HeapClass.html">OSAPI_Heap_allocate_buffer</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__HeapClass.html">OSAPI_Heap_free_buffer</a></p></li>
+</ul>
+<p>However, if the OS and C library supports the standard malloc and free APIs
+define the following in the <em>osapi_os_&lt;port&gt;.h</em> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define OSAPI_ENABLE_STDC_ALLOC   (1)</span>
+<span class="c1">#define OSAPI_ENABLE_STDC_REALLOC (1)</span>
+<span class="c1">#define OSAPI_ENABLE_STDC_FREE    (1)</span>
+</pre></div>
+</div>
+<p>Please refer to the <a class="reference external" href="../../../doc/api_c/html/group__OSAPI__HeapClass.html">OSAPI_Heap</a> API for definition of the behavior.
+The available source code contains implementation in the file <em>osapi/&lt;port&gt;/&lt;port&gt;Heap.c</em>.</p>
+</div>
+<div class="section" id="mutex-porting-guide">
+<h2><span class="section-number">5.7.5. </span>Mutex Porting Guide<a class="headerlink" href="#mutex-porting-guide" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> relies on mutex support to protect internal data-structures from
+corruption when accessed from multiple threads.</p>
+<p>The following functions must be ported:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__MutexClass.html">OSAPI_Mutex_new</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__MutexClass.html">OSAPI_Mutex_delete</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__MutexClass.html">OSAPI_Mutex_take_os</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__MutexClass.html">OSAPI_Mutex_give_os</a></p></li>
+</ul>
+<p>Please refer to the <a class="reference external" href="../../../doc/api_c/html/group__OSAPI__MutexClass.html">OSAPI_Mutex</a> API for definition of the behavior.
+The available source code contains implementation in the file <em>osapi/&lt;port&gt;/&lt;port&gt;Mutex.c</em></p>
+</div>
+<div class="section" id="semaphore-porting-guide">
+<h2><span class="section-number">5.7.6. </span>Semaphore Porting Guide<a class="headerlink" href="#semaphore-porting-guide" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> relies on semaphore support for thread control. If <em>Connext Micro</em> is running
+on a non pre-emptive operating system with no support for IPC and
+thread synchronization, it is possible to implement these functions as
+no-ops. Please refer to <a class="reference internal" href="#thread-porting-guide">Thread Porting Guide</a> for details regarding
+threading.</p>
+<p>The following functions must be ported:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SemaphoreClass.html">OSAPI_Semaphore_new</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SemaphoreClass.html">OSAPI_Semaphore_delete</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SemaphoreClass.html">OSAPI_Semaphore_take</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SemaphoreClass.html">OSAPI_Semaphore_give</a></p></li>
+</ul>
+<p>Please refer to the <a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SemaphoreClass.html">OSAPI_Semaphore</a> API for definition of the
+behavior. The available source code contains implementation in the file
+<em>osapi/&lt;port&gt;/&lt;port&gt;Semaphore.c</em>.</p>
+</div>
+<div class="section" id="process-porting-guide">
+<h2><span class="section-number">5.7.7. </span>Process Porting Guide<a class="headerlink" href="#process-porting-guide" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> only uses the process API to retrieve a unique ID for the
+applications.</p>
+<p>The following functions must be ported:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../doc/api_c/html/osapi__process_8h.html">OSAPI_Process_getpid</a></p></li>
+</ul>
+<p>Please refer to the <a class="reference external" href="../../../doc/api_c/html/osapi__process_8h.html">OSAPI_Process_getpid</a> API for definition of the
+behavior. The available source code contains implementation in the file
+<em>osapi/&lt;port&gt;/&lt;port&gt;Process.c</em>.</p>
+</div>
+<div class="section" id="system-porting-guide">
+<h2><span class="section-number">5.7.8. </span>System Porting Guide<a class="headerlink" href="#system-porting-guide" title="Permalink to this headline">¶</a></h2>
+<p>The system API consists of functions which are more related to the
+hardware on which <em>Connext Micro</em> is running than on the operating system. As of
+<em>Connext Micro</em> 2.3.1, the system API is implemented as an interface as opposed
+to the previous pure function implementation. This change makes it easier
+to adapt <em>Connext Micro</em> to different hardware platforms without having to write a
+new port.</p>
+<p>The system interface is defined in <a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI</a>, and a port must implement
+all the methods in this structure. In addition, the function
+<a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SystemClass.html">OSAPI_System_get_native_interface</a> must be implemented. This function
+must return the system interface for the port (called the native system
+interface).</p>
+<p>The semantics for the methods in the interface are exactly as defined
+by the corresponding system function. For example, the method
+OSAPI_SystemI::get_time must behave exactly as that described by
+<a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SystemClass.html">OSAPI_System_get_time</a>.</p>
+<p>The following system interface methods must be implemented in the
+<a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI</a> structure:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI::get_timer_resolution</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI::get_time</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI::start_timer</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI::stop_timer</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI::generate_uuid</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI::get_hostname</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI::initialize</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI::finalize</a></p></li>
+</ul>
+<p>Please refer to the <a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SystemClass.html">OSAPI_System</a> API for definition of the
+behavior. The available source code contains implementation in the file:
+<em>osapi/&lt;port&gt;/&lt;port&gt;System.c</em>.</p>
+<div class="section" id="migrating-a-2-2-x-port-to-2-3-x">
+<h3><span class="section-number">5.7.8.1. </span>Migrating a 2.2.x port to 2.3.x<a class="headerlink" href="#migrating-a-2-2-x-port-to-2-3-x" title="Permalink to this headline">¶</a></h3>
+<p>In <em>Connext Micro</em> 2.3.x, changes where made to how the system API is
+implemented. Because of these changes, existing ports must be updated, and
+this section describes how to make a <em>Connext Micro</em> 2.2.x port compatible with <em>Connext Micro</em>
+2.3.x.</p>
+<p>If you have ported <em>Connext Micro</em> 2.2.x the following steps will make it compatible
+with version 2.3.x:</p>
+<ul>
+<li><p>Rename the following functions and make them private to your
+source code. For example, rename OSAPI_System_get_time
+to OSAPI_MyPortSystem_get_time etc.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SystemClass.html">OSAPI_System_get_time</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SystemClass.html">OSAPI_System_get_timer_resolution</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SystemClass.html">OSAPI_System_start_timer</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SystemClass.html">OSAPI_System_stop_timer</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SystemClass.html">OSAPI_System_generate_uuid</a></p></li>
+</ul>
+</li>
+<li><p>Implement the following new methods.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI::get_hostname</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI::initialize</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI::finalize</a></p></li>
+</ul>
+</li>
+<li><p>Create a system structure for your port using the following
+template:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">struct</span> <span class="n">OSAPI_MyPortSystem</span>
+<span class="p">{</span>
+    <span class="n">struct</span> <span class="n">OSAPI_System</span> <span class="n">_parent</span><span class="p">;</span>
+
+    <span class="n">Your</span> <span class="n">system</span> <span class="n">variable</span>
+<span class="p">};</span>
+
+<span class="n">static</span> <span class="n">struct</span> <span class="n">OSAPI_MyPortSystem</span> <span class="n">OSAPI_System_g</span><span class="p">;</span>
+
+<span class="o">/*</span> <span class="n">OSAPI_System_gv_system</span> <span class="ow">is</span> <span class="n">a</span> <span class="k">global</span> <span class="n">system</span> <span class="n">variable</span> <span class="n">used</span> <span class="n">by</span> <span class="n">the</span>
+ <span class="o">*</span> <span class="n">generic</span> <span class="n">system</span> <span class="n">API</span><span class="o">.</span> <span class="n">Thus</span><span class="p">,</span> <span class="n">the</span> <span class="n">name</span> <span class="n">must</span> <span class="n">be</span> <span class="n">exactly</span> <span class="k">as</span>
+ <span class="o">*</span> <span class="n">shown</span> <span class="n">here</span><span class="o">.</span>
+ <span class="o">*/</span>
+<span class="n">struct</span> <span class="n">OSAPI_System</span> <span class="o">*</span> <span class="n">OSAPI_System_gv_system</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">OSAPI_System_g</span><span class="o">.</span><span class="n">_parent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Implement <a class="reference external" href="../../../doc/api_c/html/group__OSAPI__SystemClass.html">OSAPI_System_get_native_interface</a> method and fill
+the <a class="reference external" href="../../../doc/api_c/html/structOSAPI__SystemI.html">OSAPI_SystemI</a> structure with all the system methods.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="thread-porting-guide">
+<h2><span class="section-number">5.7.9. </span>Thread Porting Guide<a class="headerlink" href="#thread-porting-guide" title="Permalink to this headline">¶</a></h2>
+<p>The thread API is used by <em>Connext Micro</em> to create threads. Currently only the
+UDP transport uses threads and it is a goal to keep the generic <em>Connext Micro</em>
+core library free of threads. Thus, if <em>Connext Micro</em> is ported to an environment
+with no thread support, the thread API can be stubbed out. However, note that
+the UDP transport must be ported accordingly in this case; that is, all
+thread code must be removed and replaced with code appropriate for the
+environment.</p>
+<p>The following functions must be ported:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__ThreadClass.html">OSAPI_Thread_create</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/group__OSAPI__ThreadClass.html">OSAPI_Thread_sleep</a></p></li>
+</ul>
+<p>Please refer to the <a class="reference external" href="../../../doc/api_c/html/group__OSAPI__ThreadClass.html">OSAPI_Thread</a> API for definition of the
+behavior. The available source code contains implementation in the file
+<em>srcC/osapi/&lt;platform&gt;/Thread.c</em>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="port_validation.html" class="btn btn-neutral float-right" title="5.8. Port Validation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="autosar.html" class="btn btn-neutral float-left" title="5.6. Connext Micro on AUTOSAR" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

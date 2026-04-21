@@ -1,0 +1,216 @@
+##/* $Id$
+##
+##   (c) Copyright, Real-Time Innovations, Inc. 2001.  All rights reserved.
+##   No duplications, whole or partial, manual or electronic, may be made
+##   without prior written permission.  Any such copies, or
+##   revisions thereof, must display this notice unaltered.
+##   This code contains trade secrets of Real-Time Innovations, Inc.
+
+##modification history:
+##---------------------
+##06jul2020,fmt  created 
+##========================================================================
+#setNamespaceNames(false)
+#setDefaultVariables()
+#set ( $use_listener = false )
+#setVariableDiscoveryPluginName()
+#publisherSubscriberIncludesC()
+
+#subscriberFilterDeclarationsC()
+
+static DDS_Long
+${constructMap.nativeFQName}Subscriber_take_data(${constructMap.nativeFQName}DataReader *datareader)
+{
+    struct DDS_SampleInfoSeq info_seq = DDS_SEQUENCE_INITIALIZER;
+    struct ${constructMap.nativeFQName}Seq sample_seq = DDS_SEQUENCE_INITIALIZER;
+    struct DDS_SampleInfo *sample_info = NULL;
+    ${constructMap.nativeFQName} *sample;
+    DDS_ReturnCode_t retcode = DDS_RETCODE_ERROR;
+    DDS_Long read_samples = 0;
+    DDS_Long total_samples = 0;
+    DDS_Long i = 0;
+    DDS_Long max_samples = 10;
+
+    do
+    {
+        retcode = ${constructMap.nativeFQName}DataReader_take(
+                      datareader, &sample_seq, &info_seq,
+                      max_samples,DDS_NOT_READ_SAMPLE_STATE,
+                      DDS_ANY_VIEW_STATE, DDS_ANY_INSTANCE_STATE);
+        if (retcode == DDS_RETCODE_OK)
+        {
+            read_samples = DDS_SampleInfoSeq_get_length(&info_seq);
+            for (i = 0; i < read_samples; i++)
+            {
+                sample_info = DDS_SampleInfoSeq_get_reference(&info_seq, i);
+                if (sample_info->valid_data)
+                {
+                    #if(${constructMap.isMetpType})
+                    DDS_Boolean is_data_consistent = DDS_BOOLEAN_FALSE;
+                    #end
+                    sample = ${constructMap.nativeFQName}Seq_get_reference(&sample_seq, i);
+                    printf("\nSample received\n");
+                    #if(${constructMap.isMetpType})
+
+                    retcode = ${constructMap.nativeFQName}DataReader_is_data_consistent(
+                                  datareader,
+                                  &is_data_consistent,
+                                  sample,
+                                  sample_info);
+
+                    if (retcode == DDS_RETCODE_OK)
+                    {
+                        if (is_data_consistent)
+                        {
+                            printf("Sample is consistent\n");
+                            printf("Processing is valid\n");
+                            ++total_samples;
+                        }
+                        else
+                        {
+                            printf("Sample is NOT consistent\n");
+                        }
+                    }
+                    #else
+
+                    /* TODO read and process sample attributes here */
+                    (void)sample;
+
+                    ++total_samples;
+                    #end
+                }
+                else
+                {
+                    printf("\nSample received\n\tINVALID DATA\n");
+                }
+            }
+
+            retcode = ${constructMap.nativeFQName}DataReader_return_loan(
+                            datareader, &sample_seq, &info_seq);
+            if (retcode != DDS_RETCODE_OK)
+            {
+                printf("Error returning memory to DataReader\n");
+            }
+        }
+        else if (retcode != DDS_RETCODE_NO_DATA)
+        {
+            printf("Error while reading data!\n");
+            goto done;
+        }
+    } while (retcode == DDS_RETCODE_OK);
+
+    done:
+
+${envMap.POUND_CHAR}ifndef RTI_CERT
+    if (!${constructMap.nativeFQName}Seq_finalize(&sample_seq))
+    {
+        printf("Error finalizing sample sequence\n");
+    }
+    if (!DDS_SampleInfoSeq_finalize(&info_seq))
+    {
+        printf("Error finalizing sample-info sequence\n");
+    }
+
+    return total_samples;
+${envMap.POUND_CHAR}else
+    return;
+${envMap.POUND_CHAR}endif
+}
+
+static void
+${constructMap.nativeFQName}Subscriber_subscription_matched(
+    DDS_DataReader *reader)
+{
+    struct DDS_SubscriptionMatchedStatus status;
+    DDS_ReturnCode_t ret_code;
+
+    ret_code = DDS_DataReader_get_subscription_matched_status(reader, &status);
+
+    if (ret_code == DDS_RETCODE_OK)
+    {
+        if (status.current_count_change > 0)
+        {
+            printf("Matched a publisher\n");
+        }
+        else if (status.current_count_change < 0)
+        {
+            printf("Unmatched a publisher\n");
+        }
+    }
+    else
+    {
+        printf(
+            "DDS_DataReader_get_subscription_matched_status() returned error %d",
+            ret_code);
+    }
+}
+
+static void
+${constructMap.nativeFQName}Subscriber_wait_for_data(
+    struct Application* application,
+    DDS_DataReader *datareader,
+    DDS_WaitSet *waitset,
+    struct DDS_ConditionSeq *active_conditions,
+    DDS_Long *total_samples)
+{
+    struct DDS_Duration_t wait_timeout;
+    DDS_ReturnCode_t retcode = DDS_RETCODE_ERROR;
+
+    wait_timeout.sec = application->sleep_time / 1000;
+    wait_timeout.nanosec = (DDS_UnsignedLong)
+            ((application->sleep_time - wait_timeout.sec * 1000) * 1000 * 1000);
+
+    retcode = DDS_WaitSet_wait(waitset, active_conditions, &wait_timeout);
+
+    switch (retcode) {
+        case DDS_RETCODE_OK:
+        {
+             DDS_Long i;
+             DDS_StatusCondition *status_condition = DDS_Entity_get_statuscondition(
+                                                     (DDS_Entity *) datareader);
+
+             for (i = 0; i < DDS_ConditionSeq_get_length(active_conditions); ++i)
+             {
+                 if (*DDS_ConditionSeq_get_reference(active_conditions, i) ==
+                     (DDS_Condition *) status_condition)
+                 {
+                     DDS_StatusMask triggeredmask = DDS_Entity_get_status_changes(
+                                                       (DDS_Entity *) ${constructMap.nativeFQName}DataReader_narrow(datareader));
+
+                     if (triggeredmask & DDS_DATA_AVAILABLE_STATUS)
+                     {
+                         *total_samples += ${constructMap.nativeFQName}Subscriber_take_data(
+                                               ${constructMap.nativeFQName}DataReader_narrow(datareader));
+                     }
+                     if (triggeredmask & DDS_SUBSCRIPTION_MATCHED_STATUS)
+                     {
+                         ${constructMap.nativeFQName}Subscriber_subscription_matched(
+                             datareader);
+                     }
+                 }
+             }
+             break;
+        }
+        case DDS_RETCODE_TIMEOUT:
+        {
+            printf("WaitSet_wait timed out\n");
+            break;
+        }
+        default:
+        {
+            printf("ERROR in WaitSet_wait: retcode=%d\n", retcode);
+            break;
+        }
+    }
+}
+
+#declareFunctionSubscriberMainWArgsC()
+#subscriberMainWArgsPreCreateDataReaderC()
+#subscriberMainWArgsCreateDataReaderC()
+#subscriberMainWArgsApplicationEnableC()
+#subscriberMainWArgsWaitsetWaitForSamplesC()
+#subscriberMainWArgsDeleteWaitsetC()
+#subscriberMainWArgsDeleteApplicationC()
+#subscriberMainWArgsReturnC()
+
+#functionPublisherSubscriberMain(false, true)

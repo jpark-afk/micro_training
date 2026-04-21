@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.6. Connext Micro on AUTOSAR &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.7. Porting RTI Connext Micro" href="porting.html" />
+    <link rel="prev" title="5.5. Building the Connext Micro Source for ThreadX" href="threadx.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">4. User’s Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. Building and Porting Connext Micro</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="platforms.html">5.1. RTI Connext Micro Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">5.2. Building the Connext Micro Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qnx.html">5.3. Connext Micro for QNX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">5.4. Building the Connext Micro Source for FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threadx.html">5.5. Building the Connext Micro Source for ThreadX</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.6. Connext Micro on AUTOSAR</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">5.6.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autosar-configuration">5.6.2. AUTOSAR Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#properties">5.6.2.1. Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks">5.6.2.2. Tasks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#critical-sections">5.6.2.3. Critical Sections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tcp-ip-configuration">5.6.2.4. TCP/IP Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#events">5.6.2.5. Events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#semaphores">5.6.2.6. Semaphores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#memory">5.6.2.7. Memory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#autosar-port-details">5.6.3. AUTOSAR Port Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#logging">5.6.3.1. Logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#waitsets">5.6.3.2. WaitSets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#udp-automatic-configuration">5.6.3.3. UDP Automatic Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling">5.6.4. Compiling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#building-me-h-with-rtime-make">5.6.4.1. Building Connext Micro with rtime-make</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#importing-the-me-h-source-code">5.6.4.2. Importing the Connext Micro Source Code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interoperability">5.6.5. Interoperability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-applications">5.6.6. Compiling Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">5.7. Porting RTI Connext Micro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="port_validation.html">5.8. Port Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cert_compatibility.html">5.9. Building Connext Micro with compatibility for Connext Cert</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">8. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">5. </span>Building and Porting Connext Micro</a> &raquo;</li>
+        
+      <li><span class="section-number">5.6. </span>Connext Micro on AUTOSAR</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/building/autosar.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="me-h-on-autosar">
+<span id="building-autosar"></span><h1><span class="section-number">5.6. </span>Connext Micro on AUTOSAR<a class="headerlink" href="#me-h-on-autosar" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2><span class="section-number">5.6.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> includes support for AUTOSAR™ and enables <em>Connext Micro</em> applications to run on
+AUTOSAR systems. The support has been tested on the Infineon™ AURIX™ Application
+Kit TC397 TFT development board with Vector™ AUTOSAR implementation version 4.2.2
+and compiler TASKING™ v6.3r1.</p>
+<p>Note that <em>Connext Micro</em> requires the C-type “double” to be 64 bits. Any compiler option
+that treats a “double” as a “float” must not be enabled.</p>
+<p>This manual explains how to compile and configure <em>Connext Micro</em> to run on AUTOSAR systems and
+the AUTOSAR configuration needed by <em>Connext Micro</em>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#autosar-configuration">AUTOSAR Configuration</a></p></li>
+<li><p><a class="reference internal" href="#autosar-port-details">AUTOSAR Port Details</a></p></li>
+<li><p><a class="reference internal" href="#compiling">Compiling</a></p></li>
+<li><p><a class="reference internal" href="#interoperability">Interoperability</a></p></li>
+<li><p><a class="reference internal" href="#compiling-applications">Compiling Applications</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="autosar-configuration">
+<h2><span class="section-number">5.6.2. </span>AUTOSAR Configuration<a class="headerlink" href="#autosar-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="properties">
+<h3><span class="section-number">5.6.2.1. </span>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>
+<p>AUTOSAR port properties must be set before any call to a <em>Connext Micro</em> API. This is done
+by using <cite>OSAPI_System_get_property()</cite> followed by <cite>OSAPI_System_set_property()</cite>:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/* Example application with two areas in the heap */
+
+#define NUMBER_OF_HEAP_AREAS 2
+#define HEAP_AREA_1_SIZE 10*1024
+#define HEAP_AREA_2_SIZE 130*1024
+
+const RTI_PRIVATE uint32 heap_area_size[NUMBER_OF_HEAP_AREAS] =
+{
+    HEAP_AREA_1_SIZE,
+    HEAP_AREA_2_SIZE
+};
+
+RTI_PRIVATE char heap_area1[HEAP_AREA_1_SIZE];
+RTI_PRIVATE char heap_area2[HEAP_AREA_2_SIZE];
+
+RTI_PRIVATE char* const heap_area[NUMBER_OF_HEAP_AREAS] =
+{
+    heap_area1,
+    heap_area2
+};
+
+static Std_ReturnType
+Application_get_socket(
+    TcpIp_DomainType domain,
+    TcpIp_ProtocolType protocol,
+    P2VAR(TcpIp_SocketIdType, AUTOMATIC, TCPIP_APPL_DATA) socket_id)
+{
+    /* The name of this call depends on the SocketAdaptor name configured
+     * in the AUTOSAR project
+     */
+    return TcpIp_TcpIpSocketOwner_0GetSocket(domain, protocol, socket_id);
+}
+
+RTI_BOOL
+Application_set_system_properties(void)
+{
+    struct OSAPI_SystemProperty system_property;
+
+    if (!OSAPI_System_get_property(&amp;system_property))
+    {
+        printf(&quot;failed to get system properties\n&quot;);
+        return RTI_FALSE;
+    }
+
+    /* Task OSAPI_SystemAutosar_timer_task is configured to run every 10 ms */
+    system_property.port_property.timer_resolution_ms = 10;
+
+    system_property.port_property.number_of_heap_areas = NUMBER_OF_HEAP_AREAS;
+    system_property.port_property.heap_area_size = heap_area_size;
+    system_property.port_property.heap_area = heap_area;
+
+    /* Connext DDS Micro will use Resources as synchronization method */
+    system_property.port_property.sync_type = OSAPI_AUTOSAR_SYNCKIND_RESOURCES;
+    system_property.port_property.first_resource_id = RTIME_Resource01;
+    system_property.port_property.last_resource_id = RTIME_Resource26;
+    #if RTIME_AUTOSAR_SPINLOCK_ENABLED
+    system_property.port_property.spinlock_id = 0;
+    #endif /* RTI_CERT */
+
+    system_property.port_property.semaphore_max_count = 2;
+    system_property.port_property.first_give_event = RTIME_Semaphore_Give_Event;
+    system_property.port_property.first_timeout_event = RTIME_Semaphore_Timeout_Event;
+    system_property.port_property.first_alarm = RTIME_Semaphore_Alarm;
+
+    system_property.port_property.use_socket_owner = TRUE;
+    system_property.port_property.max_receive_sockets = 2;
+    system_property.port_property.number_of_rcv_buffers = 0;
+    system_property.port_property.rcv_buffer_size = 0;
+    system_property.port_property.get_socket = Application_get_socket;
+    system_property.port_property.send_data = NULL;
+    system_property.port_property.max_local_addr_id = 0;
+
+    system_property.port_property.use_udp_thread = FALSE;
+    system_property.port_property.udp_receive_task_id = 0;
+    system_property.port_property.udp_packet_received_event = 0;
+
+    if (!OSAPI_System_set_property(&amp;system_property))
+    {
+        printf(&quot;failed to set system properties\n&quot;);
+        return RTI_FALSE;
+    }
+
+    return RTI_TRUE;
+}
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="tasks">
+<h3><span class="section-number">5.6.2.2. </span>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="micro-timer-task">
+<h4><span class="section-number">5.6.2.2.1. </span>Micro Timer Task<a class="headerlink" href="#micro-timer-task" title="Permalink to this headline">¶</a></h4>
+<p><em>Connext Micro</em> uses a timer task, which manages all the <em>Connext Micro</em> timers, such as deadline
+and liveliness timers. This task must be started before the first call to
+DDS_DomainParticipantFactory_get_instance(). This task must be run at a
+constant period, e.g., every 10 ms. Note that the priority of this task
+must be set based on the required system behavior.</p>
+<p>It is important that the port properties are configured with the value of
+<cite>OSAPI_PortProperty::timer_resolution_ms</cite> equal to the Timer Task period.</p>
+<p>This task needs at least 5 KB stack. The name of this task is
+<cite>OSAPI_SystemAutosar_timer_task</cite>. The task implementation can be found in
+the file autosarSystem.c.</p>
+</div>
+<div class="section" id="micro-udp-task">
+<h4><span class="section-number">5.6.2.2.2. </span>Micro UDP Task<a class="headerlink" href="#micro-udp-task" title="Permalink to this headline">¶</a></h4>
+<p><em>Connext Micro</em> provides a callback function that must be called when a UDP packet is
+received. These callback functions are <cite>NETIO_Autosar_TcpIp_udp_rx_indication()</cite>
+and <cite>NETIO_Autosar_TcpIp_pdu_callout()</cite>. It is very important that one of these
+functions is called for the on-packet reception. Typically
+<cite>NETIO_Autosar_TcpIp_udp_rx_indication()</cite> is called when a SocketOwner is
+configured in the AUTOSAR configuration and <cite>NETIO_Autosar_TcpIp_pdu_callout()</cite>
+is typically used when SocketOwner is not configured in the AUTOSAR
+configuration.</p>
+<p>It is important that the port properties are configured with a correct value in
+<cite>OSAPI_PortProperty::use_socket_owner</cite>. Set this field to TRUE only if
+you have configured SocketOwner in the AUTOSAR TcpIp configuration.</p>
+<p>When <em>Connext Micro</em> receives an on-packet reception notification, the packet can be
+processed in the notification callback or in a different task. If
+<cite>OSAPI_PortProperty::use_udp_thread</cite> is set to TRUE, the packet is copied to
+an internal buffer, the “UDP Packet received event” is set, and the packet
+will be processed in a different task. Otherwise the packet is
+processed immediately.</p>
+<p>The configuration of the <cite>OSAPI_PortProperty::use_udp_thread</cite>,
+<cite>OSAPI_PortProperty::udp_receive_task_id</cite> and
+<cite>OSAPI_PortProperty::udp_packet_received_event</cite> is the responsibility of the
+application.</p>
+<p><em>Connext Micro</em> <strong>requires</strong> one semaphore to be configured for the UDP Task if
+<cite>OSAPI_PortProperty::use_udp_thread</cite> is TRUE. This semaphore is used to
+temporarily suspend the UDP Task from a best-effort DDS DataReader
+if the DDS DataReader is unable to process new samples; this can happen
+if the DataReader is out of resources when samples have already been
+received by the network stack.</p>
+<p>This semaphore <strong>must</strong> use the first <cite>OSAPI_PortProperty::first_give_event</cite>,
+<cite>OSAPI_PortProperty::first_timeout_event</cite>, and
+<cite>OSAPI_PortProperty::first_alarm</cite>. Please refer to <a class="reference internal" href="#semaphores">Semaphores</a> for details
+for how to configure semaphores.</p>
+<p>Normally a UDP packet can be processed in the notification callback if
+the function <cite>OSAPI_Autosar_TcIp_udp_rx_indication()</cite> or
+<cite>NETIO_Autosar_TcpIp_pdu_callout()</cite> is called from another task. The
+UDP task is normally only needed in case
+<cite>OSAPI_Autosar_TcIp_udp_rx_indication()</cite> or <cite>NETIO_Autosar_TcpIp_pdu_callout()</cite>
+is called from an ISR.</p>
+<p>This task should be started only once. Note that this is not a periodic task
+and the task never completes.</p>
+<p>The UDP task waits for a “UDP Packet received event.” When this event is
+received, the task reads the packet from the internal buffer, processes it
+and waits again for the event.</p>
+<p>This task must have at least 5 KB stack and must be configured as
+an extended task (only extended tasks can wait for an event).</p>
+<p>The priority of this task must be assigned based on system requirements.</p>
+<p>The name of this task is <cite>NETIO_Autosar_udp_receive_task</cite> and the
+task implementation can be found in the file autosarSocket.c.</p>
+<p>The task configuration must include all necessary references to the event
+used to notify a UDP packet reception.</p>
+</div>
+<div class="section" id="application-task">
+<h4><span class="section-number">5.6.2.2.3. </span>Application Task<a class="headerlink" href="#application-task" title="Permalink to this headline">¶</a></h4>
+<p>The application task defines the DDS entities required by the application.</p>
+<p>If any of these tasks are distributed across different cores of the system,
+the system integrator <strong>must</strong> disable caching for the shared memory between the tasks.</p>
+</div>
+</div>
+<div class="section" id="critical-sections">
+<h3><span class="section-number">5.6.2.3. </span>Critical Sections<a class="headerlink" href="#critical-sections" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> can be configured to use different synchronization methods to protect
+critical sections. These critical sections synchronize access to
+objects shared among the different tasks (Timer task, UDP task,
+and user tasks).</p>
+<p>First, configure the <cite>OSAPI_PortProperty::sync_type</cite> in the AUTOSAR port
+properties. For example, if <em>Connext Micro</em> is configured with tasks running on
+different cores, a <cite>Spinlock</cite> must be used.</p>
+<p>The supported methods, and how to configure <em>Connext Micro</em> to use them, are
+described below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#resources">Resources</a></p></li>
+<li><p><a class="reference internal" href="#spinlock">Spinlock</a></p></li>
+</ul>
+<p>For a cert build, the only synchronization method supported is <a class="reference internal" href="#resources">Resources</a>.</p>
+<div class="section" id="resources">
+<h4><span class="section-number">5.6.2.3.1. </span>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h4>
+<p>With this synchronization method, <em>Connext Micro</em> uses AUTOSAR resources to protect
+critical sections.</p>
+<p>Only use this configuration if <em>Connext Micro</em> will be executed from one core.</p>
+<p>All AUTOSAR resources used by <em>Connext Micro</em> must have consecutive IDs. Configure
+<cite>OSAPI_PortProperty::first_resource_id</cite> and
+<cite>OSAPI_PortProperty::last_resource_id</cite> with the “ID” of the first and last
+resource used by <em>Connext Micro</em>.</p>
+<p>The number of resources needed depends on the number of DataWriter and
+DataReader objects that are created, the discovery plugin that is used,
+the <a class="reference internal" href="#autosar-configuration">AUTOSAR Configuration</a> and the build configuration (whether the Log
+Module is excluded or not).</p>
+<p>The following APIs and modules use one or more resources to protect critical
+sections:</p>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 51%" />
+<col style="width: 49%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>API</p></th>
+<th class="head"><p>Number of resources needed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AUTOSAR</span> <span class="pre">OSAPI</span> <span class="pre">Heap</span> <span class="pre">module</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AUTOSAR</span> <span class="pre">OSAPI</span> <span class="pre">Mutex</span> <span class="pre">module</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AUTOSAR</span> <span class="pre">NETIO</span> <span class="pre">UDP</span> <span class="pre">module</span></code></p></td>
+<td><p>1 or 2. If the UDP task is used, by setting
+<cite>OSAPI_PortProperty::use_udp_thread</cite> to TRUE, one
+additional resource is needed to synchronize socket
+internal buffers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DPDE</span> <span class="pre">discovery</span> <span class="pre">plugin</span></code></p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DPSE</span> <span class="pre">discovery</span> <span class="pre">plugin</span></code></p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantFactory_get_instance()</span></code></p></td>
+<td><p>4 or 5. If the Log module is included in the
+compilation one additional resource is needed.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantFactory_create_participant()</span></code></p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipant_create_topic()</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipant_create_publisher()</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipant_create_subscriber()</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_Publisher_create_datawriter()</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_Publisher_create_datareader()</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_WaitSet_new()</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>A basic <em>Connext Micro</em> application using the DPDE discovery plugin and one
+<cite>DataWriter</cite> uses 24 resources:</p>
+<table class="colwidths-auto docutils align-default" id="id2">
+<caption><span class="caption-number">Table 5.1 </span><span class="caption-text">Basic application using DPDE discovery plugin</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>API</p></th>
+<th class="head"><p>Number of resources needed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AUTOSAR</span> <span class="pre">OSAPI</span> <span class="pre">Heap</span> <span class="pre">module</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AUTOSAR</span> <span class="pre">OSAPI</span> <span class="pre">Mutex</span> <span class="pre">module</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AUTOSAR</span> <span class="pre">NETIO</span> <span class="pre">UDP</span> <span class="pre">module</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DPDE</span> <span class="pre">discovery</span> <span class="pre">plugin</span></code></p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantFactory_get_instance()</span></code></p></td>
+<td><p>5 (Log module included in the compilation)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantFactory_create_participant()</span></code></p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipant_create_topic()</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipant_create_publisher()</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_Publisher_create_datawriter()</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>A basic <em>Connext Micro</em> application using DPSE discovery plugin and one
+<cite>DataWriter</cite> uses 18 resources:</p>
+<table class="colwidths-auto docutils align-default" id="id3">
+<caption><span class="caption-number">Table 5.2 </span><span class="caption-text">Basic application using DPSE discovery plugin</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>API</p></th>
+<th class="head"><p>Number of resources needed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AUTOSAR</span> <span class="pre">OSAPI</span> <span class="pre">Heap</span> <span class="pre">module</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AUTOSAR</span> <span class="pre">OSAPI</span> <span class="pre">Mutex</span> <span class="pre">module</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AUTOSAR</span> <span class="pre">NETIO</span> <span class="pre">UDP</span> <span class="pre">module</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DPSE</span> <span class="pre">discovery</span> <span class="pre">plugin</span></code></p></td>
+<td><p>5 (Log module included in the compilation)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantFactory_get_instance()</span></code></p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantFactory_create_participant()</span></code></p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipant_create_topic()</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipant_create_publisher()</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_Publisher_create_datawriter()</span></code></p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>To configure <em>Connext Micro</em> to use the resources to protect critical sections, set
+<cite>OSAPI_PortProperty::sync_type equal</cite> to
+<cite>OSAPI_Autosar_SyncKind_T::OSAPI_AUTOSAR_SYNCKIND_RESOURCES</cite>.</p>
+<p>The AUTOSAR configuration must link these resources to the tasks or ISRs that will
+interact with them.</p>
+</div>
+<div class="section" id="spinlock">
+<h4><span class="section-number">5.6.2.3.2. </span>Spinlock<a class="headerlink" href="#spinlock" title="Permalink to this headline">¶</a></h4>
+<p>When the <cite>spinlock</cite> synchronization method is used, <em>Connext Micro</em> uses an OSEK spinlock
+to protect critical sections.</p>
+<p>Only use this configuration if <em>Connext Micro</em> will be used from more than one core.</p>
+<p>To configure <em>Connext Micro</em> to use spinlock to protect critical sections set
+<cite>OSAPI_PortProperty::sync_type</cite> equal to
+<cite>OSAPI_Autosar_SyncKind_T::OSAPI_AUTOSAR_SYNCKIND_SPINLOCK.</cite></p>
+</div>
+</div>
+<div class="section" id="tcp-ip-configuration">
+<h3><span class="section-number">5.6.2.4. </span>TCP/IP Configuration<a class="headerlink" href="#tcp-ip-configuration" title="Permalink to this headline">¶</a></h3>
+<p>A CDD socket owner can be optionally used. Set
+<cite>OSAPI_PortProperty::use_socket_owner</cite> to TRUE only if a SocketOwner
+is configured in the AUTOSAR TcpIp configuration. If a SocketOwner
+is used, a pointer to the <cite>TcpIp_&lt;Up&gt;GetSocket</cite> must be configured in
+<cite>OSAPI_PortProperty::get_socket</cite>. If a SocketOwner is not used, a pointer
+to a function which can send data must be configured in
+<cite>OSAPI_PortProperty::send_data</cite>.</p>
+<p>Depending on the DDS discovery configuration, a maximum of 3 UDP sockets are
+needed for each participant created.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>1 socket is required for receiving unicast discovery data.</p></li>
+<li><p>1 socket is required for receiving unicast user data.</p></li>
+<li><p>1 socket is required for sending data.</p></li>
+</ul>
+</div></blockquote>
+<p>It depends on the discovery configuration as it can be reduced to just 2 sockets
+if the discovery and user data are received in the same shared UDP port. This can
+be achieved by modifying the port offsets in RtpsWellKnownPorts_t as described
+in <a class="reference internal" href="../release/release_notes_2412.html#micro-1901"><span class="std std-ref">Shared UDP port for discovery and user-data in a DomainParticipant</span></a>.</p>
+<p>All function declarations needed to configure the SocketOwner can be found
+in the file osapi_os_autosar.h and are:</p>
+<ul class="simple">
+<li><p><cite>NETIO_Autosar_TcpIp_pdu_callout()</cite></p></li>
+<li><p><cite>NETIO_Autosar_TcpIp_udp_rx_indication()</cite></p></li>
+</ul>
+<p>It is very important that the on-packet reception function
+<cite>OSAPI_Autosar_TcIp_udp_rx_indication()</cite> or <cite>NETIO_Autosar_TcpIp_pdu_callout()</cite>
+is called. If there is an OS configuration error, this function might not be
+called.</p>
+<p>The property <cite>OSAPI_PortProperty::max_local_addr_id</cite> expects the maximum
+local address id configured in the TcpIp Basic Software Module. The Autosar
+port uses this information to locate the local addresses that are used for
+DDS communications.</p>
+<p>It is possible to configure <em>Connext Micro</em> to not use a SocketOwnwer. If a SocketOwner
+is not used, it is important to configure AUTOSAR such that one of the functions
+<cite>OSAPI_Autosar_TcIp_udp_rx_indication()</cite> or <cite>NETIO_Autosar_TcpIp_pdu_callout()</cite>
+is called when a UDP packet is received.</p>
+<p>It is very important that the TCP/IP interface is running and an IP address is
+assigned before a DomainParticipant is created, otherwise the DomainParticipant
+creation might fail because sockets cannot be created.</p>
+</div>
+<div class="section" id="events">
+<h3><span class="section-number">5.6.2.5. </span>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h3>
+<p>Depending on the configuration, only one event might be used. One event is
+required by the UDP receive callback to notify the UDP receive task
+that a UDP packet is available.</p>
+<p>The ID of this event can be configured in
+<cite>OSAPI_PortProperty::udp_packet_received_event</cite>.</p>
+<p>This event is only needed if <cite>OSAPI_PortProperty::use_udp_thread</cite>
+is set to TRUE. Please refer to <a class="reference internal" href="#micro-udp-task">Micro UDP Task</a> for details.</p>
+<p>DDS WaitSets require more events; please refer to <a class="reference internal" href="#semaphores">Semaphores</a> for
+details.</p>
+</div>
+<div class="section" id="semaphores">
+<h3><span class="section-number">5.6.2.6. </span>Semaphores<a class="headerlink" href="#semaphores" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> uses semaphores to create WaitSets and to support blocking the
+UDP receive task if <cite>OSAPI_PortProperty::use_udp_thread</cite> is TRUE.
+OSEK and AUTOSAR do not define any semaphore objects. For this reason,
+semaphores are implemented using events and alarms. For each semaphore,
+two events and one alarm must be added to the AUTOSAR configuration.</p>
+<p>If <cite>OSAPI_PortProperty::use_udp_thread</cite> is TRUE, one semaphore is needed.
+This semaphore must use the first event and alarm IDs, and these
+IDs <strong>must</strong> be assigned to the UDP Task. Please refer to <a class="reference internal" href="#micro-udp-task">Micro UDP Task</a>
+for details.</p>
+<p>For each WaitSet, two semaphores are needed.</p>
+<p><cite>WaitSet.wait()</cite> can be called only from the task that created the WaitSet.</p>
+<p>If WaitSets are not used, or if <cite>OSAPI_PortProperty::use_udp_thread</cite> is FALSE,
+you do not need to allocate any resources or alarms for semaphores. In this
+case set the following properties to 0:</p>
+<ul class="simple">
+<li><p><cite>OSAPI_PortProperty::semaphore_max_count</cite></p></li>
+<li><p><cite>OSAPI_PortProperty::first_give_event</cite></p></li>
+<li><p><cite>OSAPI_PortProperty::first_timeout_event</cite></p></li>
+<li><p><cite>OSAPI_PortProperty::first_alarm</cite></p></li>
+</ul>
+<p>The semaphore implementation uses two events and one alarm for each
+semaphore that is created (a total of four events and two alarms are needed
+for each WaitSet).</p>
+<p>One event, the <cite>give</cite> event, is set in the <cite>OSAPI_Semaphore_give()</cite> method.
+The other event, the timeout event, is used to signal a timeout in
+the semaphore. The alarm must be configured to set the give event.
+The <cite>OSAPI_Semaphore_take()</cite> method starts the alarm and waits for either
+of the two events to occur.</p>
+<p>Give events must have consecutive event IDs, starting at
+<cite>OSAPI_PortProperty::first_give_event</cite> (e.g., 1, 2, 4).
+Timeout events must have consecutive event IDs starting at
+<cite>OSAPI_PortProperty::first_timeout_event</cite> (e.g., 8, 16, 32). Alarms must
+have consecutive IDs starting at <cite>OSAPI_PortProperty::first_alarm</cite>
+(e.g., 1, 2, 3). So an alarm with ID 1 must set timeout event 8;
+alarm ID 2 must set timeout event 16, and so on.</p>
+<p>The alarm for semaphore implementation must be configured as ‘RELATIVE’.
+The counter used to trigger the alarm must be configured with one tick per
+millisecond. If this is not done properly, the semaphore timeout will occur
+sooner or later than expected.</p>
+</div>
+<div class="section" id="memory">
+<h3><span class="section-number">5.6.2.7. </span>Memory<a class="headerlink" href="#memory" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> uses a buffer for all its memory allocations. The buffer can span
+across several non-adjacent areas. The number of areas can be configured
+in <cite>OSAPI_PortProperty::number_of_heap_areas</cite>. The size required for this
+buffer depends on the number of DDS entities created and their QoS. The
+size of each area can be configured in <cite>OSAPI_PortProperty::heap_area_size</cite>.
+The start address for each of the areas can be configured in
+<cite>OSAPI_PortProperty::heap_area</cite>.</p>
+<p>This buffer location and size can be modified, but it
+is recommended to use a buffer of at least 100 KB.</p>
+<p>All allocations within <em>Connext Micro</em> are protected by a critical section. For more
+information see <a class="reference internal" href="#critical-sections">Critical Sections</a>.</p>
+</div>
+</div>
+<div class="section" id="autosar-port-details">
+<h2><span class="section-number">5.6.3. </span>AUTOSAR Port Details<a class="headerlink" href="#autosar-port-details" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="logging">
+<h3><span class="section-number">5.6.3.1. </span>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> can optionally use the AUTOSAR Det module:</p>
+<ul class="simple">
+<li><p>Set the right log verbosity in <em>Connext Micro</em> by calling <cite>OSAPI_Log_set_verbosity()</cite>.
+The default verbosity is <cite>OSAPI_LOG_VERBOSITY_ERROR</cite>.</p></li>
+<li><p>Set the AUTOSAR log display handler by calling
+<cite>OSAPI_Log_set_display_handler(OSAPI_AutosarLog_default_display, NULL)</cite>.
+The file osapi_autosar.h contains the declaration of the function
+<cite>OSAPI_AutosarLog_default_display()</cite>.</p></li>
+<li><p><em>Connext Micro</em> calls <cite>Det_ReportError()</cite> with the module ID <cite>RTIME_DDS_MODULE_ID</cite>
+and the instance ID <cite>RTIME_DDS_INSTANCE_ID</cite>. These can be found in file
+osapi_os_autosar.h.</p></li>
+</ul>
+<p><em>Connext Micro</em> logging can be disabled by adding the following options when compiling
+with CMake:</p>
+<ul class="simple">
+<li><p>-DRTIME_OSAPI_ENABLE_LOG=Exclude (when compiling on a Windows system,
+replace the symbol = with <cite>_eq_</cite>).</p></li>
+</ul>
+<p>If the <em>Connext Micro</em> sources are not compiled with CMake, logging can be disabled by
+adding the compiler flags <cite>OSAPI_ENABLE_TRACE=0</cite> and <cite>OSAPI_ENABLE_LOG=0</cite>.</p>
+<p>The function used to write logs can be configured using the macro
+<cite>OSAPI_LOG_WRITE_BUFFER</cite> in the file osapi_os_autosar.h. The default value
+for this macro is <cite>printf()</cite>, which on some platforms will write on the
+serial port. This can be useful for debugging purposes, but it can be slow,
+causing tasks to have longer execution times than allowed. If this is the
+case, it is recommended that you disable logging or use a different
+function by calling <cite>OSAPI_AutosarLog_default_display()</cite>.</p>
+</div>
+<div class="section" id="waitsets">
+<h3><span class="section-number">5.6.3.2. </span>WaitSets<a class="headerlink" href="#waitsets" title="Permalink to this headline">¶</a></h3>
+<p>For each WaitSet that will be created, you need to adjust the configuration
+to have two semaphores. The semaphore implementation needs two events
+and one alarm.</p>
+<p>A WaitSet wait operation can only be called from the task that created
+the WaitSet.</p>
+<p>Note that events cannot be set for a task that is in the suspended state.
+As semaphore implementation is based on events, the task that reads all
+received samples must be running before any sample is received.</p>
+</div>
+<div class="section" id="udp-automatic-configuration">
+<h3><span class="section-number">5.6.3.3. </span>UDP Automatic Configuration<a class="headerlink" href="#udp-automatic-configuration" title="Permalink to this headline">¶</a></h3>
+<p>UDP automatic configuration is not currently supported. See the
+HelloWorld_static_dpde example to learn how to statically configure
+the UDP transport.</p>
+</div>
+</div>
+<div class="section" id="compiling">
+<h2><span class="section-number">5.6.4. </span>Compiling<a class="headerlink" href="#compiling" title="Permalink to this headline">¶</a></h2>
+<p>This section explains how to build the <em>Connext Micro</em> source-code for AUTOSAR.</p>
+<div class="section" id="building-me-h-with-rtime-make">
+<h3><span class="section-number">5.6.4.1. </span>Building Connext Micro with rtime-make<a class="headerlink" href="#building-me-h-with-rtime-make" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Connext Micro</em> source bundle includes a bash (on Linux and macOS systems) or BAT
+(on Windows systems) script to simplify the invocation of <cite>cmake</cite> called
+<em>rtime-make</em>. These scripts provide a convenient way to invoke <cite>cmake</cite> with
+the correct options.</p>
+<p>On Linux and macOS systems, the script is located in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span>
+</pre></div>
+</div>
+<p>On Windows systems, the script is located in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource</span>\<span class="n">scripts</span>\<span class="n">rtime</span><span class="o">-</span><span class="n">make</span>
+</pre></div>
+</div>
+<p>The following environment variables are needed to compile for an
+Elektrobit or Vector implementation:</p>
+<ul class="simple">
+<li><p>OSEK_TOOLCHAIN_PATH and RTIME_TASKING_PATH : Path to the toolchain used to compile.
+E.g., TASKING install folder.</p></li>
+<li><p>OSEK_PATH : Path to the AUTOSAR implementation installation.</p></li>
+</ul>
+<p>To compile <em>Connext Micro</em> libraries for a Vector AUTOSAR implementation, set the
+environment variables as follows:</p>
+<ul class="simple">
+<li><p>OSEK_TOOLCHAIN_PATH and RTIME_TASKING_PATH : /c/TASKING/TriCorev6.3r1</p></li>
+<li><p>OSEK_PATH : /c/Vector/&lt;SIP&gt;</p></li>
+</ul>
+<p>To compile <em>Connext Micro</em> libraries for an Elektrobit AUTOSAR implementation,
+set the environment variables as:</p>
+<ul class="simple">
+<li><p>OSEK_TOOLCHAIN_PATH and RTIME_TASKING_PATH : /c/TASKING/TriCorev6.2r2</p></li>
+<li><p>OSEK_PATH : /c/eb</p></li>
+</ul>
+<p>To compile <em>Connext Micro</em> libraries for a Mentor™ implementation, set the
+variables as:</p>
+<ul class="simple">
+<li><p>OSEK_TOOLCHAIN_PATH and RTIME_TASKING_PATH : /c/TASKING/TriCorev6.2r2</p></li>
+<li><p>OSEK_PATH : /c/AUTOSAR</p></li>
+</ul>
+<p><cite>cmake</cite> toolchain files are included to compile <em>Connext Micro</em> for Elektrobit, Vector and
+Mentor AUTOSAR implementations. The following are example commands to build AUTOSAR
+libraries:</p>
+<ul>
+<li><p>Libraries for Vector Microsar using a Windows prompt and a Ninja generator:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span><span class="o">&gt;/</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span> <span class="o">--</span><span class="n">target</span> <span class="n">Autosar</span> <span class="o">--</span><span class="n">name</span> <span class="n">tc39xtMICROSAR4Tasking6</span><span class="mf">.3</span><span class="n">r1</span> <span class="o">--</span><span class="n">build</span> <span class="o">--</span><span class="n">config</span> <span class="n">Debug</span> <span class="o">-</span><span class="n">G</span> <span class="s2">&quot;Ninja&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Libraries for Elektrobit using a Windows prompt and Unix Makefile generator
+(that uses Tasking mktc.exe as the make program):</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span><span class="o">&gt;/</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span> <span class="o">--</span><span class="n">target</span> <span class="n">Autosar</span> <span class="o">--</span><span class="n">name</span> <span class="n">tc29xtOsekCoreTasking6</span><span class="mf">.2</span><span class="n">r2</span> <span class="o">--</span><span class="n">build</span> <span class="o">--</span><span class="n">config</span> <span class="n">Debug</span> <span class="o">-</span><span class="n">G</span> <span class="s2">&quot;Unix Makefiles&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Libraries for Elektrobit using a Windows prompt and a Ninja generator:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span><span class="o">&gt;/</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span> <span class="o">--</span><span class="n">target</span> <span class="n">Autosar</span> <span class="o">--</span><span class="n">name</span> <span class="n">tc29xtOsekCoreTasking6</span><span class="mf">.2</span><span class="n">r2</span> <span class="o">--</span><span class="n">build</span> <span class="o">--</span><span class="n">config</span> <span class="n">Debug</span> <span class="o">-</span><span class="n">G</span> <span class="s2">&quot;Ninja&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Libraries for Mentor using MSys and a Unix Makefile generator:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span><span class="o">&gt;/</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span> <span class="o">--</span><span class="n">target</span> <span class="n">Autosar</span> <span class="o">--</span><span class="n">name</span> <span class="n">tc29xtVSTARTasking6</span><span class="mf">.2</span><span class="n">r2</span> <span class="o">--</span><span class="n">build</span> <span class="o">--</span><span class="n">config</span> <span class="n">Debug</span> <span class="o">-</span><span class="n">G</span> <span class="s2">&quot;Unix Makefiles&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="importing-the-me-h-source-code">
+<h3><span class="section-number">5.6.4.2. </span>Importing the Connext Micro Source Code<a class="headerlink" href="#importing-the-me-h-source-code" title="Permalink to this headline">¶</a></h3>
+<p>Read the general rules for importing the <em>Connext Micro</em> source code in <a class="reference internal" href="building.html#building-micro"><span class="std std-ref">Building the Connext Micro Source</span></a>.</p>
+<p>To build the AUTOSAR port, either define <cite>-D__autosar__</cite> or:</p>
+<ul class="simple">
+<li><p>-DOSAPI_OS_DEF_H=”osapi_os_autosar.h”</p></li>
+<li><p>-DOSAPI_CC_DEF_H=”osapi_cc_autosar.h”</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="interoperability">
+<h2><span class="section-number">5.6.5. </span>Interoperability<a class="headerlink" href="#interoperability" title="Permalink to this headline">¶</a></h2>
+<p>The <em>Connext Micro</em> AUTOSAR port does not have any additional restrictions regarding
+interoperability. The same interoperability considerations as for other
+ports apply to the AUTOSAR port. For more information, please refer to
+<a class="reference internal" href="../usersmanual/micro_core.html#section-micro-and-core"><span class="std std-ref">Working with RTI Connext Micro and RTI Connext</span></a>.</p>
+</div>
+<div class="section" id="compiling-applications">
+<h2><span class="section-number">5.6.6. </span>Compiling Applications<a class="headerlink" href="#compiling-applications" title="Permalink to this headline">¶</a></h2>
+<p>When compiling applications for this platform, please note the following
+in addition to the information in <a class="reference internal" href="../installation/environment.html#build-environment"><span class="std std-ref">Setting Up Your Environment</span></a>:</p>
+<ul class="simple">
+<li><p>The type-support code generated with <code class="docutils literal notranslate"><span class="pre">rtiddsgen</span></code> must
+be compiled with the Tasking compiler option <em>–integer-enumeration</em></p></li>
+<li><p>If using Tasking v6.2r2 or Tasking v6.2r2p1, do <strong>not</strong> compile with
+-O3. This optimization level may introduce errors. This has been fixed in
+Tasking v6.2r2p2 and later.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">double</span></code> type <strong>must</strong> be compiled with doubles as <strong>8 bytes</strong>. That is,
+do <strong>not</strong> use the Tasking compiler option to treat <code class="docutils literal notranslate"><span class="pre">doubles</span></code> as <code class="docutils literal notranslate"><span class="pre">floats</span></code>.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="porting.html" class="btn btn-neutral float-right" title="5.7. Porting RTI Connext Micro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="threadx.html" class="btn btn-neutral float-left" title="5.5. Building the Connext Micro Source for ThreadX" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

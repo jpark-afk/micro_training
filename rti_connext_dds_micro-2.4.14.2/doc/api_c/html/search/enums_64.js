@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['dds_5fdatareaderresourcelimitsinstancereplacementkind',['DDS_DataReaderResourceLimitsInstanceReplacementKind',['../group__DDSDataReaderResourceLimitsQosModule.html#gaf9e17bc2037d1bcb2f100526364afe14',1,'dds_c_infrastructure.h']]],
+  ['dds_5fdestinationorderqospolicykind',['DDS_DestinationOrderQosPolicyKind',['../group__DestinationOrderQosPolicyModule.html#ga8f1c0c2b179c6281aa9e92d5ea88cbfe',1,'dds_c_infrastructure.h']]],
+  ['dds_5fdurabilityqospolicykind',['DDS_DurabilityQosPolicyKind',['../group__DurabilityQosPolicyModule.html#ga4bc6b72c72928cb9ed6432e3e6a83e2e',1,'dds_c_infrastructure.h']]],
+  ['dds_5fentitykind_5ft',['DDS_EntityKind_t',['../dds__c__infrastructure_8h.html#a942a5ab2fd1acc2b36190e45802ba0ea',1,'dds_c_infrastructure.h']]],
+  ['dds_5fhistoryqospolicykind',['DDS_HistoryQosPolicyKind',['../group__DDSHistoryQosModule.html#ga96c54dadb2beb87b23776e766e282185',1,'dds_c_infrastructure.h']]],
+  ['dds_5finstancestatekind',['DDS_InstanceStateKind',['../group__DDSInstanceStateModule.html#gaf2264cae1aa8cd66490debfdc5e0c360',1,'dds_c_subscription.h']]],
+  ['dds_5flivelinessqospolicykind',['DDS_LivelinessQosPolicyKind',['../group__DDSLivelinessQosModule.html#ga3ea638553fd66356c38071040de062e5',1,'dds_c_infrastructure.h']]],
+  ['dds_5fownershipqospolicykind',['DDS_OwnershipQosPolicyKind',['../group__DDSOwnershipQosModule.html#gaa88100c64a26cc036cb2eb2d631c3f43',1,'dds_c_infrastructure.h']]],
+  ['dds_5fpresentationqospolicyaccessscopekind',['DDS_PresentationQosPolicyAccessScopeKind',['../group__DDSPresentationQosModule.html#ga123d979f855f637f32eb525b778175b2',1,'dds_c_infrastructure.h']]],
+  ['dds_5fqospolicyid_5ft',['DDS_QosPolicyId_t',['../group__DDSQosTypesModule.html#ga4b2c4d85475a58758fba7601082a40f8',1,'dds_c_infrastructure.h']]],
+  ['dds_5freliabilityqospolicykind',['DDS_ReliabilityQosPolicyKind',['../group__DDSReliabilityQosModule.html#gaf09e82d431c2328186c7fb4b3fa9ad91',1,'dds_c_infrastructure.h']]],
+  ['dds_5freturncode_5ft',['DDS_ReturnCode_t',['../group__DDSReturnTypesModule.html#ga73f148aaf96b5f6f9fc630b7cfeb0c91',1,'dds_c_infrastructure.h']]],
+  ['dds_5fsampleloststatuskind',['DDS_SampleLostStatusKind',['../group__DDSReaderModule.html#gad50b30818f1c22476283f3dd114a1834',1,'dds_c_subscription.h']]],
+  ['dds_5fsamplerejectedstatuskind',['DDS_SampleRejectedStatusKind',['../group__DDSReaderModule.html#ga08df559babd09ceefcd351b2cb6876f1',1,'dds_c_subscription.h']]],
+  ['dds_5fsamplestatekind',['DDS_SampleStateKind',['../group__DDSSampleStateModule.html#gadb6d36e7c796da27519b6bf7f8f187e5',1,'dds_c_subscription.h']]],
+  ['dds_5fstatuskind',['DDS_StatusKind',['../group__DDSStatusTypesModule.html#gaa99b5585ecdf8c5f93ac3108439ad26f',1,'dds_c_infrastructure.h']]],
+  ['dds_5fviewstatekind',['DDS_ViewStateKind',['../group__DDSViewStateModule.html#gab7a8a4ae44a2c00f411a4461135b45f1',1,'dds_c_subscription.h']]]
+];

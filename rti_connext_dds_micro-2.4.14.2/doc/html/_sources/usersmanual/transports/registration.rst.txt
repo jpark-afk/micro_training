@@ -1,0 +1,73 @@
+.. _DiscoveryQos: ../../../api_c/html/structDDS__DiscoveryQosPolicy.html
+.. _UserTrafficQos: ../../../api_c/html/structDDS__UserTrafficQosPolicy.html
+.. _TransportQoS: ../../../api_c/html/structDDS__TransportQosPolicy.html
+
+Transport Registration
+----------------------
+
+|rti_me| supports different transports and transports must be registered with
+|rti_me| before they can be used. A transport must be given a name when it is
+registered and this name is later used when configuring discovery and
+user-traffic. A transport name cannot exceed 7 UTF-8 characters.
+
+The following example registers the UDP transport with |rti_me| and makes
+it available to all DDS applications within the same memory space. Please
+note that each DDS applications creates its *own* instance of a transport.
+Resources are *not* shared between instances of a transport unless stated.
+
+For example, to register two UDP transports with the names myudp1 and myudp2, 
+the following code is required:
+
+::
+
+    DDS_DomainParticipantFactory *factory;
+    RT_Registry_T *registry;
+    struct UDP_InterfaceFactoryProperty udp_property;
+
+    factory = DDS_DomainParticipantFactory_get_instance();
+    registry = DDS_DomainParticipantFactory_get_registry(factory);
+
+    /* Set UDP properties */
+    if (!RT_Registry_register(registry,"myudp1",
+                              UDP_InterfaceFactory_get_interface(),
+                              &udp_property._parent._parent,NULL))
+    {
+        return error;
+    }
+
+    /* Set UDP properties */
+    if (!RT_Registry_register(registry,"myudp2",
+                              UDP_InterfaceFactory_get_interface(),
+                              &udp_property._parent._parent,NULL))
+    {
+        return error;
+    }
+
+Before a DomainParticipant can make use of a registered transport, it must 
+enable it for use within the DomainParticipant. This is done by setting
+the TransportQoS_. For example, to enable only myudp1, the following
+code is required (error checking is not shown for clarity):
+
+::
+
+    DDS_StringSeq_set_maximum(&dp_qos.transports.enabled_transports,1);
+    DDS_StringSeq_set_length(&dp_qos.transports.enabled_transports,1);
+    *DDS_StringSeq_get_reference(&dp_qos.transports.enabled_transports,0) =
+                                                     REDA_String_dup("myudp1");
+
+
+To enable both transports:
+
+::
+
+    DDS_StringSeq_set_maximum(&dp_qos.transports.enabled_transports,2);
+    DDS_StringSeq_set_length(&dp_qos.transports.enabled_transports,2);
+    *DDS_StringSeq_get_reference(&dp_qos.transports.enabled_transports,0) =
+                                                     REDA_String_dup("myudp1");
+    *DDS_StringSeq_get_reference(&dp_qos.transports.enabled_transports,1) =
+                                                     REDA_String_dup("myudp2");
+
+Before enabled transports may be used for communication in |me|, they must be
+registered and added to the DiscoveryQos_ and UserTrafficQos_ policies. 
+Please see the section on :doc:`../discovery` for details. 
+

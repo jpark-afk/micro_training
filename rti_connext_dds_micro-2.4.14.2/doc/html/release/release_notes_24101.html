@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.4.11. What’s New in 2.4.10.1 &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.4.13. What’s New in 2.4.10" href="release_notes_2410.html" />
+    <link rel="prev" title="8.4.9. What’s New in 2.4.10.4" href="release_notes_24104.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">4. User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building/index.html">5. Building and Porting Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="supported_platforms.html">8.1. Supported Platforms and Programming Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24142.html">8.2. What’s New in 2.4.14.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24142.html#what-s-fixed-in-2-4-14-2">8.3. What’s Fixed in 2.4.14.2</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="previous_release.html">8.4. Previous Releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24141.html">8.4.1. What’s New in 2.4.14.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24141.html#what-s-fixed-in-2-4-14-1">8.4.2. What’s Fixed in 2.4.14.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2414.html">8.4.3. What’s New in 2.4.14</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2414.html#what-s-fixed-in-2-4-14">8.4.4. What’s Fixed in 2.4.14</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2412.html">8.4.5. What’s New in 2.4.12</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2412.html#what-s-fixed-in-2-4-12">8.4.6. What’s Fixed in 2.4.12</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2411.html">8.4.7. What’s New in 2.4.11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2411.html#what-s-fixed-in-2-4-11">8.4.8. What’s Fixed in 2.4.11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24104.html">8.4.9. What’s New in 2.4.10.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24104.html#what-s-fixed-in-2-4-10-4">8.4.10. What’s Fixed in 2.4.10.4</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">8.4.11. What’s New in 2.4.10.1</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#udp-transformations">8.4.11.1. UDP Transformations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-fixed-in-2-4-10-1">8.4.12. What’s Fixed in 2.4.10.1</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#race-condition-when-log-buffer-is-full-and-a-custom-log-handler-is-installed">8.4.12.1. Race Condition when Log Buffer is Full and a Custom Log-handler is Installed</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2410.html">8.4.13. What’s New in 2.4.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2410.html#what-s-fixed-in-2-4-10">8.4.14. What’s Fixed in 2.4.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_249.html">8.4.15. What’s New in 2.4.9</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_249.html#what-s-fixed-in-2-4-9">8.4.16. What’s Fixed in 2.4.9</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_248.html">8.4.17. What’s New in 2.4.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_248.html#what-s-fixed-in-2-4-8">8.4.18. What’s Fixed in 2.4.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_247.html">8.4.19. What’s New in 2.4.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_247.html#what-s-fixed-in-2-4-7">8.4.20. What’s Fixed in 2.4.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_246.html">8.4.21. What’s New in 2.4.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_246.html#what-s-fixed-in-2-4-6">8.4.22. What’s Fixed in 2.4.6</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="known_issues.html">8.5. Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">8. </span>Release Notes</a> &raquo;</li>
+        
+          <li><a href="previous_release.html"><span class="section-number">8.4. </span>Previous Releases</a> &raquo;</li>
+        
+      <li><span class="section-number">8.4.11. </span>What’s New in 2.4.10.1</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/release/release_notes_24101.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="what-s-new-in-2-4-10-1">
+<h1><span class="section-number">8.4.11. </span>What’s New in 2.4.10.1<a class="headerlink" href="#what-s-new-in-2-4-10-1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="udp-transformations">
+<h2><span class="section-number">8.4.11.1. </span>UDP Transformations<a class="headerlink" href="#udp-transformations" title="Permalink to this headline">¶</a></h2>
+<p>This release includes UDP Transformations which enables regular UDP sockets
+to be used with custom payload transformations. Please refer to
+ref UserManuals_UDPTransform for details. The UDP Transformation feature
+is enabled by default in this release. However, future releases may disable
+the feature by default. Thus, it is advised to always compile with the UDP
+Transformation feature enabled (-DRTIME_UDP_ENABLE_TRANSFORMS=1 to cmake).</p>
+<p>NOTE: In the the EAR for 2.4.10.1 the default behavior was to allow both
+plain UDP and transformed UDP traffic when transformations was compiled in.
+This has changed. The default is to disable regular UDP. In order to support
+it the transform_udp_mode must be set to UDP_TRANSFORM_UDP_MODE_ENABLED.
+Since this may change in future release it is advised to always set the
+correct mode of operation.</p>
+</div>
+</div>
+<div class="section" id="what-s-fixed-in-2-4-10-1">
+<h1><span class="section-number">8.4.12. </span>What’s Fixed in 2.4.10.1<a class="headerlink" href="#what-s-fixed-in-2-4-10-1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="race-condition-when-log-buffer-is-full-and-a-custom-log-handler-is-installed">
+<h2><span class="section-number">8.4.12.1. </span>Race Condition when Log Buffer is Full and a Custom Log-handler is Installed<a class="headerlink" href="#race-condition-when-log-buffer-is-full-and-a-custom-log-handler-is-installed" title="Permalink to this headline">¶</a></h2>
+<p>A race condition existed when a custom log handler was installed and the log
+buffer was full. A temporary message was created to hold the minimum log data
+and when the custom log handler was called it was possible that a new log entry
+was added while the custom log handler parsed the temporary message.</p>
+<p>This has been fixed in this version.</p>
+<p>[RTI Issue ID MICRO-1641]</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="release_notes_2410.html" class="btn btn-neutral float-right" title="8.4.13. What’s New in 2.4.10" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="release_notes_24104.html" class="btn btn-neutral float-left" title="8.4.9. What’s New in 2.4.10.4" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

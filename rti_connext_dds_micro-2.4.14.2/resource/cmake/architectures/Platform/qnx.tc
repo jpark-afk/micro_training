@@ -1,0 +1,33 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2016
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may2016 tk Written
+################################################################################
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/platform.tc)
+
+SET(PLATFORM_LIBS m socket)
+SET(_RTIME_OSAPI_PLATFORM posix)
+
+IF (${TARGET_HELP})
+    MESSAGE("PLATFORM NOTES\n")
+    MESSAGE(" For QNX (RTIME_TARGET_NAME includes QNX) the ")
+    MESSAGE(" following libraries are included:")
+    MESSAGE(" - ${PLATFORM_LIBS}")
+    MESSAGE("\n")
+ENDIF()
+
+SET(_RTIME_OSAPI_PLATFORM posix)
+SET(_RTIME_OSAPI_ENABLE_STRICT_POSIX TRUE)
+

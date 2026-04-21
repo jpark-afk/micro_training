@@ -1,0 +1,57 @@
+What's New in 2.4.8
+===================
+
+2.4.8 is a maintenance release with no new features.
+
+
+What's Fixed in 2.4.8
+=====================
+
+Consistent support for assignment operator in C++
+-------------------------------------------------
+
+The assignment operator for the DDS Qos, Qos policy and Status structures were 
+not consistently supported. This has been fixed in this release as follows:
+
+- All QoS structures support the default generated C++ assignment operator.
+ 
+- All QoS policy structures support the default generated C++ assignment operator.
+ 
+- All Status structures support the default generated C++ assignment operator. 
+
+In addition, all QoS structures support the == and != operators.
+
+[RTI Issue ID MICRO-1541]
+
+
+DPSE API renamed to avoid conflict with assert()
+------------------------------------------------
+
+The DPSE C++ API had methods called assert. However, this conflicts with the
+C assert() macro. This has been fixed in this release by updating the DPSE C++
+API to be inline with the C API. The new API is:
+
+::
+
+    class DDSCPPDllExport DPSEDiscoveryPlugin
+    {
+    public:
+      static DDS_ReturnCode_t
+      RemoteParticipant_assert(DDSDomainParticipant *const participant,
+                               const char *rem_participant_name);
+    
+      static DDS_ReturnCode_t
+      RemotePublication_assert(DDSDomainParticipant * const participant,
+                               const char *const rem_participant_name,
+                               const struct DDS_PublicationBuiltinTopicData *const data,
+                               NDDS_TypePluginKeyKind key_kind);
+    
+      static DDS_ReturnCode_t
+      RemoteSubscription_assert(DDSDomainParticipant * const participant,
+                                const char *const rem_participant_name,
+                                const struct DDS_SubscriptionBuiltinTopicData *const data,
+                                NDDS_TypePluginKeyKind key_kind);
+    };
+
+
+[RTI Issue ID MICRO-1539]

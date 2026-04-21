@@ -1,0 +1,229 @@
+.. _section-micro_and_core:
+
+Working with |rti_me_h| and |rti_core_h|
+========================================
+
+In some cases, it may be necessary to write an application that is
+compiled against both |rti_me_micro|, |rti_me_cert|, and
+|rti_core|. In general this is not easy to do because |rti_me_micro|
+and |rti_me_cert| supports a very limited set of features compared to
+|rti_core|. However, while |rti_me_cert| is subset of |rti_me_micro|,
+it is relatively easy to write applications that support both.
+
+Due to the nature of the DDS API and the philosophy of declaring
+behavior through QoS profiles instead of using different APIs, it may be
+possible to share common code. In particular, |rti_core| supports configuration
+through QoS profile files, which eases the job of writing portable code.
+
+Please refer to :doc:`../introduction` for an overview of features and what
+is supported by |rti_me|. Note that |rti_core| supports many extended
+APIs that are not covered by the DDS specification, for example APIs
+that create DDS entities based on QoS profiles.
+
+Development Environment
+-----------------------
+
+There are no conflicts between |rti_me| and |rti_core| with respect to library
+names, header files, etc. It is advisable to keep the two installations
+separate, which is the normal case.
+
+|rti_me| uses the environment variable RTIMEHOME to locate the root of the
+|rti_me| installation.
+
+|rti_core| uses the environment variable NDDSHOME to locate the root of the
+|rti_core| installation.
+
+Non-standard APIs
+-----------------
+
+The DDS specification omits many APIs and policies necessary to configure
+a DDS application, such as transport, discovery, memory, logging, etc. In
+general, |rti_me| and |rti_core| do not share APIs for these functions.
+
+It is recommended to configure |rti_core| using QoS profiles as much as 
+possible.
+
+QoS Policies
+------------
+
+QoS policies defined by the DDS standard behave the same between |rti_me|
+and |rti_core|. However, note that |rti_me| does not always support all
+the values for a policy and in particular unlimited resources are not
+supported.
+
+Unsupported QoS policies are the most likely reason for not being able to
+switch between |rti_me| and |rti_core|.
+
+Standard APIs
+-------------
+
+APIs that are defined by the standard behave the same between |rti_me| 
+and |rti_core|.
+
+IDL Files
+---------
+
+|rti_me| and |rti_core| use the same IDL compiler (rtiddsgen) and |rti_me|
+typically ships with the latest version. However, |rti_me| and |rti_core|
+use different templates to generate code and it is not possible to share
+the generated code. Thus, while the same IDL can be used, the generated
+output must be saved in different locations.
+
+.. _section-interoperability:
+
+Interoperability
+----------------
+
+In general, |rti_me| and |rti_core| are wire interoperable, unless noted 
+otherwise.
+
+Discovery
+.........
+
+When trying to establish communication between an |rti_me| application 
+that uses the Dynamic Participant / Static Endpoint (DPSE) discovery 
+module and an RTI product based on |rti_core|, every participant in the 
+DDS system must be configured with a unique participant name. While the 
+static discovery functionality provided by |rti_core| allows participants 
+on different hosts to share the same name, |rti_me| requires every 
+participant to have a different name to help keep the complexity of 
+its implementation suitable for smaller targets.
+
+Also, |core| *DataWriters* that are configured to send compressed data will not
+match with |me| *DataReaders*, since |me| does not support sending or receiving 
+compressed data. See :link_external_community_doc_pro_um:`DATA_REPRESENTATION QosPolicy in the Core Libraries User's Manual <users_manual/DATAREPRESENTATION_Qos.htm>`
+for more information on the |core| compression feature.
+
+Transports
+..........
+
+When interoperating with |core_pro|, |me| must specify at least one 
+unicast transport for each *DataWriter* and *DataReader*, either from 
+:link_connextmicro_dds_api_c_up_one:`DDS_DomainParticipantQos::transports <structDDS__DomainParticipantQos.html>` 
+or the endpoint :link_connextmicro_dds_api_c_up_one:`DDS_DataReaderQos::transport <structDDS__DataReaderQos.html>` 
+and :link_connextmicro_dds_api_c_up_one:`DDS_DataWriterQos::transport <structDDS__DataWriterQos.html>`, 
+as it expects to use the unicast transport's RTPS port mapping to determine 
+automatic participant IDs if needed. This also affects |me| itself, 
+where participant IDs must be set manually if only multicast transports 
+are enabled.
+
+Also, when interoperating with |core_pro|, only one multicast transport 
+can be specified per *DataReader* of |me|.
+
+|core_h| Tools
+--------------
+
+In general, |me| is compatible with RTI tools and other products. The 
+following sections provide additional information for each product.
+
+Admin Console
+.............
+
+Admin Console can discover and display |rti_me| applications that use full
+dynamic discovery (DPDE). When using static discovery (DPSE), it is required
+to use the Limited Bandwidth Endpoint Discovery (LBED) that is available as a
+separate product for |rti_core|. With the library a configuration
+file with the discovery configuration must be provided (just as in
+the case for products such as Routing Service, etc.). This is provided
+through the QoS XML file.
+
+Data can be visualized from |me| *DataWriters*. Keep in mind that |me|
+does not currently distribute type information and the type information has
+to be provided through an XML file using the "Create Subscription" dialog.
+Unlike some other products, this information cannot be provided through the
+QoS XML file. To provide the data types to Admin Console, first run the code
+generator with the ``-convertToXml`` option:
+
+::
+
+    rtiddsgen -convertToXml <file>
+
+Then click on the “Load Data Types from XML file” hyperlink in the
+"Create Subscription" dialog and add the generated IDL file.
+
+Other Features Supported:
+
+- Match analysis is supported.
+- Discovery-based QoS are shown.
+
+The following resource limits in |rti_me| must be incremented as follows when
+using Admin Console:
+
+- Add 24 to DDS_DomainParticipantResourceLimitsQosPolicy::remote_reader_allocation
+- Add 24 to DDS_DomainParticipantResourceLimitsQosPolicy::remote_writer_allocation
+- Add 1  to DDS_DomainParticipantResourceLimitsQosPolic::remote_participant_allocation
+- Add 1  to DDS_DomainParticipantResourceLimitsQosPolicy::remote_participant_allocation if data-visualization is used
+
+|me| does not currently support any administration capabilities or services,
+and does not match with the Admin Console *DataReaders* and *DataWriters*.
+However, if matching *DataReaders* and *DataWriters* are created, e.g., by the
+application, the following resource must be updated:
+
+- Add 48 to DDS_DomainParticipantResourceLimitsQosPolicy::matching_writer_reader_pair_allocation
+
+Distributed Logger
+..................
+
+This product is not supported by |rti_me|.
+
+LabVIEW
+.......
+
+The LabVIEW toolkit uses |rti_core|, and it must be configured as any other
+|rti_core| application. A possible option is to use the builtin |rti_core|
+profile: BuiltinQosLib::Generic.ConnextMicroCompatibility.
+
+Monitor
+.......
+
+This product is not supported by |rti_me|.
+
+Recording Service
+.................
+
+RTI Recorder
+^^^^^^^^^^^^
+
+RTI Recorder is compatible with |rti_me| in the following ways:
+
+- If static endpoint discovery is used, Recorder is compatible starting
+  with version 5.1.0.3 and onwards.
+- If dynamic endpoint discovery is used (not supported by |me_cert|),
+  Recorder is compatible with |rti_me| the same way it is with any
+  other DDS application.
+- In both cases, type information has to be provided via XML. Read
+  :link_external_community_kb:`Recording Data with RTI Connext Micro <recording-topics-rti-connext-dds-micro-applications-rti-recording-service>` for more information.
+
+RTI Replay
+^^^^^^^^^^
+
+RTI Replay is compatible with |rti_me| in the following ways:
+
+- If static endpoint discovery is used, Replay is compatible starting with
+  version 5.1.0.3 and onwards.
+- If dynamic endpoint discovery is used (not supported by |me_cert|),
+  Replay is compatible with |rti_me| the same way it is with any other
+  DDS application.
+- In both cases, type information has to be provided via XML. Read
+  :link_external_community_kb:`Recording Data with RTI Connext Micro <recording-topics-rti-connext-dds-micro-applications-rti-recording-service>`
+  for more information on how to convert from IDL to XML.
+
+RTI Converter
+^^^^^^^^^^^^^
+
+Databases recorded with |rti_me| contains no type information in the
+DCPSPublication table, but the type information can be provided via XML. Read
+:link_external_community_kb:`Recording Data with RTI Connext Micro <recording-topics-rti-connext-dds-micro-applications-rti-recording-service>`
+for more information on how to convert from IDL to XML.
+
+Wireshark
+.........
+
+Wireshark fully supports |rti_me|.
+
+
+Persistence Service
+...................
+
+|rti_me| only supports VOLATILE and TRANSIENT_LOCAL durability and does not
+support the use of Persistence Service.

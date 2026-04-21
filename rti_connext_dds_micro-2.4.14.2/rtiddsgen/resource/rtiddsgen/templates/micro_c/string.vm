@@ -1,0 +1,238 @@
+##/* $Id$
+##
+##   (c) Copyright, Real-Time Innovations, Inc. 2001-2020.  All rights reserved.
+##   No duplications, whole or partial, manual or electronic, may be made
+##   without prior written permission.  Any such copies, or
+##   revisions thereof, must display this notice unaltered.
+##   This code contains trade secrets of Real-Time Innovations, Inc.
+
+#* --------------------------------------------------- *#
+#* --------------------------------------------------- *#
+#* This file contains macros used for CDR String       *#
+#* --------------------------------------------------- *#
+
+#macro(assignStringMemberVariables $member)
+#*--*##set($member.nativeTypeSeqFQName="CDR_StringSeq")
+#*--*##set($member.typeEnum="CDR_CHAR_TYPE")
+#*--*##set($member.elementSize="CDR_CHAR_SIZE")
+#*--*##set($member.elementInitMethod="CDR_String_initialize")
+#*--*##set($member.elementCopyMethod="CDR_String_copy")
+#*--*##set($member.sequenceInitMethod="CDR_StringSeq_initialize")
+#*--*##set($member.sequenceFinalizeMethod="CDR_StringSeq_finalize")
+#*--*##set($member.sequenceSetMaxMethod="CDR_StringSeq_set_maximum")
+#*--*##set($member.sequenceCopyMethod="CDR_StringSeq_copy")
+#*--*##set($member.finalizeMethod="CDR_String_finalize")
+#*--*##set($member.elementSerializeMethod="CDR_Stream_serialize_string")
+#*--*##set($member.elementDeserializeMethod="CDR_Stream_deserialize_string")
+#*--*##set($member.elementSizeMethod="CDR_get_max_size_serialized_string")
+#end
+
+#macro(initializeString $member)
+    if (!${member.elementInitMethod}(
+#*--*##if(!$member.name.equals(""))
+            ${member.sampleRef}${member.name},
+#*--*##else
+            ${member.samplePoint},
+#*--*##end
+            (${member.strSize})))
+    {
+        return RTI_FALSE;
+    }
+#end
+
+#macro(copyString $member)
+    if (!${member.elementCopyMethod}(
+#*--*##if(!$member.name.equals(""))
+            ${member.dstRef}${member.name}, ${member.srcRef}${member.name},
+#*--*##else
+            dst, src,
+#*--*##end
+            (${member.strSize})))
+    {
+        return RTI_FALSE;
+    }
+#end
+
+#macro(initializeStringSeq $member)
+    if (!${member.sequenceInitMethod}(
+#*--*##if(!$member.name.equals(""))
+            ${member.sampleRef}${member.name}#if($member.dimensionList)[i]#end))
+#*--*##else
+            &(*${member.samplePoint})#if($member.dimensionList)[i]#end))
+#*--*##end
+    {
+            return RTI_FALSE;
+    }
+    if (!${member.sequenceSetMaxMethod}(
+#*--*##if(!$member.name.equals(""))
+            ${member.sampleRef}${member.name}#if($member.dimensionList)[i]#end,
+#*--*##else
+            &(*${member.samplePoint})#if($member.dimensionList)[i]#end,
+#*--*##end
+            ($member.seqSize),
+            (${member.strSize})))
+    {
+        return RTI_FALSE;
+    }
+#end
+
+#macro(copyStringSequence $member)
+    if (!${member.sequenceCopyMethod}(
+#*--*##if(!$member.name.equals(""))
+            ${member.dstRef}${member.name}#if($member.dimensionList)[i]#end,
+            ${member.srcRef}${member.name}#if($member.dimensionList)[i]#end,
+#*--*##else
+            #if($member.dimensionList)&(*dst)[i], &(*src)[i]#else dst, src#end,
+#*--*##end
+            (${member.strSize})))
+    {
+        return RTI_FALSE;
+    }
+#end
+
+#macro(initializeStringArray $member)
+    if (!CDR_StringArray_initialize(
+#*--*##if($member.name.equals(""))
+            (*sample),
+#*--*##else
+            ${member.samplePoint}${member.name},
+#*--*##end
+            #addDimensionMultiplication($member),
+            (${member.strSize}),
+            ${member.typeEnum}))
+    {
+            return RTI_FALSE;
+    }
+#end
+
+#macro(finalizeStringArray $member)
+    CDR_StringArray_finalize(
+#*--*##if($member.name.equals(""))
+            (*sample),
+#*--*##else
+            ${member.samplePoint}${member.name},
+#*--*##end
+            #addDimensionMultiplication($member),
+            ${member.typeEnum});
+#end
+
+#macro(copyStringArray $member)
+    if (!CDR_StringArray_copy(
+#*--*##if(!$member.name.equals(""))
+            ${member.dstSample}${member.name},${member.srcSample}${member.name},
+#*--*##else
+            (*dst), (*src),
+#*--*##end
+            #addDimensionMultiplication($member),
+            ($member.strSize) + 1 ,
+            ${member.typeEnum}))
+    {
+        return RTI_FALSE;
+    }
+#end
+
+#macro(serializeString $member)
+    if (!${member.elementSerializeMethod}(
+            stream,
+#*--*##if(!$member.name.equals(""))
+            ${member.samplePoint}${member.name},
+#*--*##else
+            *${member.samplePoint},
+#*--*##end
+            (${member.strSize})))
+    {
+        return RTI_FALSE;
+    }
+#end
+
+#macro(serializeStringArray $member)
+    if (!CDR_Stream_serialize_string_array(
+            stream,
+#*--*##if(!$member.name.equals(""))
+            (void*) ${member.samplePoint}${member.name},
+#*--*##else
+            (void*) *${member.samplePoint},
+#*--*##end
+            #addDimensionMultiplication($member),
+            (${member.strSize}),
+            ${member.typeEnum}))
+    {
+        return RTI_FALSE;
+    }
+#end
+
+#macro(serializeStringSeq $member)
+    if (!CDR_Stream_serialize_string_sequence(
+            stream,
+#*--*##if(!$member.name.equals(""))
+#*----*##if($member.dimensionList)
+            (const struct REDA_Sequence*) ${member.sampleRef}${member.name}[i],
+#*----*##else
+            (const struct REDA_Sequence*) ${member.sampleRef}${member.name},
+#*----*##end
+#*--*##else
+#*----*##if($member.dimensionList)
+            (const struct REDA_Sequence*) ${member.samplePoint}[i],
+#*----*##else
+            (const struct REDA_Sequence*) ${member.samplePoint},
+#*----*##end
+#*--*##end
+            ($member.strSize),
+            ${member.typeEnum}))
+    {
+        return RTI_FALSE;
+    }
+#end
+
+#macro(deserializeString $member)
+    if (!${member.elementDeserializeMethod}(
+            stream,
+#*--*##if(!$member.name.equals(""))
+            ${member.samplePoint}${member.name},
+#*--*##else
+            *${member.samplePoint},
+#*--*##end
+            (${member.strSize})))
+    {
+        return RTI_FALSE;
+    }
+#end
+
+#macro(deserializeStringArray $member)
+    if (!CDR_Stream_deserialize_string_array(
+            stream,
+#*--*##if(!$member.name.equals(""))
+            (void*) ${member.samplePoint}${member.name},
+#*--*##else
+            (void*) *${member.samplePoint},
+#*--*##end
+            #addDimensionMultiplication($member),
+            (${member.strSize}),
+            ${member.typeEnum}))
+    {
+        return RTI_FALSE;
+    }
+#end
+
+#macro(deserializeStringSeq $member)
+    if (!CDR_Stream_deserialize_string_sequence(
+            stream,
+#*--*##if(!$member.name.equals(""))
+#*----*##if($member.dimensionList)
+            (struct REDA_Sequence*) ${member.sampleRef}${member.name}[i],
+#*----*##else
+            (struct REDA_Sequence*) ${member.sampleRef}${member.name},
+#*----*##end
+#*--*##else
+#*----*##if($member.dimensionList)
+            (struct REDA_Sequence*) ${member.samplePoint}[i],
+#*----*##else
+            (struct REDA_Sequence*) ${member.samplePoint},
+#*----*##end
+#*--*##end
+            (${member.strSize}),
+            ${member.typeEnum}))
+    {
+        return RTI_FALSE;
+    }
+#end

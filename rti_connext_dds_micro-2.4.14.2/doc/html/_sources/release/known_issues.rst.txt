@@ -1,0 +1,71 @@
+﻿.. _rl_known_issues_v2:
+
+Known Issues
+============
+
+AUTOSAR ErrorHook may create CPU overhead
+.........................................
+
+If enabled during configuration, the AUTOSAR OS Hook ``ErrorHook`` may be 
+called if |me| tries to cancel an alarm that has already been signaled. 
+There is no known workaround for this issue.
+
+[RTI Issue ID MICRO-5367]
+
+Failure to interoperate with other DDS implementations if default multicast locator specified
+.............................................................................................
+
+|me| does not interoperate with other DDS implementations when the 
+default multicast locator is specified.
+
+As a workaround, you can specify the multicast addresses on the 
+endpoints instead of the participants.
+
+[RTI Issue ID MICRO-5148]
+
+Maximum number of components limited to 58
+...........................................
+
+The maximum number of components that can be registered is limited to 58. 
+
+Endpoint discovery requires unique object IDs across all remote endpoints
+.........................................................................
+
+When using static endpoint discovery (DPSE), RTI Connext Micro
+requires that the object_id for statically
+asserted remote endpoints must be unique across all remote endpoints,
+as opposed to just between remote endpoints within the same participant.
+Note, this restriction was incorrectly documented as removed in version 2.4.1.
+
+Compiler warnings on VxWorks
+............................
+
+When compiling for VxWorks 6.9 with the -Wconversion flag there are compiler
+warnings of the type:
+
+::
+
+    warning: conversion to 'DDS_Boolean' from 'int' may alter its value
+
+
+These compiler warnings seem to be an issue with GCC for VxWorks and
+can be ignored. The problem is that returning a value from a expression 
+seems to always be treated as an unbounded int as opposed to an int with 
+a value of 0 or 1 as the C standard dictates.
+
+OSAPI does not always detect endianess
+......................................
+
+osapi_cc_stdc.h detects the CPU endianness by checking GCC predefined
+macros, such as __BYTE_ORDER__. However, some versions of GCC does not 
+set these macros, for example GCC for VxWorks. If osapi_cc_stdc.h 
+does not find any of the flags, it incorrectly sets the CPU to little endian.
+
+In this case it is *important* that *one* of the following preprocessor
+macros are defined: 
+
+- RTI_ENDIAN_BIG The CPU is big-endian
+- RTI_ENDIAN_LITTLE The CPU is little-endian
+
+NOTE: The VxWorks cmake toolchain file from RTI set these based on 
+CPU type in the target name (--name option).

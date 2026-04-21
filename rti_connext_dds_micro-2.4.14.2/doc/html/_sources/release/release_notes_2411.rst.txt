@@ -1,0 +1,330 @@
+What's New in 2.4.11
+====================
+
+Support for ThreadX/NetX 
+------------------------
+Support for the ThreadX operating system, version 5.7, and the NetX TCP/IP 
+network stack, version 5.9.
+
+Batching (reception only)
+-------------------------
+Batching reception. Please refer to the new user's manual 
+UserManuals_Batching for details.
+
+UDP Transformations 
+-------------------
+
+Please refer to the new user's manual \ref UserManuals_UDPTransform for details.
+
+.. MICRO-1805
+
+Optionally exclude builtin UDP Transport from compilation
+---------------------------------------------------------
+
+Setting the flag -DRTIME_UDP_EXCLUDE_BUILTIN=1 excludes the UDP transport from 
+being built. This setting can be useful if communication is done using only 
+shared memory, INTRA, or a custom UDP transport.
+
+.. MICRO-1800 
+
+Publication handle of DataWriter now provided upon DataReaderListener sample loss
+---------------------------------------------------------------------------------
+When the DDS_DataReaderListener's on_sample_lost event is triggered, the returned  
+DDS_SampleLostStatus.sample_info now contains the publication_handle of the 
+DataWriter that originally wrote the lost sample(s).
+
+.. MICRO-1747 
+
+DataWriters offer TOPIC presentation
+------------------------------------
+|me| DataWriters now offer the DDS_TOPIC_PRESENTATION_QOS 
+presentation (when coherent_access = FALSE).
+This presentation is compatible with any reader using DDS_TOPIC_PRESENTATION_QOS 
+and DDS_INSTANCE_PRESENTATION_QOS, when ordered_access = TRUE and 
+ordered_access = FALSE.
+
+Micro readers will remain unchanged and will only support 
+DDS_INSTANCE_PRESENTATION_QOS when ordered_access = FALSE.
+
+
+.. MICRO-1630 
+
+New warning if a configured UDP transport does not have any interface
+---------------------------------------------------------------------
+A warning in logs has been added to notify you when a configured UDP transport 
+does not have any interface. This condition normally indicates a wrong UDP 
+configuration, which might result in discovery and/or communication failure.
+
+What's Fixed in 2.4.11
+======================
+
+MICRO-1814 Incorrect thread ID returned for VxWorks RTP 
+-------------------------------------------------------
+The function OSAPI_Thread_self() when called by a VxWorks Real-Time Process (RTP) 
+always returned the (process) ID of the RTP, even for tasks spawned by the RTP.  
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1814] 
+
+NULL listener and non-empty status mask not allowed for C++ DataReader
+----------------------------------------------------------------------
+A C++ DataReader was incorrectly not allowed to be created with a NULL 
+DataReaderListener and a non-empty status mask (i.e., not DDS_STATUS_MASK_NONE).
+
+[RTI Issue ID MICRO-1807]
+
+
+accept_unknown_peers did not work when Shared Memory transport was enabled in RTI Connext DDS Pro
+-------------------------------------------------------------------------------------------------
+
+When |me| discovered a RTI Connext DDS Pro application with Shared Memory 
+transport enabled, |me| failed to correctly use the UDPv4 locators instead.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1798]
+
+Calling FooSeq_set_maximum() repeatedly with the same maximum size results in seg-fault
+---------------------------------------------------------------------------------------
+In RTI |me| 2.4.10.x and earlier, calling FooSeq_set_maximum() repeatedly 
+with the same maximum size on an IDL sequence type containing non-primitive types 
+(such as enums or other structures) caused a segmentation fault.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1786]
+
+
+CMake reports error if CMake version 2.8.10.2 or 2.8.10.1 is used
+-----------------------------------------------------------------
+
+|me| buildable sources can not be compiled with CMake versions 2.8.10.1 or 2.8.10.2.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1748]
+
+
+OS error code (errno) not logged if sendto() returned error
+-----------------------------------------------------------
+
+The OS error code (errno) was not correctly logged if sendto() returned an error.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1712]
+
+Codegen might generate an incorrect pub/sub example if opction "-create typefiles" is not used
+----------------------------------------------------------------------------------------------
+Wrong example code is generated in case rtiddsgen is executed with option 
+-create examplefiles and option -create typefiles is NOT used.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1696]
+
+Generated examples use always the last structure in the idl
+-----------------------------------------------------------
+
+Examples generated using Codegen use always the last structure in the idl file, 
+even if it is not top-level.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1694]
+
+
+Instance might not have been disposed or unregistered under some conditions
+---------------------------------------------------------------------------
+
+Unregistered or disposed samples were not processed when preceded by a GAP 
+sub-message within the same RTPS message.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1692]
+
+Reliable Endpoints with only multicast locators may not communicate
+-------------------------------------------------------------------
+A reliable DataReader configured with only multicast (no unicast) locator(s) may 
+have failed to discover or communicate with a reliable DataWriter. Both built-in 
+discovery endpoints and user-data endpoints were affected.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1687]
+
+Access to DDSEntity instance handles from C++ API
+-------------------------------------------------
+
+Users of RTI Connext DDS Micro's C++ API can now access instance handles of any 
+DDS entity using method DDSEntity::get_instance_handle.
+
+[RTI Issue ID MICRO-1681]
+
+Syntax changed for initial peer participant index range
+-------------------------------------------------------
+When configuring the initial peers of a DomainParticipant (e.g. DDS_DomainParticipantQos.discovery.initial_peers),
+the syntax for specifying a range of participant indices for a peer locator has changed: a hyphen is now the separator,
+replacing a comma.  In general, a peer "[x-y]@<address>" means that participant discovery 
+messages will be sent to the address for participant indices x through y.
+
+[RTI Issue ID MICRO-1680]
+
+lookup_instance() is not thread safe
+------------------------------------
+
+The lookup_instance() was not thread safe in |me| 2.4.10.x and earlier. 
+If an application was calling lookup_instance() from both a listener and a 
+WaitSet/polling thread at the same time, the instance handle could be corrupted.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1679]
+
+
+CMakeLists.txt and README.txt created when they should not
+----------------------------------------------------------
+
+Codegen generates project files CMakeLists.txt and README.txt are generated even
+when project files are not generated.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1673]
+
+No communication when DomainParticipant used same GUID as another DomainParticipant in different domain
+-------------------------------------------------------------------------------------------------------
+Given an application that creates DomainParticipants in different DDS domains, 
+a DomainParticipant created with the same Participant GUID (i.e., the GUID 
+Prefix portion of the GUID) as created for a DomainParticipant in a different 
+domain will fail to discover or communicate with other endpoints within its own 
+domain. A workaround would be for the application to assign unique GUIDs for all 
+DomainParticipants across all domains. This issue has been fixed.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1671]
+
+Compiler error might happen when lwIP is used
+---------------------------------------------
+
+An incorrectly defined compiler macro causes a compilation error when lwIP stack
+is used and LWIP_DNS is defined.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1664]
+
+
+Wrong C++ code generated for unkeyed types when using IDL modules and -namespace option
+---------------------------------------------------------------------------------------
+Code generated with the following command failed if a struct with the same name 
+was defined in two namespaces, and the first namespace did not have any key:
+
+rtiddsgen -micro -example HelloWorld.idl -replace -language C++ -namespace
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1663]
+
+DDS_WaitSet_wait does not work if OSAPI_Semaphore_take() returns an error
+-------------------------------------------------------------------------
+DDS_WaitSet_wait does not work if OSAPI_Semaphore_take() returns an error; 
+RETCODE_PRECONDITION_NOT_MET is always returned.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1658]
+
+
+Log buffer could overflow on 64-bit architectures, causing application crash
+----------------------------------------------------------------------------
+The log buffer may have overflowed on 64-bit architectures and caused an 
+application crash. 
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1657]
+
+Fix API realloc in Windows OSAPI
+--------------------------------
+Windows implementation of function realloc did not allow a NULL input pointer, 
+this is wrong and posix implementation and Windows API allow it. This has the 
+effect that function DDS_String_replace() fails when the input string is a NULL 
+pointer.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1655]
+
+New samples for an instance may not be received if an instance goes back to ALIVE when using read()
+---------------------------------------------------------------------------------------------------
+Due to an issue in the resource calculation for the DataReader, new samples for 
+an instance may not have been received if the instance went back to ALIVE when 
+using any of the read() APIs.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1651]
+
+INTRA transport caused subscription matches to use additional resources
+-----------------------------------------------------------------------
+An issue in the matching between a reader and writer caused a reader to be 
+matched with the same writer twice if auto enable was set to FALSE.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1650]
+
+Resolved memory leak in class RTRegistry
+----------------------------------------
+When using previous versions of |me|, C++ applications might have experienced 
+resource leakage upon finalization of middleware resources using the method 
+DDSDomainParticipantFactory::finalize_instance. The leaks were caused by unfreed 
+memory blocks still owned by the class RTRegistry, and they have now been 
+resolved. No additional action is required of users.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1637]
+
+Windows Debug DLLs are built without debug information
+------------------------------------------------------
+Windows Debug DLLs are built without debug information what prevents debugging.
+This is happening when building with CMake or the rtime-make script.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1634]
+
+Use hardcoded build ID when not compiling with CMake
+----------------------------------------------------
+When compiling using CMake or the script rtime-make, |me| libraries have a 
+build lD (buildid), which consist of the current time and date. A hardcoded 
+constant ID is used as the build ID when compilation is not done using CMake or 
+the script rtime-make.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1632]
+
+Example makefiles do not support 64bit compilation
+--------------------------------------------------
+Example makefiles used always option -m32. This has been changed to use -m32 or 
+-m64 depending on the platform configuration.
+
+Examples can be compiled now for 32 and 64 bits platforms.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1628]
+
+Compilation error might happen when code is generated using option -namespace
+-----------------------------------------------------------------------------
+Compilation error fixed in generated source code when option -namespace is used 
+and IDL file has modules and compilation uses shared libraries.
+
+This issue has been fixed.
+
+[RTI Issue ID MICRO-1620]

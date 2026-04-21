@@ -1,0 +1,888 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.4.3. What’s New in 2.4.14 &mdash; RTI Connext Micro 2.4.14.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.4.5. What’s New in 2.4.12" href="release_notes_2412.html" />
+    <link rel="prev" title="8.4.1. What’s New in 2.4.14.1" href="release_notes_24141.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> RTI Connext Micro
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.14.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/index.html">4. User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building/index.html">5. Building and Porting Connext Micro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersmanual/micro_core.html">6. Working with RTI Connext Micro and RTI Connext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">7. API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="supported_platforms.html">8.1. Supported Platforms and Programming Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24142.html">8.2. What’s New in 2.4.14.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_24142.html#what-s-fixed-in-2-4-14-2">8.3. What’s Fixed in 2.4.14.2</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="previous_release.html">8.4. Previous Releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24141.html">8.4.1. What’s New in 2.4.14.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24141.html#what-s-fixed-in-2-4-14-1">8.4.2. What’s Fixed in 2.4.14.1</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">8.4.3. What’s New in 2.4.14</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#important-interoperability-changes">8.4.3.1. Important Interoperability Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datawriter-s-default-reliability-changed-to-reliable">8.4.3.2. DataWriter’s Default Reliability Changed to Reliable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#support-for-autosar-classic">8.4.3.3. Support for AUTOSAR Classic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#support-for-detecting-corrupted-rtps-messages">8.4.3.4. Support for detecting corrupted RTPS messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#port-validation-for-me-h">8.4.3.5. Port Validation for Connext Micro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#new-documentation-on-compiling-me-h-for-me-cert-h-compatibility">8.4.3.6. New Documentation on Compiling Connext Micro for Connext Cert Compatibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#threadx-cmake-files-and-new-documentation-on-building-me-h-for-threadx-netx">8.4.3.7. ThreadX CMake Files and New Documentation on Building Connext Micro for ThreadX + NetX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updated-example-cmakelists-txt-to-automatically-regenerate-code-when-idl-or-xml-file-changes">8.4.3.8. Updated Example CMakeLists.txt to Automatically Regenerate Code when IDL or XML File Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#message-logged-when-samples-received-out-of-order">8.4.3.9. Message Logged when Samples Received Out of Order</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#message-logged-when-sequence-numbers-received-more-than-once">8.4.3.10. Message Logged when Sequence Numbers Received More than Once</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ability-to-send-logs-over-udp">8.4.3.11. Ability to Send Logs over UDP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtime-make-provides-help-for-a-specific-target">8.4.3.12. rtime-make Provides Help for a Specific Target</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freertos-cmake-files">8.4.3.13. FreeRTOS CMake Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#improved-documentation-on-building-me-h-for-autosar-systems">8.4.3.14. Improved Documentation on Building Connext Micro for AUTOSAR Systems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples-used-undocumented-apis">8.4.3.15. Examples Used Undocumented APIs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#new-cmake-option-to-enable-real-time-timers-on-qnx-and-linux-systems">8.4.3.16. New CMake Option to Enable Real-Time Timers on QNX and Linux Systems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#new-showtemplates-and-exampletemplate-options-for-code-generator">8.4.3.17. New -showTemplates and -exampleTemplate options for Code Generator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dynamic-memory-allocations-removed-from-dynamic-discovery-plugin">8.4.3.18. Dynamic memory allocations removed from Dynamic Discovery Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reduced-default-socket-send-receive-buffer-size-for-qnx-systems">8.4.3.19. Reduced default socket send/receive buffer size for QNX systems</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-fixed-in-2-4-14">8.4.4. What’s Fixed in 2.4.14</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#small-enums-caused-serialization-errors">8.4.4.1. Small Enums Caused Serialization Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wcast-function-type-and-wdeprecated-compiler-warnings">8.4.4.2. -Wcast-function-type and -Wdeprecated Compiler Warnings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#documentation-did-not-list-all-entities-that-support-transport-qospolicy">8.4.4.3. Documentation did not list all Entities that Support Transport QosPolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generated-examples-registered-wrong-type-name">8.4.4.4. Generated Examples Registered Wrong Type Name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#for-c-types-generated-by-rtiddsgen-that-have-inheritance-the-parentcclass-was-also-declared-in-the-class-as-another-member">8.4.4.5. For C++ Types Generated by rtiddsgen that have Inheritance, the ParentCclass was also Declared in the Class as Another Member</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#domainparticipant-not-rediscovered-if-terminated-and-restarted-before-its-lease-duration-expired">8.4.4.6. DomainParticipant not Rediscovered if Terminated and Restarted Before its Lease Duration Expired</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#osapi-log-clear-did-not-zero-out-log-buffer-memory">8.4.4.7. OSAPI_Log_clear did not Zero Out Log Buffer Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#error-in-generated-c-c-code-when-two-members-of-different-enumerations-had-same-name">8.4.4.8. Error in Generated C/C++ Code when Two Members of Different Enumerations had Same Name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#incorrect-documentation-regarding-changeability-of-qos">8.4.4.9. Incorrect Documentation Regarding Changeability of QoS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unexpected-behavior-when-copying-a-dds-unsignedshortseq-with-0-length">8.4.4.10. Unexpected Behavior when Copying a DDS_UnsignedShortSeq with 0 Length</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#incorrect-range-documented-for-dds-resourcelimitsqospolicy-max-samples">8.4.4.11. Incorrect Range Documented for DDS_ResourceLimitsQosPolicy.max_samples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wrong-compiler-option-for-autosar-elektrobit-platform-caused-double-to-compile-as-4-bytes-instead-of-8">8.4.4.12. Wrong Compiler Option for AUTOSAR Elektrobit Platform caused ‘double’ to Compile as 4 Bytes instead of 8</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#log-message-with-random-characters-printed">8.4.4.13. Log Message with Random Characters Printed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#event-masks-of-semaphores-in-autosar-port-were-calculated-incorrectly">8.4.4.14. Event Masks of Semaphores in AUTOSAR Port were Calculated Incorrectly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#publication-matched-status-and-subscription-matched-status-may-never-have-triggered-a-waitset-if-the-status-was-enabled-after-the-domainparticipant-was-enabled">8.4.4.15. <em>PUBLICATION_MATCHED_STATUS</em> and <em>SUBSCRIPTION_MATCHED_STATUS</em> may never have triggered a WaitSet if the status was enabled after the <em>DomainParticipant</em> was enabled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unicast-datareader-stopped-receiving-samples-after-datawriter-matched-with-a-multicast-datareader">8.4.4.16. Unicast DataReader stopped receiving samples after DataWriter matched with a multicast DataReader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-rtps-max-window-size-not-divisible-by-32-may-have-resulted-in-retransmission-of-wrong-sequence-number">8.4.4.17. A RTPS <em>max_window_size</em> not divisible by 32 may have resulted in retransmission of wrong sequence number</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#posix-mutex-implementation-did-not-conform-with-face-safety-profile">8.4.4.18. POSIX mutex implementation did not conform with FACE Safety Profile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#waitset-with-timeout-of-0-did-not-return-immediately">8.4.4.19. Waitset with timeout of 0 did not return immediately</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#for-autosar-the-ip-address-is-now-used-to-generate-a-unique-domainparticipant-id">8.4.4.20. For AUTOSAR the IP address is now used to generate a unique DomainParticipant ID</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2412.html">8.4.5. What’s New in 2.4.12</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2412.html#what-s-fixed-in-2-4-12">8.4.6. What’s Fixed in 2.4.12</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2411.html">8.4.7. What’s New in 2.4.11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2411.html#what-s-fixed-in-2-4-11">8.4.8. What’s Fixed in 2.4.11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24104.html">8.4.9. What’s New in 2.4.10.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24104.html#what-s-fixed-in-2-4-10-4">8.4.10. What’s Fixed in 2.4.10.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24101.html">8.4.11. What’s New in 2.4.10.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_24101.html#what-s-fixed-in-2-4-10-1">8.4.12. What’s Fixed in 2.4.10.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2410.html">8.4.13. What’s New in 2.4.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_2410.html#what-s-fixed-in-2-4-10">8.4.14. What’s Fixed in 2.4.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_249.html">8.4.15. What’s New in 2.4.9</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_249.html#what-s-fixed-in-2-4-9">8.4.16. What’s Fixed in 2.4.9</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_248.html">8.4.17. What’s New in 2.4.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_248.html#what-s-fixed-in-2-4-8">8.4.18. What’s Fixed in 2.4.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_247.html">8.4.19. What’s New in 2.4.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_247.html#what-s-fixed-in-2-4-7">8.4.20. What’s Fixed in 2.4.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_246.html">8.4.21. What’s New in 2.4.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release_notes_246.html#what-s-fixed-in-2-4-6">8.4.22. What’s Fixed in 2.4.6</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="known_issues.html">8.5. Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">9. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">10. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">11. Third-Party Software</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">8. </span>Release Notes</a> &raquo;</li>
+        
+          <li><a href="previous_release.html"><span class="section-number">8.4. </span>Previous Releases</a> &raquo;</li>
+        
+      <li><span class="section-number">8.4.3. </span>What’s New in 2.4.14</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/release/release_notes_2414.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="what-s-new-in-2-4-14">
+<h1><span class="section-number">8.4.3. </span>What’s New in 2.4.14<a class="headerlink" href="#what-s-new-in-2-4-14" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="important-interoperability-changes">
+<h2><span class="section-number">8.4.3.1. </span>Important Interoperability Changes<a class="headerlink" href="#important-interoperability-changes" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="datawriter-s-default-reliability-changed-to-reliable">
+<h2><span class="section-number">8.4.3.2. </span>DataWriter’s Default Reliability Changed to Reliable<a class="headerlink" href="#datawriter-s-default-reliability-changed-to-reliable" title="Permalink to this headline">¶</a></h2>
+<p>The default reliability for a DataWriter has been changed from best-effort to
+reliable.</p>
+<p>This solves interoperability problems when the remote DomainParticipant
+does not send the QoS value if configured with its default value.
+However, this may cause interoperability problems with previous releases
+if the former default reliability QoS is used.</p>
+</div>
+<div class="section" id="support-for-autosar-classic">
+<h2><span class="section-number">8.4.3.3. </span>Support for AUTOSAR Classic<a class="headerlink" href="#support-for-autosar-classic" title="Permalink to this headline">¶</a></h2>
+<p>This release includes support for Elektrobit AUTOSAR 4.0.3 and
+Mentor AUTOSAR 4.2.2 on Infineon AURIX TriCore TC297. Please refer
+to <a class="reference internal" href="../building/autosar.html#building-autosar"><span class="std std-ref">Connext Micro on AUTOSAR</span></a> for details.</p>
+</div>
+<div class="section" id="support-for-detecting-corrupted-rtps-messages">
+<h2><span class="section-number">8.4.3.4. </span>Support for detecting corrupted RTPS messages<a class="headerlink" href="#support-for-detecting-corrupted-rtps-messages" title="Permalink to this headline">¶</a></h2>
+<p>This release includes support for detecting and discarding corrupted
+RTPS messages. A checksum is computed over the DDS RTPS message including the
+RTPS Header. This checksum is sent as a new RTPS submessage. The
+subscribing application detects this new submessage and validates the
+contained checksum. When a corrupted RTPS message is detected, the message
+is dropped.</p>
+<p>To enable the use of a checksum in a DomainParticipant, there are three new
+fields in the <cite>WireProtocolQosPolicy</cite>: compute_crc, check_crc, and require_crc:</p>
+<ul class="simple">
+<li><p>To send the checksum, enable <cite>compute_crc</cite> at the sending application.</p></li>
+<li><p>To drop corrupted messages, enable <cite>check_crc</cite>.</p></li>
+<li><p>To ignore a participant with compute_crc set to <cite>false</cite>, enable <cite>require_crc</cite>.</p></li>
+</ul>
+<p>Please refer to <a class="reference internal" href="../usersmanual/msgintegrity.html#msgintegrity"><span class="std std-ref">Message Integrity Checking</span></a> in the <em>Connext Micro</em> User’s Manual for details.</p>
+</div>
+<div class="section" id="port-validation-for-me-h">
+<h2><span class="section-number">8.4.3.5. </span>Port Validation for Connext Micro<a class="headerlink" href="#port-validation-for-me-h" title="Permalink to this headline">¶</a></h2>
+<p>After porting <em>Connext Micro</em>, it is important to confirm that your code works as
+expected. For this purpose, <em>Connext Micro</em> comes with a suite of tests that you
+can compile and run to validate your port.</p>
+</div>
+<div class="section" id="new-documentation-on-compiling-me-h-for-me-cert-h-compatibility">
+<h2><span class="section-number">8.4.3.6. </span>New Documentation on Compiling Connext Micro for Connext Cert Compatibility<a class="headerlink" href="#new-documentation-on-compiling-me-h-for-me-cert-h-compatibility" title="Permalink to this headline">¶</a></h2>
+<p>This release includes a new chapter on how to compile <em>Connext Micro</em> with for
+compatibility with Connext Cert. See
+<a class="reference internal" href="../building/cert_compatibility.html#building-me-h-with-compatibility-for-me-cert-h"><span class="std std-ref">Building Connext Micro with compatibility for Connext Cert</span></a>.</p>
+</div>
+<div class="section" id="threadx-cmake-files-and-new-documentation-on-building-me-h-for-threadx-netx">
+<h2><span class="section-number">8.4.3.7. </span>ThreadX CMake Files and New Documentation on Building Connext Micro for ThreadX + NetX<a class="headerlink" href="#threadx-cmake-files-and-new-documentation-on-building-me-h-for-threadx-netx" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> libraries can now be compiled using rtime-make and CMake for
+ThreadX + NetX. There is a new section in the documentation on
+building for the ThreadX operating system and NetX network stack,
+including example configurations.
+See <a class="reference internal" href="../building/threadx.html#building-the-me-h-source-for-threadx"><span class="std std-ref">Building the Connext Micro Source for ThreadX</span></a>.</p>
+</div>
+<div class="section" id="updated-example-cmakelists-txt-to-automatically-regenerate-code-when-idl-or-xml-file-changes">
+<h2><span class="section-number">8.4.3.8. </span>Updated Example CMakeLists.txt to Automatically Regenerate Code when IDL or XML File Changes<a class="headerlink" href="#updated-example-cmakelists-txt-to-automatically-regenerate-code-when-idl-or-xml-file-changes" title="Permalink to this headline">¶</a></h2>
+<p>The CMakeLists.txt generated by the Code Generator now has a rule that will
+regenerate type-support files if the IDL or XML file with the type definition
+changes. The rule is conditional: it is only added if the option
+RTIME_IDL_ADD_REGENERATE_TYPESUPPORT_RULE is set to TRUE when invoking CMake.</p>
+</div>
+<div class="section" id="message-logged-when-samples-received-out-of-order">
+<h2><span class="section-number">8.4.3.9. </span>Message Logged when Samples Received Out of Order<a class="headerlink" href="#message-logged-when-samples-received-out-of-order" title="Permalink to this headline">¶</a></h2>
+<p>This release logs an additional message when a sample is received
+out of order and reliability is enabled. This will occur if a reliable
+sample with a data submessage is received with a sequence number higher
+than the lowest, next expected sequence number.</p>
+</div>
+<div class="section" id="message-logged-when-sequence-numbers-received-more-than-once">
+<h2><span class="section-number">8.4.3.10. </span>Message Logged when Sequence Numbers Received More than Once<a class="headerlink" href="#message-logged-when-sequence-numbers-received-more-than-once" title="Permalink to this headline">¶</a></h2>
+<p>This release logs an additional message if a sample is received more than once
+when reliability is enabled. This means that a sample with the same sequence
+number has already been received.</p>
+</div>
+<div class="section" id="ability-to-send-logs-over-udp">
+<h2><span class="section-number">8.4.3.11. </span>Ability to Send Logs over UDP<a class="headerlink" href="#ability-to-send-logs-over-udp" title="Permalink to this headline">¶</a></h2>
+<p>This release includes support for sending logs over UDP. The destination IP
+address and UDP port can be configured in the AUTOSAR port properties.</p>
+</div>
+<div class="section" id="rtime-make-provides-help-for-a-specific-target">
+<h2><span class="section-number">8.4.3.12. </span>rtime-make Provides Help for a Specific Target<a class="headerlink" href="#rtime-make-provides-help-for-a-specific-target" title="Permalink to this headline">¶</a></h2>
+<p>The help output from the script rtime-make has been improved to
+show that is possible to get help for a specific target.</p>
+<p>Use the command “rtime-make –target &lt;target&gt; –help” to
+print help for the target.</p>
+</div>
+<div class="section" id="freertos-cmake-files">
+<h2><span class="section-number">8.4.3.13. </span>FreeRTOS CMake Files<a class="headerlink" href="#freertos-cmake-files" title="Permalink to this headline">¶</a></h2>
+<p>The <em>Connext Micro</em> libraries can now be compiled using rtime-make and CMake for FreeRTOS.</p>
+</div>
+<div class="section" id="improved-documentation-on-building-me-h-for-autosar-systems">
+<h2><span class="section-number">8.4.3.14. </span>Improved Documentation on Building Connext Micro for AUTOSAR Systems<a class="headerlink" href="#improved-documentation-on-building-me-h-for-autosar-systems" title="Permalink to this headline">¶</a></h2>
+<p>The documentation on building <em>Connext Micro</em> for AUTOSAR systems has been
+improved with information about the number of resources needed.
+See <a class="reference internal" href="../building/autosar.html#resources"><span class="std std-ref">Resources</span></a>.</p>
+</div>
+<div class="section" id="examples-used-undocumented-apis">
+<h2><span class="section-number">8.4.3.15. </span>Examples Used Undocumented APIs<a class="headerlink" href="#examples-used-undocumented-apis" title="Permalink to this headline">¶</a></h2>
+<p>The provided examples, and those created by the Code Generator,
+were using Foo_create() and Foo_delete() to create and delete samples.
+Those APIs are not documented and should not be used.
+The examples have been changed to use FooTypeSupport_create_data()
+and FooTypeSupport_delete_data() instead.</p>
+</div>
+<div class="section" id="new-cmake-option-to-enable-real-time-timers-on-qnx-and-linux-systems">
+<h2><span class="section-number">8.4.3.16. </span>New CMake Option to Enable Real-Time Timers on QNX and Linux Systems<a class="headerlink" href="#new-cmake-option-to-enable-real-time-timers-on-qnx-and-linux-systems" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> has supported POSIX.4 real-time timers as a way to run the
+its internal timers. However, this feature has only been available by
+updating the osapi_os_posix.h header file and has been disabled by
+default because it relies on POSIX signals that may interfere with an
+application, such as if an application uses fork() and one of
+the exec system calls without setting the signal mask.</p>
+<p><em>Connext Micro</em> uses the signal SIGRTMIN by default. To change this, it is
+necessary to modify the constant OSAPISYSTEM_POSIX4_TIMER_SIGNAL at the
+beginning of src/osapi/posix/posixSystem.c. Please note that the number
+of signals available varies between systems.</p>
+<p>To enable this feature on a QNX or Linux system, pass the following
+additional option to cmake or rtime-make:</p>
+</div>
+<div class="section" id="new-showtemplates-and-exampletemplate-options-for-code-generator">
+<h2><span class="section-number">8.4.3.17. </span>New -showTemplates and -exampleTemplate options for Code Generator<a class="headerlink" href="#new-showtemplates-and-exampletemplate-options-for-code-generator" title="Permalink to this headline">¶</a></h2>
+<p>This release introduces two new Code Generator command-line options,
+-showTemplates and -exampleTemplates.</p>
+<p>The -showTemplates option prints and generates an XML file containing
+a list of available example templates in your Connext DDS installation,
+organized per language.</p>
+<p>When you use the -exampleTemplate option, you can specify one of these
+example templates, which are in
+$RTIMEHOME/rtiddsgen/resource/templates/example/&lt;language&gt;/&lt;templateName&gt;/.
+You may also create your own templates and place them in this directory.</p>
+<p>To use -exampleTemplates, you must also use one of the
+following command-line options:</p>
+<ul class="simple">
+<li><p>-create examplefiles</p></li>
+<li><p>-update examplefiles</p></li>
+<li><p>-example</p></li>
+</ul>
+<p>When you use the -exampleTemplates option, Code Generator will generate
+the example you specified, instead of the default one. For example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rtiddsgen -language C++ -example -exampleTemplate &lt;exampleTemplateName&gt; foo.idl
+</pre></div>
+</div>
+</div>
+<div class="section" id="dynamic-memory-allocations-removed-from-dynamic-discovery-plugin">
+<h2><span class="section-number">8.4.3.18. </span>Dynamic memory allocations removed from Dynamic Discovery Plugin<a class="headerlink" href="#dynamic-memory-allocations-removed-from-dynamic-discovery-plugin" title="Permalink to this headline">¶</a></h2>
+<p>The dynamic discovery plugin in <em>Connext Micro</em> allocated memory dynamically for
+discovered topic and type names after the DomainParticipant was enabled.
+This release includes improvements that make it possible to avoid all
+memory allocations.</p>
+<p>Dynamic memory allocations are avoided by creating the DomainParticipant in
+a disabled state and creating all local endpoints before the DomainParticipant
+is enabled. A DomainParticipant is created in a disabled state by setting</p>
+<p><cite>DomainParticipantFactoryQos.entity_factory.autoenable_created_entities = DDS_BOOLEAN_TRUE</cite></p>
+<p>before calling <cite>create_participant()</cite>. When all entities have been created,
+call <cite>enable()</cite> on the DomainParticipantFactory to enable all entities.</p>
+</div>
+<div class="section" id="reduced-default-socket-send-receive-buffer-size-for-qnx-systems">
+<h2><span class="section-number">8.4.3.19. </span>Reduced default socket send/receive buffer size for QNX systems<a class="headerlink" href="#reduced-default-socket-send-receive-buffer-size-for-qnx-systems" title="Permalink to this headline">¶</a></h2>
+<p>Some QNX kernels have a maximum send and receive socket buffer size smaller
+than the default value used by <em>Connext Micro</em>. The default send and receive
+socket buffer size has been changed to 64 Kbytes in <em>Connext Micro</em> for
+QNX builds.</p>
+</div>
+</div>
+<div class="section" id="what-s-fixed-in-2-4-14">
+<h1><span class="section-number">8.4.4. </span>What’s Fixed in 2.4.14<a class="headerlink" href="#what-s-fixed-in-2-4-14" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="small-enums-caused-serialization-errors">
+<h2><span class="section-number">8.4.4.1. </span>Small Enums Caused Serialization Errors<a class="headerlink" href="#small-enums-caused-serialization-errors" title="Permalink to this headline">¶</a></h2>
+<p>In previous releases, enum types that were represented internally as
+1 or 2 byte values caused serialization and deserialization errors.
+This problem has been resolved by adding support for enum types with
+1 or 2 byte internal memory representations. The wire representation
+for enums is unchanged at 4 bytes.</p>
+<p>[RTI Issue ID MICRO-2249]</p>
+</div>
+<div class="section" id="wcast-function-type-and-wdeprecated-compiler-warnings">
+<h2><span class="section-number">8.4.4.2. </span>-Wcast-function-type and -Wdeprecated Compiler Warnings<a class="headerlink" href="#wcast-function-type-and-wdeprecated-compiler-warnings" title="Permalink to this headline">¶</a></h2>
+<p>This release fixes two different compiler warnings:</p>
+<ul>
+<li><p>When compiling <em>Connext Micro</em> with GCC8 (or later versions) and
+<code class="docutils literal notranslate"><span class="pre">-Wcast-function-type</span></code>, the compiler printed warnings such as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cast</span> <span class="n">between</span> <span class="n">incompatible</span> <span class="n">function</span> <span class="n">types</span>
+</pre></div>
+</div>
+</li>
+<li><p>When compiling <em>Connext Micro</em> with a C++11 compiler and <code class="docutils literal notranslate"><span class="pre">-Wdeprecated</span></code>,
+the compiler printed warnings such as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">warning</span><span class="p">:</span> <span class="n">definition</span> <span class="n">of</span> <span class="n">implicit</span> <span class="n">copy</span> <span class="n">constructor</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Both of these issues have been fixed. Note that neither issue caused
+incorrect behavior.</p>
+<p>[RTI Issue ID MICRO-2488]</p>
+</div>
+<div class="section" id="documentation-did-not-list-all-entities-that-support-transport-qospolicy">
+<h2><span class="section-number">8.4.4.3. </span>Documentation did not list all Entities that Support Transport QosPolicy<a class="headerlink" href="#documentation-did-not-list-all-entities-that-support-transport-qospolicy" title="Permalink to this headline">¶</a></h2>
+<p>The previous documentation did not list all the entities that support
+the DDS_TransportQosPolicy. This problem has been fixed.</p>
+<p>The DDS entities that support the DDS_TransportQosPolicy are the
+DomainParticipant, DataWriter and DataReader.</p>
+<p>[RTI Issue ID MICRO-2503]</p>
+</div>
+<div class="section" id="generated-examples-registered-wrong-type-name">
+<h2><span class="section-number">8.4.4.4. </span>Generated Examples Registered Wrong Type Name<a class="headerlink" href="#generated-examples-registered-wrong-type-name" title="Permalink to this headline">¶</a></h2>
+<p>The generated code for <em>Connext Micro</em> may have registered the wrong type name
+if you used the option <code class="docutils literal notranslate"><span class="pre">-create</span> <span class="pre">examplefiles</span></code> and IDL such as:</p>
+<div class="highlight-IDL notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>My_Module<span class="w"> </span>{
+<span class="w">   </span>struct<span class="w"> </span>My_Entity<span class="w"> </span>{
+<span class="w">      </span><span class="nb">long</span><span class="w"> </span>id;<span class="w"> </span><span class="o">//</span>@key
+<span class="w">   </span>};
+};
+</pre></div>
+</div>
+<p>This generated an example that registered a type with a name that was
+incompatible with the type name used by other DDS tools that were
+configured with the same IDL file. This issue has been fixed.</p>
+<p>[RTI Issue ID MICRO-2605]</p>
+</div>
+<div class="section" id="for-c-types-generated-by-rtiddsgen-that-have-inheritance-the-parentcclass-was-also-declared-in-the-class-as-another-member">
+<h2><span class="section-number">8.4.4.5. </span>For C++ Types Generated by rtiddsgen that have Inheritance, the ParentCclass was also Declared in the Class as Another Member<a class="headerlink" href="#for-c-types-generated-by-rtiddsgen-that-have-inheritance-the-parentcclass-was-also-declared-in-the-class-as-another-member" title="Permalink to this headline">¶</a></h2>
+<p>Consider the following Foo.idl file, used to generate code with rtiddsgen:</p>
+<div class="highlight-IDL notranslate"><div class="highlight"><pre><span></span>struct<span class="w"> </span>Base
+{
+<span class="w">     </span><span class="nb">long</span><span class="w"> </span>x;
+};
+
+struct<span class="w"> </span>Foo<span class="o">:</span><span class="w"> </span>Base<span class="w"> </span>{
+<span class="w">     </span><span class="nb">long</span><span class="w"> </span>y;
+};
+</pre></div>
+</div>
+<p>This generated the following Foo.h file:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Base</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Base</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Base</span><span class="w"> </span><span class="n">parent</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Note that the class Foo inherited from the class Base, and its first field was
+a ‘parent’ field of type ‘Base’. This should not happen, since it results in
+extra space being taken for each sample that will not be used.</p>
+<p>This problem has been fixed. The generated Foo class no longer has a
+‘parent’ field of type ‘Base’.</p>
+<p>[RTI Issue ID MICRO-2633]</p>
+</div>
+<div class="section" id="domainparticipant-not-rediscovered-if-terminated-and-restarted-before-its-lease-duration-expired">
+<h2><span class="section-number">8.4.4.6. </span>DomainParticipant not Rediscovered if Terminated and Restarted Before its Lease Duration Expired<a class="headerlink" href="#domainparticipant-not-rediscovered-if-terminated-and-restarted-before-its-lease-duration-expired" title="Permalink to this headline">¶</a></h2>
+<p>A DomainParticipant was not rediscovered if it was terminated and restarted
+before its lease duration expired. For example, if an application with a
+DomainParticipant was terminated with Control-C and restarted before the
+DomainParticipant’s lease duration expired, the DomainParticipant would not
+be rediscovered. However, if the DomainParticipant was deleted with
+delete_participant() this problem would not occur. This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2672]</p>
+</div>
+<div class="section" id="osapi-log-clear-did-not-zero-out-log-buffer-memory">
+<h2><span class="section-number">8.4.4.7. </span>OSAPI_Log_clear did not Zero Out Log Buffer Memory<a class="headerlink" href="#osapi-log-clear-did-not-zero-out-log-buffer-memory" title="Permalink to this headline">¶</a></h2>
+<p>OSAPI_Log_clear() did not zero out the log buffer memory.
+This problem has been resolved. Now it will set the buffer
+memory to zero when it resets the buffer head.</p>
+<p>[RTI Issue ID MICRO-2678]</p>
+</div>
+<div class="section" id="error-in-generated-c-c-code-when-two-members-of-different-enumerations-had-same-name">
+<h2><span class="section-number">8.4.4.8. </span>Error in Generated C/C++ Code when Two Members of Different Enumerations had Same Name<a class="headerlink" href="#error-in-generated-c-c-code-when-two-members-of-different-enumerations-had-same-name" title="Permalink to this headline">¶</a></h2>
+<p>The generated C/C++ code for an IDL file containing enumerations with
+members that had the same name would not compile. For example, consider
+this IDL:</p>
+<div class="highlight-IDL notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>a<span class="w"> </span>{
+<span class="w">     </span>module<span class="w"> </span>b<span class="w"> </span>{
+<span class="w">            </span>enum<span class="w"> </span>Foo<span class="w"> </span>{
+<span class="w">                     </span>GREEN,<span class="w"> </span>RED
+<span class="w">           </span>}
+<span class="w">    </span><span class="c1">;};</span>
+};
+module<span class="w"> </span>c<span class="w"> </span>{
+<span class="w">      </span>module<span class="w"> </span>d<span class="w"> </span>{
+<span class="w">          </span>enum<span class="w"> </span>Bar<span class="w"> </span>{
+<span class="w">               </span>GREEN,<span class="w"> </span>YELLOW
+<span class="w">          </span>};
+<span class="w">     </span>};
+};
+</pre></div>
+</div>
+<p>The above IDL produced the following code:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">c_d_Foo</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">GREEN</span><span class="w"> </span><span class="p">,</span>
+<span class="w">    </span><span class="n">RED</span>
+<span class="p">}</span><span class="w"> </span><span class="n">c_d_Foo</span><span class="p">;</span>
+
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">c_d_Bar</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">GREEN</span><span class="w"> </span><span class="p">,</span>
+<span class="w">    </span><span class="n">YELLOW</span>
+<span class="p">}</span><span class="w"> </span><span class="n">c_d_Bar</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>And it produced an error similar to this when trying to compile it:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>test.h:82: error: redeclaration of enumerator ‘GREEN’
+test.h:25: error: previous definition of ‘GREEN’ was here
+</pre></div>
+</div>
+<p>This release introduces a new command-line option in RTI Code Generator,
+<code class="docutils literal notranslate"><span class="pre">-qualifiedEnumerator</span></code>, which allows you to generate fully qualified
+enumerator names. This avoids having conflicting names in C/C++.</p>
+<p>For example, given this IDL:</p>
+<div class="highlight-IDL notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>myModule{
+<span class="w">    </span>enum<span class="w"> </span>Color2<span class="w"> </span>{
+<span class="w">       </span>GREEN,
+<span class="w">       </span>RED
+<span class="w">     </span>};
+
+<span class="w">   </span>union<span class="w"> </span>MyUnion<span class="w"> </span><span class="k">switch</span><span class="w"> </span>(Color2){
+<span class="w">     </span><span class="k">case</span><span class="w"> </span>GREEN<span class="o">:</span>
+<span class="w">            </span><span class="nb">long</span><span class="w"> </span>m1;
+<span class="w">     </span><span class="k">case</span><span class="w"> </span>RED<span class="o">:</span>
+<span class="w">             </span><span class="nb">long</span><span class="w"> </span>m2;
+<span class="w">     </span>};
+};
+</pre></div>
+</div>
+<p>The following table shows the code that will be generated without
+the new option and with it:</p>
+<table class="colwidths-given longtable docutils align-default" id="effect-of-using-qualifiedenumerator">
+<caption><span class="caption-number">Table 8.2 </span><span class="caption-text">Effect of using -qualifiedEnumerator</span><a class="headerlink" href="#effect-of-using-qualifiedenumerator" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 45%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Language</p></th>
+<th class="head"><p>without -qualifiedEnumerator (default)</p></th>
+<th class="head"><p>with -qualifiedEnumerator</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>C</p></td>
+<td><div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">myModule_Color2</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">GREEN</span><span class="w"> </span><span class="p">,</span>
+<span class="w">    </span><span class="n">RED</span>
+<span class="p">}</span><span class="w"> </span><span class="n">myModule_Color2</span><span class="p">;</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">myModule_MyUnion</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">myModule_Color2</span><span class="w"> </span><span class="n">_d</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">myModule_MyUnion_u</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">m1</span><span class="w"> </span><span class="p">;</span>
+<span class="w">        </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">m2</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="n">_u</span><span class="p">;</span>
+
+<span class="p">}</span><span class="w"> </span><span class="n">myModule_MyUnion</span><span class="w"> </span><span class="p">;</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">myModule_Color2</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">myModule_Color2_GREEN</span><span class="w"> </span><span class="p">,</span>
+<span class="w">    </span><span class="n">myModule_Color2_RED</span>
+<span class="p">}</span><span class="w"> </span><span class="n">myModule_Color2</span><span class="p">;</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">myModule_MyUnion</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">myModule_Color2</span><span class="w"> </span><span class="n">_d</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">myModule_MyUnion_u</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">m1</span><span class="w"> </span><span class="p">;</span>
+<span class="w">        </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">m2</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="n">_u</span><span class="p">;</span>
+
+<span class="p">}</span><span class="w"> </span><span class="n">myModule_MyUnion</span><span class="w"> </span><span class="p">;</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>C++</p></td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="nc">myModule_Color2</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">GREEN</span><span class="w"> </span><span class="p">,</span>
+<span class="w">    </span><span class="n">RED</span>
+<span class="p">}</span><span class="w"> </span><span class="n">myModule_Color2</span><span class="p">;</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">myModule_MyUnion</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">myModule_MyUnionSeq</span><span class="w"> </span><span class="n">Seq</span><span class="p">;</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">myModule_Color2</span><span class="w"> </span><span class="n">_d</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">myModule_MyUnion_u</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">m1</span><span class="w"> </span><span class="p">;</span>
+<span class="w">        </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">m2</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="n">_u</span><span class="p">;</span>
+
+<span class="p">}</span><span class="w"> </span><span class="n">myModule_MyUnion</span><span class="w"> </span><span class="p">;</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="nc">myModule_Color2</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">myModule_Color2_GREEN</span><span class="w"> </span><span class="p">,</span>
+<span class="w">    </span><span class="n">myModule_Color2_RED</span>
+<span class="p">}</span><span class="w"> </span><span class="n">myModule_Color2</span><span class="p">;</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">myModule_MyUnion</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">myModule_MyUnionSeq</span><span class="w"> </span><span class="n">Seq</span><span class="p">;</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">myModule_Color2</span><span class="w"> </span><span class="n">_d</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">myModule_MyUnion_u</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">m1</span><span class="w"> </span><span class="p">;</span>
+<span class="w">        </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">m2</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="n">_u</span><span class="p">;</span>
+
+<span class="p">}</span><span class="w"> </span><span class="n">myModule_MyUnion</span><span class="w"> </span><span class="p">;</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>C++ Namespace</p></td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">myModule</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="nc">Color2</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">GREEN</span><span class="w"> </span><span class="p">,</span>
+<span class="w">        </span><span class="n">RED</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">Color2</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">MyUnion</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">MyUnionSeq</span><span class="w"> </span><span class="n">Seq</span><span class="p">;</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">        </span><span class="n">myModule</span><span class="o">::</span><span class="n">Color2</span><span class="w"> </span><span class="n">_d</span><span class="p">;</span>
+<span class="w">        </span><span class="k">struct</span><span class="w"> </span><span class="nc">MyUnion_u</span>
+<span class="w">        </span><span class="p">{</span>
+
+<span class="w">            </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">m1</span><span class="w"> </span><span class="p">;</span>
+<span class="w">            </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">m2</span><span class="w"> </span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="n">_u</span><span class="p">;</span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">MyUnion</span><span class="w"> </span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">myModule</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="nc">Color</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Color_GREEN</span><span class="w"> </span><span class="p">,</span>
+<span class="w">        </span><span class="n">Color_BLUE</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">Color</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">MyUnion</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">MyUnionSeq</span><span class="w"> </span><span class="n">Seq</span><span class="p">;</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">        </span><span class="n">myModule</span><span class="o">::</span><span class="n">Color2</span><span class="w"> </span><span class="n">_d</span><span class="p">;</span>
+<span class="w">        </span><span class="k">struct</span><span class="w"> </span><span class="nc">MyUnion_u</span>
+<span class="w">        </span><span class="p">{</span>
+
+<span class="w">            </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">m1</span><span class="w"> </span><span class="p">;</span>
+<span class="w">            </span><span class="n">DDS_Long</span><span class="w"> </span><span class="n">m2</span><span class="w"> </span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="n">_u</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">MyUnion</span><span class="w"> </span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="p">;</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>[RTI Issue ID MICRO-2718]</p>
+</div>
+<div class="section" id="incorrect-documentation-regarding-changeability-of-qos">
+<h2><span class="section-number">8.4.4.9. </span>Incorrect Documentation Regarding Changeability of QoS<a class="headerlink" href="#incorrect-documentation-regarding-changeability-of-qos" title="Permalink to this headline">¶</a></h2>
+<p>The previous release’s documentation incorrectly stated that some QoS are
+changeable, when they are not. This has been fixed.</p>
+<p>The DomainParticipantFactory.EntityFactoryQosPolicy is always changeable.
+The following are changeable until the entity is enabled:</p>
+<ul class="simple">
+<li><p>DomainParticipant.EntityFactoryQosPolicy</p></li>
+<li><p>Publisher.EntityFactoryQosPolicy</p></li>
+<li><p>Subscriber.EntityFactoryQosPolicy</p></li>
+</ul>
+<p>[RTI Issue ID MICRO-2749]</p>
+</div>
+<div class="section" id="unexpected-behavior-when-copying-a-dds-unsignedshortseq-with-0-length">
+<h2><span class="section-number">8.4.4.10. </span>Unexpected Behavior when Copying a DDS_UnsignedShortSeq with 0 Length<a class="headerlink" href="#unexpected-behavior-when-copying-a-dds-unsignedshortseq-with-0-length" title="Permalink to this headline">¶</a></h2>
+<p>When copying a DDS_UnsignedShortSeq with 0 length, the destination sequence
+length was not set to 0. This issue has been fixed.</p>
+<p>[RTI Issue ID MICRO-2756]</p>
+</div>
+<div class="section" id="incorrect-range-documented-for-dds-resourcelimitsqospolicy-max-samples">
+<h2><span class="section-number">8.4.4.11. </span>Incorrect Range Documented for DDS_ResourceLimitsQosPolicy.max_samples<a class="headerlink" href="#incorrect-range-documented-for-dds-resourcelimitsqospolicy-max-samples" title="Permalink to this headline">¶</a></h2>
+<p>The range for DDS_ResourceLimitsQosPolicy.max_samples was incorrectly
+documented as <code class="docutils literal notranslate"><span class="pre">max_samples</span> <span class="pre">&gt;=</span> <span class="pre">max_instances</span> <span class="pre">*</span> <span class="pre">max_samples_per_instance</span></code>.</p>
+<p>While that is correct for <em>Connext Cert</em>, the correct range for <em>Connext Micro</em> is
+<code class="docutils literal notranslate"><span class="pre">max_samples</span> <span class="pre">&gt;=</span> <span class="pre">max_instances</span></code>.</p>
+<p>The documentation has been corrected.</p>
+<p>[RTI Issue ID MICRO-2757]</p>
+</div>
+<div class="section" id="wrong-compiler-option-for-autosar-elektrobit-platform-caused-double-to-compile-as-4-bytes-instead-of-8">
+<h2><span class="section-number">8.4.4.12. </span>Wrong Compiler Option for AUTOSAR Elektrobit Platform caused ‘double’ to Compile as 4 Bytes instead of 8<a class="headerlink" href="#wrong-compiler-option-for-autosar-elektrobit-platform-caused-double-to-compile-as-4-bytes-instead-of-8" title="Permalink to this headline">¶</a></h2>
+<p>CMake files include an option to optimize doubles as floats when compiling
+for the AUTOSAR classic Elektrobit platform. This caused the serialization
+and deserialization of type double to fail.</p>
+<p>This optimization has been removed; now the size of type ‘double’ is 8 bytes
+when compiling for the AUTOSAR classic Elektrobit platform.</p>
+<p>[RTI Issue ID MICRO-2823]</p>
+</div>
+<div class="section" id="log-message-with-random-characters-printed">
+<h2><span class="section-number">8.4.4.13. </span>Log Message with Random Characters Printed<a class="headerlink" href="#log-message-with-random-characters-printed" title="Permalink to this headline">¶</a></h2>
+<p>In some cases, a log message was printed with random characters. For example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ Alignment32 id\:000000\,sig\:06\,src\:000000\,op\:flip1\,pos\:1
+
+[1612981807.603703999]ERROR: ModuleID=5 Errcode=20021 X=1 E=1 T=1
+��hV�F��~ycV/:0/:
+</pre></div>
+</div>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2877]</p>
+</div>
+<div class="section" id="event-masks-of-semaphores-in-autosar-port-were-calculated-incorrectly">
+<h2><span class="section-number">8.4.4.14. </span>Event Masks of Semaphores in AUTOSAR Port were Calculated Incorrectly<a class="headerlink" href="#event-masks-of-semaphores-in-autosar-port-were-calculated-incorrectly" title="Permalink to this headline">¶</a></h2>
+<p>Event masks of semaphores in the AUTOSAR port were calculated
+incorrectly. This only affected semaphore implementation
+and Waitsets. This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2953]</p>
+</div>
+<div class="section" id="publication-matched-status-and-subscription-matched-status-may-never-have-triggered-a-waitset-if-the-status-was-enabled-after-the-domainparticipant-was-enabled">
+<h2><span class="section-number">8.4.4.15. </span><em>PUBLICATION_MATCHED_STATUS</em> and <em>SUBSCRIPTION_MATCHED_STATUS</em> may never have triggered a WaitSet if the status was enabled after the <em>DomainParticipant</em> was enabled<a class="headerlink" href="#publication-matched-status-and-subscription-matched-status-may-never-have-triggered-a-waitset-if-the-status-was-enabled-after-the-domainparticipant-was-enabled" title="Permalink to this headline">¶</a></h2>
+<p>A StatusCondition with <em>PUBLICATION_MATCHED_STATUS</em> or <em>SUBSCRIPTION_MATCHED_STATUS</em>
+enabled may never have triggered a WaitSet, if the status was enabled after
+the <em>DomainParticipant</em> was enabled.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2219]</p>
+</div>
+<div class="section" id="unicast-datareader-stopped-receiving-samples-after-datawriter-matched-with-a-multicast-datareader">
+<h2><span class="section-number">8.4.4.16. </span>Unicast DataReader stopped receiving samples after DataWriter matched with a multicast DataReader<a class="headerlink" href="#unicast-datareader-stopped-receiving-samples-after-datawriter-matched-with-a-multicast-datareader" title="Permalink to this headline">¶</a></h2>
+<p>A <em>DataReader</em> with a unicast locator stopped receiving samples from a matched
+<em>DataWriter</em> when another <em>DataReader</em> with a multicast locator matched with
+that <em>DataWriter</em>.</p>
+<p>This problem has been resolved. Now all matched <em>DataReaders</em> will receive
+samples, regardless of whether their locators are unicast or multicast.</p>
+<p>[RTI Issue ID MICRO-2369]</p>
+</div>
+<div class="section" id="a-rtps-max-window-size-not-divisible-by-32-may-have-resulted-in-retransmission-of-wrong-sequence-number">
+<h2><span class="section-number">8.4.4.17. </span>A RTPS <em>max_window_size</em> not divisible by 32 may have resulted in retransmission of wrong sequence number<a class="headerlink" href="#a-rtps-max-window-size-not-divisible-by-32-may-have-resulted-in-retransmission-of-wrong-sequence-number" title="Permalink to this headline">¶</a></h2>
+<p>An RTPS <em>max_window_size</em> not divisible by 32 may have caused retransmission of a
+sequence number not being requested. Note that the default value is divisible
+by 32.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2287]</p>
+</div>
+<div class="section" id="posix-mutex-implementation-did-not-conform-with-face-safety-profile">
+<h2><span class="section-number">8.4.4.18. </span>POSIX mutex implementation did not conform with FACE Safety Profile<a class="headerlink" href="#posix-mutex-implementation-did-not-conform-with-face-safety-profile" title="Permalink to this headline">¶</a></h2>
+<p>The POSIX mutex implementation did not conform with the FACE Safety Profile.
+This release conforms to the FACE Safety profile for single-core CPU
+architectures.</p>
+<p>[RTI Issue ID MICRO-2275]</p>
+</div>
+<div class="section" id="waitset-with-timeout-of-0-did-not-return-immediately">
+<h2><span class="section-number">8.4.4.19. </span>Waitset with timeout of 0 did not return immediately<a class="headerlink" href="#waitset-with-timeout-of-0-did-not-return-immediately" title="Permalink to this headline">¶</a></h2>
+<p>A Waitset with a 0 timeout did not return immediately, but was rounded
+up to one clock period.</p>
+<p>This issue has been resolved.</p>
+<p>[RTI Issue ID MICRO-2278, MICRO-2264]</p>
+</div>
+<div class="section" id="for-autosar-the-ip-address-is-now-used-to-generate-a-unique-domainparticipant-id">
+<h2><span class="section-number">8.4.4.20. </span>For AUTOSAR the IP address is now used to generate a unique DomainParticipant ID<a class="headerlink" href="#for-autosar-the-ip-address-is-now-used-to-generate-a-unique-domainparticipant-id" title="Permalink to this headline">¶</a></h2>
+<p>In previous versions of <em>Connext Micro</em> for AUTOSAR the timestamp was used to generate a
+unique DomainParticipant ID. This release uses the IP address from the
+Autosar configuration by default.</p>
+<p>[RTI Issue ID MICRO-2342]</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="release_notes_2412.html" class="btn btn-neutral float-right" title="8.4.5. What’s New in 2.4.12" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="release_notes_24141.html" class="btn btn-neutral float-left" title="8.4.1. What’s New in 2.4.14.1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2024, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

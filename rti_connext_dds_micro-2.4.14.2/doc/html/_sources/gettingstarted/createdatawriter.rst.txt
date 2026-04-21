@@ -1,0 +1,130 @@
+Create DataWriter
+=================
+
+.. highlight:: c
+
+::
+
+    DDS_DataWriter *datawriter = NULL;
+    struct DDS_DataWriterQos dw_qos = DDS_DataWriterQos_INITIALIZER;
+    struct DDS_DataWriterListener dw_listener = DDS_DataWriterListener_INITIALIZER;
+
+    /* Configure writer Qos */
+    dw_qos.protocol.rtps_object_id = 100;
+    dw_qos.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;
+    dw_qos.resource_limits.max_samples_per_instance = 2;
+    dw_qos.resource_limits.max_instances = 2;
+    dw_qos.resource_limits.max_samples =
+        dw_qos.resource_limits.max_samples_per_instance * dw_qos.resource_limits.max_instances;
+    dw_qos.history.depth = 1;
+    dw_qos.durability.kind = DDS_VOLATILE_DURABILITY_QOS;
+    dw_qos.protocol.rtps_reliable_writer.heartbeat_period.sec = 0;
+    dw_qos.protocol.rtps_reliable_writer.heartbeat_period.nanosec = 250000000;
+
+    /* Set enabled listener callbacks */
+    dw_listener.on_publication_matched = HelloWorldPublisher_on_publication_matched;
+
+    datawriter =
+        DDS_Publisher_create_datawriter(publisher,
+                                        topic,
+                                        &dw_qos,
+                                        &dw_listener,
+                                        DDS_PUBLICATION_MATCHED_STATUS);
+    if (datawriter == NULL)
+    {
+        /* failure */
+    }
+
+The DataWriterListener_ has its callbacks selectively enabled by the DDS
+status mask.  In the example, the mask has set the on_publication_matched_ 
+status, and accordingly the DataWriterListener_ has its 
+on_publication_matched_ assigned to a callback function.
+
+::
+
+   void HelloWorldPublisher_on_publication_matched(void *listener_data,
+                                                   DDS_DataWriter * writer,
+                                                   const struct DDS_PublicationMatchedStatus *status)
+   {
+       /* Print on match/unmatch */
+       if (status->current_count_change > 0)
+       {
+           printf("Matched a subscriber\n");
+       }
+       else
+       {
+           printf("Unmatched a subscriber\n");
+       }
+   }
+
+DPSE Discovery: Assert Remote Subscription
+------------------------------------------
+
+A publishing application using DPSE_ discovery must specify the other
+*DataReaders* that its *DataWriters* are allowed to discover.  Like the API
+for asserting a remote participant, the DPSE_ API for asserting a remote
+subscription must be called for each remote *DataReader* that a *DataWriter*
+may discover.
+
+Whereas asserting a remote participant requires only the remote *Participant*'s
+name, asserting a remote subscription requires more configuration, as all
+QoS policies of the subscription necessary to determine matching must be
+known and thus specified.
+
+::
+
+    struct DDS_SubscriptionBuiltinTopicData rem_subscription_data =
+        DDS_SubscriptionBuiltinTopicData_INITIALIZER;
+
+    /* Set Reader's protocol.rtps_object_id */
+    rem_subscription_data.key.value[DDS_BUILTIN_TOPIC_KEY_OBJECT_ID] = 200;
+
+    rem_subscription_data.topic_name = DDS_String_dup("Example HelloWorld");
+    rem_subscription_data.type_name = DDS_String_dup("HelloWorld");
+
+    rem_subscription_data.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;
+
+    retcode = DPSE_RemoteSubscription_assert(participant,
+                                             "Participant_2",
+                                             &rem_subscription_data,
+                                             HelloWorld_get_key_kind(HelloWorldTypePlugin_get(),
+                                             NULL)));
+    if (retcode != DDS_RETCODE_OK)
+    {
+        /* failure */
+    }
+
+Writing Samples
+---------------
+
+Within the generated type support code are declarations of the type-specific
+*DataWriter*.  For the HelloWorld type, this is the HelloWorldDataWriter.
+
+Writing a HelloWorld sample is done by calling the write API of the
+HelloWorldDataWriter.
+
+::
+
+    HelloWorldDataWriter *hw_datawriter;
+    DDS_ReturnCode_t retcode;
+    HelloWorld *sample = NULL;
+
+    /* Create and set sample */
+    sample = HelloWorld_create();
+    if (sample == NULL)
+    {
+        /* failure */
+    }
+    sprintf(sample->msg, "Hello World!");
+
+    /* Write sample  */
+    hw_datawriter = HelloWorldDataWriter_narrow(datawriter);
+
+    retcode = HelloWorldDataWriter_write(hw_datawriter, sample, &DDS_HANDLE_NIL);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        /* failure */
+    }
+
+For more information, see the :doc:`../usersmanual/sending` section 
+in the *User's Manual*.

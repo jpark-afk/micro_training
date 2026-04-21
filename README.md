@@ -36,7 +36,7 @@ sudo apt install default-jre
 ```
 ## Set Envs
 ```bash
-cd rti_connext_dds_micro-2.4.14.2
+cd rti_connext_dds_micro-4.2.0
 source set_micro_env.sh
 cd ..
 ```

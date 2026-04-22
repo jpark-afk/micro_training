@@ -11,7 +11,7 @@ set "NDDSHOME=%RTIMEHOME%"
 
 :: 3. Permanently set NDDSHOME for the user (setx)
 :: Using double quotes carefully to avoid trailing quote bugs in Windows
-setx NDDSHOME "%RTIMEHOME%" >nul
+:: setx NDDSHOME "%RTIMEHOME%" >nul
 
 :: 4. Define Architecture-specific path
 set "RTIMEARCH=x64Win64VS2017"

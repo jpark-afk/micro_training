@@ -2,7 +2,7 @@
 
 ## set env values
 ```cmd
-cd rti_connext_dds_micro-4.2.0
+cd rti_connext_dds_micro-4.3.0_ER1
 
 setenv_micro.bat
 

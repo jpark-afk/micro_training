@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/6.0.1/rti_dds_profiles.xsd">
+    <!-- Domain Library -->
+    <domain_library name="HelloWorldLibrary">
+        <domain name="HelloWorldDomain" domain_id="0">
+            <register_type name="HelloWorld" type_ref="HelloWorld">
+            </register_type>
+
+            <topic name="HelloWorldTopic" register_type_ref="HelloWorld">
+                <registered_name>HelloWorldTopic</registered_name>
+            </topic>
+        </domain>
+    </domain_library>
+    <!-- Participant Library -->
+    <domain_participant_library name="HelloWorldAppLibrary">
+        <domain_participant name="HelloWorldDPDEPubDP"
+            domain_ref="HelloWorldLibrary::HelloWorldDomain">
+            <publisher name="HelloWorldDPDEPub">
+                <data_writer topic_ref="HelloWorldTopic" name="HelloWorldDPDEDW">
+                    <datawriter_qos base_name="QosLibrary::DPDEProfile"/>
+                </data_writer>
+            </publisher>
+            <participant_qos base_name="QosLibrary::DPDEProfile"/>
+        </domain_participant>
+
+        <domain_participant name="HelloWorldDPDESubDP"
+            domain_ref="HelloWorldLibrary::HelloWorldDomain">
+            <subscriber name="HelloWorldDPDESub">
+                <data_reader topic_ref="HelloWorldTopic" name="HelloWorldDPDEDR">
+                    <datareader_qos base_name="QosLibrary::DPDEProfile"/>
+                </data_reader>
+            </subscriber>
+            <participant_qos base_name="QosLibrary::DPDEProfile"/>
+        </domain_participant>
+    </domain_participant_library>
+</dds>

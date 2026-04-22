@@ -13,10 +13,25 @@ cd ..
 ```cmd
 %RTIMEHOME%\resource\scripts\rtime-make --target self --name x64Win64VS2017 -G "Visual Studio 15 2017" --source-dir %RTIMEHOME% --build
 ```
-## Generate examples codes and build
+## Generate examples codes
 ```cmd
 %RTIMEHOME%\rtiddsgen\scripts\rtiddsgen -micro -ppDisable -language C -example .\HelloWorld.idl
+```
+### Example code update
+```c
+//HelloWorldApplication.c:251
+sprintf(application->topic_name, "HelloWorld Topic");
 
+//HelloWorld_publisher.c:125
+/* TODO set sample attributes here */
+snprintf(sample->msg,128,"Hello World(%d)!\0",i);
+
+//HelloWorld_subscriber.c:236
+/* TODO read and process sample attributes here */
+printf("%s\n", sample->msg);
+```
+## Build
+```cmd
 %RTIMEHOME%\resource\scripts\rtime-make --target self --name x64Win64VS2017 -G "Visual Studio 15 2017" --source-dir . --build
 ```
 ## Execution
@@ -51,7 +66,22 @@ $RTIMEHOME/resource/scripts/rtime-make --target self --name $RTIMEARCH -G "Unix 
 ## Generate examples codes and build
 ```bash
 $RTIMEHOME/rtiddsgen/scripts/rtiddsgen -micro -ppDisable -language C -example ./HelloWorld.idl
+```
+### Example code update
+```c
+//HelloWorldApplication.c:251
+sprintf(application->topic_name, "HelloWorld Topic");
 
+//HelloWorld_publisher.c:125
+/* TODO set sample attributes here */
+snprintf(sample->msg,128,"Hello World(%d)!\0",i);
+
+//HelloWorld_subscriber.c:236
+/* TODO read and process sample attributes here */
+printf("%s\n", sample->msg);
+```
+## Build
+```bash
 $RTIMEHOME/resource/scripts/rtime-make --target Linux --name $RTIMEARCH -G "Unix Makefiles" --source-dir . --build
 ```
 ## Cross test

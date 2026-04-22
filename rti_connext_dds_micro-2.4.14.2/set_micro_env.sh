@@ -14,25 +14,26 @@ export RTIMEARCH="x64Linux4gcc7.3.0"
 
 # 4. Update PATH safely for the current session
 # We check if the path is already in PATH to avoid redundant entries
-if [[ ":$PATH:" != *":$RTIMEHOME/rtiddsgen/scripts:"* ]]; then
-    export PATH="$RTIMEHOME/rtiddsgen/scripts:$RTIMEHOME/lib/$RTIMEARCH:$PATH"
-fi
+# if [[ ":$PATH:" != *":$RTIMEHOME/rtiddsgen/scripts:"* ]]; then
+#     export PATH="$RTIMEHOME/rtiddsgen/scripts:$RTIMEHOME/lib/$RTIMEARCH:$PATH"
+# fi
 
 # 5. Persistent Configuration (Optional - use with caution)
 # Instead of simple grep, we use a marker to manage the block
-MARKER="# RTI_DDS_MICRO_ENV_SET"
-if ! grep -q "$MARKER" ~/.bashrc; then
-    echo -e "\n$MARKER" >> ~/.bashrc
-    echo "export NDDSHOME=\"$NDDSHOME\"" >> ~/.bashrc
-    echo "export RTIMEHOME=\"$RTIMEHOME\"" >> ~/.bashrc
-    echo "export RTIMEARCH=\"$RTIMEARCH\"" >> ~/.bashrc
-    echo "export PATH=\"\$RTIMEHOME/rtiddsgen/scripts:\$RTIMEHOME/resource/scripts:\$RTIMEHOME/lib/\$RTIMEARCH:\$PATH\"" >> ~/.bashrc
-    echo "[INFO] Persistent environment settings added to ~/.bashrc"
-fi
+#MARKER="# RTI_DDS_MICRO_ENV_SET"
+#if ! grep -q "$MARKER" ~/.bashrc; then
+#    echo -e "\n$MARKER" >> ~/.bashrc
+#    echo "export NDDSHOME=\"$NDDSHOME\"" >> ~/.bashrc
+#    echo "export RTIMEHOME=\"$RTIMEHOME\"" >> ~/.bashrc
+#    echo "export RTIMEARCH=\"$RTIMEARCH\"" >> ~/.bashrc
+#   echo "export PATH=\"\$RTIMEHOME/rtiddsgen/scripts:\$RTIMEHOME/resource/scripts:\$RTIMEHOME/lib/\$RTIMEARCH:\$PATH\"" >> ~/.bashrc
+#    echo "[INFO] Persistent environment settings added to ~/.bashrc"
+#fi
 
 # 6. Summary
 echo "---------------------------------------------------"
 echo "RTI Connext Micro Environment Set (Linux)"
 echo "NDDSHOME  : $NDDSHOME"
+echo "RTIMEHOME  : $RTIMEHOME"
 echo "RTIMEARCH : $RTIMEARCH"
 echo "---------------------------------------------------"

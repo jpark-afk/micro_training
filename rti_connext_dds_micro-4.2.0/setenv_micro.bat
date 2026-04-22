@@ -18,10 +18,10 @@ set "RTIMEARCH=x86_64lePEvs2017-Win10"
 
 :: 5. Update PATH only if the directory is not already present
 :: This prevents the PATH variable from growing indefinitely and hitting the length limit
-echo %PATH% | findstr /C:"%RTIMEHOME%\rtiddsgen\scripts" >nul
-if errorlevel 1 (
-    set "PATH=%RTIMEHOME%\rtiddsgen\scripts;%RTIMEHOME%\lib\%RTIMEARCH%;%PATH%"
-)
+:: echo %PATH% | findstr /C:"%RTIMEHOME%\rtiddsgen\scripts" >nul
+:: if errorlevel 1 (
+::     set "PATH=%RTIMEHOME%\rtiddsgen\scripts;%RTIMEHOME%\lib\%RTIMEARCH%;%PATH%"
+:: )
 
 :: 6. Display the final configuration
 echo ---------------------------------------------------

@@ -21,6 +21,20 @@ Please backup the original file!
 ```cmd
 %RTIMEHOME%\bin\rtiddsgen.bat -example -exampleTemplate mag/dpde -language C HelloWorld.xml -replace
 ```
+
+### Example code update
+```c
+//HelloWorld_publisher.c:98
+/* TODO set sample attributes here */
+snprintf(sample->message,64,"Hello World(%d)!\0",i);
+sample->count = i;
+
+
+//HelloWorld_subscriber.c:240
+/* TODO read and process sample attributes here */
+printf("%s\n", sample->message);
+```
+
 ## Build (last option is very important!)
 ```cmd
 %RTIMEHOME%\resource\scripts\rtime-make.bat --config Debug -A x64 --target self --name x86_64lePEvs2017-Win10 --build --source-dir . -DRTIME_MAG_FILES_eq_HelloWorld.xml
@@ -70,6 +84,18 @@ $RTIMEHOME/bin/rtiddsmag -language C -referencedFile HelloWorldQos.xml HelloWorl
 Please backup the original file!
 ```bash
 $RTIMEHOME/bin/rtiddsgen -example -exampleTemplate mag/dpde -language C HelloWorld.xml -replace
+```
+### Example code update
+```c
+//HelloWorld_publisher.c:98
+/* TODO set sample attributes here */
+snprintf(sample->message,64,"Hello World(%d)!\0",i);
+sample->count = i;
+
+
+//HelloWorld_subscriber.c:240
+/* TODO read and process sample attributes here */
+printf("%s\n", sample->message);
 ```
 
 ## Build (last option is very important!)

@@ -71,6 +71,12 @@
                     <remote_reader_allocation>
                         <max_count>8</max_count>
                     </remote_reader_allocation>
+                    <matching_writer_reader_pair_allocation>
+                        <max_count>32</max_count>
+                    </matching_writer_reader_pair_allocation>
+                    <matching_reader_writer_pair_allocation>
+                        <max_count>32</max_count>
+                    </matching_reader_writer_pair_allocation>
                     <max_receive_ports>32</max_receive_ports>
                     <max_destination_ports>32</max_destination_ports>
                 </resource_limits>
@@ -97,15 +103,6 @@
                         </heartbeat_period>
                     </rtps_reliable_writer>
                 </protocol>
-                <unicast>
-                    <value>
-                        <element>
-                            <transports>
-                                <element>udpv4</element>
-                            </transports>
-                        </element>
-                    </value>
-                </unicast>
             </datawriter_qos>
 
             <datareader_qos>
@@ -125,25 +122,6 @@
                     <max_remote_writers>8</max_remote_writers>
                     <max_remote_writers_per_instance>8</max_remote_writers_per_instance>
                 </reader_resource_limits>
-                <unicast>
-                    <value>
-                        <element>
-                            <transports>
-                                <element>udpv4</element>
-                            </transports>
-                        </element>
-                    </value>
-                </unicast>
-                <multicast>
-                    <value>
-                        <element>
-                            <receive_address>127.0.0.1</receive_address>
-                            <transports>
-                                <element>udpv4</element>
-                            </transports>
-                        </element>
-                    </value>
-                </multicast>
             </datareader_qos>
         </qos_profile>
 

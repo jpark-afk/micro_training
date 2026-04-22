@@ -104,7 +104,7 @@ ENDIF()
 ADD_DEFINITIONS()
 LINK_DIRECTORIES()
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-PROJECT(HelloWorld C)
+PROJECT(HelloWorldDPSE C)
 SET(SOURCE_EXTENSION c)
 
 IF (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
@@ -138,7 +138,7 @@ SET(RTIDDSMAG ${RTIMEHOME}/rtiddsmag/scripts/rtiddsmag)
 
 SET_PROPERTY(GLOBAL PROPERTY RULE_MESSAGES OFF)
 
-SET(IDL_SOURCE_C HelloWorld.idl)
+SET(IDL_SOURCE_C HelloWorldDPSE.idl)
 
 SET(IDL_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 SET(XML_PATH ${CMAKE_CURRENT_SOURCE_DIR})
@@ -478,26 +478,26 @@ ENDIF()
 
 SET_LIB_ORDER(MICRO_C_LIBS)
 
-ADD_EXECUTABLE(HelloWorld_publisher
-               ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorld_publisher.${SOURCE_EXTENSION}
-               ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorldApplication.${SOURCE_EXTENSION}
-               ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorldApplication.h
+ADD_EXECUTABLE(HelloWorldDPSE_publisher
+               ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorldDPSE_publisher.${SOURCE_EXTENSION}
+               ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorldDPSEApplication.${SOURCE_EXTENSION}
+               ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorldDPSEApplication.h
                                              ${IDL_GEN_C} ${IDL_GEN_H} ${APP_GEN_C} ${APP_GEN_H})
 
-ADD_EXECUTABLE(HelloWorld_subscriber
-               ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorld_subscriber.${SOURCE_EXTENSION}
-               ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorldApplication.${SOURCE_EXTENSION}
-               ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorldApplication.h
+ADD_EXECUTABLE(HelloWorldDPSE_subscriber
+               ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorldDPSE_subscriber.${SOURCE_EXTENSION}
+               ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorldDPSEApplication.${SOURCE_EXTENSION}
+               ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorldDPSEApplication.h
                                              ${IDL_GEN_C} ${IDL_GEN_H} ${APP_GEN_C} ${APP_GEN_H})
 
-TARGET_LINK_LIBRARIES(HelloWorld_publisher
+TARGET_LINK_LIBRARIES(HelloWorldDPSE_publisher
         ${MICRO_C_LIBS}
         ${XML_LIBS}
         ${SSL_LIBS}
         ${PLATFORM_LIBS}
 )
 
-TARGET_LINK_LIBRARIES(HelloWorld_subscriber
+TARGET_LINK_LIBRARIES(HelloWorldDPSE_subscriber
         ${MICRO_C_LIBS}
         ${XML_LIBS}
         ${SSL_LIBS}

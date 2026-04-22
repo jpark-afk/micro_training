@@ -1,3 +1,4 @@
+# DPSE Example
 # Windows
 
 ## set env values
@@ -13,13 +14,13 @@ cd ..
 ```cmd
 cd xml
 
-%RTIMEHOME%\bin\rtiddsmag.bat -language C -referencedFile HelloWorldQos.xml HelloWorld.xml
+>%RTIMEHOME%\bin\rtiddsmag.bat -language C -referencedFile HelloWorldQosDPSE.xml HelloWorldDPSE.xml
 ```
 
 ## Generate Example codes and replace HelloWorld.xml
 Please backup the original file!
 ```cmd
-%RTIMEHOME%\bin\rtiddsgen.bat -example -exampleTemplate mag/dpde -language C HelloWorld.xml -replace
+%RTIMEHOME%\bin\rtiddsgen.bat -example -exampleTemplate mag/dpse -language C HelloWorldDPSE.xml -replace
 ```
 
 ### Example code update
@@ -37,13 +38,13 @@ printf("%s\n", sample->message);
 
 ## Build (last option is very important!)
 ```cmd
-%RTIMEHOME%\resource\scripts\rtime-make.bat --config Debug -A x64 --target self --name x86_64lePEvs2017-Win10 --build --source-dir . -DRTIME_MAG_FILES_eq_HelloWorld.xml
+%RTIMEHOME%\resource\scripts\rtime-make.bat --config Debug -A x64 --target self --name x86_64lePEvs2017-Win10 --build --source-dir . -DRTIME_MAG_FILES_eq_HelloWorldDPSE.xml
 ```
 ## Run
 ```cmd
-.\objs\x86_64lePEvs2017-Win10\Debug\HelloWorld_publisher.exe    
+.\objs\x86_64lePEvs2017-Win10\Debug\HelloWorldDPSE_publisher.exe    
 
-.\objs\x86_64lePEvs2017-Win10\Debug\HelloWorld_subscriber.exe
+.\objs\x86_64lePEvs2017-Win10\Debug\HelloWorldDPSE_subscriber.exe
 ```
 
 # Linux
@@ -77,13 +78,13 @@ sed -i 's/\r$//' set_micro_env.sh
 ## Run MAG
 ```bash
 cd xml
-$RTIMEHOME/bin/rtiddsmag -language C -referencedFile HelloWorldQos.xml HelloWorld.xml
+$RTIMEHOME/bin/rtiddsmag -language C -referencedFile HelloWorldQosDPSE.xml HelloWorldDPSE.xml
 ```
 
 ## Generate Example codes and replace HelloWorld.xml
 Please backup the original file!
 ```bash
-$RTIMEHOME/bin/rtiddsgen -example -exampleTemplate mag/dpde -language C HelloWorld.xml -replace
+$RTIMEHOME/bin/rtiddsgen -example -exampleTemplate mag/dpde -language C HelloWorldDPSE.xml -replace
 ```
 ### Example code update
 ```c
@@ -100,21 +101,21 @@ printf("%s\n", sample->message);
 
 ## Build (last option is very important!)
 ```bash
-$RTIMEHOME/resource/scripts/rtime-make --config Debug --build --target x86_64leElfgcc12.3.0-Linux5 --source-dir . -G "Unix Makefiles" --delete -DRTIME_MAG_FILES=HelloWorld.xml
+$RTIMEHOME/resource/scripts/rtime-make --config Debug --build --target x86_64leElfgcc12.3.0-Linux5 --source-dir . -G "Unix Makefiles" --delete -DRTIME_MAG_FILES=HelloWorldDPSE.xml
 ```
 ## Run
 ```bash
-./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorld_publisher    
+./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorldDPSE_publisher    
 
-./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorld_subscriber
+./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorldDPSE_subscriber
 ```
 
 ## Cross test
 No need to set enabled_transport and initial_peers
 ```bash
 ## Windows
-.\objs\x86_64lePEvs2017-Win10\Debug\HelloWorld_publisher.exe 
+.\objs\x86_64lePEvs2017-Win10\Debug\HelloWorld_publisherDPSE.exe 
 
 ## Linux
-./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorld_subscriber 
+./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorld_subscriberDPSE 
 ```

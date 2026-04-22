@@ -10,7 +10,7 @@ export RTIMEHOME="$SCRIPT_DIR"
 
 # 3. Define the architecture (Ensure this matches your $RTIMEHOME/lib folder)
 # Recommended: Verify the folder name in the 'lib' directory
-export RTIMEARCH="x86_64leElfgcc12.3.0-Linux5"
+export RTIMEARCH="x86_64leElfgcc13.3.0-Linux6"
 
 # 4. Update PATH safely for the current session
 # We check if the path is already in PATH to avoid redundant entries

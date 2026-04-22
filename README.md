@@ -63,10 +63,24 @@ sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-17/bin/
 sudo update-alternatives --config java
 ## select the number of java-17
 ```
+## gcc upgrade (13.3.0)
+```bash
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt update
+sudo apt install gcc-13 g++-13
+
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100 --slave /usr/bin/g++ g++ /usr/bin/g++-13
+
+sudo update-alternatives --config gcc
+gcc --version
+```
 
 ## Set Envs
 ```bash
-cd rti_connext_dds_micro-4.2.0
+# optional
+chmod -R 777 rti_connext_dds_micro-4.3.0_ER1
+
+cd rti_connext_dds_micro-4.3.0_ER1
 source set_micro_env.sh
 cd ..
 ```
@@ -100,13 +114,14 @@ printf("%s\n", sample->message);
 
 ## Build (last option is very important!)
 ```bash
-$RTIMEHOME/resource/scripts/rtime-make --config Debug --build --target x86_64leElfgcc12.3.0-Linux5 --source-dir . -G "Unix Makefiles" --delete -DRTIME_MAG_FILES=HelloWorld.xml
+$RTIMEHOME/resource/scripts/rtime-make --config Release --build --target x86_64leElfgcc13.3.0-Linux6 --source-dir . -G "Unix Makefiles" --delete -DRTIME_MAG_FILES=HelloWorld.xml
 ```
+* Debug is not working at this moment.
 ## Run
 ```bash
-./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorld_publisher    
+./objs/x86_64leElfgcc13.3.0-Linux6/HelloWorld_publisher    
 
-./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorld_subscriber
+./objs/x86_64leElfgcc13.3.0-Linux6/HelloWorld_subscriber
 ```
 
 ## Cross test
@@ -116,5 +131,5 @@ No need to set enabled_transport and initial_peers
 .\objs\x86_64lePEvs2017-Win10\Debug\HelloWorld_publisher.exe 
 
 ## Linux
-./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorld_subscriber 
+./objs/x86_64leElfgcc13.3.0-Linux6/HelloWorld_subscriber 
 ```

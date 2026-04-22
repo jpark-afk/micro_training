@@ -9,10 +9,25 @@ setenv_micro.bat
 cd ..
 ```
 
-## Generate examples codes and build
+## Generate examples codes 
 ```cmd
 %RTIMEHOME%bin\rtiddsgen -example -language C -ppDisable HelloWorld.idl
+```
+### Example code update
+```c
+//HelloWorldApplication.c:295
+sprintf(application->topic_name, "HelloWorld Topic");
 
+//HelloWorld_publisher.c:127
+/* TODO set sample attributes here */
+snprintf(sample->msg,128,"Hello World(%d)!\0",i);
+
+//HelloWorld_subscriber.c:239
+/* TODO read and process sample attributes here */
+printf("%s\n", sample->msg);
+```
+## Build
+```cmd
 %RTIMEHOME%\resource\scripts\rtime-make.bat --config Debug -A x64 --target self --name %RTIMEARCH% --build --source-dir .
 ```
 ## Execution
@@ -41,11 +56,32 @@ source set_micro_env.sh
 cd ..
 ```
 
-## Generate examples codes and build
+## Generate examples codes
 ```bash
 $RTIMEHOME/bin/rtiddsgen -example -language C HelloWorld.idl
+```
+### Example code update
+```c
+//HelloWorldApplication.c:295
+sprintf(application->topic_name, "HelloWorld Topic");
 
+//HelloWorld_publisher.c:127
+/* TODO set sample attributes here */
+snprintf(sample->msg,128,"Hello World(%d)!\0",i);
+
+//HelloWorld_subscriber.c:239
+/* TODO read and process sample attributes here */
+printf("%s\n", sample->msg);
+```
+## Build
+```bash
 $RTIMEHOME/resource/scripts/rtime-make --config Debug --build --target $RTIMEARCH --source-dir . -G "Unix Makefiles" --delete
+```
+## Execution
+```bash
+./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorld_publisher
+
+./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorld_subscriber
 ```
 ## Cross test
 ```bash

@@ -1,0 +1,79 @@
+\doxysubsection{DDS\+\_\+\+Requested\+Incompatible\+Qos\+Status Struct Reference}
+\hypertarget{structDDS__RequestedIncompatibleQosStatus}{}\label{structDDS__RequestedIncompatibleQosStatus}\index{DDS\_RequestedIncompatibleQosStatus@{DDS\_RequestedIncompatibleQosStatus}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa126ff1b38cdfc905353cb2dac57b6796}{DDS\+\_\+\+REQUESTED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+subscription.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__RequestedIncompatibleQosStatus_a5e1381230973dff09604e4009114afbc}{total\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em Total cumulative count of how many times the concerned \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} discovered a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} for the same \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} with an offered QoS that is incompatible with that requested by the \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__RequestedIncompatibleQosStatus_a059fbc171075a56b41681385abeb8c31}{total\+\_\+count\+\_\+change}}
+\begin{DoxyCompactList}\small\item\em The change in {\ttfamily total\+\_\+count} since the last time the listener was called or the status was read. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSQosTypesModule_ga4b2c4d85475a58758fba7601082a40f8}{DDS\+\_\+\+Qos\+Policy\+Id\+\_\+t}} \mbox{\hyperlink{structDDS__RequestedIncompatibleQosStatus_a728da2e553b4cc129dfbc401e1e96632}{last\+\_\+policy\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em The Policy\+Id\+\_\+t of one of the policies that was found to be incompatible the last time an incompatibility was detected. \end{DoxyCompactList}\item 
+struct DDS\+\_\+\+Qos\+Policy\+Count\+Seq \mbox{\hyperlink{structDDS__RequestedIncompatibleQosStatus_a9ba7c07d85905e1c5265b6abdfcdb5a4}{policies}}
+\begin{DoxyCompactList}\small\item\em Not used in RTI Connext DDS Micro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa126ff1b38cdfc905353cb2dac57b6796}{DDS\+\_\+\+REQUESTED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSReliabilityQosModule}{RELIABILITY} 
+
+\doxylink{group__DDSOwnershipQosModule}{OWNERSHIP} 
+
+\doxylink{group__DDSLivelinessQosModule}{LIVELINESS} 
+
+\doxylink{group__DDSDeadlineQosModule}{DEADLINE} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__RequestedIncompatibleQosStatus_a5e1381230973dff09604e4009114afbc}\index{DDS\_RequestedIncompatibleQosStatus@{DDS\_RequestedIncompatibleQosStatus}!total\_count@{total\_count}}
+\index{total\_count@{total\_count}!DDS\_RequestedIncompatibleQosStatus@{DDS\_RequestedIncompatibleQosStatus}}
+\doxyparagraph{\texorpdfstring{total\_count}{total\_count}}
+{\footnotesize\ttfamily \label{structDDS__RequestedIncompatibleQosStatus_a5e1381230973dff09604e4009114afbc} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Requested\+Incompatible\+Qos\+Status\+::total\+\_\+count}
+
+
+
+Total cumulative count of how many times the concerned \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} discovered a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} for the same \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} with an offered QoS that is incompatible with that requested by the \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. 
+
+\Hypertarget{structDDS__RequestedIncompatibleQosStatus_a059fbc171075a56b41681385abeb8c31}\index{DDS\_RequestedIncompatibleQosStatus@{DDS\_RequestedIncompatibleQosStatus}!total\_count\_change@{total\_count\_change}}
+\index{total\_count\_change@{total\_count\_change}!DDS\_RequestedIncompatibleQosStatus@{DDS\_RequestedIncompatibleQosStatus}}
+\doxyparagraph{\texorpdfstring{total\_count\_change}{total\_count\_change}}
+{\footnotesize\ttfamily \label{structDDS__RequestedIncompatibleQosStatus_a059fbc171075a56b41681385abeb8c31} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Requested\+Incompatible\+Qos\+Status\+::total\+\_\+count\+\_\+change}
+
+
+
+The change in {\ttfamily total\+\_\+count} since the last time the listener was called or the status was read. 
+
+\Hypertarget{structDDS__RequestedIncompatibleQosStatus_a728da2e553b4cc129dfbc401e1e96632}\index{DDS\_RequestedIncompatibleQosStatus@{DDS\_RequestedIncompatibleQosStatus}!last\_policy\_id@{last\_policy\_id}}
+\index{last\_policy\_id@{last\_policy\_id}!DDS\_RequestedIncompatibleQosStatus@{DDS\_RequestedIncompatibleQosStatus}}
+\doxyparagraph{\texorpdfstring{last\_policy\_id}{last\_policy\_id}}
+{\footnotesize\ttfamily \label{structDDS__RequestedIncompatibleQosStatus_a728da2e553b4cc129dfbc401e1e96632} 
+\mbox{\hyperlink{group__DDSQosTypesModule_ga4b2c4d85475a58758fba7601082a40f8}{DDS\+\_\+\+Qos\+Policy\+Id\+\_\+t}} DDS\+\_\+\+Requested\+Incompatible\+Qos\+Status\+::last\+\_\+policy\+\_\+id}
+
+
+
+The Policy\+Id\+\_\+t of one of the policies that was found to be incompatible the last time an incompatibility was detected. 
+
+\Hypertarget{structDDS__RequestedIncompatibleQosStatus_a9ba7c07d85905e1c5265b6abdfcdb5a4}\index{DDS\_RequestedIncompatibleQosStatus@{DDS\_RequestedIncompatibleQosStatus}!policies@{policies}}
+\index{policies@{policies}!DDS\_RequestedIncompatibleQosStatus@{DDS\_RequestedIncompatibleQosStatus}}
+\doxyparagraph{\texorpdfstring{policies}{policies}}
+{\footnotesize\ttfamily \label{structDDS__RequestedIncompatibleQosStatus_a9ba7c07d85905e1c5265b6abdfcdb5a4} 
+struct DDS\+\_\+\+Qos\+Policy\+Count\+Seq DDS\+\_\+\+Requested\+Incompatible\+Qos\+Status\+::policies}
+
+
+
+Not used in RTI Connext DDS Micro. 
+

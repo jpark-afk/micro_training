@@ -1,0 +1,615 @@
+\doxysubsubsubsection{Publisher}
+\hypertarget{group__DDSPublisherModule}{}\label{group__DDSPublisherModule}\index{Publisher@{Publisher}}
+
+
+\doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} entity and associated elements  
+
+
+\doxysubsubsubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  QoS policies supported by a \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} entity. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{structDDS__Listener}{DDS\+\_\+\+Listener} for \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DDSPublisherModule_ga1f75496be2446615a8cb28306817976d}{DDS\+\_\+\+Publisher\+Qos\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Initializer for new QoS instances. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSPublisherModule_ga0ab90311311a6c4281f6b2b98271c26c}{DDS\+\_\+\+Publisher\+Listener\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Initializer for new \doxylink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct DDS\+\_\+\+Publisher\+Impl \mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A publisher is the object responsible for the actual dissemination of publications. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSPublisherModule_ga2757b80d41ee0b538ba4daacc6b7cc07}{DDS\+\_\+\+Publisher\+Qos\+\_\+initialize}} (struct \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Initializer for new QoS instances. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSPublisherModule_gadebc480012b0397c81b2f417dbdd2089}{DDS\+\_\+\+Publisher\+Qos\+\_\+copy}} (struct \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \texorpdfstring{$\ast$}{*}source)
+\begin{DoxyCompactList}\small\item\em Copy the contents of the given QoS into this QoS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSPublisherModule_ga2a85447cffb31d26513ae7d8ca43b4cf}{DDS\+\_\+\+Publisher\+Qos\+\_\+finalize}} (struct \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Free any dynamic memory allocated by the policies in this \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSPublisherModule_ga9a55c1dbc334e680c2d7cc210e815fd3}{DDS\+\_\+\+Publisher\+\_\+as\+\_\+entity}} (\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}publisher)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Access a \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}\textquotesingle{}s supertype instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSPublisherModule_ga777a869f4f8d435be23dea15f949f4bf}{DDS\+\_\+\+Publisher\+\_\+get\+\_\+default\+\_\+datawriter\+\_\+qos}} (\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}} \texorpdfstring{$\ast$}{*}qos)
+\begin{DoxyCompactList}\small\item\em Copies the default \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} values into the provided \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSPublisherModule_ga2e9edb04b08d1aeedf1cc306107be267}{DDS\+\_\+\+Publisher\+\_\+set\+\_\+default\+\_\+datawriter\+\_\+qos}} (\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}} \texorpdfstring{$\ast$}{*}qos)
+\begin{DoxyCompactList}\small\item\em Sets the default \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} values for this publisher. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSPublisherModule_gaf23960c6adc8b7cf79966ce8c54196d6}{DDS\+\_\+\+Publisher\+\_\+create\+\_\+datawriter}} (\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}} \texorpdfstring{$\ast$}{*}topic, const struct \mbox{\hyperlink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}} \texorpdfstring{$\ast$}{*}qos, const struct \mbox{\hyperlink{structDDS__DataWriterListener}{DDS\+\_\+\+Data\+Writer\+Listener}} \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} mask)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Creates a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} that will be attached and belong to the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSPublisherModule_gaa2d341cdc5442fc4aa1fc27f1edd5707}{DDS\+\_\+\+Publisher\+\_\+delete\+\_\+datawriter}} (\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}} \texorpdfstring{$\ast$}{*}a\+\_\+datawriter)
+\begin{DoxyCompactList}\small\item\em Deletes a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} that belongs to the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSPublisherModule_ga3f224f6a9c6a90701718c24e0e30f31b}{DDS\+\_\+\+Publisher\+\_\+lookup\+\_\+datawriter}} (\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}self, const char \texorpdfstring{$\ast$}{*}topic\+\_\+name)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieves the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} for a specific \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSPublisherModule_ga45587072ff111ec963a60f2a51167477}{DDS\+\_\+\+Publisher\+\_\+lookup\+\_\+datawriter\+\_\+by\+\_\+name}} (\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}self, const char \texorpdfstring{$\ast$}{*}writer\+\_\+name)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieves a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} by its entity name within this \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSPublisherModule_gae6671d0a8e916fc0b8f40b4506194519}{DDS\+\_\+\+Publisher\+\_\+get\+\_\+participant}} (\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Returns the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} to which the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} belongs. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSPublisherModule_gaa4845fff7f12821fd653daaf6f19cdcf}{DDS\+\_\+\+Publisher\+\_\+delete\+\_\+contained\+\_\+entities}} (\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Deletes all the entities that were created by means of the "{}create"{} operation on the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSPublisherModule_ga1e4b13add92130193fbeaa948f641dff}{DDS\+\_\+\+Publisher\+\_\+set\+\_\+qos}} (\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \texorpdfstring{$\ast$}{*}qos)
+\begin{DoxyCompactList}\small\item\em Sets the publisher QoS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSPublisherModule_ga8e26f1a5261f56bef166f94526c3fb57}{DDS\+\_\+\+Publisher\+\_\+get\+\_\+qos}} (\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \texorpdfstring{$\ast$}{*}qos)
+\begin{DoxyCompactList}\small\item\em Gets the publisher QoS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSPublisherModule_gacd43044defed6e13169b494e0015ba3c}{DDS\+\_\+\+Publisher\+\_\+set\+\_\+listener}} (\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener}} \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} mask)
+\begin{DoxyCompactList}\small\item\em Sets the publisher listener. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener}} \mbox{\hyperlink{group__DDSPublisherModule_ga37b7a05b6685487b63e783e2499d09b5}{DDS\+\_\+\+Publisher\+\_\+get\+\_\+listener}} (\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Get the publisher listener. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}} \mbox{\hyperlink{group__DDSPublisherModule_gad6a57a9e8611ae9cecea897141d0c275}{DDS\+\_\+\+DATAWRITER\+\_\+\+QOS\+\_\+\+DEFAULT}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Special value for creating \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} with default QoS \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+\doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} entity and associated elements 
+
+
+
+\doxysubsubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__DDSPublisherModule_ga1f75496be2446615a8cb28306817976d}\index{Publisher@{Publisher}!DDS\_PublisherQos\_INITIALIZER@{DDS\_PublisherQos\_INITIALIZER}}
+\index{DDS\_PublisherQos\_INITIALIZER@{DDS\_PublisherQos\_INITIALIZER}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_PublisherQos\_INITIALIZER}{DDS\_PublisherQos\_INITIALIZER}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_ga1f75496be2446615a8cb28306817976d} 
+\#define DDS\+\_\+\+Publisher\+Qos\+\_\+\+INITIALIZER}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Initializer for new QoS instances. 
+
+New \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} instance stored on the stack should be initialized with this value before they are passed to any function. This step ensures that those contained QoS policies that use dynamic memory are properly initialized. This does not allocate memory. 
+
+The simplest way to create a new QoS structure is to initialize it on the stack at the time of its creation\+: 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{structDDS__PublisherQos}{DDS\_PublisherQos}}\ myQos\ =\ \mbox{\hyperlink{group__DDSPublisherModule_ga1f75496be2446615a8cb28306817976d}{DDS\_PublisherQos\_INITIALIZER}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+
+\end{DoxyCode}
+ 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSPublisherModule_ga2a85447cffb31d26513ae7d8ca43b4cf}{DDS\+\_\+\+Publisher\+Qos\+\_\+finalize} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSPublisherModule_ga0ab90311311a6c4281f6b2b98271c26c}\index{Publisher@{Publisher}!DDS\_PublisherListener\_INITIALIZER@{DDS\_PublisherListener\_INITIALIZER}}
+\index{DDS\_PublisherListener\_INITIALIZER@{DDS\_PublisherListener\_INITIALIZER}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_PublisherListener\_INITIALIZER}{DDS\_PublisherListener\_INITIALIZER}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_ga0ab90311311a6c4281f6b2b98271c26c} 
+\#define DDS\+\_\+\+Publisher\+Listener\+\_\+\+INITIALIZER}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Initializer for new \doxylink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener}. 
+
+All the new \doxylink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener} instances allocated in the stack should be initialized to this value. No memory is allocated. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{structDDS__PublisherListener}{DDS\_PublisherListener}}\ listener\ =\ \mbox{\hyperlink{group__DDSPublisherModule_ga0ab90311311a6c4281f6b2b98271c26c}{DDS\_PublisherListener\_INITIALIZER}};\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ initialize\ listener\ functions\ */}\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ listener.\mbox{\hyperlink{structDDS__PublisherListener_afc3c215ba806ece85056e34108e5d20e}{as\_datawriterlistener}}.\mbox{\hyperlink{structDDS__DataWriterListener_a0d61f3c1cb02adcd4783a275239e9a87}{on\_offered\_deadline\_missed}}\ =\ ....;\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__DDSPublisherModule_gacd43044defed6e13169b494e0015ba3c}{DDS\_Publisher\_set\_listener}}(myPublisher,\ \&amp;listener,\ mask);\ }
+
+\end{DoxyCode}
+ 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSPublisherModule_gacd43044defed6e13169b494e0015ba3c}{DDS\+\_\+\+Publisher\+\_\+set\+\_\+listener}  
+
+\doxylink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsubsubsection{Typedef Documentation}
+\Hypertarget{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}\index{Publisher@{Publisher}!DDS\_Publisher@{DDS\_Publisher}}
+\index{DDS\_Publisher@{DDS\_Publisher}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher}{DDS\_Publisher}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9} 
+typedef struct DDS\+\_\+\+Publisher\+Impl \mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A publisher is the object responsible for the actual dissemination of publications. 
+
+\begin{DoxyParagraph}{QoS\+:}
+\doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Listener\+:}
+\doxylink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener} 
+\end{DoxyParagraph}
+A publisher acts on the behalf of one or several \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} objects that belong to it. When it is informed of a change to the data associated with one of its \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} objects, it decides when it is appropriate to actually send the data-\/update message. In making this decision, it considers any extra information that goes with the data (timestamp, writer, etc.) as well as the QoS of the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} and the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. 
+
+The following operations may be called even if the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} is not enabled. Other operations will fail with the value \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED} if called on a disabled \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}\+: \begin{DoxyItemize}
+\item The base-\/class operations \doxylink{group__DDSEntityModule_ga892fed8d9375b7c3c5f1f610f87e18da}{DDS\+\_\+\+Entity\+\_\+enable} \item \doxylink{group__DDSPublisherModule_gaf23960c6adc8b7cf79966ce8c54196d6}{DDS\+\_\+\+Publisher\+\_\+create\+\_\+datawriter}  ,\doxylink{group__DDSPublisherModule_gaa2d341cdc5442fc4aa1fc27f1edd5707}{DDS\+\_\+\+Publisher\+\_\+delete\+\_\+datawriter}, \doxylink{group__DDSPublisherModule_gaa4845fff7f12821fd653daaf6f19cdcf}{DDS\+\_\+\+Publisher\+\_\+delete\+\_\+contained\+\_\+entities}  \end{DoxyItemize}
+
+
+\doxysubsubsubsubsection{Function Documentation}
+\Hypertarget{group__DDSPublisherModule_ga2757b80d41ee0b538ba4daacc6b7cc07}\index{Publisher@{Publisher}!DDS\_PublisherQos\_initialize@{DDS\_PublisherQos\_initialize}}
+\index{DDS\_PublisherQos\_initialize@{DDS\_PublisherQos\_initialize}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_PublisherQos\_initialize()}{DDS\_PublisherQos\_initialize()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_ga2757b80d41ee0b538ba4daacc6b7cc07} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Publisher\+Qos\+\_\+initialize (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Initializer for new QoS instances. 
+
+New \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} instances on heap should be initialized with this function before they are passed to any function. This step ensures that those contained QoS policies that use dynamic memory are properly initialized. This function does not allocate memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.   \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}  
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSPublisherModule_ga2a85447cffb31d26513ae7d8ca43b4cf}{DDS\+\_\+\+Publisher\+Qos\+\_\+finalize}  
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSPublisherModule_gadebc480012b0397c81b2f417dbdd2089}\index{Publisher@{Publisher}!DDS\_PublisherQos\_copy@{DDS\_PublisherQos\_copy}}
+\index{DDS\_PublisherQos\_copy@{DDS\_PublisherQos\_copy}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_PublisherQos\_copy()}{DDS\_PublisherQos\_copy()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_gadebc480012b0397c81b2f417dbdd2089} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Publisher\+Qos\+\_\+copy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const struct \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \texorpdfstring{$\ast$}{*}}]{source}{}\end{DoxyParamCaption})}
+
+
+
+Copy the contents of the given QoS into this QoS. 
+
+\doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} instances can use dynamic memory because of the sequences contained in some QoS policies. A shallow copy by assignment is therefore unsafe. This function performs a deep-\/copy, allocating memory if necessary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em source} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} to copy from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+UNSAFE. This operation is not thread safe. This operation does not protect the source or destination from being modified by another thread while the source is being copied to the destination. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{API Restriction\+:}
+This function {\itshape  must } only be called after \doxylink{group__DDSDomainParticipantFactoryModule_gae787f8bc30714e3bc1989968035d18af}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance}. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSPublisherModule_ga1f75496be2446615a8cb28306817976d}{DDS\+\_\+\+Publisher\+Qos\+\_\+\+INITIALIZER} 
+
+\doxylink{group__DDSPublisherModule_ga2757b80d41ee0b538ba4daacc6b7cc07}{DDS\+\_\+\+Publisher\+Qos\+\_\+initialize}  
+
+\doxylink{group__DDSPublisherModule_ga2a85447cffb31d26513ae7d8ca43b4cf}{DDS\+\_\+\+Publisher\+Qos\+\_\+finalize}  
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSPublisherModule_ga2a85447cffb31d26513ae7d8ca43b4cf}\index{Publisher@{Publisher}!DDS\_PublisherQos\_finalize@{DDS\_PublisherQos\_finalize}}
+\index{DDS\_PublisherQos\_finalize@{DDS\_PublisherQos\_finalize}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_PublisherQos\_finalize()}{DDS\_PublisherQos\_finalize()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_ga2a85447cffb31d26513ae7d8ca43b4cf} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Publisher\+Qos\+\_\+finalize (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Free any dynamic memory allocated by the policies in this \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}. 
+
+Some QoS policies may use dynamic memory (regardless of whether the QoS itself is in dynamic memory). This function frees that memory but otherwise leaves this QoS unchanged. It should be called on all instances before they are freed (or, in the case of stack-\/based instances, before they go out of scope). 
+
+This function does not leave this object in an invalid state. It is permissable to clear a QoS and then subsequently allocate new dynamic memory in one or more of its QoS policies. 
+
+Note that if this QoS instance is stored in heap memory, calling this function will {\itshape not} call free() on it; the user is responsible for explicitly freeing any heap-\/based QoS instance after calling this function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{API Restriction\+:}
+This function {\itshape  must } only be called after \doxylink{group__DDSDomainParticipantFactoryModule_gae787f8bc30714e3bc1989968035d18af}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance}. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSPublisherModule_ga1f75496be2446615a8cb28306817976d}{DDS\+\_\+\+Publisher\+Qos\+\_\+\+INITIALIZER} 
+
+\doxylink{group__DDSPublisherModule_ga2757b80d41ee0b538ba4daacc6b7cc07}{DDS\+\_\+\+Publisher\+Qos\+\_\+initialize} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSPublisherModule_ga9a55c1dbc334e680c2d7cc210e815fd3}\index{Publisher@{Publisher}!DDS\_Publisher\_as\_entity@{DDS\_Publisher\_as\_entity}}
+\index{DDS\_Publisher\_as\_entity@{DDS\_Publisher\_as\_entity}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher\_as\_entity()}{DDS\_Publisher\_as\_entity()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_ga9a55c1dbc334e680c2d7cc210e815fd3} 
+\mbox{\hyperlink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Publisher\+\_\+as\+\_\+entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}}]{publisher}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Access a \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}\textquotesingle{}s supertype instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em publisher} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} that is supertype instance of the publisher. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSPublisherModule_ga777a869f4f8d435be23dea15f949f4bf}\index{Publisher@{Publisher}!DDS\_Publisher\_get\_default\_datawriter\_qos@{DDS\_Publisher\_get\_default\_datawriter\_qos}}
+\index{DDS\_Publisher\_get\_default\_datawriter\_qos@{DDS\_Publisher\_get\_default\_datawriter\_qos}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher\_get\_default\_datawriter\_qos()}{DDS\_Publisher\_get\_default\_datawriter\_qos()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_ga777a869f4f8d435be23dea15f949f4bf} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Publisher\+\_\+get\+\_\+default\+\_\+datawriter\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{struct \mbox{\hyperlink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}} \texorpdfstring{$\ast$}{*}}]{qos}{}\end{DoxyParamCaption})}
+
+
+
+Copies the default \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} values into the provided \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} instance. 
+
+The retrieved {\ttfamily qos} will match the set of values specified on the last successful call to \doxylink{group__DDSPublisherModule_ga2e9edb04b08d1aeedf1cc306107be267}{DDS\+\_\+\+Publisher\+\_\+set\+\_\+default\+\_\+datawriter\+\_\+qos} or else, if the call was never made, the default values from its owning \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. 
+
+This function may potentially allocate memory depending on the sequences contained in some QoS policies. 
+
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSPublisherModule_gad6a57a9e8611ae9cecea897141d0c275}{DDS\+\_\+\+DATAWRITER\+\_\+\+QOS\+\_\+\+DEFAULT} 
+
+\doxylink{group__DDSPublisherModule_gaf23960c6adc8b7cf79966ce8c54196d6}{DDS\+\_\+\+Publisher\+\_\+create\+\_\+datawriter} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSPublisherModule_ga2e9edb04b08d1aeedf1cc306107be267}\index{Publisher@{Publisher}!DDS\_Publisher\_set\_default\_datawriter\_qos@{DDS\_Publisher\_set\_default\_datawriter\_qos}}
+\index{DDS\_Publisher\_set\_default\_datawriter\_qos@{DDS\_Publisher\_set\_default\_datawriter\_qos}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher\_set\_default\_datawriter\_qos()}{DDS\_Publisher\_set\_default\_datawriter\_qos()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_ga2e9edb04b08d1aeedf1cc306107be267} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Publisher\+\_\+set\+\_\+default\+\_\+datawriter\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const struct \mbox{\hyperlink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}} \texorpdfstring{$\ast$}{*}}]{qos}{}\end{DoxyParamCaption})}
+
+
+
+Sets the default \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} values for this publisher. 
+
+This call causes the default values inherited from the owning \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} to be overridden. 
+
+This default value will be used for newly created \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} if \doxylink{group__DDSPublisherModule_gad6a57a9e8611ae9cecea897141d0c275}{DDS\+\_\+\+DATAWRITER\+\_\+\+QOS\+\_\+\+DEFAULT} is specified as the {\ttfamily qos} parameter when \doxylink{group__DDSPublisherModule_gaf23960c6adc8b7cf79966ce8c54196d6}{DDS\+\_\+\+Publisher\+\_\+create\+\_\+datawriter} is called. 
+
+\begin{DoxyPrecond}{Precondition}
+The specified QoS policies must be consistent, or else the operation will have no effect and fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+\end{DoxyPrecond}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Default qos to be set. The special value \doxylink{group__DDSPublisherModule_gad6a57a9e8611ae9cecea897141d0c275}{DDS\+\_\+\+DATAWRITER\+\_\+\+QOS\+\_\+\+DEFAULT} may be passed as {\ttfamily qos} to indicate that the default QoS should be reset back to the initial values the factory would have used if \doxylink{group__DDSPublisherModule_ga2e9edb04b08d1aeedf1cc306107be267}{DDS\+\_\+\+Publisher\+\_\+set\+\_\+default\+\_\+datawriter\+\_\+qos} had never been called.  Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+\end{DoxyReturn}
+\Hypertarget{group__DDSPublisherModule_gaf23960c6adc8b7cf79966ce8c54196d6}\index{Publisher@{Publisher}!DDS\_Publisher\_create\_datawriter@{DDS\_Publisher\_create\_datawriter}}
+\index{DDS\_Publisher\_create\_datawriter@{DDS\_Publisher\_create\_datawriter}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher\_create\_datawriter()}{DDS\_Publisher\_create\_datawriter()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_gaf23960c6adc8b7cf79966ce8c54196d6} 
+\mbox{\hyperlink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Publisher\+\_\+create\+\_\+datawriter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}} \texorpdfstring{$\ast$}{*}}]{topic}{, }\item[{const struct \mbox{\hyperlink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}} \texorpdfstring{$\ast$}{*}}]{qos}{, }\item[{const struct \mbox{\hyperlink{structDDS__DataWriterListener}{DDS\+\_\+\+Data\+Writer\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{, }\item[{\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}}}]{mask}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Creates a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} that will be attached and belong to the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}. 
+
+\begin{DoxyPrecond}{Precondition}
+If publisher is enabled, topic must have been enabled. Otherwise, this operation will fail and no \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will be created. 
+
+The given \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} must have been created from the same participant as this publisher. If it was created from a different participant, this function will fail. 
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em topic} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} that the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will be associated with. Cannot be NULL. \\
+\hline
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} QoS to be used for creating the new \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. The special value \doxylink{group__DDSPublisherModule_gad6a57a9e8611ae9cecea897141d0c275}{DDS\+\_\+\+DATAWRITER\+\_\+\+QOS\+\_\+\+DEFAULT} can be used to indicate that the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} should be created with the default \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} set in the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}. \\
+\hline
+\end{DoxyParams}
+Cannot be NULL.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The listener of the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. \\
+\hline
+{\em mask} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Changes of communication status to be invoked on the listener. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} of a derived class specific to the data type associated with the \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} or NULL if an error occurred. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{ARINC 653 API Restriction\+:}
+This function {\itshape  must } only be called before a partition enters {\itshape  NORMAL } mode. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{group__DDSQosTypesModule_DDSQosTypesModule_usage}{Specifying QoS on entities}{1} for information on setting QoS before entity creation 
+
+\doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} for rules on consistency among QoS 
+
+\doxylink{group__DDSPublisherModule_gad6a57a9e8611ae9cecea897141d0c275}{DDS\+\_\+\+DATAWRITER\+\_\+\+QOS\+\_\+\+DEFAULT} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSPublisherModule_gaa2d341cdc5442fc4aa1fc27f1edd5707}\index{Publisher@{Publisher}!DDS\_Publisher\_delete\_datawriter@{DDS\_Publisher\_delete\_datawriter}}
+\index{DDS\_Publisher\_delete\_datawriter@{DDS\_Publisher\_delete\_datawriter}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher\_delete\_datawriter()}{DDS\_Publisher\_delete\_datawriter()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_gaa2d341cdc5442fc4aa1fc27f1edd5707} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Publisher\+\_\+delete\+\_\+datawriter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}} \texorpdfstring{$\ast$}{*}}]{a\+\_\+datawriter}{}\end{DoxyParamCaption})}
+
+
+
+Deletes a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} that belongs to the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}. 
+
+The deletion of the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will automatically unregister all instances. 
+
+\begin{DoxyPrecond}{Precondition}
+If the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} does not belong to the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}, the operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Listener installed on the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will not be called after this function completes successfully. 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em a\+\_\+datawriter} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} to be deleted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSPublisherModule_ga3f224f6a9c6a90701718c24e0e30f31b}\index{Publisher@{Publisher}!DDS\_Publisher\_lookup\_datawriter@{DDS\_Publisher\_lookup\_datawriter}}
+\index{DDS\_Publisher\_lookup\_datawriter@{DDS\_Publisher\_lookup\_datawriter}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher\_lookup\_datawriter()}{DDS\_Publisher\_lookup\_datawriter()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_ga3f224f6a9c6a90701718c24e0e30f31b} 
+\mbox{\hyperlink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Publisher\+\_\+lookup\+\_\+datawriter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{topic\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieves the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} for a specific \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}. 
+
+This returned \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} is either enabled or disabled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em topic\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name of the \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} associated with the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} that is to be looked up. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} that belongs to the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} attached to the \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} with {\ttfamily topic\+\_\+name}. If no such \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} exists, this operation returns NULL. 
+\end{DoxyReturn}
+If more than one \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} is attached to the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} with the same {\ttfamily topic\+\_\+name}, then this operation may return any one of them. 
+
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\Hypertarget{group__DDSPublisherModule_ga45587072ff111ec963a60f2a51167477}\index{Publisher@{Publisher}!DDS\_Publisher\_lookup\_datawriter\_by\_name@{DDS\_Publisher\_lookup\_datawriter\_by\_name}}
+\index{DDS\_Publisher\_lookup\_datawriter\_by\_name@{DDS\_Publisher\_lookup\_datawriter\_by\_name}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher\_lookup\_datawriter\_by\_name()}{DDS\_Publisher\_lookup\_datawriter\_by\_name()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_ga45587072ff111ec963a60f2a51167477} 
+\mbox{\hyperlink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Publisher\+\_\+lookup\+\_\+datawriter\+\_\+by\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{writer\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieves a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} by its entity name within this \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} 
+
+This returned \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} is either enabled or disabled. 
+
+Every \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} in the system has an entity name which is configured and stored in the Entity\+Name policy, ENTITY\+\_\+\+NAME. 
+
+This operation retrieves a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} within the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} given the entity\textquotesingle{}s name. If there are several \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} with the same name within the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}, this function returns the first matching occurrence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em writer\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Entity name of the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} found with the specified name or NULL if it is not found. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\Hypertarget{group__DDSPublisherModule_gae6671d0a8e916fc0b8f40b4506194519}\index{Publisher@{Publisher}!DDS\_Publisher\_get\_participant@{DDS\_Publisher\_get\_participant}}
+\index{DDS\_Publisher\_get\_participant@{DDS\_Publisher\_get\_participant}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher\_get\_participant()}{DDS\_Publisher\_get\_participant()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_gae6671d0a8e916fc0b8f40b4506194519} 
+\mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*} DDS\+\_\+\+Publisher\+\_\+get\+\_\+participant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Returns the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} to which the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} belongs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} to which the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} belongs. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\Hypertarget{group__DDSPublisherModule_gaa4845fff7f12821fd653daaf6f19cdcf}\index{Publisher@{Publisher}!DDS\_Publisher\_delete\_contained\_entities@{DDS\_Publisher\_delete\_contained\_entities}}
+\index{DDS\_Publisher\_delete\_contained\_entities@{DDS\_Publisher\_delete\_contained\_entities}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher\_delete\_contained\_entities()}{DDS\_Publisher\_delete\_contained\_entities()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_gaa4845fff7f12821fd653daaf6f19cdcf} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Publisher\+\_\+delete\+\_\+contained\+\_\+entities (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Deletes all the entities that were created by means of the "{}create"{} operation on the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}. 
+
+Deletes all contained \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} objects. Once \doxylink{group__DDSPublisherModule_gaa4845fff7f12821fd653daaf6f19cdcf}{DDS\+\_\+\+Publisher\+\_\+delete\+\_\+contained\+\_\+entities} completes successfully, the application may delete the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}, knowing that it has no contained \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} objects. 
+
+The operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} if any of the contained entities is in a state where it cannot be deleted. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSPublisherModule_ga1e4b13add92130193fbeaa948f641dff}\index{Publisher@{Publisher}!DDS\_Publisher\_set\_qos@{DDS\_Publisher\_set\_qos}}
+\index{DDS\_Publisher\_set\_qos@{DDS\_Publisher\_set\_qos}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher\_set\_qos()}{DDS\_Publisher\_set\_qos()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_ga1e4b13add92130193fbeaa948f641dff} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Publisher\+\_\+set\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const struct \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \texorpdfstring{$\ast$}{*}}]{qos}{}\end{DoxyParamCaption})}
+
+
+
+Sets the publisher QoS. 
+
+This operation modifies the QoS of the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}. 
+
+The \doxylink{structDDS__PublisherQos_a99f7bc6a130ab99727212a24174585c6}{DDS\+\_\+\+Publisher\+Qos\+::entity\+\_\+factory} can be changed. The other policies are immutable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} to be set to. Policies must be consistent. Policies cannot be changed after \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} is enabled. The special value \doxylink{group__DDSDomainParticipantModule_gae3a52c1b7488c9a9b5e162a61a351e78}{DDS\+\_\+\+PUBLISHER\+\_\+\+QOS\+\_\+\+DEFAULT} can be used to indicate that the QoS of the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} should be changed to match the current default \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} set in the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}.  Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a6e50f4433cf3e47737f4d317d0a4a707}{DDS\+\_\+\+RETCODE\+\_\+\+IMMUTABLE\+\_\+\+POLICY}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} for rules on consistency among QoS 
+
+\doxysectlink{group__DDSEntityModule_Entity_set_qos}{set\+\_\+qos (abstract)}{2} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSPublisherModule_ga8e26f1a5261f56bef166f94526c3fb57}\index{Publisher@{Publisher}!DDS\_Publisher\_get\_qos@{DDS\_Publisher\_get\_qos}}
+\index{DDS\_Publisher\_get\_qos@{DDS\_Publisher\_get\_qos}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher\_get\_qos()}{DDS\_Publisher\_get\_qos()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_ga8e26f1a5261f56bef166f94526c3fb57} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Publisher\+\_\+get\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{struct \mbox{\hyperlink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos}} \texorpdfstring{$\ast$}{*}}]{qos}{}\end{DoxyParamCaption})}
+
+
+
+Gets the publisher QoS. 
+
+This function may potentially allocate memory depending on the sequences contained in some QoS policies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{structDDS__PublisherQos}{DDS\+\_\+\+Publisher\+Qos} to be filled in.  Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{group__DDSEntityModule_Entity_get_qos}{get\+\_\+qos (abstract)}{2} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSPublisherModule_gacd43044defed6e13169b494e0015ba3c}\index{Publisher@{Publisher}!DDS\_Publisher\_set\_listener@{DDS\_Publisher\_set\_listener}}
+\index{DDS\_Publisher\_set\_listener@{DDS\_Publisher\_set\_listener}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher\_set\_listener()}{DDS\_Publisher\_set\_listener()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_gacd43044defed6e13169b494e0015ba3c} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDS\+\_\+\+Publisher\+\_\+set\+\_\+listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const struct \mbox{\hyperlink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{, }\item[{\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}}}]{mask}{}\end{DoxyParamCaption})}
+
+
+
+Sets the publisher listener. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener} to set to. \\
+\hline
+{\em mask} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask} associated with the \doxylink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener}.  The callback function on the listener cannot be NULL if the corresponding status is turned on in the {\ttfamily mask}.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{group__DDSEntityModule_Entity_set_listener}{set\+\_\+listener (abstract)}{2}  
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSPublisherModule_ga37b7a05b6685487b63e783e2499d09b5}\index{Publisher@{Publisher}!DDS\_Publisher\_get\_listener@{DDS\_Publisher\_get\_listener}}
+\index{DDS\_Publisher\_get\_listener@{DDS\_Publisher\_get\_listener}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_Publisher\_get\_listener()}{DDS\_Publisher\_get\_listener()}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_ga37b7a05b6685487b63e783e2499d09b5} 
+struct \mbox{\hyperlink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener}} DDS\+\_\+\+Publisher\+\_\+get\+\_\+listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Get the publisher listener. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{structDDS__PublisherListener}{DDS\+\_\+\+Publisher\+Listener} of the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__DDSPublisherModule_ga37b7a05b6685487b63e783e2499d09b5}{DDS\+\_\+\+Publisher\+\_\+get\+\_\+listener()}}.
+
+
+
+Referenced by \mbox{\hyperlink{group__DDSPublisherModule_ga37b7a05b6685487b63e783e2499d09b5}{DDS\+\_\+\+Publisher\+\_\+get\+\_\+listener()}}.
+
+
+
+\doxysubsubsubsubsection{Variable Documentation}
+\Hypertarget{group__DDSPublisherModule_gad6a57a9e8611ae9cecea897141d0c275}\index{Publisher@{Publisher}!DDS\_DATAWRITER\_QOS\_DEFAULT@{DDS\_DATAWRITER\_QOS\_DEFAULT}}
+\index{DDS\_DATAWRITER\_QOS\_DEFAULT@{DDS\_DATAWRITER\_QOS\_DEFAULT}!Publisher@{Publisher}}
+\doxyparagraph{\texorpdfstring{DDS\_DATAWRITER\_QOS\_DEFAULT}{DDS\_DATAWRITER\_QOS\_DEFAULT}}
+{\footnotesize\ttfamily \label{group__DDSPublisherModule_gad6a57a9e8611ae9cecea897141d0c275} 
+const struct \mbox{\hyperlink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}} DDS\+\_\+\+DATAWRITER\+\_\+\+QOS\+\_\+\+DEFAULT\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Special value for creating \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} with default QoS 
+
+When used in \doxylink{group__DDSPublisherModule_gaf23960c6adc8b7cf79966ce8c54196d6}{DDS\+\_\+\+Publisher\+\_\+create\+\_\+datawriter}, this special value is used to indicate that the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} should be created with the default \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} QoS. 
+
+{\bfseries{NOTE\+:}} You cannot use this value to {\itshape get} the default QoS for a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}; for this purpose, use \doxylink{group__DDSPublisherModule_ga777a869f4f8d435be23dea15f949f4bf}{DDS\+\_\+\+Publisher\+\_\+get\+\_\+default\+\_\+datawriter\+\_\+qos}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSPublisherModule_gaf23960c6adc8b7cf79966ce8c54196d6}{DDS\+\_\+\+Publisher\+\_\+create\+\_\+datawriter} 
+\end{DoxySeeAlso}

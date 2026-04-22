@@ -1,0 +1,66 @@
+\doxysubsection{netio\+\_\+zcopy\+\_\+notif\+\_\+interface.\+h File Reference}
+\hypertarget{netio__zcopy__notif__interface_8h}{}\label{netio__zcopy__notif__interface_8h}\index{netio\_zcopy\_notif\_interface.h@{netio\_zcopy\_notif\_interface.h}}
+{\ttfamily \#include "{}rt/rt\+\_\+rt.\+h"{}}\newline
+{\ttfamily \#include "{}netio\+\_\+zcopy/netio\+\_\+zcopy\+\_\+notif\+\_\+mechanism\+\_\+intf.\+h"{}}\newline
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structZCOPY__NotifInterfaceFactoryProperty}{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property}}
+\begin{DoxyCompactList}\small\item\em Notification interface property. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__ZCV2Module_gaf98352e1c7da18386ed4ae09396ca583}{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em Constant to initialize a \doxylink{structZCOPY__NotifInterfaceFactoryProperty}{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{netio__zcopy__notif__interface_8h_a50549dcf5d8672b37b274cb62fe71236}{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+\_\+register}} (RT\+\_\+\+Registry\+\_\+T \texorpdfstring{$\ast$}{*}registry, const char \texorpdfstring{$\ast$}{*}name, struct \mbox{\hyperlink{structZCOPY__NotifInterfaceFactoryProperty}{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property}} \texorpdfstring{$\ast$}{*}property)
+\begin{DoxyCompactList}\small\item\em Register the notification interface factory with the registry. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{netio__zcopy__notif__interface_8h_afed5355595a3839223211ea1c7ed1ca9}{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+\_\+unregister}} (RT\+\_\+\+Registry\+\_\+T \texorpdfstring{$\ast$}{*}registry, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Unregister the notification interface factory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Function Documentation}
+\Hypertarget{netio__zcopy__notif__interface_8h_a50549dcf5d8672b37b274cb62fe71236}\index{netio\_zcopy\_notif\_interface.h@{netio\_zcopy\_notif\_interface.h}!ZCOPY\_NotifInterfaceFactory\_register@{ZCOPY\_NotifInterfaceFactory\_register}}
+\index{ZCOPY\_NotifInterfaceFactory\_register@{ZCOPY\_NotifInterfaceFactory\_register}!netio\_zcopy\_notif\_interface.h@{netio\_zcopy\_notif\_interface.h}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifInterfaceFactory\_register()}{ZCOPY\_NotifInterfaceFactory\_register()}}
+{\footnotesize\ttfamily \label{netio__zcopy__notif__interface_8h_a50549dcf5d8672b37b274cb62fe71236} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} ZCOPY\+\_\+\+Notif\+Interface\+Factory\+\_\+register (\begin{DoxyParamCaption}\item[{RT\+\_\+\+Registry\+\_\+T \texorpdfstring{$\ast$}{*}}]{registry}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{struct \mbox{\hyperlink{structZCOPY__NotifInterfaceFactoryProperty}{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property}} \texorpdfstring{$\ast$}{*}}]{property}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Register the notification interface factory with the registry. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em registry} & The registry used to register the factory.\\
+\hline
+\mbox{\texttt{ in}}  & {\em name} & The name used to register the factory.\\
+\hline
+\mbox{\texttt{ in}}  & {\em property} & The property used to register the factory. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE if the factory was registered successfully, RTI\+\_\+\+FALSE otherwise. 
+\end{DoxyReturn}
+\Hypertarget{netio__zcopy__notif__interface_8h_afed5355595a3839223211ea1c7ed1ca9}\index{netio\_zcopy\_notif\_interface.h@{netio\_zcopy\_notif\_interface.h}!ZCOPY\_NotifInterfaceFactory\_unregister@{ZCOPY\_NotifInterfaceFactory\_unregister}}
+\index{ZCOPY\_NotifInterfaceFactory\_unregister@{ZCOPY\_NotifInterfaceFactory\_unregister}!netio\_zcopy\_notif\_interface.h@{netio\_zcopy\_notif\_interface.h}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifInterfaceFactory\_unregister()}{ZCOPY\_NotifInterfaceFactory\_unregister()}}
+{\footnotesize\ttfamily \label{netio__zcopy__notif__interface_8h_afed5355595a3839223211ea1c7ed1ca9} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} ZCOPY\+\_\+\+Notif\+Interface\+Factory\+\_\+unregister (\begin{DoxyParamCaption}\item[{RT\+\_\+\+Registry\+\_\+T \texorpdfstring{$\ast$}{*}}]{registry}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Unregister the notification interface factory. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em registry} & The registry used to unregister the factory.\\
+\hline
+\mbox{\texttt{ in}}  & {\em name} & The name used to unregister the factory. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE if the factory was unregistered successfully, RTI\+\_\+\+FALSE otherwise. 
+\end{DoxyReturn}

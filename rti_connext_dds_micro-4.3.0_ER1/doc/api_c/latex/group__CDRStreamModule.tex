@@ -1,0 +1,169 @@
+\doxysubsection{CDR Stream API}
+\hypertarget{group__CDRStreamModule}{}\label{group__CDRStreamModule}\index{CDR Stream API@{CDR Stream API}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  CDR Stream API of RTI Connext DDS Micro.  
+
+
+\doxysubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Byte stream abstraction for CDR serialization and deserialization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} \mbox{\hyperlink{group__CDRStreamModule_gac4c9b310f62a3db7f0ed602f39ac7f86}{CDR\+\_\+\+Stream\+\_\+get\+\_\+current\+\_\+position\+\_\+offset}} (struct \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}} \texorpdfstring{$\ast$}{*}cdrs)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Return current offset of stream pointer relative to buffer \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__CDRStreamModule_ga4ccd06d5969bde878dc8036be937ee64}{CDR\+\_\+\+Stream\+\_\+set\+\_\+current\+\_\+position\+\_\+offset}} (struct \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}} \texorpdfstring{$\ast$}{*}cdrs, \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} num)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Set current offset of stream pointer relative to buffer \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__CDRStreamModule_ga282a81e97b40243fda6ff70d58260d9e}{CDR\+\_\+\+Stream\+\_\+increment\+\_\+current\+\_\+position}} (struct \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}} \texorpdfstring{$\ast$}{*}me, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} amount)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Increase stream pointer by specified number of bytes \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__CDRStreamModule_ga07828bcb005a01bc095b54a381f54f47}{CDR\+\_\+\+Stream\+\_\+check\+\_\+size}} (struct \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}} \texorpdfstring{$\ast$}{*}me, \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} size)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Verifies whether remaining space in stream buffer is larger than specified size \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__CDRStreamModule_ga99a734d8ff7532bfcfe764ff108c51a3}{CDR\+\_\+\+Stream\+\_\+get\+\_\+current\+\_\+position\+\_\+ptr}} (struct \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}} \texorpdfstring{$\ast$}{*}me)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Returns a pointer to the current offset in the stream \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__CDRStreamModule_ga57fe689f87138d9427e7e09d98020221}{CDR\+\_\+\+Stream\+\_\+is\+\_\+byte\+\_\+swapped}} (struct \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}} \texorpdfstring{$\ast$}{*}me)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Whether a stream is byte-\/swapped \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  CDR Stream API of RTI Connext DDS Micro. 
+
+The CDR Stream API provides functions to interacting with byte streams for CDR serialization and deserialization. 
+
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__CDRStreamModule_gac4c9b310f62a3db7f0ed602f39ac7f86}\index{CDR Stream API@{CDR Stream API}!CDR\_Stream\_get\_current\_position\_offset@{CDR\_Stream\_get\_current\_position\_offset}}
+\index{CDR\_Stream\_get\_current\_position\_offset@{CDR\_Stream\_get\_current\_position\_offset}!CDR Stream API@{CDR Stream API}}
+\doxyparagraph{\texorpdfstring{CDR\_Stream\_get\_current\_position\_offset()}{CDR\_Stream\_get\_current\_position\_offset()}}
+{\footnotesize\ttfamily \label{group__CDRStreamModule_gac4c9b310f62a3db7f0ed602f39ac7f86} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} CDR\+\_\+\+Stream\+\_\+get\+\_\+current\+\_\+position\+\_\+offset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cdrs}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Return current offset of stream pointer relative to buffer 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cdrs} & Self \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of bytes between the stream buffer and the current stream pointer. 
+\end{DoxyReturn}
+\Hypertarget{group__CDRStreamModule_ga4ccd06d5969bde878dc8036be937ee64}\index{CDR Stream API@{CDR Stream API}!CDR\_Stream\_set\_current\_position\_offset@{CDR\_Stream\_set\_current\_position\_offset}}
+\index{CDR\_Stream\_set\_current\_position\_offset@{CDR\_Stream\_set\_current\_position\_offset}!CDR Stream API@{CDR Stream API}}
+\doxyparagraph{\texorpdfstring{CDR\_Stream\_set\_current\_position\_offset()}{CDR\_Stream\_set\_current\_position\_offset()}}
+{\footnotesize\ttfamily \label{group__CDRStreamModule_ga4ccd06d5969bde878dc8036be937ee64} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} CDR\+\_\+\+Stream\+\_\+set\+\_\+current\+\_\+position\+\_\+offset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cdrs}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}}]{num}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Set current offset of stream pointer relative to buffer 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cdrs} & Self \\
+\hline
+\mbox{\texttt{ in}}  & {\em num} & Offset in bytes to set stream pointer ahead of buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success with stream pointer updated. Otherwise, RTI\+\_\+\+FALSE on failure with stream pointer unchanged. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+
+\Hypertarget{group__CDRStreamModule_ga282a81e97b40243fda6ff70d58260d9e}\index{CDR Stream API@{CDR Stream API}!CDR\_Stream\_increment\_current\_position@{CDR\_Stream\_increment\_current\_position}}
+\index{CDR\_Stream\_increment\_current\_position@{CDR\_Stream\_increment\_current\_position}!CDR Stream API@{CDR Stream API}}
+\doxyparagraph{\texorpdfstring{CDR\_Stream\_increment\_current\_position()}{CDR\_Stream\_increment\_current\_position()}}
+{\footnotesize\ttfamily \label{group__CDRStreamModule_ga282a81e97b40243fda6ff70d58260d9e} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} CDR\+\_\+\+Stream\+\_\+increment\+\_\+current\+\_\+position (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{me}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}}]{amount}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Increase stream pointer by specified number of bytes 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em me} & Self \\
+\hline
+\mbox{\texttt{ in}}  & {\em amount} & Number of bytes to increase stream pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success with stream pointer incremented. RTI\+\_\+\+FALSE on failure with stream pointer unchanged. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}, and \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+
+\Hypertarget{group__CDRStreamModule_ga07828bcb005a01bc095b54a381f54f47}\index{CDR Stream API@{CDR Stream API}!CDR\_Stream\_check\_size@{CDR\_Stream\_check\_size}}
+\index{CDR\_Stream\_check\_size@{CDR\_Stream\_check\_size}!CDR Stream API@{CDR Stream API}}
+\doxyparagraph{\texorpdfstring{CDR\_Stream\_check\_size()}{CDR\_Stream\_check\_size()}}
+{\footnotesize\ttfamily \label{group__CDRStreamModule_ga07828bcb005a01bc095b54a381f54f47} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} CDR\+\_\+\+Stream\+\_\+check\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{me}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}}]{size}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Verifies whether remaining space in stream buffer is larger than specified size 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em me} & Self \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & Number of bytes to check whether fits in stream \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE if size fits within stream, otherwise RTI\+\_\+\+FALSE. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+
+\Hypertarget{group__CDRStreamModule_ga99a734d8ff7532bfcfe764ff108c51a3}\index{CDR Stream API@{CDR Stream API}!CDR\_Stream\_get\_current\_position\_ptr@{CDR\_Stream\_get\_current\_position\_ptr}}
+\index{CDR\_Stream\_get\_current\_position\_ptr@{CDR\_Stream\_get\_current\_position\_ptr}!CDR Stream API@{CDR Stream API}}
+\doxyparagraph{\texorpdfstring{CDR\_Stream\_get\_current\_position\_ptr()}{CDR\_Stream\_get\_current\_position\_ptr()}}
+{\footnotesize\ttfamily \label{group__CDRStreamModule_ga99a734d8ff7532bfcfe764ff108c51a3} 
+char \texorpdfstring{$\ast$}{*} CDR\+\_\+\+Stream\+\_\+get\+\_\+current\+\_\+position\+\_\+ptr (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{me}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Returns a pointer to the current offset in the stream 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em me} & Self \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to current offset in stream on success, NULL on failure. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+
+\Hypertarget{group__CDRStreamModule_ga57fe689f87138d9427e7e09d98020221}\index{CDR Stream API@{CDR Stream API}!CDR\_Stream\_is\_byte\_swapped@{CDR\_Stream\_is\_byte\_swapped}}
+\index{CDR\_Stream\_is\_byte\_swapped@{CDR\_Stream\_is\_byte\_swapped}!CDR Stream API@{CDR Stream API}}
+\doxyparagraph{\texorpdfstring{CDR\_Stream\_is\_byte\_swapped()}{CDR\_Stream\_is\_byte\_swapped()}}
+{\footnotesize\ttfamily \label{group__CDRStreamModule_ga57fe689f87138d9427e7e09d98020221} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} CDR\+\_\+\+Stream\+\_\+is\+\_\+byte\+\_\+swapped (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{me}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Whether a stream is byte-\/swapped 
+
+This function verifies whether a stream is set to serialize or deserialize in byte-\/swapped order, relative to its host endianess.
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em me} & Self \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE if stream is byte-\/swapped 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}, and \mbox{\hyperlink{group__OSAPI__TypeClass_ga78276def77698a77e669725969847036}{RTI\+\_\+\+UINT8}}.
+

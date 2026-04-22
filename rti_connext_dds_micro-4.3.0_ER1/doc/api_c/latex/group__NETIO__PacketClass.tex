@@ -1,0 +1,126 @@
+\doxysubsubsection{NETIO Packet API}
+\hypertarget{group__NETIO__PacketClass}{}\label{group__NETIO__PacketClass}\index{NETIO Packet API@{NETIO Packet API}}
+
+
+\doxylink{structNETIO__Packet}{NETIO\+\_\+\+Packet} implementation.  
+
+
+\doxysubsubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structNETIO__Packet}{NETIO\+\_\+\+Packet}}
+\begin{DoxyCompactList}\small\item\em Implementation of the abstract \doxylink{structNETIO__Packet}{NETIO\+\_\+\+Packet} type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structNETIO__Packet}{NETIO\+\_\+\+Packet}} \mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}}
+\begin{DoxyCompactList}\small\item\em A NETIO Packet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__NETIO__PacketClass_gafea7df0a5eaedc3d014084e9578e37f5}{NETIO\+\_\+\+Packet\+\_\+get\+\_\+head}} (const \mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}} \texorpdfstring{$\ast$}{*}const packet)
+\begin{DoxyCompactList}\small\item\em Get a pointer to the current head. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__NETIO__PacketClass_ga7db7b203480f6bcdd9df4af16e0e8cfd}{NETIO\+\_\+\+Packet\+\_\+set\+\_\+payload}} (\mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}} \texorpdfstring{$\ast$}{*}const packet, void \texorpdfstring{$\ast$}{*}buffer, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} buffer\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Initialize a packet with a payload. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} \mbox{\hyperlink{group__NETIO__PacketClass_ga89fb71cf8b67e94568cb0ae9bbabc707}{NETIO\+\_\+\+Packet\+\_\+get\+\_\+payload\+\_\+length}} (const \mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}} \texorpdfstring{$\ast$}{*}const packet)
+\begin{DoxyCompactList}\small\item\em Get the length the packet payload. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+\doxylink{structNETIO__Packet}{NETIO\+\_\+\+Packet} implementation. 
+
+
+
+\doxysubsubsubsection{Typedef Documentation}
+\Hypertarget{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}\index{NETIO Packet API@{NETIO Packet API}!NETIO\_Packet\_T@{NETIO\_Packet\_T}}
+\index{NETIO\_Packet\_T@{NETIO\_Packet\_T}!NETIO Packet API@{NETIO Packet API}}
+\doxyparagraph{\texorpdfstring{NETIO\_Packet\_T}{NETIO\_Packet\_T}}
+{\footnotesize\ttfamily \label{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc} 
+typedef struct \mbox{\hyperlink{structNETIO__Packet}{NETIO\+\_\+\+Packet}} \mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}}}
+
+
+
+A NETIO Packet. 
+
+The NETIO layers passed \doxylink{structNETIO__Packet}{NETIO\+\_\+\+Packet} structures upstream/downstream. 
+
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__NETIO__PacketClass_gafea7df0a5eaedc3d014084e9578e37f5}\index{NETIO Packet API@{NETIO Packet API}!NETIO\_Packet\_get\_head@{NETIO\_Packet\_get\_head}}
+\index{NETIO\_Packet\_get\_head@{NETIO\_Packet\_get\_head}!NETIO Packet API@{NETIO Packet API}}
+\doxyparagraph{\texorpdfstring{NETIO\_Packet\_get\_head()}{NETIO\_Packet\_get\_head()}}
+{\footnotesize\ttfamily \label{group__NETIO__PacketClass_gafea7df0a5eaedc3d014084e9578e37f5} 
+void \texorpdfstring{$\ast$}{*} NETIO\+\_\+\+Packet\+\_\+get\+\_\+head (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}} \texorpdfstring{$\ast$}{*}const}]{packet}{}\end{DoxyParamCaption})}
+
+
+
+Get a pointer to the current head. 
+
+Get a pointer to the current head. Note that it can be assumed that the payload buffer is contiguous. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em packet} & Packet to get the head pointer for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to packet head 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is not thread safe. 
+\end{DoxyParagraph}
+\Hypertarget{group__NETIO__PacketClass_ga7db7b203480f6bcdd9df4af16e0e8cfd}\index{NETIO Packet API@{NETIO Packet API}!NETIO\_Packet\_set\_payload@{NETIO\_Packet\_set\_payload}}
+\index{NETIO\_Packet\_set\_payload@{NETIO\_Packet\_set\_payload}!NETIO Packet API@{NETIO Packet API}}
+\doxyparagraph{\texorpdfstring{NETIO\_Packet\_set\_payload()}{NETIO\_Packet\_set\_payload()}}
+{\footnotesize\ttfamily \label{group__NETIO__PacketClass_ga7db7b203480f6bcdd9df4af16e0e8cfd} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} NETIO\+\_\+\+Packet\+\_\+set\+\_\+payload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}} \texorpdfstring{$\ast$}{*}const}]{packet}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}}]{buffer\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Initialize a packet with a payload. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em packet} & Packet to initialize\\
+\hline
+\mbox{\texttt{ in}}  & {\em buffer} & Payload to initialize packet with\\
+\hline
+\mbox{\texttt{ in}}  & {\em buffer\+\_\+length} & Length of the payload in bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is not thread safe. 
+\end{DoxyParagraph}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__NETIO__PacketClass_ga89fb71cf8b67e94568cb0ae9bbabc707}\index{NETIO Packet API@{NETIO Packet API}!NETIO\_Packet\_get\_payload\_length@{NETIO\_Packet\_get\_payload\_length}}
+\index{NETIO\_Packet\_get\_payload\_length@{NETIO\_Packet\_get\_payload\_length}!NETIO Packet API@{NETIO Packet API}}
+\doxyparagraph{\texorpdfstring{NETIO\_Packet\_get\_payload\_length()}{NETIO\_Packet\_get\_payload\_length()}}
+{\footnotesize\ttfamily \label{group__NETIO__PacketClass_ga89fb71cf8b67e94568cb0ae9bbabc707} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} NETIO\+\_\+\+Packet\+\_\+get\+\_\+payload\+\_\+length (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__NETIO__PacketClass_ga03e63717912bd9a2ec4d96fdff75a7dc}{NETIO\+\_\+\+Packet\+\_\+T}} \texorpdfstring{$\ast$}{*}const}]{packet}{}\end{DoxyParamCaption})}
+
+
+
+Get the length the packet payload. 
+
+Get the length of the packet payload. Allows a maximum payload length of 0xffffffff -\/ 1. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em packet} & Packet to return the payload length for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Length of payload, 0xffffffff if the length is invalid. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is not thread safe. 
+\end{DoxyParagraph}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+

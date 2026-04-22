@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.13. Message Integrity Checking &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 ER1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.14. Sending Large Data" href="largedata.html" />
+    <link rel="prev" title="3.12. Batching" href="batching.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0 ER1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Programmer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">3.2. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">3.3. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">3.4. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">3.5. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">3.6. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html">3.7. User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html">3.8. Partitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html">3.9. Content Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">3.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">3.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">3.12. Batching</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.13. Message Integrity Checking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rtps-checksum">3.13.1. RTPS checksum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configurations">3.13.2. Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#selecting-a-checksum-algorithm">3.13.2.1. Selecting a checksum algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-the-dds-domainparticipant">3.13.2.2. Configuring the DDS DomainParticipant</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#participant-discovery-and-compatibility">3.13.3. Participant discovery and compatibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interoperability-with-core-pro-h">3.13.4. Interoperability with Connext Professional</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html">3.14. Sending Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html">3.15. Zero Copy Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html">3.16. FlatData Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html">3.17. Application Generation Using XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">3.18. Building Against FACE Conformance Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">3.19. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.20. Example Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html">3.21. Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">3.22. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html">3.23. Transport Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html">3.24. Startup Time Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">14. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">3. </span>Programmer’s Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">3.13. </span>Message Integrity Checking</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="message-integrity-checking">
+<span id="msgintegrity"></span><h1><span class="section-number">3.13. </span>Message Integrity Checking<a class="headerlink" href="#message-integrity-checking" title="Permalink to this headline">¶</a></h1>
+<p><em>Connext Micro</em> uses the DDS-I/RTPS protocol for communication between DDS applications,
+and RTPS messages are sent and received by a transport. When an RTPS message
+is sent across a communication link, such as Ethernet, it is possible that
+some bits may change value. These errors may cause communication failures
+or incorrect data to be received. In order to <em>detect</em> these types of errors,
+transports such as UDP often include a checksum to validate the integrity
+of the data: a sender adds the checksum to the transmitted data and
+the receiver validates that the calculated checksum for the received data
+matches the checksum received from the sender. If the checksums are
+different, a data corruption has occurred.</p>
+<p>By default, <em>Connext Micro</em> relies on the underlying transport, such as UDP, to handle
+data integrity checking. However, the underlying transport may not provide
+sufficient integrity checking, or may itself introduce errors that <em>Connext Micro</em>
+must be able to detect regardless of the transport.</p>
+<p>In order to address both of these scenarios for <em>any</em> transport,
+<em>Connext Micro</em> supports RTPS message integrity checking by adding a checksum to
+the RTPS message itself. This chapter describes the setup and default options
+to access this feature.</p>
+<p>For information on how to write custom checksum functions, please refer to
+<a class="reference internal" href="../transports/RTPS.html#transport-rtps"><span class="std std-ref">RTPS</span></a>.</p>
+<div class="section" id="rtps-checksum">
+<h2><span class="section-number">3.13.1. </span>RTPS checksum<a class="headerlink" href="#rtps-checksum" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> implements checksum validation on a complete RTPS message. A typical
+RTPS message without a checksum has the following structure:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+--------+------------+-------------------------+------------+</span>
+<span class="o">|</span> <span class="n">Header</span> <span class="o">|</span> <span class="n">Submessage</span> <span class="o">|</span> <span class="o">......</span> <span class="n">submessages</span> <span class="o">....</span> <span class="o">|</span> <span class="n">Submessage</span> <span class="o">|</span>
+<span class="o">+--------+------------+-------------------------+------------+</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>When the message integrity checking feature is enabled, the structure
+of the RTPS message changes as illustrated below:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+--------+------------+------------+------------------+------------+</span>
+<span class="o">|</span> <span class="n">Header</span> <span class="o">|</span> <span class="n">Checksum</span>   <span class="o">|</span> <span class="n">Submessage</span> <span class="o">|</span> <span class="o">..</span> <span class="n">submessages</span> <span class="o">..|</span> <span class="n">Submessage</span> <span class="o">|</span>
+<span class="o">+--------+------------+------------+------------------+------------+</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The sender calculates the checksum for the entire message with a checksum
+field set to 0 and places the result in the checksum field.</p>
+<p>The receiver saves the the received checksum, sets the received checksum
+field to 0, and calculates the checksum for the entire message. It then
+compares the calculated checksum with the received checksum. If the checksums
+differ, the entire RTPS message is considered corrupted.</p>
+<p>Note that the checksum is used <em>only</em> for error <em>detection</em> and <em>not</em> for error
+<em>correction</em>.</p>
+</div>
+<div class="section" id="configurations">
+<h2><span class="section-number">3.13.2. </span>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline">¶</a></h2>
+<p>You can configure your application to define which algorithms to use and
+validate as well as the requirements enforced by the participant when
+communicating with other participants using the
+<a class="reference external" href="../../../doc/api_c/html/structDDS__WireProtocolQosPolicy.html">DDS_WireProtocolQosPolicy</a>.</p>
+<p>Configuring the message integrity checking consists of the two parts:</p>
+<ol class="arabic simple">
+<li><p>Selecting the checksum algorithm.</p></li>
+<li><p>Configuring how a participant applies the checksums.</p></li>
+</ol>
+<div class="section" id="selecting-a-checksum-algorithm">
+<h3><span class="section-number">3.13.2.1. </span>Selecting a checksum algorithm<a class="headerlink" href="#selecting-a-checksum-algorithm" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> supports three built-in algorithms and can be configured to use any of the
+following algorithms:</p>
+<ol class="arabic simple">
+<li><p>DDS_CHECKSUM_BUILTIN32: CRC-32 As defined by ISO/IEC 13239:2002.</p></li>
+<li><p>DDS_CHECKSUM_BUILTIN64: CRC-64 As defined by ISO/IEC 13239:2002.</p></li>
+<li><p>DDS_CRC_BUILTIN128: MD5 Message Digest</p></li>
+</ol>
+<p>The CRC functions have the following properties:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 18%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Checksum</p></th>
+<th class="head"><p>Polynom</p></th>
+<th class="head"><p>Initial
+Value</p></th>
+<th class="head"><p>Input
+Reflected</p></th>
+<th class="head"><p>Output
+Reflected</p></th>
+<th class="head"><p>XOR Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CRC-32</p></td>
+<td><p>0x04c11db7</p></td>
+<td><p>2^32 - 1</p></td>
+<td><p>true</p></td>
+<td><p>true</p></td>
+<td><p>2^32 - 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>CRC-64</p></td>
+<td><p>0x1b</p></td>
+<td><p>2^64 - 1</p></td>
+<td><p>true</p></td>
+<td><p>true</p></td>
+<td><p>2^64 -1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Please refer to <a class="reference internal" href="../transports/RTPS.html#transport-rtps"><span class="std std-ref">RTPS</span></a> for information on how to implement
+custom checksum functions.</p>
+</div>
+<div class="section" id="configuring-the-dds-domainparticipant">
+<h3><span class="section-number">3.13.2.2. </span>Configuring the DDS DomainParticipant<a class="headerlink" href="#configuring-the-dds-domainparticipant" title="Permalink to this headline">¶</a></h3>
+<p>The RTPS message integrity feature is configured in the
+<a class="reference external" href="../../../doc/api_c/html/structDDS__WireProtocolQosPolicy.html">DDS_WireProtocolQosPolicy</a>
+for a participant. This QoS determines which RTPS
+checksum should be allowed, and if checksums should be sent and/or validated.</p>
+<p>The following three fields determine how a participant uses RTPS checksums:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">compute_crc</span></code> - This configures the participant to send a checksum with
+each RTPS message. Which checksum to send is determined by
+<code class="docutils literal notranslate"><span class="pre">computed_crc_kind</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">check_crc</span></code> - This configures the participant to verify the checksum in
+each received RTPS message if the checksum is present. If the checksum
+is valid, the message is accepted; otherwise, the message is dropped. If a
+message is received <em>without</em> a checksum, it is accepted and processed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">require_crc</span></code> - This configures the participant to <em>require</em> that a checksum
+is present in the receiving packet. Messages without a checksum are dropped
+without further processing. Note that this option is orthogonal to the
+<code class="docutils literal notranslate"><span class="pre">check_crc</span></code> options. This option only requires that a checksum is included,
+it does not validate it. To validate and only accept messages with a checksum,
+<em>both</em> check_crc and require_crc must be <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+</ul>
+<p>The following two fields determine which checksums are used:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">computed_crc_kind</span></code> -  The checksum type to include in each RTPS message when
+<code class="docutils literal notranslate"><span class="pre">compute_crc</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">allowed_crc_mask</span></code> - A mask of all checksum algorithms that the participant
+can verify. This allows the participant to receive messages from other
+participants with a different <code class="docutils literal notranslate"><span class="pre">computed_crc_kind</span></code>. A participant will ignore
+a participant that is sending a checksum that it cannot validate.</p></li>
+</ul>
+<p>For example, the following snippet shows how to configure the participant to:</p>
+<ul>
+<li><p>Send all messages (except the participant announcements; see
+<a class="reference internal" href="#section-participant-discovery-and-compatibility"><span class="std std-ref">Participant discovery and compatibility</span></a> below) with <code class="docutils literal notranslate"><span class="pre">DDS_CHECKSUM_BUILTIN64</span></code>.</p></li>
+<li><p>Accept <code class="docutils literal notranslate"><span class="pre">DDS_CHECKSUM_BUILTIN32</span></code>, <code class="docutils literal notranslate"><span class="pre">DDS_CHECKSUM_BUILTIN64</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">DDS_CHECKSUM_BUILTIN128</span></code> algorithms.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">struct</span> <span class="n">DDS_DomainParticipantQos</span> <span class="n">dp_qos</span> <span class="o">=</span>
+                                  <span class="n">DDS_DomainParticipantQos_INITIALIZER</span><span class="p">;</span>
+
+<span class="n">dp_qos</span><span class="o">.</span><span class="n">protocol</span><span class="o">.</span><span class="n">computed_crc_kind</span> <span class="o">=</span>  <span class="n">DDS_CHECKSUM_BUILTIN64</span><span class="p">;</span>
+
+<span class="n">dp_qos</span><span class="o">.</span><span class="n">protocol</span><span class="o">.</span><span class="n">allowed_crc_mask</span> <span class="o">=</span> <span class="n">DDS_CHECKSUM_BUILTIN32</span>
+                                   <span class="o">|</span> <span class="n">DDS_CHECKSUM_BUILTIN64</span>
+                                   <span class="o">|</span> <span class="n">DDS_CHECKSUM_BUILTIN128</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="participant-discovery-and-compatibility">
+<span id="section-participant-discovery-and-compatibility"></span><h2><span class="section-number">3.13.3. </span>Participant discovery and compatibility<a class="headerlink" href="#participant-discovery-and-compatibility" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> ensures that participants establish communication with each other only
+when they have compatible checksum configurations. If <code class="docutils literal notranslate"><span class="pre">compute_crc</span></code> is
+<code class="docutils literal notranslate"><span class="pre">true</span></code>, all messages sent from the participant are protected by a checksum.
+Since each participant can use a different type of checksum, a mechanism
+is required to ensure that participants are compatible during discovery.</p>
+<p>To bootstrap this mechanism, all participant announcements
+(if <code class="docutils literal notranslate"><span class="pre">compute_crc</span></code> is set to true) include a checksum of type
+<code class="docutils literal notranslate"><span class="pre">DDS_CHECKSUM_BUILTIN32</span></code>. The participant announcement carries information
+about the <code class="docutils literal notranslate"><span class="pre">computed_crc_kind</span></code> (the checksum kind
+used by the participant) and the <code class="docutils literal notranslate"><span class="pre">allowed_crc_mask</span></code> (the checksum kinds
+understood by the participant), and whether or not the participant requires
+a checksum for each RTPS message (if <code class="docutils literal notranslate"><span class="pre">require_crc</span></code> is set to true).
+Please note that messages with <code class="docutils literal notranslate"><span class="pre">DDS_CHECKSUM_BUILTIN32</span></code> checksum
+are <em>always</em> accepted to enable discovering new participants.</p>
+<p>For a Participant (A) to match with another Participant (B),
+the <code class="docutils literal notranslate"><span class="pre">computed_crc_kind</span></code> of Participant (B) must be a strict subset of
+the <code class="docutils literal notranslate"><span class="pre">allowed_crc_mask</span></code> of Participant (A) and vice versa. If Participant
+(B) does not send a checksum (<code class="docutils literal notranslate"><span class="pre">compute_crc</span></code> is set to false), it can
+only match Participant (A) if it does not set <code class="docutils literal notranslate"><span class="pre">require_crc</span></code> to true.</p>
+</div>
+<div class="section" id="interoperability-with-core-pro-h">
+<h2><span class="section-number">3.13.4. </span>Interoperability with Connext Professional<a class="headerlink" href="#interoperability-with-core-pro-h" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> supports two different kinds of RTPS submessages for CRC 32-bit checksums:</p>
+<ul class="simple">
+<li><p>The standard CRC 32-bit checksum in the RTPS header extension, as
+defined by the <a class="reference external" href="https://www.omg.org/index.htm">OMG</a>.</p></li>
+<li><p>The legacy CRC 32-bit checksum submessage used
+by older versions of <em>Connext</em> <em>Professional</em>.</p></li>
+</ul>
+<p><em>Connext Micro</em> will understand and accept either kind of
+received submessage. However, it may be necessary to change the transmit mode
+of <em>Connext Micro</em> to enable interoperability with older versions of <em>Connext</em> <em>Professional</em> and allow
+<em>Connext</em> <em>Professional</em> to validate the checksum.</p>
+<p>The following two transmit modes are available:</p>
+<ul class="simple">
+<li><p><strong>RTPS_CRC_TXMODE_OMG</strong>: uses the standard method as defined by the <a class="reference external" href="https://www.omg.org/index.htm">OMG</a>.
+This is the default mode. The checksums sent by <em>Connext Micro</em> may not be understood
+by older versions of <em>Connext</em> <em>Professional</em> and cause <em>Connext</em> <em>Professional</em> to treat the message as
+if it does not include a checksum.</p></li>
+<li><p><strong>RTPS_CRC_TXMODE_RTICRC32</strong>: uses the legacy CRC32 mode. This mode sets the
+<code class="docutils literal notranslate"><span class="pre">computed_crc_kind</span></code> to <code class="docutils literal notranslate"><span class="pre">DDS_CRC_BUILTIN32</span></code>. The checksum sent by <em>Connext Micro</em> will be
+understood by older versions of <em>Connext</em> <em>Professional</em>. Use this option only if there is a
+<em>Connext</em> <em>Professional</em> application in your system which requires the legacy CRC 32-bit
+checksum.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>Connext</em> <em>Professional</em> does not support the <code class="docutils literal notranslate"><span class="pre">require_crc</span></code> field in the
+<a class="reference external" href="../../../doc/api_c/html/structDDS__WireProtocolQosPolicy.html">DDS_WireProtocolQosPolicy</a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="largedata.html" class="btn btn-neutral float-right" title="3.14. Sending Large Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="batching.html" class="btn btn-neutral float-left" title="3.12. Batching" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

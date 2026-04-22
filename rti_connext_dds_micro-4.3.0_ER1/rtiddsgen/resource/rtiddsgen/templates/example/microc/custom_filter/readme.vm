@@ -1,0 +1,35 @@
+##/* $Id$
+##
+##   Copyright (c) 2026-2026 Real-Time Innovations, Inc.
+##   All rights reserved.
+##
+##   No duplications, whole or partial, manual or electronic, may
+##   be made without prior written permission.  Any such copies, or
+##   revisions thereof, must display this notice unaltered.
+##   This code contains trade secrets of Real-Time Innovations, Inc.
+##========================================================================
+#setDefaultVariables()
+#set ( $use_dpde = true )
+#set ( $use_content_filter = true )
+#set ( $use_custom_content_filter = true )
+#set ( $use_listener = true )
+#setVariableDiscoveryPluginName()
+#readmeHeader()
+
+This example demonstrates how to implement and register a custom
+DDS_ContentFilterI content filter with RTI Connext DDS Micro.
+
+Key features:
+  - Custom filter implemented in the application module
+    (${envMap.idlFileName}Application.h / ${envMap.idlFileName}Application.c)
+  - DPDE dynamic endpoint discovery
+  - Writer-side filtering: publisher registers the custom filter so
+    it can evaluate the filter on behalf of matching readers
+  - Reader-side filtering: subscriber registers the custom filter
+    and configures DataReader QoS with a content filter expression
+
+#readmeHowToCompileAndRun()
+
+#readmeSourceOverview()
+
+#readmeExampleFilesOverview()

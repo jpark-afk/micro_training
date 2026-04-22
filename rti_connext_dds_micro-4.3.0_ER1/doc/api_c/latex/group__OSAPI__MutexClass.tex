@@ -1,0 +1,117 @@
+\doxysubsubsection{OSAPI Mutex API}
+\hypertarget{group__OSAPI__MutexClass}{}\label{group__OSAPI__MutexClass}\index{OSAPI Mutex API@{OSAPI Mutex API}}
+
+
+Abstract Mutex API.  
+
+
+\doxysubsubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct OSAPI\+\_\+\+Mutex \mbox{\hyperlink{group__OSAPI__MutexClass_ga213015bcae961af703c0ad5bc6acbb63}{OSAPI\+\_\+\+Mutex\+\_\+T}}
+\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__MutexClass_ga53be3199700843d8fff716b14259be76}{OSAPI\+\_\+\+Mutex\+\_\+delete}} (\mbox{\hyperlink{group__OSAPI__MutexClass_ga213015bcae961af703c0ad5bc6acbb63}{OSAPI\+\_\+\+Mutex\+\_\+T}} \texorpdfstring{$\ast$}{*}mutex)
+\begin{DoxyCompactList}\small\item\em Delete a mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__MutexClass_ga213015bcae961af703c0ad5bc6acbb63}{OSAPI\+\_\+\+Mutex\+\_\+T}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__MutexClass_ga25ccdfd9bc934ee35591bacd1d6cd73e}{OSAPI\+\_\+\+Mutex\+\_\+new}} (void)
+\begin{DoxyCompactList}\small\item\em Create a mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__MutexClass_gaf5c7e926e6deb97bf1de22d98c5e437b}{OSAPI\+\_\+\+Mutex\+\_\+take}} (\mbox{\hyperlink{group__OSAPI__MutexClass_ga213015bcae961af703c0ad5bc6acbb63}{OSAPI\+\_\+\+Mutex\+\_\+T}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Take a mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__MutexClass_ga3ac3d40b8f5d53768f7e0d94fd107cc6}{OSAPI\+\_\+\+Mutex\+\_\+give}} (\mbox{\hyperlink{group__OSAPI__MutexClass_ga213015bcae961af703c0ad5bc6acbb63}{OSAPI\+\_\+\+Mutex\+\_\+T}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Give a mutex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Abstract Mutex API. 
+
+
+
+\doxysubsubsubsection{Typedef Documentation}
+\Hypertarget{group__OSAPI__MutexClass_ga213015bcae961af703c0ad5bc6acbb63}\index{OSAPI Mutex API@{OSAPI Mutex API}!OSAPI\_Mutex\_T@{OSAPI\_Mutex\_T}}
+\index{OSAPI\_Mutex\_T@{OSAPI\_Mutex\_T}!OSAPI Mutex API@{OSAPI Mutex API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Mutex\_T}{OSAPI\_Mutex\_T}}
+{\footnotesize\ttfamily \label{group__OSAPI__MutexClass_ga213015bcae961af703c0ad5bc6acbb63} 
+typedef struct OSAPI\+\_\+\+Mutex \mbox{\hyperlink{group__OSAPI__MutexClass_ga213015bcae961af703c0ad5bc6acbb63}{OSAPI\+\_\+\+Mutex\+\_\+T}}}
+
+Abstract Mutex type 
+
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__OSAPI__MutexClass_ga53be3199700843d8fff716b14259be76}\index{OSAPI Mutex API@{OSAPI Mutex API}!OSAPI\_Mutex\_delete@{OSAPI\_Mutex\_delete}}
+\index{OSAPI\_Mutex\_delete@{OSAPI\_Mutex\_delete}!OSAPI Mutex API@{OSAPI Mutex API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Mutex\_delete()}{OSAPI\_Mutex\_delete()}}
+{\footnotesize\ttfamily \label{group__OSAPI__MutexClass_ga53be3199700843d8fff716b14259be76} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Mutex\+\_\+delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__OSAPI__MutexClass_ga213015bcae961af703c0ad5bc6acbb63}{OSAPI\+\_\+\+Mutex\+\_\+T}} \texorpdfstring{$\ast$}{*}}]{mutex}{}\end{DoxyParamCaption})}
+
+
+
+Delete a mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mutex} & Delete a mutex created with \doxylink{group__OSAPI__MutexClass_ga25ccdfd9bc934ee35591bacd1d6cd73e}{OSAPI\+\_\+\+Mutex\+\_\+new}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__MutexClass_ga25ccdfd9bc934ee35591bacd1d6cd73e}\index{OSAPI Mutex API@{OSAPI Mutex API}!OSAPI\_Mutex\_new@{OSAPI\_Mutex\_new}}
+\index{OSAPI\_Mutex\_new@{OSAPI\_Mutex\_new}!OSAPI Mutex API@{OSAPI Mutex API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Mutex\_new()}{OSAPI\_Mutex\_new()}}
+{\footnotesize\ttfamily \label{group__OSAPI__MutexClass_ga25ccdfd9bc934ee35591bacd1d6cd73e} 
+\mbox{\hyperlink{group__OSAPI__MutexClass_ga213015bcae961af703c0ad5bc6acbb63}{OSAPI\+\_\+\+Mutex\+\_\+T}} \texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+Mutex\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Create a mutex. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to a mutex in a not taken condition. NULL on failure.
+\end{DoxyReturn}
+See Also \doxylink{group__OSAPI__MutexClass_ga53be3199700843d8fff716b14259be76}{OSAPI\+\_\+\+Mutex\+\_\+delete} \Hypertarget{group__OSAPI__MutexClass_gaf5c7e926e6deb97bf1de22d98c5e437b}\index{OSAPI Mutex API@{OSAPI Mutex API}!OSAPI\_Mutex\_take@{OSAPI\_Mutex\_take}}
+\index{OSAPI\_Mutex\_take@{OSAPI\_Mutex\_take}!OSAPI Mutex API@{OSAPI Mutex API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Mutex\_take()}{OSAPI\_Mutex\_take()}}
+{\footnotesize\ttfamily \label{group__OSAPI__MutexClass_gaf5c7e926e6deb97bf1de22d98c5e437b} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Mutex\+\_\+take (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__OSAPI__MutexClass_ga213015bcae961af703c0ad5bc6acbb63}{OSAPI\+\_\+\+Mutex\+\_\+T}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Take a mutex. 
+
+A mutex can only be taken if it is not currently already taken by another thread; it CAN be taken if is it already taken by the same thread. In order to release a mutex, it must be given as many times a it has been taken. Note that {\ttfamily take} will block indefinitely.
+
+Note\+: the mutex is not required to support priority inversion; there is no protection against deadlocks or starvation.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em self} & Take a mutex previously created with \doxylink{group__OSAPI__MutexClass_ga25ccdfd9bc934ee35591bacd1d6cd73e}{OSAPI\+\_\+\+Mutex\+\_\+new}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure
+\end{DoxyReturn}
+See Also \doxylink{group__OSAPI__MutexClass_ga3ac3d40b8f5d53768f7e0d94fd107cc6}{OSAPI\+\_\+\+Mutex\+\_\+give}, \doxylink{group__OSAPI__MutexClass_ga25ccdfd9bc934ee35591bacd1d6cd73e}{OSAPI\+\_\+\+Mutex\+\_\+new} \Hypertarget{group__OSAPI__MutexClass_ga3ac3d40b8f5d53768f7e0d94fd107cc6}\index{OSAPI Mutex API@{OSAPI Mutex API}!OSAPI\_Mutex\_give@{OSAPI\_Mutex\_give}}
+\index{OSAPI\_Mutex\_give@{OSAPI\_Mutex\_give}!OSAPI Mutex API@{OSAPI Mutex API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Mutex\_give()}{OSAPI\_Mutex\_give()}}
+{\footnotesize\ttfamily \label{group__OSAPI__MutexClass_ga3ac3d40b8f5d53768f7e0d94fd107cc6} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Mutex\+\_\+give (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__OSAPI__MutexClass_ga213015bcae961af703c0ad5bc6acbb63}{OSAPI\+\_\+\+Mutex\+\_\+T}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Give a mutex. 
+
+A mutex can only be given if it is owned by the calling thread. Furthermore, it must be given as many times as it has been taken.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em self} & Take a mutex previously created with \doxylink{group__OSAPI__MutexClass_ga25ccdfd9bc934ee35591bacd1d6cd73e}{OSAPI\+\_\+\+Mutex\+\_\+new}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure
+\end{DoxyReturn}
+See Also \doxylink{group__OSAPI__MutexClass_gaf5c7e926e6deb97bf1de22d98c5e437b}{OSAPI\+\_\+\+Mutex\+\_\+take}, \doxylink{group__OSAPI__MutexClass_ga25ccdfd9bc934ee35591bacd1d6cd73e}{OSAPI\+\_\+\+Mutex\+\_\+new} 
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+

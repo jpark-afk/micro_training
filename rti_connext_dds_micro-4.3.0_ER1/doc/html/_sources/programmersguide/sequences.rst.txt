@@ -1,0 +1,283 @@
+.. highlight:: c
+
+Working With Sequences
+======================
+
+Introduction
+------------
+
+|rti_me| uses IDL as the language to define data-types. One of the
+constructs in IDL is the *sequence*: a variable-length vector where each element
+is of the same type. This section describes how to work with sequences;
+in particular, the string sequence since it has special properties.
+
+.. note::
+  
+  This section references several sequence APIs supported by |me|. However, |me_cert| 
+  only supports a subsection of these APIs. Please refer to
+  :link_connextmicro_dds_api_c_up_one:`Sequence Support in the C API Reference <group__DDSSequenceModule.html>` 
+  for a full list; the APIs supported by |me_cert| will have a **<<cert>>** 
+  annotation in their description.
+
+Working with Sequences
+----------------------
+
+Overview
+........
+
+Logically a sequence can be viewed as a variable-length vector with N elements,
+as illustrated below. Note that sequences indices are 0 based.
+
+.. code-block:: none
+
+         +---+
+      0  | T |
+         +---+
+      1  | T |
+         +---+
+      2  | T |
+         +---+
+           |
+           |
+         +---+
+    N-1  | T |
+         +---+
+
+There are three types of sequences in |me|:
+
+- Builtin sequences of primitive IDL types.
+- Sequences defined in IDL using the sequence keyword.
+- Sequences defined by the application.
+
+The following builtin sequences exist (please refer to
+:link_connextmicro_dds_api_c_up_one:`C API Reference <index.html>` and :link_connextmicro_dds_api_cpp_up_one:`C++ API Reference <index.html>` for the complete API).
+
+====================   =====================  =======================
+  IDL Type             |me_h| Type            |me_h| Sequence        
+====================   =====================  =======================
+  octet                DDS_Octet              DDS_OctetSeq             
+  char                 DDS_Char               DDS_CharSeq              
+  boolean              DDS_Boolean            DDS_BooleanSeq           
+  short                DDS_Short              DDS_ShortSeq             
+  unsigned short       DDS_UnsignedShort      DDS_UnsignedShortSeq     
+  long                 DDS_Long               DDS_LongSeq              
+  unsigned long        DDS_UnsignedLong       DDS_UnsignedLongSeq      
+  enum                 DDS_Enum               DDS_EnumSeq              
+  wchar                DDS_Wchar              DDS_WcharSeq             
+  long long            DDS_LongLong           DDS_LongLongSeq          
+  unsigned long long   DDS_UnsignedLongLong   DDS_UnsignedLongLongSeq  
+  float                DDS_Float              DDS_FloatSeq             
+  double               DDS_Double             DDS_DoubleSeq            
+  long double          DDS_LongDouble         DDS_LongDoubleSeq        
+  string               DDS_String             DDS_StringSeq            
+  wstring              DDS_Wstring            DDS_WstringSeq           
+====================   =====================  =======================
+
+The following are important properties of sequences to remember:
+
+.. only:: not cert
+  
+  - All sequences in |me| *must* be finite.
+  - All sequences defined in IDL are sized based on IDL properties and *must*
+    not be resized. That is, *never* call :link_connextmicro_dds_api_c_up_one:`set_maximum() <group__DDSSequenceModule.html>` on a sequence defined
+    in IDL. This is particularly important for string sequences.
+  - Application defined sequences can be resized using :link_connextmicro_dds_api_c_up_one:`set_maximum() <group__DDSSequenceModule.html>`
+    or :link_connextmicro_dds_api_c_up_one:`ensure_length() <group__DDSSequenceModule.html>`.
+  - There are two ways to use a **DDS_StringSeq** (they are type-compatible):
+  
+    - A **DDS_StringSeq** originating from IDL. This sequence is
+      sized based on maximum sequence length *and* maximum string length.
+    - A **DDS_StringSeq** originating from an application. In this case the
+      sequence element memory is unmanaged.
+      
+  - All sequences have an initial length of 0.
+
+.. only:: cert
+
+  - All sequences in |me| *must* be finite.
+  - All sequences defined in IDL are sized based on IDL properties and *must*
+    not be resized. That is, *never* call **set_maximum()** on a sequence defined
+    in IDL. This is particularly important for string sequences.
+  - Application defined sequences can be resized once using **set_maximum()**.
+  - There are two ways to use a **DDS_StringSeq** (they are type-compatible):
+  
+    - A **DDS_StringSeq** originating from IDL. This sequence is
+      sized based on maximum sequence length *and* maximum string length.
+    - A **DDS_StringSeq** originating from an application. In this case the
+      sequence element memory is unmanaged.
+      
+  - All sequences have an initial length of 0.
+
+Working with IDL sequences
+..........................
+
+Sequences that originate from IDL are created when the IDL type they belong
+to is created. IDL sequences are always initialized with the maximum size
+specified in the IDL file. The maximum size of a type, and hence the sequence
+size, is used to calculate memory needs for serialization and deserialization
+buffers. Thus, changing the size of an IDL sequence can lead to hard to find
+memory corruption.
+
+The string and wstring sequences are special in that not only is the
+maximum sequence size allocated, but because strings are also always of a
+finite maximum length, the maximum space needed for each string element is
+also allocated. This ensure that |me| can prevent memory overruns
+and validate input.
+
+Some typical scenarios with a long sequence and a string sequence defined
+in IDL is shown below:
+
+.. code-block:: c
+
+    /* In IDL */
+    struct SomeIdlType
+    {
+        // A sequence of 20 longs
+        sequence<long,20> long_seq;
+
+        // A sequence of 10 strings, each string has a maximum length of 255 bytes
+        // (excluding NUL)
+        sequence<string<255>,10> string_seq;
+    }
+
+    /* In C source */
+    SomeIdlType *my_sample = SomeIdlTypeTypeSupport_create_data();
+
+    DDS_LongSeq_set_length(&my_sample->long_seq,5);
+    DDS_StringSeq_set_length(&my_sample->string_seq,5);
+
+    /* Assign the first 5 longs in long_seq */
+    for (i = 0; i < 5; ++i)
+    {
+        *DDS_LongSeq_get_reference(&my_sample->long_seq,i) = i;
+        snprintf(*DDS_StringSeq_get_reference(&my_sample->string_seq,i), 255, "SomeString %d", i);
+    }
+
+    SomeIdlTypeTypeSupport_delete_data(my_sample);
+
+    /* In C++ source */
+    SomeIdlType *my_sample = SomeIdlTypeTypeSupport::create_data();
+
+    /* Assign the first 5 longs in long_seq */
+
+    my_sample->long_seq.length(5);
+    my_sample->string_seq.length(5);
+
+    for (i = 0; i < 5; ++i)
+    {
+        /* use method */
+        *DDS_LongSeq_get_reference(&my_sample->long_seq,i) = i;
+        snprintf(*DDS_StringSeq_get_reference(&my_sample->string_seq,i), 255, "SomeString %d", i);
+
+        /* or assignment */
+        my_sample->long_seq[i] = i;
+        snprintf(my_sample->string_seq[i],255,"SomeString %d",i);
+    }
+
+    SomeIdlTypeTypeSupport::delete_data(my_sample);
+
+Note that in the example above the sequence length is set. The maximum size
+for each sequence is set when my_sample is allocated.
+
+A special case is to copy a string sequence from a sample to a string
+sequence defined outside of the sample. This is possible, but care *must*
+be taken to ensure that the memory is allocated properly:
+
+Consider the IDL type from the previous example. A string sequence of
+equal size can be allocated as follows:
+
+.. code-block:: c
+
+    struct DDS_StringSeq app_seq = DDS_SEQUENCE_INITIALIZER;
+
+    /* This ensures that memory for the strings are allocated upfront */
+    DDS_StringSeq_set_maximum_w_max(&app_seq,10,255);
+
+    DDS_StringSeq_copy(&app_seq,&my_sample->string_seq);
+
+If instead the following code was used, memory for the string in **app_seq**
+would be allocated as needed.
+
+.. code-block:: c
+
+    struct DDS_StringSeq app_seq = DDS_SEQUENCE_INITIALIZER;
+
+    /* This ensures that memory for the strings are allocated upfront */
+    DDS_StringSeq_set_maximum(&app_seq,10);
+
+    DDS_StringSeq_copy(&app_seq,&my_sample->string_seq);
+
+Working with application defined sequences
+..........................................
+
+Application defined sequences work in the same way as sequences defined in IDL
+with two exceptions:
+
+.. only:: not cert
+
+    - The maximum size is 0 by default. It is necessary to call **set_maximum**
+      or **ensure_length** to allocate space.
+    - **DDS_StringSet_set_maximum** does not allocate space for the string pointers.
+      The memory must be allocated on a per needed basis and calls to **_copy**
+      may reallocate memory as needed. Use **DDS_StringSeq_set_maximum_w_max** or
+      **DDS_StringSeq_ensure_length_w_max** to also allocate pointers. In this case
+      **_copy** will *not* reallocate memory.
+
+.. only:: cert
+
+    - The maximum size is 0 by default. It is necessary to call **set_maximum**
+      to allocate space.
+    - **DDS_StringSet_set_maximum** does not allocate space for the string pointers.
+      The memory must be allocated on a per needed basis. Use
+      **DDS_StringSeq_set_maximum_w_max** to also allocate pointers.
+    - Note that in |me|, **_copy** will *not* reallocate memory.
+
+.. warning::
+
+  Mixing API calls that specify the maximum size (i.e., those ending in
+  **_w_max**) with those that do not is *not allowed*. Doing so may cause memory
+  leaks and/or memory corruption.
+
+.. code-block:: c
+
+  struct DDS_StringSeq my_seq = DDS_SEQUENCE_INITIALIZER;
+
+  /* The ensure_length call is _not_ available in Micro Cert */
+  DDS_StringSeq_ensure_length(&my_seq,10,20);
+
+  for (i = 0; i < 10; i++)
+  {
+      *DDS_StringSeq_get_reference(&my_seq,i) = DDS_String_dup("test");
+  }
+
+  /* The finalize call is _not_ available in Micro Cert */
+  DDS_StringSeq_finalize(&my_seq);
+
+.. only:: not cert
+
+  **DDS_StringSeq_finalize** automatically frees memory pointed to by each element
+  using **DDS_String_free**. All memory allocated to a string element should be
+  allocated using a **DDS_String** function.
+
+  It is possible to assign any memory to a string sequence element if all
+  elements are released manually first:
+
+  .. code-block:: c
+
+      struct DDS_StringSeq my_seq = DDS_SEQUENCE_INITIALIZER;
+
+      DDS_StringSeq_ensure_length(&my_seq,10,20);
+
+      for (i = 0; i < 10; i++)
+      {
+          *DDS_StringSeq_get_reference(&my_seq,i) = static_string[i];
+      }
+
+      /* Work with the sequence */
+
+      for (i = 0; i < 10; i++)
+      {
+          *DDS_StringSeq_get_reference(&my_seq,i) = NULL;
+      }
+
+      DDS_StringSeq_finalize(&my_seq);

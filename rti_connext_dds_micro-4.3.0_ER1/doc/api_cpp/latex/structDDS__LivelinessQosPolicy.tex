@@ -1,0 +1,98 @@
+\doxysubsection{DDS\+\_\+\+Liveliness\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__LivelinessQosPolicy}{}\label{structDDS__LivelinessQosPolicy}\index{DDS\_LivelinessQosPolicy@{DDS\_LivelinessQosPolicy}}
+
+
+Determines the mechanism and parameters used by the application to determine whether a \doxylink{classDDSEntity}{DDSEntity} is alive.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSLivelinessQosModule_ga3ea638553fd66356c38071040de062e5}{DDS\+\_\+\+Liveliness\+Qos\+Policy\+Kind}} \mbox{\hyperlink{structDDS__LivelinessQosPolicy_a03b38bf501032dec5e022778f8a9a4da}{kind}}
+\begin{DoxyCompactList}\small\item\em The kind of liveliness desired. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \mbox{\hyperlink{structDDS__LivelinessQosPolicy_a5ace30a25fd07e0392687cdb405171b0}{lease\+\_\+duration}}
+\begin{DoxyCompactList}\small\item\em The duration within which a \doxylink{classDDSEntity}{DDSEntity} must be asserted, or else it is assumed to be not alive. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Determines the mechanism and parameters used by the application to determine whether a \doxylink{classDDSEntity}{DDSEntity} is alive. 
+
+Liveliness must be asserted at least once every {\ttfamily lease\+\_\+duration} otherwise RTI Connext DDS Micro will assume the corresponding \doxylink{classDDSEntity}{DDSEntity} is no longer alive. 
+
+The liveliness status of a \doxylink{classDDSEntity}{DDSEntity} is used to maintain instance ownership in combination with the setting of the \doxylink{group__DDSOwnershipQosModule}{OWNERSHIP} policy. The application also receives notification via \doxylink{classDDSListener}{DDSListener} when an \doxylink{classDDSEntity}{DDSEntity} is no longer alive. 
+
+A \doxylink{classDDSDataReader}{DDSData\+Reader} requests that writers maintain liveliness using the requested \doxylink{structDDS__LivelinessQosPolicy_a03b38bf501032dec5e022778f8a9a4da}{DDS\+\_\+\+Liveliness\+Qos\+Policy\+::kind}. Liveliness loss must be detected within the {\ttfamily lease\+\_\+duration}. 
+
+A \doxylink{classDDSDataWriter}{DDSData\+Writer} commits to signalling its liveliness using the requested \doxylink{structDDS__LivelinessQosPolicy_a03b38bf501032dec5e022778f8a9a4da}{DDS\+\_\+\+Liveliness\+Qos\+Policy\+::kind} at intervals that do not exceed the {\ttfamily lease\+\_\+duration}. A failure by the \doxylink{classDDSDataWriter}{DDSData\+Writer} to assert liveliness within its offered {\ttfamily lease\+\_\+duration} will result in a \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS} event. 
+
+If the \doxylink{classDDSDataReader}{DDSData\+Reader}\textquotesingle{}s requested {\ttfamily lease\+\_\+duration} is greater than or equal to the {\ttfamily lease\+\_\+duration} offered by the \doxylink{classDDSDataWriter}{DDSData\+Writer} and the offered {\ttfamily kind} is equal to or better than the requested {\ttfamily kind}, they will match. The \doxylink{classDDSDataReader}{DDSData\+Reader} uses its own {\ttfamily lease\+\_\+duration} as the check period to determine if a \doxylink{classDDSDataWriter}{DDSData\+Writer} is active. A \doxylink{classDDSDataWriter}{DDSData\+Writer} may be undetected as inactive for up to twice the \doxylink{classDDSDataReader}{DDSData\+Reader}\textquotesingle{}s {\ttfamily lease\+\_\+duration}. The frequency and timing of prior activity do not affect whether the writer is considered inactive. 
+
+For example\+: If a \doxylink{classDDSDataReader}{DDSData\+Reader} must detect that a \doxylink{classDDSDataWriter}{DDSData\+Writer} was inactive within at most 100ms, both the \doxylink{classDDSDataWriter}{DDSData\+Writer} and \doxylink{classDDSDataReader}{DDSData\+Reader} must specify a {\ttfamily lease\+\_\+duration} of 50ms. 
+
+Listeners notify a \doxylink{classDDSDataReader}{DDSData\+Reader} when liveliness is lost and notify a \doxylink{classDDSDataWriter}{DDSData\+Writer} when it violates the liveliness contract. The on\+\_\+liveliness\+\_\+lost() callback is called {\itshape once}, the first time the {\ttfamily lease\+\_\+duration} is exceeded. 
+
+Applications can use the liveliness policy to verify that systems meet design specifications during integration and at runtime. Applications can detect when systems operate outside specifications and respond appropriately to disconnected \doxylink{classDDSDataWriter}{DDSData\+Writer} entities. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSTopic}{DDSTopic}, \doxylink{classDDSDataReader}{DDSData\+Reader}, \doxylink{classDDSDataWriter}{DDSData\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS}, \doxylink{structDDS__LivelinessLostStatus}{DDS\+\_\+\+Liveliness\+Lost\+Status}; ~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa267a5ad100a1e87c372752b6900a9965}{DDS\+\_\+\+LIVELINESS\+\_\+\+CHANGED\+\_\+\+STATUS}, \doxylink{structDDS__LivelinessChangedStatus}{DDS\+\_\+\+Liveliness\+Changed\+Status}; ~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa126ff1b38cdfc905353cb2dac57b6796}{DDS\+\_\+\+REQUESTED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}, \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = YES ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} ~\newline
+ 
+\end{DoxyParagraph}
+\hypertarget{structDDS__LivelinessQosPolicy_DDSLivelinessQosModule_usage}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{structDDS__LivelinessQosPolicy_DDSLivelinessQosModule_usage}
+The liveliness policy controls the mechanism and parameters used by RTI Connext DDS Micro to ensure that particular entities on the network are still alive. The liveliness policy can also affect the ownership of a particular instance, as determined by the \doxylink{group__DDSOwnershipQosModule}{OWNERSHIP} policy. 
+
+This policy has several settings to support both data types that are updated periodically as well as those that are changed sporadically. It also allows customization for different application requirements in terms of the kinds of failures that will be detected by the liveliness mechanism. 
+
+The \doxylink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5ad9cee7b01dd754152a13b6999b57911b}{DDS\+\_\+\+AUTOMATIC\+\_\+\+LIVELINESS\+\_\+\+QOS} liveliness setting is most appropriate for applications that only need to detect process-\/level failures, not application-\/logic failures within a process. RTI Connext DDS Micro takes responsibility for renewing the leases at the required rates and thus, as long as the local process where a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} is running and the link connecting it to remote participants remain connected, RTI Connext DDS Micro considers the entities within the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} alive. This requires the lowest overhead. 
+
+The manual settings include both \doxylink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a5519eb00b713987173ff0858e7e3c1f0}{DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+PARTICIPANT\+\_\+\+LIVELINESS\+\_\+\+QOS} and \doxylink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a6ea670a089709fe482e1c92f5ad1c255}{DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+TOPIC\+\_\+\+LIVELINESS\+\_\+\+QOS}. These require the application on the publishing side to periodically assert liveliness before the lease expires to indicate the corresponding \doxylink{classDDSEntity}{DDSEntity} is still alive. The action can be explicit by calling \doxylink{classDDSDataWriter_af6c957991d7f956b5a16ba20bd800beb}{DDSData\+Writer\+::assert\+\_\+liveliness}, or implicit by writing data. 
+
+The two possible manual settings control the granularity at which the application must assert liveliness. 
+
+\begin{DoxyItemize}
+\item The setting \doxylink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a5519eb00b713987173ff0858e7e3c1f0}{DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+PARTICIPANT\+\_\+\+LIVELINESS\+\_\+\+QOS} requires only that one \doxylink{classDDSEntity}{DDSEntity} within a participant is asserted to be alive to infer that all other \doxylink{classDDSEntity}{DDSEntity} objects within the same \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} are also alive. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item The setting \doxylink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a6ea670a089709fe482e1c92f5ad1c255}{DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+TOPIC\+\_\+\+LIVELINESS\+\_\+\+QOS} requires that at least one instance within the \doxylink{classDDSDataWriter}{DDSData\+Writer} is asserted. \end{DoxyItemize}
+The service must detect changes in \doxylink{group__DDSLivelinessQosModule}{LIVELINESS} with time granularity greater than or equal to the {\ttfamily lease\+\_\+duration}. This ensures that RTI Connext DDS Micro updates \doxylink{structDDS__LivelinessChangedStatus}{DDS\+\_\+\+Liveliness\+Changed\+Status} at least once per {\ttfamily lease\+\_\+duration} and notifies Listeners within a {\ttfamily lease\+\_\+duration} of the configuration change. \hypertarget{dds_c_infrastructure.h_DDSLivelinessQosModule_compatibility}{}\doxysubsubsection{\texorpdfstring{Compatibility}{Compatibility}}\label{dds_c_infrastructure.h_DDSLivelinessQosModule_compatibility}
+A \doxylink{classDDSDataWriter}{DDSData\+Writer}\textquotesingle{}s offered liveliness policy matches a \doxylink{classDDSDataReader}{DDSData\+Reader}\textquotesingle{}s requested liveliness policy if and only if the following conditions are true\+: 
+
+\begin{DoxyItemize}
+\item the inequality {\itshape offered kind \texorpdfstring{$>$}{>}= requested kind} evaluates to true. For this comparison, \doxylink{group__DDSLivelinessQosModule_ga3ea638553fd66356c38071040de062e5}{DDS\+\_\+\+Liveliness\+Qos\+Policy\+Kind} values are ordered as follows\+: \doxylink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5ad9cee7b01dd754152a13b6999b57911b}{DDS\+\_\+\+AUTOMATIC\+\_\+\+LIVELINESS\+\_\+\+QOS} \texorpdfstring{$<$}{<} \doxylink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a5519eb00b713987173ff0858e7e3c1f0}{DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+PARTICIPANT\+\_\+\+LIVELINESS\+\_\+\+QOS} \texorpdfstring{$<$}{<} \doxylink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a6ea670a089709fe482e1c92f5ad1c255}{DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+TOPIC\+\_\+\+LIVELINESS\+\_\+\+QOS}.  \item the inequality {\itshape offered {\ttfamily lease\+\_\+duration} \texorpdfstring{$<$}{<}= requested {\ttfamily lease\+\_\+duration}} evaluates to \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}. \end{DoxyItemize}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__LivelinessQosPolicy_a03b38bf501032dec5e022778f8a9a4da}\index{DDS\_LivelinessQosPolicy@{DDS\_LivelinessQosPolicy}!kind@{kind}}
+\index{kind@{kind}!DDS\_LivelinessQosPolicy@{DDS\_LivelinessQosPolicy}}
+\doxyparagraph{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily \label{structDDS__LivelinessQosPolicy_a03b38bf501032dec5e022778f8a9a4da} 
+\mbox{\hyperlink{group__DDSLivelinessQosModule_ga3ea638553fd66356c38071040de062e5}{DDS\+\_\+\+Liveliness\+Qos\+Policy\+Kind}} DDS\+\_\+\+Liveliness\+Qos\+Policy\+::kind}
+
+
+
+The kind of liveliness desired. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5ad9cee7b01dd754152a13b6999b57911b}{DDS\+\_\+\+AUTOMATIC\+\_\+\+LIVELINESS\+\_\+\+QOS} \Hypertarget{structDDS__LivelinessQosPolicy_a5ace30a25fd07e0392687cdb405171b0}\index{DDS\_LivelinessQosPolicy@{DDS\_LivelinessQosPolicy}!lease\_duration@{lease\_duration}}
+\index{lease\_duration@{lease\_duration}!DDS\_LivelinessQosPolicy@{DDS\_LivelinessQosPolicy}}
+\doxyparagraph{\texorpdfstring{lease\_duration}{lease\_duration}}
+{\footnotesize\ttfamily \label{structDDS__LivelinessQosPolicy_a5ace30a25fd07e0392687cdb405171b0} 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} DDS\+\_\+\+Liveliness\+Qos\+Policy\+::lease\+\_\+duration}
+
+
+
+The duration within which a \doxylink{classDDSEntity}{DDSEntity} must be asserted, or else it is assumed to be not alive. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSTimeSupportModule_ga2b315f7f0887aa9dd6bfc2008eda0780}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE} 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}0,1 year\mbox{]} or \doxylink{group__DDSTimeSupportModule_ga2b315f7f0887aa9dd6bfc2008eda0780}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE} 

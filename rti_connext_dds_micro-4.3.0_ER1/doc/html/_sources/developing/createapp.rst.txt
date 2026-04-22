@@ -1,0 +1,121 @@
+Create an Application
+=====================
+
+.. highlight:: c
+
+The rest of this guide will walk you through the steps to create an
+application and will provide example code snippets.  It assumes that
+you have defined your types (see :doc:`definedatatype`) and have used *rtiddsgen*
+to generate their support code (see :doc:`generatesupportcode`).
+
+Registry Configuration
+----------------------
+
+The |me| architecture defines a run-time (RT) component interface that
+provides a generic framework for organizing and extending functionality of
+an application. An RT component is created and deleted with an RT component
+factory. Each RT component factory must be registered within an RT
+registry in order for its components to be usable by an application.
+
+The :link_connextmicro_dds_api_c_up_one:`DomainParticipantFactory <group__DDSDomainParticipantFactoryModule.html>`, in addition to its standard role
+of creating and deleting *DomainParticipants*, contains the RT registry
+where an application registers the components it will use.
+
+Every DDS application must register these components:
+
+- **Writer History**.  Queue of written samples of a *DataWriter*.  Must be
+  registered with the name ``DDSHST_WRITER_DEFAULT_HISTORY_NAME``.
+- **Reader History**.  Queue of received samples of a *DataReader*. Must be
+  registered with the name ``DDSHST_READER_DEFAULT_HISTORY_NAME``.
+
+In addition, an application typically registers a discovery plugin in order to
+discover other DDS applications on a network:
+
+- **Discovery (DPDE or DPSE)**.  Discovery component. Choose either dynamic
+  (DPDE) or static (DPSE) endpoint discovery.
+
+Example source:
+
+- Get the RT Registry from the :link_connextmicro_dds_api_c_up_one:`DomainParticipantFactory <group__DDSDomainParticipantFactoryModule.html>` singleton:
+
+  ::
+
+     DDS_DomainParticipantFactory *factory = NULL;
+     RT_Registry_T *registry = NULL;
+
+     factory = DDS_DomainParticipantFactory_get_instance();
+     registry = DDS_DomainParticipantFactory_get_registry(factory);
+
+- Register the Writer History and Reader History components with the
+  registry:
+
+  ::
+
+    /* Register Writer History */
+    if (!RT_Registry_register(registry, DDSHST_WRITER_DEFAULT_HISTORY_NAME,
+                              WHSM_HistoryFactory_get_interface(), NULL, NULL))
+    {
+        /* failure */
+    }
+
+    /* Register Reader History */
+    if (!RT_Registry_register(registry, DDSHST_READER_DEFAULT_HISTORY_NAME,
+                              RHSM_HistoryFactory_get_interface(), NULL, NULL))
+    {
+        /* failure */
+    }
+
+Only one discovery component can be registered, either DPDE or DPSE.  Each
+has its own properties that can be configured upon registration.
+
+- Register :link_connextmicro_dds_api_c_up_one:`DPDE <group__DPDEModule.html>` for dynamic participant, dynamic endpoint discovery:
+
+  ::
+
+    struct DPDE_DiscoveryPluginProperty discovery_plugin_properties =
+        DPDE_DiscoveryPluginProperty_INITIALIZER;
+
+    /* Configure properties */
+    discovery_plugin_properties.participant_liveliness_assert_period.sec = 5;
+    discovery_plugin_properties.participant_liveliness_assert_period.nanosec = 0;
+    discovery_plugin_properties.participant_liveliness_lease_duration.sec = 30;
+    discovery_plugin_properties.participant_liveliness_lease_duration.nanosec = 0;
+
+    /* Register DPDE with updated properties. The name is arbitrary, but
+     * cannot exceed 7 ASCIIZ characters.
+    if (!RT_Registry_register(registry,
+                              "dpde",
+                              DPDE_DiscoveryFactory_get_interface(),
+                              &discovery_plugin_properties._parent,
+                              NULL))
+    {
+        /* failure */
+    }
+
+- Register :link_connextmicro_dds_api_c_up_one:`DPSE <group__DPSEModule.html>` for dynamic participant, static endpoint discovery:
+
+  ::
+
+    struct DPSE_DiscoveryPluginProperty discovery_plugin_properties =
+        DPSE_DiscoveryPluginProperty_INITIALIZER;
+
+    /*  Configure properties */
+    discovery_plugin_properties.participant_liveliness_assert_period.sec = 5;
+    discovery_plugin_properties.participant_liveliness_assert_period.nanosec = 0;
+    discovery_plugin_properties.participant_liveliness_lease_duration.sec = 30;
+    discovery_plugin_properties.participant_liveliness_lease_duration.nanosec = 0;
+
+    /* Register DPSE with updated properties. The name is arbitrary, but
+     * cannot exceed 7 ASCIIZ characters.
+     */
+    if (!RT_Registry_register(registry,
+                              "dpse",
+                              DPSE_DiscoveryFactory_get_interface(),
+                              &discovery_plugin_properties._parent,
+                              NULL))
+    {
+        printf("failed to register dpse\n");
+        goto done;
+    }
+
+For more information, see :doc:`../programmersguide/appgen`.

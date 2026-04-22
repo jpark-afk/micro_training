@@ -1,0 +1,111 @@
+\doxysubsection{DDSTopic\+Description Class Reference}
+\hypertarget{classDDSTopicDescription}{}\label{classDDSTopicDescription}\index{DDSTopicDescription@{DDSTopicDescription}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Base class for \doxylink{classDDSTopic}{DDSTopic}.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+topic.\+hxx$>$}
+
+Inheritance diagram for DDSTopic\+Description\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classDDSTopicDescription}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSTopicDescription_a81fb8d4787a506f197abe8bdc7f38192}{get\+\_\+type\+\_\+name}} ()=0
+\begin{DoxyCompactList}\small\item\em Get the associated {\ttfamily type\+\_\+name}. \end{DoxyCompactList}\item 
+virtual const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSTopicDescription_ae1675e8757ebc78c20febc01684e4cd3}{get\+\_\+name}} ()=0
+\begin{DoxyCompactList}\small\item\em Get the name used to create this \doxylink{classDDSTopicDescription}{DDSTopic\+Description} . \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSTopicDescription_a6230878cbf52d18adc0b0568e061e5e4}{get\+\_\+participant}} ()=0
+\begin{DoxyCompactList}\small\item\em Get the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} to which the \doxylink{classDDSTopicDescription}{DDSTopic\+Description} belongs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Base class for \doxylink{classDDSTopic}{DDSTopic}. 
+
+\doxylink{classDDSTopicDescription}{DDSTopic\+Description} represents the fact that both publications and subscriptions are tied to a single data-\/type. Its attribute {\ttfamily type\+\_\+name} defines a unique resulting type for the publication or the subscription and therefore creates an implicit association with a type. 
+
+\doxylink{classDDSTopicDescription}{DDSTopic\+Description} has also a {\ttfamily name} that allows it to be retrieved locally. 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classDDSTopicDescription_a81fb8d4787a506f197abe8bdc7f38192}\index{DDSTopicDescription@{DDSTopicDescription}!get\_type\_name@{get\_type\_name}}
+\index{get\_type\_name@{get\_type\_name}!DDSTopicDescription@{DDSTopicDescription}}
+\doxyparagraph{\texorpdfstring{get\_type\_name()}{get\_type\_name()}}
+{\footnotesize\ttfamily \label{classDDSTopicDescription_a81fb8d4787a506f197abe8bdc7f38192} 
+virtual const char \texorpdfstring{$\ast$}{*} DDSTopic\+Description\+::get\+\_\+type\+\_\+name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the associated {\ttfamily type\+\_\+name}. 
+
+The type name defines a locally unique type for the publication or the subscription. 
+
+The {\ttfamily type\+\_\+name} corresponds to a unique string used to register a type via the \doxylink{classDDSDomainParticipant_a8b3171bd5b731d936560ba4de4c9887c}{DDSDomain\+Participant\+::register\+\_\+type} method. 
+
+Thus, the {\ttfamily type\+\_\+name} implies an association with a corresponding type and this \doxylink{classDDSTopicDescription}{DDSTopic\+Description}. 
+
+\begin{DoxyReturn}{Returns}
+the type name. The returned type name is valid until the \doxylink{classDDSTopicDescription}{DDSTopic\+Description} is deleted. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. 
+\end{DoxyParagraph}
+\begin{DoxyPostcond}{Postcondition}
+The result is NULL if self is NULL, otherwise result is non-\/\+NULL. 
+\end{DoxyPostcond}
+
+
+Implemented in \mbox{\hyperlink{classDDSTopic_ae67dae4777b55103c63c6bc7cb12559b}{DDSTopic}}.
+
+\Hypertarget{classDDSTopicDescription_ae1675e8757ebc78c20febc01684e4cd3}\index{DDSTopicDescription@{DDSTopicDescription}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!DDSTopicDescription@{DDSTopicDescription}}
+\doxyparagraph{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily \label{classDDSTopicDescription_ae1675e8757ebc78c20febc01684e4cd3} 
+virtual const char \texorpdfstring{$\ast$}{*} DDSTopic\+Description\+::get\+\_\+name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the name used to create this \doxylink{classDDSTopicDescription}{DDSTopic\+Description} . 
+
+\begin{DoxyReturn}{Returns}
+the name used to create this \doxylink{classDDSTopicDescription}{DDSTopic\+Description}. The returned topic name is valid until the \doxylink{classDDSTopicDescription}{DDSTopic\+Description} is deleted. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. 
+\end{DoxyParagraph}
+\begin{DoxyPostcond}{Postcondition}
+The result is NULL if self is NULL, otherwise result is non-\/\+NULL. 
+\end{DoxyPostcond}
+
+
+Implemented in \mbox{\hyperlink{classDDSTopic_a152a5cff8a6c2f4128cb31fd09f457ee}{DDSTopic}}.
+
+\Hypertarget{classDDSTopicDescription_a6230878cbf52d18adc0b0568e061e5e4}\index{DDSTopicDescription@{DDSTopicDescription}!get\_participant@{get\_participant}}
+\index{get\_participant@{get\_participant}!DDSTopicDescription@{DDSTopicDescription}}
+\doxyparagraph{\texorpdfstring{get\_participant()}{get\_participant()}}
+{\footnotesize\ttfamily \label{classDDSTopicDescription_a6230878cbf52d18adc0b0568e061e5e4} 
+virtual \mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*} DDSTopic\+Description\+::get\+\_\+participant (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} to which the \doxylink{classDDSTopicDescription}{DDSTopic\+Description} belongs. 
+
+\begin{DoxyReturn}{Returns}
+The \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} to which the \doxylink{classDDSTopicDescription}{DDSTopic\+Description} belongs. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. 
+\end{DoxyParagraph}
+\begin{DoxyPostcond}{Postcondition}
+TThe result is NULL if self is NULL, otherwise result is non-\/\+NULL. 
+\end{DoxyPostcond}
+
+
+Implemented in \mbox{\hyperlink{classDDSTopic_a2c8e997b3e0b903d545d04c861fbbbbd}{DDSTopic}}.
+

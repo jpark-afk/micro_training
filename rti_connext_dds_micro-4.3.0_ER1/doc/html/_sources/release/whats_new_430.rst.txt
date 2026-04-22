@@ -1,0 +1,261 @@
+.. _whats-new-430:
+
+What's New in 4.3.0 ER1
+=======================
+
+|rti_me| 4.3.0 ER1 is an engineering release. See the
+`Connext Releases <https://www.rti.com/products/connext-releases>`_
+page on the RTI website for more information on RTI's software release model.
+
+The following features are new since |me| 4.2.0.
+
+Build |me_h| applications for MicroSAR platforms
+------------------------------------------------
+
+.. PLATFORMS-5472
+
+This release adds support for MicroSAR platforms. Refer to
+:ref:`section-microsar-platforms` for more details.
+
+Generate AUTOSAR code with Micro Application Generator
+------------------------------------------------------
+
+.. MAG-285, MAG-286, MAG-287, MAG-288, MAG-289, MAG-290
+
+This release adds several new features to Micro Application Generator (MAG)
+which, taken together, enable you to generate AUTOSAR applications from
+XML configuration files. Refer to :ref:`section-generating-autosar-applications`
+for a walkthrough of the process. These new features include:
+
+DDS System XML model support
+............................
+
+MAG now supports the DDS System XML schema flow for application generation,
+which extends the capabilities of the standard XML configuration model. Refer
+to :ref:`section-define-your-system-xml` for details.
+
+Deployment-targeted code generation
+...................................
+
+A new ``-deployment <name>`` command-line option lets you generate code
+for a single deployment instance selected from a deployment scenario defined in
+the XML. Refer to :ref:`section-command-line-options` for more information.
+
+Application type selection
+..........................
+
+A new ``-applicationType <type>`` option controls the structure and templates
+used in code generation. Valid values are ``micro4``, ``cert``, and
+``autosar_cdd``. Refer to :ref:`section-command-line-options` for more
+information.
+
+.. attention::
+  
+  Currently, only ``autosar_cdd`` is fully supported for deployment-based code 
+  generation; see the :ref:`section-known-issues` section. This type generates
+  AUTOSAR-compliant code structure, including adapter layer separation and
+  AUTOSAR resource configuration templates. Other application types may be
+  supported in future releases.
+
+Speed up initialization on AUTOSAR systems with configurable thread safety
+--------------------------------------------------------------------------
+
+.. MICRO-11728
+
+This release adds a new AUTOSAR port property, ``enable_thread_safe_heap``,
+that allows the application to control whether heap allocation is protected by
+a mutex. When enabled,
+:link_connextmicro_dds_api_c_up_one:`OSAPI_Heap_allocate_buffer() <group__OSAPI__HeapClass.html#ga22b94c08e4ed2c569ea841b16a2ecebe>`
+acquires and releases a mutex around memory allocation to ensure thread safety.
+When disabled, the mutex is neither created nor used, reducing overhead in
+single-threaded or non-preemptive environments.
+
+Prioritize data with the TRANSPORT_PRIORITY QoS policy
+------------------------------------------------------
+
+.. MICRO-12912
+
+This release introduces support for the :link_connextmicro_dds_api_c_up_one:`TRANSPORT_PRIORITY <structDDS__TransportPriorityQosPolicy.html>`
+QoS policy in |me|. This feature allows applications to assign priorities to
+outgoing network traffic so that the underlying operating system (OS) and
+network infrastructure can treat higher-priority messages preferentially.
+
+When enabled, the transport priority value specified in the QoS policy is
+mapped to the network packet's priority field, such as the IP Type of
+Service (TOS) or Differentiated Services Code Point (DSCP) field. This allows
+applications to influence packet scheduling and prioritization in the network
+stack, which can be useful for latency-sensitive data flows.
+
+|me| currently supports this feature on UDP transports. You can configure the
+mapping from DDS transport priority values to network packet priority through
+transport properties.
+
+.. note::
+
+  The actual prioritization behavior depends on the operating system and network
+  configuration. |me| sets the packet priority value, but enforcement of traffic
+  prioritization is handled by the OS networking stack and network
+  infrastructure.
+
+For more information on this feature, refer to the :ref:`section-transport-priority`
+section.
+
+Integrate rotating or on-demand credentials with Lightweight Security Plugin
+----------------------------------------------------------------------------
+
+.. MICRO-10272
+
+This release introduces the *passphrase tracker*, a mechanism that enables
+runtime passphrase rotation for the *Lightweight Security Plugin*. Previously,
+the pre-shared key (PSK) passphrase was fixed at initialization time. With the
+*passphrase tracker*, applications can now update the active passphrase without
+restarting, allowing integration with key management workflows that rotate
+credentials on a schedule or on demand.
+
+The *passphrase tracker* is designed around a pluggable provider model.
+Applications supply a provider implementation at configuration time, and the
+tracker automatically notifies the *Lightweight Security Plugin* whenever a new
+passphrase is available, re-deriving session keys transparently.
+
+|me| ships a reference implementation: the *file passtracker*, available in the
+``rti_me_psl`` PSL library. This implementation monitors a passphrase file on
+the file system and propagates any changes to the *Lightweight Security Plugin*
+automatically. The polling interval and startup behavior are configurable.
+
+.. note::
+
+  The *file passtracker* is only available on POSIX and Windows systems.
+  Applications targeting other platforms or requiring a different passphrase
+  source can provide a custom PSL implementation through the *passphrase
+  tracker* provider interface.
+
+For more information, refer to the :ref:`section-psk` section.
+
+Reduced heap memory usage
+-------------------------
+
+.. MICRO-11537
+
+This version of |me| uses less dynamically allocated memory on average than
+the previous release. The following table shows how much memory each resource
+limit uses in the memory model for the ``x86_64leElfgcc7.3.0-Linux4``
+architecture compared to |me| 4.2.0, with changed values shown in **bold**.
+
+.. list-table::
+    :widths: 40 30 30
+    :header-rows: 1
+
+    * - Entity
+      - Size (Bytes) in 4.2.0
+      - Size (Bytes) in 4.3.0 ER1
+    * - DomainParticipantFactory
+      - 6104
+      - 6104
+    * - max_participants
+      - 24958
+      - **23118**
+    * - max_components
+      - N/A
+      - N/A
+    * - local_topic_allocation
+      - 240
+      - 240
+    * - local_type_allocation
+      - 72
+      - 72
+    * - local_publisher_allocation
+      - 272
+      - 272
+    * - local_subscriber_allocation
+      - 304
+      - 304
+    * - local_reader_allocation
+      - 5372
+      - **3780**
+    * - local_writer_allocation
+      - 5128
+      - **4048**
+    * - matching_writer_reader_pair_allocation
+      - 64
+      - **72**
+    * - remote_participant_allocation
+      - 1536
+      - **1552**
+    * - remote_writer_allocation
+      - 1132
+      - 1132
+    * - remote_reader_allocation
+      - 1428
+      - 1428
+    * - max_destination_ports
+      - 189
+      - 189
+    * - max_receive_ports
+      - 730
+      - 730
+    * - (DataReader) max_instances
+      - 432
+      - 432
+    * - (DataReader) max_samples
+      - 300
+      - **276**
+    * - (DataReader) max_remote_writers
+      - 904
+      - **768**
+    * - (DataReader) max_routes_per_writer
+      - 160
+      - **136**
+    * - (DataReader) max_samples_per_instance
+      - 0
+      - 0
+    * - (DataReader) max_remote_writers_per_instance
+      - 0
+      - 0
+    * - (DataReader) max_samples_per_remote_writer
+      - 0
+      - 0
+    * - (DataWriter) max_instances
+      - 128
+      - 128
+    * - (DataWriter) max_samples
+      - 272
+      - 272
+    * - (DataWriter) max_remote_readers
+      - 480
+      - **424**
+    * - (DataWriter) max_routes_per_reader
+      - 160
+      - **136**
+    * - (DataWriter) max_samples_per_instance
+      - 0
+      - 0
+    * - DPSE Discovery Plugin
+      - 23273
+      - **20521**
+    * - DPDE Discovery Plugin
+      - 90691
+      - **81699**
+    * - NETIO_DGRAM Transport Plugin
+      - 2263
+      - 2263
+
+Third-party and open source software changes
+--------------------------------------------
+
+.. THIRDPARTY-529
+
+The following third-party software used by :ref:`Micro Application Generator <section-appgen>`
+has been upgraded:
+
+.. list-table:: Third-Party Software Upgrades
+    :widths: 30 40 40
+    :header-rows: 1
+
+    * - Third-Party Software
+      - Old Version
+      - New Version
+    * - Apache Log4j
+      - 2.17.1
+      - 2.25.3
+
+For more information, see the :ref:`section-3rd-party` section.

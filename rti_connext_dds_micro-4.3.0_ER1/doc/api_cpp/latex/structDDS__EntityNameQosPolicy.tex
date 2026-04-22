@@ -1,0 +1,62 @@
+\doxysubsection{DDS\+\_\+\+Entity\+Name\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__EntityNameQosPolicy}{}\label{structDDS__EntityNameQosPolicy}\index{DDS\_EntityNameQosPolicy@{DDS\_EntityNameQosPolicy}}
+
+
+Policy used to name an entity.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__DDSEntityNameQosModule_gade300753247c895bda34b7490f02fdd4}{set\+\_\+name}} (const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{structDDS__EntityNameQosPolicy_a6217d3549242214e9e288f4a2b58c52d}{name}})
+\begin{DoxyCompactList}\small\item\em Set the Entity\+Name policy \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{structDDS__EntityNameQosPolicy_a6217d3549242214e9e288f4a2b58c52d}{name}} \mbox{[}\mbox{\hyperlink{group__DDSEntityNameQosModule_gaa321af44af31b7ddb81c7d7b18bc842f}{DDS\+\_\+\+ENTITYNAME\+\_\+\+QOS\+\_\+\+NAME\+\_\+\+MAX}}+1\mbox{]}
+\begin{DoxyCompactList}\small\item\em The actual name string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Policy used to name an entity. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = NO; ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO}~\newline
+ 
+\end{DoxyParagraph}
+\hypertarget{structDDS__EntityNameQosPolicy_DDSEntityNameQosModule_usage}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{structDDS__EntityNameQosPolicy_DDSEntityNameQosModule_usage}
+The purpose of this QoS is to allow the user to attach naming information to created \doxylink{classDDSEntity}{DDSEntity} objects. 
+
+The name must not exceed 255 characters in length. 
+
+The name must be a NULL-\/terminated string allocated with \doxylink{group__DDSStringClass_gaf3b22138dd2db7f1f2a2445d671b9046}{DDS\+\_\+\+String\+\_\+alloc} or \doxylink{group__DDSStringClass_gaab34d3575bf66cd95a890f7e21eb697a}{DDS\+\_\+\+String\+\_\+dup}. 
+
+When getting the QoS with a non-\/\+NULL pointer, ensure it points to valid memory. This prevents potential failures. 
+
+Use DDS\+\_\+\+Entity\+Name\+Qos\+Policy\+\_\+set\+\_\+name to set the name. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__EntityNameQosPolicy_a6217d3549242214e9e288f4a2b58c52d}\index{DDS\_EntityNameQosPolicy@{DDS\_EntityNameQosPolicy}!name@{name}}
+\index{name@{name}!DDS\_EntityNameQosPolicy@{DDS\_EntityNameQosPolicy}}
+\doxyparagraph{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{structDDS__EntityNameQosPolicy_a6217d3549242214e9e288f4a2b58c52d} 
+char DDS\+\_\+\+Entity\+Name\+Qos\+Policy\+::name\mbox{[}\mbox{\hyperlink{group__DDSEntityNameQosModule_gaa321af44af31b7ddb81c7d7b18bc842f}{DDS\+\_\+\+ENTITYNAME\+\_\+\+QOS\+\_\+\+NAME\+\_\+\+MAX}}+1\mbox{]}}
+
+
+
+The actual name string. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} "{}\mbox{[}ENTITY\mbox{]}"{} 
+
+{\bfseries{\mbox{[}range\mbox{]}}} Null-\/terminated string with maximum length of 255 characters, or NULL. 
+
+Referenced by \mbox{\hyperlink{group__DDSEntityNameQosModule_gade300753247c895bda34b7490f02fdd4}{set\+\_\+name()}}.
+

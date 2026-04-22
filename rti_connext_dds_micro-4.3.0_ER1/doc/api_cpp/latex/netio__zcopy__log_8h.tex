@@ -1,0 +1,125 @@
+\doxysubsection{netio\+\_\+zcopy\+\_\+log.\+h File Reference}
+\hypertarget{netio__zcopy__log_8h}{}\label{netio__zcopy__log_8h}\index{netio\_zcopy\_log.h@{netio\_zcopy\_log.h}}
+
+
+Zero\+Copy module log codes.  
+
+
+{\ttfamily \#include "{}osapi/osapi\+\_\+log.\+h"{}}\newline
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga31e0218ca6265b0af1509180ce8f3085}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+GUID\+\_\+\+BUFFER\+\_\+\+TOO\+\_\+\+SMALL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 1)
+\begin{DoxyCompactList}\small\item\em Failed to convert GUID to string representation. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gac495cb955fa01ca761a44e7632b9fc43}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+ALREADY\+\_\+\+CONNECTED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 2)
+\begin{DoxyCompactList}\small\item\em Failed to connect because already connected. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga8afca2cb538ced252641970002c84ca2}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+NOT\+\_\+\+CONNECTED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 3)
+\begin{DoxyCompactList}\small\item\em Failed to perform operation because notif is not connected. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga074a6a3a33e29d8eedbe2e2515669644}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+INCOMPATIBLE\+\_\+\+VERSION\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 4)
+\begin{DoxyCompactList}\small\item\em Failed to connect because of incompatible ZCV2 version. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga377b9cad8ad88d7db7008f10e516cda7}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+SLOT\+\_\+\+ALREADY\+\_\+\+ASSIGNED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 5)
+\begin{DoxyCompactList}\small\item\em Failed to assign a slot because it is already assigned. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga6a7490597ce3efcb3674738aff77c6a6}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+NO\+\_\+\+FREE\+\_\+\+SLOT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 6)
+\begin{DoxyCompactList}\small\item\em Failed to assign a slot because there is no free slot. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gaea5e30f233bbb5e1f7c6aceaa94976c0}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+INVALID\+\_\+\+NUM\+\_\+\+SLOTS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 7)
+\begin{DoxyCompactList}\small\item\em Failed to connect because of invalid number of slots. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gab5742eff013a9e206e960067be6a653e}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+INVALID\+\_\+\+PORT\+\_\+\+NUMBER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 8)
+\begin{DoxyCompactList}\small\item\em Failed to convert GUID to string representation because of an invalid port number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga82e8fc24f8d72c273a19dbcc4c8cfa73}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+OPEN\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 9)
+\begin{DoxyCompactList}\small\item\em Failed to open notification interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gadc3155bc5d9e8791334d57460b9449da}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+DB\+\_\+\+SELECT\+\_\+\+RECORD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 10)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to select a database record. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga20c1442c106b108060c7c9d481c83203}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+DB\+\_\+\+CREATE\+\_\+\+RECORD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 11)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to create a database record. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga40d7694aa238e63b23656f6be64423e3}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+DB\+\_\+\+INSERT\+\_\+\+RECORD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 12)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to insert a database record. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gad6a59f4e4e6dcd6087e1b26b287b6dd2}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+DB\+\_\+\+REMOVE\+\_\+\+RECORD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 13)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to remove a database record. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga441d8273412dac215cbb8052935bc4d6}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+DB\+\_\+\+DELETE\+\_\+\+RECORD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 14)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to delete a database record. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga2a4882a1e0cfbd87c04876666bd47751}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+DB\+\_\+\+CURSOR\+\_\+\+NEXT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 15)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to get the next database record from a cursor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga56e5738283630b5a038159fcea893322}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+DB\+\_\+\+LOCK\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 16)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to lock or unlock its database. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga475bc62c7320f844989a3bb019eb132d}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+DB\+\_\+\+TABLE\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 17)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to create a table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gac0ccd683bee553c80e91dfea32db2337}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+DB\+\_\+\+TABLE\+\_\+\+DELETE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 18)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to delete a table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gaad50703441f43e6f9627a0ad9adf7647}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+INVALID\+\_\+\+PROPERTY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 19)
+\begin{DoxyCompactList}\small\item\em Notification interface initialized with an invalid property. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gac706397a10577b85f3fb91b98b236693}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+SQ\+\_\+\+OPEN\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 20)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to open a shared queue reader. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gaf6b5190313ca7876f4c2143dcd0b73ac}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+SQ\+\_\+\+CLOSE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 21)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to close a shared queue reader. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gaf492d48176050e99cc2c6f31d9e99f39}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+NO\+\_\+\+MORE\+\_\+\+NOTIFIERS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 22)
+\begin{DoxyCompactList}\small\item\em Notification interface ran out of notifiers in its pool of notifiers. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga2462e21f9a0e4ccddf33bb828860c264}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+NOTIFIER\+\_\+\+CONNECT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 23)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to connect a notifier to a notifiee. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gaa18acb6e5ac704263605d8f51ccdb9ee}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+NOTIFIER\+\_\+\+DISCONNECT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 24)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to disconnect a notifier from a notifiee. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga54e6cf0ab2aa1223ec10e68a836ee06a}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+NOTIFIER\+\_\+\+NOTIFY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 25)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to notify with a notifier. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gafd8d3f1336f9868ec3bdd6d042137a55}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+NOTIFIER\+\_\+\+ALLOW\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 26)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to allow a notifier to notify. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gaa0db0a19a075c8f7c1eb211c480ab378}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+NOTIFIEE\+\_\+\+DESTROY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 27)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to destroy a notifiee. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gafa629dee5fc8a27263c3dde2f6dffd19}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+NOTIFIEE\+\_\+\+RAISE\+\_\+\+FLAG\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 28)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to raise a flag. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga42355c4f9c7458364d29399b3f835790}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+NOTIFIEE\+\_\+\+NEXT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 29)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to get next notification. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gae013e4de3c48eb94dff73f458006eab0}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+THREAD\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 30)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to create a receive thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga6de164de250c00958d67fd8ed1c601f8}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+THREAD\+\_\+\+DESTROY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 31)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to destroy a receive thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gae6f8315d782f496eaf8a37b4311f7c6b}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+INTF\+\_\+\+RECEIVE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 32)
+\begin{DoxyCompactList}\small\item\em Notification interface failed to forward a packet upstream to a DRI. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga6eacc2e71c8abd82fea2598bd09fe3af}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+PORT\+\_\+\+IN\+\_\+\+USE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 33)
+\begin{DoxyCompactList}\small\item\em Notification interface tried to release a port that was still in use. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga02fdd0136836d92c23cc8c1060b69c66}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 34)
+\begin{DoxyCompactList}\small\item\em Notification interface factory failed to allocate memory. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gae7918e88b45f7ab5caa8429dbd8c3960}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+INTF\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 35)
+\begin{DoxyCompactList}\small\item\em Notification interface factory failed to initialize a notification interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gab0745beecf370ba6337e1ae865c15918}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+INTF\+\_\+\+FINALIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 36)
+\begin{DoxyCompactList}\small\item\em Notification interface factory failed to finalize a notification interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga28b07e074078777aaa33f72706254911}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+FACTORY\+\_\+\+IN\+\_\+\+USE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 37)
+\begin{DoxyCompactList}\small\item\em Tried to finalize a notification interface factory which was still in use. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gaf1ad095f1d6f6b4c7453d003e44f8685}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+MECHANISM\+\_\+\+CREATE\+\_\+\+INST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 38)
+\begin{DoxyCompactList}\small\item\em Notification mechanism failed to create instance. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga5b7a94cf5ce2f4e1646bc72b823e7a00}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+MECHANISM\+\_\+\+RESERVE\+\_\+\+ADDR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 39)
+\begin{DoxyCompactList}\small\item\em Notification mechanism failed to reserve an address. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga990c656372dc6d59c8cd400bb39d18aa}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+MECHANISM\+\_\+\+RELEASE\+\_\+\+ADDR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 40)
+\begin{DoxyCompactList}\small\item\em Notification mechanism failed to release an address. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga2800576a65bb9a32d805205e0f67cc3e}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+MECHANISM\+\_\+\+ADD\+\_\+\+ROUTE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 41)
+\begin{DoxyCompactList}\small\item\em Notification mechanism failed to add route. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga46193a833c48934566c3862d535d81e4}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+MECHANISM\+\_\+\+DELETE\+\_\+\+ROUTE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 42)
+\begin{DoxyCompactList}\small\item\em Notification mechanism failed to delete route. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gaaa5eb550a279ef483a399b4092cf77ef}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+MECHANISM\+\_\+\+BIND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 43)
+\begin{DoxyCompactList}\small\item\em Notification mechanism failed to bind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gab3836eb85864ee5140b88c7a6248f09e}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+MECHANISM\+\_\+\+UNBIND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 44)
+\begin{DoxyCompactList}\small\item\em Notification mechanism failed to unbind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga8311f4fd4a84e2669a100878959fc421}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+MECHANISM\+\_\+\+SEND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 45)
+\begin{DoxyCompactList}\small\item\em Notification mechanism failed to send. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga03227d183b394b98203111a4a8634520}{ZCOPY\+\_\+\+LOG\+\_\+\+WH\+\_\+\+REGISTER\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 46)
+\begin{DoxyCompactList}\small\item\em Writer history wrap failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga4e5e6ea26295a9d14faaed5c4dbe7084}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+TIMER\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 47)
+\begin{DoxyCompactList}\small\item\em Timer creation failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga37096389b6be5a0fa7b4fe7486917033}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+RECEIVE\+\_\+\+ON\+\_\+\+EVENT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 48)
+\begin{DoxyCompactList}\small\item\em Receive on Writer match event failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gae9b7e395f0528eea066c24c8fd74c449}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+TIMEOUT\+\_\+\+DELETE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 49)
+\begin{DoxyCompactList}\small\item\em Failed to delete timeout. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_gac7e78713ccbc0e084db4208eb4524511}{ZCOPY\+\_\+\+LOG\+\_\+\+NOTIF\+\_\+\+TIMEOUT\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 50)
+\begin{DoxyCompactList}\small\item\em Timeout creation failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga2f2b45f2025ba1dc06217649357a29f0}{ZCOPY\+\_\+\+LOG\+\_\+\+ADD\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 51)
+\begin{DoxyCompactList}\small\item\em failed to add an indexer entry \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga527cd39ae4cfbf523eed2cf3513cc11e}{ZCOPY\+\_\+\+LOG\+\_\+\+REMOVE\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 52)
+\begin{DoxyCompactList}\small\item\em failed to remove an indexer entry \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga08dda44dde5ce1d2da10a9ce81c3d814}{ZCOPY\+\_\+\+LOG\+\_\+\+DELETE\+\_\+\+POOL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 53)
+\begin{DoxyCompactList}\small\item\em The memory manager was not able to delete a resource. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ZeroCopyLogCodesClass_ga3721f609e672237f399d882bb62c33be}{ZCOPY\+\_\+\+LOG\+\_\+\+SHARED\+\_\+\+MEM\+\_\+\+POOL\+\_\+\+OWNER\+\_\+\+DEAD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}} + 54)
+\begin{DoxyCompactList}\small\item\em A shared memory pool is no longer usable because a process died while holding the pool\textquotesingle{}s lock. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Zero\+Copy module log codes. 
+
+Log codes of the Zero\+Copy module 

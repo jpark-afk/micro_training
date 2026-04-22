@@ -1,0 +1,67 @@
+\doxysubsubsubsubsection{DESTINATION\+\_\+\+ORDER}
+\hypertarget{group__DestinationOrderQosPolicyModule}{}\label{group__DestinationOrderQosPolicyModule}\index{DESTINATION\_ORDER@{DESTINATION\_ORDER}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Specifies the Destination\+Order policy.  
+
+
+\doxysubsubsubsubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__DestinationOrderQosPolicy}{DDS\+\_\+\+Destination\+Order\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em Destination order policies that affect the ordering of subscribed data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__DestinationOrderQosPolicyModule_ga8f1c0c2b179c6281aa9e92d5ea88cbfe}{DDS\+\_\+\+Destination\+Order\+Qos\+Policy\+Kind}} \{ \mbox{\hyperlink{group__DestinationOrderQosPolicyModule_gga8f1c0c2b179c6281aa9e92d5ea88cbfeaa718dc1f974fc792af552d293986bb26}{DDS\+\_\+\+BY\+\_\+\+RECEPTION\+\_\+\+TIMESTAMP\+\_\+\+DESTINATIONORDER\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DestinationOrderQosPolicyModule_gga8f1c0c2b179c6281aa9e92d5ea88cbfeac7a65745504a7d4ccbc41299154fe67b}{DDS\+\_\+\+BY\+\_\+\+SOURCE\+\_\+\+TIMESTAMP\+\_\+\+DESTINATIONORDER\+\_\+\+QOS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerated values used to describe the destination order of published data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Specifies the Destination\+Order policy. 
+
+
+
+\doxysubsubsubsubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__DestinationOrderQosPolicyModule_ga8f1c0c2b179c6281aa9e92d5ea88cbfe}\index{DESTINATION\_ORDER@{DESTINATION\_ORDER}!DDS\_DestinationOrderQosPolicyKind@{DDS\_DestinationOrderQosPolicyKind}}
+\index{DDS\_DestinationOrderQosPolicyKind@{DDS\_DestinationOrderQosPolicyKind}!DESTINATION\_ORDER@{DESTINATION\_ORDER}}
+\doxyparagraph{\texorpdfstring{DDS\_DestinationOrderQosPolicyKind}{DDS\_DestinationOrderQosPolicyKind}}
+{\footnotesize\ttfamily \label{group__DestinationOrderQosPolicyModule_ga8f1c0c2b179c6281aa9e92d5ea88cbfe} 
+enum \mbox{\hyperlink{group__DestinationOrderQosPolicyModule_ga8f1c0c2b179c6281aa9e92d5ea88cbfe}{DDS\+\_\+\+Destination\+Order\+Qos\+Policy\+Kind}}}
+
+
+
+Enumerated values used to describe the destination order of published data. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_BY\_RECEPTION\_TIMESTAMP\_DESTINATIONORDER\_QOS@{DDS\_BY\_RECEPTION\_TIMESTAMP\_DESTINATIONORDER\_QOS}!DESTINATION\_ORDER@{DESTINATION\_ORDER}}\index{DESTINATION\_ORDER@{DESTINATION\_ORDER}!DDS\_BY\_RECEPTION\_TIMESTAMP\_DESTINATIONORDER\_QOS@{DDS\_BY\_RECEPTION\_TIMESTAMP\_DESTINATIONORDER\_QOS}}}\Hypertarget{group__DestinationOrderQosPolicyModule_gga8f1c0c2b179c6281aa9e92d5ea88cbfeaa718dc1f974fc792af552d293986bb26}\label{group__DestinationOrderQosPolicyModule_gga8f1c0c2b179c6281aa9e92d5ea88cbfeaa718dc1f974fc792af552d293986bb26} 
+DDS\+\_\+\+BY\+\_\+\+RECEPTION\+\_\+\+TIMESTAMP\+\_\+\+DESTINATIONORDER\+\_\+\+QOS&destination ordering by reception timestamp. \begin{DoxyParagraph}{Entity\+:}
+\doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}, \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = YES; ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = NO ~\newline
+ 
+\end{DoxyParagraph}
+{\bfseries{\mbox{[}default\mbox{]}}} Indicates that data is ordered based on the reception time at each \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. 
+
+Since each subscriber may receive the data at different times there is no guarantee that the changes will be seen in the same order. Consequently, it is possible for each subscriber to end up with a different final value for the data. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_BY\_SOURCE\_TIMESTAMP\_DESTINATIONORDER\_QOS@{DDS\_BY\_SOURCE\_TIMESTAMP\_DESTINATIONORDER\_QOS}!DESTINATION\_ORDER@{DESTINATION\_ORDER}}\index{DESTINATION\_ORDER@{DESTINATION\_ORDER}!DDS\_BY\_SOURCE\_TIMESTAMP\_DESTINATIONORDER\_QOS@{DDS\_BY\_SOURCE\_TIMESTAMP\_DESTINATIONORDER\_QOS}}}\Hypertarget{group__DestinationOrderQosPolicyModule_gga8f1c0c2b179c6281aa9e92d5ea88cbfeac7a65745504a7d4ccbc41299154fe67b}\label{group__DestinationOrderQosPolicyModule_gga8f1c0c2b179c6281aa9e92d5ea88cbfeac7a65745504a7d4ccbc41299154fe67b} 
+DDS\+\_\+\+BY\+\_\+\+SOURCE\+\_\+\+TIMESTAMP\+\_\+\+DESTINATIONORDER\+\_\+\+QOS&destination ordering by source timestamp. \begin{DoxyParagraph}{Entity\+:}
+\doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = YES; ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = NO ~\newline
+ 
+\end{DoxyParagraph}
+Indicates that data is ordered based on the source time provided by the source application. 
+
+A consistent final value is guaranteed for the data in all subscribers. \\
+\hline
+
+\end{DoxyEnumFields}

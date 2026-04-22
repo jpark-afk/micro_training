@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.2. DDS Entities &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 ER1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.3. Sending Data" href="sending.html" />
+    <link rel="prev" title="3.1. Data Types" href="types.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0 ER1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Programmer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Data Types</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.2. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">3.3. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">3.4. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">3.5. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">3.6. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html">3.7. User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html">3.8. Partitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html">3.9. Content Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">3.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">3.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">3.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">3.13. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html">3.14. Sending Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html">3.15. Zero Copy Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html">3.16. FlatData Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html">3.17. Application Generation Using XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">3.18. Building Against FACE Conformance Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">3.19. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.20. Example Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html">3.21. Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">3.22. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html">3.23. Transport Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html">3.24. Startup Time Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">14. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">3. </span>Programmer’s Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">3.2. </span>DDS Entities</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dds-entities">
+<h1><span class="section-number">3.2. </span>DDS Entities<a class="headerlink" href="#dds-entities" title="Permalink to this headline">¶</a></h1>
+<p>The main classes extend an abstract base class called a DDS <em>Entity</em>. Every DDS
+<em>Entity</em> has a set of associated events known as statuses and a set of
+associated Quality of Service policies (QoS policies). In addition, a <em>Listener</em>
+may be registered with the <em>Entity</em> to be called when status changes occur. DDS
+<em>Entities</em> may also have attached DDS <em>Conditions</em>, which provide a way to wait
+for status changes. <a class="reference internal" href="#figure-overview-dds-entities"><span class="std std-numref">Figure 3.1</span></a> presents an overview
+in a UML diagram.</p>
+<div class="figure align-default" id="id3">
+<span id="figure-overview-dds-entities"></span><img alt="../_images/EntitiesUML.png" src="../_images/EntitiesUML.png" />
+<p class="caption"><span class="caption-number">Figure 3.1 </span><span class="caption-text">Overview of DDS Entities</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>Please note that <em>RTI</em> <em>Connext Micro</em> does not support the following:</p>
+<ul class="simple">
+<li><p><strong>MultiTopic</strong></p></li>
+<li><p><strong>ContentFilteredTopic</strong> <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p></li>
+<li><p><strong>ReadCondition</strong></p></li>
+<li><p><strong>QueryConditions</strong></p></li>
+</ul>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><strong>ContentFilteredTopics</strong> are not supported, but <em>Connext Micro</em> does support
+filtering data with a QoS policy. See <a class="reference internal" href="content_filtering.html#section-content-filtering"><span class="std std-ref">Content Filtering</span></a> for
+more information.</p>
+</dd>
+</dl>
+<p>For a general description of DDS <em>Entities</em> and their operations, please refer
+to <a class="reference external" href="https://community.rti.com/static/documentation/connext-dds/7.3.1/doc/manuals/connext_dds_professional/users_manual/index.htm#users_manual/DDS_Entities.htm">the DDS Entities chapter</a>
+in the <a class="reference external" href="https://community.rti.com/static/documentation/connext-dds/7.3.1/doc/manuals/connext_dds_professional/users_manual/index.htm">RTI Connext DDS Core Libraries User’s Manual</a>.
+Note that <em>RTI</em> <em>Connext Micro</em> does not support all APIs and QosPolicies; please refer to
+the <a class="reference external" href="../../../doc/api_c/html/index.html">C API Reference</a> and
+<a class="reference external" href="../../../doc/api_cpp/html/index.html">C++ API Reference</a>
+documentation for more information.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sending.html" class="btn btn-neutral float-right" title="3.3. Sending Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="types.html" class="btn btn-neutral float-left" title="3.1. Data Types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

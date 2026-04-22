@@ -1,0 +1,58 @@
+\doxysubsection{DDS\+\_\+\+Deadline\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__DeadlineQosPolicy}{}\label{structDDS__DeadlineQosPolicy}\index{DDS\_DeadlineQosPolicy@{DDS\_DeadlineQosPolicy}}
+
+
+Expresses the maximum duration or deadline within which an instance is expected to be updated.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \mbox{\hyperlink{structDDS__DeadlineQosPolicy_a3bc084edc8320df0e64d8ac2b857635d}{period}}
+\begin{DoxyCompactList}\small\item\em Duration of the deadline period. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Expresses the maximum duration or deadline within which an instance is expected to be updated. 
+
+\doxylink{classDDSDataReader}{DDSData\+Reader} expects a new sample updating the value of each instance at least once every {\ttfamily period}. \doxylink{classDDSDataWriter}{DDSData\+Writer} indicates that the application commits to write a new value using the \doxylink{classDDSDataWriter}{DDSData\+Writer} for each instance managed by the \doxylink{classDDSDataWriter}{DDSData\+Writer} at least once every {\ttfamily period}. 
+
+If a \doxylink{classDDSDataReader}{DDSData\+Reader} stops receiving samples, it will take at most ({\ttfamily period} + ({\ttfamily period} / 8)) to detect that the deadline has been missed. The deadline period starts again when the next sample is received. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSTopic}{DDSTopic}, \doxylink{classDDSDataReader}{DDSData\+Reader}, \doxylink{classDDSDataWriter}{DDSData\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa84f12530ffc8d6e68906054b06972342}{DDS\+\_\+\+OFFERED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS}, \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fab4c627eaeae35f65790cc564208ca2e6}{DDS\+\_\+\+REQUESTED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS}, \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}, \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa126ff1b38cdfc905353cb2dac57b6796}{DDS\+\_\+\+REQUESTED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = YES ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} ~\newline
+ 
+\end{DoxyParagraph}
+\hypertarget{structDDS__DeadlineQosPolicy_DDSDeadlineQosModule_usage}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{structDDS__DeadlineQosPolicy_DDSDeadlineQosModule_usage}
+This policy is useful for cases where a \doxylink{classDDSTopic}{DDSTopic} is expected to have each instance updated periodically. On the publishing side this setting establishes a contract that the application must meet. On the subscribing side the setting establishes a minimum requirement for the remote publishers that are expected to supply the data values. 
+
+When RTI Connext DDS Micro \textquotesingle{}matches\textquotesingle{} a \doxylink{classDDSDataWriter}{DDSData\+Writer} and a \doxylink{classDDSDataReader}{DDSData\+Reader} it checks whether the settings are compatible; that is, {\itshape offered deadline \texorpdfstring{$<$}{<}= requested deadline}; if they are not, the two entities are informed via the \doxylink{classDDSListener}{DDSListener} mechanism of the incompatibility of the QoS settings and communication will not occur. 
+
+Assuming that the reader and writer have compatible settings, the fulfillment of this contract is monitored by RTI Connext DDS Micro and the application is informed of any violations by means of the proper \doxylink{classDDSListener}{DDSListener}. \hypertarget{dds_c_infrastructure.h_DDSDeadlineQosModule_compatibility}{}\doxysubsubsection{\texorpdfstring{Compatibility}{Compatibility}}\label{dds_c_infrastructure.h_DDSDeadlineQosModule_compatibility}
+The value offered is considered compatible with the value requested if and only if the inequality {\itshape offered period \texorpdfstring{$<$}{<}= requested period} evaluates to \textquotesingle{}TRUE\textquotesingle{}. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__DeadlineQosPolicy_a3bc084edc8320df0e64d8ac2b857635d}\index{DDS\_DeadlineQosPolicy@{DDS\_DeadlineQosPolicy}!period@{period}}
+\index{period@{period}!DDS\_DeadlineQosPolicy@{DDS\_DeadlineQosPolicy}}
+\doxyparagraph{\texorpdfstring{period}{period}}
+{\footnotesize\ttfamily \label{structDDS__DeadlineQosPolicy_a3bc084edc8320df0e64d8ac2b857635d} 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} DDS\+\_\+\+Deadline\+Qos\+Policy\+::period}
+
+
+
+Duration of the deadline period. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSTimeSupportModule_ga2b315f7f0887aa9dd6bfc2008eda0780}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE} 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1 nanosec, 1 year\mbox{]} or \doxylink{group__DDSTimeSupportModule_ga2b315f7f0887aa9dd6bfc2008eda0780}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE} 

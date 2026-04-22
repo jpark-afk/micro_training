@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>10.5.3. What’s New in 4.1.0 &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 ER1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.5.4. What’s Fixed in 4.1.0" href="whats_fixed_410/whats_fixed_410_index.html" />
+    <link rel="prev" title="10.5.2.10. Other" href="whats_fixed_420/fixes_other.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0 ER1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">10. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="compatibility.html">10.1. Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported_platforms.html">10.2. Supported Platforms and Programming Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whats_new_430.html">10.3. What’s New in 4.3.0 ER1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whats_fixed_430/whats_fixed_430_index.html">10.4. What’s Fixed in 4.3.0 ER1</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="previous_release.html">10.5. Previous Releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="whats_new_420.html">10.5.1. What’s New in 4.2.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="whats_fixed_420/whats_fixed_420_index.html">10.5.2. What’s Fixed in 4.2.0</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">10.5.3. What’s New in 4.1.0</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#platform-independent-code-is-now-separate-from-os-and-network-stack-integration">10.5.3.1. Platform-independent code is now separate from OS and network stack integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transfer-large-data-samples-quickly-with-zero-copy-v2">10.5.3.2. Transfer large data samples quickly with Zero Copy v2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enable-and-configure-zero-copy-transfer-with-mag">10.5.3.3. Enable and configure Zero Copy transfer with MAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enhance-data-reliability-by-detecting-and-discarding-corrupted-rtps-messages">10.5.3.4. Enhance data reliability by detecting and discarding corrupted RTPS messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#develop-more-reliable-applications-with-mag">10.5.3.5. Develop more reliable applications with MAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#guarantee-compatibility-with-core-pro-h-with-mag-when-using-the-shared-memory-transport">10.5.3.6. Guarantee compatibility with Connext Professional with MAG when using the Shared Memory Transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#improve-control-of-data-distribution-to-multicast-addresses-with-new-udp-transport-options">10.5.3.7. Improve control of data distribution to multicast addresses with new UDP transport options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#develop-applications-with-new-udp-transport-options-with-mag">10.5.3.8. Develop applications with new UDP transport options with MAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-me-h-libraries-conveniently-with-symlinks">10.5.3.9. Build Connext Micro libraries conveniently with symlinks</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="whats_fixed_410/whats_fixed_410_index.html">10.5.4. What’s Fixed in 4.1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="whats_new_401.html">10.5.5. What’s New in 4.0.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="whats_fixed_401/whats_fixed_401_index.html">10.5.6. What’s Fixed in 4.0.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="whats_new_400.html">10.5.7. What’s New in 4.0.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="whats_fixed_400/whats_fixed_400_index.html">10.5.8. What’s Fixed in 4.0.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="known_issues.html">10.6. Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental_features.html">10.7. Experimental Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">14. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">10. </span>Release Notes</a> &raquo;</li>
+        
+          <li><a href="previous_release.html"><span class="section-number">10.5. </span>Previous Releases</a> &raquo;</li>
+        
+      <li><span class="section-number">10.5.3. </span>What’s New in 4.1.0</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="what-s-new-in-4-1-0">
+<span id="whats-new-410"></span><h1><span class="section-number">10.5.3. </span>What’s New in 4.1.0<a class="headerlink" href="#what-s-new-in-4-1-0" title="Permalink to this headline">¶</a></h1>
+<p><em>RTI</em> <em>Connext Micro</em> 4.1.0 is a feature release. See the
+<a class="reference external" href="https://www.rti.com/products/connext-releases">Connext Releases</a>
+page on the RTI website for more information on RTI’s software release model.</p>
+<p>The following features are new since <em>Connext Micro</em> 4.0.1.</p>
+<div class="section" id="platform-independent-code-is-now-separate-from-os-and-network-stack-integration">
+<h2><span class="section-number">10.5.3.1. </span>Platform-independent code is now separate from OS and network stack integration<a class="headerlink" href="#platform-independent-code-is-now-separate-from-os-and-network-stack-integration" title="Permalink to this headline">¶</a></h2>
+<p>This release includes precompiled <em>Connext Micro</em> binaries in two formats:</p>
+<ul class="simple">
+<li><p>Platform Independent Libraries (PIL): binaries that support the basic
+features of <em>Connext Micro</em>.</p></li>
+<li><p>Platform Support Libraries (PSL): binaries that support OS and network stack
+integration.</p></li>
+</ul>
+<p>This split allows for different platform-specific PSLs to be written for the
+same PIL without needing to recompile the <em>Connext Micro</em> code. Previous releases of <em>Connext Micro</em>
+were delivered as integrated libraries with the OS and network stack
+code included, which could not be changed without recompiling the entire library.
+See the <a class="reference internal" href="../platformnotes/introduction.html#section-libraries"><span class="std std-ref">Library descriptions</span></a> section for more information on this change.</p>
+<p>Since these split libraries are provided precompiled, <em>Connext Micro</em> can be used
+out-of-the-box without building the source code first; see
+<a class="reference internal" href="../gettingstarted/index.html#section-getting-started"><span class="std std-ref">Getting Started</span></a> and <a class="reference internal" href="../developing/index.html#section-developing-applications"><span class="std std-ref">Developing Applications</span></a>.
+However, RTI also provides the source code for the PSL with supported
+architectures. Refer to <a class="reference internal" href="../platformnotes/building.html#psl-compiling"><span class="std std-ref">Building the PSL</span></a> for instructions on how to build
+your own PSL from source.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Split libraries <strong>do not</strong> automatically register the
+UDP transport. This is because <em>Connext Micro</em> makes no assumptions
+about which transports are available when using split libraries.
+In order to use the UDP transport included in the PSL, add the
+following code before creating a <em>DomainParticipant</em>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Register the UDP transport */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">UDP_InterfaceFactoryProperty</span><span class="w"> </span><span class="o">*</span><span class="n">udp_property</span><span class="p">;</span>
+
+<span class="cm">/* allocate and set udp_property */</span>
+
+<span class="n">RT_Registry_register</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span><span class="n">NETIO_DEFAULT_UDP_NAME</span><span class="p">,</span>
+<span class="w">         </span><span class="n">UDP_InterfaceFactory_get_interface</span><span class="p">(),</span>
+<span class="w">         </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">RT_ComponentFactoryProperty</span><span class="o">*</span><span class="p">)</span><span class="n">udp_property</span><span class="p">,</span><span class="nb">NULL</span><span class="p">),</span>
+
+<span class="n">DDS_StringSeq_set_maximum</span><span class="p">(</span><span class="o">&amp;</span><span class="n">participant_qos</span><span class="p">.</span><span class="n">transports</span><span class="p">.</span><span class="n">enabled_transports</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">DDS_StringSeq_set_length</span><span class="p">(</span><span class="o">&amp;</span><span class="n">participant_qos</span><span class="p">.</span><span class="n">transports</span><span class="p">.</span><span class="n">enabled_transports</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="o">*</span><span class="n">DDS_StringSeq_get_reference</span><span class="p">(</span><span class="o">&amp;</span><span class="n">participant_qos</span><span class="p">.</span><span class="n">transports</span><span class="p">.</span><span class="n">enabled_transports</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;_udp&quot;</span><span class="p">);</span>
+
+<span class="n">DDS_StringSeq_set_maximum</span><span class="p">(</span><span class="o">&amp;</span><span class="n">participant_qos</span><span class="p">.</span><span class="n">discovery</span><span class="p">.</span><span class="n">enabled_transports</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">DDS_StringSeq_set_length</span><span class="p">(</span><span class="o">&amp;</span><span class="n">participant_qos</span><span class="p">.</span><span class="n">discovery</span><span class="p">.</span><span class="n">enabled_transports</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="o">*</span><span class="n">DDS_StringSeq_get_reference</span><span class="p">(</span><span class="o">&amp;</span><span class="n">participant_qos</span><span class="p">.</span><span class="n">discovery</span><span class="p">.</span><span class="n">enabled_transports</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;_udp://&quot;</span><span class="p">);</span>
+
+<span class="n">DDS_StringSeq_set_maximum</span><span class="p">(</span><span class="o">&amp;</span><span class="n">participant_qos</span><span class="p">.</span><span class="n">user_traffic</span><span class="p">.</span><span class="n">enabled_transports</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">DDS_StringSeq_set_length</span><span class="p">(</span><span class="o">&amp;</span><span class="n">participant_qos</span><span class="p">.</span><span class="n">user_traffic</span><span class="p">.</span><span class="n">enabled_transports</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="o">*</span><span class="n">DDS_StringSeq_get_reference</span><span class="p">(</span><span class="o">&amp;</span><span class="n">participant_qos</span><span class="p">.</span><span class="n">user_traffic</span><span class="p">.</span><span class="n">enabled_transports</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;_udp://&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="transfer-large-data-samples-quickly-with-zero-copy-v2">
+<h2><span class="section-number">10.5.3.2. </span>Transfer large data samples quickly with Zero Copy v2<a class="headerlink" href="#transfer-large-data-samples-quickly-with-zero-copy-v2" title="Permalink to this headline">¶</a></h2>
+<p>This release adds a new transport, Zero Copy v2, which can perform Zero Copy
+data transfer. Zero Copy transfer allows you to move large data samples without
+copying them, which increases throughput and reduces latency.</p>
+<p>You can now set up Zero Copy transfer to use either the Shared Memory Transport
+(which was available in previous versions of <em>Connext Micro</em>) or the new Zero Copy v2
+transport. The main difference between the two transports is that the Shared
+Memory Transport is interoperable with <em>Connext</em> <em>Professional</em> and the Zero Copy v2 transport
+is interoperable with select versions of <em>Connext Cert</em>.</p>
+<p>For more details, refer to <a class="reference internal" href="../programmersguide/zerocopy.html#section-zero-copy-transfer"><span class="std std-ref">Zero Copy Transfer</span></a> and
+<a class="reference internal" href="../transports/zerocopy_v2.html#section-zero-copy-v2-transport"><span class="std std-ref">Zero Copy v2 Transport</span></a>.</p>
+</div>
+<div class="section" id="enable-and-configure-zero-copy-transfer-with-mag">
+<h2><span class="section-number">10.5.3.3. </span>Enable and configure Zero Copy transfer with MAG<a class="headerlink" href="#enable-and-configure-zero-copy-transfer-with-mag" title="Permalink to this headline">¶</a></h2>
+<p>This release allows you to enable and configure the
+<a class="reference internal" href="../transports/zerocopy_v2.html#section-zero-copy-v2-transport"><span class="std std-ref">Zero Copy v2 Transport</span></a> while
+defining an application in XML format. Micro Application Generator (MAG) will
+then create the necessary code to enable and configure the Zero Copy transport
+in <em>Connext Micro</em>.</p>
+<p>For details on how to enable Zero Copy v2 with MAG, refer to <a class="reference internal" href="../programmersguide/appgen.html#section-command-line-options"><span class="std std-ref">MAG Command-Line Options</span></a>
+and <a class="reference internal" href="../programmersguide/appgen.html#section-transport-and-discovery-configuration"><span class="std std-ref">Transport and Discovery Configuration</span></a>.</p>
+</div>
+<div class="section" id="enhance-data-reliability-by-detecting-and-discarding-corrupted-rtps-messages">
+<span id="micro-6201"></span><h2><span class="section-number">10.5.3.4. </span>Enhance data reliability by detecting and discarding corrupted RTPS messages<a class="headerlink" href="#enhance-data-reliability-by-detecting-and-discarding-corrupted-rtps-messages" title="Permalink to this headline">¶</a></h2>
+<p>This release adds support for detecting and discarding corrupted RTPS messages.
+This improves data reliability and provides basic security by ensuring
+that the data has not been modified in transit.</p>
+<p>A Cyclic Redundancy Check (CRC) is computed over the DDS RTPS message
+(including the RTPS Header), which is sent as a new RTPS submessage. The
+subscribing application can detect this new submessage and validate the
+contained CRC. Optionally, when a corrupted RTPS message is detected, the
+message can be dropped.</p>
+<p>To enable the use of CRC in a <em>DomainParticipant</em>, there are three new fields
+in the <a class="reference external" href="../../../doc/api_c/html/structDDS__WireProtocolQosPolicy.html">WireProtocolQoSPolicy</a>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">compute_crc</span></code>: when enabled at the sending application, sends the CRC.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">check_crc</span></code>: when enabled, drops corrupted messages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">require_crc</span></code>: when enabled, ignores participants with <code class="docutils literal notranslate"><span class="pre">compute_crc</span></code> set to false.</p></li>
+</ul>
+<p>Refer to <a class="reference internal" href="../programmersguide/msgintegrity.html#msgintegrity"><span class="std std-ref">Message Integrity Checking</span></a> for details.</p>
+</div>
+<div class="section" id="develop-more-reliable-applications-with-mag">
+<h2><span class="section-number">10.5.3.5. </span>Develop more reliable applications with MAG<a class="headerlink" href="#develop-more-reliable-applications-with-mag" title="Permalink to this headline">¶</a></h2>
+<p>This release adds support to Micro Application Generator (MAG) for the
+Cyclic Redundancy Check feature (see <a class="reference internal" href="#micro-6201"><span class="std std-ref">Enhance data reliability by detecting and discarding corrupted RTPS messages</span></a>). This allows
+you to develop applications with MAG that have improved data reliability
+and basic security.</p>
+<p>MAG now supports the following fields in the
+<a class="reference external" href="../../../doc/api_c/html/structDDS__WireProtocolQosPolicy.html">WireProtocolQosPolicy</a>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">compute_crc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">check_crc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">require_crc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">computed_crc_kind</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">allowed_crc_mask</span></code></p></li>
+</ul>
+<p>Refer to <a class="reference internal" href="../programmersguide/msgintegrity.html#msgintegrity"><span class="std std-ref">Message Integrity Checking</span></a> for details.</p>
+</div>
+<div class="section" id="guarantee-compatibility-with-core-pro-h-with-mag-when-using-the-shared-memory-transport">
+<h2><span class="section-number">10.5.3.6. </span>Guarantee compatibility with Connext Professional with MAG when using the Shared Memory Transport<a class="headerlink" href="#guarantee-compatibility-with-core-pro-h-with-mag-when-using-the-shared-memory-transport" title="Permalink to this headline">¶</a></h2>
+<p>This release adds support to Micro Application Generator (MAG) for the
+<code class="docutils literal notranslate"><span class="pre">dds.transport.minimum_compatibility_version</span></code> property, which you can set
+via the <a class="reference external" href="../../../doc/api_c/html/group__DDSPropertyQosModule.html">PROPERTY</a>
+QoS policy for the <em>DomainParticipant</em>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dds.transport.minimum_compatibility_version</span></code> changes the value of the new
+field <a class="reference external" href="../../../doc/api_c/html/structNETIO__SHMEMInterfaceFactoryProperty.html">pro_minimum_compatibility_version</a>
+that has been added to the shared memory interface factory property. This
+property sets the minimum version of <em>Connext</em> <em>Professional</em> to be compatible with when
+using shared memory.</p>
+<p>The default value for this field is <code class="docutils literal notranslate"><span class="pre">DDS_PRODUCTVERSION_UNKNOWN</span></code>.</p>
+<p>Refer to <a class="reference internal" href="../transports/SHMEM.html#section-shmem-configuration"><span class="std std-ref">SHMEM Configuration</span></a> for details.</p>
+</div>
+<div class="section" id="improve-control-of-data-distribution-to-multicast-addresses-with-new-udp-transport-options">
+<span id="micro-5852"></span><h2><span class="section-number">10.5.3.7. </span>Improve control of data distribution to multicast addresses with new UDP transport options<a class="headerlink" href="#improve-control-of-data-distribution-to-multicast-addresses-with-new-udp-transport-options" title="Permalink to this headline">¶</a></h2>
+<p>This release adds the following new options to the UDP transport to further
+control how <em>Connext Micro</em> sends data to multicast addresses:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../doc/api_c/html/structUDP__InterfaceFactoryProperty.html">disable_multicast_bind</a>: controls
+whether <em>Connext Micro</em> will bind to a multicast address receive address (if set to 0)
+or bind to ANY multicast address (if set to 1).</p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structUDP__InterfaceFactoryProperty.html">multicast_loopback_disable</a>: controls
+whether <em>Connext Micro</em> puts multicast packets onto the loopback interface.</p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structUDP__InterfaceFactoryProperty.html">disable_multicast_interface_select</a>:
+controls whether <em>Connext Micro</em> will use <code class="docutils literal notranslate"><span class="pre">multicast_interface</span></code> or
+<code class="docutils literal notranslate"><span class="pre">allow_interface</span></code>/<code class="docutils literal notranslate"><span class="pre">deny_interface</span></code> to select the interface for sending
+to multicast addresses.</p></li>
+</ul>
+<p>Refer to <a class="reference internal" href="../transports/UDP.html#section-udp-transport"><span class="std std-ref">UDP Transport</span></a> for more information on these options.</p>
+</div>
+<div class="section" id="develop-applications-with-new-udp-transport-options-with-mag">
+<h2><span class="section-number">10.5.3.8. </span>Develop applications with new UDP transport options with MAG<a class="headerlink" href="#develop-applications-with-new-udp-transport-options-with-mag" title="Permalink to this headline">¶</a></h2>
+<p>This release adds support to Micro Application Generator (MAG) for the
+following new fields when configuring the UDP transport:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../doc/api_c/html/structUDP__InterfaceFactoryProperty.html">disable_multicast_bind</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structUDP__InterfaceFactoryProperty.html">multicast_loopback_disable</a></p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structUDP__InterfaceFactoryProperty.html">disable_multicast_interface_select</a></p></li>
+</ul>
+<p>Refer to <a class="reference internal" href="../transports/UDP.html#section-udp-configuration"><span class="std std-ref">UDP Configuration</span></a> for more information on these properties.</p>
+</div>
+<div class="section" id="build-me-h-libraries-conveniently-with-symlinks">
+<h2><span class="section-number">10.5.3.9. </span>Build Connext Micro libraries conveniently with symlinks<a class="headerlink" href="#build-me-h-libraries-conveniently-with-symlinks" title="Permalink to this headline">¶</a></h2>
+<p>This release adds support for using the <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--install</span></code> command with
+symbolic links (symlinks) as well as full paths.</p>
+<p>Refer to <a class="reference internal" href="../platformnotes/building.html#section-building-source"><span class="std std-ref">Building Connext Micro for Common Platforms</span></a> for more information on how to use
+CMake build commands.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="whats_fixed_410/whats_fixed_410_index.html" class="btn btn-neutral float-right" title="10.5.4. What’s Fixed in 4.1.0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="whats_fixed_420/fixes_other.html" class="btn btn-neutral float-left" title="10.5.2.10. Other" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+\doxysubsection{DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status Struct Reference}
+\hypertarget{structDDS__OfferedIncompatibleQosStatus}{}\label{structDDS__OfferedIncompatibleQosStatus}\index{DDS\_OfferedIncompatibleQosStatus@{DDS\_OfferedIncompatibleQosStatus}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+publication.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__OfferedIncompatibleQosStatus_aa90180c83fd132288ac14a05d090b117}{total\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em Total cumulative number of times the concerned \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} discovered a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} for the same \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}, common partition with a requested QoS that is incompatible with that offered by the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__OfferedIncompatibleQosStatus_a68363b158df1f07e32d67249111958e3}{total\+\_\+count\+\_\+change}}
+\begin{DoxyCompactList}\small\item\em The incremental changes in total\+\_\+count since the last time the listener was called or the status was read. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSQosTypesModule_ga4b2c4d85475a58758fba7601082a40f8}{DDS\+\_\+\+Qos\+Policy\+Id\+\_\+t}} \mbox{\hyperlink{structDDS__OfferedIncompatibleQosStatus_a58f04e98c5edac6e86ae360dbf243b21}{last\+\_\+policy\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em The \doxylink{group__DDSQosTypesModule_ga4b2c4d85475a58758fba7601082a40f8}{DDS\+\_\+\+Qos\+Policy\+Id\+\_\+t} of one of the policies that was found to be incompatible the last time an incompatibility was detected. \end{DoxyCompactList}\item 
+struct DDS\+\_\+\+Qos\+Policy\+Count\+Seq \mbox{\hyperlink{structDDS__OfferedIncompatibleQosStatus_a28a38881ba616588ef588ee786668aa9}{policies}}
+\begin{DoxyCompactList}\small\item\em Not used in RTI Connext DDS Micro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Listener\+:}
+\doxylink{structDDS__DataWriterListener}{DDS\+\_\+\+Data\+Writer\+Listener} 
+\end{DoxyParagraph}
+The qos policy value was incompatible with what was requested. 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__OfferedIncompatibleQosStatus_aa90180c83fd132288ac14a05d090b117}\index{DDS\_OfferedIncompatibleQosStatus@{DDS\_OfferedIncompatibleQosStatus}!total\_count@{total\_count}}
+\index{total\_count@{total\_count}!DDS\_OfferedIncompatibleQosStatus@{DDS\_OfferedIncompatibleQosStatus}}
+\doxyparagraph{\texorpdfstring{total\_count}{total\_count}}
+{\footnotesize\ttfamily \label{structDDS__OfferedIncompatibleQosStatus_aa90180c83fd132288ac14a05d090b117} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status\+::total\+\_\+count}
+
+
+
+Total cumulative number of times the concerned \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} discovered a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} for the same \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}, common partition with a requested QoS that is incompatible with that offered by the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. 
+
+\Hypertarget{structDDS__OfferedIncompatibleQosStatus_a68363b158df1f07e32d67249111958e3}\index{DDS\_OfferedIncompatibleQosStatus@{DDS\_OfferedIncompatibleQosStatus}!total\_count\_change@{total\_count\_change}}
+\index{total\_count\_change@{total\_count\_change}!DDS\_OfferedIncompatibleQosStatus@{DDS\_OfferedIncompatibleQosStatus}}
+\doxyparagraph{\texorpdfstring{total\_count\_change}{total\_count\_change}}
+{\footnotesize\ttfamily \label{structDDS__OfferedIncompatibleQosStatus_a68363b158df1f07e32d67249111958e3} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status\+::total\+\_\+count\+\_\+change}
+
+
+
+The incremental changes in total\+\_\+count since the last time the listener was called or the status was read. 
+
+\Hypertarget{structDDS__OfferedIncompatibleQosStatus_a58f04e98c5edac6e86ae360dbf243b21}\index{DDS\_OfferedIncompatibleQosStatus@{DDS\_OfferedIncompatibleQosStatus}!last\_policy\_id@{last\_policy\_id}}
+\index{last\_policy\_id@{last\_policy\_id}!DDS\_OfferedIncompatibleQosStatus@{DDS\_OfferedIncompatibleQosStatus}}
+\doxyparagraph{\texorpdfstring{last\_policy\_id}{last\_policy\_id}}
+{\footnotesize\ttfamily \label{structDDS__OfferedIncompatibleQosStatus_a58f04e98c5edac6e86ae360dbf243b21} 
+\mbox{\hyperlink{group__DDSQosTypesModule_ga4b2c4d85475a58758fba7601082a40f8}{DDS\+\_\+\+Qos\+Policy\+Id\+\_\+t}} DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status\+::last\+\_\+policy\+\_\+id}
+
+
+
+The \doxylink{group__DDSQosTypesModule_ga4b2c4d85475a58758fba7601082a40f8}{DDS\+\_\+\+Qos\+Policy\+Id\+\_\+t} of one of the policies that was found to be incompatible the last time an incompatibility was detected. 
+
+\Hypertarget{structDDS__OfferedIncompatibleQosStatus_a28a38881ba616588ef588ee786668aa9}\index{DDS\_OfferedIncompatibleQosStatus@{DDS\_OfferedIncompatibleQosStatus}!policies@{policies}}
+\index{policies@{policies}!DDS\_OfferedIncompatibleQosStatus@{DDS\_OfferedIncompatibleQosStatus}}
+\doxyparagraph{\texorpdfstring{policies}{policies}}
+{\footnotesize\ttfamily \label{structDDS__OfferedIncompatibleQosStatus_a28a38881ba616588ef588ee786668aa9} 
+struct DDS\+\_\+\+Qos\+Policy\+Count\+Seq DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status\+::policies}
+
+
+
+Not used in RTI Connext DDS Micro. 
+

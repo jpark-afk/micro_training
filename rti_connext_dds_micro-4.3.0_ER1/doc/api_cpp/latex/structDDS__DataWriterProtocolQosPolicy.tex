@@ -1,0 +1,85 @@
+\doxysubsection{DDS\+\_\+\+Data\+Writer\+Protocol\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__DataWriterProtocolQosPolicy}{}\label{structDDS__DataWriterProtocolQosPolicy}\index{DDS\_DataWriterProtocolQosPolicy@{DDS\_DataWriterProtocolQosPolicy}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Protocol that applies only to \doxylink{classDDSDataWriter}{DDSData\+Writer} instances.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} \mbox{\hyperlink{structDDS__DataWriterProtocolQosPolicy_a7cf2b8d79c78ecd65f8a98921dcf1f15}{rtps\+\_\+object\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em The RTPS Object ID. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__RtpsReliableWriterProtocol__t}{DDS\+\_\+\+Rtps\+Reliable\+Writer\+Protocol\+\_\+t}} \mbox{\hyperlink{structDDS__DataWriterProtocolQosPolicy_a073f347f5d06730a44c411e5ce25fe6a}{rtps\+\_\+reliable\+\_\+writer}}
+\begin{DoxyCompactList}\small\item\em The reliable protocol defined in RTPS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{structDDS__DataWriterProtocolQosPolicy_a8ac6cfea4d4490ce190fceb95ae5c0a9}{serialize\+\_\+on\+\_\+write}}
+\begin{DoxyCompactList}\small\item\em Indicate whether a sample should be serialized when it is written (TRUE) or when it is sent (FALSE). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Protocol that applies only to \doxylink{classDDSDataWriter}{DDSData\+Writer} instances. 
+
+This QoS policy is an extension to the DDS standard. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSDataWriter}{DDSData\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = N/A ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} ~\newline
+ 
+\end{DoxyParagraph}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__DataWriterProtocolQosPolicy_a7cf2b8d79c78ecd65f8a98921dcf1f15}\index{DDS\_DataWriterProtocolQosPolicy@{DDS\_DataWriterProtocolQosPolicy}!rtps\_object\_id@{rtps\_object\_id}}
+\index{rtps\_object\_id@{rtps\_object\_id}!DDS\_DataWriterProtocolQosPolicy@{DDS\_DataWriterProtocolQosPolicy}}
+\doxyparagraph{\texorpdfstring{rtps\_object\_id}{rtps\_object\_id}}
+{\footnotesize\ttfamily \label{structDDS__DataWriterProtocolQosPolicy_a7cf2b8d79c78ecd65f8a98921dcf1f15} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} DDS\+\_\+\+Data\+Writer\+Protocol\+Qos\+Policy\+::rtps\+\_\+object\+\_\+id}
+
+
+
+The RTPS Object ID. 
+
+This value is used to determine the RTPS object ID of a \doxylink{classDDSDataWriter}{DDSData\+Writer} according to the DDS-\/\+RTPS Interoperability Wire Protocol. 
+
+Only the last 3 bytes are used; the most significant byte is ignored. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSWireProtocolQosModule_ga5dec5b80bd3efbf65ab1b5b2640b2ec1a74c5028e0747356f719a0660c3089bec}{DDS\+\_\+\+RTPS\+\_\+\+AUTO\+\_\+\+ID} 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}0,0x00ffffff\mbox{]} \Hypertarget{structDDS__DataWriterProtocolQosPolicy_a073f347f5d06730a44c411e5ce25fe6a}\index{DDS\_DataWriterProtocolQosPolicy@{DDS\_DataWriterProtocolQosPolicy}!rtps\_reliable\_writer@{rtps\_reliable\_writer}}
+\index{rtps\_reliable\_writer@{rtps\_reliable\_writer}!DDS\_DataWriterProtocolQosPolicy@{DDS\_DataWriterProtocolQosPolicy}}
+\doxyparagraph{\texorpdfstring{rtps\_reliable\_writer}{rtps\_reliable\_writer}}
+{\footnotesize\ttfamily \label{structDDS__DataWriterProtocolQosPolicy_a073f347f5d06730a44c411e5ce25fe6a} 
+struct \mbox{\hyperlink{structDDS__RtpsReliableWriterProtocol__t}{DDS\+\_\+\+Rtps\+Reliable\+Writer\+Protocol\+\_\+t}} DDS\+\_\+\+Data\+Writer\+Protocol\+Qos\+Policy\+::rtps\+\_\+reliable\+\_\+writer}
+
+
+
+The reliable protocol defined in RTPS. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} heartbeat\+\_\+period 3.\+0 seconds;~\newline
+ heartbeats\+\_\+per\+\_\+max\+\_\+samples\+: 1;~\newline
+ max\+\_\+send\+\_\+window\+: minimum(256, \+::\+DDS\+\_\+\+History\+Qos\+Policy\+::depth \texorpdfstring{$\ast$}{*} \+::\+DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+instances);~\newline
+ max\+\_\+heartbeat\+\_\+retries\+: DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED;~\newline
+ \Hypertarget{structDDS__DataWriterProtocolQosPolicy_a8ac6cfea4d4490ce190fceb95ae5c0a9}\index{DDS\_DataWriterProtocolQosPolicy@{DDS\_DataWriterProtocolQosPolicy}!serialize\_on\_write@{serialize\_on\_write}}
+\index{serialize\_on\_write@{serialize\_on\_write}!DDS\_DataWriterProtocolQosPolicy@{DDS\_DataWriterProtocolQosPolicy}}
+\doxyparagraph{\texorpdfstring{serialize\_on\_write}{serialize\_on\_write}}
+{\footnotesize\ttfamily \label{structDDS__DataWriterProtocolQosPolicy_a8ac6cfea4d4490ce190fceb95ae5c0a9} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Data\+Writer\+Protocol\+Qos\+Policy\+::serialize\+\_\+on\+\_\+write}
+
+
+
+Indicate whether a sample should be serialized when it is written (TRUE) or when it is sent (FALSE). 
+
+To send a sample over the network it must first be serialized. The serialize\+\_\+on\+\_\+write attribute determines when the sample is serialized. 
+
+If set to \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}, the sample is serialized when it is written using \doxylink{structFooDataWriter_ab2c44dd15f5daf7eddf3773239101478}{Foo\+Data\+Writer\+::write} or a similar API. This is the default behavior and results in the sample being stored in serialized form in case it needs to be resent. 
+
+If set to \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE}, the sample is not serialized when using \doxylink{structFooDataWriter_ab2c44dd15f5daf7eddf3773239101478}{Foo\+Data\+Writer\+::write} or a similar API. Instead it is serialized when it is needed and never stored in serialized form. This requires the unserialized sample to be available for the life-\/span of the \doxylink{classDDSDataWriter}{DDSData\+Writer}. If this is not the case, this option must not be used. Use of this option will also require a specialized type-\/plugin which is not supported by the IDL compiler. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} TRUE 

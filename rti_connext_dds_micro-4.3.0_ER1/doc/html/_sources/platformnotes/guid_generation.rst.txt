@@ -1,0 +1,154 @@
+.. _section-guid-generation:
+
+GUID Generation
+===============
+
+|rti_me| uses Globally Unique Identifiers (GUIDs), also called Universally
+Unique Identifiers (UUIDs), to distinguish between different
+*DomainParticipants* in the same domain. If GUIDs are not unique, the
+middleware cannot tell *DomainParticipants* and endpoints apart, which can
+lead to conflicts (e.g., multiple nodes appearing as the same entity),
+discovery failures, dropped samples, or other undefined behavior.
+
+|me| will generate GUIDs for supported platforms. However, under certain
+conditions (such as multiple *DomainParticipants* with the exact same
+configuration), the default GUID generation may cause GUID collisions. For this
+reason, |me| provides an interface that can be used to generate a GUID by taking
+advantage of unique platform-specific characteristics.
+
+This section provides guidelines and examples for how to generate a unique
+GUID.
+
+GUID format
+-----------
+
+The `Object Management Group (OMG) specification <https://www.omg.org/spec/>`__,
+defines a GUID as a 16-byte unique identifier. With the leftmost byte as byte 0,
+the format of the GUID is:
+
+* Bytes 0-1 are reserved for the vendor;
+* Bytes 2-11 are generated;
+* Bytes 12-15 are reserved for the entity ID.
+
+This leaves exactly 10 bytes to provide uniqueness. To avoid
+collisions, these 10 bytes must account for both spatial uniqueness
+(different physical boards or nodes on the network) and temporal
+uniqueness (different processes or system restarts on the same board).
+
+.. _section-guid-platform-specific-guidelines:
+
+General guidelines
+------------------
+
+The following steps are general guidelines for implementing your own
+GUID generation. These are especially critical in environments without a
+POSIX layer, filesystem, or battery-backed Real-Time Clock (RTC), where
+the risk of GUID collision is high due to a typically-deterministic execution
+environment.
+
+#. Use the Silicon Unique ID (UID). Most modern microcontroller units (MCUs)
+   have a factory-burned ID. Use this as your "Machine ID" to maintain spatial
+   uniqueness. Alternatively, you can use the IP address and MAC address in
+   conjunction with a counter.
+
+#. Implement a mandatory boot counter. Since some clocks reset to 0 on power-on,
+   you *must* implement a persistent counter in non-volatile memory (NVM).
+
+   *Workflow:* Read counter → Increment → Save to NVM → Use value
+   in GUID.
+
+#. If your system lacks a True Random Number Generator (TRNG), seed your
+   Psuedo Random Number Generator (PRNG) by reading the least significant
+   bits of a floating (unconnected) ADC pin (if available).
+
+Testing
+-------
+
+Before deploying, you should perform these two validation
+tests:
+
+#. Generate a GUID, reboot the device, and generate another. The
+   IDs must be different even if the system clock resets to the
+   same epoch.
+#. Flash two identical boards with the same firmware and power
+   them on at the exact same time. Verify that their GUIDs are unique.
+
+.. _section-guid-examples:
+
+Example
+-------
+
+The following code snippet is an example function to generate a GUID for
+STM32, which is a bare-metal system with no OS. It combines
+the hardware unique ID (built into the silicon) for spatial uniqueness
+and a Flash-based boot counter for temporal uniqueness.
+
+.. code-block:: c
+
+   /* Standard addresses for STM32 Unique Device ID (96-bit) */
+   #define STM32_UUID_ADDR 0x1FFF7A10
+
+   RTI_PRIVATE RTI_BOOL
+   OSAPI_SystemBareMetal_generate_uuid(struct OSAPI_SystemUUID *uuid_out)
+   {
+       uint32_t boot_count = 0;
+       uint32_t *hw_id = (uint32_t *)STM32_UUID_ADDR;
+
+       /* 1. SPATIAL: Use the Silicon UID (First 6 bytes of the budget) */
+       /* We XOR the 96-bit ID into 48 bits to capture all silicon variance */
+       uint32_t part1 = hw_id[0] ^ hw_id[2];
+       uint16_t part2 = (uint16_t)(hw_id[1] & 0xFFFF);
+
+       OSAPI_Memory_copy(&uuid_out->value[2], &part1, 4);
+       OSAPI_Memory_copy(&uuid_out->value[6], &part2, 2);
+
+       /* 2. TEMPORAL: Persistent Boot Counter (Next 4 bytes of the budget) */
+       /* Implementation-specific: Read from EEPROM or Flash User Config Sector */
+       boot_count = NV_Memory_Read_Boot_Counter();
+       boot_count++;
+       NV_Memory_Write_Boot_Counter(boot_count);
+
+       OSAPI_Memory_copy(&uuid_out->value[8], &boot_count, 4);
+
+       /* 3. Optional: If a TRNG (True Random Number Gen) is available,
+          XOR some random bits into the boot_count for extra safety */
+       // uint32_t noise = HAL_RNG_GetRandomNumber(&hrng);
+       // *((uint32_t*)&uuid_out->value[8]) ^= noise;
+
+       return RTI_TRUE;
+   }
+
+Implementing a custom GUID generation function
+----------------------------------------------
+
+If the provided GUID generation does not meet your requirements, you can
+implement your own by following these steps:
+
+1. Get the native interface:
+
+   .. code-block:: c
+
+      RTI_PRIVATE struct OSAPI_SystemI OSAPI_System_fv_SysIntf;
+
+      // Get the current system interface
+      OSAPI_System_get_native_interface(&OSAPI_System_fv_SysIntf);
+
+2. Implement your custom GUID generation function:
+
+   .. code-block:: c
+
+      RTI_PRIVATE RTI_BOOL
+      MyApp_custom_generate_uuid(struct OSAPI_SystemUUID *uuid_out)
+      {
+          /* Your custom function goes here */
+      }
+
+3. Override the system interface:
+
+   .. code-block:: c
+
+      // Replace the generate_uuid function pointer
+      OSAPI_System_fv_SysIntf.generate_uuid = MyApp_custom_generate_uuid;
+
+      // Set the modified interface
+      OSAPI_System_set_interface(&OSAPI_System_fv_SysIntf);

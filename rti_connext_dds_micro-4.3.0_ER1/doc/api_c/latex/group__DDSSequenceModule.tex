@@ -1,0 +1,791 @@
+\doxysubsubsubsection{Sequence Support}
+\hypertarget{group__DDSSequenceModule}{}\label{group__DDSSequenceModule}\index{Sequence Support@{Sequence Support}}
+
+
+Defines sequence interface and primitive data types sequences.  
+
+
+\doxysubsubsubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} {\itshape \doxylink{group__DDSDocGuideModule_a_st_generic}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}generic\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A type-\/safe, ordered collection of elements. The type of these elements is referred to in this documentation as {\ttfamily "{}Foo"{}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DDSSequenceModule_ga521eb819a3b85277debce55d61b08f82}{DDS\+\_\+\+SEQUENCE\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em An initializer for new sequence instances. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_ga247367cb6c2a478370327b3628b6ef81}{Foo\+Seq\+\_\+initialize}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Initialize sequence instances. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_gae1a415ca306572994f50eb07476b5299}{Foo\+Seq\+\_\+finalize}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Finalize sequence instances. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSSequenceModule_gab3765cd5c745da088f3772a1a8578cef}{Foo\+Seq\+\_\+get\+\_\+maximum}} (const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Get the current maximum number of elements that can be stored in this sequence.  \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_gadf5b537079d3997b4acddc9a4af11c63}{Foo\+Seq\+\_\+set\+\_\+maximum}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} new\+\_\+max)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Resize this sequence to a new desired maximum. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_gac4f4dd1d66fd7a190c385518665c7229}{Foo\+Seq\+\_\+set\+\_\+maximum\+\_\+w\+\_\+max}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} new\+\_\+max, \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} max\+\_\+size)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Resize this sequence to a new desired maximum and allocate {\ttfamily max\+\_\+size} + 1 bytes for each pointer element. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSSequenceModule_gaf7a45e00319eeb1ddf5c84ac68657adb}{Foo\+Seq\+\_\+get\+\_\+length}} (const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Get the logical length of this sequence.  \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_gaa6f7cf4be9012fee3ca476c69f821bc6}{Foo\+Seq\+\_\+set\+\_\+length}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} new\+\_\+length)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Change the length of this sequence. \end{DoxyCompactList}\item 
+Foo \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSSequenceModule_ga7f9ee185c7f49cf41f429a25f8403b2b}{Foo\+Seq\+\_\+get\+\_\+reference}} (const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} i)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Get the pointer to the {\ttfamily i-\/th} element of this sequence. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSSequenceModule_gac63360e3d3621e1e56d3b471d859aaab}{Foo\+Seq\+\_\+copy}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}src\+\_\+seq)
+\begin{DoxyCompactList}\small\item\em Copy elements from another sequence, resizing the sequence if necessary. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSSequenceModule_gacf953cbdf9e27e4382732ea8d482ba73}{Foo\+Seq\+\_\+copy\+\_\+w\+\_\+max}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}src\+\_\+seq, \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} max\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Copy elements from another sequence, resizing the sequence if necessary. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_gad2bdd5ebf68bc3fe943a274666045bfd}{Foo\+Seq\+\_\+is\+\_\+equal}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}other)
+\begin{DoxyCompactList}\small\item\em Checks whether two sequences have the same contents. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_gaf0d4004f1c7cae9531b69f03ad021bb1}{Foo\+Seq\+\_\+loan\+\_\+contiguous}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, void \texorpdfstring{$\ast$}{*}buffer, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} new\+\_\+length, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} new\+\_\+max)
+\begin{DoxyCompactList}\small\item\em Loan a contiguous buffer to this sequence. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_gaed2da23ace969a6556f2870a4381e350}{Foo\+Seq\+\_\+loan\+\_\+discontiguous}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, void \texorpdfstring{$\ast$}{*}buffer, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} new\+\_\+length, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} new\+\_\+max)
+\begin{DoxyCompactList}\small\item\em Loan a discontiguous buffer to this sequence. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_gaba7a2c4cf49f72627f9b445b697b2364}{Foo\+Seq\+\_\+unloan}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Return the loaned buffer in the sequence and set the maximum to 0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_gaca64a79c4b5c96bb230cf3d5075f35aa}{Foo\+Seq\+\_\+has\+\_\+ownership}} (const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Return the value of the owned flag. \end{DoxyCompactList}\item 
+Foo \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSSequenceModule_gaff29c02d3b71c61b7d098ac568cb97a0}{Foo\+Seq\+\_\+get\+\_\+contiguous\+\_\+buffer}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Access the internal buffer of a sequence. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_ga0b520a01b0c25e031a926fa4592fab79}{Foo\+Seq\+\_\+set\+\_\+contiguous\+\_\+buffer}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, Foo \texorpdfstring{$\ast$}{*}buffer)
+\begin{DoxyCompactList}\small\item\em Set the internal buffer of a sequence. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_ga947305a17ca14c236cc09c435f7f9d86}{Foo\+Seq\+\_\+has\+\_\+discontiguous\+\_\+buffer}} (const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Check whether a sequence uses a contiguous or discontiguous buffer for its elements. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_ga177dac621c87924333d45f68880f8be0}{Foo\+Seq\+\_\+set\+\_\+token}} (const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, void \texorpdfstring{$\ast$}{*}token1, void \texorpdfstring{$\ast$}{*}token2)
+\begin{DoxyCompactList}\small\item\em Sets tokens on a sequence. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_ga339dc2e5664865d56f837eb7300a4744}{Foo\+Seq\+\_\+get\+\_\+token}} (const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}token1, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}token2)
+\begin{DoxyCompactList}\small\item\em Gets tokens of a sequence. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_ga85c3c42ee1154be119266c8e6fff3659}{Foo\+Seq\+\_\+ensure\+\_\+length}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} length, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} max)
+\begin{DoxyCompactList}\small\item\em Set the sequence to the desired length, and resize the sequence if necessary. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_ga279750ca0a163f750c25f97fb9000f3b}{Foo\+Seq\+\_\+ensure\+\_\+length\+\_\+w\+\_\+max}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} length, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} max, \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} max\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Set the sequence to the desired length, and resize the sequence if necessary, and allocate each pointer element to max\+\_\+size + 1 bytes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_ga11413fcc7cc13ccfeb7d5048648ce1e7}{Foo\+Seq\+\_\+from\+\_\+array}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, const Foo array\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} length)
+\begin{DoxyCompactList}\small\item\em Copy elements from an array of elements, resizing the sequence if necessary. The original contents of the sequence (if any) are replaced. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_ga12d56beb05cc4e468c35cb0e8894f466}{Foo\+Seq\+\_\+from\+\_\+array\+\_\+w\+\_\+max}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, const Foo array\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} length, \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} max\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Copy elements from an array of pointer elements, resizing the sequence if necessary, where each pointer elements has been preallocated to max\+\_\+size. The original contents of the sequence (if any) are replaced. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_ga340e941a29a189e4d4b49662317717fa}{Foo\+Seq\+\_\+to\+\_\+array}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, const Foo array\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} length)
+\begin{DoxyCompactList}\small\item\em Copy elements to an array of elements. The original contents of the array (if any) are replaced. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSSequenceModule_ga9e804cc31c573221ca2df787e7dd0766}{Foo\+Seq\+\_\+to\+\_\+array\+\_\+w\+\_\+max}} (struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}self, const Foo array\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} length, \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} max\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Copy elements to an array of pointer elements, where each pointer element is pre-\/allocated. The original contents of the array (if any) are replaced. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+Defines sequence interface and primitive data types sequences. 
+
+
+
+\doxysubsubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__DDSSequenceModule_ga521eb819a3b85277debce55d61b08f82}\index{Sequence Support@{Sequence Support}!DDS\_SEQUENCE\_INITIALIZER@{DDS\_SEQUENCE\_INITIALIZER}}
+\index{DDS\_SEQUENCE\_INITIALIZER@{DDS\_SEQUENCE\_INITIALIZER}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{DDS\_SEQUENCE\_INITIALIZER}{DDS\_SEQUENCE\_INITIALIZER}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_ga521eb819a3b85277debce55d61b08f82} 
+\#define DDS\+\_\+\+SEQUENCE\+\_\+\+INITIALIZER}
+
+
+
+An initializer for new sequence instances. 
+
+This constant will initialize a new sequence to a valid empty state. C language users should assign it to uninitialized sequence instances before using them, at the time they are declared, or use \doxylink{group__DDSSequenceModule_ga247367cb6c2a478370327b3628b6ef81}{Foo\+Seq\+\_\+initialize} as an alternative function to initialize new sequences. 
+
+\doxysubsubsubsubsection{Function Documentation}
+\Hypertarget{group__DDSSequenceModule_ga247367cb6c2a478370327b3628b6ef81}\index{Sequence Support@{Sequence Support}!FooSeq\_initialize@{FooSeq\_initialize}}
+\index{FooSeq\_initialize@{FooSeq\_initialize}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_initialize()}{FooSeq\_initialize()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_ga247367cb6c2a478370327b3628b6ef81} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+initialize (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Initialize sequence instances. 
+
+Use this function to initialize new sequences to a valid emptu state. C users should initialize sequences before using them. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSSequenceModule_ga521eb819a3b85277debce55d61b08f82}{DDS\+\_\+\+SEQUENCE\+\_\+\+INITIALIZER} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSSequenceModule_gae1a415ca306572994f50eb07476b5299}\index{Sequence Support@{Sequence Support}!FooSeq\_finalize@{FooSeq\_finalize}}
+\index{FooSeq\_finalize@{FooSeq\_finalize}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_finalize()}{FooSeq\_finalize()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gae1a415ca306572994f50eb07476b5299} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+finalize (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Finalize sequence instances. 
+
+Use this function to finalize sequences by releasing any resource claimed during initialization. C users should always finalize sequences before discarding references to them. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__DDSSequenceModule_gab3765cd5c745da088f3772a1a8578cef}\index{Sequence Support@{Sequence Support}!FooSeq\_get\_maximum@{FooSeq\_get\_maximum}}
+\index{FooSeq\_get\_maximum@{FooSeq\_get\_maximum}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_get\_maximum()}{FooSeq\_get\_maximum()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gab3765cd5c745da088f3772a1a8578cef} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} Foo\+Seq\+\_\+get\+\_\+maximum (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Get the current maximum number of elements that can be stored in this sequence.  
+
+The {\ttfamily maximum} of the sequence represents the maximum number of elements that the underlying buffer can hold. It does not represent the current number of elements. 
+
+The {\ttfamily maximum} is a non-\/negative number. It is initialized when the sequence is first created and can only be set by mean of the \doxylink{group__DDSSequenceModule_gadf5b537079d3997b4acddc9a4af11c63}{Foo\+Seq\+\_\+set\+\_\+maximum} operation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the current maximum of the sequence.  
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSSequenceModule_gaf7a45e00319eeb1ddf5c84ac68657adb}{Foo\+Seq\+\_\+get\+\_\+length} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSSequenceModule_gadf5b537079d3997b4acddc9a4af11c63}\index{Sequence Support@{Sequence Support}!FooSeq\_set\_maximum@{FooSeq\_set\_maximum}}
+\index{FooSeq\_set\_maximum@{FooSeq\_set\_maximum}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_set\_maximum()}{FooSeq\_set\_maximum()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gadf5b537079d3997b4acddc9a4af11c63} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+set\+\_\+maximum (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{new\+\_\+max}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Resize this sequence to a new desired maximum. 
+
+This operation does nothing if the new desired maximum matches the current {\ttfamily maximum}. 
+
+If this sequence owns its buffer and the new maximum is not equal to the old maximum, then the existing buffer will be freed and re-\/allocated.  
+
+\begin{DoxyPrecond}{Precondition}
+owned == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+owned == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} 
+
+length == MINIMUM(original length, new\+\_\+max) 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em new\+\_\+max} & Must be \texorpdfstring{$>$}{>}= 0. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} on success, \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} if the preconditions are not met. In that case the sequence is not modified.  
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_gac4f4dd1d66fd7a190c385518665c7229}\index{Sequence Support@{Sequence Support}!FooSeq\_set\_maximum\_w\_max@{FooSeq\_set\_maximum\_w\_max}}
+\index{FooSeq\_set\_maximum\_w\_max@{FooSeq\_set\_maximum\_w\_max}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_set\_maximum\_w\_max()}{FooSeq\_set\_maximum\_w\_max()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gac4f4dd1d66fd7a190c385518665c7229} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+set\+\_\+maximum\+\_\+w\+\_\+max (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{new\+\_\+max}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}}}]{max\+\_\+size}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Resize this sequence to a new desired maximum and allocate {\ttfamily max\+\_\+size} + 1 bytes for each pointer element. 
+
+This operation does nothing if the new desired maximum matches the current {\ttfamily maximum}. 
+
+If this sequence owns its buffer and the new maximum is not equal to the old maximum, then the existing buffer will be freed and re-\/allocated.  
+
+\begin{DoxyPrecond}{Precondition}
+owned == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+owned == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} 
+
+length == MINIMUM(original length, new\+\_\+max) 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em new\+\_\+max} & Must be \texorpdfstring{$>$}{>}= 0. \\
+\hline
+{\em max\+\_\+size} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Each pointer element is allocated to to {\ttfamily max\+\_\+size} + 1 bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} on success, \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} if the preconditions are not met. In that case the sequence is not modified.  
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_gaf7a45e00319eeb1ddf5c84ac68657adb}\index{Sequence Support@{Sequence Support}!FooSeq\_get\_length@{FooSeq\_get\_length}}
+\index{FooSeq\_get\_length@{FooSeq\_get\_length}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_get\_length()}{FooSeq\_get\_length()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gaf7a45e00319eeb1ddf5c84ac68657adb} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} Foo\+Seq\+\_\+get\+\_\+length (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Get the logical length of this sequence.  
+
+Get the length that was last set, or zero if the length has never been set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the length of the sequence  
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_gaa6f7cf4be9012fee3ca476c69f821bc6}\index{Sequence Support@{Sequence Support}!FooSeq\_set\_length@{FooSeq\_set\_length}}
+\index{FooSeq\_set\_length@{FooSeq\_set\_length}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_set\_length()}{FooSeq\_set\_length()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gaa6f7cf4be9012fee3ca476c69f821bc6} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+set\+\_\+length (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{new\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Change the length of this sequence. 
+
+This function does not allocate/deallocate memory. 
+
+The new length must not exceed the maximum of this sequence as returned by the \doxylink{group__DDSSequenceModule_gab3765cd5c745da088f3772a1a8578cef}{Foo\+Seq\+\_\+get\+\_\+maximum} operation. (Note that, if necessary, the maximum of this sequence can be increased manually by using the \doxylink{group__DDSSequenceModule_gadf5b537079d3997b4acddc9a4af11c63}{Foo\+Seq\+\_\+set\+\_\+maximum} operation.) 
+
+The elements of the sequence are not modified by this operation. If the new length is larger than the original length, the new elements will be uninitialized; if the length is decreased, the old elements that are beyond the new length will physically remain in the sequence but will not be accessible. 
+
+\begin{DoxyPostcond}{Postcondition}
+length = new\+\_\+length. 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em new\+\_\+length} & the new desired length. This value must be non-\/negative and cannot exceed maximum of the sequence. In other words 0 \texorpdfstring{$<$}{<}= new\+\_\+length \texorpdfstring{$<$}{<}= maximum \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} on sucess or \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} on failure  
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_ga7f9ee185c7f49cf41f429a25f8403b2b}\index{Sequence Support@{Sequence Support}!FooSeq\_get\_reference@{FooSeq\_get\_reference}}
+\index{FooSeq\_get\_reference@{FooSeq\_get\_reference}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_get\_reference()}{FooSeq\_get\_reference()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_ga7f9ee185c7f49cf41f429a25f8403b2b} 
+Foo \texorpdfstring{$\ast$}{*} Foo\+Seq\+\_\+get\+\_\+reference (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{i}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Get the pointer to the {\ttfamily i-\/th} element of this sequence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em i} & index of element to access, must be \texorpdfstring{$>$}{>}= 0 and less than \doxylink{group__DDSSequenceModule_gaf7a45e00319eeb1ddf5c84ac68657adb}{Foo\+Seq\+\_\+get\+\_\+length} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the {\ttfamily i-\/th} element 
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_gac63360e3d3621e1e56d3b471d859aaab}\index{Sequence Support@{Sequence Support}!FooSeq\_copy@{FooSeq\_copy}}
+\index{FooSeq\_copy@{FooSeq\_copy}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_copy()}{FooSeq\_copy()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gac63360e3d3621e1e56d3b471d859aaab} 
+struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*} Foo\+Seq\+\_\+copy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{src\+\_\+seq}{}\end{DoxyParamCaption})}
+
+
+
+Copy elements from another sequence, resizing the sequence if necessary. 
+
+This function invokes copies the content of the specified sequence, after ensuring that this sequence has enough capacity to hold the elements to be copied. 
+
+NOTE\+: If this function is called on a sequence that has been created with set\+\_\+maximum\+\_\+w\+\_\+max or ensure\+\_\+length\+\_\+w\+\_\+max, it will automatically call copy\+\_\+w\+\_\+max().  
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em src\+\_\+seq} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the sequence from which to copy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily self}, this sequence  
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_gacf953cbdf9e27e4382732ea8d482ba73}\index{Sequence Support@{Sequence Support}!FooSeq\_copy\_w\_max@{FooSeq\_copy\_w\_max}}
+\index{FooSeq\_copy\_w\_max@{FooSeq\_copy\_w\_max}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_copy\_w\_max()}{FooSeq\_copy\_w\_max()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gacf953cbdf9e27e4382732ea8d482ba73} 
+struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*} Foo\+Seq\+\_\+copy\+\_\+w\+\_\+max (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{src\+\_\+seq}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}}}]{max\+\_\+size}{}\end{DoxyParamCaption})}
+
+
+
+Copy elements from another sequence, resizing the sequence if necessary. 
+
+This function invokes copies the content of the specified sequence, after ensuring that this sequence has enough capacity to hold the elements to be copied. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em src\+\_\+seq} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the sequence from which to copy \\
+\hline
+{\em max\+\_\+size} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Each element is a pointer to {\ttfamily max\+\_\+size} + 1 bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily self}, this sequence  
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_gad2bdd5ebf68bc3fe943a274666045bfd}\index{Sequence Support@{Sequence Support}!FooSeq\_is\_equal@{FooSeq\_is\_equal}}
+\index{FooSeq\_is\_equal@{FooSeq\_is\_equal}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_is\_equal()}{FooSeq\_is\_equal()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gad2bdd5ebf68bc3fe943a274666045bfd} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+is\+\_\+equal (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Checks whether two sequences have the same contents. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em other} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Sequence that will be compared to this one. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE if the two sequences have the same contents, DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE otherwise or if an error occurred. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_gaf0d4004f1c7cae9531b69f03ad021bb1}\index{Sequence Support@{Sequence Support}!FooSeq\_loan\_contiguous@{FooSeq\_loan\_contiguous}}
+\index{FooSeq\_loan\_contiguous@{FooSeq\_loan\_contiguous}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_loan\_contiguous()}{FooSeq\_loan\_contiguous()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gaf0d4004f1c7cae9531b69f03ad021bb1} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+loan\+\_\+contiguous (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{new\+\_\+length}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{new\+\_\+max}{}\end{DoxyParamCaption})}
+
+
+
+Loan a contiguous buffer to this sequence. 
+
+This operation changes the {\ttfamily owned} flag of the sequence to \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} and also sets the underlying buffer used by the sequence. See the user\textquotesingle{}s manual for more information about sequences and memory ownership. 
+
+Use this function if you want to manage the memory used by the sequence yourself. You must provide an array of elements and integers indicating how many elements are allocated in that array (i.\+e. the maximum) and how many elements are valid (i.\+e. the length). The sequence will subsequently use the memory you provide and will not permit it to be freed by a call to \doxylink{group__DDSSequenceModule_gadf5b537079d3997b4acddc9a4af11c63}{Foo\+Seq\+\_\+set\+\_\+maximum}. 
+
+Once you have loaned a buffer to a sequence, make sure that you don\textquotesingle{}t free it before calling \doxylink{group__DDSSequenceModule_gaba7a2c4cf49f72627f9b445b697b2364}{Foo\+Seq\+\_\+unloan}\+: the next time you access the sequence, you will be accessing freed memory! 
+
+You can use this function to wrap stack memory with a sequence interface, thereby avoiding dynamic memory allocation. Create a \doxylink{structFooSeq}{Foo\+Seq} and an array of type Foo and then loan the array to the sequence\+:  
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{struct\ }Foo\ fooArray[10];}
+\DoxyCodeLine{\ struct\ ::FooSeq\ fooSeq\ =\ \mbox{\hyperlink{group__DDSSequenceModule_ga521eb819a3b85277debce55d61b08f82}{::DDS\_SEQUENCE\_INITIALIZER}};\ }
+\DoxyCodeLine{\ \mbox{\hyperlink{group__DDSSequenceModule_gaf0d4004f1c7cae9531b69f03ad021bb1}{::FooSeq\_loan\_contiguous}}(\&fooSeq,\ fooArray,\ 0,\ 10);\ }
+
+\end{DoxyCode}
+  
+
+By default, a sequence you create owns its memory unless you explicitly loan memory of your own to it. In a very few cases, RTI Connext DDS Micro will return a sequence to you that has a loan; those cases are documented as such. For example, if you call \doxylink{group__DDSReaderModule_ga84f8ad6ee21fb024234034bbcce6d812}{Foo\+Data\+Reader\+\_\+read} or \doxylink{group__DDSReaderModule_gafa56233023b6c95f89a9df48d16a4659}{Foo\+Data\+Reader\+\_\+take} and pass in sequences with no loan and no memory allocated, RTI Connext DDS Micro will loan memory to your sequences which must be unloaned with \doxylink{group__DDSReaderModule_gadf2188ce7cd1b7bed39451833b91f1f6}{Foo\+Data\+Reader\+\_\+return\+\_\+loan}. See the documentation of those functions for more information. 
+
+\begin{DoxyPrecond}{Precondition}
+\doxylink{group__DDSSequenceModule_gab3765cd5c745da088f3772a1a8578cef}{Foo\+Seq\+\_\+get\+\_\+maximum} == 0; i.\+e. the sequence has no memory allocated to it. 
+
+\doxylink{group__DDSSequenceModule_gaca64a79c4b5c96bb230cf3d5075f35aa}{Foo\+Seq\+\_\+has\+\_\+ownership} == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}; i.\+e. the sequence does not already have an outstanding loan 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The sequence will store its elements in the buffer provided. 
+
+\doxylink{group__DDSSequenceModule_gaca64a79c4b5c96bb230cf3d5075f35aa}{Foo\+Seq\+\_\+has\+\_\+ownership} == \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} 
+
+\doxylink{group__DDSSequenceModule_gaf7a45e00319eeb1ddf5c84ac68657adb}{Foo\+Seq\+\_\+get\+\_\+length} == new\+\_\+length 
+
+\doxylink{group__DDSSequenceModule_gab3765cd5c745da088f3772a1a8578cef}{Foo\+Seq\+\_\+get\+\_\+maximum} == new\+\_\+max 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em buffer} & The new buffer that the sequence will use. Must point to enough memory to hold new\+\_\+max elements of type Foo. It may be NULL if new\+\_\+max == 0. \\
+\hline
+{\em new\+\_\+length} & The desired new length for the sequence. It must be the case that that 0 \texorpdfstring{$<$}{<}= new\+\_\+length \texorpdfstring{$<$}{<}= new\+\_\+max. \\
+\hline
+{\em new\+\_\+max} & The allocated number of elements that could fit in the loaned buffer.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if {\ttfamily buffer} is successfully loaned to this sequence or \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} otherwise. Failure only occurs due to failing to meet the pre-\/conditions. Upon failure the sequence remains unmodified. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSSequenceModule_gaba7a2c4cf49f72627f9b445b697b2364}{Foo\+Seq\+\_\+unloan} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSSequenceModule_gaed2da23ace969a6556f2870a4381e350}\index{Sequence Support@{Sequence Support}!FooSeq\_loan\_discontiguous@{FooSeq\_loan\_discontiguous}}
+\index{FooSeq\_loan\_discontiguous@{FooSeq\_loan\_discontiguous}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_loan\_discontiguous()}{FooSeq\_loan\_discontiguous()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gaed2da23ace969a6556f2870a4381e350} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+loan\+\_\+discontiguous (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{new\+\_\+length}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{new\+\_\+max}{}\end{DoxyParamCaption})}
+
+
+
+Loan a discontiguous buffer to this sequence. 
+
+This function is exactly like \doxylink{group__DDSSequenceModule_gaf0d4004f1c7cae9531b69f03ad021bb1}{Foo\+Seq\+\_\+loan\+\_\+contiguous} except that the buffer loaned is an array of Foo pointers, not an array of Foo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em buffer} & The new buffer that the sequence will use. Must point to enough memory to hold new\+\_\+max elements of type Foo\texorpdfstring{$\ast$}{*}. It may be NULL if new\+\_\+max == 0. \\
+\hline
+{\em new\+\_\+length} & The desired new length for the sequence. It must be the case that that 0 \texorpdfstring{$<$}{<}= new\+\_\+length \texorpdfstring{$<$}{<}= new\+\_\+max. \\
+\hline
+{\em new\+\_\+max} & The allocated number of elements that could fit in the loaned buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSSequenceModule_gaba7a2c4cf49f72627f9b445b697b2364}{Foo\+Seq\+\_\+unloan}, \doxylink{group__DDSSequenceModule_gaf0d4004f1c7cae9531b69f03ad021bb1}{Foo\+Seq\+\_\+loan\+\_\+contiguous} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSSequenceModule_gaba7a2c4cf49f72627f9b445b697b2364}\index{Sequence Support@{Sequence Support}!FooSeq\_unloan@{FooSeq\_unloan}}
+\index{FooSeq\_unloan@{FooSeq\_unloan}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_unloan()}{FooSeq\_unloan()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gaba7a2c4cf49f72627f9b445b697b2364} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+unloan (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Return the loaned buffer in the sequence and set the maximum to 0. 
+
+This function affects only the state of this sequence; it does not change the contents of the buffer in any way. 
+
+Only the user who originally loaned a buffer should return that loan, as the user may have dependencies on that memory known only to them. Unloaning someone else\textquotesingle{}s buffer may cause unspecified problems. For example, suppose a sequence is loaning memory from a custom memory pool. A user of the sequence likely has no way to release the memory back into the pool, so unloaning the sequence buffer would result in a resource leak. If the user were to then re-\/loan a different buffer, the original creator of the sequence would have no way to discover, when freeing the sequence, that the loan no longer referred to its own memory and would thus not free the user\textquotesingle{}s memory properly, exacerbating the situation and leading to undefined behavior. 
+
+\begin{DoxyPrecond}{Precondition}
+owned == \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+owned == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} 
+
+maximum == 0 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if the preconditions were met. Otherwise \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE}. The function only fails if the pre-\/conditions are not met, in which case it leaves the sequence unmodified. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSSequenceModule_gaf0d4004f1c7cae9531b69f03ad021bb1}{Foo\+Seq\+\_\+loan\+\_\+contiguous} \doxylink{group__DDSSequenceModule_gadf5b537079d3997b4acddc9a4af11c63}{Foo\+Seq\+\_\+set\+\_\+maximum} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSSequenceModule_gaca64a79c4b5c96bb230cf3d5075f35aa}\index{Sequence Support@{Sequence Support}!FooSeq\_has\_ownership@{FooSeq\_has\_ownership}}
+\index{FooSeq\_has\_ownership@{FooSeq\_has\_ownership}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_has\_ownership()}{FooSeq\_has\_ownership()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gaca64a79c4b5c96bb230cf3d5075f35aa} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+has\+\_\+ownership (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Return the value of the owned flag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if sequence owns the underlying buffer, or \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} if it has an outstanding loan. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_gaff29c02d3b71c61b7d098ac568cb97a0}\index{Sequence Support@{Sequence Support}!FooSeq\_get\_contiguous\_buffer@{FooSeq\_get\_contiguous\_buffer}}
+\index{FooSeq\_get\_contiguous\_buffer@{FooSeq\_get\_contiguous\_buffer}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_get\_contiguous\_buffer()}{FooSeq\_get\_contiguous\_buffer()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_gaff29c02d3b71c61b7d098ac568cb97a0} 
+Foo \texorpdfstring{$\ast$}{*} Foo\+Seq\+\_\+get\+\_\+contiguous\+\_\+buffer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Access the internal buffer of a sequence. 
+
+Use this function to access the memory buffer that a sequence uses to store the values of its elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__DDSSequenceModule_ga0b520a01b0c25e031a926fa4592fab79}\index{Sequence Support@{Sequence Support}!FooSeq\_set\_contiguous\_buffer@{FooSeq\_set\_contiguous\_buffer}}
+\index{FooSeq\_set\_contiguous\_buffer@{FooSeq\_set\_contiguous\_buffer}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_set\_contiguous\_buffer()}{FooSeq\_set\_contiguous\_buffer()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_ga0b520a01b0c25e031a926fa4592fab79} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+set\+\_\+contiguous\+\_\+buffer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{Foo \texorpdfstring{$\ast$}{*}}]{buffer}{}\end{DoxyParamCaption})}
+
+
+
+Set the internal buffer of a sequence. 
+
+Use this function to replace the internal memory buffer that a sequence uses to store the values of its elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em buffer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the buffer assign to the sequence \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__DDSSequenceModule_ga947305a17ca14c236cc09c435f7f9d86}\index{Sequence Support@{Sequence Support}!FooSeq\_has\_discontiguous\_buffer@{FooSeq\_has\_discontiguous\_buffer}}
+\index{FooSeq\_has\_discontiguous\_buffer@{FooSeq\_has\_discontiguous\_buffer}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_has\_discontiguous\_buffer()}{FooSeq\_has\_discontiguous\_buffer()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_ga947305a17ca14c236cc09c435f7f9d86} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+has\+\_\+discontiguous\+\_\+buffer (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Check whether a sequence uses a contiguous or discontiguous buffer for its elements. 
+
+\Hypertarget{group__DDSSequenceModule_ga177dac621c87924333d45f68880f8be0}\index{Sequence Support@{Sequence Support}!FooSeq\_set\_token@{FooSeq\_set\_token}}
+\index{FooSeq\_set\_token@{FooSeq\_set\_token}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_set\_token()}{FooSeq\_set\_token()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_ga177dac621c87924333d45f68880f8be0} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+set\+\_\+token (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{token1}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{token2}{}\end{DoxyParamCaption})}
+
+
+
+Sets tokens on a sequence. 
+
+A token is an opaque pointer stored in the sequence. It has no meaning to the sequence and is not considered part of the content. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em token1} & The first token to associate with the sequence. \\
+\hline
+{\em token2} & The second token to associate with the sequence. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSSequenceModule_ga339dc2e5664865d56f837eb7300a4744}{Foo\+Seq\+\_\+get\+\_\+token} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSSequenceModule_ga339dc2e5664865d56f837eb7300a4744}\index{Sequence Support@{Sequence Support}!FooSeq\_get\_token@{FooSeq\_get\_token}}
+\index{FooSeq\_get\_token@{FooSeq\_get\_token}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_get\_token()}{FooSeq\_get\_token()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_ga339dc2e5664865d56f837eb7300a4744} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+get\+\_\+token (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{token1}{, }\item[{void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{token2}{}\end{DoxyParamCaption})}
+
+
+
+Gets tokens of a sequence. 
+
+A token is an opaque pointer stored in the sequence. It has no meaning to the sequence and is not considered part of the content. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em token1} & The first token associated with the sequence \\
+\hline
+{\em token2} & The second token associated with the sequence \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSSequenceModule_ga177dac621c87924333d45f68880f8be0}{Foo\+Seq\+\_\+set\+\_\+token} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DDSSequenceModule_ga85c3c42ee1154be119266c8e6fff3659}\index{Sequence Support@{Sequence Support}!FooSeq\_ensure\_length@{FooSeq\_ensure\_length}}
+\index{FooSeq\_ensure\_length@{FooSeq\_ensure\_length}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_ensure\_length()}{FooSeq\_ensure\_length()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_ga85c3c42ee1154be119266c8e6fff3659} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+ensure\+\_\+length (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{length}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{max}{}\end{DoxyParamCaption})}
+
+
+
+Set the sequence to the desired length, and resize the sequence if necessary. 
+
+If the current maximum is greater than the desired length, then sequence is not resized. 
+
+Otherwise if this sequence owns its buffer, the sequence is resized to the new maximum by freeing and re-\/allocating the buffer. However, if the sequence does not own its buffer, this operation will fail. 
+
+This function allows user to avoid unnecessary buffer re-\/allocation. 
+
+\begin{DoxyPrecond}{Precondition}
+length \texorpdfstring{$<$}{<}= max 
+
+owned == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if sequence needs to be resized 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+length == length 
+
+maximum == max if resized 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em length} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The new length that should be set. Must be \texorpdfstring{$>$}{>}= 0. \\
+\hline
+{\em max} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} If sequence need to be resized, this is the maximum that should be set. max \texorpdfstring{$>$}{>}= length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} on success, \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} if the preconditions are not met. In that case the sequence is not modified. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_ga279750ca0a163f750c25f97fb9000f3b}\index{Sequence Support@{Sequence Support}!FooSeq\_ensure\_length\_w\_max@{FooSeq\_ensure\_length\_w\_max}}
+\index{FooSeq\_ensure\_length\_w\_max@{FooSeq\_ensure\_length\_w\_max}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_ensure\_length\_w\_max()}{FooSeq\_ensure\_length\_w\_max()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_ga279750ca0a163f750c25f97fb9000f3b} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+ensure\+\_\+length\+\_\+w\+\_\+max (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{length}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{max}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}}}]{max\+\_\+size}{}\end{DoxyParamCaption})}
+
+
+
+Set the sequence to the desired length, and resize the sequence if necessary, and allocate each pointer element to max\+\_\+size + 1 bytes. 
+
+If the current maximum is greater than the desired length, then sequence is not resized. 
+
+Otherwise if this sequence owns its buffer, the sequence is resized to the new maximum by freeing and re-\/allocating the buffer. However, if the sequence does not own its buffer, this operation will fail. 
+
+This function allows user to avoid unnecessary buffer re-\/allocation. 
+
+\begin{DoxyPrecond}{Precondition}
+length \texorpdfstring{$<$}{<}= max 
+
+owned == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if sequence needs to be resized 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+length == length 
+
+maximum == max if resized 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em length} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The new length that should be set. Must be \texorpdfstring{$>$}{>}= 0. \\
+\hline
+{\em max} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} If sequence need to be resized, this is the maximum that should be set. max \texorpdfstring{$>$}{>}= length \\
+\hline
+{\em max\+\_\+size} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Each pointer element is allocated to to max\+\_\+size + 1 bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} on success, \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} if the preconditions are not met. In that case the sequence is not modified. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_ga11413fcc7cc13ccfeb7d5048648ce1e7}\index{Sequence Support@{Sequence Support}!FooSeq\_from\_array@{FooSeq\_from\_array}}
+\index{FooSeq\_from\_array@{FooSeq\_from\_array}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_from\_array()}{FooSeq\_from\_array()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_ga11413fcc7cc13ccfeb7d5048648ce1e7} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+from\+\_\+array (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const Foo}]{array}{\mbox{[}$\,$\mbox{]}, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{length}{}\end{DoxyParamCaption})}
+
+
+
+Copy elements from an array of elements, resizing the sequence if necessary. The original contents of the sequence (if any) are replaced. 
+
+Fill the elements in this sequence by copying the corresponding elements in {\ttfamily array}. The original contents in this sequence are replaced via the element assignment operation (Foo\+\_\+copy() function). By default, elements are discarded; \textquotesingle{}delete\textquotesingle{} is not invoked on the discarded elements. 
+
+\begin{DoxyPrecond}{Precondition}
+this\+::owned == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+this\+::length == length 
+
+this\mbox{[}i\mbox{]} == array\mbox{[}i\mbox{]} for 0 \texorpdfstring{$<$}{<}= i \texorpdfstring{$<$}{<} length 
+
+this\+::owned == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em array} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The array of elements to be copy elements from \\
+\hline
+{\em length} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The length of the array.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if the array was successfully copied; \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_ga12d56beb05cc4e468c35cb0e8894f466}\index{Sequence Support@{Sequence Support}!FooSeq\_from\_array\_w\_max@{FooSeq\_from\_array\_w\_max}}
+\index{FooSeq\_from\_array\_w\_max@{FooSeq\_from\_array\_w\_max}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_from\_array\_w\_max()}{FooSeq\_from\_array\_w\_max()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_ga12d56beb05cc4e468c35cb0e8894f466} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+from\+\_\+array\+\_\+w\+\_\+max (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const Foo}]{array}{\mbox{[}$\,$\mbox{]}, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{length}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}}}]{max\+\_\+size}{}\end{DoxyParamCaption})}
+
+
+
+Copy elements from an array of pointer elements, resizing the sequence if necessary, where each pointer elements has been preallocated to max\+\_\+size. The original contents of the sequence (if any) are replaced. 
+
+Fill the elements in this sequence by copying the corresponding elements in {\ttfamily array}. The original contents in this sequence are replaced via the element assignment operation (Foo\+\_\+copy() function). By default, elements are discarded; \textquotesingle{}delete\textquotesingle{} is not invoked on the discarded elements. 
+
+\begin{DoxyPrecond}{Precondition}
+this\+::owned == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+this\+::length == length 
+
+this\mbox{[}i\mbox{]} == array\mbox{[}i\mbox{]} for 0 \texorpdfstring{$<$}{<}= i \texorpdfstring{$<$}{<} length 
+
+this\+::owned == \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em array} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The array of elements to be copy elements from \\
+\hline
+{\em length} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The length of the array. \\
+\hline
+{\em max\+\_\+size} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The allocation size for each pointer element.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if the array was successfully copied; \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_ga340e941a29a189e4d4b49662317717fa}\index{Sequence Support@{Sequence Support}!FooSeq\_to\_array@{FooSeq\_to\_array}}
+\index{FooSeq\_to\_array@{FooSeq\_to\_array}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_to\_array()}{FooSeq\_to\_array()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_ga340e941a29a189e4d4b49662317717fa} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+to\+\_\+array (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const Foo}]{array}{\mbox{[}$\,$\mbox{]}, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}}}]{length}{}\end{DoxyParamCaption})}
+
+
+
+Copy elements to an array of elements. The original contents of the array (if any) are replaced. 
+
+Copy the elements of this sequence to the corresponding elements in the array. The original contents of the array are replaced via the element assignment operation (Foo\+\_\+copy() function). By default, elements are discarded; \textquotesingle{}delete\textquotesingle{} is not invoked on the discarded elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em array} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The array of elements to be filled with elements from this sequence \\
+\hline
+{\em length} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The number of elements to be copied.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if the elements of the sequence were successfully copied; \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSSequenceModule_ga9e804cc31c573221ca2df787e7dd0766}\index{Sequence Support@{Sequence Support}!FooSeq\_to\_array\_w\_max@{FooSeq\_to\_array\_w\_max}}
+\index{FooSeq\_to\_array\_w\_max@{FooSeq\_to\_array\_w\_max}!Sequence Support@{Sequence Support}}
+\doxyparagraph{\texorpdfstring{FooSeq\_to\_array\_w\_max()}{FooSeq\_to\_array\_w\_max()}}
+{\footnotesize\ttfamily \label{group__DDSSequenceModule_ga9e804cc31c573221ca2df787e7dd0766} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} Foo\+Seq\+\_\+to\+\_\+array\+\_\+w\+\_\+max (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{const Foo}]{array}{\mbox{[}$\,$\mbox{]}, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}}]{length}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}}}]{max\+\_\+size}{}\end{DoxyParamCaption})}
+
+
+
+Copy elements to an array of pointer elements, where each pointer element is pre-\/allocated. The original contents of the array (if any) are replaced. 
+
+Copy the elements of this sequence to the corresponding elements in the array. The original contents of the array are replaced via the element assignment operation (Foo\+\_\+copy() function). By default, elements are discarded; \textquotesingle{}delete\textquotesingle{} is not invoked on the discarded elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL.  \\
+\hline
+{\em array} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The array of elements to be filled with elements from this sequence \\
+\hline
+{\em length} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The number of elements to be copied. \\
+\hline
+{\em max\+\_\+size} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The allocation size for each pointer element.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if the elements of the sequence were successfully copied; \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} otherwise. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+

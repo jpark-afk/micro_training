@@ -1,0 +1,582 @@
+\doxysubsection{osapi\+\_\+log.\+h File Reference}
+\hypertarget{osapi__log_8h}{}\label{osapi__log_8h}\index{osapi\_log.h@{osapi\_log.h}}
+
+
+OSAPI Log API.  
+
+
+{\ttfamily \#include "{}osapi/osapi\+\_\+dll.\+h"{}}\newline
+{\ttfamily \#include "{}osapi/osapi\+\_\+heap.\+h"{}}\newline
+{\ttfamily \#include "{}osapi/osapi\+\_\+time.\+h"{}}\newline
+{\ttfamily \#include "{}osapi/osapi\+\_\+log\+\_\+impl.\+h"{}}\newline
+\doxysubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structOSAPI__LogEntry}{OSAPI\+\_\+\+Log\+Entry}}
+\begin{DoxyCompactList}\small\item\em The type for a log-\/entry. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structOSAPI__LogProperty}{OSAPI\+\_\+\+Log\+Property}}
+\begin{DoxyCompactList}\small\item\em Configuration of logging functionality. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}}~(0)
+\begin{DoxyCompactList}\small\item\em Log Id base-\/number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_abf830227b793bc2a2be1bcfd7065e78b}{REDA\+\_\+\+LOG\+\_\+\+BASE}}~(1 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em REDA Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}{DB\+\_\+\+LOG\+\_\+\+BASE}}~(2 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em DB Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_a638089b009a955cc9f8b8e0eaa1efaed}{RT\+\_\+\+LOG\+\_\+\+BASE}}~(3 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em RT Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}}~(4 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em NETIO Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}}~\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}}
+\begin{DoxyCompactList}\small\item\em UDP Module, same as NETIO. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}{SHMEM\+\_\+\+LOG\+\_\+\+BASE}}~\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 10000
+\begin{DoxyCompactList}\small\item\em NETIO\+\_\+\+SHMEM Module, same as NETIO. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_a62367337f49b1914847f5d00ad92215e}{SDM\+\_\+\+LOG\+\_\+\+BASE}}~\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 20000
+\begin{DoxyCompactList}\small\item\em SDM Module, same as NETIO. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_ae7354562e9650650d89c7a6c8ea65066}{CDR\+\_\+\+LOG\+\_\+\+BASE}}~(5 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em CDR Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_a6587de849e6d6dc5f71b74cd43839b71}{XCDR\+\_\+\+LOG\+\_\+\+BASE}}~\mbox{\hyperlink{osapi__log_8h_ae7354562e9650650d89c7a6c8ea65066}{CDR\+\_\+\+LOG\+\_\+\+BASE}} + 20000
+\begin{DoxyCompactList}\small\item\em CDR Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_aa485d9b89443587214f0e37727955913}{RTPS\+\_\+\+LOG\+\_\+\+BASE}}~(6 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em RTPS Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_ab5a75ac791647898b5a9f75b5e1e1785}{DDSC\+\_\+\+LOG\+\_\+\+BASE}}~(7 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em DDS\+\_\+C Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_ac9e87249ee825dca600847d116019f1d}{RHSM\+\_\+\+LOG\+\_\+\+BASE}}~(8 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em RHSM Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_acadd48116e4f42e6ea742ade7482f373}{WHSM\+\_\+\+LOG\+\_\+\+BASE}}~(9 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em WHSM Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_a2e239c6c963869adbba56d4e4eadaa24}{DPSE\+\_\+\+LOG\+\_\+\+BASE}}~(10 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em DPSE Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_a91689b4434454ae16e6b1a0158c788c1}{DPDE\+\_\+\+LOG\+\_\+\+BASE}}~(11 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em DPDE Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}}~(12 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em DDDS Security plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_ace1422fc96aed886d3924959f8a0cba2}{APPGEN\+\_\+\+LOG\+\_\+\+BASE}}~(13 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em APPGEN Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}{NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE}}~(14 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em NETIO Zero Copy Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}}~(15 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em DDS Filter Module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga4da2fd36bda5c7905caa7cc3dd028efc}{OSAPI\+\_\+\+LOG\+\_\+\+GET\+\_\+\+NEXT\+\_\+\+OBJECT\+\_\+\+ID\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 1)
+\begin{DoxyCompactList}\small\item\em Retrieve the next error code failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gaf08d965528dbbd6de494d7ea2dadae96}{OSAPI\+\_\+\+LOG\+\_\+\+SYSTEM\+\_\+\+SET\+\_\+\+PROPERTY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 2)
+\begin{DoxyCompactList}\small\item\em An error occurred while setting the system properties. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga6cb2508a879e8ce6d963d97f89e1e087}{OSAPI\+\_\+\+LOG\+\_\+\+SYSTEM\+\_\+\+TIMER\+\_\+\+START\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 4)
+\begin{DoxyCompactList}\small\item\em An error occurred when starting the system timer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga79c19af29c84b17fdb0513c6228e7f76}{OSAPI\+\_\+\+LOG\+\_\+\+SYSTEM\+\_\+\+TIMER\+\_\+\+STOP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 5)
+\begin{DoxyCompactList}\small\item\em An error occurred when stopping the system timer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga88cc2c2360942e0d9a4f5efa60580041}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+NEW\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 6)
+\begin{DoxyCompactList}\small\item\em An error when allocating the a thread object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gac65672794296b602f66a1b58c1dc0048}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 7)
+\begin{DoxyCompactList}\small\item\em An error when creating the thread object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga99e36a6fc4b86960d44bb80945748109}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+SEM\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 8)
+\begin{DoxyCompactList}\small\item\em An error when creating thread sync semaphore. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga6c4bad91b6bc5d483782fd4bf2f8d58a}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+EXEC\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 9)
+\begin{DoxyCompactList}\small\item\em Failed to signal that a thread has been created. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gac982e4b00b834cc33fbd5b1ff05e9c47}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+EXEC\+\_\+\+START\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 10)
+\begin{DoxyCompactList}\small\item\em Failed to signal the start a created thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga577dd33fb3710f6e713484cdf1d333f6}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+START\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 11)
+\begin{DoxyCompactList}\small\item\em Failed to start a thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga271df89e5336c8152f24e9c4458ed074}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+DESTROY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 12)
+\begin{DoxyCompactList}\small\item\em Failed to destroy a thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga354d2593e27cfb5383b2140bbf7ece88}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+DESTROY\+\_\+\+NO\+\_\+\+START\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 13)
+\begin{DoxyCompactList}\small\item\em Failed to start an unstarted thread being destroyed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga8f54bbe6466986d21680a3a11915f410}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+DESTROY\+\_\+\+NO\+\_\+\+WAKEUP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 14)
+\begin{DoxyCompactList}\small\item\em Failed to wake up a thread that\textquotesingle{}s being destroyed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga558d13e08c70741a9785453964e03e87}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 15)
+\begin{DoxyCompactList}\small\item\em Failed initializing a thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga1096a0b7fba69f7729491245d606899f}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+SCHEDPARAM\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 16)
+\begin{DoxyCompactList}\small\item\em Failed to set scheduling policy of a thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gab03117f039267046c448303953654ad2}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+GET\+\_\+\+POLICY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 17)
+\begin{DoxyCompactList}\small\item\em Failed to get the scheduling policy of a thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gae24a36a659fecb840a7cc1e4411f2c38}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+POLICY\+\_\+\+DIFFER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 18)
+\begin{DoxyCompactList}\small\item\em Scheduling policy mismatch between a created thread and the application thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gab2af1a825001ddf9ad39fc7af1a05284}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+PRIORITY\+\_\+\+MAP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 19)
+\begin{DoxyCompactList}\small\item\em Failed to map to native thread priority values. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga2f7f71c90868052b09d4d9493848f26f}{OSAPI\+\_\+\+LOG\+\_\+\+TIMER\+\_\+\+DELETE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 20)
+\begin{DoxyCompactList}\small\item\em Failed to delete the Timer object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga878184f05955dd91e502badaed6ac36e}{OSAPI\+\_\+\+LOG\+\_\+\+TIMER\+\_\+\+TICK\+\_\+\+MUTEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 22)
+\begin{DoxyCompactList}\small\item\em Failed taking or giving the Timer mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gaf7e9c10f6e09723156219cd62c8a386e}{OSAPI\+\_\+\+LOG\+\_\+\+TIMER\+\_\+\+GET\+\_\+\+USER\+\_\+\+DATA\+\_\+\+EPOCH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 27)
+\begin{DoxyCompactList}\small\item\em Failed to return user data for a timeout due to mismatched epochs. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga1c8ddd436dab8601ffc0c04af589f771}{OSAPI\+\_\+\+LOG\+\_\+\+TIMER\+\_\+\+NEW\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 28)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for a new Timer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gab22dec5e6e637a1c8f508497025e34cb}{OSAPI\+\_\+\+LOG\+\_\+\+TIMER\+\_\+\+NEW\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 29)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for a new Timer entry. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga2a88c06c12ccc2cf448a6fb8c25f0554}{OSAPI\+\_\+\+LOG\+\_\+\+TIMER\+\_\+\+NEW\+\_\+\+WHEEL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 30)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for a new Timer wheel. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gaec37b0e2186d2cee4c2a846bdbabcfbb}{OSAPI\+\_\+\+LOG\+\_\+\+TIMER\+\_\+\+NEW\+\_\+\+MUTEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 31)
+\begin{DoxyCompactList}\small\item\em Failed to create a new Timer mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gafccb3bbe301b6463e0e0c674bf991eb6}{OSAPI\+\_\+\+LOG\+\_\+\+TIMER\+\_\+\+NEW\+\_\+\+START\+\_\+\+TIMER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 32)
+\begin{DoxyCompactList}\small\item\em Failed to start a new Timer being created. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga139fca967e0ba252d69ab9a909f49936}{OSAPI\+\_\+\+LOG\+\_\+\+TIMER\+\_\+\+DELETE\+\_\+\+STOP\+\_\+\+TIMER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 33)
+\begin{DoxyCompactList}\small\item\em Failed to stop a Timer being deleted. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga701e7d65cf9553cbedf2e0a4f7bbdcbc}{OSAPI\+\_\+\+LOG\+\_\+\+TIMER\+\_\+\+DELETE\+\_\+\+MUTEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 34)
+\begin{DoxyCompactList}\small\item\em Failed to delete the Timer mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gaa81d5922f59d61711f86036ed54c51a5}{OSAPI\+\_\+\+LOG\+\_\+\+TIMER\+\_\+\+MUTEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 35)
+\begin{DoxyCompactList}\small\item\em Failed to take or give a Timer mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga1fe8a1428db943341af2d75fc8b0904a}{OSAPI\+\_\+\+LOG\+\_\+\+SEMAPHORE\+\_\+\+DELETE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 36)
+\begin{DoxyCompactList}\small\item\em Failed to delete a semaphore. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga220a4fc0960004c0cde9ca0610fd239e}{OSAPI\+\_\+\+LOG\+\_\+\+SEMAPHORE\+\_\+\+NEW\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 37)
+\begin{DoxyCompactList}\small\item\em Failed to create a semaphore. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga8ce5177284163503e340dca71eafe15d}{OSAPI\+\_\+\+LOG\+\_\+\+SEMAPHORE\+\_\+\+NEW\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 38)
+\begin{DoxyCompactList}\small\item\em Failed to initialize a new semaphore. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gafaab64ad312306ec5fa4f4999f23f8ee}{OSAPI\+\_\+\+LOG\+\_\+\+SEMAPHORE\+\_\+\+GIVE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 39)
+\begin{DoxyCompactList}\small\item\em Failed to give a semaphore. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga1c3d2a4c6abba61a4b6eba6c0d99f5e4}{OSAPI\+\_\+\+LOG\+\_\+\+SEMAPHORE\+\_\+\+TAKE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 40)
+\begin{DoxyCompactList}\small\item\em Failed to take a semaphore. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga3518ab37b524763dbd6b60d971f236da}{OSAPI\+\_\+\+LOG\+\_\+\+MUTEX\+\_\+\+DELETE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 41)
+\begin{DoxyCompactList}\small\item\em Failed to delete a mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga53854b277e7f879216d1b8067fe096d8}{OSAPI\+\_\+\+LOG\+\_\+\+MUTEX\+\_\+\+NEW\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 42)
+\begin{DoxyCompactList}\small\item\em Failed to create a mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gabd2589003e1d076711c56dde5a633707}{OSAPI\+\_\+\+LOG\+\_\+\+MUTEX\+\_\+\+TAKE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 43)
+\begin{DoxyCompactList}\small\item\em Failed to take a mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga1b10d83786ba782aa85fcb509300a253}{OSAPI\+\_\+\+LOG\+\_\+\+MUTEX\+\_\+\+GIVE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 44)
+\begin{DoxyCompactList}\small\item\em Failed to give a mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga9000d76bb20e69ac3bc762d3daaf9de3}{OSAPI\+\_\+\+LOG\+\_\+\+MUTEX\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 45)
+\begin{DoxyCompactList}\small\item\em Failed to initialize a mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga902c9fb8e27ea8ffa087acd26f1943bd}{OSAPI\+\_\+\+LOG\+\_\+\+HEAP\+\_\+\+INTERNAL\+\_\+\+ALLOCATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 46)
+\begin{DoxyCompactList}\small\item\em Failed to allocate a buffer from the heap. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gab59f770df06c98ffd6b9b0b8d0bd1a58}{OSAPI\+\_\+\+LOG\+\_\+\+SYSTEM\+\_\+\+GET\+\_\+\+TIME\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 48)
+\begin{DoxyCompactList}\small\item\em Failed to get current system time. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga6b2fbd5901ea3236727eec9d64b92fda}{OSAPI\+\_\+\+LOG\+\_\+\+LAST\+\_\+\+RECORDED\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 49)
+\begin{DoxyCompactList}\small\item\em Return the last recorded error-\/code for the calling thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gacd7fb1bad4b5257971cfb882dc8d1039}{OSAPI\+\_\+\+LOG\+\_\+\+SET\+\_\+\+THREAD\+\_\+\+NAME\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 50)
+\begin{DoxyCompactList}\small\item\em Failed to set the thread name in the OS. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga793db8f56c59a68f7583f3bfe581639b}{OSAPI\+\_\+\+LOG\+\_\+\+SEM\+\_\+\+OPEN\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 52)
+\begin{DoxyCompactList}\small\item\em Failure during call Vx\+Works sem\+Open(...) or Posix sem\+\_\+open(...) when managing shared memory segments, semaphores, or mutexes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga0087e888442ddabaa7a6d9e1203c39cf}{OSAPI\+\_\+\+LOG\+\_\+\+SEM\+\_\+\+INFO\+\_\+\+GET\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 53)
+\begin{DoxyCompactList}\small\item\em Failure during Vx\+Works call sem\+Info\+Get when managing shared memory segments, semaphores, or mutexes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga4fe9d4f6f3e1522aa7fdb610420c8ec5}{OSAPI\+\_\+\+LOG\+\_\+\+SD\+\_\+\+UNMAP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 54)
+\begin{DoxyCompactList}\small\item\em Failure during Vx\+Works call sd\+Unmap when managing shared memory segments, semaphores, or mutexes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gaa67b0543c1338673be4d5239050f1cde}{OSAPI\+\_\+\+LOG\+\_\+\+SD\+\_\+\+OPEN\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 55)
+\begin{DoxyCompactList}\small\item\em Failure during Vx\+Works call sd\+Open when managing shared memory segments, semaphores, or mutexes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga78bfec44322861495354ab6998fc7209}{OSAPI\+\_\+\+LOG\+\_\+\+SEM\+\_\+\+GIVE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 56)
+\begin{DoxyCompactList}\small\item\em Failure during Vx\+Works call sem\+Give when managing shared memory segments, semaphores, or mutexes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gad1721c92b55f098a19b3c6086eb47509}{OSAPI\+\_\+\+LOG\+\_\+\+SEM\+\_\+\+TAKE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 57)
+\begin{DoxyCompactList}\small\item\em Failure during Vx\+Works call sem\+Take when managing shared memory segments, semaphores, or mutexes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga10257495913405ac459fac32042f5e49}{OSAPI\+\_\+\+LOG\+\_\+\+UNKNOWN\+\_\+\+SEMAPHORE\+\_\+\+TYPE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 58)
+\begin{DoxyCompactList}\small\item\em Trying to perform an operation an unknown semmutex type. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gad873d2339de00a392bc1edcdf33c7d3b}{OSAPI\+\_\+\+LOG\+\_\+\+SEGMENT\+\_\+\+KEY\+\_\+\+ALREADY\+\_\+\+EXISTS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 59)
+\begin{DoxyCompactList}\small\item\em Failed to create segment due to a segment already existing. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gaa0da7b13204edf8b41e29abaabfc5f60}{OSAPI\+\_\+\+LOG\+\_\+\+SEGMENT\+\_\+\+KEY\+\_\+\+DOESNT\+\_\+\+EXIST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 60)
+\begin{DoxyCompactList}\small\item\em Segment trying to be attached to does not exist. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gafc796d56b9a35b52804626f0b2754ada}{OSAPI\+\_\+\+LOG\+\_\+\+SEGMENT\+\_\+\+DETACH\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 61)
+\begin{DoxyCompactList}\small\item\em Failed to detach from shared memory segment. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga84f77469f7a183bb4b4efc7f744cf1a6}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+ATTACH\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 62)
+\begin{DoxyCompactList}\small\item\em Attaching to shared memory segment/mutex/signaling semaphore failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga33c53259c421d5e92b5e0ed5be8a36ce}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+GIVE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 63)
+\begin{DoxyCompactList}\small\item\em Failed to give shared memory mutex/signaling semaphore. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga943fd516dc32d564f337128b2acfc377}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+TAKE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 64)
+\begin{DoxyCompactList}\small\item\em Failed to take shared memory mutex/signaling semaphore. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga1ab492f330dfcbad235169a00d44acf4}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+SEM\+\_\+\+DELETE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 65)
+\begin{DoxyCompactList}\small\item\em Failed to delete shared memory semaphore or mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga807247c3efba4b7b4af0442d867ef50f}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+SEM\+\_\+\+MUTEX\+\_\+\+CREATED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 66)
+\begin{DoxyCompactList}\small\item\em Error during shared memory semaphore creation/deletion. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gafbca29349c721fdc305eb8919a0e59dc}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+SEGMENT\+\_\+\+FILE\+\_\+\+MAP\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 67)
+\begin{DoxyCompactList}\small\item\em Windows specific API Map\+View\+Of\+File failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gaef3401d6b89c1accb8fea49526f1c3d2}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+SET\+\_\+\+DESCRIPTOR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 68)
+\begin{DoxyCompactList}\small\item\em Windows specific error during setting security descriptor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga262edb6214bda4efb6c6db64ce251f7a}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+INIT\+\_\+\+DESCRIPTOR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 69)
+\begin{DoxyCompactList}\small\item\em Windows specific error during initialization of security descriptor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga1a3cc9f004b8711f431b8dc8de211787}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+FTRUNCATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 70)
+\begin{DoxyCompactList}\small\item\em Posix specific error during ftruncate(...) call. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga7bf505b614eca1a2c6053fe0777b6faa}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+MMAP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 71)
+\begin{DoxyCompactList}\small\item\em Posix specific error during mmap(...) call. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga187ebc77961f3babaf07de2b0b0f3dca}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+SHM\+\_\+\+OPEN\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 72)
+\begin{DoxyCompactList}\small\item\em Posix specific error during shm\+\_\+open(...) call. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga1f9832561184ecf2bfe61ffd9151fb0f}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+MUNMAP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 73)
+\begin{DoxyCompactList}\small\item\em Posix specific error during munmap(...) call. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga7ae37775f8a1fda87a6deee5f1d0770a}{OSAPI\+\_\+\+LOG\+\_\+\+CLOSE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 74)
+\begin{DoxyCompactList}\small\item\em Posix specific error during close(...) call. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga008838250b24cac03b30b070aedf8991}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+UNLINK\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 76)
+\begin{DoxyCompactList}\small\item\em Posix specific error during shared memory unlink(...) call. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gaa7ad4c2857ce5be505915f8a25a8a190}{OSAPI\+\_\+\+LOG\+\_\+\+EXHAUSTED\+\_\+\+POSIX\+\_\+\+SEM\+\_\+\+LIMIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 77)
+\begin{DoxyCompactList}\small\item\em System ran out of space to create semaphores. Consider increasing Posix sem limit. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gabca20f12544f79410d7027bc50da35af}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+SEM\+\_\+\+WAIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 78)
+\begin{DoxyCompactList}\small\item\em Posix specific error during shared memory wait call. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga991ca55e0afcdabf4d06ab8b8d3b3204}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+SEM\+\_\+\+UNLINK\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 79)
+\begin{DoxyCompactList}\small\item\em Posix specific error during shared memory sem unlink call. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gac81a9ce2f363e33fafe856bbfd1299e2}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+POSIX\+\_\+\+GIVE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 80)
+\begin{DoxyCompactList}\small\item\em Posix specific error during os specific implementation of a semaphore mutex give. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga93106a096037358a5265bc404789d30b}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+SEMPOOL\+\_\+\+EXCEEDED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 90)
+\begin{DoxyCompactList}\small\item\em Failed to add a semaphore to the thread semaphore pool. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gaef4c1d032c6c8522da2110f60b06298c}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+SEMPOOL\+\_\+\+INVALID\+\_\+\+SEM\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 91)
+\begin{DoxyCompactList}\small\item\em Failed to delete a semaphore from the thread semaphore pool. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga1a44e75504b93a37e1faa29b97227e61}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+SIZE\+\_\+\+EXCEEDED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 92)
+\begin{DoxyCompactList}\small\item\em Trying to create a shared memory segment that is greater than (2 \texorpdfstring{$^\wedge$}{\string^} 31) -\/ 1. The middleware cannot support shared memory segments created than \texorpdfstring{$\sim$}{\string~} 2 GB even though the operating system may. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_a47ccbf5935158fbbdf3a17978f6ae595}{OSAPI\+\_\+\+LOG\+\_\+\+MATH\+\_\+\+OFV\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 93)
+\begin{DoxyCompactList}\small\item\em A math overflow occurred. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{osapi__log_8h_a8622ac75315e32e8991e610d3b1c33b8}{OSAPI\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+TIMER\+\_\+\+RES\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 94)
+\begin{DoxyCompactList}\small\item\em An invalid timer resolution was specified. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga10ec5ed251bf39c6e158ac6b6e1aa53e}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+JOIN\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 95)
+\begin{DoxyCompactList}\small\item\em Failed to join a thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga1014204e81913f43dc39ebe6f3bb3f38}{OSAPI\+\_\+\+LOG\+\_\+\+THREAD\+\_\+\+GET\+\_\+\+MAX\+\_\+\+PRIORITY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 96)
+\begin{DoxyCompactList}\small\item\em Failed to get the maximum priority value for a scheduling policy. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga6aabf0d4840ab85d29706c589b638317}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+FSTAT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 97)
+\begin{DoxyCompactList}\small\item\em POSIX specific error during fstat(...) call. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga66ef6078c380fe6a69c4ffabf2175db4}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+MUTEX\+\_\+\+INIT\+\_\+\+TIMEOUT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 97)
+\begin{DoxyCompactList}\small\item\em Timed out waiting for a shared memory mutex to be initialized. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga425976e7117b0b32d1721aad36c2cf6b}{OSAPI\+\_\+\+LOG\+\_\+\+AUTOSAR\+\_\+\+SETEVENT\+\_\+\+CALL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 100)
+\begin{DoxyCompactList}\small\item\em Autosar Set\+Event system call failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga441b0b11d371585d25575f8e6a8f071f}{OSAPI\+\_\+\+LOG\+\_\+\+AUTOSAR\+\_\+\+CLEAREVENT\+\_\+\+CALL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 101)
+\begin{DoxyCompactList}\small\item\em Autosar Clear\+Event system call failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga5dadad5c45b0ad4aa4949b0447992ede}{OSAPI\+\_\+\+LOG\+\_\+\+AUTOSAR\+\_\+\+WAITEVENT\+\_\+\+CALL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 102)
+\begin{DoxyCompactList}\small\item\em Autosar Wait\+Event system call failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga48885545629a2f5c667360cf064ed889}{OSAPI\+\_\+\+LOG\+\_\+\+AUTOSAR\+\_\+\+GETEVENT\+\_\+\+CALL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 103)
+\begin{DoxyCompactList}\small\item\em Autosar Get\+Event system call failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga57f0a6b4d37451d5434b29d7f17e8287}{OSAPI\+\_\+\+LOG\+\_\+\+AUTOSAR\+\_\+\+TERMINATETASK\+\_\+\+CALL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 104)
+\begin{DoxyCompactList}\small\item\em Autosar Terminate\+Task system call failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga45035cb297aab9fb00a451a5278d3e85}{OSAPI\+\_\+\+LOG\+\_\+\+AUTOSAR\+\_\+\+ACTIVATETASK\+\_\+\+CALL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 105)
+\begin{DoxyCompactList}\small\item\em Autosar Activate\+Task system call failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga092ca942b6cb4bd3bc33a8bacd6ff3e8}{OSAPI\+\_\+\+LOG\+\_\+\+AUTOSAR\+\_\+\+SCHEDULE\+\_\+\+CALL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 106)
+\begin{DoxyCompactList}\small\item\em Autosar Schedule system call failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gaf58bdfd9bc8e7a729d689ce653d6aa74}{OSAPI\+\_\+\+LOG\+\_\+\+AUTOSAR\+\_\+\+SETRELALARM\+\_\+\+CALL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 107)
+\begin{DoxyCompactList}\small\item\em Autosar Set\+Rel\+Alarm system call failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga37d66c5ac0b6a242d5965b6c33802987}{OSAPI\+\_\+\+LOG\+\_\+\+AUTOSAR\+\_\+\+CANCELALARM\+\_\+\+CALL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 108)
+\begin{DoxyCompactList}\small\item\em Autosar Cancel\+Alarm system call failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gae3c941ad0e94957d0bccaa84cd807210}{OSAPI\+\_\+\+LOG\+\_\+\+SEGMENT\+\_\+\+ALREADY\+\_\+\+EXISTS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 150)
+\begin{DoxyCompactList}\small\item\em Shared memory segment already exists. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga3c88294f09e12833f2caf28cbf3042e6}{OSAPI\+\_\+\+LOG\+\_\+\+SEGMENT\+\_\+\+DOESNT\+\_\+\+EXIST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 151)
+\begin{DoxyCompactList}\small\item\em Shared memory segment does not exist. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga872d549b7f90709391f67cccbc2e1334}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+INVALID\+\_\+\+SEGMENT\+\_\+\+NAME\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 152)
+\begin{DoxyCompactList}\small\item\em Invalid shared memory segment name. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gaa12f7d269965d077caae3749581dd5fb}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+INVALID\+\_\+\+SEGMENT\+\_\+\+MODE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 153)
+\begin{DoxyCompactList}\small\item\em Invalid shared memory segment mode. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga4c2291d3c2b7e63951bcf1491fe75e1f}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+SEGMENT\+\_\+\+NOT\+\_\+\+LOCKABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 154)
+\begin{DoxyCompactList}\small\item\em Shared memory segment does not support locking. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gad8b4fa609403cae2fd38ddb26fd06805}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+SEGMENT\+\_\+\+NOT\+\_\+\+ROBUST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 155)
+\begin{DoxyCompactList}\small\item\em Shared memory segment does not support robust mutexes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga498ba020ef21b457824ca67014df4dbc}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+ALREADY\+\_\+\+ATTACHED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 156)
+\begin{DoxyCompactList}\small\item\em Shared memory segment is already attached. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga167b1e56cb76e07ad01d6fd56fabd01d}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+NOT\+\_\+\+ATTACHED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 157)
+\begin{DoxyCompactList}\small\item\em Shared memory segment is not attached. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga59de796b622466bc0ffea0dad6f47a92}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+CHECK\+\_\+\+UNLINKED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 158)
+\begin{DoxyCompactList}\small\item\em Checking if shared memory segment has been unlinked. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga2645bfe78c7905163292d9a7af485faa}{OSAPI\+\_\+\+SHMEM\+\_\+\+SEGMENT\+\_\+\+NOT\+\_\+\+INITIALIZED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 159)
+\begin{DoxyCompactList}\small\item\em Shared memory segment is not initialized. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gac4b78793a2ee03969eb564f30c4ea57b}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+SEGMENT\+\_\+\+NAME\+\_\+\+ALREADY\+\_\+\+EXISTS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 160)
+\begin{DoxyCompactList}\small\item\em Shared memory segment with specified name already exists. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gae8b657b6f47e1177d31b9ea591949b6f}{OSAPI\+\_\+\+LOG\+\_\+\+SHMEM\+\_\+\+SEGMENT\+\_\+\+NAME\+\_\+\+DOESNT\+\_\+\+EXIST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 161)
+\begin{DoxyCompactList}\small\item\em Shared memory segment with specified name does not exist. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga39c9cb7782b57ffd469900cf3b521b20}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+MUTEXATTR\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 200)
+\begin{DoxyCompactList}\small\item\em Failed to create a pthread mutex attribute. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga3c3715ef1baf365bb1d5c4fc10f4d5ca}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+MUTEXATTR\+\_\+\+SETPSHARED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 201)
+\begin{DoxyCompactList}\small\item\em Failed to set the pthread mutex attribute to be process shared. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga0fb9a5088689ba5485cc8a4da3c73c4e}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+MUTEXATTR\+\_\+\+SETROBUST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 202)
+\begin{DoxyCompactList}\small\item\em Failed to set the pthread mutex attribute to be robust. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gafeec60bff0b2464232146ae8c5cde364}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+MUTEXATTR\+\_\+\+DESTROY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 203)
+\begin{DoxyCompactList}\small\item\em Failed to destroy the pthread mutex attribute. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gad64b3f21a1a238cd1bde10ce2c89bec2}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+MUTEX\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 204)
+\begin{DoxyCompactList}\small\item\em Failed to initialize a pthread mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga2ccda38c28e629a87f6ab74b9dc91046}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+MUTEX\+\_\+\+DESTROY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 205)
+\begin{DoxyCompactList}\small\item\em Failed to destroy a pthread mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga8af7ae699cae85baa119b95971595c53}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+MUTEX\+\_\+\+LOCK\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 206)
+\begin{DoxyCompactList}\small\item\em Failed to lock a pthread mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga12e2dc7da8078fd117f6dc136e2c289e}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+MUTEX\+\_\+\+UNLOCK\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 207)
+\begin{DoxyCompactList}\small\item\em Failed to unlock a pthread mutex. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga1dc63dfb94f438217d0476d6f7e46bf2}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+MUTEX\+\_\+\+CONSISTENT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 208)
+\begin{DoxyCompactList}\small\item\em Failed to set the pthread mutex to be consistent. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gabc73420ff6662802f3814d5bd0624762}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+CONDATTR\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 209)
+\begin{DoxyCompactList}\small\item\em Failed to create a pthread condition variable attribute. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga0acda2923e72e2af4399182c36023a5d}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+CONDATTR\+\_\+\+SETPSHARED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 210)
+\begin{DoxyCompactList}\small\item\em Failed to set the pthread condition variable attribute to be process shared. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga174122e11c1880bddfd772a25671ac22}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+CONDATTR\+\_\+\+DESTROY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 211)
+\begin{DoxyCompactList}\small\item\em Failed to destroy the pthread condition variable attribute. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga5b66760e656ca9901e8313dcf39364b7}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+COND\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 212)
+\begin{DoxyCompactList}\small\item\em Failed to initialize a pthread condition variable. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gad07025953b50c1165dae107a9742a6c8}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+COND\+\_\+\+DESTROY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 213)
+\begin{DoxyCompactList}\small\item\em Failed to destroy a pthread condition variable. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga5f9782b8be00e9609131b0c25722fca6}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+COND\+\_\+\+WAIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 214)
+\begin{DoxyCompactList}\small\item\em Failed to wait on a pthread condition variable. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gaefe5726c938683da68ae012f509f4e08}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+COND\+\_\+\+SIGNAL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 215)
+\begin{DoxyCompactList}\small\item\em Failed to signal a pthread condition variable. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga6c317fddf8b7baab67c28129dc428da4}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+MUTEXATTR\+\_\+\+SETTYPE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 216)
+\begin{DoxyCompactList}\small\item\em Failed to set the type of a pthread mutex attribute. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_gaaa9cdfda30dc77935c829729bec89dda}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+MUTEXATTR\+\_\+\+SETPROTOCOL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 217)
+\begin{DoxyCompactList}\small\item\em Failed to set the protocol of a pthread mutex attribute. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga6c76c8a4cfead771e8a0a4fa5ce5d43d}{OSAPI\+\_\+\+LOG\+\_\+\+PTHREAD\+\_\+\+MUTEXATTR\+\_\+\+SETPRIOCEILING\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 218)
+\begin{DoxyCompactList}\small\item\em Failed to set the priority ceiling of a pthread mutex attribute. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogCodesClass_ga8589d9e51591a997782a29825fa973d7}{OSAPI\+\_\+\+LOG\+\_\+\+WIN\+\_\+\+WAIT\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 300)
+\begin{DoxyCompactList}\small\item\em Wait\+For\+Single\+Object returned an error while waiting for the timer semaphore to time out. Micro continues to run, but it may indicate a platform problem. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogClass_gaa74109f92b2676734c78a16be4adf010}{OSAPI\+\_\+\+LOG\+\_\+\+DETAIL\+\_\+\+MODULENAME}}~(0x80000000\+UL)
+\begin{DoxyCompactList}\small\item\em Bitmap for enabling saving the module name in the log buffer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogClass_gac7a19385903287ff4b89d39d5e0b5dd5}{OSAPI\+\_\+\+LOG\+\_\+\+DETAIL\+\_\+\+SOURCEFILE}}~(0x40000000\+UL)
+\begin{DoxyCompactList}\small\item\em Bitmap for enabling saving the file name in the log buffer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogClass_ga09586cee64078b195745519344d0e59e}{OSAPI\+\_\+\+LOG\+\_\+\+DETAIL\+\_\+\+LINENUMBER}}~(0x20000000\+UL)
+\begin{DoxyCompactList}\small\item\em Bitmap for enabling saving the line number in the log buffer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogClass_gab7807a88a0c27cb954fa27cca6e4e0f3}{OSAPI\+\_\+\+LOG\+\_\+\+DETAIL\+\_\+\+FUNCTIONAME}}~(0x10000000\+UL)
+\begin{DoxyCompactList}\small\item\em Bitmap for enabling saving the function name in the log buffer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPILogClass_ga31d9366fa072b574a3d4619f11941a3d}{OSAPI\+\_\+\+Log\+Property\+\_\+\+INIITALIZER}}
+\begin{DoxyCompactList}\small\item\em Initializer for the \doxylink{structOSAPI__LogProperty}{OSAPI\+\_\+\+Log\+Property}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structOSAPI__LogEntry}{OSAPI\+\_\+\+Log\+Entry}} \mbox{\hyperlink{group__OSAPILogClass_ga1e7db5c0be0829b84c7b69b1013175d5}{OSAPI\+\_\+\+Log\+Entry\+\_\+T}}
+\begin{DoxyCompactList}\small\item\em The type for a log-\/entry. \end{DoxyCompactList}\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPILogClass_gade576446ec18437473c2c63fd08a2d60}{OSAPI\+\_\+\+Log\+\_\+write\+\_\+buffer\+\_\+T}}) (const char \texorpdfstring{$\ast$}{*}buffer, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} length)
+\begin{DoxyCompactList}\small\item\em Optional user-\/defined function to output a log/trace buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__OSAPILogClass_ga9f573232ecea884b28bf49fe811ebf90}{OSAPI\+\_\+\+Log\+Verbosity\+\_\+T}} \{ \mbox{\hyperlink{group__OSAPILogClass_gga9f573232ecea884b28bf49fe811ebf90af62817f22e3b20bf9b233b9fc281540b}{OSAPI\+\_\+\+LOG\+\_\+\+VERBOSITY\+\_\+\+SILENT}} = 0
+, \mbox{\hyperlink{group__OSAPILogClass_gga9f573232ecea884b28bf49fe811ebf90ae075a2ff02f305be1c71da0f28ee897f}{OSAPI\+\_\+\+LOG\+\_\+\+VERBOSITY\+\_\+\+ERROR}} = 1
+, \mbox{\hyperlink{group__OSAPILogClass_gga9f573232ecea884b28bf49fe811ebf90a55a762f0365193d27351d366dc8dd703}{OSAPI\+\_\+\+LOG\+\_\+\+VERBOSITY\+\_\+\+WARNING}} = 2
+, \mbox{\hyperlink{group__OSAPILogClass_gga9f573232ecea884b28bf49fe811ebf90a2d3bba8fac78649832957402c2107b34}{OSAPI\+\_\+\+LOG\+\_\+\+VERBOSITY\+\_\+\+DEBUG}} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em Logging verbosity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPILogClass_ga8f6489e1a9c02a1190b7c7fcc7a78672}{OSAPI\+\_\+\+Log\+\_\+set\+\_\+log\+\_\+handler}} (OSAPI\+\_\+\+Log\+Handler\+\_\+T handler, void \texorpdfstring{$\ast$}{*}param)
+\begin{DoxyCompactList}\small\item\em Install a log handler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPILogClass_gacd945e5e02f7f2b34394d807890e9fdd}{OSAPI\+\_\+\+Log\+\_\+get\+\_\+log\+\_\+handler}} (OSAPI\+\_\+\+Log\+Handler\+\_\+T \texorpdfstring{$\ast$}{*}handler, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}param)
+\begin{DoxyCompactList}\small\item\em Return the current log handler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPILogClass_ga3cc0ad196b8cf232b50659406309df48}{OSAPI\+\_\+\+Log\+\_\+set\+\_\+display\+\_\+handler}} (OSAPI\+\_\+\+Log\+Display\+\_\+T handler, void \texorpdfstring{$\ast$}{*}param)
+\begin{DoxyCompactList}\small\item\em Install a display handler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPILogClass_ga64098640c015e7a0cc92db76e199f1ca}{OSAPI\+\_\+\+Log\+\_\+get\+\_\+display\+\_\+handler}} (OSAPI\+\_\+\+Log\+Display\+\_\+T \texorpdfstring{$\ast$}{*}handler, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}param)
+\begin{DoxyCompactList}\small\item\em Return the current display function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__OSAPILogClass_gac73ee503fc46658e5fcb6bf016cf456a}{OSAPI\+\_\+\+Log\+\_\+set\+\_\+verbosity}} (\mbox{\hyperlink{group__OSAPILogClass_ga9f573232ecea884b28bf49fe811ebf90}{OSAPI\+\_\+\+Log\+Verbosity\+\_\+T}} verbosity)
+\begin{DoxyCompactList}\small\item\em Set the log verbosity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__OSAPITraceClass_ga15527dde63430e13988a7e76a0e3e9cf}{OSAPI\+\_\+\+Trace\+\_\+set\+\_\+trace\+\_\+mask}} (\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} mask)
+\begin{DoxyCompactList}\small\item\em Set the trace mask. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPILogClass_ga0e178cc37d89ba1c890357c7ef10006e}{OSAPI\+\_\+\+Log\+\_\+clear}} (void)
+\begin{DoxyCompactList}\small\item\em Clear the log buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__OSAPILogClass_gafe3a2f4522a44b6813fbf3f937cd4658}{OSAPI\+\_\+\+Log\+\_\+get\+\_\+property}} (struct \mbox{\hyperlink{structOSAPI__LogProperty}{OSAPI\+\_\+\+Log\+Property}} \texorpdfstring{$\ast$}{*}property)
+\begin{DoxyCompactList}\small\item\em Get the current log properties. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPILogClass_ga28c9ce000b6085d994d8e81380bbb613}{OSAPI\+\_\+\+Log\+\_\+set\+\_\+property}} (struct \mbox{\hyperlink{structOSAPI__LogProperty}{OSAPI\+\_\+\+Log\+Property}} \texorpdfstring{$\ast$}{*}property)
+\begin{DoxyCompactList}\small\item\em Set the current log properties. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPILogClass_ga9f573232ecea884b28bf49fe811ebf90}{OSAPI\+\_\+\+Log\+Verbosity\+\_\+T}} \mbox{\hyperlink{group__OSAPILogClass_ga85831410b5f662b9ac03b55014efad15}{OSAPI\+\_\+\+Log\+\_\+get\+\_\+verbosity}} (void)
+\begin{DoxyCompactList}\small\item\em Get the current log verbosity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{group__OSAPILogClass_ga1c38c8a5ef865d15c7d1ae6ccdc86e15}{OSAPI\+\_\+\+Log\+\_\+get\+\_\+last\+\_\+error\+\_\+code}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the error code for a function that failed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+OSAPI Log API. 
+
+
+
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}\index{osapi\_log.h@{osapi\_log.h}!OSAPI\_LOG\_BASE@{OSAPI\_LOG\_BASE}}
+\index{OSAPI\_LOG\_BASE@{OSAPI\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{OSAPI\_LOG\_BASE}{OSAPI\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8} 
+\#define OSAPI\+\_\+\+LOG\+\_\+\+BASE~(0)}
+
+
+
+Log Id base-\/number. 
+
+\Hypertarget{osapi__log_8h_abf830227b793bc2a2be1bcfd7065e78b}\index{osapi\_log.h@{osapi\_log.h}!REDA\_LOG\_BASE@{REDA\_LOG\_BASE}}
+\index{REDA\_LOG\_BASE@{REDA\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{REDA\_LOG\_BASE}{REDA\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_abf830227b793bc2a2be1bcfd7065e78b} 
+\#define REDA\+\_\+\+LOG\+\_\+\+BASE~(1 $<$$<$ 16)}
+
+
+
+REDA Module. 
+
+\Hypertarget{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107}\index{osapi\_log.h@{osapi\_log.h}!DB\_LOG\_BASE@{DB\_LOG\_BASE}}
+\index{DB\_LOG\_BASE@{DB\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{DB\_LOG\_BASE}{DB\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_a7dc554495d0b436ced6ac3e94592b107} 
+\#define DB\+\_\+\+LOG\+\_\+\+BASE~(2 $<$$<$ 16)}
+
+
+
+DB Module. 
+
+\Hypertarget{osapi__log_8h_a638089b009a955cc9f8b8e0eaa1efaed}\index{osapi\_log.h@{osapi\_log.h}!RT\_LOG\_BASE@{RT\_LOG\_BASE}}
+\index{RT\_LOG\_BASE@{RT\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{RT\_LOG\_BASE}{RT\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_a638089b009a955cc9f8b8e0eaa1efaed} 
+\#define RT\+\_\+\+LOG\+\_\+\+BASE~(3 $<$$<$ 16)}
+
+
+
+RT Module. 
+
+\Hypertarget{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}\index{osapi\_log.h@{osapi\_log.h}!NETIO\_LOG\_BASE@{NETIO\_LOG\_BASE}}
+\index{NETIO\_LOG\_BASE@{NETIO\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{NETIO\_LOG\_BASE}{NETIO\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df} 
+\#define NETIO\+\_\+\+LOG\+\_\+\+BASE~(4 $<$$<$ 16)}
+
+
+
+NETIO Module. 
+
+\Hypertarget{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}\index{osapi\_log.h@{osapi\_log.h}!UDP\_LOG\_BASE@{UDP\_LOG\_BASE}}
+\index{UDP\_LOG\_BASE@{UDP\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{UDP\_LOG\_BASE}{UDP\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44} 
+\#define UDP\+\_\+\+LOG\+\_\+\+BASE~\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}}}
+
+
+
+UDP Module, same as NETIO. 
+
+\Hypertarget{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618}\index{osapi\_log.h@{osapi\_log.h}!SHMEM\_LOG\_BASE@{SHMEM\_LOG\_BASE}}
+\index{SHMEM\_LOG\_BASE@{SHMEM\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{SHMEM\_LOG\_BASE}{SHMEM\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_ab07be5de799f28adfa0108e3fe1ec618} 
+\#define SHMEM\+\_\+\+LOG\+\_\+\+BASE~\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 10000}
+
+
+
+NETIO\+\_\+\+SHMEM Module, same as NETIO. 
+
+\Hypertarget{osapi__log_8h_a62367337f49b1914847f5d00ad92215e}\index{osapi\_log.h@{osapi\_log.h}!SDM\_LOG\_BASE@{SDM\_LOG\_BASE}}
+\index{SDM\_LOG\_BASE@{SDM\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{SDM\_LOG\_BASE}{SDM\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_a62367337f49b1914847f5d00ad92215e} 
+\#define SDM\+\_\+\+LOG\+\_\+\+BASE~\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 20000}
+
+
+
+SDM Module, same as NETIO. 
+
+\Hypertarget{osapi__log_8h_ae7354562e9650650d89c7a6c8ea65066}\index{osapi\_log.h@{osapi\_log.h}!CDR\_LOG\_BASE@{CDR\_LOG\_BASE}}
+\index{CDR\_LOG\_BASE@{CDR\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{CDR\_LOG\_BASE}{CDR\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_ae7354562e9650650d89c7a6c8ea65066} 
+\#define CDR\+\_\+\+LOG\+\_\+\+BASE~(5 $<$$<$ 16)}
+
+
+
+CDR Module. 
+
+\Hypertarget{osapi__log_8h_a6587de849e6d6dc5f71b74cd43839b71}\index{osapi\_log.h@{osapi\_log.h}!XCDR\_LOG\_BASE@{XCDR\_LOG\_BASE}}
+\index{XCDR\_LOG\_BASE@{XCDR\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{XCDR\_LOG\_BASE}{XCDR\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_a6587de849e6d6dc5f71b74cd43839b71} 
+\#define XCDR\+\_\+\+LOG\+\_\+\+BASE~\mbox{\hyperlink{osapi__log_8h_ae7354562e9650650d89c7a6c8ea65066}{CDR\+\_\+\+LOG\+\_\+\+BASE}} + 20000}
+
+
+
+CDR Module. 
+
+\Hypertarget{osapi__log_8h_aa485d9b89443587214f0e37727955913}\index{osapi\_log.h@{osapi\_log.h}!RTPS\_LOG\_BASE@{RTPS\_LOG\_BASE}}
+\index{RTPS\_LOG\_BASE@{RTPS\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{RTPS\_LOG\_BASE}{RTPS\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_aa485d9b89443587214f0e37727955913} 
+\#define RTPS\+\_\+\+LOG\+\_\+\+BASE~(6 $<$$<$ 16)}
+
+
+
+RTPS Module. 
+
+\Hypertarget{osapi__log_8h_ab5a75ac791647898b5a9f75b5e1e1785}\index{osapi\_log.h@{osapi\_log.h}!DDSC\_LOG\_BASE@{DDSC\_LOG\_BASE}}
+\index{DDSC\_LOG\_BASE@{DDSC\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{DDSC\_LOG\_BASE}{DDSC\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_ab5a75ac791647898b5a9f75b5e1e1785} 
+\#define DDSC\+\_\+\+LOG\+\_\+\+BASE~(7 $<$$<$ 16)}
+
+
+
+DDS\+\_\+C Module. 
+
+\Hypertarget{osapi__log_8h_ac9e87249ee825dca600847d116019f1d}\index{osapi\_log.h@{osapi\_log.h}!RHSM\_LOG\_BASE@{RHSM\_LOG\_BASE}}
+\index{RHSM\_LOG\_BASE@{RHSM\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{RHSM\_LOG\_BASE}{RHSM\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_ac9e87249ee825dca600847d116019f1d} 
+\#define RHSM\+\_\+\+LOG\+\_\+\+BASE~(8 $<$$<$ 16)}
+
+
+
+RHSM Module. 
+
+\Hypertarget{osapi__log_8h_acadd48116e4f42e6ea742ade7482f373}\index{osapi\_log.h@{osapi\_log.h}!WHSM\_LOG\_BASE@{WHSM\_LOG\_BASE}}
+\index{WHSM\_LOG\_BASE@{WHSM\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{WHSM\_LOG\_BASE}{WHSM\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_acadd48116e4f42e6ea742ade7482f373} 
+\#define WHSM\+\_\+\+LOG\+\_\+\+BASE~(9 $<$$<$ 16)}
+
+
+
+WHSM Module. 
+
+\Hypertarget{osapi__log_8h_a2e239c6c963869adbba56d4e4eadaa24}\index{osapi\_log.h@{osapi\_log.h}!DPSE\_LOG\_BASE@{DPSE\_LOG\_BASE}}
+\index{DPSE\_LOG\_BASE@{DPSE\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{DPSE\_LOG\_BASE}{DPSE\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_a2e239c6c963869adbba56d4e4eadaa24} 
+\#define DPSE\+\_\+\+LOG\+\_\+\+BASE~(10 $<$$<$ 16)}
+
+
+
+DPSE Module. 
+
+\Hypertarget{osapi__log_8h_a91689b4434454ae16e6b1a0158c788c1}\index{osapi\_log.h@{osapi\_log.h}!DPDE\_LOG\_BASE@{DPDE\_LOG\_BASE}}
+\index{DPDE\_LOG\_BASE@{DPDE\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{DPDE\_LOG\_BASE}{DPDE\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_a91689b4434454ae16e6b1a0158c788c1} 
+\#define DPDE\+\_\+\+LOG\+\_\+\+BASE~(11 $<$$<$ 16)}
+
+
+
+DPDE Module. 
+
+\Hypertarget{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}\index{osapi\_log.h@{osapi\_log.h}!SEC\_CORE\_LOG\_BASE@{SEC\_CORE\_LOG\_BASE}}
+\index{SEC\_CORE\_LOG\_BASE@{SEC\_CORE\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{SEC\_CORE\_LOG\_BASE}{SEC\_CORE\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638} 
+\#define SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE~(12 $<$$<$ 16)}
+
+
+
+DDDS Security plugin. 
+
+\Hypertarget{osapi__log_8h_ace1422fc96aed886d3924959f8a0cba2}\index{osapi\_log.h@{osapi\_log.h}!APPGEN\_LOG\_BASE@{APPGEN\_LOG\_BASE}}
+\index{APPGEN\_LOG\_BASE@{APPGEN\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{APPGEN\_LOG\_BASE}{APPGEN\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_ace1422fc96aed886d3924959f8a0cba2} 
+\#define APPGEN\+\_\+\+LOG\+\_\+\+BASE~(13 $<$$<$ 16)}
+
+
+
+APPGEN Module. 
+
+\Hypertarget{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5}\index{osapi\_log.h@{osapi\_log.h}!NETIO\_ZCOPY\_LOG\_BASE@{NETIO\_ZCOPY\_LOG\_BASE}}
+\index{NETIO\_ZCOPY\_LOG\_BASE@{NETIO\_ZCOPY\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{NETIO\_ZCOPY\_LOG\_BASE}{NETIO\_ZCOPY\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_a761fb0a2a5826d40ace52b9c99d826f5} 
+\#define NETIO\+\_\+\+ZCOPY\+\_\+\+LOG\+\_\+\+BASE~(14 $<$$<$ 16)}
+
+
+
+NETIO Zero Copy Module. 
+
+\Hypertarget{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}\index{osapi\_log.h@{osapi\_log.h}!DDS\_FILTER\_LOG\_BASE@{DDS\_FILTER\_LOG\_BASE}}
+\index{DDS\_FILTER\_LOG\_BASE@{DDS\_FILTER\_LOG\_BASE}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_FILTER\_LOG\_BASE}{DDS\_FILTER\_LOG\_BASE}}
+{\footnotesize\ttfamily \label{osapi__log_8h_a542abcdf352c6c9497863297919ea78b} 
+\#define DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE~(15 $<$$<$ 16)}
+
+
+
+DDS Filter Module. 
+
+\Hypertarget{osapi__log_8h_a47ccbf5935158fbbdf3a17978f6ae595}\index{osapi\_log.h@{osapi\_log.h}!OSAPI\_LOG\_MATH\_OFV\_EC@{OSAPI\_LOG\_MATH\_OFV\_EC}}
+\index{OSAPI\_LOG\_MATH\_OFV\_EC@{OSAPI\_LOG\_MATH\_OFV\_EC}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{OSAPI\_LOG\_MATH\_OFV\_EC}{OSAPI\_LOG\_MATH\_OFV\_EC}}
+{\footnotesize\ttfamily \label{osapi__log_8h_a47ccbf5935158fbbdf3a17978f6ae595} 
+\#define OSAPI\+\_\+\+LOG\+\_\+\+MATH\+\_\+\+OFV\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 93)}
+
+
+
+A math overflow occurred. 
+
+\Hypertarget{osapi__log_8h_a8622ac75315e32e8991e610d3b1c33b8}\index{osapi\_log.h@{osapi\_log.h}!OSAPI\_LOG\_INVALID\_TIMER\_RES\_EC@{OSAPI\_LOG\_INVALID\_TIMER\_RES\_EC}}
+\index{OSAPI\_LOG\_INVALID\_TIMER\_RES\_EC@{OSAPI\_LOG\_INVALID\_TIMER\_RES\_EC}!osapi\_log.h@{osapi\_log.h}}
+\doxyparagraph{\texorpdfstring{OSAPI\_LOG\_INVALID\_TIMER\_RES\_EC}{OSAPI\_LOG\_INVALID\_TIMER\_RES\_EC}}
+{\footnotesize\ttfamily \label{osapi__log_8h_a8622ac75315e32e8991e610d3b1c33b8} 
+\#define OSAPI\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+TIMER\+\_\+\+RES\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a9377427a51b0948e17f0cc02e14f85e8}{OSAPI\+\_\+\+LOG\+\_\+\+BASE}} + 94)}
+
+
+
+An invalid timer resolution was specified. 
+

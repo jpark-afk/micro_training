@@ -1,0 +1,462 @@
+\doxysubsubsection{OSAPI System API}
+\hypertarget{group__OSAPI__SystemClass}{}\label{group__OSAPI__SystemClass}\index{OSAPI System API@{OSAPI System API}}
+
+
+Abstract System API.  
+
+
+\doxysubsubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structOSAPI__SystemI}{OSAPI\+\_\+\+SystemI}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  System API. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structOSAPI__TaskProperty}{OSAPI\+\_\+\+Task\+Property}}
+\begin{DoxyCompactList}\small\item\em Task properties. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structOSAPI__SystemProperty}{OSAPI\+\_\+\+System\+Property}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  The System Properties. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__OSAPI__SystemClass_ga79cf803128b627283f7766c16ead8740}{OSAPI\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+HOSTNAME}}~(64)
+\begin{DoxyCompactList}\small\item\em Maximum hostname length. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPI__SystemClass_gae17d88891c1b802d1902fce861df28a5}{OSAPI\+\_\+\+System\+I\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Initializer for \doxylink{structOSAPI__SystemI}{OSAPI\+\_\+\+SystemI}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPI__SystemClass_ga066039dbaa78a38dfa1e5c5670c60a86}{OSAPI\+\_\+\+Task\+Property\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em Initializer for \doxylink{structOSAPI__TaskProperty}{OSAPI\+\_\+\+Task\+Property}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPI__SystemClass_ga7e97c4d83ccee678fb2b87cdbc464056}{OSAPI\+\_\+\+System\+Property\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em Initializer for \doxylink{structOSAPI__SystemProperty}{OSAPI\+\_\+\+System\+Property}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__SystemClass_ga947e63a3c89c8d1d064fff46eb60da67}{OSAPI\+\_\+\+System\+\_\+start\+\_\+timer\+\_\+T}}) (OSAPI\+\_\+\+Timer\+\_\+T self, OSAPI\+\_\+\+Timer\+Tick\+Handler\+Function tick\+\_\+handler)
+\begin{DoxyCompactList}\small\item\em Start a OSAPI timer. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__SystemClass_gaa10559921f9ca02e5709cc2d912515e2}{OSAPI\+\_\+\+System\+\_\+get\+\_\+timer\+\_\+resolution\+\_\+T}}) (void)
+\begin{DoxyCompactList}\small\item\em Get the resolution of the clock driving the timer in nano seconds. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__SystemClass_gae1700ec6c2d2bf5e31164c2624341f39}{OSAPI\+\_\+\+System\+\_\+get\+\_\+time\+\_\+T}}) (\mbox{\hyperlink{structOSAPI__SystemTime}{OSAPI\+\_\+\+System\+Time}} \texorpdfstring{$\ast$}{*}now)
+\begin{DoxyCompactList}\small\item\em Get the current system time. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__SystemClass_ga0ba66c156dbc10db71b7991111719145}{OSAPI\+\_\+\+System\+\_\+initialize\+\_\+T}}) (void)
+\begin{DoxyCompactList}\small\item\em Initialize the system. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__SystemClass_ga9d115998da7638f1d55b743579a2aa05}{OSAPI\+\_\+\+System\+\_\+get\+\_\+hostname\+\_\+T}}) (char \texorpdfstring{$\ast$}{*}const hostname)
+\begin{DoxyCompactList}\small\item\em Get the hostname. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__SystemClass_ga4f87be5afa72c0f3f72c4cc1b2025c2c}{OSAPI\+\_\+\+System\+\_\+generate\+\_\+uuid\+\_\+T}}) (struct OSAPI\+\_\+\+System\+UUID \texorpdfstring{$\ast$}{*}uuid\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Generate a unique universal identifier (UUID). \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__SystemClass_gaf82bd8c64189c3811a4f9f6262d01f4b}{OSAPI\+\_\+\+System\+\_\+get\+\_\+ticktime\+\_\+T}}) (\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}sec, \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} \texorpdfstring{$\ast$}{*}nanosec)
+\begin{DoxyCompactList}\small\item\em Get current tick time. \end{DoxyCompactList}\item 
+typedef struct OSAPI\+\_\+\+SystemI \mbox{\hyperlink{group__OSAPI__SystemClass_ga7c6151c1108897c2e197345eba273b50}{OSAPI\+\_\+\+SystemI}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  System API. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SystemClass_gadd86b768131862d5852ac562ff0770ea}{OSAPI\+\_\+\+System\+\_\+set\+\_\+interface}} (struct \mbox{\hyperlink{structOSAPI__SystemI}{OSAPI\+\_\+\+SystemI}} \texorpdfstring{$\ast$}{*}intf)
+\begin{DoxyCompactList}\small\item\em Set the system interface. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SystemClass_ga4a2757fc5039d68c0c34244b63e68437}{OSAPI\+\_\+\+System\+\_\+get\+\_\+property}} (struct \mbox{\hyperlink{structOSAPI__SystemProperty}{OSAPI\+\_\+\+System\+Property}} \texorpdfstring{$\ast$}{*}property)
+\begin{DoxyCompactList}\small\item\em Get the system properties. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SystemClass_gab054a5d7812c38810322a94174338fa5}{OSAPI\+\_\+\+System\+\_\+set\+\_\+property}} (struct \mbox{\hyperlink{structOSAPI__SystemProperty}{OSAPI\+\_\+\+System\+Property}} \texorpdfstring{$\ast$}{*}property)
+\begin{DoxyCompactList}\small\item\em Set the system properties. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__OSAPI__SystemClass_gafbbf1eace1bedb14f6cdec9aaf78fc39}{OSAPI\+\_\+\+System\+\_\+get\+\_\+native\+\_\+interface}} (struct \mbox{\hyperlink{structOSAPI__SystemI}{OSAPI\+\_\+\+SystemI}} \texorpdfstring{$\ast$}{*}intf)
+\begin{DoxyCompactList}\small\item\em Get the native system interface. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SystemClass_gaaafb0bd70349bfb5c881f55a57a14521}{OSAPI\+\_\+\+System\+\_\+clock\+\_\+tick}} (\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} ticks)
+\begin{DoxyCompactList}\small\item\em Advance the internal RTI Connext DDS Micro timers with the number specified clock ticks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SystemClass_ga078cdb3811e2b19aff4f97c3c94aefc6}{OSAPI\+\_\+\+System\+\_\+clock\+\_\+tick\+\_\+from\+\_\+time}} (void)
+\begin{DoxyCompactList}\small\item\em Advance the internal RTI Connext DDS Micro timers using the \doxylink{structOSAPI__SystemI_aee47a6152bfec08a8f859ee6abd68446}{OSAPI\+\_\+\+System\+I\+::get\+\_\+time} API. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Abstract System API. 
+
+The System is defined as the physical or virtual execution environment and implements functions that are not necessarily provided by the operating system. For example, a custom embedded board may include a special real-\/time clock which is synchronized via GPS, but is not available via a regular OS system call. 
+
+The following functions are not thread-\/safe\+: \begin{DoxyItemize}
+\item OSAPI\+\_\+\+System\+\_\+set\+\_\+interface \item OSAPI\+\_\+\+System\+\_\+get\+\_\+property \item OSAPI\+\_\+\+System\+\_\+set\+\_\+property \item OSAPI\+\_\+\+System\+\_\+get\+\_\+native\+\_\+interface \item OSAPI\+\_\+\+System\+\_\+clock\+\_\+tick \item OSAPI\+\_\+\+System\+\_\+clock\+\_\+tick\+\_\+from\+\_\+time \end{DoxyItemize}
+
+
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__OSAPI__SystemClass_ga79cf803128b627283f7766c16ead8740}\index{OSAPI System API@{OSAPI System API}!OSAPI\_SYSTEM\_MAX\_HOSTNAME@{OSAPI\_SYSTEM\_MAX\_HOSTNAME}}
+\index{OSAPI\_SYSTEM\_MAX\_HOSTNAME@{OSAPI\_SYSTEM\_MAX\_HOSTNAME}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SYSTEM\_MAX\_HOSTNAME}{OSAPI\_SYSTEM\_MAX\_HOSTNAME}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_ga79cf803128b627283f7766c16ead8740} 
+\#define OSAPI\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+HOSTNAME~(64)}
+
+
+
+Maximum hostname length. 
+
+\Hypertarget{group__OSAPI__SystemClass_gae17d88891c1b802d1902fce861df28a5}\index{OSAPI System API@{OSAPI System API}!OSAPI\_SystemI\_INITIALIZER@{OSAPI\_SystemI\_INITIALIZER}}
+\index{OSAPI\_SystemI\_INITIALIZER@{OSAPI\_SystemI\_INITIALIZER}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SystemI\_INITIALIZER}{OSAPI\_SystemI\_INITIALIZER}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_gae17d88891c1b802d1902fce861df28a5} 
+\#define OSAPI\+\_\+\+System\+I\+\_\+\+INITIALIZER}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ NULL,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ NULL,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ NULL,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ NULL,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ NULL,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ NULL,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ NULL,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ RTI\_INCLUDE\_SYSTEM\_FINALIZER\_INITIALIZER\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ NULL,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ NULL\(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Initializer for \doxylink{structOSAPI__SystemI}{OSAPI\+\_\+\+SystemI}. 
+
+\Hypertarget{group__OSAPI__SystemClass_ga066039dbaa78a38dfa1e5c5670c60a86}\index{OSAPI System API@{OSAPI System API}!OSAPI\_TaskProperty\_INITIALIZER@{OSAPI\_TaskProperty\_INITIALIZER}}
+\index{OSAPI\_TaskProperty\_INITIALIZER@{OSAPI\_TaskProperty\_INITIALIZER}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_TaskProperty\_INITIALIZER}{OSAPI\_TaskProperty\_INITIALIZER}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_ga066039dbaa78a38dfa1e5c5670c60a86} 
+\#define OSAPI\+\_\+\+Task\+Property\+\_\+\+INITIALIZER}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{\ \ \textcolor{comment}{/*\ OSAPI\_ThreadProperty\ */}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{group__OSAPI__ThreadClass_gaf51981a18d3ac5b0256c0a4f051f4b8a}{OSAPI\_THREAD\_USE\_OSDEFAULT\_STACKSIZE}},\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ OSAPI\_THREAD\_PRIORITY\_DEFAULT,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{group__OSAPI__ThreadClass_gaf5f786870372028a5e2303385d2c9bfa}{OSAPI\_THREAD\_DEFAULT\_OPTIONS}}\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \},\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ 100\(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Initializer for \doxylink{structOSAPI__TaskProperty}{OSAPI\+\_\+\+Task\+Property}. 
+
+\Hypertarget{group__OSAPI__SystemClass_ga7e97c4d83ccee678fb2b87cdbc464056}\index{OSAPI System API@{OSAPI System API}!OSAPI\_SystemProperty\_INITIALIZER@{OSAPI\_SystemProperty\_INITIALIZER}}
+\index{OSAPI\_SystemProperty\_INITIALIZER@{OSAPI\_SystemProperty\_INITIALIZER}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SystemProperty\_INITIALIZER}{OSAPI\_SystemProperty\_INITIALIZER}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_ga7e97c4d83ccee678fb2b87cdbc464056} 
+\#define OSAPI\+\_\+\+System\+Property\+\_\+\+INITIALIZER}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ OSAPI\_TimerProperty\_INITIALIZER,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{0\},\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ 32,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ 8,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__OSAPI__SystemClass_ga066039dbaa78a38dfa1e5c5670c60a86}{OSAPI\_TaskProperty\_INITIALIZER}}\ \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Initializer for \doxylink{structOSAPI__SystemProperty}{OSAPI\+\_\+\+System\+Property}. 
+
+
+
+\doxysubsubsubsection{Typedef Documentation}
+\Hypertarget{group__OSAPI__SystemClass_ga947e63a3c89c8d1d064fff46eb60da67}\index{OSAPI System API@{OSAPI System API}!OSAPI\_System\_start\_timer\_T@{OSAPI\_System\_start\_timer\_T}}
+\index{OSAPI\_System\_start\_timer\_T@{OSAPI\_System\_start\_timer\_T}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_System\_start\_timer\_T}{OSAPI\_System\_start\_timer\_T}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_ga947e63a3c89c8d1d064fff46eb60da67} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+System\+\_\+start\+\_\+timer\+\_\+T) (OSAPI\+\_\+\+Timer\+\_\+T self, OSAPI\+\_\+\+Timer\+Tick\+Handler\+Function tick\+\_\+handler)}
+
+
+
+Start a OSAPI timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Timer object. \\
+\hline
+{\em tick\+\_\+handler} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Timer handle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SystemClass_gaa10559921f9ca02e5709cc2d912515e2}\index{OSAPI System API@{OSAPI System API}!OSAPI\_System\_get\_timer\_resolution\_T@{OSAPI\_System\_get\_timer\_resolution\_T}}
+\index{OSAPI\_System\_get\_timer\_resolution\_T@{OSAPI\_System\_get\_timer\_resolution\_T}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_System\_get\_timer\_resolution\_T}{OSAPI\_System\_get\_timer\_resolution\_T}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_gaa10559921f9ca02e5709cc2d912515e2} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}(\texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+System\+\_\+get\+\_\+timer\+\_\+resolution\+\_\+T) (void)}
+
+
+
+Get the resolution of the clock driving the timer in nano seconds. 
+
+This function must return the frequency of the system timer used to implement \doxylink{structOSAPI__SystemI_a83ec3c07f33b83d00c5e1d7659a130f0}{OSAPI\+\_\+\+System\+I\+::start\+\_\+timer} and OSAPI\+\_\+\+System\+I\+::stop\+\_\+timer API. 
+
+\begin{DoxyReturn}{Returns}
+timer resolution in nanoseconds. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SystemClass_gae1700ec6c2d2bf5e31164c2624341f39}\index{OSAPI System API@{OSAPI System API}!OSAPI\_System\_get\_time\_T@{OSAPI\_System\_get\_time\_T}}
+\index{OSAPI\_System\_get\_time\_T@{OSAPI\_System\_get\_time\_T}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_System\_get\_time\_T}{OSAPI\_System\_get\_time\_T}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_gae1700ec6c2d2bf5e31164c2624341f39} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+System\+\_\+get\+\_\+time\+\_\+T) (\mbox{\hyperlink{structOSAPI__SystemTime}{OSAPI\+\_\+\+System\+Time}} \texorpdfstring{$\ast$}{*}now)}
+
+
+
+Get the current system time. 
+
+In general, the system time is used by components to correlate both internal and external events, such as data reception and ordering. Thus, it is recommended that this function returns the real time. However, it is not strictly required. 
+
+Notes\+: -\/ It is assumed that the time returned by get\+\_\+time is monotonically increasing. It is up to the implementation of this function to ensure this holds true. 
+
+-\/ It is ok to return the same time as the last call. 
+
+-\/ The clock used to report real-\/time can be different than the clock used to support start\+\_\+timer and stop\+\_\+timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em now} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Time. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SystemClass_ga0ba66c156dbc10db71b7991111719145}\index{OSAPI System API@{OSAPI System API}!OSAPI\_System\_initialize\_T@{OSAPI\_System\_initialize\_T}}
+\index{OSAPI\_System\_initialize\_T@{OSAPI\_System\_initialize\_T}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_System\_initialize\_T}{OSAPI\_System\_initialize\_T}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_ga0ba66c156dbc10db71b7991111719145} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+System\+\_\+initialize\+\_\+T) (void)}
+
+
+
+Initialize the system. 
+
+This function initializes the system and calls the port specific initialize method first. The port specific initialization method must return RTI\+\_\+\+TRUE on success and RTI\+\_\+\+FALSE on failure. A system can only be initialized once. 
+
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SystemClass_ga9d115998da7638f1d55b743579a2aa05}\index{OSAPI System API@{OSAPI System API}!OSAPI\_System\_get\_hostname\_T@{OSAPI\_System\_get\_hostname\_T}}
+\index{OSAPI\_System\_get\_hostname\_T@{OSAPI\_System\_get\_hostname\_T}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_System\_get\_hostname\_T}{OSAPI\_System\_get\_hostname\_T}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_ga9d115998da7638f1d55b743579a2aa05} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+System\+\_\+get\+\_\+hostname\+\_\+T) (char \texorpdfstring{$\ast$}{*}const hostname)}
+
+
+
+Get the hostname. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hostname} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The buffer to store the hostname. Must be at least OSAPI\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+HOSTNAME bytes. If the actual hostname is longer than OSAPI\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+HOSTNAME bytes (including the NUL termination) the hostname is truncated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SystemClass_ga4f87be5afa72c0f3f72c4cc1b2025c2c}\index{OSAPI System API@{OSAPI System API}!OSAPI\_System\_generate\_uuid\_T@{OSAPI\_System\_generate\_uuid\_T}}
+\index{OSAPI\_System\_generate\_uuid\_T@{OSAPI\_System\_generate\_uuid\_T}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_System\_generate\_uuid\_T}{OSAPI\_System\_generate\_uuid\_T}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_ga4f87be5afa72c0f3f72c4cc1b2025c2c} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+System\+\_\+generate\+\_\+uuid\+\_\+T) (struct OSAPI\+\_\+\+System\+UUID \texorpdfstring{$\ast$}{*}uuid\+\_\+out)}
+
+
+
+Generate a unique universal identifier (UUID). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uuid\+\_\+out} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The generated UUID value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SystemClass_gaf82bd8c64189c3811a4f9f6262d01f4b}\index{OSAPI System API@{OSAPI System API}!OSAPI\_System\_get\_ticktime\_T@{OSAPI\_System\_get\_ticktime\_T}}
+\index{OSAPI\_System\_get\_ticktime\_T@{OSAPI\_System\_get\_ticktime\_T}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_System\_get\_ticktime\_T}{OSAPI\_System\_get\_ticktime\_T}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_gaf82bd8c64189c3811a4f9f6262d01f4b} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+System\+\_\+get\+\_\+ticktime\+\_\+T) (\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}sec, \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} \texorpdfstring{$\ast$}{*}nanosec)}
+
+
+
+Get current tick time. 
+
+The ticktime is a time measurement used by Micro to determine how much time has elapsed in a period. It does not have to be an absolute time, but it {\itshape must} be monotonically increasing. For this reason it is important to choose the time source with care. For example, the system time may mbe adjusted backward or forward and this could affect the measure time lapse. The resolution of the tick time is expected to be no less than the system timer, although it is not a requirement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sec} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The current ticktime in seconds \\
+\hline
+{\em nanosec} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Additional nanoseconds in the current ticktime \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SystemClass_ga7c6151c1108897c2e197345eba273b50}\index{OSAPI System API@{OSAPI System API}!OSAPI\_SystemI@{OSAPI\_SystemI}}
+\index{OSAPI\_SystemI@{OSAPI\_SystemI}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SystemI}{OSAPI\_SystemI}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_ga7c6151c1108897c2e197345eba273b50} 
+typedef struct OSAPI\+\_\+\+SystemI OSAPI\+\_\+\+SystemI}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  System API. 
+
+The methods in this interface are called by the corresponding OSAPI\+\_\+\+System function. For example, OSAPI\+\_\+\+System\+\_\+get\+\_\+time() calls system-\/\texorpdfstring{$>$}{>}get\+\_\+time(). 
+
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__OSAPI__SystemClass_gadd86b768131862d5852ac562ff0770ea}\index{OSAPI System API@{OSAPI System API}!OSAPI\_System\_set\_interface@{OSAPI\_System\_set\_interface}}
+\index{OSAPI\_System\_set\_interface@{OSAPI\_System\_set\_interface}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_System\_set\_interface()}{OSAPI\_System\_set\_interface()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_gadd86b768131862d5852ac562ff0770ea} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+System\+\_\+set\+\_\+interface (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structOSAPI__SystemI}{OSAPI\+\_\+\+SystemI}} \texorpdfstring{$\ast$}{*}}]{intf}{}\end{DoxyParamCaption})}
+
+
+
+Set the system interface. 
+
+This function sets the system interface, overriding the current system interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em intf} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} If intf is NULL, all interfaces are set to NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is not thread safe. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{API Restriction\+:}
+This function may be called before \doxylink{group__DDSDomainParticipantFactoryModule_gae787f8bc30714e3bc1989968035d18af}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance}. 
+\end{DoxyParagraph}
+\Hypertarget{group__OSAPI__SystemClass_ga4a2757fc5039d68c0c34244b63e68437}\index{OSAPI System API@{OSAPI System API}!OSAPI\_System\_get\_property@{OSAPI\_System\_get\_property}}
+\index{OSAPI\_System\_get\_property@{OSAPI\_System\_get\_property}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_System\_get\_property()}{OSAPI\_System\_get\_property()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_ga4a2757fc5039d68c0c34244b63e68437} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+System\+\_\+get\+\_\+property (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structOSAPI__SystemProperty}{OSAPI\+\_\+\+System\+Property}} \texorpdfstring{$\ast$}{*}}]{property}{}\end{DoxyParamCaption})}
+
+
+
+Get the system properties. 
+
+Copy the current system properties to the argument. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em property} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The current system properties on success. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is not thread safe. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{API Restriction\+:}
+This function may be called before \doxylink{group__DDSDomainParticipantFactoryModule_gae787f8bc30714e3bc1989968035d18af}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance}. 
+\end{DoxyParagraph}
+\Hypertarget{group__OSAPI__SystemClass_gab054a5d7812c38810322a94174338fa5}\index{OSAPI System API@{OSAPI System API}!OSAPI\_System\_set\_property@{OSAPI\_System\_set\_property}}
+\index{OSAPI\_System\_set\_property@{OSAPI\_System\_set\_property}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_System\_set\_property()}{OSAPI\_System\_set\_property()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_gab054a5d7812c38810322a94174338fa5} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+System\+\_\+set\+\_\+property (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structOSAPI__SystemProperty}{OSAPI\+\_\+\+System\+Property}} \texorpdfstring{$\ast$}{*}}]{property}{}\end{DoxyParamCaption})}
+
+
+
+Set the system properties. 
+
+The system properties can be set until the system has been initialized by calling OSAPI\+\_\+\+System\+\_\+initialize(). Note that OSAPI\+\_\+\+System\+\_\+initialize() is called by \doxylink{group__DDSDomainParticipantFactoryModule_gae787f8bc30714e3bc1989968035d18af}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance()}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em property} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The system properties to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is not thread safe. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{API Restriction\+:}
+This function may be called before \doxylink{group__DDSDomainParticipantFactoryModule_gae787f8bc30714e3bc1989968035d18af}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance}. 
+\end{DoxyParagraph}
+\Hypertarget{group__OSAPI__SystemClass_gafbbf1eace1bedb14f6cdec9aaf78fc39}\index{OSAPI System API@{OSAPI System API}!OSAPI\_System\_get\_native\_interface@{OSAPI\_System\_get\_native\_interface}}
+\index{OSAPI\_System\_get\_native\_interface@{OSAPI\_System\_get\_native\_interface}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_System\_get\_native\_interface()}{OSAPI\_System\_get\_native\_interface()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_gafbbf1eace1bedb14f6cdec9aaf78fc39} 
+void OSAPI\+\_\+\+System\+\_\+get\+\_\+native\+\_\+interface (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structOSAPI__SystemI}{OSAPI\+\_\+\+SystemI}} \texorpdfstring{$\ast$}{*}}]{intf}{}\end{DoxyParamCaption})}
+
+
+
+Get the native system interface. 
+
+This function returns the native system interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em intf} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is not thread safe. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{API Restriction\+:}
+This function may be called before \doxylink{group__DDSDomainParticipantFactoryModule_gae787f8bc30714e3bc1989968035d18af}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance}. 
+\end{DoxyParagraph}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}, and \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+
+\Hypertarget{group__OSAPI__SystemClass_gaaafb0bd70349bfb5c881f55a57a14521}\index{OSAPI System API@{OSAPI System API}!OSAPI\_System\_clock\_tick@{OSAPI\_System\_clock\_tick}}
+\index{OSAPI\_System\_clock\_tick@{OSAPI\_System\_clock\_tick}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_System\_clock\_tick()}{OSAPI\_System\_clock\_tick()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_gaaafb0bd70349bfb5c881f55a57a14521} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+System\+\_\+clock\+\_\+tick (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}}]{ticks}{}\end{DoxyParamCaption})}
+
+
+
+Advance the internal RTI Connext DDS Micro timers with the number specified clock ticks. 
+
+RTI Connext DDS Micro uses internal timers to maintain and detect DDS events, such as sending participant announcements and detecting missed deadlines. These timers are updated at fixed intervals called ticks where each tick is equal to the time specified by the timer resolution from OSAPI\+\_\+\+System\+\_\+get\+\_\+timer\+\_\+resolution. However, because RTI Connext DDS Micro does not maintain its own timer reference it is up to the platform integration to inform RTI Connext DDS Micro when ticks have elapsed by calling the clock\+\_\+tick function. The clock\+\_\+tick function advances the internal timers with tick ticks. It is up to the caller to determine how many ticks have elapsed when calling the clock\+\_\+tick function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticks} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The number of ticks that have passed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is not thread safe. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{API Restriction\+:}
+This function {\itshape  must } only be called after \doxylink{group__DDSDomainParticipantFactoryModule_gae787f8bc30714e3bc1989968035d18af}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance}. 
+\end{DoxyParagraph}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+
+\Hypertarget{group__OSAPI__SystemClass_ga078cdb3811e2b19aff4f97c3c94aefc6}\index{OSAPI System API@{OSAPI System API}!OSAPI\_System\_clock\_tick\_from\_time@{OSAPI\_System\_clock\_tick\_from\_time}}
+\index{OSAPI\_System\_clock\_tick\_from\_time@{OSAPI\_System\_clock\_tick\_from\_time}!OSAPI System API@{OSAPI System API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_System\_clock\_tick\_from\_time()}{OSAPI\_System\_clock\_tick\_from\_time()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SystemClass_ga078cdb3811e2b19aff4f97c3c94aefc6} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+System\+\_\+clock\+\_\+tick\+\_\+from\+\_\+time (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Advance the internal RTI Connext DDS Micro timers using the \doxylink{structOSAPI__SystemI_aee47a6152bfec08a8f859ee6abd68446}{OSAPI\+\_\+\+System\+I\+::get\+\_\+time} API. 
+
+RTI Connext DDS Micro uses internal timers to maintain and detect DDS events, such as sending participant announcements and detecting missed deadlines. These timers are updated at fixed intervals called ticks where each tick is equal to the time specified by the timer resolution from \doxylink{structOSAPI__SystemI_a9e4c40eae185a7d2c6bb578f3188d89c}{OSAPI\+\_\+\+System\+I.\+get\+\_\+timer\+\_\+resolution}. However, because RTI Connext DDS Micro does not maintain its own timer reference it is up to the platform integration to inform RTI Connext DDS Micro when ticks have elapsed by calling the clock\+\_\+tick or \textquotesingle{}clock\+\_\+tick\+\_\+from\+\_\+time\textquotesingle{} function. 
+
+The clock\+\_\+tick\+\_\+from\+\_\+time function advances the internal timers with tick ticks calculated from the amount of time that has elapsed between calls to \doxylink{structOSAPI__SystemI_aee47a6152bfec08a8f859ee6abd68446}{OSAPI\+\_\+\+System\+I.\+get\+\_\+time}. Each time clock\+\_\+tick\+\_\+from\+\_\+time is called, \doxylink{structOSAPI__SystemI_aee47a6152bfec08a8f859ee6abd68446}{OSAPI\+\_\+\+System\+I.\+get\+\_\+time} is called to determine how much time since the previous call to clock\+\_\+tick\+\_\+from\+\_\+time. The difference is converted to ticks using the resolution from \doxylink{structOSAPI__SystemI_a9e4c40eae185a7d2c6bb578f3188d89c}{OSAPI\+\_\+\+System\+I.\+get\+\_\+timer\+\_\+resolution} and all internal timers are advanced using the calculated number of ticks. Any residual time left, that is any time less than the \doxylink{structOSAPI__SystemI_a9e4c40eae185a7d2c6bb578f3188d89c}{OSAPI\+\_\+\+System\+I.\+get\+\_\+timer\+\_\+resolution}, is carried over and used on the next call to clock\+\_\+tick\+\_\+from\+\_\+time. 
+
+Important\+: The first call to clock\+\_\+tick\+\_\+from\+\_\+time establishes the baseline for calculating the difference in time. 
+
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is not thread safe. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{API Restriction\+:}
+This function {\itshape  must } only be called after \doxylink{group__DDSDomainParticipantFactoryModule_gae787f8bc30714e3bc1989968035d18af}{DDS\+\_\+\+Domain\+Participant\+Factory\+\_\+get\+\_\+instance}. 
+\end{DoxyParagraph}

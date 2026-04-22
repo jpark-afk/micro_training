@@ -1,0 +1,80 @@
+\doxysubsubsubsection{Entity Support}
+\hypertarget{group__DDSEntityModule}{}\label{group__DDSEntityModule}\index{Entity Support@{Entity Support}}
+
+
+\doxylink{classDDSEntity}{DDSEntity}, \doxylink{classDDSListener}{DDSListener} and related items.  
+
+
+\doxysubsubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classDDSListener}{DDSListener}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Abstract base class for all Listener interfaces. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classDDSDomainEntity}{DDSDomain\+Entity}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Abstract base class for all DDS entities except for the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classDDSEntity}{DDSEntity}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Abstract base class for all the DDS objects that support QoS policies, and a listener. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__DDSEntityModule_ga942a5ab2fd1acc2b36190e45802ba0ea}{DDS\+\_\+\+Entity\+Kind\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa9eb11ff6e9fce5f42166c9f720cb341c}{DDS\+\_\+\+UNKNOWN\+\_\+\+ENTITY\+\_\+\+KIND}} = 0
+, \mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaaa84bdcc14a4b25f2bdea8d664e48300f}{DDS\+\_\+\+PARTICIPANT\+\_\+\+ENTITY\+\_\+\+KIND}} = 1
+, \mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa56e7e496b7d6526ef67d8278048ad552}{DDS\+\_\+\+PUBLISHER\+\_\+\+ENTITY\+\_\+\+KIND}} = 2
+, \mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa59fda38ef539f6ebb6a38e4d1d39018a}{DDS\+\_\+\+SUBSCRIBER\+\_\+\+ENTITY\+\_\+\+KIND}} = 3
+, \newline
+\mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa22d3153b25e710a02de0d9ada56d4374}{DDS\+\_\+\+TOPIC\+\_\+\+ENTITY\+\_\+\+KIND}} = 4
+, \mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaab28db5847b5458ddd988d20a0fa8283e}{DDS\+\_\+\+DATAREADER\+\_\+\+ENTITY\+\_\+\+KIND}} = 5
+, \mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa542003fa6737b0bbb76a290e3c9e9b47}{DDS\+\_\+\+DATAWRITER\+\_\+\+ENTITY\+\_\+\+KIND}} = 6
+ \}
+\begin{DoxyCompactList}\small\item\em Type of a DDS entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+\doxylink{classDDSEntity}{DDSEntity}, \doxylink{classDDSListener}{DDSListener} and related items. 
+
+\doxylink{classDDSEntity}{DDSEntity} subtypes are created and destroyed by factory objects. With the exception of \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}, whose factory is \doxylink{classDDSDomainParticipantFactory}{DDSDomain\+Participant\+Factory}, all \doxylink{classDDSEntity}{DDSEntity} factory objects are themselves \doxylink{classDDSEntity}{DDSEntity} subtypes as well. 
+
+{\itshape Important\+:} all \doxylink{classDDSEntity}{DDSEntity} delete operations are inherently thread-\/unsafe. The user must take extreme care that a given \doxylink{classDDSEntity}{DDSEntity} is not destroyed in one thread while being used concurrently (including being deleted concurrently) in another thread. An operation\textquotesingle{}s effect in the presence of the concurrent deletion of the operation\textquotesingle{}s target \doxylink{classDDSEntity}{DDSEntity} is undefined. 
+
+\doxysubsubsubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__DDSEntityModule_ga942a5ab2fd1acc2b36190e45802ba0ea}\index{Entity Support@{Entity Support}!DDS\_EntityKind\_t@{DDS\_EntityKind\_t}}
+\index{DDS\_EntityKind\_t@{DDS\_EntityKind\_t}!Entity Support@{Entity Support}}
+\doxyparagraph{\texorpdfstring{DDS\_EntityKind\_t}{DDS\_EntityKind\_t}}
+{\footnotesize\ttfamily \label{group__DDSEntityModule_ga942a5ab2fd1acc2b36190e45802ba0ea} 
+enum \mbox{\hyperlink{group__DDSEntityModule_ga942a5ab2fd1acc2b36190e45802ba0ea}{DDS\+\_\+\+Entity\+Kind\+\_\+t}}}
+
+
+
+Type of a DDS entity. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_UNKNOWN\_ENTITY\_KIND@{DDS\_UNKNOWN\_ENTITY\_KIND}!Entity Support@{Entity Support}}\index{Entity Support@{Entity Support}!DDS\_UNKNOWN\_ENTITY\_KIND@{DDS\_UNKNOWN\_ENTITY\_KIND}}}\Hypertarget{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa9eb11ff6e9fce5f42166c9f720cb341c}\label{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa9eb11ff6e9fce5f42166c9f720cb341c} 
+DDS\+\_\+\+UNKNOWN\+\_\+\+ENTITY\+\_\+\+KIND&Entity is of an unknown type. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_PARTICIPANT\_ENTITY\_KIND@{DDS\_PARTICIPANT\_ENTITY\_KIND}!Entity Support@{Entity Support}}\index{Entity Support@{Entity Support}!DDS\_PARTICIPANT\_ENTITY\_KIND@{DDS\_PARTICIPANT\_ENTITY\_KIND}}}\Hypertarget{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaaa84bdcc14a4b25f2bdea8d664e48300f}\label{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaaa84bdcc14a4b25f2bdea8d664e48300f} 
+DDS\+\_\+\+PARTICIPANT\+\_\+\+ENTITY\+\_\+\+KIND&Entity is a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_PUBLISHER\_ENTITY\_KIND@{DDS\_PUBLISHER\_ENTITY\_KIND}!Entity Support@{Entity Support}}\index{Entity Support@{Entity Support}!DDS\_PUBLISHER\_ENTITY\_KIND@{DDS\_PUBLISHER\_ENTITY\_KIND}}}\Hypertarget{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa56e7e496b7d6526ef67d8278048ad552}\label{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa56e7e496b7d6526ef67d8278048ad552} 
+DDS\+\_\+\+PUBLISHER\+\_\+\+ENTITY\+\_\+\+KIND&Entity is a \doxylink{classDDSPublisher}{DDSPublisher}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_SUBSCRIBER\_ENTITY\_KIND@{DDS\_SUBSCRIBER\_ENTITY\_KIND}!Entity Support@{Entity Support}}\index{Entity Support@{Entity Support}!DDS\_SUBSCRIBER\_ENTITY\_KIND@{DDS\_SUBSCRIBER\_ENTITY\_KIND}}}\Hypertarget{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa59fda38ef539f6ebb6a38e4d1d39018a}\label{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa59fda38ef539f6ebb6a38e4d1d39018a} 
+DDS\+\_\+\+SUBSCRIBER\+\_\+\+ENTITY\+\_\+\+KIND&Entity is a \doxylink{classDDSSubscriber}{DDSSubscriber}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_TOPIC\_ENTITY\_KIND@{DDS\_TOPIC\_ENTITY\_KIND}!Entity Support@{Entity Support}}\index{Entity Support@{Entity Support}!DDS\_TOPIC\_ENTITY\_KIND@{DDS\_TOPIC\_ENTITY\_KIND}}}\Hypertarget{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa22d3153b25e710a02de0d9ada56d4374}\label{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa22d3153b25e710a02de0d9ada56d4374} 
+DDS\+\_\+\+TOPIC\+\_\+\+ENTITY\+\_\+\+KIND&Entity is a \doxylink{classDDSTopic}{DDSTopic}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_DATAREADER\_ENTITY\_KIND@{DDS\_DATAREADER\_ENTITY\_KIND}!Entity Support@{Entity Support}}\index{Entity Support@{Entity Support}!DDS\_DATAREADER\_ENTITY\_KIND@{DDS\_DATAREADER\_ENTITY\_KIND}}}\Hypertarget{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaab28db5847b5458ddd988d20a0fa8283e}\label{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaab28db5847b5458ddd988d20a0fa8283e} 
+DDS\+\_\+\+DATAREADER\+\_\+\+ENTITY\+\_\+\+KIND&Entity is a \doxylink{classDDSDataReader}{DDSData\+Reader}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_DATAWRITER\_ENTITY\_KIND@{DDS\_DATAWRITER\_ENTITY\_KIND}!Entity Support@{Entity Support}}\index{Entity Support@{Entity Support}!DDS\_DATAWRITER\_ENTITY\_KIND@{DDS\_DATAWRITER\_ENTITY\_KIND}}}\Hypertarget{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa542003fa6737b0bbb76a290e3c9e9b47}\label{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa542003fa6737b0bbb76a290e3c9e9b47} 
+DDS\+\_\+\+DATAWRITER\+\_\+\+ENTITY\+\_\+\+KIND&Entity is a \doxylink{classDDSDataWriter}{DDSData\+Writer}. \\
+\hline
+
+\end{DoxyEnumFields}

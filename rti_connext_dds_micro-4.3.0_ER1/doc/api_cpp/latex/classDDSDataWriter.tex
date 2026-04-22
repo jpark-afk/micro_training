@@ -1,0 +1,694 @@
+\doxysubsection{DDSData\+Writer Class Reference}
+\hypertarget{classDDSDataWriter}{}\label{classDDSDataWriter}\index{DDSDataWriter@{DDSDataWriter}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application to set the value of the data to be published under a given \doxylink{classDDSTopic}{DDSTopic}.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+publication.\+hxx$>$}
+
+Inheritance diagram for DDSData\+Writer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classDDSDataWriter}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_a7240c9ac8e70753aab992f799387819f}{write\+\_\+untyped}} (const void \texorpdfstring{$\ast$}{*}instance\+\_\+data, const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&handle)=0
+\begin{DoxyCompactList}\small\item\em Modifies the value of a data instance. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_af6c957991d7f956b5a16ba20bd800beb}{assert\+\_\+liveliness}} ()=0
+\begin{DoxyCompactList}\small\item\em This operation manually asserts the liveliness of this \doxylink{classDDSDataWriter}{DDSData\+Writer}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSTopic}{DDSTopic}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDataWriter_ac1774b3c1527d06165377a40aefe1fe1}{get\+\_\+topic}} ()=0
+\begin{DoxyCompactList}\small\item\em This operation returns the \doxylink{classDDSTopic}{DDSTopic} associated with the \doxylink{classDDSDataWriter}{DDSData\+Writer}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSPublisher}{DDSPublisher}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDataWriter_aa6bba15f503dff7f2e240ba367c9d10a}{get\+\_\+publisher}} ()=0
+\begin{DoxyCompactList}\small\item\em This operation returns the \doxylink{classDDSPublisher}{DDSPublisher} to which the \doxylink{classDDSDataWriter}{DDSData\+Writer} belongs. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_aca4b56911f8c28c91fed28751bfbea77}{get\+\_\+qos}} (\mbox{\hyperlink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Gets the writer QoS. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_aaaec593b8185d0270691c9b5880518a6}{set\+\_\+qos}} (const \mbox{\hyperlink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Sets the writer QoS. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_aa618e5c9631a15a03c052e473e028486}{set\+\_\+listener}} (const \mbox{\hyperlink{classDDSDataWriterListener}{DDSData\+Writer\+Listener}} \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} mask)=0
+\begin{DoxyCompactList}\small\item\em Sets the writer listener. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSDataWriterListener}{DDSData\+Writer\+Listener}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSDataWriter_a5b0383701a2aaed46652655fdb7882c1}{get\+\_\+listener}} ()=0
+\begin{DoxyCompactList}\small\item\em Get the writer listener. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}{register\+\_\+instance\+\_\+untyped}} (const void \texorpdfstring{$\ast$}{*}instance\+\_\+data)=0
+\begin{DoxyCompactList}\small\item\em Informs RTI Connext DDS Micro that the application will be modifying a particular instance. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_a29869479232ffbab62fd590f46a699b2}{register\+\_\+instance\+\_\+w\+\_\+timestamp\+\_\+untyped}} (const void \texorpdfstring{$\ast$}{*}instance\+\_\+data, const \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \&source\+\_\+timestamp)=0
+\begin{DoxyCompactList}\small\item\em Performs the same function as \doxylink{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}{DDSData\+Writer\+::register\+\_\+instance\+\_\+untyped} except that it also provides the value for the {\ttfamily source\+\_\+timestamp}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}{unregister\+\_\+instance\+\_\+untyped}} (const void \texorpdfstring{$\ast$}{*}instance\+\_\+data, const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&handle)=0
+\begin{DoxyCompactList}\small\item\em Reverses the action of \doxylink{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}{DDSData\+Writer\+::register\+\_\+instance\+\_\+untyped}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_a7f789b369cbfb99700434bf25b28c236}{unregister\+\_\+instance\+\_\+w\+\_\+timestamp\+\_\+untyped}} (const void \texorpdfstring{$\ast$}{*}instance\+\_\+data, const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&handle, const \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \&source\+\_\+timestamp)=0
+\begin{DoxyCompactList}\small\item\em Performs the same function as \doxylink{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}{DDSData\+Writer\+::unregister\+\_\+instance\+\_\+untyped} except that it also provides the value for the {\ttfamily source\+\_\+timestamp}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_aa5c5ed1719eee3e7545f357624e50317}{dispose\+\_\+untyped}} (const void \texorpdfstring{$\ast$}{*}instance\+\_\+data, const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&handle)=0
+\begin{DoxyCompactList}\small\item\em Requests the middleware to delete the data. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_a19b1472af07283ff1ff083049b046ed7}{dispose\+\_\+w\+\_\+timestamp\+\_\+untyped}} (const void \texorpdfstring{$\ast$}{*}instance\+\_\+data, const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&handle, const \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \&source\+\_\+timestamp)=0
+\begin{DoxyCompactList}\small\item\em Performs the same function as \doxylink{classDDSDataWriter_aa5c5ed1719eee3e7545f357624e50317}{DDSData\+Writer\+::dispose\+\_\+untyped} except that it also provides the value for the {\ttfamily source\+\_\+timestamp}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_a297d4f9fe517be3d6eedc0db08ddb166}{write\+\_\+w\+\_\+timestamp\+\_\+untyped}} (const void \texorpdfstring{$\ast$}{*}instance\+\_\+data, const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&handle, const \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \&source\+\_\+timestamp)=0
+\begin{DoxyCompactList}\small\item\em Performs the same function as \doxylink{classDDSDataWriter_a7240c9ac8e70753aab992f799387819f}{DDSData\+Writer\+::write\+\_\+untyped} except that it also provides the value for the {\ttfamily source\+\_\+timestamp}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_a8760b867970dd7175a3ad1ede266131e}{get\+\_\+publication\+\_\+matched\+\_\+status}} (\mbox{\hyperlink{structDDS__PublicationMatchedStatus}{DDS\+\_\+\+Publication\+Matched\+Status}} \&status)=0
+\begin{DoxyCompactList}\small\item\em Accesses the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa3052f04c67620660f92aa3b5da2455d2}{DDS\+\_\+\+PUBLICATION\+\_\+\+MATCHED\+\_\+\+STATUS} communication status. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_aff02857382e8bb8ecaf900e551f32c1d}{get\+\_\+liveliness\+\_\+lost\+\_\+status}} (\mbox{\hyperlink{structDDS__LivelinessLostStatus}{DDS\+\_\+\+Liveliness\+Lost\+Status}} \&status)=0
+\begin{DoxyCompactList}\small\item\em Accesses the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS} communication status. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_accd7e48a30c1fc154548c22e4bc8b888}{get\+\_\+matched\+\_\+subscriptions}} (\mbox{\hyperlink{structDDS__InstanceHandleSeq}{DDS\+\_\+\+Instance\+Handle\+Seq}} \&subscription\+\_\+handles)=0
+\begin{DoxyCompactList}\small\item\em Returns a sequence containing \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} for all the remote \doxylink{classDDSDataReader}{DDSData\+Reader} that have been matched by the \doxylink{classDDSDataWriter}{DDSData\+Writer}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_a06fbe94aef2477ef73a7190c53e67ae4}{get\+\_\+matched\+\_\+subscription\+\_\+data}} (\mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \&subscription\+\_\+data, const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&subscription\+\_\+handle)=0
+\begin{DoxyCompactList}\small\item\em Returns information about a remote \doxylink{classDDSDataReader}{DDSData\+Reader} that has been matched by the \doxylink{classDDSDataWriter}{DDSData\+Writer}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_a47ad2bb2418eb9e7479a829a310e8023}{get\+\_\+offered\+\_\+deadline\+\_\+missed\+\_\+status}} (\mbox{\hyperlink{structDDS__OfferedDeadlineMissedStatus}{DDS\+\_\+\+Offered\+Deadline\+Missed\+Status}} \&status)=0
+\begin{DoxyCompactList}\small\item\em Accesses the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa84f12530ffc8d6e68906054b06972342}{DDS\+\_\+\+OFFERED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS} communication status. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSDataWriter_a488b47b425fe6ce8d5510e6bbf935777}{get\+\_\+offered\+\_\+incompatible\+\_\+qos\+\_\+status}} (\mbox{\hyperlink{structDDS__OfferedIncompatibleQosStatus}{DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status}} \&status)=0
+\begin{DoxyCompactList}\small\item\em Accesses the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} communication status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{classDDSEntity}{DDSEntity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSEntity_ac8f6cb9f8f0d2eac1daed34b6eb60e11}{enable}} ()
+\begin{DoxyCompactList}\small\item\em Enables the \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classDDSStatusCondition}{DDSStatus\+Condition}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSEntity_a1a0f08bee56cbd55a299b92cde333a74}{get\+\_\+statuscondition}} ()
+\begin{DoxyCompactList}\small\item\em Returns the \doxylink{classDDSStatusCondition}{DDSStatus\+Condition} associated with a particular \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} \mbox{\hyperlink{classDDSEntity_ade1b0388ee69bf07981a70e5b17cc857}{get\+\_\+status\+\_\+changes}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the list of communication statuses in the \doxylink{classDDSEntity}{DDSEntity} that are triggered. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{classDDSEntity_af45327c05987d9ff5beb7271b00ed883}{get\+\_\+instance\+\_\+handle}} ()
+\begin{DoxyCompactList}\small\item\em Allows access to the \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} associated with the \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application to set the value of the data to be published under a given \doxylink{classDDSTopic}{DDSTopic}. 
+
+\begin{DoxyParagraph}{QoS\+:}
+\doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS}, \doxylink{structDDS__LivelinessLostStatus}{DDS\+\_\+\+Liveliness\+Lost\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa84f12530ffc8d6e68906054b06972342}{DDS\+\_\+\+OFFERED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS}, \doxylink{structDDS__OfferedDeadlineMissedStatus}{DDS\+\_\+\+Offered\+Deadline\+Missed\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}, \doxylink{structDDS__OfferedIncompatibleQosStatus}{DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa3052f04c67620660f92aa3b5da2455d2}{DDS\+\_\+\+PUBLICATION\+\_\+\+MATCHED\+\_\+\+STATUS}, \doxylink{structDDS__PublicationMatchedStatus}{DDS\+\_\+\+Publication\+Matched\+Status}; ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Listener\+:}
+\doxylink{classDDSDataWriterListener}{DDSData\+Writer\+Listener} 
+\end{DoxyParagraph}
+A \doxylink{classDDSDataWriter}{DDSData\+Writer} is attached to exactly one \doxylink{classDDSPublisher}{DDSPublisher}, that acts as a factory for it. 
+
+A \doxylink{classDDSDataWriter}{DDSData\+Writer} is bound to exactly one \doxylink{classDDSTopic}{DDSTopic} and therefore to exactly one data type. The \doxylink{classDDSTopic}{DDSTopic} must exist prior to the \doxylink{classDDSDataWriter}{DDSData\+Writer}\textquotesingle{}s creation. 
+
+\doxylink{classDDSDataWriter}{DDSData\+Writer} is an abstract class. It must be specialized for each particular application data-\/type. The additional methods or functions that must be defined in the auto-\/generated class for a hypothetical application type {\ttfamily Foo} are specified in the example type \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+
+The following operations may be called even if the \doxylink{classDDSDataWriter}{DDSData\+Writer} is not enabled. Other operations will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED} if called on a disabled \doxylink{classDDSDataWriter}{DDSData\+Writer}\+: \begin{DoxyItemize}
+\item The base-\/class operations \doxylink{classDDSEntity_ac8f6cb9f8f0d2eac1daed34b6eb60e11}{DDSEntity\+::enable}  ,\doxylink{classDDSDataWriter_aca4b56911f8c28c91fed28751bfbea77}{DDSData\+Writer\+::get\+\_\+qos} ,\doxylink{classDDSDataWriter_a5b0383701a2aaed46652655fdb7882c1}{DDSData\+Writer\+::get\+\_\+listener} ,and \doxylink{classDDSDataWriter_aaaec593b8185d0270691c9b5880518a6}{DDSData\+Writer\+::set\+\_\+qos},\doxylink{classDDSDataWriter_aa618e5c9631a15a03c052e473e028486}{DDSData\+Writer\+::set\+\_\+listener}  \item \doxylink{classDDSDataWriter_aff02857382e8bb8ecaf900e551f32c1d}{DDSData\+Writer\+::get\+\_\+liveliness\+\_\+lost\+\_\+status} \doxylink{classDDSDataWriter_a47ad2bb2418eb9e7479a829a310e8023}{DDSData\+Writer\+::get\+\_\+offered\+\_\+deadline\+\_\+missed\+\_\+status} \doxylink{classDDSDataWriter_a488b47b425fe6ce8d5510e6bbf935777}{DDSData\+Writer\+::get\+\_\+offered\+\_\+incompatible\+\_\+qos\+\_\+status} \doxylink{classDDSDataWriter_a8760b867970dd7175a3ad1ede266131e}{DDSData\+Writer\+::get\+\_\+publication\+\_\+matched\+\_\+status} \end{DoxyItemize}
+Several \doxylink{classDDSDataWriter}{DDSData\+Writer} may operate in different threads. If they share the same \doxylink{classDDSPublisher}{DDSPublisher}, the middleware guarantees that its operations are thread-\/safe. 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classDDSDataWriter_a7240c9ac8e70753aab992f799387819f}\index{DDSDataWriter@{DDSDataWriter}!write\_untyped@{write\_untyped}}
+\index{write\_untyped@{write\_untyped}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{write\_untyped()}{write\_untyped()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_a7240c9ac8e70753aab992f799387819f} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::write\+\_\+untyped (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{instance\+\_\+data}{, }\item[{const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&}]{handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Modifies the value of a data instance. 
+
+When this operation is used, RTI Connext DDS Micro will automatically supply the value of the {\ttfamily source\+\_\+timestamp} that is made available to \doxylink{classDDSDataReader}{DDSData\+Reader} objects by means of the {\ttfamily source\+\_\+timestamp} attribute inside the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}. (Refer to \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} for details). 
+
+As a side effect, this operation asserts liveliness on the \doxylink{classDDSDataWriter}{DDSData\+Writer} itself, the \doxylink{classDDSPublisher}{DDSPublisher} and the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. 
+
+Note that the special value \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL} can be used for the parameter {\ttfamily handle}. This indicates the identity of the instance should be automatically deduced from the {\ttfamily instance\+\_\+data} (by means of the {\ttfamily key}). 
+
+If {\ttfamily handle} is any value other than \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, then it must correspond to an instance that has been registered. If there is no correspondence, the operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}. 
+
+RTI Connext DDS Micro will not detect the error when the {\ttfamily handle} is any value other than \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, corresponds to an instance that has been registered, but does not correspond to the instance deduced from the {\ttfamily instance\+\_\+data} (by means of the {\ttfamily key}). RTI Connext DDS Micro will treat as if the write() operation is for the instance as indicated by the {\ttfamily handle}. 
+
+If there are no instance resources left, this operation may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES}. Calling \doxylink{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}{DDSData\+Writer\+::unregister\+\_\+instance\+\_\+untyped} may help freeing up some resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instance\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The data to write.  \\
+\hline
+{\em handle} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Either the handle returned by a previous call to \doxylink{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}{DDSData\+Writer\+::register\+\_\+instance\+\_\+untyped}, or else the special value \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}. If the data {\itshape has} a key and {\ttfamily handle} is not \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, {\ttfamily handle} must represent a registered instance of the data. Otherwise, this method may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED}. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDataReader}{DDSData\+Reader} 
+
+\doxylink{classDDSDataWriter_a297d4f9fe517be3d6eedc0db08ddb166}{DDSData\+Writer\+::write\+\_\+w\+\_\+timestamp\+\_\+untyped} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDataWriter_af6c957991d7f956b5a16ba20bd800beb}\index{DDSDataWriter@{DDSDataWriter}!assert\_liveliness@{assert\_liveliness}}
+\index{assert\_liveliness@{assert\_liveliness}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{assert\_liveliness()}{assert\_liveliness()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_af6c957991d7f956b5a16ba20bd800beb} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::assert\+\_\+liveliness (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+This operation manually asserts the liveliness of this \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+
+This is used in combination with the \doxylink{group__DDSLivelinessQosModule}{LIVELINESS} policy to indicate to RTI Connext DDS Micro that the \doxylink{classDDSDataWriter}{DDSData\+Writer} remains active. 
+
+You only need to use this operation if the \doxylink{group__DDSLivelinessQosModule}{LIVELINESS} setting is \doxylink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a6ea670a089709fe482e1c92f5ad1c255}{DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+TOPIC\+\_\+\+LIVELINESS\+\_\+\+QOS}. Otherwise, it has no effect. 
+
+{\bfseries{Note\+:}} writing data via the \doxylink{structFooDataWriter_ab2c44dd15f5daf7eddf3773239101478}{Foo\+Data\+Writer\+::write} or \doxylink{structFooDataWriter_a2d8af76eb0a89175785d696879566bbb}{Foo\+Data\+Writer\+::write\+\_\+w\+\_\+timestamp} operation asserts liveliness on the \doxylink{classDDSDataWriter}{DDSData\+Writer} itself, and its \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. Consequently the use of \doxylink{classDDSDataWriter_af6c957991d7f956b5a16ba20bd800beb}{assert\+\_\+liveliness()} is only needed if the application is not writing data regularly. 
+
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED} 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__LivelinessQosPolicy}{DDS\+\_\+\+Liveliness\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDataWriter_ac1774b3c1527d06165377a40aefe1fe1}\index{DDSDataWriter@{DDSDataWriter}!get\_topic@{get\_topic}}
+\index{get\_topic@{get\_topic}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{get\_topic()}{get\_topic()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_ac1774b3c1527d06165377a40aefe1fe1} 
+virtual \mbox{\hyperlink{classDDSTopic}{DDSTopic}} \texorpdfstring{$\ast$}{*} DDSData\+Writer\+::get\+\_\+topic (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+This operation returns the \doxylink{classDDSTopic}{DDSTopic} associated with the \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+
+This is the same \doxylink{classDDSTopic}{DDSTopic} that was used to create the \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{classDDSTopic}{DDSTopic} that was used to create the \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSDataWriter_aa6bba15f503dff7f2e240ba367c9d10a}\index{DDSDataWriter@{DDSDataWriter}!get\_publisher@{get\_publisher}}
+\index{get\_publisher@{get\_publisher}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{get\_publisher()}{get\_publisher()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_aa6bba15f503dff7f2e240ba367c9d10a} 
+virtual \mbox{\hyperlink{classDDSPublisher}{DDSPublisher}} \texorpdfstring{$\ast$}{*} DDSData\+Writer\+::get\+\_\+publisher (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+This operation returns the \doxylink{classDDSPublisher}{DDSPublisher} to which the \doxylink{classDDSDataWriter}{DDSData\+Writer} belongs. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{classDDSPublisher}{DDSPublisher} to which the \doxylink{classDDSDataWriter}{DDSData\+Writer} belongs. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSDataWriter_aca4b56911f8c28c91fed28751bfbea77}\index{DDSDataWriter@{DDSDataWriter}!get\_qos@{get\_qos}}
+\index{get\_qos@{get\_qos}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{get\_qos()}{get\_qos()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_aca4b56911f8c28c91fed28751bfbea77} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::get\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gets the writer QoS. 
+
+This method may potentially allocate memory depending on the sequences contained in some QoS policies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} to be filled up.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{dds_cpp_infrastructure.hxx_Entity_get_qos}{get\+\_\+qos (abstract)}{2} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDataWriter_aaaec593b8185d0270691c9b5880518a6}\index{DDSDataWriter@{DDSDataWriter}!set\_qos@{set\_qos}}
+\index{set\_qos@{set\_qos}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{set\_qos()}{set\_qos()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_aaaec593b8185d0270691c9b5880518a6} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::set\+\_\+qos (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Sets the writer QoS. 
+
+This operation modifies the QoS of the \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+
+The \doxylink{structDDS__DataWriterQos_a9eaeedfdde65d28d210563e2039bd123}{DDS\+\_\+\+Data\+Writer\+Qos\+::deadline} and \doxylink{structDDS__DataWriterQos_a2e629630ceb241efaa8699f728847f7b}{DDS\+\_\+\+Data\+Writer\+Qos\+::ownership\+\_\+strength}, can be changed. The other policies are immutable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} to be set to. Policies must be consistent. Policies cannot be changed after \doxylink{classDDSDataWriter}{DDSData\+Writer} is enabled. The special value \doxylink{group__DDSPublisherModule_gad6a57a9e8611ae9cecea897141d0c275}{DDS\+\_\+\+DATAWRITER\+\_\+\+QOS\+\_\+\+DEFAULT} can be used to indicate that the QoS of the \doxylink{classDDSDataWriter}{DDSData\+Writer} should be changed to match the current default \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} set in the \doxylink{classDDSPublisher}{DDSPublisher}.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a6e50f4433cf3e47737f4d317d0a4a707}{DDS\+\_\+\+RETCODE\+\_\+\+IMMUTABLE\+\_\+\+POLICY} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} for rules on consistency among QoS 
+
+\doxysectlink{dds_cpp_infrastructure.hxx_Entity_set_qos}{set\+\_\+qos (abstract)}{2} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDataWriter_aa618e5c9631a15a03c052e473e028486}\index{DDSDataWriter@{DDSDataWriter}!set\_listener@{set\_listener}}
+\index{set\_listener@{set\_listener}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{set\_listener()}{set\_listener()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_aa618e5c9631a15a03c052e473e028486} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::set\+\_\+listener (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDDSDataWriterListener}{DDSData\+Writer\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{, }\item[{\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}}}]{mask}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Sets the writer listener. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{classDDSDataWriterListener}{DDSData\+Writer\+Listener} to set to \\
+\hline
+{\em mask} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask} associated with the \doxylink{classDDSDataWriterListener}{DDSData\+Writer\+Listener}.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{dds_cpp_infrastructure.hxx_Entity_set_listener}{set\+\_\+listener (abstract)}{2} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDataWriter_a5b0383701a2aaed46652655fdb7882c1}\index{DDSDataWriter@{DDSDataWriter}!get\_listener@{get\_listener}}
+\index{get\_listener@{get\_listener}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{get\_listener()}{get\_listener()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_a5b0383701a2aaed46652655fdb7882c1} 
+virtual \mbox{\hyperlink{classDDSDataWriterListener}{DDSData\+Writer\+Listener}} \texorpdfstring{$\ast$}{*} DDSData\+Writer\+::get\+\_\+listener (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the writer listener. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{classDDSDataWriterListener}{DDSData\+Writer\+Listener} of the \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+\end{DoxyReturn}
+\Hypertarget{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}\index{DDSDataWriter@{DDSDataWriter}!register\_instance\_untyped@{register\_instance\_untyped}}
+\index{register\_instance\_untyped@{register\_instance\_untyped}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{register\_instance\_untyped()}{register\_instance\_untyped()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a} 
+virtual \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} DDSData\+Writer\+::register\+\_\+instance\+\_\+untyped (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{instance\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Informs RTI Connext DDS Micro that the application will be modifying a particular instance. 
+
+This operation is only useful for keyed data types. Using it for non-\/keyed types causes no effect and returns \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}. The operation takes as a parameter an instance (of which only the key value is examined) and returns a {\ttfamily handle} that can be used in successive write() or dispose() operations. 
+
+The operation gives RTI Connext DDS Micro an opportunity to pre-\/configure itself to improve performance. 
+
+The use of this operation by an application is optional even for keyed types. If an instance has not been pre-\/registered, the application can use the special value \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL} as the \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} parameter to the write or dispose operation and RTI Connext DDS Micro will auto-\/register the instance. 
+
+For best performance, the operation should be invoked prior to calling any operation that modifies the instance, such as \doxylink{classDDSDataWriter_a7240c9ac8e70753aab992f799387819f}{DDSData\+Writer\+::write\+\_\+untyped}, \doxylink{classDDSDataWriter_a297d4f9fe517be3d6eedc0db08ddb166}{DDSData\+Writer\+::write\+\_\+w\+\_\+timestamp\+\_\+untyped}, \doxylink{classDDSDataWriter_aa5c5ed1719eee3e7545f357624e50317}{DDSData\+Writer\+::dispose\+\_\+untyped} and the handle used in conjunction with the data for those calls. 
+
+When this operation is used, RTI Connext DDS Micro will automatically supply the value of the {\ttfamily source\+\_\+timestamp} that is used. 
+
+This operation may fail and return \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL} if \doxylink{structDDS__ResourceLimitsQosPolicy_ab7339605f314f50c7cb658426ff64cdb}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+instances} limit has been exceeded. 
+
+The operation is {\bfseries{idempotent}}. If it is called for an already registered instance, it just returns the already allocated handle. This may be used to lookup and retrieve the handle allocated to a given instance. 
+
+This operation can only be called after \doxylink{classDDSDataWriter}{DDSData\+Writer} has been enabled. Otherwise, \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL} will be returned. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instance\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The instance that should be registered. Of this instance, only the fields that represent the key are examined by the method.  . \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+For keyed data type, a handle that can be used in the calls that take a \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}, such as write, dispose, unregister\+\_\+instance, or return \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL} on failure. If the instance\+\_\+data is of a data type that has no keys, this method always return \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}{DDSData\+Writer\+::unregister\+\_\+instance\+\_\+untyped} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDataWriter_a29869479232ffbab62fd590f46a699b2}\index{DDSDataWriter@{DDSDataWriter}!register\_instance\_w\_timestamp\_untyped@{register\_instance\_w\_timestamp\_untyped}}
+\index{register\_instance\_w\_timestamp\_untyped@{register\_instance\_w\_timestamp\_untyped}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{register\_instance\_w\_timestamp\_untyped()}{register\_instance\_w\_timestamp\_untyped()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_a29869479232ffbab62fd590f46a699b2} 
+virtual \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} DDSData\+Writer\+::register\+\_\+instance\+\_\+w\+\_\+timestamp\+\_\+untyped (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{instance\+\_\+data}{, }\item[{const \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \&}]{source\+\_\+timestamp}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Performs the same function as \doxylink{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}{DDSData\+Writer\+::register\+\_\+instance\+\_\+untyped} except that it also provides the value for the {\ttfamily source\+\_\+timestamp}. 
+
+Explicitly provides the timestamp that will be available to the \doxylink{classDDSDataReader}{DDSData\+Reader} objects by means of the {\ttfamily source\+\_\+timestamp} attribute inside the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}. (Refer to \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} for details) 
+
+The constraints on the values of the parameters and the corresponding error behavior are the same specified for the \doxylink{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}{DDSData\+Writer\+::register\+\_\+instance\+\_\+untyped} operation. 
+
+This method allows type-\/independent code to work with a variety of concrete \doxylink{structFooDataWriter}{Foo\+Data\+Writer} classes in a consistent way. 
+
+Statically type-\/safe code should use the appropriate \doxylink{structFooDataWriter_aa42cec271ac6d9ed69b7023d70f61723}{Foo\+Data\+Writer\+::register\+\_\+instance\+\_\+w\+\_\+timestamp} method instead of this one. See that method for detailed documentation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instance\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The instance that should be registered. Of this instance, only the fields that represent the key are examined by the method.  . \\
+\hline
+{\em source\+\_\+timestamp} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The timestamp value must be greater than or equal to the timestamp value used in the last writer operation (used in a {\itshape register}, {\itshape unregister}, {\itshape dispose}, or {\itshape write}, with either the automatically supplied timestamp or the application provided timestamp). This timestamp may potentially affect the order in which readers observe events from multiple writers. This timestamp will be available to the \doxylink{classDDSDataReader}{DDSData\+Reader} objects by means of the {\ttfamily source\+\_\+timestamp} attribute inside the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+For keyed data type, a handle that can be used in the calls that take a \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}, such as write, dispose, unregister\+\_\+instance, or return \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL} on failure. If the instance\+\_\+data is of a data type that has no keys, this method always return \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}{DDSData\+Writer\+::unregister\+\_\+instance\+\_\+untyped} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}\index{DDSDataWriter@{DDSDataWriter}!unregister\_instance\_untyped@{unregister\_instance\_untyped}}
+\index{unregister\_instance\_untyped@{unregister\_instance\_untyped}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{unregister\_instance\_untyped()}{unregister\_instance\_untyped()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_a790677054a85498ae5ee51534a106ade} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::unregister\+\_\+instance\+\_\+untyped (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{instance\+\_\+data}{, }\item[{const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&}]{handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Reverses the action of \doxylink{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}{DDSData\+Writer\+::register\+\_\+instance\+\_\+untyped}. 
+
+This operation is useful only for keyed data types. Using it for non-\/keyed types causes no effect and reports no error. The operation takes as a parameter an instance (of which only the key value is examined) and a handle. 
+
+This operation should only be called on an instance that is currently registered. This includes instances that have been auto-\/registered by calling operations such as write or dispose as described in \doxylink{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}{DDSData\+Writer\+::register\+\_\+instance\+\_\+untyped}. Otherwise, this operation may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}. 
+
+This only need be called just once per instance, regardless of how many times register\+\_\+instance was called for that instance. 
+
+When this operation is used, RTI Connext DDS Micro will automatically supply the value of the {\ttfamily source\+\_\+timestamp} that is used. 
+
+This operation informs RTI Connext DDS Micro that the \doxylink{classDDSDataWriter}{DDSData\+Writer} is no longer going to provide any information about the instance. This operation also indicates that RTI Connext DDS Micro can locally remove all information regarding that instance. The application should not attempt to use the {\ttfamily handle} previously allocated to that instance after calling \doxylink{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}{DDSData\+Writer\+::unregister\+\_\+instance\+\_\+untyped()}. 
+
+The special value \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL} can be used for the parameter {\ttfamily handle}. This indicates that the identity of the instance should be automatically deduced from the {\ttfamily instance\+\_\+data} (by means of the {\ttfamily key}). 
+
+If {\ttfamily handle} is any value other than \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, then it must correspond to an instance that has been registered. If there is no correspondence, the operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}. 
+
+RTI Connext DDS Micro will not detect the error when the {\ttfamily handle} is any value other than \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, corresponds to an instance that has been registered, but does not correspond to the instance deduced from the {\ttfamily instance\+\_\+data} (by means of the {\ttfamily key}). RTI Connext DDS Micro will treat as if the unregister\+\_\+instance() operation is for the instance as indicated by the {\ttfamily handle}. 
+
+If after a \doxylink{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}{DDSData\+Writer\+::unregister\+\_\+instance\+\_\+untyped}, the application wants to modify (\doxylink{classDDSDataWriter_a7240c9ac8e70753aab992f799387819f}{DDSData\+Writer\+::write\+\_\+untyped} or \doxylink{classDDSDataWriter_aa5c5ed1719eee3e7545f357624e50317}{DDSData\+Writer\+::dispose\+\_\+untyped}) an instance, it has to register it again, or else use the special {\ttfamily handle} value \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}. 
+
+This operation does not indicate that the instance is deleted (that is the purpose of \doxylink{classDDSDataWriter_aa5c5ed1719eee3e7545f357624e50317}{DDSData\+Writer\+::dispose\+\_\+untyped}). The operation \doxylink{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}{DDSData\+Writer\+::unregister\+\_\+instance\+\_\+untyped} just indicates that the \doxylink{classDDSDataWriter}{DDSData\+Writer} no longer has anything to say about the instance. \doxylink{classDDSDataReader}{DDSData\+Reader} entities that are reading the instance may receive a sample with \doxylink{group__DDSInstanceStateModule_ggaf2264cae1aa8cd66490debfdc5e0c360a72ebdc6f53c9a7588458b48e3ea66507}{DDS\+\_\+\+NOT\+\_\+\+ALIVE\+\_\+\+NO\+\_\+\+WRITERS\+\_\+\+INSTANCE\+\_\+\+STATE} for the instance, unless there are other \doxylink{classDDSDataWriter}{DDSData\+Writer} objects writing that same instance. 
+
+This operation can affect the ownership of the data instance (see \doxylink{group__DDSOwnershipQosModule}{OWNERSHIP}). If the \doxylink{classDDSDataWriter}{DDSData\+Writer} was the exclusive owner of the instance, then calling unregister\+\_\+instance() will relinquish that ownership. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instance\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The instance that should be unregistered. If the data {\itshape has} a key and {\ttfamily instance\+\_\+handle} is \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, only the fields that represent the key are examined by the method. Otherwise, {\ttfamily instance\+\_\+data} is not used. If {\ttfamily instance\+\_\+data} is used, it must represent an instance that has been registered. Otherwise, this method may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER} .  \\
+\hline
+{\em handle} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} represents the {\ttfamily instance} to be unregistered. If the data {\itshape has} a key and {\ttfamily handle} is \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, {\ttfamily handle} is not used and {\ttfamily instance} is deduced from {\ttfamily instance\+\_\+data}. If the data has no key, {\ttfamily handle} is not used. If {\ttfamily handle} is used, it must represent an instance that has been registered. Otherwise, this method may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}.  \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED} 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}{DDSData\+Writer\+::register\+\_\+instance\+\_\+untyped} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDataWriter_a7f789b369cbfb99700434bf25b28c236}\index{DDSDataWriter@{DDSDataWriter}!unregister\_instance\_w\_timestamp\_untyped@{unregister\_instance\_w\_timestamp\_untyped}}
+\index{unregister\_instance\_w\_timestamp\_untyped@{unregister\_instance\_w\_timestamp\_untyped}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{unregister\_instance\_w\_timestamp\_untyped()}{unregister\_instance\_w\_timestamp\_untyped()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_a7f789b369cbfb99700434bf25b28c236} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::unregister\+\_\+instance\+\_\+w\+\_\+timestamp\+\_\+untyped (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{instance\+\_\+data}{, }\item[{const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&}]{handle}{, }\item[{const \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \&}]{source\+\_\+timestamp}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Performs the same function as \doxylink{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}{DDSData\+Writer\+::unregister\+\_\+instance\+\_\+untyped} except that it also provides the value for the {\ttfamily source\+\_\+timestamp}. 
+
+Explicitly provides the timestamp that will be available to the \doxylink{classDDSDataReader}{DDSData\+Reader} objects by means of the {\ttfamily source\+\_\+timestamp} attribute inside the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}. (Refer to \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} for details) 
+
+The constraints on the values of the parameters and the corresponding error behavior are the same specified for the \doxylink{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}{DDSData\+Writer\+::unregister\+\_\+instance\+\_\+untyped} operation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instance\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The instance that should be unregistered. If the data {\itshape has} a key and {\ttfamily instance\+\_\+handle} is \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, only the fields that represent the key are examined by the method. Otherwise, {\ttfamily instance\+\_\+data} is not used. If {\ttfamily instance\+\_\+data} is used, it must represent an instance that has been registered. Otherwise, this method may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER} .  \\
+\hline
+{\em handle} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} represents the {\ttfamily instance} to be unregistered. If the data {\itshape has} a key and {\ttfamily handle} is \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, {\ttfamily handle} is not used and {\ttfamily instance} is deduced from {\ttfamily instance\+\_\+data}. If the data has no key, {\ttfamily handle} is not used. If {\ttfamily handle} is used, it must represent an instance that has been registered. Otherwise, this method may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}.  \\
+\hline
+\end{DoxyParams}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em source\+\_\+timestamp} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The timestamp value must be greater than or equal to the timestamp value used in the last writer operation (used in a {\itshape register}, {\itshape unregister}, {\itshape dispose}, or {\itshape write}, with either the automatically supplied timestamp or the application provided timestamp). This timestamp may potentially affect the order in which readers observe events from multiple writers. This timestamp will be available to the \doxylink{classDDSDataReader}{DDSData\+Reader} objects by means of the {\ttfamily source\+\_\+timestamp} attribute inside the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED} 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}{DDSData\+Writer\+::register\+\_\+instance\+\_\+untyped} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDataWriter_aa5c5ed1719eee3e7545f357624e50317}\index{DDSDataWriter@{DDSDataWriter}!dispose\_untyped@{dispose\_untyped}}
+\index{dispose\_untyped@{dispose\_untyped}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{dispose\_untyped()}{dispose\_untyped()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_aa5c5ed1719eee3e7545f357624e50317} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::dispose\+\_\+untyped (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{instance\+\_\+data}{, }\item[{const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&}]{handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Requests the middleware to delete the data. 
+
+This operation is useful only for keyed data types. Using it for non-\/keyed types has no effect and reports no error. 
+
+The actual deletion is postponed until there is no more use for that data in the whole system. 
+
+Applications are made aware of the deletion by means of operations on the \doxylink{classDDSDataReader}{DDSData\+Reader} objects that already knew that instance. \doxylink{classDDSDataReader}{DDSData\+Reader} objects that didn\textquotesingle{}t know the instance will never see it. 
+
+This operation does not modify the value of the instance. The {\ttfamily instance\+\_\+data} parameter is passed just for the purposes of identifying the instance. 
+
+When this operation is used, RTI Connext DDS Micro will automatically supply the value of the {\ttfamily source\+\_\+timestamp} that is made available to \doxylink{classDDSDataReader}{DDSData\+Reader} objects by means of the {\ttfamily source\+\_\+timestamp} attribute inside the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}. 
+
+The constraints on the values of the handle parameter and the corresponding error behavior are the same specified for the \doxylink{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}{DDSData\+Writer\+::unregister\+\_\+instance\+\_\+untyped} operation. 
+
+The special value \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL} can be used for the parameter {\ttfamily instance\+\_\+handle}. This indicates the identity of the instance should be automatically deduced from the {\ttfamily instance\+\_\+data} (by means of the {\ttfamily key}). 
+
+If {\ttfamily handle} is any value other than \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, then it must correspond to an instance that has been registered. If there is no correspondence, the operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}. 
+
+RTI Connext DDS Micro will not detect the error when the {\ttfamily handle} is any value other than \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, corresponds to an instance that has been registered, but does not correspond to the instance deduced from the {\ttfamily instance\+\_\+data} (by means of the {\ttfamily key}). RTI Connext DDS Micro will treat as if the dispose() operation is for the instance as indicated by the {\ttfamily handle}. 
+
+This operation may block and time out (\doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT}) under the same circumstances described for \doxylink{classDDSDataWriter_a7240c9ac8e70753aab992f799387819f}{DDSData\+Writer\+::write\+\_\+untyped()}. 
+
+If there are no instance resources left, this operation may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES}. Calling \doxylink{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}{DDSData\+Writer\+::unregister\+\_\+instance\+\_\+untyped} may help freeing up some resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instance\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The data to dispose. If the data {\itshape has} a key and {\ttfamily instance\+\_\+handle} is \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, only the fields that represent the key are examined by the method. Otherwise, {\ttfamily instance\+\_\+data} is not used.  \\
+\hline
+{\em handle} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Either the handle returned by a previous call to \doxylink{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}{DDSData\+Writer\+::register\+\_\+instance\+\_\+untyped}, or else the special value \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}. If the data {\itshape has} a key and {\ttfamily instance\+\_\+handle} is \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, {\ttfamily instance\+\_\+handle} is not used and {\ttfamily instance} is deduced from {\ttfamily instance\+\_\+data}. If the data has no key, {\ttfamily instance\+\_\+handle} is not used. If {\ttfamily handle} is used, it must represent a registered instance of the matching data type. Otherwise, this method may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED}. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSDataWriter_a19b1472af07283ff1ff083049b046ed7}\index{DDSDataWriter@{DDSDataWriter}!dispose\_w\_timestamp\_untyped@{dispose\_w\_timestamp\_untyped}}
+\index{dispose\_w\_timestamp\_untyped@{dispose\_w\_timestamp\_untyped}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{dispose\_w\_timestamp\_untyped()}{dispose\_w\_timestamp\_untyped()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_a19b1472af07283ff1ff083049b046ed7} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::dispose\+\_\+w\+\_\+timestamp\+\_\+untyped (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{instance\+\_\+data}{, }\item[{const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&}]{handle}{, }\item[{const \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \&}]{source\+\_\+timestamp}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Performs the same function as \doxylink{classDDSDataWriter_aa5c5ed1719eee3e7545f357624e50317}{DDSData\+Writer\+::dispose\+\_\+untyped} except that it also provides the value for the {\ttfamily source\+\_\+timestamp}. 
+
+Explicitly provides the timestamp that will be available to the \doxylink{classDDSDataReader}{DDSData\+Reader} objects by means of the {\ttfamily source\+\_\+timestamp} attribute inside the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}. (Refer to \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} for details) 
+
+The constraints on the values of the parameters and the corresponding error behavior are the same specified for the \doxylink{classDDSDataWriter_aa5c5ed1719eee3e7545f357624e50317}{DDSData\+Writer\+::dispose\+\_\+untyped} operation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instance\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The data to dispose. If the data {\itshape has} a key and {\ttfamily instance\+\_\+handle} is \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, only the fields that represent the key are examined by the method. Otherwise, {\ttfamily instance\+\_\+data} is not used.  \\
+\hline
+{\em handle} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Either the handle returned by a previous call to \doxylink{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}{DDSData\+Writer\+::register\+\_\+instance\+\_\+untyped}, or else the special value \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}. If the data {\itshape has} a key and {\ttfamily instance\+\_\+handle} is \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, {\ttfamily instance\+\_\+handle} is not used and {\ttfamily instance} is deduced from {\ttfamily instance\+\_\+data}. If the data has no key, {\ttfamily instance\+\_\+handle} is not used. If {\ttfamily handle} is used, it must represent a registered instance of the matching data type. Otherwise, this method may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}.  \\
+\hline
+{\em source\+\_\+timestamp} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The timestamp value must be greater than or equal to the timestamp value used in the last writer operation (used in a {\itshape register}, {\itshape unregister}, {\itshape dispose}, or {\itshape write}, with either the automatically supplied timestamp or the application provided timestamp). This timestamp may potentially affect the order in which readers observe events from multiple writers. This timestamp will be available to the \doxylink{classDDSDataReader}{DDSData\+Reader} objects by means of the {\ttfamily source\+\_\+timestamp} attribute inside the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED}. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSDataWriter_a297d4f9fe517be3d6eedc0db08ddb166}\index{DDSDataWriter@{DDSDataWriter}!write\_w\_timestamp\_untyped@{write\_w\_timestamp\_untyped}}
+\index{write\_w\_timestamp\_untyped@{write\_w\_timestamp\_untyped}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{write\_w\_timestamp\_untyped()}{write\_w\_timestamp\_untyped()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_a297d4f9fe517be3d6eedc0db08ddb166} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::write\+\_\+w\+\_\+timestamp\+\_\+untyped (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{instance\+\_\+data}{, }\item[{const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&}]{handle}{, }\item[{const \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \&}]{source\+\_\+timestamp}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Performs the same function as \doxylink{classDDSDataWriter_a7240c9ac8e70753aab992f799387819f}{DDSData\+Writer\+::write\+\_\+untyped} except that it also provides the value for the {\ttfamily source\+\_\+timestamp}. 
+
+Explicitly provides the timestamp that will be available to the \doxylink{classDDSDataReader}{DDSData\+Reader} objects by means of the {\ttfamily source\+\_\+timestamp} attribute inside the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}. (Refer to \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} for details) 
+
+The constraints on the values of the {\ttfamily handle} parameter and the corresponding error behavior are the same specified for the \doxylink{classDDSDataWriter_a7240c9ac8e70753aab992f799387819f}{DDSData\+Writer\+::write\+\_\+untyped} operation. 
+
+If there are no instance resources left, this operation may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES}. Calling \doxylink{classDDSDataWriter_a790677054a85498ae5ee51534a106ade}{DDSData\+Writer\+::unregister\+\_\+instance\+\_\+untyped} may help free up some resources. 
+
+This operation may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER} under the same circumstances described for the write operation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instance\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The data to write.  \\
+\hline
+{\em handle} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Either the handle returned by a previous call to \doxylink{classDDSDataWriter_a0a5053576ecb88cdeb7686e78d827a2a}{DDSData\+Writer\+::register\+\_\+instance\+\_\+untyped}, or else the special value \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}. If the data {\itshape has} a key and {\ttfamily handle} is not \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}, {\ttfamily handle} must represent a registered instance of the matching data type. Otherwise, this method may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}.  \\
+\hline
+{\em source\+\_\+timestamp} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The timestamp value must be greater than or equal to the timestamp value used in the last writer operation (used in a {\itshape register}, {\itshape unregister}, {\itshape dispose}, or {\itshape write}, with either the automatically supplied timestamp or the application provided timestamp). This timestamp may potentially affect the order in which readers observe events from multiple writers. This timestamp will be available to the \doxylink{classDDSDataReader}{DDSData\+Reader} objects by means of the {\ttfamily source\+\_\+timestamp} attribute inside the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED}. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDataWriter_a7240c9ac8e70753aab992f799387819f}{DDSData\+Writer\+::write\+\_\+untyped} 
+
+\doxylink{classDDSDataReader}{DDSData\+Reader} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSDataWriter_a8760b867970dd7175a3ad1ede266131e}\index{DDSDataWriter@{DDSDataWriter}!get\_publication\_matched\_status@{get\_publication\_matched\_status}}
+\index{get\_publication\_matched\_status@{get\_publication\_matched\_status}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{get\_publication\_matched\_status()}{get\_publication\_matched\_status()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_a8760b867970dd7175a3ad1ede266131e} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::get\+\_\+publication\+\_\+matched\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__PublicationMatchedStatus}{DDS\+\_\+\+Publication\+Matched\+Status}} \&}]{status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Accesses the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa3052f04c67620660f92aa3b5da2455d2}{DDS\+\_\+\+PUBLICATION\+\_\+\+MATCHED\+\_\+\+STATUS} communication status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{structDDS__PublicationMatchedStatus}{DDS\+\_\+\+Publication\+Matched\+Status} to be filled in.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSDataWriter_aff02857382e8bb8ecaf900e551f32c1d}\index{DDSDataWriter@{DDSDataWriter}!get\_liveliness\_lost\_status@{get\_liveliness\_lost\_status}}
+\index{get\_liveliness\_lost\_status@{get\_liveliness\_lost\_status}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{get\_liveliness\_lost\_status()}{get\_liveliness\_lost\_status()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_aff02857382e8bb8ecaf900e551f32c1d} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::get\+\_\+liveliness\+\_\+lost\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__LivelinessLostStatus}{DDS\+\_\+\+Liveliness\+Lost\+Status}} \&}]{status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Accesses the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS} communication status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{structDDS__LivelinessLostStatus}{DDS\+\_\+\+Liveliness\+Lost\+Status} to be filled in.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSDataWriter_accd7e48a30c1fc154548c22e4bc8b888}\index{DDSDataWriter@{DDSDataWriter}!get\_matched\_subscriptions@{get\_matched\_subscriptions}}
+\index{get\_matched\_subscriptions@{get\_matched\_subscriptions}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{get\_matched\_subscriptions()}{get\_matched\_subscriptions()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_accd7e48a30c1fc154548c22e4bc8b888} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::get\+\_\+matched\+\_\+subscriptions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__InstanceHandleSeq}{DDS\+\_\+\+Instance\+Handle\+Seq}} \&}]{subscription\+\_\+handles}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns a sequence containing \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} for all the remote \doxylink{classDDSDataReader}{DDSData\+Reader} that have been matched by the \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+
+Matched subscriptions include all those in the same domain that have a matching \doxylink{classDDSTopic}{DDSTopic}, compatible QoS and common partition . 
+
+The handles returned in the {\ttfamily subscription\+\_\+handles} list are the ones that are used by the DDS implementation to locally identify the corresponding matched \doxylink{classDDSDataReader}{DDSData\+Reader} entities. These handles match the ones that appear in the \doxylink{structDDS__SampleInfo_a38bca53647cd2be8c1dff9054126f360}{DDS\+\_\+\+Sample\+Info\+::instance\+\_\+handle} field of the \doxylink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info} when reading the \doxylink{group__DDSSubscriptionBuiltInTopicModule_ga4b29adabb0a71f9007ae44ae27b82d6b}{DDS\+\_\+\+SUBSCRIPTION\+\_\+\+TOPIC\+\_\+\+NAME} builtin topic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subscription\+\_\+handles} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. \\
+\hline
+\end{DoxyParams}
+Handles of all the matched subscriptions. 
+
+The sequence will be grown if the sequence has ownership and the system has the corresponding resources. Use a sequence without ownership to avoid dynamic memory allocation. If the sequence is too small to store all the matches and the system can not resize the sequence, this method will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES}. 
+
+The maximum number of matches possible is configured with \doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy}. You can use a zero-\/maximum sequence without ownership to quickly check whether there are any matches without allocating any memory.  . 
+
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES} if the sequence is too small and the system can not resize it, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED} 
+\end{DoxyReturn}
+\Hypertarget{classDDSDataWriter_a06fbe94aef2477ef73a7190c53e67ae4}\index{DDSDataWriter@{DDSDataWriter}!get\_matched\_subscription\_data@{get\_matched\_subscription\_data}}
+\index{get\_matched\_subscription\_data@{get\_matched\_subscription\_data}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{get\_matched\_subscription\_data()}{get\_matched\_subscription\_data()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_a06fbe94aef2477ef73a7190c53e67ae4} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::get\+\_\+matched\+\_\+subscription\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \&}]{subscription\+\_\+data}{, }\item[{const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \&}]{subscription\+\_\+handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns information about a remote \doxylink{classDDSDataReader}{DDSData\+Reader} that has been matched by the \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+
+The {\ttfamily subscription\+\_\+handle} must correspond to a subscription currently associated with the \doxylink{classDDSDataWriter}{DDSData\+Writer}. Otherwise, the operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}. Use \doxylink{classDDSDataWriter_accd7e48a30c1fc154548c22e4bc8b888}{DDSData\+Writer\+::get\+\_\+matched\+\_\+subscriptions} to find the subscriptions that are currently matched with the \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subscription\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. The information to be filled in on the associated subscription. Cannot be NULL. \\
+\hline
+{\em subscription\+\_\+handle} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Handle to a specific subscription associated with the \doxylink{classDDSDataWriter}{DDSData\+Writer}.  . Must correspond to a subscription currently associated with the \doxylink{classDDSDataWriter}{DDSData\+Writer}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED} 
+\end{DoxyReturn}
+\Hypertarget{classDDSDataWriter_a47ad2bb2418eb9e7479a829a310e8023}\index{DDSDataWriter@{DDSDataWriter}!get\_offered\_deadline\_missed\_status@{get\_offered\_deadline\_missed\_status}}
+\index{get\_offered\_deadline\_missed\_status@{get\_offered\_deadline\_missed\_status}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{get\_offered\_deadline\_missed\_status()}{get\_offered\_deadline\_missed\_status()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_a47ad2bb2418eb9e7479a829a310e8023} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::get\+\_\+offered\+\_\+deadline\+\_\+missed\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__OfferedDeadlineMissedStatus}{DDS\+\_\+\+Offered\+Deadline\+Missed\+Status}} \&}]{status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Accesses the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa84f12530ffc8d6e68906054b06972342}{DDS\+\_\+\+OFFERED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS} communication status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{structDDS__OfferedDeadlineMissedStatus}{DDS\+\_\+\+Offered\+Deadline\+Missed\+Status} to be filled in.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSDataWriter_a488b47b425fe6ce8d5510e6bbf935777}\index{DDSDataWriter@{DDSDataWriter}!get\_offered\_incompatible\_qos\_status@{get\_offered\_incompatible\_qos\_status}}
+\index{get\_offered\_incompatible\_qos\_status@{get\_offered\_incompatible\_qos\_status}!DDSDataWriter@{DDSDataWriter}}
+\doxyparagraph{\texorpdfstring{get\_offered\_incompatible\_qos\_status()}{get\_offered\_incompatible\_qos\_status()}}
+{\footnotesize\ttfamily \label{classDDSDataWriter_a488b47b425fe6ce8d5510e6bbf935777} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSData\+Writer\+::get\+\_\+offered\+\_\+incompatible\+\_\+qos\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__OfferedIncompatibleQosStatus}{DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status}} \&}]{status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Accesses the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} communication status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{structDDS__OfferedIncompatibleQosStatus}{DDS\+\_\+\+Offered\+Incompatible\+Qos\+Status} to be filled in.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}

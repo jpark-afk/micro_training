@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. Transports &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 ER1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.1. Introduction" href="introduction.html" />
+    <link rel="prev" title="3.24. Startup Time Guidelines" href="../programmersguide/startup_time.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0 ER1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Transports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">4.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registration.html">4.2. Transport Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addresses.html">4.3. Transport Addresses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portnumber.html">4.4. Transport Port Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interoperability.html">4.5. Interoperating with Connext Professional Transports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RTPS.html">4.6. RTPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="INTRA.html">4.7. INTRA Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SHMEM.html">4.8. Shared Memory Transport (SHMEM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy_v2.html">4.9. Zero Copy v2 Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UDP.html">4.10. UDP Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NETIO_DGRAM.html">4.11. NETIO Datagram Transport</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">14. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">4. </span>Transports</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="transports">
+<h1><span class="section-number">4. </span>Transports<a class="headerlink" href="#transports" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">4.1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registration.html">4.2. Transport Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="addresses.html">4.3. Transport Addresses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="addresses.html#reserving-addresses-and-ports">4.3.1. Reserving addresses and ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addresses.html#address-limitations">4.3.2. Address limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addresses.html#address-notation">4.3.3. Address notation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="portnumber.html">4.4. Transport Port Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interoperability.html">4.5. Interoperating with Connext Professional Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RTPS.html">4.6. RTPS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RTPS.html#registration-of-rtps">4.6.1. Registration of RTPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RTPS.html#overriding-the-builtin-rtps-checksum-functions">4.6.2. Overriding the Builtin RTPS Checksum Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RTPS.html#example">4.6.3. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="INTRA.html">4.7. INTRA Transport</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="INTRA.html#registering-the-intra-transport">4.7.1. Registering the INTRA Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="INTRA.html#configuring-qos-policies">4.7.2. Configuring QoS policies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="INTRA.html#threading-model">4.7.3. Threading Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SHMEM.html">4.8. Shared Memory Transport (SHMEM)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SHMEM.html#registering-the-shmem-transport">4.8.1. Registering the SHMEM Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SHMEM.html#threading-model">4.8.2. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SHMEM.html#shmem-configuration">4.8.3. SHMEM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SHMEM.html#caveats">4.8.4. Caveats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="zerocopy_v2.html">4.9. Zero Copy v2 Transport</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy_v2.html#generate-example-and-type-support-files">4.9.1. Generate example and type support files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy_v2.html#initialize-the-zero-copy-v2-transport">4.9.2. Initialize the Zero Copy v2 transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy_v2.html#register-the-zero-copy-v2-transport">4.9.3. Register the Zero Copy v2 transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy_v2.html#enable-transports">4.9.4. Enable transports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy_v2.html#sample-management">4.9.5. Sample management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy_v2.html#configuration">4.9.6. Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy_v2.html#using-multiple-zero-copy-v2-transport-instances">4.9.7. Using multiple Zero Copy v2 transport instances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="UDP.html">4.10. UDP Transport</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="UDP.html#registering-the-udp-transport">4.10.1. Registering the UDP Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UDP.html#threading-model">4.10.2. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UDP.html#udp-configuration">4.10.3. UDP Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UDP.html#udp-transformations">4.10.4. UDP Transformations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="NETIO_DGRAM.html">4.11. NETIO Datagram Transport</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="NETIO_DGRAM.html#registering-a-datagram-interface">4.11.1. Registering a Datagram Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NETIO_DGRAM.html#addressing-a-datagram-transport">4.11.2. Addressing a Datagram Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NETIO_DGRAM.html#datagram-udp-setup">4.11.3. Datagram UDP Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NETIO_DGRAM.html#user-interface">4.11.4. User Interface</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="introduction.html" class="btn btn-neutral float-right" title="4.1. Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../programmersguide/startup_time.html" class="btn btn-neutral float-left" title="3.24. Startup Time Guidelines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

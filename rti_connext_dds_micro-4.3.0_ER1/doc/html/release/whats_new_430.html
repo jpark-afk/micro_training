@@ -1,0 +1,544 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>10.3. What’s New in 4.3.0 ER1 &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 ER1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.4. What’s Fixed in 4.3.0 ER1" href="whats_fixed_430/whats_fixed_430_index.html" />
+    <link rel="prev" title="10.2. Supported Platforms and Programming Languages" href="supported_platforms.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0 ER1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">10. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="compatibility.html">10.1. Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported_platforms.html">10.2. Supported Platforms and Programming Languages</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10.3. What’s New in 4.3.0 ER1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-me-h-applications-for-microsar-platforms">10.3.1. Build Connext Micro applications for MicroSAR platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-autosar-code-with-micro-application-generator">10.3.2. Generate AUTOSAR code with Micro Application Generator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dds-system-xml-model-support">10.3.2.1. DDS System XML model support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deployment-targeted-code-generation">10.3.2.2. Deployment-targeted code generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#application-type-selection">10.3.2.3. Application type selection</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#speed-up-initialization-on-autosar-systems-with-configurable-thread-safety">10.3.3. Speed up initialization on AUTOSAR systems with configurable thread safety</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prioritize-data-with-the-transport-priority-qos-policy">10.3.4. Prioritize data with the TRANSPORT_PRIORITY QoS policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integrate-rotating-or-on-demand-credentials-with-lightweight-security-plugin">10.3.5. Integrate rotating or on-demand credentials with Lightweight Security Plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reduced-heap-memory-usage">10.3.6. Reduced heap memory usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#third-party-and-open-source-software-changes">10.3.7. Third-party and open source software changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="whats_fixed_430/whats_fixed_430_index.html">10.4. What’s Fixed in 4.3.0 ER1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="previous_release.html">10.5. Previous Releases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="known_issues.html">10.6. Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental_features.html">10.7. Experimental Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">14. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">10. </span>Release Notes</a> &raquo;</li>
+        
+      <li><span class="section-number">10.3. </span>What’s New in 4.3.0 ER1</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="what-s-new-in-4-3-0-er1">
+<span id="whats-new-430"></span><h1><span class="section-number">10.3. </span>What’s New in 4.3.0 ER1<a class="headerlink" href="#what-s-new-in-4-3-0-er1" title="Permalink to this headline">¶</a></h1>
+<p><em>RTI</em> <em>Connext Micro</em> 4.3.0 ER1 is an engineering release. See the
+<a class="reference external" href="https://www.rti.com/products/connext-releases">Connext Releases</a>
+page on the RTI website for more information on RTI’s software release model.</p>
+<p>The following features are new since <em>Connext Micro</em> 4.2.0.</p>
+<div class="section" id="build-me-h-applications-for-microsar-platforms">
+<h2><span class="section-number">10.3.1. </span>Build Connext Micro applications for MicroSAR platforms<a class="headerlink" href="#build-me-h-applications-for-microsar-platforms" title="Permalink to this headline">¶</a></h2>
+<p>This release adds support for MicroSAR platforms. Refer to
+<a class="reference internal" href="../platformnotes/microsar.html#section-microsar-platforms"><span class="std std-ref">MicroSAR Platforms</span></a> for more details.</p>
+</div>
+<div class="section" id="generate-autosar-code-with-micro-application-generator">
+<h2><span class="section-number">10.3.2. </span>Generate AUTOSAR code with Micro Application Generator<a class="headerlink" href="#generate-autosar-code-with-micro-application-generator" title="Permalink to this headline">¶</a></h2>
+<p>This release adds several new features to Micro Application Generator (MAG)
+which, taken together, enable you to generate AUTOSAR applications from
+XML configuration files. Refer to <a class="reference internal" href="../programmersguide/appgen.html#section-generating-autosar-applications"><span class="std std-ref">Generating AUTOSAR Applications</span></a>
+for a walkthrough of the process. These new features include:</p>
+<div class="section" id="dds-system-xml-model-support">
+<h3><span class="section-number">10.3.2.1. </span>DDS System XML model support<a class="headerlink" href="#dds-system-xml-model-support" title="Permalink to this headline">¶</a></h3>
+<p>MAG now supports the DDS System XML schema flow for application generation,
+which extends the capabilities of the standard XML configuration model. Refer
+to <a class="reference internal" href="../programmersguide/appgen.html#section-define-your-system-xml"><span class="std std-ref">Define your system in DDS system XML</span></a> for details.</p>
+</div>
+<div class="section" id="deployment-targeted-code-generation">
+<h3><span class="section-number">10.3.2.2. </span>Deployment-targeted code generation<a class="headerlink" href="#deployment-targeted-code-generation" title="Permalink to this headline">¶</a></h3>
+<p>A new <code class="docutils literal notranslate"><span class="pre">-deployment</span> <span class="pre">&lt;name&gt;</span></code> command-line option lets you generate code
+for a single deployment instance selected from a deployment scenario defined in
+the XML. Refer to <a class="reference internal" href="../programmersguide/appgen.html#section-command-line-options"><span class="std std-ref">MAG Command-Line Options</span></a> for more information.</p>
+</div>
+<div class="section" id="application-type-selection">
+<h3><span class="section-number">10.3.2.3. </span>Application type selection<a class="headerlink" href="#application-type-selection" title="Permalink to this headline">¶</a></h3>
+<p>A new <code class="docutils literal notranslate"><span class="pre">-applicationType</span> <span class="pre">&lt;type&gt;</span></code> option controls the structure and templates
+used in code generation. Valid values are <code class="docutils literal notranslate"><span class="pre">micro4</span></code>, <code class="docutils literal notranslate"><span class="pre">cert</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">autosar_cdd</span></code>. Refer to <a class="reference internal" href="../programmersguide/appgen.html#section-command-line-options"><span class="std std-ref">MAG Command-Line Options</span></a> for more
+information.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Currently, only <code class="docutils literal notranslate"><span class="pre">autosar_cdd</span></code> is fully supported for deployment-based code
+generation; see the <a class="reference internal" href="known_issues.html#section-known-issues"><span class="std std-ref">Known Issues</span></a> section. This type generates
+AUTOSAR-compliant code structure, including adapter layer separation and
+AUTOSAR resource configuration templates. Other application types may be
+supported in future releases.</p>
+</div>
+</div>
+</div>
+<div class="section" id="speed-up-initialization-on-autosar-systems-with-configurable-thread-safety">
+<h2><span class="section-number">10.3.3. </span>Speed up initialization on AUTOSAR systems with configurable thread safety<a class="headerlink" href="#speed-up-initialization-on-autosar-systems-with-configurable-thread-safety" title="Permalink to this headline">¶</a></h2>
+<p>This release adds a new AUTOSAR port property, <code class="docutils literal notranslate"><span class="pre">enable_thread_safe_heap</span></code>,
+that allows the application to control whether heap allocation is protected by
+a mutex. When enabled,
+<a class="reference external" href="../../../doc/api_c/html/group__OSAPI__HeapClass.html#ga22b94c08e4ed2c569ea841b16a2ecebe">OSAPI_Heap_allocate_buffer()</a>
+acquires and releases a mutex around memory allocation to ensure thread safety.
+When disabled, the mutex is neither created nor used, reducing overhead in
+single-threaded or non-preemptive environments.</p>
+</div>
+<div class="section" id="prioritize-data-with-the-transport-priority-qos-policy">
+<h2><span class="section-number">10.3.4. </span>Prioritize data with the TRANSPORT_PRIORITY QoS policy<a class="headerlink" href="#prioritize-data-with-the-transport-priority-qos-policy" title="Permalink to this headline">¶</a></h2>
+<p>This release introduces support for the <a class="reference external" href="../../../doc/api_c/html/structDDS__TransportPriorityQosPolicy.html">TRANSPORT_PRIORITY</a>
+QoS policy in <em>Connext Micro</em>. This feature allows applications to assign priorities to
+outgoing network traffic so that the underlying operating system (OS) and
+network infrastructure can treat higher-priority messages preferentially.</p>
+<p>When enabled, the transport priority value specified in the QoS policy is
+mapped to the network packet’s priority field, such as the IP Type of
+Service (TOS) or Differentiated Services Code Point (DSCP) field. This allows
+applications to influence packet scheduling and prioritization in the network
+stack, which can be useful for latency-sensitive data flows.</p>
+<p><em>Connext Micro</em> currently supports this feature on UDP transports. You can configure the
+mapping from DDS transport priority values to network packet priority through
+transport properties.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The actual prioritization behavior depends on the operating system and network
+configuration. <em>Connext Micro</em> sets the packet priority value, but enforcement of traffic
+prioritization is handled by the OS networking stack and network
+infrastructure.</p>
+</div>
+<p>For more information on this feature, refer to the <a class="reference internal" href="../programmersguide/transport_priority.html#section-transport-priority"><span class="std std-ref">Transport Priority</span></a>
+section.</p>
+</div>
+<div class="section" id="integrate-rotating-or-on-demand-credentials-with-lightweight-security-plugin">
+<h2><span class="section-number">10.3.5. </span>Integrate rotating or on-demand credentials with Lightweight Security Plugin<a class="headerlink" href="#integrate-rotating-or-on-demand-credentials-with-lightweight-security-plugin" title="Permalink to this headline">¶</a></h2>
+<p>This release introduces the <em>passphrase tracker</em>, a mechanism that enables
+runtime passphrase rotation for the <em>Lightweight Security Plugin</em>. Previously,
+the pre-shared key (PSK) passphrase was fixed at initialization time. With the
+<em>passphrase tracker</em>, applications can now update the active passphrase without
+restarting, allowing integration with key management workflows that rotate
+credentials on a schedule or on demand.</p>
+<p>The <em>passphrase tracker</em> is designed around a pluggable provider model.
+Applications supply a provider implementation at configuration time, and the
+tracker automatically notifies the <em>Lightweight Security Plugin</em> whenever a new
+passphrase is available, re-deriving session keys transparently.</p>
+<p><em>Connext Micro</em> ships a reference implementation: the <em>file passtracker</em>, available in the
+<code class="docutils literal notranslate"><span class="pre">rti_me_psl</span></code> PSL library. This implementation monitors a passphrase file on
+the file system and propagates any changes to the <em>Lightweight Security Plugin</em>
+automatically. The polling interval and startup behavior are configurable.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <em>file passtracker</em> is only available on POSIX and Windows systems.
+Applications targeting other platforms or requiring a different passphrase
+source can provide a custom PSL implementation through the <em>passphrase
+tracker</em> provider interface.</p>
+</div>
+<p>For more information, refer to the <a class="reference internal" href="../programmersguide/security_psk.html#section-psk"><span class="std std-ref">Lightweight Security Plugin</span></a> section.</p>
+</div>
+<div class="section" id="reduced-heap-memory-usage">
+<h2><span class="section-number">10.3.6. </span>Reduced heap memory usage<a class="headerlink" href="#reduced-heap-memory-usage" title="Permalink to this headline">¶</a></h2>
+<p>This version of <em>Connext Micro</em> uses less dynamically allocated memory on average than
+the previous release. The following table shows how much memory each resource
+limit uses in the memory model for the <code class="docutils literal notranslate"><span class="pre">x86_64leElfgcc7.3.0-Linux4</span></code>
+architecture compared to <em>Connext Micro</em> 4.2.0, with changed values shown in <strong>bold</strong>.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Entity</p></th>
+<th class="head"><p>Size (Bytes) in 4.2.0</p></th>
+<th class="head"><p>Size (Bytes) in 4.3.0 ER1</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>DomainParticipantFactory</p></td>
+<td><p>6104</p></td>
+<td><p>6104</p></td>
+</tr>
+<tr class="row-odd"><td><p>max_participants</p></td>
+<td><p>24958</p></td>
+<td><p><strong>23118</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>max_components</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>local_topic_allocation</p></td>
+<td><p>240</p></td>
+<td><p>240</p></td>
+</tr>
+<tr class="row-even"><td><p>local_type_allocation</p></td>
+<td><p>72</p></td>
+<td><p>72</p></td>
+</tr>
+<tr class="row-odd"><td><p>local_publisher_allocation</p></td>
+<td><p>272</p></td>
+<td><p>272</p></td>
+</tr>
+<tr class="row-even"><td><p>local_subscriber_allocation</p></td>
+<td><p>304</p></td>
+<td><p>304</p></td>
+</tr>
+<tr class="row-odd"><td><p>local_reader_allocation</p></td>
+<td><p>5372</p></td>
+<td><p><strong>3780</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>local_writer_allocation</p></td>
+<td><p>5128</p></td>
+<td><p><strong>4048</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>matching_writer_reader_pair_allocation</p></td>
+<td><p>64</p></td>
+<td><p><strong>72</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>remote_participant_allocation</p></td>
+<td><p>1536</p></td>
+<td><p><strong>1552</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>remote_writer_allocation</p></td>
+<td><p>1132</p></td>
+<td><p>1132</p></td>
+</tr>
+<tr class="row-even"><td><p>remote_reader_allocation</p></td>
+<td><p>1428</p></td>
+<td><p>1428</p></td>
+</tr>
+<tr class="row-odd"><td><p>max_destination_ports</p></td>
+<td><p>189</p></td>
+<td><p>189</p></td>
+</tr>
+<tr class="row-even"><td><p>max_receive_ports</p></td>
+<td><p>730</p></td>
+<td><p>730</p></td>
+</tr>
+<tr class="row-odd"><td><p>(DataReader) max_instances</p></td>
+<td><p>432</p></td>
+<td><p>432</p></td>
+</tr>
+<tr class="row-even"><td><p>(DataReader) max_samples</p></td>
+<td><p>300</p></td>
+<td><p><strong>276</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>(DataReader) max_remote_writers</p></td>
+<td><p>904</p></td>
+<td><p><strong>768</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>(DataReader) max_routes_per_writer</p></td>
+<td><p>160</p></td>
+<td><p><strong>136</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>(DataReader) max_samples_per_instance</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>(DataReader) max_remote_writers_per_instance</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>(DataReader) max_samples_per_remote_writer</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>(DataWriter) max_instances</p></td>
+<td><p>128</p></td>
+<td><p>128</p></td>
+</tr>
+<tr class="row-odd"><td><p>(DataWriter) max_samples</p></td>
+<td><p>272</p></td>
+<td><p>272</p></td>
+</tr>
+<tr class="row-even"><td><p>(DataWriter) max_remote_readers</p></td>
+<td><p>480</p></td>
+<td><p><strong>424</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>(DataWriter) max_routes_per_reader</p></td>
+<td><p>160</p></td>
+<td><p><strong>136</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>(DataWriter) max_samples_per_instance</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>DPSE Discovery Plugin</p></td>
+<td><p>23273</p></td>
+<td><p><strong>20521</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>DPDE Discovery Plugin</p></td>
+<td><p>90691</p></td>
+<td><p><strong>81699</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>NETIO_DGRAM Transport Plugin</p></td>
+<td><p>2263</p></td>
+<td><p>2263</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="third-party-and-open-source-software-changes">
+<h2><span class="section-number">10.3.7. </span>Third-party and open source software changes<a class="headerlink" href="#third-party-and-open-source-software-changes" title="Permalink to this headline">¶</a></h2>
+<p>The following third-party software used by <a class="reference internal" href="../programmersguide/appgen.html#section-appgen"><span class="std std-ref">Micro Application Generator</span></a>
+has been upgraded:</p>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-number">Table 10.3 </span><span class="caption-text">Third-Party Software Upgrades</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 36%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Third-Party Software</p></th>
+<th class="head"><p>Old Version</p></th>
+<th class="head"><p>New Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Apache Log4j</p></td>
+<td><p>2.17.1</p></td>
+<td><p>2.25.3</p></td>
+</tr>
+</tbody>
+</table>
+<p>For more information, see the <a class="reference internal" href="../3rdparty/index.html#section-3rd-party"><span class="std std-ref">Third-Party and Open Source Software</span></a> section.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="whats_fixed_430/whats_fixed_430_index.html" class="btn btn-neutral float-right" title="10.4. What’s Fixed in 4.3.0 ER1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="supported_platforms.html" class="btn btn-neutral float-left" title="10.2. Supported Platforms and Programming Languages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

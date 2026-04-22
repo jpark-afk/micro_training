@@ -1,0 +1,276 @@
+.. _section-shared-memory-transport:
+
+Shared Memory Transport (SHMEM)
+-------------------------------
+
+.. highlight:: c
+
+This section describes the optional builtin |rti_me| SHMEM transport and how to
+configure it.
+
+Shared Memory Transport (SHMEM) is an optional transport that can be used in |me|.
+It is part of a standalone library that can be optionally linked in.
+
+The SHMEM Transport also allows |me| to transmit data samples 
+without copying them internally. For an overview of this feature, see 
+:ref:`section-zero-copy-transfer`.
+
+Currently, |me| supports the following functionality:
+
+- Unicast
+- Configuration of the shared memory receive queues
+
+.. _registering_shmem_transport:
+
+Registering the SHMEM Transport
+...............................
+
+The builtin SHMEM transport is a |me| component that needs to be
+registered before a *DomainParticipant* can be created with the ability to send data across
+shared memory. Unlike the UDP Transport, this transport is not automatically registered.
+Register the transport using the code snippet below::
+
+  #include "netio_shmem/netio_shmem.h"
+
+  ...
+
+  {
+      DDS_DomainParticipantFactory *factory = NULL;
+      RT_Registry_T *registry = NULL;
+      struct NETIO_SHMEMInterfaceFactoryProperty shmem_property = NETIO_SHMEMInterfaceFactoryProperty_INITIALIZER;
+      struct DDS_DomainParticipantQos dp_qos = DDS_DomainParticipantQos_INITIALIZER;
+
+      /* Optionally configure the transport settings */
+      shmem_property.received_message_count_max = ...
+      shmem_property.receive_buffer_size = ...
+      shmem_property.message_size_max = ...
+
+      factory = DDS_DomainParticipantFactory_get_instance();
+      
+      registry = DDS_DomainParticipantFactory_get_registry(factory);
+      if (!RT_Registry_register(
+              registry,
+              "_shmem",
+              NETIO_SHMEMInterfaceFactory_get_interface(),
+              (struct RT_ComponentFactoryProperty*)&shmem_property,
+              NULL))
+      {
+          /* ERROR */
+      }
+
+      /* Enable the transport on a Domain Participant */
+      DDS_StringSeq_set_maximum(&dp_qos.transports.enabled_transports,1);
+      DDS_StringSeq_set_length(&dp_qos.transports.enabled_transports,1);
+      *DDS_StringSeq_get_reference(&dp_qos.transports.enabled_transports,0) = DDS_String_dup("_shmem");
+
+      DDS_StringSeq_set_maximum(&dp_qos.discovery.enabled_transports,1);
+      DDS_StringSeq_set_length(&dp_qos.discovery.enabled_transports,1);
+      *DDS_StringSeq_get_reference(&dp_qos.discovery.enabled_transports,0) = DDS_String_dup("_shmem://");
+
+      DDS_StringSeq_set_maximum(&dp_qos.user_traffic.enabled_transports,1);
+      DDS_StringSeq_set_length(&dp_qos.user_traffic.enabled_transports,1);
+      *DDS_StringSeq_get_reference(&dp_qos.user_traffic.enabled_transports,0) = DDS_String_dup("_shmem://");
+
+      DDS_StringSeq_set_maximum(&dp_qos.discovery.initial_peers,1);
+      DDS_StringSeq_set_length(&dp_qos.discovery.initial_peers,1);
+      *DDS_StringSeq_get_reference(&dp_qos.discovery.initial_peers,0) = DDS_String_dup("_shmem://");
+
+      ...
+
+      /* Explicitly unregister the shared memory transport before clean up */
+      if (!RT_Registry_unregister(
+              registry,
+              "_shmem",
+              NULL,
+              NULL)
+      {
+          /* ERROR */
+      }
+  }
+
+.. note::
+
+  ``dp_qos.transports.enabled_transports`` refers to a string that contains only
+  a registered transport name, such as ``_shmem``.
+  ``dp_qos.discovery.enabled_transports`` and
+  ``dp_qos.user_traffic.enabled_transports`` require a transport name prefix
+  and (optional) address suffix, as described in
+  :ref:`section-configuring-discovery-data-reception` and
+  :ref:`section-configuring-user-data-reception`.
+  ``dp_qos.discovery.initial_peers`` also includes an optional index prefix, as
+  described in :ref:`configuring-participant-discovery-peers`.
+
+The above snippet will register a transport with the default settings. To configure it,
+change the invidiual configurations as described in `SHMEM Configuration`_.
+
+When a component is registered, the registration takes the properties and a listener as
+the 3rd and 4th parameters. The registration of the shared memory component will make a
+copy of the properties configurable within a shared memory transport. There is currently
+no support for passing in a listener as the 4th parameter.
+
+It should be noted that the SHMEM transport can be registered with any name, but all
+transport QoS policies and initial peers must refer to this name. If a transport is
+referred to and it does not exist, an error message is logged.
+
+While it is possible to register multiple SHMEM transports, it is not possible to use
+multiple SHMEM transports within the same participant. The reason is that SHMEM port
+allocation is not synchronized between transports.
+
+Threading Model
+...............
+
+The SHMEM transport creates one receive thread for each unique SHMEM receive address and
+port. Thus, by default two SHMEM threads are created:
+
+- A unicast receive thread for discovery data
+- A unicast receive thread for user data
+
+Each receive thread will create a shared memory segment that will act as a message queue.
+Other *DomainParticipants* will send RTPS message to this message queue.
+
+This message queue has a fixed size and can accommodate a fixed number of messages
+(received_message_count_max_) each with a maximum payload size of (message_size_max_). The
+total size of the queue is configurable with (receive_buffer_size_).
+
+Configuring SHMEM Receive Threads
+'''''''''''''''''''''''''''''''''
+
+All threads in the SHMEM transport share the same thread settings. It is important to note
+that all the SHMEM properties must be set before the SHMEM transport is registered.
+|me| preregisters the SHMEM transport with default settings when the
+:link_connextmicro_dds_api_c_up_one:`DomainParticipantFactory <group__DDSDomainParticipantFactoryModule.html>`
+is initialized. To change the SHMEM thread settings, use the following code.
+
+::
+
+        struct SHMEM_InterfaceFactoryProperty shmem_property = NETIO_SHMEMInterfaceFactoryProperty_INITIALIZER
+
+        shmem_property.recv_thread_property.options = ...;
+
+        /* The stack-size is platform dependent, it is passed directly to the OS */
+        shmem_property.recv_thread_property.stack_size = ...;
+
+        /* The priority is platform dependent, it is passed directly to the OS */
+        shmem_property.recv_thread_property.priority = ...;
+
+        if (!RT_Registry_register(registry, "_shmem",
+                                  SHMEM_InterfaceFactory_get_interface(),
+                                  (struct RT_ComponentFactoryProperty*)&shmem_property,
+                                  NULL))
+        {
+            /* ERROR */
+        }
+
+.. _section-shmem-configuration:
+
+SHMEM Configuration
+...................
+
+All the configuration of the SHMEM transport is done via the struct
+SHMEM_InterfaceFactoryProperty structure::
+
+  struct NETIO_SHMEMInterfaceFactoryProperty
+  {
+      struct NETIO_InterfaceFactoryProperty _parent;
+      /* Max number of received message sizes that can be residing
+         inside the shared memory transport concurrent queue
+       */
+      RTI_INT32 received_message_count_max;
+      /* The size of the receive socket buffer */
+      RTI_INT32 receive_buffer_size;
+      /* The maximum size of the message which can be received */
+      RTI_INT32 message_size_max;
+      /* Thread properties for each receive thread created by this
+         NETIO interface.
+       */
+      struct OSAPI_ThreadProperty recv_thread_property;
+  };
+
+received_message_count_max
+''''''''''''''''''''''''''
+
+The number of maximum RTPS messages that can be inside a receive thread's receive buffer.
+By default this is 64.
+
+receive_buffer_size
+'''''''''''''''''''
+
+The size of the message queue residing inside a shared memory region accessible from
+different processes. The default size is ((received_message_count_max_ * message_size_max_) / 4).
+
+message_size_max
+''''''''''''''''
+
+The size of an RTPS message that can be sent across the shared memory transport. By default
+this number is 65536.
+
+recv_thread_property
+''''''''''''''''''''
+
+The recv_thread field is used to configure all the receive threads. Please refer to
+:ref:`intra_threads` for details.
+
+pro_minimum_compatiblity_version
+''''''''''''''''''''''''''''''''
+
+The minimum version of |core_pro| with which to guarantee compatibility when 
+using shared memory. This only needs to be specified if 
+``dds.transport.minimum_compatibility_version`` has been specified in |core_pro| and 
+compatibility with |me| is required. The default value is ``DDS_PRODUCTVERSION_UNKNOWN``.
+
+See 
+:link_external_community_doc_pro_um:`Capturing Shared Memory Traffic in the Core Libraries User's Manual <users_manual/NetworkCapture.htm#58.1_Capturing_Shared_Memory_Traffic>`
+for more information on ``dds.transport.minimum_compatibility_version`` in |core_pro|.
+
+Caveats
+.......
+
+Leftover shared memory resources
+''''''''''''''''''''''''''''''''
+
+|me| implements the shared memory transport and utilizes shared memory semaphores that can be used concurrently by processes.
+|me| implements a shared memory mutex from a shared memory semaphore. If an application exits
+ungracefully, then the shared memory mutex may be left in a state that prevents it from being used.
+This can occur because the |me| Shared Memory Transport tries to re-use and
+clean up and leftover segments as a result of an applications ungraceful termination.
+If ungraceful termination occurs, the leftover shared memory mutexes need to be cleaned up either manually or
+by restarting the system.
+
+The same applies to shared memory semaphores. If an application exists ungracefully, there can be
+leftover shared memory segments.
+
+
+Darwin and Linux systems
+''''''''''''''''''''''''
+In the case of Darwin and Linux systems which use SysV semaphores, you can view any leftover shared memory
+segments using **ipcs -a**. They can be removed using the **ipcrm** command. Shared memory keys used by |me| are in the range of 0x00400000.
+For example:
+
+- ``ipcs -m | grep 0x004``
+
+The shared semaphore keys used by |me| are in the range of 0x800000; the shared memory mutex keys are in the range of 0xb00000.
+For example:
+
+- ``ipcs -m | grep 0x008``
+- ``ipcs -m | grep 0x00b``
+
+QNX systems
+'''''''''''
+QNX® systems use POSIX® APIs to create shared memory segments or semaphores. The shared memory 
+segment resources are located in **/dev/shmem** and the shared memory mutex and semaphores are located in
+**/dev/sem**.
+
+To view any leftover shared memory segments when no |me| applications are running:
+
+- ``ls /dev/shmem/RTIOsapi*``
+- ``ls /dev/sem/RTIOsapi*``
+
+To clean up the shared memory resources, remove the files listed.
+
+Windows and VxWorks systems
+'''''''''''''''''''''''''''
+
+On Windows and VxWorks® systems, once all the processes that are attached to a 
+shared memory segment, shared memory mutex, or shared memory semaphores are terminated 
+(either gracefully or ungracefully), the shared memory resources will be automatically 
+cleaned up by the operating system.

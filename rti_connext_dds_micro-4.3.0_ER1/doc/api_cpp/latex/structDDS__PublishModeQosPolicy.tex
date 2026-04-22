@@ -1,0 +1,106 @@
+\doxysubsection{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__PublishModeQosPolicy}{}\label{structDDS__PublishModeQosPolicy}\index{DDS\_PublishModeQosPolicy@{DDS\_PublishModeQosPolicy}}
+
+
+Specifies how RTI Connext DDS Micro sends application data on the network. This QoS policy can be used to tell RTI Connext DDS Micro to use its {\itshape own} thread to send data, instead of the user thread.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSPublishModeQosModule_ga7c71d1e8aba7e852f23c9fcce4b80b42}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+Kind}} \mbox{\hyperlink{structDDS__PublishModeQosPolicy_a49f7b6e81f30db4fbcb08d79addcf86c}{kind}}
+\begin{DoxyCompactList}\small\item\em Publishing mode. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structDDS__PublishModeQosPolicy_ae1d0fe3d8d81f5f0a207709a9fc51bac}{flow\+\_\+controller\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em Name of the associated flow controller. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__PublishModeQosPolicy_ad1e7c5d383bb088b62034f698e37a4e3}{priority}}
+\begin{DoxyCompactList}\small\item\em Publication priority. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Specifies how RTI Connext DDS Micro sends application data on the network. This QoS policy can be used to tell RTI Connext DDS Micro to use its {\itshape own} thread to send data, instead of the user thread. 
+
+The publishing mode of a \doxylink{classDDSDataWriter}{DDSData\+Writer} determines whether data is written synchronously in the context of the user thread when calling \doxylink{structFooDataWriter_ab2c44dd15f5daf7eddf3773239101478}{Foo\+Data\+Writer\+::write} or asynchronously in the context of a separate thread internal to the middleware. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__HistoryQosPolicy}{DDS\+\_\+\+History\+Qos\+Policy} 
+
+\doxylink{classDDSFlowController}{DDSFlow\+Controller} 
+\end{DoxySeeAlso}
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSDataWriter}{DDSData\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = N/A~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO}~\newline
+ 
+\end{DoxyParagraph}
+\hypertarget{structDDS__PublishModeQosPolicy_DDSPublishModeQosModule_usage}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{structDDS__PublishModeQosPolicy_DDSPublishModeQosModule_usage}
+The fastest way for RTI Connext DDS Micro to send data is for the user thread to execute the middleware code that actually sends the data itself. However, there are times when user applications may need or want an internal middleware thread to send the data instead. For instance, to send large data reliably, you must use an asynchronous thread. 
+
+When data is written asynchronously, a \doxylink{classDDSFlowController}{DDSFlow\+Controller}, identified by {\ttfamily flow\+\_\+controller\+\_\+name}, can be used to shape the network traffic. Shaping a data flow usually means limiting the maximum data rates at which the middleware will send data for a \doxylink{classDDSDataWriter}{DDSData\+Writer}. The flow controller will buffer any excess data and only send it when the send rate drops below the maximum rate. The flow controller\textquotesingle{}s properties determine when the asynchronous publishing thread is allowed to send data and how much data. 
+
+Asynchronous publishing may increase latency, but offers the following advantages\+: 
+
+-\/ The \doxylink{structFooDataWriter_ab2c44dd15f5daf7eddf3773239101478}{Foo\+Data\+Writer\+::write} call does not make any network calls and is therefore faster and more deterministic. This becomes important when the user thread is executing time-\/critical code. 
+
+-\/ When data is written in bursts or when sending large data types as multiple fragments, a flow controller can throttle the send rate of the asynchronous publishing thread to avoid flooding the network. 
+
+The middleware must queue samples until they can be sent by the publishing thread as determined by the corresponding \doxylink{classDDSFlowController}{DDSFlow\+Controller}. The number of samples that will be queued is determined by the \doxylink{structDDS__HistoryQosPolicy}{DDS\+\_\+\+History\+Qos\+Policy}. When using \doxylink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a993d3120b7bbb347ce11e0e6f68b29ff}{DDS\+\_\+\+KEEP\+\_\+\+LAST\+\_\+\+HISTORY\+\_\+\+QOS}, only the most recent \doxylink{structDDS__HistoryQosPolicy_aef0fb3fd3579866be17d1a936f5e3729}{DDS\+\_\+\+History\+Qos\+Policy\+::depth} samples are kept in the queue. Once unsent samples are removed from the queue, they are no longer available to the asynchronous publishing thread and will therefore never be sent. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__PublishModeQosPolicy_a49f7b6e81f30db4fbcb08d79addcf86c}\index{DDS\_PublishModeQosPolicy@{DDS\_PublishModeQosPolicy}!kind@{kind}}
+\index{kind@{kind}!DDS\_PublishModeQosPolicy@{DDS\_PublishModeQosPolicy}}
+\doxyparagraph{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily \label{structDDS__PublishModeQosPolicy_a49f7b6e81f30db4fbcb08d79addcf86c} 
+\mbox{\hyperlink{group__DDSPublishModeQosModule_ga7c71d1e8aba7e852f23c9fcce4b80b42}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+Kind}} DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::kind}
+
+
+
+Publishing mode. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSPublishModeQosModule_gga7c71d1e8aba7e852f23c9fcce4b80b42ac767f78a22d81ac1988d6b94d2908a3b}{DDS\+\_\+\+SYNCHRONOUS\+\_\+\+PUBLISH\+\_\+\+MODE\+\_\+\+QOS} \Hypertarget{structDDS__PublishModeQosPolicy_ae1d0fe3d8d81f5f0a207709a9fc51bac}\index{DDS\_PublishModeQosPolicy@{DDS\_PublishModeQosPolicy}!flow\_controller\_name@{flow\_controller\_name}}
+\index{flow\_controller\_name@{flow\_controller\_name}!DDS\_PublishModeQosPolicy@{DDS\_PublishModeQosPolicy}}
+\doxyparagraph{\texorpdfstring{flow\_controller\_name}{flow\_controller\_name}}
+{\footnotesize\ttfamily \label{structDDS__PublishModeQosPolicy_ae1d0fe3d8d81f5f0a207709a9fc51bac} 
+const char\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::flow\+\_\+controller\+\_\+name}
+
+
+
+Name of the associated flow controller. 
+
+NULL value or zero-\/length string refers to \doxylink{group__DDSFlowControllerModule_ga8d70ffa29103edde8717472c79a239d2}{DDS\+\_\+\+DEFAULT\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME}. 
+
+Unless {\ttfamily flow\+\_\+controller\+\_\+name} points to a built-\/in flow controller, finalizing the \doxylink{structDDS__DataWriterQos}{DDS\+\_\+\+Data\+Writer\+Qos} will also free the string pointed to by {\ttfamily flow\+\_\+controller\+\_\+name}. Therefore, use \doxylink{group__DDSStringClass_gaab34d3575bf66cd95a890f7e21eb697a}{DDS\+\_\+\+String\+\_\+dup} before passing the string to {\ttfamily flow\+\_\+controller\+\_\+name}, or reset {\ttfamily flow\+\_\+controller\+\_\+name} to NULL before finalizing the QoS. 
+
+Please refer to \doxylink{group__DDSStringClass}{String Support} for more information.  
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDomainParticipant_a7ab6fb3f729d0abf769e28198e3388cd}{DDSDomain\+Participant\+::create\+\_\+flowcontroller} 
+
+\doxylink{group__DDSFlowControllerModule_ga8d70ffa29103edde8717472c79a239d2}{DDS\+\_\+\+DEFAULT\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME} 
+
+\doxylink{group__DDSFlowControllerModule_gabc34ec170f1c54ddbe002e510cfef8c6}{DDS\+\_\+\+FIXED\+\_\+\+RATE\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME} 
+
+\doxylink{group__DDSFlowControllerModule_ga2172a524dbc9cebfeb844408505193ac}{DDS\+\_\+\+ON\+\_\+\+DEMAND\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME} 
+\end{DoxySeeAlso}
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSFlowControllerModule_ga8d70ffa29103edde8717472c79a239d2}{DDS\+\_\+\+DEFAULT\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+NAME} \Hypertarget{structDDS__PublishModeQosPolicy_ad1e7c5d383bb088b62034f698e37a4e3}\index{DDS\_PublishModeQosPolicy@{DDS\_PublishModeQosPolicy}!priority@{priority}}
+\index{priority@{priority}!DDS\_PublishModeQosPolicy@{DDS\_PublishModeQosPolicy}}
+\doxyparagraph{\texorpdfstring{priority}{priority}}
+{\footnotesize\ttfamily \label{structDDS__PublishModeQosPolicy_ad1e7c5d383bb088b62034f698e37a4e3} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::priority}
+
+
+
+Publication priority. 
+
+A positive integer value designating the relative priority of the \doxylink{classDDSDataWriter}{DDSData\+Writer}, used to determine the transmission order of pending writes. 
+
+Use of publication priorities requires the asynchronous publisher \doxylink{group__DDSPublishModeQosModule_gga7c71d1e8aba7e852f23c9fcce4b80b42a4ca8021581a2541bb90d19d64fb0ac1e}{DDS\+\_\+\+ASYNCHRONOUS\+\_\+\+PUBLISH\+\_\+\+MODE\+\_\+\+QOS} with \doxylink{structDDS__FlowControllerProperty__t_a97ba75a849dfbdb62fedc501f72188d7}{DDS\+\_\+\+Flow\+Controller\+Property\+\_\+t\+::scheduling\+\_\+policy} set to \doxylink{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115abcc07438223e2fe71c0bff710b3ef020}{DDS\+\_\+\+HPF\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY}. 
+
+Larger numbers have higher priority. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSPublishModeQosModule_ga7f54323acc81cece560738a363ba1d8a}{DDS\+\_\+\+PUBLICATION\+\_\+\+PRIORITY\+\_\+\+UNDEFINED} 

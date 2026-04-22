@@ -1,0 +1,97 @@
+\doxysubsection{DDS API}
+\hypertarget{group__DDSDcpsModule}{}\label{group__DDSDcpsModule}\index{DDS API@{DDS API}}
+
+
+RTI Connext DDS Micro modules following the DDS module definitions.  
+
+
+\doxysubsubsubsection*{Topics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSFILTERModule}{Content Filter Plugin}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_experimental}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}experimental\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Content Filter Plugin \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSDomainModule}{Domain Module}}
+\begin{DoxyCompactList}\small\item\em Contains the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} class that acts as an entrypoint of RTI Connext DDS Micro and acts as a factory for many of the classes. The \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} also acts as a container for the other objects that make up RTI Connext DDS Micro. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSTopicModule}{Topic}}
+\begin{DoxyCompactList}\small\item\em Contains the \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}, the \doxylink{structDDS__TopicListener}{DDS\+\_\+\+Topic\+Listener} interface, and more generally, all that is needed by an application to define \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} objects and the data types that are associated with \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} objects. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSPublicationModule}{Publication Module}}
+\begin{DoxyCompactList}\small\item\em Contains the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}, and \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} classes, and more generally, all that is needed on the publication side. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSSubscriptionModule}{Subscription Module}}
+\begin{DoxyCompactList}\small\item\em Contains the \doxylink{group__DDSSubscriberModule_ga2755712602505786a23baef5a42d6782}{DDS\+\_\+\+Subscriber} and \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} classes, as well as the \doxylink{structDDS__SubscriberListener}{DDS\+\_\+\+Subscriber\+Listener} and \doxylink{structDDS__DataReaderListener}{DDS\+\_\+\+Data\+Reader\+Listener} interfaces, and more generally, all that is needed on the subscription side. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSInfrastructureModule}{Infrastructure Module}}
+\begin{DoxyCompactList}\small\item\em Defines the abstract classes and the interfaces that are refined by the other modules. Contains common definitions such as return codes, status values, and QoS policies. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__NDDSUtilityModule}{General Utilities and Compliance Configuration}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+RTI Connext DDS Micro modules following the DDS module definitions. 
+
+\hypertarget{group__DDSDcpsModule_DDSDcps_overview}{}\doxysubsubsection{\texorpdfstring{Overview}{Overview}}\label{group__DDSDcpsModule_DDSDcps_overview}
+
+
+Information flows with the aid of the following constructs\+: \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} and \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} on the sending side, \doxylink{group__DDSSubscriberModule_ga2755712602505786a23baef5a42d6782}{DDS\+\_\+\+Subscriber} and \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} on the receiving side.
+
+
+\begin{DoxyItemize}
+\item A \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} is an object responsible for data distribution. It may publish data of different data types. A \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} acts as an accessor to a publisher -\/ each \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} object is dedicated to one application data type. A \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} is the object the application must use to communicate to a publisher the existence and value of data-\/objects of a given type. When data-\/object values have been communicated to the publisher through the appropriate data-\/writer, it is the publisher\textquotesingle{}s responsibility to perform the distribution (the publisher will do this according to its own QoS, or the QoS attached to the corresponding data-\/writer). A {\itshape publication} is defined by the association of a data-\/writer to a publisher. This association expresses the intent of the application to publish the data described by the data-\/writer in the context provided by the publisher.
+\item A \doxylink{group__DDSSubscriberModule_ga2755712602505786a23baef5a42d6782}{DDS\+\_\+\+Subscriber} is an object responsible for receiving published data and making it available (according to the Subscriber\textquotesingle{}s QoS) to the receiving application. It may receive and dispatch data of different specified types. To access the received data, the application must use a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} attached to the subscriber. Thus, a {\itshape subscription} is defined by the association of a data-\/reader with a subscriber. This association expresses the intent of the application to subscribe to the data described by the data-\/reader in the context provided by the subscriber.
+\end{DoxyItemize}
+
+\doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} objects conceptually fit between publications and subscriptions. Publications must be known in such a way that subscriptions can refer to them unambiguously. A \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} is meant to fulfill that purpose\+: it associates a name (unique in the domain i.\+e. the set of applications that are communicating with each other), a data type, and QoS related to the data itself. In addition to the topic QoS, the QoS of the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} associated with that Topic and the QoS of the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} associated to the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} control the behavior on the publisher\textquotesingle{}s side, while the corresponding \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}, \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} and \doxylink{group__DDSSubscriberModule_ga2755712602505786a23baef5a42d6782}{DDS\+\_\+\+Subscriber} QoS control the behavior on the subscriber\textquotesingle{}s side.
+
+When an application wishes to publish data of a given type, it must create a \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} (or reuse an already created one) and a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} with all the characteristics of the desired publication. Similarly, when an application wishes to receive data, it must create a \doxylink{group__DDSSubscriberModule_ga2755712602505786a23baef5a42d6782}{DDS\+\_\+\+Subscriber} (or reuse an already created one) and a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} to define the subscription.\hypertarget{group__DDSDcpsModule_DDSDcps_model}{}\doxysubsubsection{\texorpdfstring{Conceptual Model}{Conceptual Model}}\label{group__DDSDcpsModule_DDSDcps_model}
+The overall conceptual model is shown below.
+
+
+
+Notice that all the main communication objects (the specializations of Entity) follow unified patterns of\+:
+
+
+\begin{DoxyItemize}
+\item Supporting QoS (made up of several Qos\+Policy); QoS provides a generic mechanism for the application to control the behavior of the Service and tailor it to its needs. Each \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} supports its own specialized kind of QoS policies (see \doxylink{group__DDSQosTypesModule}{QoS Policies}).
+\item Accepting a \doxylink{structDDS__Listener}{DDS\+\_\+\+Listener}; listeners provide a generic mechanism for the middleware to notify the application of relevant asynchronous events, such as arrival of data corresponding to a subscription, violation of a QoS setting, etc. Each \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} supports its own specialized kind of listener. Listeners are related to changes in status conditions (see \doxylink{group__DDSStatusTypesModule}{Status Kinds}). ~\newline
+ ~\newline
+ Note that only one Listener per entity is allowed (instead of a list of them). The reason for that choice is that this allows a much simpler (and, thus, more efficient) implementation as far as the middleware is concerned. Moreover, if it were required, the application could easily implement a listener that, when triggered, triggers in return attached \textquotesingle{}sub-\/listeners\textquotesingle{}.
+\end{DoxyItemize}
+
+All DCPS entities are attached to a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. A domain participant represents the local membership of the application in a domain. A {\itshape domain} is a distributed concept that links all the applications able to communicate with each other. It represents a communication plane\+: only the publishers and the subscribers attached to the same domain may interact.
+
+\doxylink{group__DDSEntityModule_ga0cd8d7d61066e2a434918419e1514bfc}{DDS\+\_\+\+Domain\+Entity} is an intermediate object whose only purpose is to state that a Domain\+Participant cannot contain other domain participants.
+
+At the DCPS level, data types represent information that is sent atomically. For performance reasons, only plain data structures are handled by this level.
+
+By definition, a \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} corresponds to a single data type. However, several topics may refer to the same data type. Therefore, a \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} identifies data of a single type, ranging from one single instance to a whole collection of instances of that given type. This is shown below for the hypothetical data type {\ttfamily Foo}.
+
+
+
+In case a set of instances is gathered under the same topic, different instances must be distinguishable. This is achieved by means of the values of some data fields that form the {\bfseries{key}} to that data set. The {\itshape key description} (i.\+e., the list of data fields whose value forms the key) has to be indicated to the middleware. The rule is simple\+: {\itshape different data samples with the same key value represent successive values for the same instance, while different data samples with different key values represent different instances}. If no key is provided, the data set associated with the \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} is restricted to a {\itshape single instance}.
+
+Topics need to be known by the middleware and potentially propagated. Topic objects are created using the create operations provided by \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}.
+
+The interaction style is straightforward on the publisher\textquotesingle{}s side\+: when the application decides that it wants to make data available for publication, it calls the appropriate operation on the related \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} (this, in turn, will trigger its \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher}).
+
+On the subscriber\textquotesingle{}s side however, there are more choices\+: relevant information may arrive when the application is busy doing something else or when the application is just waiting for that information. Therefore, depending on the way the application is designed, asynchronous notifications or synchronous access may be more appropriate. Both interaction modes are allowed, a \doxylink{structDDS__Listener}{DDS\+\_\+\+Listener} is used to provide a callback for asynchronous access, and polling allows for synchronous access.\hypertarget{group__DDSDcpsModule_DDSDcps_packages}{}\doxysubsubsection{\texorpdfstring{Modules}{Modules}}\label{group__DDSDcpsModule_DDSDcps_packages}
+DCPS consists of five modules\+:
+
+
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{DDSPackages}
+\doxyfigcaption{DCPS modules and their dependencies}
+\end{DoxyImage}
+
+
+
+\begin{DoxyItemize}
+\item \doxylink{group__DDSInfrastructureModule}{Infrastructure module } defines the abstract classes and the interfaces that are refined by the other modules. It also provides support for the notification-\/based interaction style with the middleware.
+\item \doxylink{group__DDSDomainModule}{Domain module } contains the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} class that acts as an entrypoint of the Service and acts as a factory for many of the classes. The \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} also acts as a container for the other objects that make up the Service.
+\item \doxylink{group__DDSTopicModule}{Topic module } contains the \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} class, and more generally, all that is needed by the application to define \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} objects and attach QoS policies to them.
+\item \doxylink{group__DDSPublicationModule}{Publication module } contains the \doxylink{group__DDSPublisherModule_ga3ecc0192bac0cba03781b70cec3099c9}{DDS\+\_\+\+Publisher} and \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} classes, and more generally, all that is needed on the publication side.
+\item \doxylink{group__DDSSubscriptionModule}{Subscription module } contains the \doxylink{group__DDSSubscriberModule_ga2755712602505786a23baef5a42d6782}{DDS\+\_\+\+Subscriber}, and \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}, and more generally, all that is needed on the subscription side. 
+\end{DoxyItemize}\input{group__DDSFILTERModule}
+\input{group__DDSDomainModule}
+\input{group__DDSTopicModule}
+\input{group__DDSPublicationModule}
+\input{group__DDSSubscriptionModule}
+\input{group__DDSInfrastructureModule}
+\input{group__NDDSUtilityModule}

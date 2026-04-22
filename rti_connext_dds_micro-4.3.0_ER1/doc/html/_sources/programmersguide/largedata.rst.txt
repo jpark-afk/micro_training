@@ -1,0 +1,279 @@
+Sending Large Data
+==================
+
+|me| supports transmission and reception of data types that exceed the
+maximum message size of a transport. This section describes the behavior and the
+configuration options.
+
+This section includes:
+
+.. contents::
+   :local:
+   :depth: 1
+
+How Sending Large Data Works
+----------------------------
+
+|me| supports transmission and reception of data samples that exceed the
+maximum message size of a transport. For example, UDP supports a maximum user payload
+of 65507 bytes. In order to send samples larger than 65507 bytes, |me| must
+split the sample into multiple UDP payloads.
+
+|me| supports transmission and reception of data samples that exceed the
+maximum message size of a transport. When a write request produces a sample that
+cannot fit in a single transport payload, the *DataWriter* splits the sample into
+fragments sized for that transport. Those fragments are placed under the control
+of the task scheduler and the flow controller, which determine when tokens are
+available to send data. The scheduler wakes up at the configured rate, the flow
+controller grants tokens based on the configured policy, and the fragments are
+sent as bandwidth becomes available. On the receiving side, the *DataReader*
+collects incoming fragments, reassembles them into a complete serialized sample,
+deserializes the payload, and provides regular data to the application once the
+reconstruction succeeds.
+
+Key Properties of Fragmentation
+-------------------------------
+
+When working with large data, the following properties govern runtime behavior:
+
+- Fragmentation is always compiled in but can be influenced through
+  configuration.
+- Fragmentation and flow control are tracked per *DataWriter*; |rti_core_pro|
+  differs by sharing flow controllers across a publisher.
+- Fragmentation is evaluated per sample. Two samples of the same type may
+  fragment differently, and the application never manipulates fragments directly.
+- The *DataWriter* chooses the fragment size, so writers of the same type may use
+  different fragment boundaries.
+- All fragments must arrive before a sample can be reconstructed. Under
+  best-effort reliability, the loss of any fragment implies the loss of the
+  sample. Under reliability, missing fragments may be resent; if they cannot be
+  recovered, the sample is dropped.
+- Rapid calls to DDS ``write()`` can exhaust *DataWriter* resources while a large
+  sample is still being sent, because buffers are only released after the full
+  sample has been transmitted.
+
+Differences Between Fragmentation and Transport Limits
+------------------------------------------------------
+
+|me| fragmentation is distinct from lower-level limits such as transport
+payloads or operating system buffers. However, fragmentation interacts with
+these limits as follows:
+
+- |me| fragmentation controls how a single logical sample is split across
+  transport payloads.
+- Transports or the IP layer may fragment datagrams again (for example, IP
+  fragmentation when UDP messages exceed roughly 1488 bytes).
+- The sender's maximum transmit message size defines the largest payload that
+  can be placed on the wire per transport message.
+- The sender's transport transmit buffer limit governs how many bytes the
+  transport can queue internally.
+- The receiver's maximum message size specifies the largest single payload it
+  can accept from the transport.
+- The receiver's transport buffer limit controls how much data can be buffered
+  while fragments arrive.
+
+Understanding each layer's constraint helps diagnose whether fragmentation
+settings or transport limits are responsible for throttling throughput.
+
+Components Involved in Sending Large Data
+-----------------------------------------
+
+Large data delivery relies on four cooperating subsystems:
+
+- **DataWriter fragmenter**: Detects when a sample exceeds the configured
+  transport payload size and produces fragments aligned with the writer's
+  fragmentation policy.
+- **Task scheduler**: Runs in its own thread, wakes up at the configured clock
+  rate, and drives periodic tasks such as large-data transmissions.
+- **Flow controller**: Applies the selected scheduling policy and token bucket
+  settings to determine when queued fragments are eligible to leave the writer.
+- **DataReader reassembly buffer**: Tracks incoming fragments per remote writer,
+  reconstructs samples when all fragments arrive, and manages reassembly
+  resources.
+
+These roles are fixed; configuration determines how they operate but not how
+they cooperate.
+
+Configuring Large Data Support
+------------------------------
+
+All configuration must be applied before the relevant entities are created.
+
+Task scheduler configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The task scheduler properties must be configured before creating the
+*DomainParticipantFactory*:
+
+.. code-block:: c
+
+    /* Configure task scheduler thread properties */
+    sys_property.task_scheduler.thread.stack_size = 32768;
+    sys_property.task_scheduler.thread.options = OSAPI_THREAD_DEFAULT_OPTIONS;
+    sys_property.task_scheduler.thread.priority = OSAPI_THREAD_PRIORITY_DEFAULT;
+
+    /* Set the rate at which periodic tasks run (in nanoseconds) */
+    /* This affects how frequently fragments are sent */
+    sys_property.task_scheduler.rate = 10000000; /* 10 milliseconds */
+
+    if (!OSAPI_System_set_property(&sys_property))
+    {
+        /* error */
+    }
+
+Flow controller configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Flow controllers shape the rate at which fragments leave the writer. Each
+configuration selects a scheduling policy (round robin, earliest deadline
+first, or highest priority first) and defines a token bucket that meters the
+available bandwidth. The built-in controllers cover common patterns, while
+custom controllers allow precise tuning for large data workloads.
+
+Creating custom flow controllers
+""""""""""""""""""""""""""""""""
+
+Applications can create custom flow controllers for both synchronous and
+asynchronous publishing modes:
+
+.. code-block:: c
+
+    DDS_FlowControllerProperty_t fc_property = DDS_FlowControllerProperty_t_INITIALIZER;
+
+    /* Configure token bucket parameters */
+    fc_property.token_bucket.period.sec = 0;
+    fc_property.token_bucket.period.nanosec = 100000000; /* 100 ms */
+    fc_property.token_bucket.bytes_per_token = 1024; /* 1 KB per token */
+    fc_property.token_bucket.tokens_added_per_period = 10; /* 10 KB per period */
+    fc_property.token_bucket.tokens_leaked_per_period = 0;
+    fc_property.token_bucket.max_tokens = 100; /* Max 100 KB burst */
+
+    /* Use Earliest Deadline First scheduling */
+    fc_property.scheduling_policy = DDS_EDF_FLOW_CONTROLLER_SCHED_POLICY;
+
+
+The custom flow controller can then be associated with a *DataWriter* as
+seen in the examples section below.
+
+For additional background on built-in flow controller policies, see
+:link_external_community_doc_pro_um:`the FlowControllers section <index.htm#users_manual/FlowControllers__DDS_Extension_.htm>` and
+:link_external_community_doc_pro_um:`the ASYNCHRONOUS_PUBLISHER QoSPolicy section <index.htm#users_manual/ASYNCHRONOUS_PUBL_Qos.htm>` in the
+|rti_core_pro| User's Manual.
+
+Writer resource limits
+^^^^^^^^^^^^^^^^^^^^^^
+
+Fragments occupy the same resource pools as regular samples. Increase
+``resource_limits.max_samples`` to cover fragments waiting to be sent, adjust
+``max_instances`` if multiple keyed instances are active, and make sure
+``max_samples_per_instance`` reflects the maximum number of enqueued samples
+per key while large data is in-flight.
+
+Reader fragment reassembly limits
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Large samples require the reader to buffer fragments until reconstruction is
+complete. Tune ``reader_resource_limits.max_fragmented_samples`` for the
+aggregate workload and ``max_fragmented_samples_per_remote_writer`` to cap
+per-writer usage. Align the regular ``resource_limits`` fields with the
+expected steady-state data set so reconstructed samples can be stored once
+the fragments converge.
+
+
+Maintain the relationship:
+
+::
+
+    max_fragmented_samples >=
+        number_of_remote_writers * max_fragmented_samples_per_remote_writer
+
+If reassembly resources are exhausted, incoming fragments are dropped until
+capacity is available.
+
+When to Choose Synchronous vs Asynchronous Publishing
+-----------------------------------------------------
+
+Use **synchronous publishing** when:
+
+- You need to know immediately if the write succeeded.
+- Your application can tolerate blocking during ``write()`` calls.
+- You prefer simpler resource management.
+- You primarily send small or medium-sized samples.
+
+Use **asynchronous publishing** when:
+
+- You send large fragmented samples that benefit from batching.
+- You need ``write()`` to return quickly.
+- You require precise control over bandwidth consumption over time.
+- You can provision additional resources for queuing pending samples.
+
+Complete Example
+----------------
+
+The following code fragment shows a complete example of configured large data
+support:
+
+.. code-block:: c
+
+    /* 1. Configure task scheduler before creating factory */
+    struct OSAPI_SystemProperty sys_property = OSAPI_SystemProperty_INITIALIZER;
+
+    if (!OSAPI_System_get_property(&sys_property))
+    {
+        /* error */
+    }
+
+    sys_property.task_scheduler.thread.stack_size = 32768;
+    sys_property.task_scheduler.rate = 10000000; /* 10 ms */
+
+    if (!OSAPI_System_set_property(&sys_property))
+    {
+        /* error */
+    }
+
+    factory = DDS_DomainParticipantFactory_get_instance();
+    participant = DDS_DomainParticipantFactory_create_participant(
+        factory, 0, &DDS_PARTICIPANT_QOS_DEFAULT, NULL, 0);
+
+    /* 2. Create custom flow controller */
+    DDS_FlowControllerProperty_t fc_property = DDS_FlowControllerProperty_t_INITIALIZER;
+    fc_property.token_bucket.period.sec = 0;
+    fc_property.token_bucket.period.nanosec = 100000000; /* 100 ms */
+    fc_property.token_bucket.bytes_per_token = 1024;
+    fc_property.token_bucket.tokens_added_per_period = 10;
+    fc_property.token_bucket.max_tokens = 100;
+    fc_property.scheduling_policy = DDS_EDF_FLOW_CONTROLLER_SCHED_POLICY;
+
+    DDS_FlowController *fc = DDS_DomainParticipant_create_flowcontroller(
+        participant, "MyFlowController", &fc_property);
+
+    /* 3. Configure writer to use flow controller */
+    DDS_DataWriterQos dw_qos = DDS_DataWriterQos_INITIALIZER;
+    dw_qos.publish_mode.kind = DDS_ASYNCHRONOUS_PUBLISH_MODE_QOS;
+    dw_qos.publish_mode.flow_controller_name = DDS_String_dup("MyFlowController");
+    dw_qos.resource_limits.max_samples = 32;
+
+    /* 4. Configure reader for fragment reassembly */
+    DDS_DataReaderQos dr_qos = DDS_DataReaderQos_INITIALIZER;
+    dr_qos.reader_resource_limits.max_fragmented_samples = 64;
+    dr_qos.reader_resource_limits.max_fragmented_samples_per_remote_writer = 8;
+    dr_qos.resource_limits.max_samples = 32;
+
+Limitations
+-----------
+
+The following known limitations apply to large data support:
+
+- Fragmentation support is compiled in by default. While it cannot be completely
+  disabled at runtime, its behavior can be shaped through QoS and flow controller
+  configuration.
+- Scheduler accuracy depends on the operating system. Actual wake-up rates may
+  vary with load.
+- Reader-side reassembly requires preallocated resources. If limits are exceeded,
+  fragments are dropped.
+- With best-effort reliability, losing any fragment loses the entire sample. With
+  reliability, missing fragments may be resent, but irrecoverable fragments cause
+  the sample to be dropped.
+- Maintain the relationship between ``max_fragmented_samples`` and
+  ``max_fragmented_samples_per_remote_writer`` to ensure operation with multiple
+  writers.

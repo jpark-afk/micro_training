@@ -1,0 +1,75 @@
+.. _section-micro_and_core:
+
+Migrating from |core_pro_h|
+===========================
+
+In some cases, it may be necessary to write an application that is
+compiled against both |me|, |me_cert|, and
+|core_pro|. In general this is not easy to do because |me|
+and |me_cert| support a very limited set of features compared to
+|core_pro|. However, while |me_cert| is subset of |me|,
+it is relatively easy to write applications that support both.
+
+Due to the nature of the DDS API and the philosophy of declaring
+behavior through QoS profiles instead of using different APIs, it may be
+possible to share common code. In particular, |core_pro| supports configuration
+through QoS profile files, which eases the job of writing portable code.
+
+Note that |core_pro| supports many extended APIs that are not covered by the
+DDS specification; for example, APIs that create DDS *Entities* based on QoS
+profiles.
+
+Supported DDS Features
+----------------------
+
+|me| supports a subset of the DDS DCPS standard. For a detailed list of
+supported *Entities* and QoS policies, please refer to the
+:link_connextmicro_dds_api_c:`C API Reference <index.html>` and
+:link_connextmicro_dds_api_cpp:`C++ API Reference <index.html>`.
+
+Development Environment
+-----------------------
+
+There are no conflicts between |me| and |core_pro| with respect to library
+names, header files, etc. It is advisable to keep the two installations separate,
+which is the normal case.
+
+|me| uses the environment variable RTIMEHOME to locate the root of the
+|me| installation.
+
+|core_pro| uses the environment variable NDDSHOME to locate the root of the
+|core_pro| installation.
+
+Non-standard APIs
+-----------------
+
+The DDS specification omits many APIs and policies necessary to configure
+a DDS application, such as transport, discovery, memory, logging, etc. In
+general, |me| and |core_pro| do not share APIs for these functions.
+
+It is recommended to configure |core_pro| using QoS profiles as much as possible.
+
+QoS Policies
+------------
+
+QoS policies defined by the DDS standard behave the same between |me| and
+|core_pro|. However, note that |me| does not always support all
+the values for a policy and in particular unlimited resources are not supported.
+
+Unsupported QoS policies are the most likely reason for not being able to
+switch between |me| and |core_pro|.
+
+Standard APIs
+-------------
+
+APIs that are defined by the standard behave the same between |me| and
+|core_pro|.
+
+IDL Files
+---------
+
+|me| and |core_pro| use the same IDL compiler (rtiddsgen)
+and |me| typically ships with the latest version. However,
+|me| and |core_pro| use different templates to generate code and it
+is not possible to share the generated code. Thus, while the same IDL can
+be used, the generated output must be saved in different locations.

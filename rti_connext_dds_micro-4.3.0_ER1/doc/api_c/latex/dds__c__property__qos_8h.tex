@@ -1,0 +1,32 @@
+\doxysubsection{dds\+\_\+c\+\_\+property\+\_\+qos.\+h File Reference}
+\hypertarget{dds__c__property__qos_8h}{}\label{dds__c__property__qos_8h}\index{dds\_c\_property\_qos.h@{dds\_c\_property\_qos.h}}
+
+
+DDS Property interface.  
+
+
+\doxysubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__Property__t}{DDS\+\_\+\+Property\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Properties are name/value pair objects. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PropertySeq}{DDS\+\_\+\+Property\+Seq}}
+\begin{DoxyCompactList}\small\item\em Declares IDL {\ttfamily sequence} \texorpdfstring{$<$}{<} \doxylink{structDDS__Property__t}{DDS\+\_\+\+Property\+\_\+t} \texorpdfstring{$>$}{>} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PropertyQosPolicy}{DDS\+\_\+\+Property\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em Stores name/value(string) pairs that can be used to configure certain parameters of RTI Connext DDS Micro that are not exposed through formal QoS policies. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSPropertyQosModule_gad428b85db4ce914a9a8552ce70bb7ee7}{DDS\+\_\+\+Property\+Qos\+Policy\+Helper\+\_\+assert\+\_\+property}} (struct \mbox{\hyperlink{structDDS__PropertyQosPolicy}{DDS\+\_\+\+Property\+Qos\+Policy}} \texorpdfstring{$\ast$}{*}policy, const char \texorpdfstring{$\ast$}{*}name, const char \texorpdfstring{$\ast$}{*}value, \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} propagate)
+\begin{DoxyCompactList}\small\item\em Asserts the property identified by name in the input policy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSPropertyQosModule_gaaa0b36adc5b0feafa6c2bb2e56bb3491}{DDS\+\_\+\+Property\+Qos\+Policy\+Helper\+\_\+add\+\_\+property}} (struct \mbox{\hyperlink{structDDS__PropertyQosPolicy}{DDS\+\_\+\+Property\+Qos\+Policy}} \texorpdfstring{$\ast$}{*}policy, const char \texorpdfstring{$\ast$}{*}name, const char \texorpdfstring{$\ast$}{*}value, \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} propagate)
+\begin{DoxyCompactList}\small\item\em Adds a new property to the input policy. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__Property__t}{DDS\+\_\+\+Property\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSPropertyQosModule_ga41cd4982037379f966d4af35c7a3ba21}{DDS\+\_\+\+Property\+Qos\+Policy\+Helper\+\_\+lookup\+\_\+property}} (const struct \mbox{\hyperlink{structDDS__PropertyQosPolicy}{DDS\+\_\+\+Property\+Qos\+Policy}} \texorpdfstring{$\ast$}{*}policy, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Searches for a property in the input policy given its name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSPropertyQosModule_gaebf417a0734d74b6244653cae5f3ad52}{DDS\+\_\+\+Property\+Qos\+Policy\+Helper\+\_\+remove\+\_\+property}} (struct \mbox{\hyperlink{structDDS__PropertyQosPolicy}{DDS\+\_\+\+Property\+Qos\+Policy}} \texorpdfstring{$\ast$}{*}policy, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Removes a property from the input policy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+DDS Property interface. 
+

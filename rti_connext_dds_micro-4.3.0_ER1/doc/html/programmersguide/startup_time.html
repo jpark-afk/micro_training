@@ -1,0 +1,676 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.24. Startup Time Guidelines &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 ER1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Transports" href="../transports/index.html" />
+    <link rel="prev" title="3.23. Transport Priority" href="transport_priority.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0 ER1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Programmer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">3.2. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">3.3. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">3.4. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">3.5. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">3.6. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html">3.7. User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html">3.8. Partitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html">3.9. Content Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">3.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">3.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">3.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">3.13. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html">3.14. Sending Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html">3.15. Zero Copy Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html">3.16. FlatData Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html">3.17. Application Generation Using XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">3.18. Building Against FACE Conformance Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">3.19. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.20. Example Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html">3.21. Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">3.22. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html">3.23. Transport Priority</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.24. Startup Time Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#understanding-the-startup-process">3.24.1. Understanding the startup process</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#initialization-time">3.24.1.1. Initialization time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#discovery-time">3.24.1.2. Discovery time</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#minimizing-startup-time">3.24.2. Minimizing startup time</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#application-design">3.24.2.1. Application design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qos-and-resource-configuration">3.24.2.2. QoS and resource configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-settings">3.24.2.3. Build settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#measuring-startup-time">3.24.3. Measuring startup time</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-measure-initialization-time">3.24.3.1. How to measure initialization time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-measure-discovery-time">3.24.3.2. How to measure discovery time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#what-to-record">3.24.3.3. What to record</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-startup-time-improvements">3.24.4. Validating startup time improvements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">14. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">3. </span>Programmer’s Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">3.24. </span>Startup Time Guidelines</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="startup-time-guidelines">
+<span id="section-startup-time"></span><h1><span class="section-number">3.24. </span>Startup Time Guidelines<a class="headerlink" href="#startup-time-guidelines" title="Permalink to this headline">¶</a></h1>
+<p>This section provides guidelines to measure and reduce initialization
+and discovery time in <em>Connext Micro</em>. These tips apply to any deployment where startup
+time matters, such as automotive or industrial systems with strict startup
+budgets.</p>
+<div class="section" id="understanding-the-startup-process">
+<h2><span class="section-number">3.24.1. </span>Understanding the startup process<a class="headerlink" href="#understanding-the-startup-process" title="Permalink to this headline">¶</a></h2>
+<p>Startup in <em>Connext Micro</em> has four phases:</p>
+<ol class="arabic simple">
+<li><p>Creation of local DDS entities (<em>DomainParticipants</em>, <em>Topics</em>,
+<em>DataWriters</em>, and <em>DataReaders</em>);</p></li>
+<li><p>Enabling those entities;</p></li>
+<li><p>Discovery processing, where your <em>DomainParticipants</em> exchange discovery
+traffic with remote <em>DomainParticipants</em>;</p></li>
+<li><p>Discovery completion, where your application has discovered all expected
+remote <em>DomainParticipants</em> and endpoints.</p></li>
+</ol>
+<p>The <a class="reference external" href="../../../doc/api_c/html/structDDS__EntityFactoryQosPolicy.html#a4b650acc47f1a51eefd90a072d6a70f6">autoenable_created_entities</a>
+setting controls whether these phases overlap. When autoenable is TRUE,
+entities are enabled as they are created, so discovery can begin before all
+entities exist; phases 1, 2, and 3 run partially in parallel. When
+autoenable is FALSE, you create all entities first (disabled), then enable
+the <em>DomainParticipant</em>. Discovery begins only after the <em>DomainParticipant</em>
+is enabled.</p>
+<p>This section separates startup into two measurable intervals:
+initialization time (phases 1 and 2) and discovery time (phases 3 and 4).
+These intervals can be tuned independently.</p>
+<div class="section" id="initialization-time">
+<h3><span class="section-number">3.24.1.1. </span>Initialization time<a class="headerlink" href="#initialization-time" title="Permalink to this headline">¶</a></h3>
+<p>This is the interval from application start until all
+required local DDS entities are created and enabled. This includes
+creating and enabling the <em>DomainParticipant</em> and any locally required
+<em>Topics</em>, <em>DataWriters</em>, <em>DataReaders</em>, and associated local resource
+allocation.</p>
+<p>When autoenable is TRUE, discovery may overlap with
+initialization Time. It excludes waiting for remote discovery or matching
+and any platform or network bring-up outside DDS initialization.</p>
+</div>
+<div class="section" id="discovery-time">
+<h3><span class="section-number">3.24.1.2. </span>Discovery time<a class="headerlink" href="#discovery-time" title="Permalink to this headline">¶</a></h3>
+<p>This is the interval from when the <em>DomainParticipant</em> is
+enabled until your application has discovered the expected set of remote
+<em>DomainParticipants</em> and endpoints. It includes <em>DomainParticipants</em> discovery and endpoint
+discovery traffic and processing, but excludes protocols above DDS discovery
+unless explicitly stated.</p>
+<p>Application-installed listeners (e.g., <code class="docutils literal notranslate"><span class="pre">on_subscription_matched</span></code>,
+<code class="docutils literal notranslate"><span class="pre">on_publication_matched</span></code>) run on discovery threads and can increase
+discovery time if they perform expensive operations, such as logging.</p>
+</div>
+</div>
+<div class="section" id="minimizing-startup-time">
+<span id="section-startup-init-guidelines"></span><h2><span class="section-number">3.24.2. </span>Minimizing startup time<a class="headerlink" href="#minimizing-startup-time" title="Permalink to this headline">¶</a></h2>
+<p>Slow startup is commonly caused by unoptimized builds, blocking I/O during
+startup, or oversized resource limits. The following sections describe
+application design choices, QoS configuration, and build settings that
+affect startup time.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some platforms have specific startup-time guidance. See
+<a class="reference internal" href="../platformnotes/index.html#section-platform-notes"><span class="std std-ref">Platforms Guide</span></a> for details on your target platform.</p>
+</div>
+<div class="section" id="application-design">
+<h3><span class="section-number">3.24.2.1. </span>Application design<a class="headerlink" href="#application-design" title="Permalink to this headline">¶</a></h3>
+<p>The following subsections describe application-level design decisions that
+can affect startup time.</p>
+<div class="section" id="participant-and-domain-architecture">
+<span id="section-startup-participant-architecture"></span><h4><span class="section-number">3.24.2.1.1. </span>Participant and domain architecture<a class="headerlink" href="#participant-and-domain-architecture" title="Permalink to this headline">¶</a></h4>
+<p>Each <em>DomainParticipant</em> adds initialization overhead and consumes internal
+resources. Use one <em>DomainParticipant</em> per application as the default
+approach, and only introduce additional <em>DomainParticipants</em> when you need to
+communicate in multiple DDS domains.</p>
+<p>If your system has groups of applications that do not need to communicate
+with each other, place them in separate DDS domains to reduce discovery
+traffic and prevent exceeding discovery resources (e.g., the maximum number
+of remote entities).</p>
+<p>For a general overview of <em>DomainParticipants</em> and the discovery process,
+see <a class="reference internal" href="discovery.html#section-discovery"><span class="std std-ref">Discovery</span></a>.</p>
+</div>
+<div class="section" id="enabling-entities-manually">
+<span id="section-startup-enablement-strategy"></span><h4><span class="section-number">3.24.2.1.2. </span>Enabling entities manually<a class="headerlink" href="#enabling-entities-manually" title="Permalink to this headline">¶</a></h4>
+<p>When many entities are created at startup, enabling them incrementally or
+relying on autoenable increases initialization time and may impact
+discovery time determinism. If your application design permits it, create
+all DDS entities disabled (set <a class="reference external" href="../../../doc/api_c/html/structDDS__EntityFactoryQosPolicy.html#a4b650acc47f1a51eefd90a072d6a70f6">autoenable_created_entities</a>
+to FALSE) and call
+<a class="reference external" href="../../../doc/api_c/html/group__DDSEntityModule.html#ga892fed8d9375b7c3c5f1f610f87e18da">DDS_Entity_enable()</a>
+with the following syntax after all entities are created:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">DDS_Entity_enable</span><span class="p">(</span><span class="n">DDS_DomainParticipant_as_entity</span><span class="p">(</span><span class="n">participant</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="discovery-plugin-selection">
+<span id="section-startup-discovery-plugin"></span><h4><span class="section-number">3.24.2.1.3. </span>Discovery plugin selection<a class="headerlink" href="#discovery-plugin-selection" title="Permalink to this headline">¶</a></h4>
+<p><em>Connext Micro</em> provides two discovery plugins with different startup characteristics:
+<a class="reference internal" href="discovery.html#dynamic-endpoint-disc"><span class="std std-ref">DPDE (Dynamic Participant Dynamic Endpoint)</span></a> and
+<a class="reference internal" href="discovery.html#static-endpoint-disc"><span class="std std-ref">DPSE (Dynamic Participant Static Endpoint)</span></a>.</p>
+<p>DPSE has a smaller base footprint (~14 KB) than DPDE (~48 KB) because DPDE
+creates three pairs of built-in <em>DataWriters</em> and <em>DataReaders</em> for
+<em>DomainParticipant</em>, publication, and subscription discovery traffic, while
+DPSE creates only one pair (for <em>DomainParticipant</em> discovery). This difference
+becomes more pronounced as you add more endpoints.</p>
+<p>If your deployment topology is fixed and known at build time, use DPSE; it
+reduces both initialization overhead and discovery traffic. If your topology is
+dynamic or you need to discover endpoints at runtime, use DPDE. See
+<a class="reference internal" href="discovery.html#section-discovery"><span class="std std-ref">Discovery</span></a> for configuration details of both plugins.</p>
+</div>
+<div class="section" id="transport-and-peer-configuration">
+<span id="section-startup-discovery-topology"></span><h4><span class="section-number">3.24.2.1.4. </span>Transport and peer configuration<a class="headerlink" href="#transport-and-peer-configuration" title="Permalink to this headline">¶</a></h4>
+<p>Enable only the transports your deployment requires. Each enabled transport
+adds initialization work: socket/port setup, internal tables, and resource
+allocation. See <a class="reference internal" href="../transports/registration.html"><span class="doc">Transport Registration</span></a> for details on how to
+register and enable transports.</p>
+<p>By default, for the UDP transport, <em>Connext Micro</em> uses all available network interfaces.
+Use <code class="docutils literal notranslate"><span class="pre">allow_interface</span></code> or <code class="docutils literal notranslate"><span class="pre">deny_interface</span></code> on the transport’s
+<a class="reference external" href="../../../doc/api_c/html/structUDP__InterfaceFactoryProperty.html">UDP_InterfaceFactoryProperty</a>
+to restrict which network interfaces are used by a <em>DomainParticipant</em>.
+Limiting interfaces to those required by your deployment reduces the number
+of locators advertised in discovery announcements, the number of discovery
+messages sent, and the number of sockets opened at startup. See
+<a class="reference internal" href="../transports/UDP.html"><span class="doc">UDP Transport</span></a> for details.</p>
+<p>List only the minimal set of peers your <em>DomainParticipant</em> needs to discover
+in <code class="docutils literal notranslate"><span class="pre">DDS_DiscoveryQosPolicy.initial_peers</span></code>, and use explicit <em>DomainParticipant</em>
+indices (e.g., <code class="docutils literal notranslate"><span class="pre">[0-2]&#64;_udp://10.10.30.1</span></code>) rather than the default range.
+If using multicast discovery, you can include just the multicast address
+instead of individual peers. Each entry in the peer list generates discovery
+announcements, so removing unnecessary entries and narrowing index ranges
+directly reduces discovery traffic. See <a class="reference internal" href="discovery.html#configuring-participant-discovery-peers"><span class="std std-ref">Configuring Participant Discovery Peers</span></a>
+for the peer descriptor format.</p>
+</div>
+</div>
+<div class="section" id="qos-and-resource-configuration">
+<h3><span class="section-number">3.24.2.2. </span>QoS and resource configuration<a class="headerlink" href="#qos-and-resource-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The following subsections detail QoS and memory settings that can impact
+startup time, and how to optimize them.</p>
+<div class="section" id="memory-and-resource-sizing">
+<span id="section-startup-resource-sizing"></span><h4><span class="section-number">3.24.2.2.1. </span>Memory and resource sizing<a class="headerlink" href="#memory-and-resource-sizing" title="Permalink to this headline">¶</a></h4>
+<p><em>Connext Micro</em> allocates resources up-front. Limits that are too small cause discovery
+failures (such as “out of records” or “resource limit exceeded”), while limits
+that are too large increase startup time and memory footprint. Size your
+resource limits to match your actual deployment.</p>
+<ul>
+<li><p><strong>Per-DomainParticipant discovery limits:</strong> These limits control how many
+remote entities the <em>DomainParticipant</em> can store
+during discovery. If they are too small, you may see “out of records” or
+“resource limit exceeded” errors even when your per-endpoint limits are
+large enough.</p>
+<p>Configure the following fields under
+<a class="reference external" href="../../../doc/api_c/html/structDDS__DomainParticipantQos.html#ab52b04a5ddfb4bdf50534ef410a65fc2">DDS_DomainParticipantQos.resource_limits</a>:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">remote_participant_allocation</span></code></p></td>
+<td><p>Maximum number of remote <em>DomainParticipants</em> expected in the DDS domain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">remote_reader_allocation</span></code></p></td>
+<td><p>Maximum total number of remote <em>DataReaders</em> across all remote <em>DomainParticipants</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">remote_writer_allocation</span></code></p></td>
+<td><p>Maximum total number of remote <em>DataWriters</em> across all remote <em>DomainParticipants</em>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">matching_writer_reader_pair_allocation</span></code></p></td>
+<td><p>Maximum number of endpoint matches expected. A useful rule of thumb
+is <code class="docutils literal notranslate"><span class="pre">(local_reader_count</span> <span class="pre">+</span> <span class="pre">local_writer_count)</span> <span class="pre">*</span>
+<span class="pre">max_remote_participants</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<p><br /></p>
+</li>
+<li><p><strong>Per-endpoint matching limits:</strong> These limits control how many remote
+endpoints each local endpoint can
+track and match. Configure <code class="docutils literal notranslate"><span class="pre">max_remote_writers</span></code> under
+<a class="reference external" href="../../../doc/api_c/html/structDDS__DataReaderQos.html#ac6f4f6e01f59c4d53490717db313bd43">DDS_DataReaderQos.reader_resource_limits</a>
+and <code class="docutils literal notranslate"><span class="pre">max_remote_readers</span></code> under
+<a class="reference external" href="../../../doc/api_c/html/structDDS__DataWriterQos.html#a14ef85955ab7c01c1b4eff56e2479149">DDS_DataWriterQos.writer_resource_limits</a>.</p>
+<p><br /></p>
+</li>
+<li><p><strong>Per-endpoint history and storage</strong>: These limits affect how many samples are kept in memory, and can noticeably
+affect initialization time and memory footprint. Configure <code class="docutils literal notranslate"><span class="pre">max_samples</span></code>,
+<code class="docutils literal notranslate"><span class="pre">max_instances</span></code>, and <code class="docutils literal notranslate"><span class="pre">max_samples_per_instance</span></code> under
+<a class="reference external" href="../../../doc/api_c/html/structDDS__DataReaderQos.html#a27f550c1f22be54dfe3b69e007fabad2">DDS_DataReaderQos.resource_limits</a> and
+<a class="reference external" href="../../../doc/api_c/html/structDDS__DataWriterQos.html#acba41cd24991ce678ad133bcc276b55c">DDS_DataWriterQos.resource_limits</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For example, setting <code class="docutils literal notranslate"><span class="pre">remote_participant_allocation</span> <span class="pre">=</span> <span class="pre">100</span></code> when
+your deployment has 5 <em>DomainParticipants</em> wastes memory and increases
+initialization time. Start with limits that match your known topology
+and increase them only if discovery fails.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="transport-buffer-sizing">
+<span id="section-startup-transport-buffers"></span><h4><span class="section-number">3.24.2.2.2. </span>Transport buffer sizing<a class="headerlink" href="#transport-buffer-sizing" title="Permalink to this headline">¶</a></h4>
+<p>Small send and receive buffers may limit discovery throughput and increase
+discovery completion time as <em>DomainParticipant</em> and endpoint counts grow.
+For the UDP transport, your operating system may cap effective socket buffer
+sizes regardless of what your application requests; even when you request large
+buffers, the OS may clamp them based on kernel limits. See
+<a class="reference internal" href="../transports/UDP.html"><span class="doc">UDP Transport</span></a> for information on where UDP buffer settings are
+configured.</p>
+<p>For the <a class="reference internal" href="../transports/SHMEM.html#section-shared-memory-transport"><span class="std std-ref">Shared Memory Transport (SHMEM)</span></a>, the receive queue depth
+(<code class="docutils literal notranslate"><span class="pre">received_message_count_max</span></code>) and receive buffer size
+(<code class="docutils literal notranslate"><span class="pre">receive_buffer_size</span></code>) on
+<a class="reference external" href="../../../doc/api_c/html/structNETIO__SHMEMInterfaceFactoryProperty.html">NETIO_SHMEMInterfaceFactoryProperty</a> control
+how much discovery traffic can be buffered. See
+<a class="reference internal" href="../transports/SHMEM.html#section-shmem-configuration"><span class="std std-ref">SHMEM Configuration</span></a> for details.</p>
+<p>Adjust buffer sizes based on observed throughput, packet drops, and CPU
+utilization. If discovery traffic shows drops or “receive buffer errors,”
+increase OS socket buffer limits and verify the effective buffer sizes.</p>
+</div>
+<div class="section" id="discovery-traffic-tuning">
+<span id="section-startup-reduce-bandwidth"></span><span id="section-startup-discovery-guidelines"></span><h4><span class="section-number">3.24.2.2.3. </span>Discovery traffic tuning<a class="headerlink" href="#discovery-traffic-tuning" title="Permalink to this headline">¶</a></h4>
+<p>As <em>DomainParticipant</em> and endpoint counts increase, discovery performance
+becomes bandwidth and burst-driven. The following properties control discovery
+traffic and timing. They are fields of
+<a class="reference external" href="../../../doc/api_c/html/structDPDE__DiscoveryPluginProperty.html">DPDE_DiscoveryPluginProperty</a>;
+see the API reference for the complete list.</p>
+<ul>
+<li><p><strong>Limit initial DomainParticipant announcement bursts:</strong> When a
+<em>DomainParticipant</em> is enabled, it sends a burst of announcements.
+At larger scales, this burstiness can amplify congestion and increase discovery
+completion time. Configure <code class="docutils literal notranslate"><span class="pre">initial_participant_announcements</span></code> and
+<code class="docutils literal notranslate"><span class="pre">initial_participant_announcement_period</span></code> in
+<a class="reference external" href="../../../doc/api_c/html/structDPDE__DiscoveryPluginProperty.html">DPDE_DiscoveryPluginProperty</a>
+to control this behavior.</p>
+<p>For bandwidth-constrained links or large-scale deployments, reduce the
+announcement count or increase the interval from the default values.</p>
+<p><br /></p>
+</li>
+<li><p><strong>Relax DomainParticipant liveliness traffic where permitted:</strong>
+<em>DomainParticipants</em> liveliness assertions generate periodic network traffic.
+Aggressive settings add background load during discovery-heavy phases.
+Configure <code class="docutils literal notranslate"><span class="pre">participant_liveliness_assert_period</span></code> and
+<code class="docutils literal notranslate"><span class="pre">participant_liveliness_lease_duration</span></code> in
+<a class="reference external" href="../../../doc/api_c/html/structDPDE__DiscoveryPluginProperty.html">DPDE_DiscoveryPluginProperty</a>.</p>
+<p>Ensure <code class="docutils literal notranslate"><span class="pre">participant_liveliness_assert_period</span></code> is less than or equal to
+<code class="docutils literal notranslate"><span class="pre">participant_liveliness_lease_duration</span></code>. A common approach is to set the
+assert period to a fraction of the lease duration, to tolerate occasional
+assertion loss while still meeting liveliness requirements.</p>
+<p><br /></p>
+</li>
+<li><p><strong>Use multicast discovery when available:</strong> Unicast-only discovery
+increases bandwidth and processing cost as
+<em>DomainParticipant</em> count grows. If your deployment network supports
+multicast, use it to reduce fan-out.</p>
+<p>To enable multicast, add a multicast locator (e.g., <code class="docutils literal notranslate"><span class="pre">_udp://239.255.0.1</span></code>) to
+<a class="reference external" href="../../../doc/api_c/html/structDDS__DiscoveryQosPolicy.html#a9ee4ed308f6ef12bbc2299fe242f5f36">discovery.enabled_transports</a>
+for discovery traffic and to <a class="reference external" href="../../../doc/api_c/html/structDDS__UserTrafficQosPolicy.html#ad38e4eb3463ff0bd1c49765d4f5b8255">user_traffic.enabled_transports</a>
+for user data traffic. With DPSE, a multicast locator alone can be sufficient.
+With DPDE, always include both a unicast locator (e.g., <code class="docutils literal notranslate"><span class="pre">_udp://</span></code>) and a
+multicast locator; <em>Connext Micro</em> will select the appropriate locator based on the
+message type.</p>
+<p>For best-effort user data traffic, a multicast locator alone is sufficient.
+For reliable user data traffic, it is necessary to include both unicast and
+multicast locators to enable efficient communication.</p>
+<p><br /></p>
+</li>
+<li><p><strong>Tune DPDE built-in endpoint reliability resources and timers:</strong> DPDE’s
+built-in endpoint buffering and retransmission settings can change
+discovery bandwidth and CPU usage, especially on lossy links or at large
+scale.</p>
+<p>Increasing <code class="docutils literal notranslate"><span class="pre">max_samples_per_builtin_endpoint_reader</span></code> can improve
+robustness (fewer drops and out-of-order rejections) during high discovery
+bursts, but doing so also increases memory usage.</p>
+<p>Smaller retransmission periods and higher retry limits can increase
+discovery traffic and CPU usage, but these may also reduce discovery completion
+time on lossy networks. The relevant
+<a class="reference external" href="../../../doc/api_c/html/structDPDE__DiscoveryPluginProperty.html">DDS_DiscoveryPluginProperties</a>
+fields are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">builtin_writer_heartbeat_period</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">builtin_writer_heartbeats_per_max_samples</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">builtin_endpoint_reader_nack_period</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">builtin_writer_max_heartbeat_retries</span></code></p></li>
+</ul>
+<p>When you tune these properties, document the tradeoff you are targeting
+(memory vs. drops vs. bandwidth) and validate by measuring discovery
+completion time alongside packet rates and CPU utilization.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="build-settings">
+<span id="section-startup-build-settings"></span><h3><span class="section-number">3.24.2.3. </span>Build settings<a class="headerlink" href="#build-settings" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> ships prebuilt release and debug libraries. Use the release libraries
+for startup-time measurements; debug libraries include additional error
+checking that increases initialization time.</p>
+<p>Build your own application code with <code class="docutils literal notranslate"><span class="pre">-O2</span></code> (or equivalent) for production
+and for any measurements used to validate startup requirements. The same
+applies if you are building <em>Connext Micro</em> from source. Do not use <code class="docutils literal notranslate"><span class="pre">-O0</span></code> or <code class="docutils literal notranslate"><span class="pre">-Og</span></code>
+for startup-time measurements.</p>
+</div>
+</div>
+<div class="section" id="measuring-startup-time">
+<span id="section-measuring-startup"></span><h2><span class="section-number">3.24.3. </span>Measuring startup time<a class="headerlink" href="#measuring-startup-time" title="Permalink to this headline">¶</a></h2>
+<p>To optimize startup, you need to measure initialization time and discovery
+time separately.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Console I/O during startup can account for a large portion of the total
+startup time and increase run-to-run variability, particularly on
+embedded targets. Defer or remove diagnostic output while measuring;
+if you need logs for debugging, capture them to a memory buffer rather
+than a serial console.</p>
+</div>
+<div class="section" id="how-to-measure-initialization-time">
+<span id="section-startup-measure-init"></span><h3><span class="section-number">3.24.3.1. </span>How to measure initialization time<a class="headerlink" href="#how-to-measure-initialization-time" title="Permalink to this headline">¶</a></h3>
+<p>Capture a timestamp before you create the <em>DomainParticipant</em> and another
+immediately after <code class="docutils literal notranslate"><span class="pre">DDS_Entity_enable()</span></code> returns for the <em>DomainParticipant</em>
+(or after the last entity is created, if autoenable is TRUE). The difference is
+your initialization time.</p>
+</div>
+<div class="section" id="how-to-measure-discovery-time">
+<span id="section-startup-measure-discovery"></span><h3><span class="section-number">3.24.3.2. </span>How to measure discovery time<a class="headerlink" href="#how-to-measure-discovery-time" title="Permalink to this headline">¶</a></h3>
+<p>Discovery time starts when the <em>DomainParticipant</em> is enabled and ends when
+your application has discovered all expected remote <em>DomainParticipants</em> and
+endpoints. You can detect discovery completion using listener callbacks or a
+<em>WaitSet</em>.</p>
+<p>To use listener callbacks, set the <code class="docutils literal notranslate"><span class="pre">on_subscription_matched</span></code> callback on
+your <em>DataReaders</em> and the <code class="docutils literal notranslate"><span class="pre">on_publication_matched</span></code> callback on your <em>DataWriters</em>. Each
+time a callback fires with <code class="docutils literal notranslate"><span class="pre">status.current_count_change</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>, a new match
+has occurred. When the total match count across all your endpoints reaches
+the expected value, discovery is complete. Capture a timestamp at that
+point.</p>
+<p>To use a <em>WaitSet</em>, attach a <code class="docutils literal notranslate"><span class="pre">DDS_StatusCondition</span></code> with
+<code class="docutils literal notranslate"><span class="pre">DDS_SUBSCRIPTION_MATCHED_STATUS</span></code> (or <code class="docutils literal notranslate"><span class="pre">DDS_PUBLICATION_MATCHED_STATUS</span></code>)
+to a <code class="docutils literal notranslate"><span class="pre">DDS_WaitSet</span></code>. Call <code class="docutils literal notranslate"><span class="pre">DDS_WaitSet_wait()</span></code> in a loop, checking the
+match count after each trigger until all expected matches are reached.</p>
+<p>For more information on listeners and status conditions, see
+<a class="reference internal" href="receiving.html"><span class="doc">Receiving Data</span></a> and <a class="reference internal" href="sending.html"><span class="doc">Sending Data</span></a>.</p>
+</div>
+<div class="section" id="what-to-record">
+<span id="section-startup-reporting"></span><h3><span class="section-number">3.24.3.3. </span>What to record<a class="headerlink" href="#what-to-record" title="Permalink to this headline">¶</a></h3>
+<p>Startup-time measurements are most useful when accompanied by the
+conditions under which they were taken. The following details help when
+comparing results across environments or configurations:</p>
+<ul class="simple">
+<li><p>Whether <code class="docutils literal notranslate"><span class="pre">autoenable_created_entities</span></code> was TRUE or FALSE;</p></li>
+<li><p>Whether release or debug libraries were used, and the compiler
+optimization level;</p></li>
+<li><p>The number of <em>DomainParticipants</em> and endpoints in the DDS domain during the
+measurement.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Without these details, measurements from different environments or
+configurations cannot be meaningfully compared.</p>
+</div>
+</div>
+</div>
+<div class="section" id="validating-startup-time-improvements">
+<span id="section-startup-validation"></span><h2><span class="section-number">3.24.4. </span>Validating startup time improvements<a class="headerlink" href="#validating-startup-time-improvements" title="Permalink to this headline">¶</a></h2>
+<p>When evaluating a configuration change, compare initialization time and
+discovery time measurements before and after the change alongside the
+following indicators:</p>
+<ul class="simple">
+<li><p><strong>Transport buffer error counters:</strong> check for receive buffer overflows or
+send failures. On Linux, <code class="docutils literal notranslate"><span class="pre">netstat</span> <span class="pre">-su</span></code> or <code class="docutils literal notranslate"><span class="pre">ss</span> <span class="pre">-su</span></code> shows UDP error
+counters. On QNX or other RTOS platforms, consult your OS documentation
+for equivalent counters.</p></li>
+<li><p><strong>Packet rates and discovery message counts:</strong> use <code class="docutils literal notranslate"><span class="pre">tcpdump</span></code> or
+<code class="docutils literal notranslate"><span class="pre">Wireshark</span></code> to capture discovery traffic. Filter on the DDS discovery
+ports and count SPDP (<em>DomainParticipant</em>) and SEDP (endpoint) messages.
+High retransmission counts suggest packet loss or buffer exhaustion.</p></li>
+<li><p><strong>CPU utilization during discovery:</strong> monitor CPU usage during the discovery
+phase. If a core is saturated, discovery processing may be the bottleneck
+rather than network I/O.</p></li>
+</ul>
+<p>Reduced discovery completion time without increased packet loss or CPU
+saturation confirms the optimization is effective. If discovery time
+decreases but error counters rise, the change may have shifted the
+bottleneck rather than removed it.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../transports/index.html" class="btn btn-neutral float-right" title="4. Transports" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="transport_priority.html" class="btn btn-neutral float-left" title="3.23. Transport Priority" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+\doxysubsection{DDS\+\_\+\+Psk\+Service\+Factory\+Property Struct Reference}
+\hypertarget{structDDS__PskServiceFactoryProperty}{}\label{structDDS__PskServiceFactoryProperty}\index{DDS\_PskServiceFactoryProperty@{DDS\_PskServiceFactoryProperty}}
+
+
+Property used to register the Lightweight Security Plugin.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+psk\+\_\+service.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structDDS__PskServiceFactoryProperty_a349b789de844e6e37bf78aa798b34408}{service\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em The name the plugin is registered with. \end{DoxyCompactList}\item 
+DDS\+\_\+\+Psk\+Transform\+\_\+get\+\_\+interface\+Func\+\_\+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structDDS__PskServiceFactoryProperty_ae8e65a8a16b2d2b4fe4bbdcc8e6e8e15}{psl\+\_\+get\+\_\+interface\+\_\+func}}
+\begin{DoxyCompactList}\small\item\em A function pointer to retrieve the Transform PSL implementation interface. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__SecTransform__Configuration}{DDS\+\_\+\+Sec\+Transform\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structDDS__PskServiceFactoryProperty_ab822faf63ea353e781632b2e6c1fd99c}{psl\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em Pass-\/through opaque pointer to the Transform PSL implementation, to provide the implementation with custom configuration settings. \end{DoxyCompactList}\item 
+DDS\+\_\+\+Psk\+Pass\+Tracker\+\_\+get\+\_\+interface\+Func\+\_\+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structDDS__PskServiceFactoryProperty_a243941e0337d15753804223658ee334d}{pass\+\_\+tracker\+\_\+get\+\_\+interface\+\_\+func}}
+\begin{DoxyCompactList}\small\item\em A function pointer to retrieve the passphrase tracker implementation interface. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structPSK__PassTrackerConfiguration}{PSK\+\_\+\+Pass\+Tracker\+Configuration}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structDDS__PskServiceFactoryProperty_a4bca648f85c7e81b843c66d140d1a494}{pass\+\_\+tracker\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em Pass-\/through opaque pointer to the passphrase tracker implementation to provide the implementation with custom configuration settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Property used to register the Lightweight Security Plugin. 
+
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__PskServiceFactoryProperty_a349b789de844e6e37bf78aa798b34408}\index{DDS\_PskServiceFactoryProperty@{DDS\_PskServiceFactoryProperty}!service\_name@{service\_name}}
+\index{service\_name@{service\_name}!DDS\_PskServiceFactoryProperty@{DDS\_PskServiceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{service\_name}{service\_name}}
+{\footnotesize\ttfamily \label{structDDS__PskServiceFactoryProperty_a349b789de844e6e37bf78aa798b34408} 
+const char\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Psk\+Service\+Factory\+Property\+::service\+\_\+name}
+
+
+
+The name the plugin is registered with. 
+
+Specifies the unique identifier used when registering the plugin. Multiple plugins can be registered under distinct names. This identifier is referenced within \doxylink{structDDS__DomainParticipantQos_a72ba99d55f0c165777f5f1b7942061bd}{DDS\+\_\+\+Domain\+Participant\+Qos\+::trust} to determine which plugin is applied. If NULL is provided, the plugin is registered with \doxylink{group__DDSPSKModule_gae49ba3dcceebe12bd476486873ed7bdf}{DDS\+\_\+\+PSK\+\_\+\+DEFAULT\+\_\+\+PLUGIN\+\_\+\+NAME}. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} NULL \Hypertarget{structDDS__PskServiceFactoryProperty_ae8e65a8a16b2d2b4fe4bbdcc8e6e8e15}\index{DDS\_PskServiceFactoryProperty@{DDS\_PskServiceFactoryProperty}!psl\_get\_interface\_func@{psl\_get\_interface\_func}}
+\index{psl\_get\_interface\_func@{psl\_get\_interface\_func}!DDS\_PskServiceFactoryProperty@{DDS\_PskServiceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{psl\_get\_interface\_func}{psl\_get\_interface\_func}}
+{\footnotesize\ttfamily \label{structDDS__PskServiceFactoryProperty_ae8e65a8a16b2d2b4fe4bbdcc8e6e8e15} 
+DDS\+\_\+\+Psk\+Transform\+\_\+get\+\_\+interface\+Func\+\_\+T\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Psk\+Service\+Factory\+Property\+::psl\+\_\+get\+\_\+interface\+\_\+func}
+
+
+
+A function pointer to retrieve the Transform PSL implementation interface. 
+
+The Lightweight Security Plugin calls the function this to retrieve the Transform PSL implementation. When using the RTI-\/provided Open\+SSL-\/based PSL implementation, this should be set to \textquotesingle{}PSK\+\_\+\+OSSL\+\_\+get\+\_\+interface\textquotesingle{}. \begin{DoxyNote}{Note}
+include "{}pskpsl/psk\+\_\+ossl\+\_\+transform.\+h"{} when using the RTI provided Open\+SSL-\/based PSL implementation. 
+\end{DoxyNote}
+\Hypertarget{structDDS__PskServiceFactoryProperty_ab822faf63ea353e781632b2e6c1fd99c}\index{DDS\_PskServiceFactoryProperty@{DDS\_PskServiceFactoryProperty}!psl\_config@{psl\_config}}
+\index{psl\_config@{psl\_config}!DDS\_PskServiceFactoryProperty@{DDS\_PskServiceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{psl\_config}{psl\_config}}
+{\footnotesize\ttfamily \label{structDDS__PskServiceFactoryProperty_ab822faf63ea353e781632b2e6c1fd99c} 
+struct \mbox{\hyperlink{structDDS__SecTransform__Configuration}{DDS\+\_\+\+Sec\+Transform\+\_\+\+Configuration}}\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Psk\+Service\+Factory\+Property\+::psl\+\_\+config}
+
+
+
+Pass-\/through opaque pointer to the Transform PSL implementation, to provide the implementation with custom configuration settings. 
+
+When using the RTI-\/provided Open\+SSL-\/based implementation, this resolves to \doxylink{structDDS__SecTransform__Configuration}{DDS\+\_\+\+Sec\+Transform\+\_\+\+Configuration}. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} NULL 
+
+\begin{DoxyNote}{Note}
+include "{}pskpsl/psk\+\_\+ossl\+\_\+transform.\+h"{} when using the RTI provided Open\+SSL-\/based PSL implementation. 
+\end{DoxyNote}
+\Hypertarget{structDDS__PskServiceFactoryProperty_a243941e0337d15753804223658ee334d}\index{DDS\_PskServiceFactoryProperty@{DDS\_PskServiceFactoryProperty}!pass\_tracker\_get\_interface\_func@{pass\_tracker\_get\_interface\_func}}
+\index{pass\_tracker\_get\_interface\_func@{pass\_tracker\_get\_interface\_func}!DDS\_PskServiceFactoryProperty@{DDS\_PskServiceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{pass\_tracker\_get\_interface\_func}{pass\_tracker\_get\_interface\_func}}
+{\footnotesize\ttfamily \label{structDDS__PskServiceFactoryProperty_a243941e0337d15753804223658ee334d} 
+DDS\+\_\+\+Psk\+Pass\+Tracker\+\_\+get\+\_\+interface\+Func\+\_\+T\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Psk\+Service\+Factory\+Property\+::pass\+\_\+tracker\+\_\+get\+\_\+interface\+\_\+func}
+
+
+
+A function pointer to retrieve the passphrase tracker implementation interface. 
+
+The Lightweight Security Plugin calls this function to retrieve the passphrase tracker implementation. When using the RTI-\/provided file-\/based passphrase tracker implementation, this should be set to {\ttfamily PSK\+\_\+\+File\+Pass\+Tracker\+\_\+get\+\_\+interface}. \begin{DoxyNote}{Note}
+Include {\ttfamily psk\+\_\+file\+\_\+tracker/psk\+\_\+file\+\_\+pass\+\_\+tracker.\+h} when using the RTI-\/provided file-\/based passphrase pracker implementation. 
+\end{DoxyNote}
+\Hypertarget{structDDS__PskServiceFactoryProperty_a4bca648f85c7e81b843c66d140d1a494}\index{DDS\_PskServiceFactoryProperty@{DDS\_PskServiceFactoryProperty}!pass\_tracker\_config@{pass\_tracker\_config}}
+\index{pass\_tracker\_config@{pass\_tracker\_config}!DDS\_PskServiceFactoryProperty@{DDS\_PskServiceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{pass\_tracker\_config}{pass\_tracker\_config}}
+{\footnotesize\ttfamily \label{structDDS__PskServiceFactoryProperty_a4bca648f85c7e81b843c66d140d1a494} 
+struct \mbox{\hyperlink{structPSK__PassTrackerConfiguration}{PSK\+\_\+\+Pass\+Tracker\+Configuration}}\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Psk\+Service\+Factory\+Property\+::pass\+\_\+tracker\+\_\+config}
+
+
+
+Pass-\/through opaque pointer to the passphrase tracker implementation to provide the implementation with custom configuration settings. 
+
+When using the RTI-\/provided file-\/based implementation, this resolves to \doxylink{structPSK__PassTrackerConfiguration}{PSK\+\_\+\+Pass\+Tracker\+Configuration}. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} NULL 
+
+\begin{DoxyNote}{Note}
+Include {\ttfamily psk\+\_\+file\+\_\+tracker/psk\+\_\+file\+\_\+pass\+\_\+tracker.\+h} when using the RTI-\/provided file-\/based passphrase tracker implementation. 
+\end{DoxyNote}

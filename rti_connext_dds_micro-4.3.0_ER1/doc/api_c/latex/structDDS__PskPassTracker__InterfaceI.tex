@@ -1,0 +1,68 @@
+\doxysubsection{DDS\+\_\+\+Psk\+Pass\+Tracker\+\_\+\+InterfaceI Struct Reference}
+\hypertarget{structDDS__PskPassTracker__InterfaceI}{}\label{structDDS__PskPassTracker__InterfaceI}\index{DDS\_PskPassTracker\_InterfaceI@{DDS\_PskPassTracker\_InterfaceI}}
+
+
+PSK passphrase tracker user interface.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+psk\+\_\+pass\+\_\+tracker.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+DDS\+\_\+\+Psk\+Pass\+Tracker\+\_\+initialize\+Func\+\_\+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structDDS__PskPassTracker__InterfaceI_ab14778a49528470914d37d802ce0f170}{initialize\+\_\+func}}
+\begin{DoxyCompactList}\small\item\em Create an instance of the passphrase tracker interface with upstream as the owner. \end{DoxyCompactList}\item 
+DDS\+\_\+\+Psk\+Pass\+Tracker\+\_\+finalize\+Func\+\_\+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structDDS__PskPassTracker__InterfaceI_a428d0f70838c92f9c3c44a7cfaeb574e}{finalize\+\_\+func}}
+\begin{DoxyCompactList}\small\item\em Finalize and clean up the passphrase tracker instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+PSK passphrase tracker user interface. 
+
+Interface functions for the passphrase tracker user interface. This allows the user to specify custom implementations of the passphrase tracker. The default passphrase tracker provided with /ndds can be accessed using {\ttfamily PSK\+\_\+\+File\+Pass\+Tracker\+\_\+get\+\_\+interface}. 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__PskPassTracker__InterfaceI_ab14778a49528470914d37d802ce0f170}\index{DDS\_PskPassTracker\_InterfaceI@{DDS\_PskPassTracker\_InterfaceI}!initialize\_func@{initialize\_func}}
+\index{initialize\_func@{initialize\_func}!DDS\_PskPassTracker\_InterfaceI@{DDS\_PskPassTracker\_InterfaceI}}
+\doxyparagraph{\texorpdfstring{initialize\_func}{initialize\_func}}
+{\footnotesize\ttfamily \label{structDDS__PskPassTracker__InterfaceI_ab14778a49528470914d37d802ce0f170} 
+DDS\+\_\+\+Psk\+Pass\+Tracker\+\_\+initialize\+Func\+\_\+T\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Psk\+Pass\+Tracker\+\_\+\+Interface\+I\+::initialize\+\_\+func}
+
+
+
+Create an instance of the passphrase tracker interface with upstream as the owner. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em tracker\+\_\+data} & Pointer to store tracker-\/specific data.\\
+\hline
+\mbox{\texttt{ in}}  & {\em tracker\+\_\+config} & Configuration properties for the tracker.\\
+\hline
+\mbox{\texttt{ in}}  & {\em provider\+\_\+arg} & User-\/provided initialization arguments.\\
+\hline
+\mbox{\texttt{ in}}  & {\em listener} & Listener structure for passphrase updates. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on successful initialization, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}
+\Hypertarget{structDDS__PskPassTracker__InterfaceI_a428d0f70838c92f9c3c44a7cfaeb574e}\index{DDS\_PskPassTracker\_InterfaceI@{DDS\_PskPassTracker\_InterfaceI}!finalize\_func@{finalize\_func}}
+\index{finalize\_func@{finalize\_func}!DDS\_PskPassTracker\_InterfaceI@{DDS\_PskPassTracker\_InterfaceI}}
+\doxyparagraph{\texorpdfstring{finalize\_func}{finalize\_func}}
+{\footnotesize\ttfamily \label{structDDS__PskPassTracker__InterfaceI_a428d0f70838c92f9c3c44a7cfaeb574e} 
+DDS\+\_\+\+Psk\+Pass\+Tracker\+\_\+finalize\+Func\+\_\+T\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Psk\+Pass\+Tracker\+\_\+\+Interface\+I\+::finalize\+\_\+func}
+
+
+
+Finalize and clean up the passphrase tracker instance. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em tracker\+\_\+data} & Pointer to tracker-\/specific data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on successful finalization, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}

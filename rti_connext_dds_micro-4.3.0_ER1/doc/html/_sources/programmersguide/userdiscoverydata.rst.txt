@@ -1,0 +1,319 @@
+.. _section-user-discovery-data:
+
+User Discovery Data
+===================
+
+Introduction
+------------
+
+User Discovery Data is a feature of |me| that provides areas where your 
+application can store additional information related to DDS *Entities*. How 
+this information is used will be up to user code; |me| distributes this 
+information to other applications as part of the discovery process, 
+but |me| does not interpret the information. Use cases are usually 
+application-to-application identification, authentication,
+authorization, and encryption.
+
+There are three User Discovery Data QoS policies:
+
+-  :link_connextmicro_dds_api_c_up_one:`USER_DATA <group__DDSUserDataQosModule.html>`: associated with *DomainParticipants*, *DataWriters*, and 
+   *DataReaders*.
+-  :link_connextmicro_dds_api_c_up_one:`TOPIC_DATA <group__DDSTopicDataQosModule.html>`: associated with a *Topic*.
+-  :link_connextmicro_dds_api_c_up_one:`GROUP_DATA <group__DDSGroupDataQosModule.html>`: associated with a *Publisher* or *Subscriber*.
+
+.. warning::
+
+   These QoS policies must be specified when an entity is created and cannot be 
+   modified at runtime. 
+
+.. _section-resource-limits-user-data:
+
+Resource Limits
+---------------
+
+Before these QoS policies can be used, the 
+:link_connextmicro_dds_api_c_up_one:`DomainParticipantResourceLimitsQosPolicy <structDDS__DomainParticipantResourceLimitsQosPolicy.html>` must be configured to set the 
+maximum length of each kind of data which will be used. These settings
+are listed below:
+
+-  ``participant_user_data_max_length``
+-  ``topic_data_max_length``
+-  ``publisher_group_data_max_length``
+-  ``subscriber_group_data_max_length``
+-  ``writer_user_data_max_length``
+-  ``reader_user_data_max_length``
+
+These policy settings limit the length of the data field, and must be configured 
+to the same values for all *DomainParticipants* in the same DDS domain. 
+Attempting to create an entity with user discovery data larger than the 
+corresponding QoS setting will cause creation of that entity to fail. 
+Similarly, discovering remote entities will fail if those entities have user 
+discovery data larger than the QoS policy setting.
+
+Memory usage by the discovery data will be directly affected by the maximum 
+length of each type of data because |me| will pre-allocate all of 
+the memory necessary to store received data. Setting the maximum length 
+appropriately will limit the memory usage of this feature. 
+
+|me| also adds settings to further optimize memory usage via the max_count 
+resource limit options, listed below:
+
+-  ``participant_user_data_max_count``
+-  ``topic_data_max_count``
+-  ``publisher_group_data_max_count``
+-  ``subscriber_group_data_max_count``
+-  ``writer_user_data_max_count``
+-  ``reader_user_data_max_count``
+
+These options limit the number of unique data of a given type. Data from
+local and discovered entities both contribute toward this limit.
+
+These maximums will default to ``DDS_SIZE_AUTO``, in which case |me| will
+generate an appropriate value based on other QoSes to ensure that 
+discovery will always succeed. However, if you know the maximum number of 
+unique data that will exist in the domain, setting these options 
+accordingly can reduce the total amount of memory allocated. 
+
+.. warning:: 
+
+   Once the max_count limit of unique data has been reached for a 
+   given entity type, discovery of entities with additional unique data 
+   will fail. 
+
+Propagating User Discovery Data
+-------------------------------
+
+When using :ref:`dynamic_endpoint_disc` (DPDE), the information associated 
+with all entities is automatically passed between applications during discovery 
+using builtin topics. When using :ref:`static_endpoint_disc` (DPSE), only 
+the :link_connextmicro_dds_api_c_up_one:`USER_DATA <group__DDSUserDataQosModule.html>` associated with a participant will be automatically passed between 
+applications; for remote *DataReaders* and *DataWriters*, the associated 
+:link_connextmicro_dds_api_c_up_one:`USER_DATA <group__DDSUserDataQosModule.html>`, :link_connextmicro_dds_api_c_up_one:`TOPIC_DATA <group__DDSTopicDataQosModule.html>`, or :link_connextmicro_dds_api_c_up_one:`GROUP_DATA <group__DDSGroupDataQosModule.html>` must be asserted with remote publications 
+and subscriptions. (See :ref:`section-accessing-user-disc-data` below.) 
+
+For example, to assert :link_connextmicro_dds_api_c_up_one:`USER_DATA <group__DDSUserDataQosModule.html>` associated with a remote subscription in DPSE:
+
+.. code-block:: c
+
+   struct DDS_SubscriptionBuiltinTopicData rem_subscription_data =
+      DDS_SubscriptionBuiltinTopicData_INITIALIZER;
+
+   /* Set Reader's protocol.rtps_object_id */
+   rem_subscription_data.key.value[DDS_BUILTIN_TOPIC_KEY_OBJECT_ID] = 200;
+
+   rem_subscription_data.topic_name = DDS_String_dup("Example HelloWorld");
+   rem_subscription_data.type_name = DDS_String_dup("HelloWorld");
+
+   rem_subscription_data.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;
+
+   /* Set USER_DATA */
+   DDS_OctetSeq_set_maximum(&rem_subscription_data.user_data.value, 2);
+   DDS_OctetSeq_set_length(&rem_subscription_data.user_data.value, 2);
+   *DDS_OctetSeq_get_reference(&rem_subscription_data.user_data.value, 0) = 0xAA;
+   *DDS_OctetSeq_get_reference(&rem_subscription_data.user_data.value, 1) = 0xBB;
+
+   retcode = DPSE_RemoteSubscription_assert(participant,
+                                          "Participant_2",
+                                          &rem_subscription_data,
+                                          HelloWorld_get_key_kind(HelloWorldTypePlugin_get(),
+                                          NULL));
+   if (retcode != DDS_RETCODE_OK)
+   {
+      /* failure */
+   }
+
+.. _section-accessing-user-disc-data:
+
+Accessing User Discovery Data
+-----------------------------
+
+Whether using DPDE or DPSE, the :link_connextmicro_dds_api_c_up_one:`USER_DATA <group__DDSUserDataQosModule.html>`, :link_connextmicro_dds_api_c_up_one:`TOPIC_DATA <group__DDSTopicDataQosModule.html>`, and :link_connextmicro_dds_api_c_up_one:`GROUP_DATA <group__DDSGroupDataQosModule.html>` is 
+propagated with the information about remote *DomainParticipants*, 
+*DataWriters*, and *DataReaders*. For *DomainParticipants*, the associated
+:link_connextmicro_dds_api_c_up_one:`USER_DATA <group__DDSUserDataQosModule.html>` can be accessed through :link_connextmicro_dds_api_c_up_one:`ParticipantBuiltinTopicData <structDDS__ParticipantBuiltinTopicData.html>`. For 
+*DataWriters* and *DataReaders*, the associated :link_connextmicro_dds_api_c_up_one:`USER_DATA <group__DDSUserDataQosModule.html>`, :link_connextmicro_dds_api_c_up_one:`TOPIC_DATA <group__DDSTopicDataQosModule.html>`, and 
+:link_connextmicro_dds_api_c_up_one:`GROUP_DATA <group__DDSGroupDataQosModule.html>` can be accessed through the :link_connextmicro_dds_api_c_up_one:`PublicationBuiltinTopicData <structDDS__PublicationBuiltinTopicData.html>`
+and :link_connextmicro_dds_api_c_up_one:`SubscriptionBuiltinTopicData <structDDS__SubscriptionBuiltinTopicData.html>` respectively.
+
+For *DomainParticipants*, the discovery information for discovered participants
+can be accessed through the get_discovered APIs:
+
+- :link_connextmicro_dds_api_c_up_one:`DDS_DomainParticipant_get_discovered_participants <group__DDSDomainParticipantModule.html>`
+- :link_connextmicro_dds_api_c_up_one:`DDS_DomainParticipant_get_discovered_participant_data <group__DDSDomainParticipantModule.html>`
+
+For *DataReaders* and *DataWriters*, the information on matched entities can
+be retrieved through the get_matched APIs:
+
+- :link_connextmicro_dds_api_c_up_one:`DDS_DataWriter_get_matched_subscriptions <group__DDSWriterModule.html>`
+- :link_connextmicro_dds_api_c_up_one:`DDS_DataWriter_get_matched_subscription_data <group__DDSWriterModule.html>`
+- :link_connextmicro_dds_api_c_up_one:`DDS_DataReader_get_matched_publications <group__DDSWriterModule.html>`
+- :link_connextmicro_dds_api_c_up_one:`DDS_DataReader_get_matched_publication_data <group__DDSWriterModule.html>`
+
+Note that these APIs will perform a copy into the provided data sample. If
+the provided sample does not have enough memory to store the data, additional
+memory will be allocated to fit it. This memory can instead be pre-allocated
+with the corresponding :link_connextmicro_dds_api_c_up_one:`initialize_from_qos <group__DDSParticipantBuiltInTopicModule.html>`
+function in C. If a sample is
+pre-allocated based on the configured QoS, then no additional memory will
+need to be allocated to perform the copy.
+
+The C++ API does not support :link_connextmicro_dds_api_c_up_one:`initialize_from_qos <group__DDSParticipantBuiltInTopicModule.html>`. 
+The default constructors for the builtin topic data types will not allocate any memory for
+the user discovery data sequences. 
+The overloaded constructor accepts a *DomainParticipantQos* and
+initializes the memory according to the resource limits, including memory for
+:link_connextmicro_dds_api_cpp_up_one:`DDS_ParticipantBuiltinTopicData() <group__DDSParticipantBuiltInTopicModule.html>`,
+:link_connextmicro_dds_api_cpp_up_one:`DDS_PublicationBuiltinTopicData() <group__DDSPublicationBuiltInTopicModule.html>`,
+and :link_connextmicro_dds_api_cpp_up_one:`DDS_SubscriptionBuiltinTopicData() <group__DDSSubscriptionBuiltInTopicModule.html>`.
+
+For example, to retrieve information on discovered participants:
+
+.. code-block:: c
+
+   struct DDS_InstanceHandleSeq handles = DDS_SEQUENCE_INITIALIZER;
+   struct DDS_InstanceHandle handle;
+   struct DDS_DomainParticipantQos dp_qos =
+               DDS_DomainParticipantQos_INITIALIZER;
+   struct DDS_ParticipantBuiltinTopicData dp_data =
+               DDS_ParticipantBuiltinTopicData_INITIALIZER;
+
+   /* Pre-allocate memory for discovery data based on participant's QoS */
+   retcode = DDS_DomainParticipant_get_qos(participant, &dp_qos);
+   if (retcode != DDS_RETCODE_OK)
+   {
+      /* failure */
+   }
+   if (!DDS_ParticipantBuiltinTopicData_initialize_from_qos(&dp_data, &dp_qos))
+   {
+      /* failure */
+   }
+
+   /* Get instance handles of discovered participants */
+   retcode = DDS_DomainParticipant_get_discovered_participants(participant, &handles);
+   if (retcode != DDS_RETCODE_OK)
+   {
+      /* failure */
+   }
+
+   /* For each handle, get the discovery data */
+   for (DDS_Long j = 0; j < DDS_InstanceHandleSeq_get_length(&handles); ++j)
+   {
+      handle = DDS_InstanceHandleSeq_get_reference(&handles, j);
+      if (handle == NULL)
+      {
+         /* failure */
+      }
+
+      retcode = DDS_DomainParticipant_get_discovered_participant_data(participant,
+                                                                     &dp_data,
+                                                                     handle);
+      if (retcode != DDS_RETCODE_OK)
+      {
+         /* failure */
+      }
+      else
+      {
+         /* Discovered participant USER_DATA can be accessed in dp_data.user_data */
+      }
+   }
+
+QoS Policies
+------------
+
+.. _section-user-data:
+
+USER_DATA
+.........
+
+This Qos Policy provides an area where your application can store additional 
+information related to a *DomainParticipant*, *DataWriter*, or *DataReader*.
+ 
+You will need to access the value of :link_connextmicro_dds_api_c_up_one:`USER_DATA <group__DDSUserDataQosModule.html>` through 
+:link_connextmicro_dds_api_c_up_one:`ParticipantBuiltinTopicData <structDDS__ParticipantBuiltinTopicData.html>`, :link_connextmicro_dds_api_c_up_one:`PublicationBuiltinTopicData <structDDS__PublicationBuiltinTopicData.html>` or 
+:link_connextmicro_dds_api_c_up_one:`SubscriptionBuiltinTopicData <structDDS__SubscriptionBuiltinTopicData.html>`. 
+(See :ref:`section-accessing-user-disc-data`.)
+
+The structure for the :link_connextmicro_dds_api_c_up_one:`USER_DATA <group__DDSUserDataQosModule.html>` QosPolicy includes just one field, as seen in 
+:numref:`DDS_UserDataQosPolicyTable`. The field is a sequence of octets that 
+translates to a contiguous buffer of bytes whose contents and length are set 
+by the user. The maximum size for the data is set in the 
+:link_connextmicro_dds_api_c_up_one:`DomainParticipantResourceLimitsQosPolicy <structDDS__DomainParticipantResourceLimitsQosPolicy.html>`. 
+(See :ref:`section-resource-limits-user-data`.)
+
+.. list-table:: DDS_UserDataQosPolicy
+   :name: DDS_UserDataQosPolicyTable
+   :widths: 40 30 30
+   :header-rows: 1
+
+   * - Type
+     - Field Name
+     - Description
+   * - DDS_OctetSeq
+     - value
+     - Empty by default
+
+.. _section-topic-data:
+
+TOPIC_DATA
+..........
+
+This QoS Policy provides an area where your application can store additional 
+information related to the *Topic*.
+
+Currently, :link_connextmicro_dds_api_c_up_one:`TOPIC_DATA <group__DDSTopicDataQosModule.html>` of the associated *Topic* is only propagated with the 
+information that declares a *DataWriter* or *DataReader*. Thus, you will need 
+to access the value of :link_connextmicro_dds_api_c_up_one:`TOPIC_DATA <group__DDSTopicDataQosModule.html>` through :link_connextmicro_dds_api_c_up_one:`PublicationBuiltinTopicData <structDDS__PublicationBuiltinTopicData.html>` 
+or :link_connextmicro_dds_api_c_up_one:`SubscriptionBuiltinTopicData <structDDS__SubscriptionBuiltinTopicData.html>`. 
+(See :ref:`section-accessing-user-disc-data`)
+
+The structure for the :link_connextmicro_dds_api_c_up_one:`TOPIC_DATA <group__DDSTopicDataQosModule.html>` QosPolicy includes just one field, as seen in 
+:numref:`DDS_TopicDataQosPolicyTable`. The field is a sequence of octets that 
+translates to a contiguous buffer of bytes whose contents and length are set 
+by the user. The maximum size for the data is set in the 
+:link_connextmicro_dds_api_c_up_one:`DomainParticipantResourceLimitsQosPolicy <structDDS__DomainParticipantResourceLimitsQosPolicy.html>`. 
+(See :ref:`section-resource-limits-user-data`)
+
+.. list-table:: DDS_TopicDataQosPolicy
+   :name: DDS_TopicDataQosPolicyTable
+   :widths: 40 30 30
+   :header-rows: 1
+
+   * - Type
+     - Field Name
+     - Description
+   * - DDS_OctetSeq
+     - value
+     - Empty by default
+
+.. _section-group-data:
+
+GROUP_DATA
+..........
+
+This Qos Policy provides an area where your application can store additional 
+information related to the *Publisher* and *Subscriber*.
+
+Currently, :link_connextmicro_dds_api_c_up_one:`GROUP_DATA <group__DDSGroupDataQosModule.html>` of the associated *Publisher* or *Subscriber* is only 
+propagated with the information that declares a *DataWriter* or *DataReader*. 
+Thus, you will need to access the value of :link_connextmicro_dds_api_c_up_one:`GROUP_DATA <group__DDSGroupDataQosModule.html>` through 
+:link_connextmicro_dds_api_c_up_one:`PublicationBuiltinTopicData <structDDS__PublicationBuiltinTopicData.html>` or :link_connextmicro_dds_api_c_up_one:`SubscriptionBuiltinTopicData <structDDS__SubscriptionBuiltinTopicData.html>`. 
+(See :ref:`section-accessing-user-disc-data`)
+
+The structure for the :link_connextmicro_dds_api_c_up_one:`TOPIC_DATA <group__DDSTopicDataQosModule.html>` QosPolicy includes just one field, as seen in 
+:numref:`DDS_GroupDataQosPolicyTable`. The field is a sequence of octets that 
+translates to a contiguous buffer of bytes whose contents and length are set 
+by the user. The maximum size for the data is set in the 
+:link_connextmicro_dds_api_c_up_one:`DomainParticipantResourceLimitsQosPolicy <structDDS__DomainParticipantResourceLimitsQosPolicy.html>`. 
+(See :ref:`section-resource-limits-user-data`)
+
+.. list-table:: DDS_GroupDataQosPolicy
+   :name: DDS_GroupDataQosPolicyTable
+   :widths: 40 30 30
+   :header-rows: 1
+
+   * - Type
+     - Field Name
+     - Description
+   * - DDS_OctetSeq
+     - value
+     - Empty by default

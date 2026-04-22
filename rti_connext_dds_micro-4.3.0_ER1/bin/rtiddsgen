@@ -1,0 +1,183 @@
+#!/bin/sh
+################################################################################
+#
+# FILE: rtiddsgen - Wrapper script to invoke rtiddsgen
+#
+# (c) Copyright, Real-Time Innovations, 2005-2025.
+#
+# All rights reserved.
+#
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+################################################################################
+
+# Script to run nddsgen tool
+filename="$0"
+scriptDir="$(dirname "$filename")"
+scriptDir="$(cd "$scriptDir" && pwd)"
+nddsgenDir="$(dirname "$scriptDir")"
+last_dir_name="$(basename "$scriptDir")"
+
+if [ "$last_dir_name" = "bin" ]; then
+    nddsgenDir="${nddsgenDir}/rtiddsgen"
+fi
+
+argJre="-jre"
+jrePath="some/made/up/path/that/likely/wont/exist"
+jreMode=PATH
+
+#PATH            java from PATH
+#SHIPPED         RTI-shipped jre
+#JAVAHOME        JAVA_HOME
+#JREHOME         JREHOME
+#CMDLINE         -jre
+
+getJre="false"
+for arg in "$@"
+do
+    shift
+
+    # only -jre argument handled by script
+    if [ x"$arg" = x"$argJre" ]; then
+        jreMode=CMDLINE
+        getJre="true"
+        continue
+    elif [ "$getJre" = "true" ]; then
+        jrePath="$arg"
+        getJre="false"
+        continue
+    elif [ x"$arg" = x"-micro" ]; then
+        #filter option -micro; it is automatically set as first option
+        continue
+    else
+        set -- "$@" "$arg"
+    fi
+done
+
+# Initialize ${arch} to a dummy value so that JREHOME will be properly
+# initialized in the event that the OS is not recognized.
+arch="some_dummy_value_to_be_overridden_later"
+os=`uname -s`
+
+case $os in
+Linux*)
+    cpu=`uname -p`
+    if [ "unknown" = "$cpu" ]; then
+        cpu=`uname -m`
+    fi
+    if [ "x86_64" = "$cpu" ]; then
+        arch="x64Linux"
+    else
+        arch="i86Linux"
+    fi
+    ;;
+Darwin*)
+    os_info=`uname -a`
+    if [[ "$os_info" = *ARM64* ]]; then
+        if [ -n "$RTI_USE_ROSETTA" ] && [ $RTI_USE_ROSETTA -eq 1 ]; then
+            arch="x64Darwin darwin x64Darwin/Contents/Home darwin/Contents/Home"
+        else
+            arch="arm64Darwin arm64Darwin/Contents/Home"
+        fi
+    else
+        cpu=`uname -p`
+        if [ "$cpu" = "x86_64" ] || [ "$cpu" = "i386" ]; then
+            arch="x64Darwin  darwin x64Darwin/Contents/Home darwin/Contents/Home"
+        else
+            echo "Warning: $cpu may not be supported. Be sure to specify a JRE to use with JREHOME."
+        fi
+    fi
+    ;;
+*)
+    echo "Warning: OS $os may not be supported. Be sure to specify a JRE to use with JREHOME."
+    ;;
+esac
+
+# If user specified -jre <path>, use that
+if [ "$jreMode" = "CMDLINE" ]; then
+    if [ "$getJre" = "true" ]; then
+        echo "ERROR: no path specified with option -jre"
+        exit 1
+    fi
+
+    jrePath="$jrePath/bin/"
+#use JREHOME if set
+elif [ -n "$JREHOME" ]; then
+    jreMode=JREHOME
+    if [ ! -d "$JREHOME" ]; then
+        echo "ERROR: JREHOME=[$JREHOME] does not exist"
+        exit 1
+    fi
+    jrePath="$JREHOME/bin/"
+
+#use JAVA_HOME if set
+elif [ -n "$JAVA_HOME" ]; then
+    jreMode=JAVAHOME
+    if [ ! -d "$JAVA_HOME" ]; then
+        echo "ERROR: JAVA_HOME=[$JAVA_HOME] does not exist"
+        exit 1
+    fi
+    jrePath="$JAVA_HOME/bin/"
+
+# use SHIPPED if available. First try local installation, then try Pro
+# installation.
+elif [ -d "$nddsgenDir/jre" ] || [ -d "$nddsgenDir/../../resource/app/jre" ]; then
+
+    for p in "$nddsgenDir/jre" "$nddsgenDir/../../resource/app/jre"; do
+        for a in $arch; do
+            if [ -d "$p/$a/bin" ]; then
+                jrePath="$p/$a/bin/"
+                jreMode=SHIPPED
+                break
+            fi
+        done
+        if [ "$jreMode" = "SHIPPED" ]; then
+            break
+        fi
+    done
+
+    if [ "$jreMode" != "SHIPPED" ]; then
+        echo "ERROR: Did not find a suitable installed JRE in $nddsgenDir/jre or $nddsgenDir/../../resource/app/jre"
+        exit 1
+    fi
+#default to PATH
+else
+    jreMode=PATH
+    jrePath=""
+fi
+
+javaBin="${jrePath}java"
+
+print_jre() {
+    echo -n "Using '$javaBin' (from "
+    case $jreMode in
+    "CMDLINE")
+        echo -n "command line"
+        ;;
+    "JREHOME")
+        echo -n "\$JREHOME"
+        ;;
+    "SHIPPED")
+        echo -n "shipped JRE"
+        ;;
+    "JAVAHOME")
+        echo -n "\$JAVA_HOME"
+        ;;
+    "PATH")
+        echo -n "\$PATH"
+        ;;
+    esac
+    echo ")"
+}
+
+#Uncomment the following line to print JRE info
+#print_jre
+
+if [ "$jreMode" != "PATH" -a ! -x "$javaBin" ]; then
+    echo "Cannot find or execute '$javaBin'. Be sure to specify the correct JRE to use with JREHOME."
+    exit 2
+fi
+
+exec "${javaBin}" -DNDDS_RESOURCE_DIR="${nddsgenDir}/resource/rtiddsgen" -jar "${nddsgenDir}/class/rtiddsgen2.jar" -micro "$@"

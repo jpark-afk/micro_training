@@ -1,0 +1,44 @@
+\doxysubsection{PSK\+\_\+\+File\+Pass\+Tracker\+Err\+Listener Struct Reference}
+\hypertarget{structPSK__FilePassTrackerErrListener}{}\label{structPSK__FilePassTrackerErrListener}\index{PSK\_FilePassTrackerErrListener@{PSK\_FilePassTrackerErrListener}}
+
+
+A structure for holding callback pointers in case of an error.  
+
+
+
+
+{\ttfamily \#include $<$psk\+\_\+file\+\_\+pass\+\_\+tracker.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structPSK__FilePassTrackerErrListener_a571ebfaa471f54b798a86d54d635c527}{callback}} )(const char \texorpdfstring{$\ast$}{*}msg, size\+\_\+t msg\+\_\+len, void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structPSK__FilePassTrackerErrListener_ac0a04d2caf8817c72f5008708886b3cf}{user\+\_\+ptr}})
+\begin{DoxyCompactList}\small\item\em Prototype for callback to be invoked in case of error. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structPSK__FilePassTrackerErrListener_ac0a04d2caf8817c72f5008708886b3cf}{user\+\_\+ptr}}
+\begin{DoxyCompactList}\small\item\em Pointer to be used in error callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+A structure for holding callback pointers in case of an error. 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structPSK__FilePassTrackerErrListener_a571ebfaa471f54b798a86d54d635c527}\index{PSK\_FilePassTrackerErrListener@{PSK\_FilePassTrackerErrListener}!callback@{callback}}
+\index{callback@{callback}!PSK\_FilePassTrackerErrListener@{PSK\_FilePassTrackerErrListener}}
+\doxyparagraph{\texorpdfstring{callback}{callback}}
+{\footnotesize\ttfamily \label{structPSK__FilePassTrackerErrListener_a571ebfaa471f54b798a86d54d635c527} 
+int(\texorpdfstring{$\ast$}{*} PSK\+\_\+\+File\+Pass\+Tracker\+Err\+Listener\+::callback) (const char \texorpdfstring{$\ast$}{*}msg, size\+\_\+t msg\+\_\+len, void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structPSK__FilePassTrackerErrListener_ac0a04d2caf8817c72f5008708886b3cf}{user\+\_\+ptr}})}
+
+
+
+Prototype for callback to be invoked in case of error. 
+
+This method is invoked for any error that has been recorded in the PSK Transformation PSL. If its return value is not 0, the queue of errors continues to be processed (with the associated callback invocations). If its return value is 0, the walking over errors is cancelled. \Hypertarget{structPSK__FilePassTrackerErrListener_ac0a04d2caf8817c72f5008708886b3cf}\index{PSK\_FilePassTrackerErrListener@{PSK\_FilePassTrackerErrListener}!user\_ptr@{user\_ptr}}
+\index{user\_ptr@{user\_ptr}!PSK\_FilePassTrackerErrListener@{PSK\_FilePassTrackerErrListener}}
+\doxyparagraph{\texorpdfstring{user\_ptr}{user\_ptr}}
+{\footnotesize\ttfamily \label{structPSK__FilePassTrackerErrListener_ac0a04d2caf8817c72f5008708886b3cf} 
+void\texorpdfstring{$\ast$}{*} PSK\+\_\+\+File\+Pass\+Tracker\+Err\+Listener\+::user\+\_\+ptr}
+
+
+
+Pointer to be used in error callback. 
+

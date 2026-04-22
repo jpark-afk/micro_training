@@ -1,0 +1,44 @@
+\doxysubsubsection{Domain Module}
+\hypertarget{group__DDSDomainModule}{}\label{group__DDSDomainModule}\index{Domain Module@{Domain Module}}
+
+
+Contains the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} class that acts as an entrypoint of RTI Connext DDS Micro and acts as a factory for many of the classes. The \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} also acts as a container for the other objects that make up RTI Connext DDS Micro.  
+
+
+\doxysubsubsubsubsection*{Topics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSDomainParticipantFactoryModule}{Domain\+Participant\+Factory}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classDDSDomainParticipantFactory}{DDSDomain\+Participant\+Factory} entity and associated elements \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSDomainParticipantModule}{Domain\+Participant}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} entity and associated elements \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSDiscoveryModule}{Discovery}}
+\begin{DoxyCompactList}\small\item\em Descriptions of remote entities used for discovery. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSDomainModule_gaaf3200aea72753beb877056c80e7ba7a}{DDS\+\_\+\+Domain\+Id\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em An integer that indicates in which domain a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} communicates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Contains the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} class that acts as an entrypoint of RTI Connext DDS Micro and acts as a factory for many of the classes. The \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} also acts as a container for the other objects that make up RTI Connext DDS Micro. 
+
+Defines the DDS domain package.
+
+\doxysubsubsubsection{Typedef Documentation}
+\Hypertarget{group__DDSDomainModule_gaaf3200aea72753beb877056c80e7ba7a}\index{Domain Module@{Domain Module}!DDS\_DomainId\_t@{DDS\_DomainId\_t}}
+\index{DDS\_DomainId\_t@{DDS\_DomainId\_t}!Domain Module@{Domain Module}}
+\doxyparagraph{\texorpdfstring{DDS\_DomainId\_t}{DDS\_DomainId\_t}}
+{\footnotesize\ttfamily \label{group__DDSDomainModule_gaaf3200aea72753beb877056c80e7ba7a} 
+typedef \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSDomainModule_gaaf3200aea72753beb877056c80e7ba7a}{DDS\+\_\+\+Domain\+Id\+\_\+t}}}
+
+
+
+An integer that indicates in which domain a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} communicates. 
+
+Participants with the same \doxylink{group__DDSDomainModule_gaaf3200aea72753beb877056c80e7ba7a}{DDS\+\_\+\+Domain\+Id\+\_\+t} are said to be in the same domain, and can thus communicate with one another. 
+
+The lower limit for a domain ID is 0. The upper limit for a domain ID is determined by the guidelines of the RTPS specification of the well-\/known ports on which a Participant will listen for discovery metatraffic from other Participants. \input{group__DDSDomainParticipantFactoryModule}
+\input{group__DDSDomainParticipantModule}
+\input{group__DDSDiscoveryModule}

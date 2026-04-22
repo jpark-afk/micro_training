@@ -1,0 +1,91 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2024-2026
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_VERSION 4.1)
+set(CMAKE_SYSTEM_PROCESSOR powerpc64)
+set(COMPILER_PREFIX "powerpc64-wrs-linux-")
+set(sdk "${CMAKE_HOST_SYSTEM_PROCESSOR}-wrlinuxsdk-linux")
+set(triple "${CMAKE_SYSTEM_PROCESSOR}-wrs-linux")
+
+if(DEFINED ENV{LINUX_TOOLCHAIN_ROOT})
+    set(TOOLCHAIN_ROOT "$ENV{LINUX_TOOLCHAIN_ROOT}")
+else()
+    RTI_MESSAGE_FATAL("Please define LINUX_TOOLCHAIN_ROOT in your environment")
+endif()
+
+set(COMPILER_DIR "${CMAKE_SYSTEM_PROCESSOR}-wrs-linux")
+set(COMPILER_PATH "${TOOLCHAIN_ROOT}/${sdk}/usr/bin/${COMPILER_DIR}")
+
+set(CMAKE_SYSROOT "${TOOLCHAIN_ROOT}/ppc64e6500-wrs-linux")
+# Verify sysroot exists, fallback if needed
+if(NOT EXISTS "${CMAKE_SYSROOT}")
+    set(CMAKE_SYSROOT "${TOOLCHAIN_ROOT}/powerpc64-wrs-linux")
+endif()
+
+set(CMAKE_C_COMPILER "${COMPILER_PATH}/${COMPILER_PREFIX}gcc")
+set(CMAKE_CXX_COMPILER "${COMPILER_PATH}/${COMPILER_PREFIX}g++")
+set(CMAKE_RANLIB "${COMPILER_PATH}/${COMPILER_PREFIX}ranlib")
+
+# Set linker flags to use sysroot
+set(CMAKE_EXE_LINKER_FLAGS_INIT "--sysroot=${CMAKE_SYSROOT}")
+set(CMAKE_SHARED_LINKER_FLAGS_INIT "--sysroot=${CMAKE_SYSROOT}")
+set(CMAKE_MODULE_LINKER_FLAGS_INIT "--sysroot=${CMAKE_SYSROOT}")
+
+if("${CMAKE_VERSION}" VERSION_GREATER_EQUAL 3.13)
+    set(CMAKE_AR "${COMPILER_PATH}/${COMPILER_PREFIX}ar")
+else()
+    set(CMAKE_AR "${COMPILER_PATH}/${COMPILER_PREFIX}ar" CACHE FILEPATH "")
+endif()
+
+if("${CMAKE_VERSION}" VERSION_LESS "3.19")
+    # A bug in CMakeDetermineCompilerId causes it to fail without this
+    set(CMAKE_CXX_FLAGS "-m64")
+endif()
+
+include(${CMAKE_CURRENT_LIST_DIR}/Platform/linux.tc)
+include(${CMAKE_CURRENT_LIST_DIR}/Compiler/gcc_pi.tc)
+
+INCLUDE_GCC_COMPILER_PSL("5.2.0")
+
+# Set PowerPC-specific flags AFTER the compiler include to prevent override
+set(cflags "-m64")
+string(APPEND cflags " -mhard-float")
+string(APPEND cflags " -mcpu=e6500")
+string(APPEND cflags " -mabi=elfv1")
+string(APPEND cflags " -mbig-endian")
+string(APPEND cflags " -fno-plt")
+string(APPEND cflags " -fno-pic")
+string(APPEND cflags " -fno-builtin")
+string(APPEND cflags " -Wa,-many")
+string(APPEND cflags " -fno-strict-aliasing")
+string(APPEND cflags " -Wno-conversion")
+string(APPEND cflags " -Wno-address")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${cflags}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${cflags}")
+
+# Add C++11 support to resolve long long warnings
+string(APPEND CMAKE_CXX_FLAGS " -std=gnu++11")
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+
+SET(RTIME_OSAPI_PLATFORM posix)
+SET(RTIME_PLATFORM_SUPPORTS_ZCOPY_V2 TRUE CACHE BOOL "Platform supports ZCOPYv2")
+SET(RTIME_INCLUDE_PSL_PSK_SUPPORT FALSE CACHE BOOL "Disable PSL PSK for PowerPC until proper OpenSSL is available")
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+
+SET(RTIME_OSAPI_ENABLE_STRICT_POSIX FALSE)
+IF (NOT DEFINED RTIME_UDP_ENABLE_MULTICAST)
+    SET(RTIME_UDP_ENABLE_MULTICAST TRUE)
+ENDIF()

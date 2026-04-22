@@ -1,0 +1,127 @@
+\doxysubsection{DDS\+\_\+\+Presentation\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__PresentationQosPolicy}{}\label{structDDS__PresentationQosPolicy}\index{DDS\_PresentationQosPolicy@{DDS\_PresentationQosPolicy}}
+
+
+Specifies how the samples representing changes to data instances are presented to a subscribing application.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSPresentationQosModule_ga123d979f855f637f32eb525b778175b2}{DDS\+\_\+\+Presentation\+Qos\+Policy\+Access\+Scope\+Kind}} \mbox{\hyperlink{structDDS__PresentationQosPolicy_a0d46a4e9fe04a65507153013ab542e64}{access\+\_\+scope}}
+\begin{DoxyCompactList}\small\item\em Determines the largest scope spanning the entities for which the order and coherency of changes can be preserved. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{structDDS__PresentationQosPolicy_a6882e12b1b9dc671540818bd6a8f3321}{coherent\+\_\+access}}
+\begin{DoxyCompactList}\small\item\em Specifies support for {\itshape coherent} access. Controls whether coherent access is supported within the scope {\ttfamily access\+\_\+scope}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{structDDS__PresentationQosPolicy_a7a534396ec3b27a902ef4b6fe95ae454}{ordered\+\_\+access}}
+\begin{DoxyCompactList}\small\item\em Specifies support for {\itshape ordered} access to the samples received at the subscription end. Controls whether ordered access is supported within the scope {\ttfamily access\+\_\+scope}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Specifies how the samples representing changes to data instances are presented to a subscribing application. 
+
+{\itshape NOTE\+: This QoS policy can only be set when using the static discovery API on the \doxylink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}.} 
+
+A RTI Connext DDS Micro \doxylink{classDDSPublisher}{DDSPublisher} always offers\+: \begin{DoxyItemize}
+\item access\+\_\+scope = \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2a6d21a371adc6e10a62c2739171f5c22f}{DDS\+\_\+\+TOPIC\+\_\+\+PRESENTATION\+\_\+\+QOS} \item ordered\+\_\+access = \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} \item coherent\+\_\+access = \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} \end{DoxyItemize}
+These settings enable a \doxylink{classDDSPublisher}{DDSPublisher} to match with a \doxylink{classDDSSubscriber}{DDSSubscriber} that requests either \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ab7e8c01f13b9c46013094fdee7d6af36}{DDS\+\_\+\+INSTANCE\+\_\+\+PRESENTATION\+\_\+\+QOS} or \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2a6d21a371adc6e10a62c2739171f5c22f}{DDS\+\_\+\+TOPIC\+\_\+\+PRESENTATION\+\_\+\+QOS}, increasing interoperability. 
+
+A RTI Connext DDS Micro \doxylink{classDDSSubscriber}{DDSSubscriber} always requests\+: \begin{DoxyItemize}
+\item access\+\_\+scope = \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ab7e8c01f13b9c46013094fdee7d6af36}{DDS\+\_\+\+INSTANCE\+\_\+\+PRESENTATION\+\_\+\+QOS} \item ordered\+\_\+access = \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} \item coherent\+\_\+access = \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} \end{DoxyItemize}
+The following is a general description of the \doxylink{structDDS__PresentationQosPolicy}{DDS\+\_\+\+Presentation\+Qos\+Policy}. 
+
+This QoS policy controls the extent to which changes to data instances can be made dependent on each other and also the kind of dependencies that can be propagated and maintained by RTI Connext DDS Micro. Specifically, this policy affects the application\textquotesingle{}s ability to\+: 
+
+\begin{DoxyItemize}
+\item specify and receive coherent changes to instances \item specify the relative order in which changes are presented \end{DoxyItemize}
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSPublisher}{DDSPublisher}, \doxylink{classDDSSubscriber}{DDSSubscriber} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}, \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa126ff1b38cdfc905353cb2dac57b6796}{DDS\+\_\+\+REQUESTED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} 
+\end{DoxyParagraph}
+A \doxylink{classDDSDataReader}{DDSData\+Reader} will usually receive data in the order that it was sent by a \doxylink{classDDSDataWriter}{DDSData\+Writer}, and the data is presented to the \doxylink{classDDSDataReader}{DDSData\+Reader} as soon as the application receives the next expected value. However, sometimes you may want a set of data for the same \doxylink{classDDSDataWriter}{DDSData\+Writer} to be presented to the \doxylink{classDDSDataReader}{DDSData\+Reader} only after {\itshape all} of the elements of the set have been received. Or you may want the data to be presented in a different order than that in which it was received. Specifically for keyed data, you may want the middleware to present the data in keyed -- or {\itshape instance} -- order, such that samples pertaining to the same instance are presented together. 
+
+The Presentation QoS policy allows you to specify different {\itshape scopes} of presentation\+: within a \doxylink{classDDSDataWriter}{DDSData\+Writer}, across instances of a single \doxylink{classDDSDataWriter}{DDSData\+Writer}, and even across multiple \doxylink{classDDSDataWriter}{DDSData\+Writer} entities used by different writers of a publisher. It also controls whether or not a set of changes within the scope is delivered at the same time or can be delivered as soon as each element is received. 
+
+\begin{DoxyItemize}
+\item {\ttfamily coherent\+\_\+access} controls whether RTI Connext DDS Micro will preserve the groupings of changes made by a publishing application by means of the operations begin\+\_\+coherent\+\_\+changes() and end\+\_\+coherent\+\_\+changes(). These operations are not supported. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item {\ttfamily ordered\+\_\+access} controls whether RTI Connext DDS Micro will preserve the order of changes. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item {\ttfamily access\+\_\+scope} controls the granularity of the other settings. See below\+: \end{DoxyItemize}
+If {\ttfamily coherent\+\_\+access} is set, then the {\ttfamily access\+\_\+scope} controls the maximum extent of coherent changes. The behavior is as follows\+: 
+
+\begin{DoxyItemize}
+\item If {\ttfamily access\+\_\+scope} is set to \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ab7e8c01f13b9c46013094fdee7d6af36}{DDS\+\_\+\+INSTANCE\+\_\+\+PRESENTATION\+\_\+\+QOS}, the default, the use of begin\+\_\+coherent\+\_\+changes() and end\+\_\+coherent\+\_\+changes() has no effect on how the subscriber can access the data, because with the scope limited to each instance, changes to separate instances are considered independent and thus cannot be grouped into a coherent set. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item If {\ttfamily access\+\_\+scope} is set to \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2a6d21a371adc6e10a62c2739171f5c22f}{DDS\+\_\+\+TOPIC\+\_\+\+PRESENTATION\+\_\+\+QOS}, then coherent changes indicated by their enclosure within calls to begin\+\_\+coherent\+\_\+changes() and end\+\_\+coherent\+\_\+changes() will be made available as such to each remote \doxylink{classDDSDataReader}{DDSData\+Reader} independently. That is, changes made to instances within each individual \doxylink{classDDSDataWriter}{DDSData\+Writer} will be available as coherent with respect to other changes to instances in that same \doxylink{classDDSDataWriter}{DDSData\+Writer}, but will not be grouped with changes made to instances belonging to a different \doxylink{classDDSDataWriter}{DDSData\+Writer}. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item If access\+\_\+scope is set to \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ae0591a04e045da1d86f25fa8bec39937}{DDS\+\_\+\+GROUP\+\_\+\+PRESENTATION\+\_\+\+QOS}, then coherent changes made to instances through a \doxylink{classDDSDataWriter}{DDSData\+Writer} attached to a common \doxylink{classDDSPublisher}{DDSPublisher} are made available as a unit to remote subscribers. \end{DoxyItemize}
+If {\ttfamily ordered\+\_\+access} is set, then the {\ttfamily access\+\_\+scope} controls the maximum extent for which order will be preserved by RTI Connext DDS Micro. 
+
+\begin{DoxyItemize}
+\item If {\ttfamily access\+\_\+scope} is set to \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ab7e8c01f13b9c46013094fdee7d6af36}{DDS\+\_\+\+INSTANCE\+\_\+\+PRESENTATION\+\_\+\+QOS}, the lowest level, then changes to each instance are considered unordered relative to changes to any other instance. That means that changes, creations, deletions, or modifications made to two instances are not necessarily seen in the order they occur. This is the case even if it is the same application thread making the changes using the same \doxylink{classDDSDataWriter}{DDSData\+Writer}. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item If {\ttfamily access\+\_\+scope} is set to \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2a6d21a371adc6e10a62c2739171f5c22f}{DDS\+\_\+\+TOPIC\+\_\+\+PRESENTATION\+\_\+\+QOS}, changes, creations, deletions, modifications, made by a single \doxylink{classDDSDataWriter}{DDSData\+Writer} are made available to subscribers in the same order they occur. Changes made to instances through different \doxylink{classDDSDataWriter}{DDSData\+Writer} entities are not necessarily seen in the order they occur. This is the case, even if the changes are made by a single application thread using \doxylink{classDDSDataWriter}{DDSData\+Writer} objects attached to the same \doxylink{classDDSPublisher}{DDSPublisher}. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item Finally, if access\+\_\+scope is set to \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ae0591a04e045da1d86f25fa8bec39937}{DDS\+\_\+\+GROUP\+\_\+\+PRESENTATION\+\_\+\+QOS}, changes made to instances via \doxylink{classDDSDataWriter}{DDSData\+Writer} entities attached to the same \doxylink{classDDSPublisher}{DDSPublisher} object are made available to subscribers in the same order they occur. \end{DoxyItemize}
+Note that this QoS policy controls the scope at which related changes are made available to the subscriber. This means the subscriber {\bfseries{can}} access the changes in a coherent manner and in the proper order; however, it does not necessarily imply that the \doxylink{classDDSSubscriber}{DDSSubscriber} {\bfseries{will}} indeed access the changes in the correct order. For that to occur, the application at the subscriber end must use the proper logic in reading the \doxylink{classDDSDataReader}{DDSData\+Reader} objects. \hypertarget{structDDS__PresentationQosPolicy_DDSPresentationQosModule_compatibility}{}\doxysubsubsection{\texorpdfstring{Compatibility}{Compatibility}}\label{structDDS__PresentationQosPolicy_DDSPresentationQosModule_compatibility}
+The value offered is considered compatible with the value requested if and only if the following conditions are met\+: 
+
+\begin{DoxyItemize}
+\item the inequality {\itshape offered {\ttfamily access\+\_\+scope} \texorpdfstring{$>$}{>}= requested {\ttfamily access\+\_\+scope}} evaluates to \textquotesingle{}TRUE\textquotesingle{}. For the purposes of this inequality, the values of {\ttfamily access\+\_\+scope} are considered ordered such that \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ab7e8c01f13b9c46013094fdee7d6af36}{DDS\+\_\+\+INSTANCE\+\_\+\+PRESENTATION\+\_\+\+QOS} \texorpdfstring{$<$}{<} \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2a6d21a371adc6e10a62c2739171f5c22f}{DDS\+\_\+\+TOPIC\+\_\+\+PRESENTATION\+\_\+\+QOS} \texorpdfstring{$<$}{<} \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ae0591a04e045da1d86f25fa8bec39937}{DDS\+\_\+\+GROUP\+\_\+\+PRESENTATION\+\_\+\+QOS}. ~\newline
+ \item requested {\ttfamily coherent\+\_\+access} is \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE}, or else both offered and requested {\ttfamily coherent\+\_\+access} are \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}. ~\newline
+ \item requested {\ttfamily ordered\+\_\+access} is \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE}, or else both offered and requested {\ttfamily ordered\+\_\+access} are \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}.~\newline
+ \end{DoxyItemize}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__PresentationQosPolicy_a0d46a4e9fe04a65507153013ab542e64}\index{DDS\_PresentationQosPolicy@{DDS\_PresentationQosPolicy}!access\_scope@{access\_scope}}
+\index{access\_scope@{access\_scope}!DDS\_PresentationQosPolicy@{DDS\_PresentationQosPolicy}}
+\doxyparagraph{\texorpdfstring{access\_scope}{access\_scope}}
+{\footnotesize\ttfamily \label{structDDS__PresentationQosPolicy_a0d46a4e9fe04a65507153013ab542e64} 
+\mbox{\hyperlink{group__DDSPresentationQosModule_ga123d979f855f637f32eb525b778175b2}{DDS\+\_\+\+Presentation\+Qos\+Policy\+Access\+Scope\+Kind}} DDS\+\_\+\+Presentation\+Qos\+Policy\+::access\+\_\+scope}
+
+
+
+Determines the largest scope spanning the entities for which the order and coherency of changes can be preserved. 
+
+{\itshape NOTE\+: This QoS setting can only be set when using the static discovery API on the \doxylink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}.} 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{classDDSPublisher}{DDSPublisher} \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2a6d21a371adc6e10a62c2739171f5c22f}{DDS\+\_\+\+TOPIC\+\_\+\+PRESENTATION\+\_\+\+QOS} 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{classDDSSubscriber}{DDSSubscriber} \doxylink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ab7e8c01f13b9c46013094fdee7d6af36}{DDS\+\_\+\+INSTANCE\+\_\+\+PRESENTATION\+\_\+\+QOS} \Hypertarget{structDDS__PresentationQosPolicy_a6882e12b1b9dc671540818bd6a8f3321}\index{DDS\_PresentationQosPolicy@{DDS\_PresentationQosPolicy}!coherent\_access@{coherent\_access}}
+\index{coherent\_access@{coherent\_access}!DDS\_PresentationQosPolicy@{DDS\_PresentationQosPolicy}}
+\doxyparagraph{\texorpdfstring{coherent\_access}{coherent\_access}}
+{\footnotesize\ttfamily \label{structDDS__PresentationQosPolicy_a6882e12b1b9dc671540818bd6a8f3321} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Presentation\+Qos\+Policy\+::coherent\+\_\+access}
+
+
+
+Specifies support for {\itshape coherent} access. Controls whether coherent access is supported within the scope {\ttfamily access\+\_\+scope}. 
+
+That is, the ability to group a set of changes as a unit on the publishing end such that they are received as a unit at the subscribing end. 
+
+To use this feature, the \doxylink{classDDSDataWriter}{DDSData\+Writer} must be configured for RELIABLE communication, see \doxylink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91ae5d04022c6405f9db6406489956d1923}{DDS\+\_\+\+RELIABLE\+\_\+\+RELIABILITY\+\_\+\+QOS}. 
+
+{\bfseries{NOTE\+: This QoS setting can only be set when using the static discovery API on the \doxylink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}.}} 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} \Hypertarget{structDDS__PresentationQosPolicy_a7a534396ec3b27a902ef4b6fe95ae454}\index{DDS\_PresentationQosPolicy@{DDS\_PresentationQosPolicy}!ordered\_access@{ordered\_access}}
+\index{ordered\_access@{ordered\_access}!DDS\_PresentationQosPolicy@{DDS\_PresentationQosPolicy}}
+\doxyparagraph{\texorpdfstring{ordered\_access}{ordered\_access}}
+{\footnotesize\ttfamily \label{structDDS__PresentationQosPolicy_a7a534396ec3b27a902ef4b6fe95ae454} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Presentation\+Qos\+Policy\+::ordered\+\_\+access}
+
+
+
+Specifies support for {\itshape ordered} access to the samples received at the subscription end. Controls whether ordered access is supported within the scope {\ttfamily access\+\_\+scope}. 
+
+That is, the ability of the subscriber to see changes in the same order as they occurred on the publishing end. 
+
+{\bfseries{NOTE\+: This QoS setting can only be set when using the static discovery API on the \doxylink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}.}} 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} for \doxylink{classDDSDataWriter}{DDSData\+Writer} entities, \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} for \doxylink{classDDSDataReader}{DDSData\+Reader} entities 

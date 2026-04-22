@@ -1,0 +1,83 @@
+\doxysubsection{DDSSubscriber\+Listener Class Reference}
+\hypertarget{classDDSSubscriberListener}{}\label{classDDSSubscriberListener}\index{DDSSubscriberListener@{DDSSubscriberListener}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{classDDSListener}{DDSListener} for status about a subscriber.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+subscription.\+hxx$>$}
+
+Inheritance diagram for DDSSubscriber\+Listener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classDDSSubscriberListener}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classDDSSubscriberListener_ac58cac112bc6d1639c68d906627d4468}{on\+\_\+data\+\_\+on\+\_\+readers}} (\mbox{\hyperlink{classDDSSubscriber}{DDSSubscriber}} \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa7962fc85687ca40e2674e4f66811f670}{DDS\+\_\+\+DATA\+\_\+\+ON\+\_\+\+READERS\+\_\+\+STATUS} communication status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{classDDSDataReaderListener}{DDSData\+Reader\+Listener}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classDDSDataReaderListener_a6eb7415a3d7fad02746dc3eb16adc6e4}{on\+\_\+data\+\_\+available}} (\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa9d2d926d515abd0ddd0b537efd42f03e}{DDS\+\_\+\+DATA\+\_\+\+AVAILABLE\+\_\+\+STATUS} communication status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataReaderListener_a54cb5fdb053072e4fe4f38e6ad3db750}{on\+\_\+requested\+\_\+deadline\+\_\+missed}} (\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*}, const \mbox{\hyperlink{structDDS__RequestedDeadlineMissedStatus}{DDS\+\_\+\+Requested\+Deadline\+Missed\+Status}} \&)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fab4c627eaeae35f65790cc564208ca2e6}{DDS\+\_\+\+REQUESTED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS} communication status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataReaderListener_a4e0b0cb9675fb6b30cfb44cf18380ebf}{on\+\_\+liveliness\+\_\+changed}} (\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*}, const \mbox{\hyperlink{structDDS__LivelinessChangedStatus}{DDS\+\_\+\+Liveliness\+Changed\+Status}} \&)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa267a5ad100a1e87c372752b6900a9965}{DDS\+\_\+\+LIVELINESS\+\_\+\+CHANGED\+\_\+\+STATUS} communication status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataReaderListener_a0960cdb4609aa242f51675ee5210f54e}{on\+\_\+requested\+\_\+incompatible\+\_\+qos}} (\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*}, const \mbox{\hyperlink{structDDS__RequestedIncompatibleQosStatus}{DDS\+\_\+\+Requested\+Incompatible\+Qos\+Status}} \&)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa126ff1b38cdfc905353cb2dac57b6796}{DDS\+\_\+\+REQUESTED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} communication status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataReaderListener_a4ac858e5624507f8681dcf453ba7314c}{on\+\_\+sample\+\_\+rejected}} (\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*}, const \mbox{\hyperlink{structDDS__SampleRejectedStatus}{DDS\+\_\+\+Sample\+Rejected\+Status}} \&)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa9e9d4b8dec6fa48c37aa32aa51ad2dd0}{DDS\+\_\+\+SAMPLE\+\_\+\+REJECTED\+\_\+\+STATUS} communication status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataReaderListener_aaf72bf924c7c8c27dca3d30a0b182c67}{on\+\_\+subscription\+\_\+matched}} (\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*}, const \mbox{\hyperlink{structDDS__SubscriptionMatchedStatus}{DDS\+\_\+\+Subscription\+Matched\+Status}} \&)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26faceedf0fda6d695b4fabd8ac0af807bb1}{DDS\+\_\+\+SUBSCRIPTION\+\_\+\+MATCHED\+\_\+\+STATUS} communication status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataReaderListener_a7e260b50d3ed658a9ffacad8db33e08e}{on\+\_\+sample\+\_\+lost}} (\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*}, const \mbox{\hyperlink{structDDS__SampleLostStatus}{DDS\+\_\+\+Sample\+Lost\+Status}} \&)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa0114c506e39a7fef5a42587556fc812f}{DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+STATUS} communication status. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDDSDataReaderListener_a4d07a50ede0e7d3d0e464a92b3b647cd}{on\+\_\+instance\+\_\+replaced}} (\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*}, const \mbox{\hyperlink{structDDS__DataReaderInstanceReplacedStatus}{DDS\+\_\+\+Data\+Reader\+Instance\+Replaced\+Status}} \&)
+\begin{DoxyCompactList}\small\item\em Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26faed26723fdb41d795e19992939b893de3}{DDS\+\_\+\+INSTANCE\+\_\+\+REPLACED\+\_\+\+STATUS} communication status. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{classDDSDataReaderListener_acb80ccd2ba8998cd62b2d544d4b6d480}{on\+\_\+before\+\_\+sample\+\_\+deserialize}} (\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*}, NDDS\+\_\+\+Type\+\_\+\+Plugin \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{structCDR__Stream__t}{CDR\+\_\+\+Stream\+\_\+t}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em Callback to filter a received sample based on serialized data \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{classDDSDataReaderListener_ac645c7898170354c8558b1638a61d2a1}{on\+\_\+before\+\_\+sample\+\_\+commit}} (\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*}, const void \texorpdfstring{$\ast$}{*}const, const struct \mbox{\hyperlink{structDDS__SampleInfo}{DDS\+\_\+\+Sample\+Info}} \texorpdfstring{$\ast$}{*}const, \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em Callback to filter a received sample based on deserialized data \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{classDDSListener}{DDSListener} for status about a subscriber. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSSubscriber}{DDSSubscriber} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa9d2d926d515abd0ddd0b537efd42f03e}{DDS\+\_\+\+DATA\+\_\+\+AVAILABLE\+\_\+\+STATUS};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa7962fc85687ca40e2674e4f66811f670}{DDS\+\_\+\+DATA\+\_\+\+ON\+\_\+\+READERS\+\_\+\+STATUS};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa267a5ad100a1e87c372752b6900a9965}{DDS\+\_\+\+LIVELINESS\+\_\+\+CHANGED\+\_\+\+STATUS}, \doxylink{structDDS__LivelinessChangedStatus}{DDS\+\_\+\+Liveliness\+Changed\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fab4c627eaeae35f65790cc564208ca2e6}{DDS\+\_\+\+REQUESTED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS}, \doxylink{structDDS__RequestedDeadlineMissedStatus}{DDS\+\_\+\+Requested\+Deadline\+Missed\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa126ff1b38cdfc905353cb2dac57b6796}{DDS\+\_\+\+REQUESTED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}, \doxylink{structDDS__RequestedIncompatibleQosStatus}{DDS\+\_\+\+Requested\+Incompatible\+Qos\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa0114c506e39a7fef5a42587556fc812f}{DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+STATUS}, \doxylink{structDDS__SampleLostStatus}{DDS\+\_\+\+Sample\+Lost\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa9e9d4b8dec6fa48c37aa32aa51ad2dd0}{DDS\+\_\+\+SAMPLE\+\_\+\+REJECTED\+\_\+\+STATUS}, \doxylink{structDDS__SampleRejectedStatus}{DDS\+\_\+\+Sample\+Rejected\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26faceedf0fda6d695b4fabd8ac0af807bb1}{DDS\+\_\+\+SUBSCRIPTION\+\_\+\+MATCHED\+\_\+\+STATUS}, \doxylink{structDDS__SubscriptionMatchedStatus}{DDS\+\_\+\+Subscription\+Matched\+Status};~\newline
+ \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26faed26723fdb41d795e19992939b893de3}{DDS\+\_\+\+INSTANCE\+\_\+\+REPLACED\+\_\+\+STATUS}, \doxylink{structDDS__DataReaderInstanceReplacedStatus}{DDS\+\_\+\+Data\+Reader\+Instance\+Replaced\+Status};~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSListener}{DDSListener} 
+
+\doxylink{group__DDSStatusTypesModule}{Status Kinds} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classDDSSubscriberListener_ac58cac112bc6d1639c68d906627d4468}\index{DDSSubscriberListener@{DDSSubscriberListener}!on\_data\_on\_readers@{on\_data\_on\_readers}}
+\index{on\_data\_on\_readers@{on\_data\_on\_readers}!DDSSubscriberListener@{DDSSubscriberListener}}
+\doxyparagraph{\texorpdfstring{on\_data\_on\_readers()}{on\_data\_on\_readers()}}
+{\footnotesize\ttfamily \label{classDDSSubscriberListener_ac58cac112bc6d1639c68d906627d4468} 
+virtual void DDSSubscriber\+Listener\+::on\+\_\+data\+\_\+on\+\_\+readers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSSubscriber}{DDSSubscriber}} \texorpdfstring{$\ast$}{*}}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Handles the \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa7962fc85687ca40e2674e4f66811f670}{DDS\+\_\+\+DATA\+\_\+\+ON\+\_\+\+READERS\+\_\+\+STATUS} communication status. 
+

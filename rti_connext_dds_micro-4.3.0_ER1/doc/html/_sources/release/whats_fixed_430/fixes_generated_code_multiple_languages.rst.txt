@@ -1,0 +1,25 @@
+Generated Code (Multiple Languages)
+===================================
+
+.. Release Notes from this point.
+
+:major:`[Major]` Invalid generated code when type was inside modules with duplicate names
+-----------------------------------------------------------------------------------------
+*This issue was fixed in 4.0.0, but not documented at that time.*
+
+*RTI Code Generator* would generate invalid code for C++ when it defined a type
+inside a set of modules and two of those modules had the same name. For example:
+
+.. code-block:: c
+
+  module A{
+      module B{
+          module A{
+              struct myStruct {
+                  long m1;
+              };
+          };
+      };
+  };
+
+[RTI Issue ID MICRO-2416]

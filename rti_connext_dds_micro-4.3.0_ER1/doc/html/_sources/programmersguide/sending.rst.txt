@@ -1,0 +1,95 @@
+Sending Data
+============
+
+This section discusses how to create, configure, and use *Publishers* and *DataWriters* 
+to send data. It describes how these *Entities* interact, as well as the types of 
+operations that are available for them.
+
+The goal of this section is to help you become familiar with the *Entities* you need 
+for sending data. For up-to-date details such as formal parameters and return codes 
+on any mentioned operations, please see the :link_connextmicro_dds_api_cpp_up_one:`C API Reference <index.html>` and :link_connextmicro_dds_api_cpp_up_one:`C++ API Reference <index.html>` documentation.
+
+Preview: Steps to Sending Data
+------------------------------
+
+To send DDS samples of a data instance:
+
+1. Create and configure the required *Entities*:
+   
+   a. Create a *DomainParticipant*.
+   b. Register user data types with the *DomainParticipant*. For example, the 
+      ``FooDataType``. 
+   c. Use the *DomainParticipant* to create a *Topic* with the registered data type.
+   d. Use the *DomainParticipant* to create a *Publisher*.
+   e. Use the *Publisher* or *DomainParticipant* to create a *DataWriter* for the *Topic*.
+   f. Use a type-safe method to cast the generic *DataWriter* created by the *Publisher* to a 
+      type-specific *DataWriter*. For example, ``FooDataWriter``. Optionally, register data
+      instances with the *DataWriter*. If the *Topic*'s user data type contain key fields, 
+      then registering a data instance (data with a specific key value) will 
+      improve performance when repeatedly sending data with the same key. You 
+      may register many different data instances; each registration will 
+      return an instance handle corresponding to the specific key value. 
+      For non-keyed data types, instance registration has no effect.
+      
+2. Every time there is changed data to be published:
+
+   a. Store the data in a variable of the correct data type (for instance, variable 
+      ``Foo`` of the type ``FooDataType``).
+   b. Call the ``FooDataWriter``'s ``write()`` operation, passing it a reference to the variable 
+      ``Foo``.
+
+      * For non-keyed data types or for non-registered instances, also pass in ``DDS_HANDLE_NIL``.
+      * For keyed data types, pass in the instance handle corresponding to the instance stored 
+        in ``Foo``, if you have registered the instance previously. This means that the data 
+        stored in ``Foo`` has the same key value that was used to create instance handle.
+        
+   c. The ``write()`` function will take a snapshot of the contents of ``Foo`` and store it 
+      in |me| internal buffers from where the DDS data sample is sent under the 
+      criteria set by the *Publisher's* and *DataWriter's* QoS policies.
+      
+Publishers
+----------
+
+An application that intends to publish information needs the following *Entities*: 
+*DomainParticipant*, *Topic*, *Publisher*, and *DataWriter*. All *Entities* have a 
+corresponding specialized *Listener* and a set of QoS policies. A *Listener* is how 
+|me| notifies your application of status changes relevant to the *Entity*. 
+The QoS policies allow your application to configure the behavior and resources of 
+the *Entity*.
+
+- A *DomainParticipant* defines the DDS domain in which the information will be made 
+  available.
+- A *Topic* defines the name under which the data will be published, as well as the 
+  type (format) of the data itself.
+- An application writes data using a *DataWriter*. The *DataWriter* is bound at creation 
+  time to a *Topic*, thus specifying the name under which the *DataWriter* will publish 
+  the data and the type associated with the data. The application uses the *DataWriter's* 
+  ``write()`` operation to indicate that a new value of the data is available for dissemination.
+- A *Publisher* manages the activities of several *DataWriters*. The *Publisher* determines 
+  when the data is actually sent to other applications. Depending on the settings of various 
+  QoS policies of the *Publisher* and *DataWriter*, data may be buffered to be sent with the 
+  data of other *DataWriters* or not sent at all.
+  
+  You may have multiple *Publishers*, each managing a different set of *DataWriters*, or 
+  you may choose to use one *Publisher* for all your *DataWriters*.
+
+DataWriters
+-----------
+
+To create a *DataWriter*, you need a *DomainParticipant*, *Publisher*, and a *Topic*.
+
+You need a *DataWriter* for each *Topic* that you want to publish. For more details on all 
+operations, see the :link_connextmicro_dds_api_cpp_up_one:`C API Reference <index.html>`
+and :link_connextmicro_dds_api_cpp_up_one:`C++ API Reference <index.html>` documentation.
+
+For more details on creating, deleting, and setting up *DataWriters*, see 
+replace:: :link_external_community_doc_pro_um:`the DataWriters section <index.htm#users_manual/DataWriters.htm>`
+in the :link_external_community_doc_pro_um:`RTI Connext DDS Core Libraries User's Manual <index.htm>`.
+
+Supported QoS policies
+----------------------
+
+Please refer to the :link_connextmicro_dds_api_cpp_up_one:`C API Reference <index.html>`
+and :link_connextmicro_dds_api_cpp_up_one:`C++ API Reference <index.html>` for
+details on QoS policies supported by *DataWriters*, *Publishers*, and
+*Subscribers*.

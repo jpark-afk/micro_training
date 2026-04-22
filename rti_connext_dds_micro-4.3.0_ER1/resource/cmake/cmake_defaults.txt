@@ -1,0 +1,126 @@
+################################################################################
+# (c) Copyright, Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+#
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may2016 tk Written
+################################################################################
+IF (${RTIME_DEVTREE})
+    IF (RTIME_SECURE)
+        SET(RTIME_EXPORT_MODULE_DIR rti_me_secure.1.0)
+        SET(RTIME_EXPORT_MODULE_NAME rti_me)
+    ELSEIF(RTIME_CERT_SOURCE)
+        SET(RTIME_EXPORT_MODULE_DIR rti_me_cert.1.0)
+        SET(RTIME_EXPORT_MODULE_NAME rti_me)
+    ELSE()
+        SET(RTIME_EXPORT_MODULE_DIR rti_me.2.0)
+        SET(RTIME_EXPORT_MODULE_NAME rti_me)
+    ENDIF()
+
+    IF (RTIME_CERT_SOURCE)
+        SET(RTIME_MODULE_EXPORT_ROOT ${RTIME_SOURCE_ROOT}/${RTIME_EXPORT_MODULE_DIR})
+        SET(RTIME_MODULE_EXPORT_INCLUDE_ROOT ${RTIME_MODULE_EXPORT_ROOT}/include/${RTIME_EXPORT_MODULE_NAME})
+    ELSE()
+        SET(RTIME_MODULE_EXPORT_ROOT ${RTIME_BUILD_ROOT}/${RTIME_EXPORT_MODULE_DIR})
+        SET(RTIME_MODULE_EXPORT_INCLUDE_ROOT
+            ${RTIME_MODULE_EXPORT_ROOT}/include/${RTIME_EXPORT_MODULE_NAME})
+    ENDIF()
+ELSE()
+    SET(RTIME_EXPORT_MODULE_DIR "")
+    SET(RTIME_EXPORT_MODULE_NAME "")
+    SET(RTIME_MODULE_EXPORT_ROOT ${RTIME_SOURCE_ROOT})
+    SET(RTIME_MODULE_EXPORT_INCLUDE_ROOT ${RTIME_MODULE_EXPORT_ROOT}/include)
+    SET(RTIME_MODULE_TEST_EXPORT ${RTIME_SOURCE_ROOT}/test)
+ENDIF()
+
+IF (RTIME_CERT)
+    SET(RTIME_PRODUCT_NAME "rti_connext_cert")
+ELSE()
+    SET(RTIME_PRODUCT_NAME "rti_connext_micro")
+ENDIF()
+
+macro(SET_VARIABLE_FROM_ENV name default)
+    if (DEFINED ENV{${name}} AND (NOT DEFINED ${name}))
+        set(${name} $ENV{${name}})
+    ELSEIF(NOT ${name})
+        set(${name} ${default})
+    endif()
+endmacro()
+
+# This is the command used by the build system to compile IDL files
+set(RTIDDSGEN "${RTIME_MODULE_EXPORT_ROOT}/rtiddsgen/scripts/rtiddsgen")
+
+# This is the command used by the build system to compile XML app files
+set(RTIDDSMAG "${RTIME_MODULE_EXPORT_ROOT}/rtiddsmag/scripts/rtiddsmag")
+
+set(CONNEXT_MAG_VERSION 4.3.0)
+set(NDDSMAGHOME "rsync://${USERNAME}@rhel70-64.rti.com:/local/preship/rti_me/rtiddsmag/rtiddsmag.${CONNEXT_MAG_VERSION}")
+
+if (NOT CONNEXT_PRO_VERSION)
+    set(CONNEXT_PRO_VERSION "7.7.0.0/BUILD_7.7.0.0_20260312T000000Z_RTI_REL")
+endif()
+
+if (NOT CONNEXT_ARTIFACTORY)
+    set(CONNEXT_ARTIFACTORY "https://repo.rti.com")
+endif()
+
+if (NOT CONNEXT_REPO)
+    set(CONNEXT_REPO connext)
+endif()
+
+if (NOT CONNEXT_PRODUCT)
+    set(CONNEXT_PRODUCT connext-prereleases)
+endif()
+
+if (NOT CONNEXT_SOURCE_BUNDLE)
+    set(CONNEXT_SOURCE_BUNDLE rti_connext_dds-7.7.0-src-pro.zip)
+endif()
+
+if (NOT CONNEXT_RTIDDSGEN_BUNDLE)
+    set(CONNEXT_RTIDDSGEN_BUNDLE "connextdds-staging-arm64AndroidAOSP14clang17.0.2.tgz")
+endif()
+
+if (NOT CURL_EXEC)
+    if (${RTIME_TARGET} MATCHES "Win")
+        set(CURL_EXEC "C:/Windows/Sysnative/curl.exe")
+    else()
+        set(CURL_EXEC curl)
+    endif()
+    set(CURL_OPT --retry 5 --retry-delay 5)
+endif()
+
+if (NOT PROCESSOR)
+    set(PROCESSOR "org.apache.xalan.xslt.Process")
+endif()
+
+SET_VARIABLE_FROM_ENV(MAKEDOC "/opt/doxygen-1.8.1.1/bin/x86_64Linux2.6/doxygen")
+SET_VARIABLE_FROM_ENV(XALANJAR "/opt/xalanj/2.7.1/xalan.jar")
+SET_VARIABLE_FROM_ENV(DOC_JDK_HOME "/opt/java/jdk1.8.0_121")
+SET_VARIABLE_FROM_ENV(SPHINXBUILD "/opt/tools/python/3.8/bin/sphinx-build")
+SET_VARIABLE_FROM_ENV(MAKE_EXEC "make")
+
+SET(RTI_IFDOC_LANG C Cpp)
+
+string(REGEX REPLACE "\\.|\\/" "_" CONNEXT_PRO_TAG ${CONNEXT_PRO_VERSION})
+set(CONNEXT_ARTIFACTORY_ROOT "${CONNEXT_ARTIFACTORY}/artifactory/${CONNEXT_REPO}/${CONNEXT_PRODUCT}/${CONNEXT_PRO_VERSION}")
+set(RTIDDSPRO_BUNDLE_PATH "${RTIME_PRO_ROOT}/${CONNEXT_PRO_TAG}")
+set(RTI_SHARED_HOME "dir://${RTIDDSPRO_BUNDLE_PATH}")
+
+# Set defaults here if platform specific
+IF (${CMAKE_HOST_SYSTEM} MATCHES "Windows")
+ELSEIF(${CMAKE_HOST_SYSTEM} MATCHES "Darwin")
+ELSEIF(${CMAKE_HOST_SYSTEM} MATCHES "Linux")
+ELSE()
+    MESSAGE(WARNING "${CMAKE_HOST_SYSTEM} is an unknown host system")
+ENDIF()

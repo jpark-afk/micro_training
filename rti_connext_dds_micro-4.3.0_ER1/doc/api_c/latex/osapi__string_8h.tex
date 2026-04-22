@@ -1,0 +1,43 @@
+\doxysubsection{osapi\+\_\+string.\+h File Reference}
+\hypertarget{osapi__string_8h}{}\label{osapi__string_8h}\index{osapi\_string.h@{osapi\_string.h}}
+
+
+String interface definition.  
+
+
+{\ttfamily \#include "{}osapi/osapi\+\_\+dll.\+h"{}}\newline
+{\ttfamily \#include "{}osapi/osapi\+\_\+types.\+h"{}}\newline
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__OSAPI__MemoryClass_ga754cfba4da82fd46375d0bd730f0ffe2}{OSAPI\+\_\+\+Memory\+\_\+copy}} (void \texorpdfstring{$\ast$}{*}dest, const void \texorpdfstring{$\ast$}{*}src, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size)
+\begin{DoxyCompactList}\small\item\em Copies size bytes from non-\/overlapping src to dest. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__OSAPI__MemoryClass_gad252816f175b52270c8dad3d933a8946}{OSAPI\+\_\+\+Memory\+\_\+zero}} (void \texorpdfstring{$\ast$}{*}mem, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size)
+\begin{DoxyCompactList}\small\item\em Sets memory region to 0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{group__OSAPI__MemoryClass_ga60e6a157def8b10f1d0c1d9c6a64a976}{OSAPI\+\_\+\+Memory\+\_\+compare}} (const void \texorpdfstring{$\ast$}{*}left, const void \texorpdfstring{$\ast$}{*}right, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size)
+\begin{DoxyCompactList}\small\item\em Byte-\/wise compare of two memory regions. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__OSAPI__MemoryClass_ga575ff1c52e431ae7bcc887e43122007b}{OSAPI\+\_\+\+Memory\+\_\+move}} (void \texorpdfstring{$\ast$}{*}dest, const void \texorpdfstring{$\ast$}{*}src, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} size)
+\begin{DoxyCompactList}\small\item\em Moves size bytes from non-\/overlapping src to dest. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__MemoryClass_gaec2b9baabe7bcff72671968817ac5c04}{OSAPI\+\_\+\+Memory\+\_\+fndchr}} (const void \texorpdfstring{$\ast$}{*}s, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} c, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} n)
+\begin{DoxyCompactList}\small\item\em Locate byte in byte string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} \mbox{\hyperlink{group__OSAPI__StringClass_ga0aad972f0ecb74afbd4be882cf70c61f}{OSAPI\+\_\+\+String\+\_\+length}} (const char \texorpdfstring{$\ast$}{*}s)
+\begin{DoxyCompactList}\small\item\em Return length of ASCIIZ string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{group__OSAPI__StringClass_ga5562d94a56ac47a60d9c12b8613276de}{OSAPI\+\_\+\+String\+\_\+cmp}} (const char \texorpdfstring{$\ast$}{*}left, const char \texorpdfstring{$\ast$}{*}right)
+\begin{DoxyCompactList}\small\item\em Compare two ASCIIZ strings. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{group__OSAPI__StringClass_gaf3815ee5b1bbbf8c00aa8900c53f1c78}{OSAPI\+\_\+\+String\+\_\+ncmp}} (const char \texorpdfstring{$\ast$}{*}left, const char \texorpdfstring{$\ast$}{*}right, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} num)
+\begin{DoxyCompactList}\small\item\em Compare at most num characters of two ASCII strings. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__StringClass_ga9157bd25434663d06f651e1f69ad41b8}{OSAPI\+\_\+\+String\+\_\+parse\+\_\+unsigned\+\_\+long}} (const char \texorpdfstring{$\ast$}{*}str, unsigned int \texorpdfstring{$\ast$}{*}result)
+\begin{DoxyCompactList}\small\item\em Parse an unsigned long integer from a string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__StringClass_ga702794122c1d689fa6101b66df1d0c71}{OSAPI\+\_\+\+String\+\_\+parse\+\_\+unsigned\+\_\+long\+\_\+long}} (const char \texorpdfstring{$\ast$}{*}str, unsigned long long int \texorpdfstring{$\ast$}{*}result)
+\begin{DoxyCompactList}\small\item\em Parse an unsigned long long integer from a string. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__OSAPI__StringClass_ga2b15834b0306042dd3799612317da127}{OSAPI\+\_\+\+String\+\_\+char\+\_\+to\+\_\+lowercase}} (const int c)
+\begin{DoxyCompactList}\small\item\em Convert a character to lowercase. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__StringClass_ga34426b5bfa2ed8c0d9c0ce4d758b5407}{OSAPI\+\_\+\+String\+\_\+strchr}} (const char \texorpdfstring{$\ast$}{*}s, int c)
+\begin{DoxyCompactList}\small\item\em Locate character in string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} \mbox{\hyperlink{group__OSAPI__StringClass_gaee0dbbb15a3f2fde30f5d9fab79d582d}{OSAPI\+\_\+\+String\+\_\+length\+\_\+w\+\_\+max}} (const char \texorpdfstring{$\ast$}{*}s, \mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} max)
+\begin{DoxyCompactList}\small\item\em Return length of ASCII string with maximum limit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+String interface definition. 
+

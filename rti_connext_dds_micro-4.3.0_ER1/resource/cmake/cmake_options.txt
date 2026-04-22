@@ -1,0 +1,44 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2024
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Main options file
+
+# Modification History
+# --------------------
+# 12sep2016 tk Written
+################################################################################
+IF ((${RTIME_TARGET_NAME} STREQUAL "generate") OR
+    (${RTIME_TARGET_NAME} STREQUAL "source"))
+    SET(options
+        cmake_options_build.txt
+        cmake_options_dds.txt
+    )
+ELSE()
+    # NOTE 1) The order should be viewed as a dependency order. That is, if file X
+    # is listed before file Y, then file Y can reference variables set in file X.
+    #
+    # NOTE 2) cmake_options_build is processed first to enable/disable features
+    #
+    SET(options
+        cmake_options_face.txt
+        cmake_options_build.txt
+        cmake_options_cc.txt
+        cmake_options_debug.txt
+        cmake_options_os.txt
+        cmake_options_posix.txt
+        cmake_options_udp.txt
+        cmake_options_dds.txt
+    )
+ENDIF()
+
+FOREACH(x ${options})
+    INCLUDE(${RTIME_RESOURCE_ROOT}/cmake/${x})
+ENDFOREACH()

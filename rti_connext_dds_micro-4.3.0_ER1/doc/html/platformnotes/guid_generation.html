@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.4. GUID Generation &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 ER1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.5. FreeRTOS Platforms" href="freertos.html" />
+    <link rel="prev" title="6.3. Building Connext Micro with Compatibility for Connext Cert" href="cert_compatibility.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0 ER1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Platforms Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">6.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">6.2. Building Connext Micro for Common Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cert_compatibility.html">6.3. Building Connext Micro with Compatibility for Connext Cert</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.4. GUID Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#guid-format">6.4.1. GUID format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-guidelines">6.4.2. General guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing">6.4.3. Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">6.4.4. Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementing-a-custom-guid-generation-function">6.4.5. Implementing a custom GUID generation function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">6.5. FreeRTOS Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux.html">6.6. Linux Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microsar.html">6.7. MicroSAR Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="macos.html">6.8. macOS Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qnx.html">6.9. QNX Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">6.10. Windows Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">14. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">6. </span>Platforms Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">6.4. </span>GUID Generation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="guid-generation">
+<span id="section-guid-generation"></span><h1><span class="section-number">6.4. </span>GUID Generation<a class="headerlink" href="#guid-generation" title="Permalink to this headline">¶</a></h1>
+<p><em>RTI</em> <em>Connext Micro</em> uses Globally Unique Identifiers (GUIDs), also called Universally
+Unique Identifiers (UUIDs), to distinguish between different
+<em>DomainParticipants</em> in the same domain. If GUIDs are not unique, the
+middleware cannot tell <em>DomainParticipants</em> and endpoints apart, which can
+lead to conflicts (e.g., multiple nodes appearing as the same entity),
+discovery failures, dropped samples, or other undefined behavior.</p>
+<p><em>Connext Micro</em> will generate GUIDs for supported platforms. However, under certain
+conditions (such as multiple <em>DomainParticipants</em> with the exact same
+configuration), the default GUID generation may cause GUID collisions. For this
+reason, <em>Connext Micro</em> provides an interface that can be used to generate a GUID by taking
+advantage of unique platform-specific characteristics.</p>
+<p>This section provides guidelines and examples for how to generate a unique
+GUID.</p>
+<div class="section" id="guid-format">
+<h2><span class="section-number">6.4.1. </span>GUID format<a class="headerlink" href="#guid-format" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://www.omg.org/spec/">Object Management Group (OMG) specification</a>,
+defines a GUID as a 16-byte unique identifier. With the leftmost byte as byte 0,
+the format of the GUID is:</p>
+<ul class="simple">
+<li><p>Bytes 0-1 are reserved for the vendor;</p></li>
+<li><p>Bytes 2-11 are generated;</p></li>
+<li><p>Bytes 12-15 are reserved for the entity ID.</p></li>
+</ul>
+<p>This leaves exactly 10 bytes to provide uniqueness. To avoid
+collisions, these 10 bytes must account for both spatial uniqueness
+(different physical boards or nodes on the network) and temporal
+uniqueness (different processes or system restarts on the same board).</p>
+</div>
+<div class="section" id="general-guidelines">
+<span id="section-guid-platform-specific-guidelines"></span><h2><span class="section-number">6.4.2. </span>General guidelines<a class="headerlink" href="#general-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>The following steps are general guidelines for implementing your own
+GUID generation. These are especially critical in environments without a
+POSIX layer, filesystem, or battery-backed Real-Time Clock (RTC), where
+the risk of GUID collision is high due to a typically-deterministic execution
+environment.</p>
+<ol class="arabic">
+<li><p>Use the Silicon Unique ID (UID). Most modern microcontroller units (MCUs)
+have a factory-burned ID. Use this as your “Machine ID” to maintain spatial
+uniqueness. Alternatively, you can use the IP address and MAC address in
+conjunction with a counter.</p></li>
+<li><p>Implement a mandatory boot counter. Since some clocks reset to 0 on power-on,
+you <em>must</em> implement a persistent counter in non-volatile memory (NVM).</p>
+<p><em>Workflow:</em> Read counter → Increment → Save to NVM → Use value
+in GUID.</p>
+</li>
+<li><p>If your system lacks a True Random Number Generator (TRNG), seed your
+Psuedo Random Number Generator (PRNG) by reading the least significant
+bits of a floating (unconnected) ADC pin (if available).</p></li>
+</ol>
+</div>
+<div class="section" id="testing">
+<h2><span class="section-number">6.4.3. </span>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>Before deploying, you should perform these two validation
+tests:</p>
+<ol class="arabic simple">
+<li><p>Generate a GUID, reboot the device, and generate another. The
+IDs must be different even if the system clock resets to the
+same epoch.</p></li>
+<li><p>Flash two identical boards with the same firmware and power
+them on at the exact same time. Verify that their GUIDs are unique.</p></li>
+</ol>
+</div>
+<div class="section" id="example">
+<span id="section-guid-examples"></span><h2><span class="section-number">6.4.4. </span>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>The following code snippet is an example function to generate a GUID for
+STM32, which is a bare-metal system with no OS. It combines
+the hardware unique ID (built into the silicon) for spatial uniqueness
+and a Flash-based boot counter for temporal uniqueness.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Standard addresses for STM32 Unique Device ID (96-bit) */</span>
+<span class="cp">#define STM32_UUID_ADDR 0x1FFF7A10</span>
+
+<span class="n">RTI_PRIVATE</span><span class="w"> </span><span class="n">RTI_BOOL</span>
+<span class="n">OSAPI_SystemBareMetal_generate_uuid</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">OSAPI_SystemUUID</span><span class="w"> </span><span class="o">*</span><span class="n">uuid_out</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">boot_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">hw_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">STM32_UUID_ADDR</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* 1. SPATIAL: Use the Silicon UID (First 6 bytes of the budget) */</span>
+<span class="w">    </span><span class="cm">/* We XOR the 96-bit ID into 48 bits to capture all silicon variance */</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">part1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hw_id</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="n">hw_id</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">part2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint16_t</span><span class="p">)(</span><span class="n">hw_id</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFFFF</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">OSAPI_Memory_copy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">uuid_out</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">part1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="w">    </span><span class="n">OSAPI_Memory_copy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">uuid_out</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">part2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* 2. TEMPORAL: Persistent Boot Counter (Next 4 bytes of the budget) */</span>
+<span class="w">    </span><span class="cm">/* Implementation-specific: Read from EEPROM or Flash User Config Sector */</span>
+<span class="w">    </span><span class="n">boot_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NV_Memory_Read_Boot_Counter</span><span class="p">();</span>
+<span class="w">    </span><span class="n">boot_count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="n">NV_Memory_Write_Boot_Counter</span><span class="p">(</span><span class="n">boot_count</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">OSAPI_Memory_copy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">uuid_out</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">boot_count</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* 3. Optional: If a TRNG (True Random Number Gen) is available,</span>
+<span class="cm">       XOR some random bits into the boot_count for extra safety */</span>
+<span class="w">    </span><span class="c1">// uint32_t noise = HAL_RNG_GetRandomNumber(&amp;hrng);</span>
+<span class="w">    </span><span class="c1">// *((uint32_t*)&amp;uuid_out-&gt;value[8]) ^= noise;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">RTI_TRUE</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="implementing-a-custom-guid-generation-function">
+<h2><span class="section-number">6.4.5. </span>Implementing a custom GUID generation function<a class="headerlink" href="#implementing-a-custom-guid-generation-function" title="Permalink to this headline">¶</a></h2>
+<p>If the provided GUID generation does not meet your requirements, you can
+implement your own by following these steps:</p>
+<ol class="arabic">
+<li><p>Get the native interface:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">RTI_PRIVATE</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">OSAPI_SystemI</span><span class="w"> </span><span class="n">OSAPI_System_fv_SysIntf</span><span class="p">;</span>
+
+<span class="c1">// Get the current system interface</span>
+<span class="n">OSAPI_System_get_native_interface</span><span class="p">(</span><span class="o">&amp;</span><span class="n">OSAPI_System_fv_SysIntf</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>Implement your custom GUID generation function:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">RTI_PRIVATE</span><span class="w"> </span><span class="n">RTI_BOOL</span>
+<span class="n">MyApp_custom_generate_uuid</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">OSAPI_SystemUUID</span><span class="w"> </span><span class="o">*</span><span class="n">uuid_out</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* Your custom function goes here */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Override the system interface:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Replace the generate_uuid function pointer</span>
+<span class="n">OSAPI_System_fv_SysIntf</span><span class="p">.</span><span class="n">generate_uuid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyApp_custom_generate_uuid</span><span class="p">;</span>
+
+<span class="c1">// Set the modified interface</span>
+<span class="n">OSAPI_System_set_interface</span><span class="p">(</span><span class="o">&amp;</span><span class="n">OSAPI_System_fv_SysIntf</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="freertos.html" class="btn btn-neutral float-right" title="6.5. FreeRTOS Platforms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cert_compatibility.html" class="btn btn-neutral float-left" title="6.3. Building Connext Micro with Compatibility for Connext Cert" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

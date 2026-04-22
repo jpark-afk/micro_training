@@ -1,0 +1,348 @@
+\doxysubsection{netio\+\_\+log.\+h File Reference}
+\hypertarget{netio__log_8h}{}\label{netio__log_8h}\index{netio\_log.h@{netio\_log.h}}
+
+
+NETIO module log codes.  
+
+
+{\ttfamily \#include "{}osapi/osapi\+\_\+log.\+h"{}}\newline
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga77ce9a2d75108ec7b79b592404d998e0}{NETIO\+\_\+\+LOG\+\_\+\+GETHOST\+\_\+\+BYNAME\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 1)
+\begin{DoxyCompactList}\small\item\em Failed to get host address from a string representation. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaa9ce4c8355ac16791bb8ca5fdffebddb}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+NEW\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 2)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for a bind-\/resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gad16b8a5346d8cd0fa15cf22a56d6e07e}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+NEW\+\_\+\+RTABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 3)
+\begin{DoxyCompactList}\small\item\em Failed to create a database table for routes of a bind-\/resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga5b2707fda1cea131c3eecc936fe1bbc9}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+CREATE\+\_\+\+RTABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 4)
+\begin{DoxyCompactList}\small\item\em Failed to create route record. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gabbf1877486196eab1d85034a7649dee8}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+DELETE\+\_\+\+RTABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 5)
+\begin{DoxyCompactList}\small\item\em Failed to delete a database table for routes of a bind\+\_\+resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga6c21c697a456ec76f6e4c5e54547d62b}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+SET\+\_\+\+LENGTH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 6)
+\begin{DoxyCompactList}\small\item\em Failed to set the length for a sequence of resolved addresses. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga01eda6db98f13ad7658e4c517b9cc37b}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+SET\+\_\+\+MAX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 7)
+\begin{DoxyCompactList}\small\item\em Failed to set the maximum length of an internal sequence of addresses. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga42d455f68f67659b9bf882cc6e616911}{NETIO\+\_\+\+LOG\+\_\+\+BIND\+\_\+\+EXTERNAL\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 8)
+\begin{DoxyCompactList}\small\item\em An interface failed on bind\+\_\+external. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga92f9b74f12f59ef6f3c130659731bff3}{NETIO\+\_\+\+LOG\+\_\+\+UNBIND\+\_\+\+EXTERNAL\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 10)
+\begin{DoxyCompactList}\small\item\em An interface failed on unbind\+\_\+external. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga025c111a60632e37b736b01aa0e4c381}{NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 11)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for a route resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga20e726db8fde2346c3ec7b106748fcb0}{NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 12)
+\begin{DoxyCompactList}\small\item\em Failed to create a database table for routes of a route-\/resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga1a2a1430853fa7c8745eac35e35b04e4}{NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+DELETE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 13)
+\begin{DoxyCompactList}\small\item\em Failed to delete a database table for routes of a route-\/resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gab9dc3dd08424d73eadd10d4c1f220c4a}{NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+ADD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 14)
+\begin{DoxyCompactList}\small\item\em Failed to create route resolver record. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga0dfdf9e50ae3b39e933bd1436ab4e403}{NETIO\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RTABLE\+\_\+\+UPDATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 15)
+\begin{DoxyCompactList}\small\item\em Failed to find routes to update for a route-\/resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gab1cc390844340a0cd809dd6c7f75a64b}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+ALLOC\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 16)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for address resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga43dac9005dc74671049faa9e7eff661b}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+ADD\+\_\+\+INVALID\+\_\+\+INTERFACE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 17)
+\begin{DoxyCompactList}\small\item\em An attempt was made to add an existing interface with a different port resolver to the address resolver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga1a3045e070283a954dd835c7884ef258}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+ADDRESS\+\_\+\+RESOLVE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 18)
+\begin{DoxyCompactList}\small\item\em An interface failed to resolve an address. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gad4fc01695262799ed092d15cd8bf6a61}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+PORT\+\_\+\+RESOLVE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 19)
+\begin{DoxyCompactList}\small\item\em An interface failed to resolve a port. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga785060b5ae982b15d40d7844f28b29e9}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+CONTEXT\+\_\+\+UNINITIALIZED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 21)
+\begin{DoxyCompactList}\small\item\em NETIO\+\_\+\+Address\+Resolver\+\_\+resolve/get\+\_\+next was called with an uninitialized context. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga51aac87e7d271bd4b2a7008892bf07e3}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+INVALID\+\_\+\+TOKEN\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 22)
+\begin{DoxyCompactList}\small\item\em An invalid token was encountered in the address string. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga8b0a55bfabb4c57b7759778cd44c686b}{NETIO\+\_\+\+LOG\+\_\+\+AR\+\_\+\+ADDRESS\+\_\+\+STRING\+\_\+\+EXCEEDED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 23)
+\begin{DoxyCompactList}\small\item\em The length of the address exceeded the address buffer passed in. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gab1f03f6fb3c100ce84bd33b43617ef22}{NETIO\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+ADDRESS\+\_\+\+INDEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 24)
+\begin{DoxyCompactList}\small\item\em An address index was not parsed correctly. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga95744429aeec74bd98bae0d4cf8cf213}{NETIO\+\_\+\+LOG\+\_\+\+ILLEGAL\+\_\+\+ROUTE\+\_\+\+OPERATION\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 25)
+\begin{DoxyCompactList}\small\item\em Illegal route operation attempted. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaecc5ba4d283e1e5a59dd0acae3de0636}{NETIO\+\_\+\+LOG\+\_\+\+SET\+\_\+\+NAME\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 26)
+\begin{DoxyCompactList}\small\item\em Failed to set the name of a runtime component interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac8ec2cb2631ca69e47d51215f9265246}{NETIO\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+SET\+\_\+\+HEAD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 27)
+\begin{DoxyCompactList}\small\item\em Failed to set packet\textquotesingle{}s head. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga191eee9e00588f32447e90ce27258112}{NETIO\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+SET\+\_\+\+TAIL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 28)
+\begin{DoxyCompactList}\small\item\em Failed to set packet\textquotesingle{}s tail. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gacb4e1da7eb8f78b421bbdca5ee4fed8c}{NETIO\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+INITIALIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 29)
+\begin{DoxyCompactList}\small\item\em Failed to initialize packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaf44a750f9395672e0797b2c7b5a86883}{NETIO\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+OVERFLOW\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 30)
+\begin{DoxyCompactList}\small\item\em Packet payload length overflow detected. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaf38cc7d678d82b6a51ba2f5187025d76}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+DELETE\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 100)
+\begin{DoxyCompactList}\small\item\em Failed to delete a database table for a NETIO loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac8137ca59a339a020681ecbef6aad78a}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+CREATE\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 101)
+\begin{DoxyCompactList}\small\item\em Failed to create a database table for a NETIO loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga4cf9c039f2cd9b9ba5ec7dffbbab6998}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+SELECT\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 102)
+\begin{DoxyCompactList}\small\item\em Failed to select a valid record when sending with the NETIO loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gae3c71e66c4a24fd81d7e794e990bf292}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+FWD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 103)
+\begin{DoxyCompactList}\small\item\em Failed to send forward with the NETIO loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac381ff7cc9a5908ce5bd55be09412c9b}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+BINDX\+\_\+\+DB\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 104)
+\begin{DoxyCompactList}\small\item\em Failed to bind an external interface with the NETIO loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga98352e1758b0cd611a0cd0cf15ee96b9}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+UNBINDX\+\_\+\+DB\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 105)
+\begin{DoxyCompactList}\small\item\em Failed to unbind an external interface with the NETIO loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac2ffb32528002ee8181e0994d9980834}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+SET\+\_\+\+LENGTH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 106)
+\begin{DoxyCompactList}\small\item\em Failed to set the length of an address sequence. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga9486423d0b9f21f1701d02f0d4aa436d}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+INVALID\+\_\+\+PROPERTY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 107)
+\begin{DoxyCompactList}\small\item\em Invalid property passed in when creating a loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga9fc4e812b78e59b9702d942f5af81795}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+INITIALIZE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 108)
+\begin{DoxyCompactList}\small\item\em Failed to initialize the loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gafd073c7ef3329cb5e9ac28c705bff846}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+CURSOR\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 109)
+\begin{DoxyCompactList}\small\item\em An error occurred with a cursor while iterating over a table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga9d6aade19e06bbad0b8fa5a908c4e966}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+INVALID\+\_\+\+FACTORY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 110)
+\begin{DoxyCompactList}\small\item\em An invalid factory was passed in to create a loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga09b7950855d16a11ceea31fa7d8b6798}{NETIO\+\_\+\+LOG\+\_\+\+LOOP\+\_\+\+INVALID\+\_\+\+COMPONENT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_aef2c742dcc06a69d73f7e65e8555e9df}{NETIO\+\_\+\+LOG\+\_\+\+BASE}} + 111)
+\begin{DoxyCompactList}\small\item\em An invalid component was passed in to delete a loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gadf6b1f5e816b28973cb739c0c1e4010e}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 200)
+\begin{DoxyCompactList}\small\item\em Failed to initialize use of sockets. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga5dd6d67bc45044ad9b8d2d2bb0f18f10}{UDP\+\_\+\+LOG\+\_\+\+GETHOSTNAME\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 201)
+\begin{DoxyCompactList}\small\item\em Failed to get the host address given the host name. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga719b176d9e39acfb1ef27f019d97995f}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+SET\+\_\+\+MCAST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 202)
+\begin{DoxyCompactList}\small\item\em Failed to set a socket for multicast loopback. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga2afedbe97f94b6ce4d466da13bcefb18}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+SET\+\_\+\+MCASTIF\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 203)
+\begin{DoxyCompactList}\small\item\em Failed to set a socket for multicast bound to a specific interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga824cec52662480800db825b8501c59a2}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 204)
+\begin{DoxyCompactList}\small\item\em Failed to create a new socket, the sysrc code is the OS return code and reason for failure. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga2c84715ac5256e28357e9f9dad6b66cc}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+SETFD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 205)
+\begin{DoxyCompactList}\small\item\em Failed to set the close-\/on-\/exec flag for a socket. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga0d449cc514dc83ced32aa2c1551471b8}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+SNDBUF\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 206)
+\begin{DoxyCompactList}\small\item\em Failed to set the socket send buffer size. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga86592dc504df876be9dac75558f9ecb0}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+TTL\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 207)
+\begin{DoxyCompactList}\small\item\em Failed to set multicast TTL for a socket. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac0b0a00a8746dab0d32880f9297beca3}{UDP\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 208)
+\begin{DoxyCompactList}\small\item\em Failed to initialize a receive packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga9468d203f63fc8cb8d9b7bea68f56841}{UDP\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+HEAD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 209)
+\begin{DoxyCompactList}\small\item\em Failed to set the head of a receive packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga6475340304f4b2373d9a6b8bf12e9de3}{UDP\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+FWD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 210)
+\begin{DoxyCompactList}\small\item\em Failed reception upstream for a received packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga9a4619f336a544e3e3e847617a7fd885}{UDP\+\_\+\+LOG\+\_\+\+NAT\+\_\+\+DELETE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 211)
+\begin{DoxyCompactList}\small\item\em Failed to delete a database record or index from an internal NAT. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga15df1f2862cc3a66b40cf4db351dccda}{UDP\+\_\+\+LOG\+\_\+\+FINALIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 212)
+\begin{DoxyCompactList}\small\item\em Failed to finalize the parent NETIO interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga05f216d894378d3a39b91316ae4f6ccc}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+REUSE\+\_\+\+PORT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 213)
+\begin{DoxyCompactList}\small\item\em Failed to set socket to reuse a port or address. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gab8330253758dbf2fa0e6b810695c5bee}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+BIND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 214)
+\begin{DoxyCompactList}\small\item\em Failed a socket bind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac98a1c6cf1eaaa1ca2ed3fd46df7ddc8}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+ADDGRP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 215)
+\begin{DoxyCompactList}\small\item\em Failed to add membership to a multicast group for a socket. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga39d4bb0a9381c74bb0814ec529744b6c}{UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+ENTRY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 216)
+\begin{DoxyCompactList}\small\item\em Failed to create a bind entry for a receive port. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga820535bb01dc4e87dd3d6a0e71634f5a}{UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 217)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for a receive buffer of a specific port. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac2a53d2eb8976b79a0f6986389a8403c}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+RXBUF\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 218)
+\begin{DoxyCompactList}\small\item\em Failed to set the receive buffer size of a socket. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga07c10fe597ea98c80ebbaa2f314f6fa5}{UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+ADD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 219)
+\begin{DoxyCompactList}\small\item\em Failed to add a port entry record to a database table. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaa56ec93614b92acf6330516a6cb4ce0e}{UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+THREAD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 220)
+\begin{DoxyCompactList}\small\item\em Failed to create a receive thread for a receive port. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac5ba6479fe29c69d81728eca20edb00c}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+IFLIST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 221)
+\begin{DoxyCompactList}\small\item\em Failed to get a list of interface addresses. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga87e49e869521add32672247dc3fee32d}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+IFFLAGS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 222)
+\begin{DoxyCompactList}\small\item\em Failed to get the network interface flags or mask of a socket. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaea86bccfdb840043b8b029963dbefd41}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+CLOSE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 223)
+\begin{DoxyCompactList}\small\item\em Failed to close a socket. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga4d6f7dfc0621a5ae2a881a8453c0f941}{UDP\+\_\+\+LOG\+\_\+\+LOADLIB\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 224)
+\begin{DoxyCompactList}\small\item\em Failed to load a dynamic library. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaae410ad8331ee9e07bc0f408dba182be}{UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+BUF\+\_\+\+SIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 225)
+\begin{DoxyCompactList}\small\item\em Failed to get interface buffer size. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga8894956f10a83497b8ff0a45d75cec8c}{UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+BUF\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 226)
+\begin{DoxyCompactList}\small\item\em Out of memory to allocate interface buffer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gacfd1d20f384851e854108db9be0fd3f5}{UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+IFLIST\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 227)
+\begin{DoxyCompactList}\small\item\em Failed to get an interface list. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga6426b39e896766f87cde556b9442be79}{UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+NAMEINFO\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 228)
+\begin{DoxyCompactList}\small\item\em Failed getnameinfo() \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gade46214cda6d812c47e965cfadc881f0}{UDP\+\_\+\+LOG\+\_\+\+MULTICAST\+\_\+\+ENABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 229)
+\begin{DoxyCompactList}\small\item\em Failed to enable multicast loopback. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gafd217b67bf26c5d60983bab6aed04699}{UDP\+\_\+\+LOG\+\_\+\+UDP\+\_\+\+CREATE\+\_\+\+TABLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 230)
+\begin{DoxyCompactList}\small\item\em Failed to create a database table for a UDP interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga470afb8ea2474eb7d3516318e011fd70}{UDP\+\_\+\+LOG\+\_\+\+UDP\+\_\+\+CREATE\+\_\+\+INDEX\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 231)
+\begin{DoxyCompactList}\small\item\em Failed to create an index for a UDP interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga786c3f3f29b87b0db014719a2eba1823}{UDP\+\_\+\+LOG\+\_\+\+RECORD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 232)
+\begin{DoxyCompactList}\small\item\em Failed to create or insert a database record for a UDP interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga9f68715747ba0a9e875066e614404d3f}{UDP\+\_\+\+LOG\+\_\+\+PROPERTY\+\_\+\+FINALIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 233)
+\begin{DoxyCompactList}\small\item\em Failed to finalize UDP interface factory property. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac0fe2ffba65fba968ea5e4d154918a30}{UDP\+\_\+\+LOG\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 234)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for a UDP interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaafc62ddd664011d637597c9b66970c40}{UDP\+\_\+\+LOG\+\_\+\+SEND\+\_\+\+PING\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 235)
+\begin{DoxyCompactList}\small\item\em Failed sending a ping message, upon adding a route or waking up a receive thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga7008ee18d8672a3b496024fa6486619f}{UDP\+\_\+\+LOG\+\_\+\+DROPGRP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 236)
+\begin{DoxyCompactList}\small\item\em Failed to drop membership from a multicast group. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gad9f08df2ca8254ac01f357fe6293d07e}{UDP\+\_\+\+LOG\+\_\+\+GET\+\_\+\+LENGTH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 237)
+\begin{DoxyCompactList}\small\item\em Length of address sequence exceeds its maximum. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga2ae4837d27bafd759d749f1cc0753ab0}{UDP\+\_\+\+LOG\+\_\+\+SET\+\_\+\+LENGTH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 240)
+\begin{DoxyCompactList}\small\item\em Failed to set the length of an address sequence. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga0a4c56cea8df1c6d5cdc0e42926cb8c3}{UDP\+\_\+\+LOG\+\_\+\+WSA\+\_\+\+STARTUP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 241)
+\begin{DoxyCompactList}\small\item\em Failed WSAStartup() \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga71ab52acfd29711af25ae89a38ba9f94}{UDP\+\_\+\+LOG\+\_\+\+WINSOCK\+\_\+\+INCOMPATIBLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 242)
+\begin{DoxyCompactList}\small\item\em Incompatible version of Winsock, must not be older than 2.\+0. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga5807757c7976f4e2d7d00573265fbb0f}{UDP\+\_\+\+LOG\+\_\+\+INCONSISTENT\+\_\+\+MAX\+\_\+\+MESSSAGE\+\_\+\+SIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 243)
+\begin{DoxyCompactList}\small\item\em Inconsistent max\+\_\+message\+\_\+size. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga4dd2a29ed2fe2df3c7d7eb41cb50fc1d}{UDP\+\_\+\+LOG\+\_\+\+INITIALIZE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 244)
+\begin{DoxyCompactList}\small\item\em Failed to initialized the loopback interface. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga8ea5f9ab06a7e9653b53927421bd5899}{UDP\+\_\+\+LOG\+\_\+\+PORT\+\_\+\+NOT\+\_\+\+FOUND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 245)
+\begin{DoxyCompactList}\small\item\em Did not find the specified thread port. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga60b5ccbdf5c2c594d90a0093adb3083c}{UDP\+\_\+\+LOG\+\_\+\+CURSOR\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 246)
+\begin{DoxyCompactList}\small\item\em An error occurred while iterating over a cursor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga24401d1af6600c299c6010cf938780c6}{UDP\+\_\+\+LOG\+\_\+\+SEND\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 247)
+\begin{DoxyCompactList}\small\item\em Failed to send message. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gac61c63a51439b6dd5126e9e0fa7a49bb}{UDP\+\_\+\+LOG\+\_\+\+MULTICAST\+\_\+\+NOT\+\_\+\+ENABLED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 248)
+\begin{DoxyCompactList}\small\item\em Multicast address ignored because multicast supported is not compiled in. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaf759dee2a13b55fa1672c91cfbacefea}{UDP\+\_\+\+LOG\+\_\+\+TRANSPORT\+\_\+\+NO\+\_\+\+INTERFACES\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 249)
+\begin{DoxyCompactList}\small\item\em Transport does not have any interfaces. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gad3d1e5e0a64119b57e12b38c127991cc}{UDP\+\_\+\+LOG\+\_\+\+RECV\+\_\+\+ERROR\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 250)
+\begin{DoxyCompactList}\small\item\em Failed to receive message. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga60437de64094d0cc0a9080000c1bb99b}{UDP\+\_\+\+LOG\+\_\+\+SOCKET\+\_\+\+PRIORITY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 251)
+\begin{DoxyCompactList}\small\item\em Failed to set socket priority. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga09501052029973b5c8e7082375a11ae9}{UDP\+\_\+\+LOG\+\_\+\+TOS\+\_\+\+NOT\+\_\+\+SUPPORTED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 252)
+\begin{DoxyCompactList}\small\item\em IP\+\_\+\+TOS is not supported. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{netio__log_8h_abc19f55d8b3b134e3d72fdae6c817f28}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+RULE}}~(1)
+\begin{DoxyCompactList}\small\item\em Rule object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{netio__log_8h_a951d387755f772e07cc27c8c2ec45f28}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+ENTRY}}~(2)
+\begin{DoxyCompactList}\small\item\em Entry object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{netio__log_8h_a606f4ba01db6249d0c096d614727cf01}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+FACTORY}}~(3)
+\begin{DoxyCompactList}\small\item\em Factory object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{netio__log_8h_af7ed094c748ffe9a54cd65f6aa54c92e}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+FACTORY\+\_\+\+INDEX}}~(4)
+\begin{DoxyCompactList}\small\item\em Factory object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{netio__log_8h_aaf5d39cd80e95d30ac0088fd0c40d106}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+DST\+\_\+\+INDEX}}~(5)
+\begin{DoxyCompactList}\small\item\em Factory object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{netio__log_8h_ab6ff83b0a80798d26ee99ed8713300e4}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+SRC\+\_\+\+INDEX}}~(6)
+\begin{DoxyCompactList}\small\item\em Factory object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{netio__log_8h_a8dedb633995756f61b88dc70862b8a7d}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+TRANSFORM\+\_\+\+SOURCE}}~(7)
+\begin{DoxyCompactList}\small\item\em Rule object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{netio__log_8h_a3ffea670bbf6bf19baccc50f59d8cb56}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+TRANSFORM\+\_\+\+DESTINATION}}~(8)
+\begin{DoxyCompactList}\small\item\em Entry object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{netio__log_8h_ab6504e8cf67100a79343750793cf9c62}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+TRANSFORM\+\_\+\+NETMASK\+\_\+\+INDEX}}~(9)
+\begin{DoxyCompactList}\small\item\em Mask object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaa590989c56fd1cfa77de4a2b2f38c7a4}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+FACTORY\+\_\+\+REFERENCE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 300)
+\begin{DoxyCompactList}\small\item\em The returned factory reference is NULL. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga24ebc0d0e13a46e919de50abe785492d}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+FACTORY\+\_\+\+NOT\+\_\+\+FOUND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 301)
+\begin{DoxyCompactList}\small\item\em Could not find the factory used as part of a transform rule. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaeaab8d1029bc0b20827a6b480b28b340}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 302)
+\begin{DoxyCompactList}\small\item\em Failed to allocate entry of the specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga6bd934069d56d6c86a3660541bcbcfcc}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 303)
+\begin{DoxyCompactList}\small\item\em Failed to create a transformation of the specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga475b1897267ecd88bbc0fc18e46a29d8}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+ADD\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 304)
+\begin{DoxyCompactList}\small\item\em Failed to add object of specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga97fcc88719d72a30b2c0742ab9bb706a}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+FIND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 305)
+\begin{DoxyCompactList}\small\item\em Failed to find a transformation. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga34a3104aff5f676c4bd1cb96a7510d2f}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+DUPLICATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 306)
+\begin{DoxyCompactList}\small\item\em Duplicate object. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga441d6a6209ebfd282162d57c51d10558}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+TRANSFORM\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 307)
+\begin{DoxyCompactList}\small\item\em Source or destination transformation function failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaf9a361314b2a28d4123cfcbc962caf42}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+UDP\+\_\+\+MODE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 308)
+\begin{DoxyCompactList}\small\item\em Invalid UDP mode specified. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gab9866482862d9ecf56cc2ea617c4f3ae}{UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+INVALID\+\_\+\+TUDP\+\_\+\+LOCATOR\+\_\+\+KIND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 309)
+\begin{DoxyCompactList}\small\item\em Invalid transformation UDP locator kind specified. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_gaeba0709fcd110bb6bc70a0793b6340aa}{UDP\+\_\+\+PRIORITY\+\_\+\+MAP\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 310)
+\begin{DoxyCompactList}\small\item\em Failed to allocate memory for priority map. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga3f37ff14b1f838a673443aa134855375}{UDP\+\_\+\+PRIORITY\+\_\+\+MAP\+\_\+\+INVALID\+\_\+\+MAPPING\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 311)
+\begin{DoxyCompactList}\small\item\em Invalid priority mapping specified. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__NETIOLogCodesClass_ga85fda1d1106581a5749e5129f3d85667}{UDP\+\_\+\+PRIORITY\+\_\+\+MAP\+\_\+\+NEGATIVE\+\_\+\+MAPPING\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 312)
+\begin{DoxyCompactList}\small\item\em Negative priority mapping values specified. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{netio__log_8h_af720c67a313e10f292903f8c8305f89a}{UDP\+\_\+\+PRIORITY\+\_\+\+MAP\+\_\+\+PRIORITY\+\_\+\+IGNORED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 313)
+\begin{DoxyCompactList}\small\item\em Trasnport priority ignored. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+NETIO module log codes. 
+
+
+
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{netio__log_8h_abc19f55d8b3b134e3d72fdae6c817f28}\index{netio\_log.h@{netio\_log.h}!UDP\_TRANSFORM\_LOG\_KIND\_RULE@{UDP\_TRANSFORM\_LOG\_KIND\_RULE}}
+\index{UDP\_TRANSFORM\_LOG\_KIND\_RULE@{UDP\_TRANSFORM\_LOG\_KIND\_RULE}!netio\_log.h@{netio\_log.h}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_KIND\_RULE}{UDP\_TRANSFORM\_LOG\_KIND\_RULE}}
+{\footnotesize\ttfamily \label{netio__log_8h_abc19f55d8b3b134e3d72fdae6c817f28} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+RULE~(1)}
+
+
+
+Rule object. 
+
+\Hypertarget{netio__log_8h_a951d387755f772e07cc27c8c2ec45f28}\index{netio\_log.h@{netio\_log.h}!UDP\_TRANSFORM\_LOG\_KIND\_ENTRY@{UDP\_TRANSFORM\_LOG\_KIND\_ENTRY}}
+\index{UDP\_TRANSFORM\_LOG\_KIND\_ENTRY@{UDP\_TRANSFORM\_LOG\_KIND\_ENTRY}!netio\_log.h@{netio\_log.h}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_KIND\_ENTRY}{UDP\_TRANSFORM\_LOG\_KIND\_ENTRY}}
+{\footnotesize\ttfamily \label{netio__log_8h_a951d387755f772e07cc27c8c2ec45f28} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+ENTRY~(2)}
+
+
+
+Entry object. 
+
+\Hypertarget{netio__log_8h_a606f4ba01db6249d0c096d614727cf01}\index{netio\_log.h@{netio\_log.h}!UDP\_TRANSFORM\_LOG\_KIND\_FACTORY@{UDP\_TRANSFORM\_LOG\_KIND\_FACTORY}}
+\index{UDP\_TRANSFORM\_LOG\_KIND\_FACTORY@{UDP\_TRANSFORM\_LOG\_KIND\_FACTORY}!netio\_log.h@{netio\_log.h}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_KIND\_FACTORY}{UDP\_TRANSFORM\_LOG\_KIND\_FACTORY}}
+{\footnotesize\ttfamily \label{netio__log_8h_a606f4ba01db6249d0c096d614727cf01} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+FACTORY~(3)}
+
+
+
+Factory object. 
+
+\Hypertarget{netio__log_8h_af7ed094c748ffe9a54cd65f6aa54c92e}\index{netio\_log.h@{netio\_log.h}!UDP\_TRANSFORM\_LOG\_KIND\_FACTORY\_INDEX@{UDP\_TRANSFORM\_LOG\_KIND\_FACTORY\_INDEX}}
+\index{UDP\_TRANSFORM\_LOG\_KIND\_FACTORY\_INDEX@{UDP\_TRANSFORM\_LOG\_KIND\_FACTORY\_INDEX}!netio\_log.h@{netio\_log.h}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_KIND\_FACTORY\_INDEX}{UDP\_TRANSFORM\_LOG\_KIND\_FACTORY\_INDEX}}
+{\footnotesize\ttfamily \label{netio__log_8h_af7ed094c748ffe9a54cd65f6aa54c92e} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+FACTORY\+\_\+\+INDEX~(4)}
+
+
+
+Factory object. 
+
+\Hypertarget{netio__log_8h_aaf5d39cd80e95d30ac0088fd0c40d106}\index{netio\_log.h@{netio\_log.h}!UDP\_TRANSFORM\_LOG\_KIND\_DST\_INDEX@{UDP\_TRANSFORM\_LOG\_KIND\_DST\_INDEX}}
+\index{UDP\_TRANSFORM\_LOG\_KIND\_DST\_INDEX@{UDP\_TRANSFORM\_LOG\_KIND\_DST\_INDEX}!netio\_log.h@{netio\_log.h}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_KIND\_DST\_INDEX}{UDP\_TRANSFORM\_LOG\_KIND\_DST\_INDEX}}
+{\footnotesize\ttfamily \label{netio__log_8h_aaf5d39cd80e95d30ac0088fd0c40d106} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+DST\+\_\+\+INDEX~(5)}
+
+
+
+Factory object. 
+
+\Hypertarget{netio__log_8h_ab6ff83b0a80798d26ee99ed8713300e4}\index{netio\_log.h@{netio\_log.h}!UDP\_TRANSFORM\_LOG\_KIND\_SRC\_INDEX@{UDP\_TRANSFORM\_LOG\_KIND\_SRC\_INDEX}}
+\index{UDP\_TRANSFORM\_LOG\_KIND\_SRC\_INDEX@{UDP\_TRANSFORM\_LOG\_KIND\_SRC\_INDEX}!netio\_log.h@{netio\_log.h}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_KIND\_SRC\_INDEX}{UDP\_TRANSFORM\_LOG\_KIND\_SRC\_INDEX}}
+{\footnotesize\ttfamily \label{netio__log_8h_ab6ff83b0a80798d26ee99ed8713300e4} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+SRC\+\_\+\+INDEX~(6)}
+
+
+
+Factory object. 
+
+\Hypertarget{netio__log_8h_a8dedb633995756f61b88dc70862b8a7d}\index{netio\_log.h@{netio\_log.h}!UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_SOURCE@{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_SOURCE}}
+\index{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_SOURCE@{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_SOURCE}!netio\_log.h@{netio\_log.h}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_SOURCE}{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_SOURCE}}
+{\footnotesize\ttfamily \label{netio__log_8h_a8dedb633995756f61b88dc70862b8a7d} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+TRANSFORM\+\_\+\+SOURCE~(7)}
+
+
+
+Rule object. 
+
+\Hypertarget{netio__log_8h_a3ffea670bbf6bf19baccc50f59d8cb56}\index{netio\_log.h@{netio\_log.h}!UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_DESTINATION@{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_DESTINATION}}
+\index{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_DESTINATION@{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_DESTINATION}!netio\_log.h@{netio\_log.h}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_DESTINATION}{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_DESTINATION}}
+{\footnotesize\ttfamily \label{netio__log_8h_a3ffea670bbf6bf19baccc50f59d8cb56} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+TRANSFORM\+\_\+\+DESTINATION~(8)}
+
+
+
+Entry object. 
+
+\Hypertarget{netio__log_8h_ab6504e8cf67100a79343750793cf9c62}\index{netio\_log.h@{netio\_log.h}!UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_NETMASK\_INDEX@{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_NETMASK\_INDEX}}
+\index{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_NETMASK\_INDEX@{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_NETMASK\_INDEX}!netio\_log.h@{netio\_log.h}}
+\doxyparagraph{\texorpdfstring{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_NETMASK\_INDEX}{UDP\_TRANSFORM\_LOG\_KIND\_TRANSFORM\_NETMASK\_INDEX}}
+{\footnotesize\ttfamily \label{netio__log_8h_ab6504e8cf67100a79343750793cf9c62} 
+\#define UDP\+\_\+\+TRANSFORM\+\_\+\+LOG\+\_\+\+KIND\+\_\+\+TRANSFORM\+\_\+\+NETMASK\+\_\+\+INDEX~(9)}
+
+
+
+Mask object. 
+
+\Hypertarget{netio__log_8h_af720c67a313e10f292903f8c8305f89a}\index{netio\_log.h@{netio\_log.h}!UDP\_PRIORITY\_MAP\_PRIORITY\_IGNORED\_EC@{UDP\_PRIORITY\_MAP\_PRIORITY\_IGNORED\_EC}}
+\index{UDP\_PRIORITY\_MAP\_PRIORITY\_IGNORED\_EC@{UDP\_PRIORITY\_MAP\_PRIORITY\_IGNORED\_EC}!netio\_log.h@{netio\_log.h}}
+\doxyparagraph{\texorpdfstring{UDP\_PRIORITY\_MAP\_PRIORITY\_IGNORED\_EC}{UDP\_PRIORITY\_MAP\_PRIORITY\_IGNORED\_EC}}
+{\footnotesize\ttfamily \label{netio__log_8h_af720c67a313e10f292903f8c8305f89a} 
+\#define UDP\+\_\+\+PRIORITY\+\_\+\+MAP\+\_\+\+PRIORITY\+\_\+\+IGNORED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_a15825c2a1706a01274b93d8bc9c9cd44}{UDP\+\_\+\+LOG\+\_\+\+BASE}} + 313)}
+
+
+
+Trasnport priority ignored. 
+
+The Data\+Reader or Data\+Writer trasnport priority is ignored by the UDP transport because the priority mask is not configured. 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <!-- Same as elementName, redefined here to avoid inclusion of another XSD -->
+    <xs:simpleType name="ConfigElementName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([a-zA-Z0-9_.])+" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Heap info type definition needed for os memory setup -->
+    <xs:complexType name="heapInfo">
+        <xs:all>
+            <xs:element name="size" type="xs:unsignedInt"/>
+            <xs:element name="start_address" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="heapList">
+        <xs:sequence>
+            <xs:element name="element" type="heapInfo" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="MutexResourceId">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([a-zA-Z0-9_.])+" />
+        </xs:restriction>
+    </xs:simpleType>
+
+     <xs:complexType name="autosar_conf">
+         <xs:all>
+             <xs:element name="heap" type="heapList"/>
+             <xs:element name="mutex_resource_id" type="MutexResourceId"/>
+             <xs:element name="max_local_addr_id" type="xs:unsignedInt"/>
+             <xs:element name="send_local_addr_id" type="xs:unsignedInt"/>
+         </xs:all>
+     </xs:complexType>
+
+</xs:schema>

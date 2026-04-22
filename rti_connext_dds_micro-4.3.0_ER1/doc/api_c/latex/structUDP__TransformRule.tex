@@ -1,0 +1,38 @@
+\doxysubsection{UDP\+\_\+\+Transform\+Rule Struct Reference}
+\hypertarget{structUDP__TransformRule}{}\label{structUDP__TransformRule}\index{UDP\_TransformRule@{UDP\_TransformRule}}
+
+
+Transformation Rule.  
+
+
+
+
+{\ttfamily \#include $<$netio\+\_\+udp.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \mbox{\hyperlink{group__UDPTransformModule_gac50fe756d85d57a00877cbad151df1e5}{address}}
+\begin{DoxyCompactList}\small\item\em The address the rule applies to. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNETIO__Netmask}{NETIO\+\_\+\+Netmask}} \mbox{\hyperlink{group__UDPTransformModule_ga729d15d4ea1d8ea323d4c9e8f580b043}{netmask}}
+\begin{DoxyCompactList}\small\item\em The netmask to apply to the address. \end{DoxyCompactList}\item 
+RT\+\_\+\+Component\+Factory\+Id\+\_\+T \mbox{\hyperlink{group__UDPTransformModule_gad2020d83e55b1425a3edd07f6555d885}{transformation}}
+\begin{DoxyCompactList}\small\item\em The transformation to apply to a matching address after the netmask has been applied. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__UDPTransformModule_ga06228fc4ba7bbc329402de6d9db02658}{user\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em An opaque user\+\_\+data pointer passed to the transformation function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Transformation Rule. 
+
+Defines when and how to apply a transformation to network traffic. 
+
+A rule specifies\+: 
+
+\begin{DoxyItemize}
+\item Which addresses to transform (address + netmask) \item Which transformation to apply \item Optional user data to pass to transformation \end{DoxyItemize}
+When multiple rules could match, the most specific rule (largest netmask) is selected. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structUDP__TransformRuleSeq}{UDP\+\_\+\+Transform\+Rule\+Seq} 
+\end{DoxySeeAlso}

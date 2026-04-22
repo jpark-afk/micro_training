@@ -1,0 +1,48 @@
+\doxysubsection{DDS\+\_\+\+Group\+Data\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__GroupDataQosPolicy}{}\label{structDDS__GroupDataQosPolicy}\index{DDS\_GroupDataQosPolicy@{DDS\_GroupDataQosPolicy}}
+
+
+Attaches a buffer of opaque data to a \doxylink{classDDSEntity}{DDSEntity} which is distributed to other applications as part of the discovery process.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+user\+\_\+data\+\_\+qos.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct DDS\+\_\+\+Octet\+Seq \mbox{\hyperlink{structDDS__GroupDataQosPolicy_ab2a91d6c692556b213354d871f99b840}{value}}
+\begin{DoxyCompactList}\small\item\em The opaque data to be attached to the \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Attaches a buffer of opaque data to a \doxylink{classDDSEntity}{DDSEntity} which is distributed to other applications as part of the discovery process. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSPublisher}{DDSPublisher}, \doxylink{classDDSSubscriber}{DDSSubscriber} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = NO ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} ~\newline
+ 
+\end{DoxyParagraph}
+\hypertarget{structDDS__GroupDataQosPolicy_DDSGroupDataQosModule_usage}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{structDDS__GroupDataQosPolicy_DDSGroupDataQosModule_usage}
+The GROUP\+\_\+\+DATA QoS policy allows an application to attach additional information to \doxylink{classDDSEntity}{DDSEntity} objects so that when a remote application discovers them, it can access that information and use it for its own purposes. This information is not interpreted by RTI Connext DDS Micro. Use cases are usually application-\/to-\/application identification, authentication, authorization, and encryption. 
+
+The group data for a remote entity is received through the discovery process. The received group data can be accessed through the functions for accessing the discovered entity data\+: \doxylink{classDDSDataWriter_a06fbe94aef2477ef73a7190c53e67ae4}{DDSData\+Writer\+::get\+\_\+matched\+\_\+subscription\+\_\+data} and \doxylink{classDDSDataReader_a837a33324170b27d8087f95404bfdd5c}{DDSData\+Reader\+::get\+\_\+matched\+\_\+publication\+\_\+data}. 
+
+{\itshape Important\+:} RTI Connext DDS Micro stores the data placed in this policy in pre-\/allocated pools. You must configure RTI Connext DDS Micro with the maximum size and number of the data sequences that will be stored in policies of this type. These settings are configured in the \doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy}. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__GroupDataQosPolicy_ab2a91d6c692556b213354d871f99b840}\index{DDS\_GroupDataQosPolicy@{DDS\_GroupDataQosPolicy}!value@{value}}
+\index{value@{value}!DDS\_GroupDataQosPolicy@{DDS\_GroupDataQosPolicy}}
+\doxyparagraph{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily \label{structDDS__GroupDataQosPolicy_ab2a91d6c692556b213354d871f99b840} 
+struct DDS\+\_\+\+Octet\+Seq DDS\+\_\+\+Group\+Data\+Qos\+Policy\+::value}
+
+
+
+The opaque data to be attached to the \doxylink{classDDSEntity}{DDSEntity}. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} empty (zero length) 

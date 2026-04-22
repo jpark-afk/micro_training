@@ -1,0 +1,27 @@
+Create Subscriber
+=================
+
+.. highlight:: c
+
+A DDS *Subscriber* contains zero or more *DataReaders*. A publishing
+application must create at least one DDS *Publisher* and then a
+*DataReader* for each *Topic* it wants to subscribe to.
+
+Please refer to
+:link_connextmicro_dds_api_c_up_one:`SubscriberQos <structDDS__SubscriberQos.html>`
+and :link_connextmicro_dds_api_c_up_one:`DataReaderQos <structDDS__DataReaderQos.html>`
+for customizable policies for these DDS entities.
+
+::
+
+    DDS_Subscriber *subscriber = NULL;
+    subscriber = DDS_DomainParticipant_create_subscriber(participant,
+                                                         &DDS_SUBSCRIBER_QOS_DEFAULT,
+                                                         NULL,
+                                                         DDS_STATUS_MASK_NONE);
+    if (subscriber == NULL)
+    {
+        /* failure */
+    }
+
+For more information, see :doc:`../programmersguide/receiving`.

@@ -1,0 +1,377 @@
+\doxysubsection{DDSSubscriber Class Reference}
+\hypertarget{classDDSSubscriber}{}\label{classDDSSubscriber}\index{DDSSubscriber@{DDSSubscriber}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A subscriber is the object responsible for actually receiving data from a subscription.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+subscription.\+hxx$>$}
+
+Inheritance diagram for DDSSubscriber\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classDDSSubscriber}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSSubscriber_adf2acf9e22681064e6966cac2258ac5c}{create\+\_\+datareader}} (\mbox{\hyperlink{classDDSTopicDescription}{DDSTopic\+Description}} \texorpdfstring{$\ast$}{*}topic, const \mbox{\hyperlink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos}} \&qos, \mbox{\hyperlink{classDDSDataReaderListener}{DDSData\+Reader\+Listener}} \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} mask)=0
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{classDDSDataReader}{DDSData\+Reader} that will be attached and belong to the \doxylink{classDDSSubscriber}{DDSSubscriber}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSSubscriber_a5dbe420933d7ab3b9d6bf1d2abd6c904}{delete\+\_\+datareader}} (\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*}a\+\_\+datareader)=0
+\begin{DoxyCompactList}\small\item\em Deletes a \doxylink{classDDSDataReader}{DDSData\+Reader} that belongs to the \doxylink{classDDSSubscriber}{DDSSubscriber}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSSubscriber_a04d43ea1ba0f27b6868be97980cd0f34}{get\+\_\+default\+\_\+datareader\+\_\+qos}} (\mbox{\hyperlink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Copies the default \doxylink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos} values into the provided \doxylink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos} instance. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSSubscriber_a64c411c5b8c29594c0e4fa3f7e592c95}{set\+\_\+default\+\_\+datareader\+\_\+qos}} (const \mbox{\hyperlink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Sets the default \doxylink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos} values for this subscriber. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSSubscriber_a84a62949544b56d16be800aabb795e6b}{delete\+\_\+contained\+\_\+entities}} ()=0
+\begin{DoxyCompactList}\small\item\em Deletes all the entities that were created by means of the "{}create"{} operation on the \doxylink{classDDSSubscriber}{DDSSubscriber}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSSubscriber_ab460a755c0c4772aa5837db9a9522cbe}{lookup\+\_\+datareader}} (const char \texorpdfstring{$\ast$}{*}topic\+\_\+name)=0
+\begin{DoxyCompactList}\small\item\em Retrieves an existing \doxylink{classDDSDataReader}{DDSData\+Reader}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSSubscriber_a4a9f523fbdc3b76786ca6373781b40e4}{lookup\+\_\+datareader\+\_\+by\+\_\+name}} (const char \texorpdfstring{$\ast$}{*}reader\+\_\+name)=0
+\begin{DoxyCompactList}\small\item\em Retrieves a \doxylink{classDDSDataReader}{DDSData\+Reader} by its entity name within this \doxylink{classDDSSubscriber}{DDSSubscriber} \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSSubscriber_ab619b94a9e759f503c2398b546604764}{get\+\_\+participant}} ()=0
+\begin{DoxyCompactList}\small\item\em Returns the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} to which the \doxylink{classDDSSubscriber}{DDSSubscriber} belongs. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSSubscriber_a96e16e85eafba3460ff09984123045ee}{set\+\_\+qos}} (const \mbox{\hyperlink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Sets the subscriber QoS. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSSubscriber_adf31ff9f56ee66ece9c11e853c7acf52}{get\+\_\+qos}} (\mbox{\hyperlink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos}} \&qos)=0
+\begin{DoxyCompactList}\small\item\em Gets the subscriber QoS. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSSubscriber_a03067c499bfe70435f61e15273d70cec}{set\+\_\+listener}} (const \mbox{\hyperlink{classDDSSubscriberListener}{DDSSubscriber\+Listener}} \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} mask)=0
+\begin{DoxyCompactList}\small\item\em Sets the subscriber listener. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDDSSubscriberListener}{DDSSubscriber\+Listener}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSSubscriber_a23d7c2fd2000b58aee875d1eeecb9aa6}{get\+\_\+listener}} ()=0
+\begin{DoxyCompactList}\small\item\em Get the subscriber listener. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{classDDSEntity}{DDSEntity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSEntity_ac8f6cb9f8f0d2eac1daed34b6eb60e11}{enable}} ()
+\begin{DoxyCompactList}\small\item\em Enables the \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classDDSStatusCondition}{DDSStatus\+Condition}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDDSEntity_a1a0f08bee56cbd55a299b92cde333a74}{get\+\_\+statuscondition}} ()
+\begin{DoxyCompactList}\small\item\em Returns the \doxylink{classDDSStatusCondition}{DDSStatus\+Condition} associated with a particular \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} \mbox{\hyperlink{classDDSEntity_ade1b0388ee69bf07981a70e5b17cc857}{get\+\_\+status\+\_\+changes}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the list of communication statuses in the \doxylink{classDDSEntity}{DDSEntity} that are triggered. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{classDDSEntity_af45327c05987d9ff5beb7271b00ed883}{get\+\_\+instance\+\_\+handle}} ()
+\begin{DoxyCompactList}\small\item\em Allows access to the \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} associated with the \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A subscriber is the object responsible for actually receiving data from a subscription. 
+
+\begin{DoxyParagraph}{QoS\+:}
+\doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa7962fc85687ca40e2674e4f66811f670}{DDS\+\_\+\+DATA\+\_\+\+ON\+\_\+\+READERS\+\_\+\+STATUS} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Listener\+:}
+\doxylink{classDDSSubscriberListener}{DDSSubscriber\+Listener} 
+\end{DoxyParagraph}
+A subscriber acts on the behalf of one or several \doxylink{classDDSDataReader}{DDSData\+Reader} objects that are related to it. When it receives data (from the other parts of the system), it builds the list of concerned \doxylink{classDDSDataReader}{DDSData\+Reader} objects and then indicates to the application that data is available through its listener. 
+
+The application can access the concerned \doxylink{classDDSDataReader}{DDSData\+Reader} objects and then access the data available through operations on the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+The following operations may be called even if the \doxylink{classDDSSubscriber}{DDSSubscriber} is not enabled. Other operations will fail with the value \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED} if called on a disabled \doxylink{classDDSSubscriber}{DDSSubscriber}\+: \begin{DoxyItemize}
+\item The base-\/class operations \doxylink{classDDSEntity_ac8f6cb9f8f0d2eac1daed34b6eb60e11}{DDSEntity\+::enable} \item \doxylink{classDDSSubscriber_adf2acf9e22681064e6966cac2258ac5c}{DDSSubscriber\+::create\+\_\+datareader}  ,\doxylink{classDDSSubscriber_a5dbe420933d7ab3b9d6bf1d2abd6c904}{DDSSubscriber\+::delete\+\_\+datareader}, \doxylink{classDDSSubscriber_a84a62949544b56d16be800aabb795e6b}{DDSSubscriber\+::delete\+\_\+contained\+\_\+entities}.  \end{DoxyItemize}
+All operations except for the base-\/class operations \doxylink{classDDSEntity_ac8f6cb9f8f0d2eac1daed34b6eb60e11}{enable()} and \doxylink{classDDSSubscriber_adf2acf9e22681064e6966cac2258ac5c}{create\+\_\+datareader()} may fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED}. 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classDDSSubscriber_adf2acf9e22681064e6966cac2258ac5c}\index{DDSSubscriber@{DDSSubscriber}!create\_datareader@{create\_datareader}}
+\index{create\_datareader@{create\_datareader}!DDSSubscriber@{DDSSubscriber}}
+\doxyparagraph{\texorpdfstring{create\_datareader()}{create\_datareader()}}
+{\footnotesize\ttfamily \label{classDDSSubscriber_adf2acf9e22681064e6966cac2258ac5c} 
+virtual \mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*} DDSSubscriber\+::create\+\_\+datareader (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSTopicDescription}{DDSTopic\+Description}} \texorpdfstring{$\ast$}{*}}]{topic}{, }\item[{const \mbox{\hyperlink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos}} \&}]{qos}{, }\item[{\mbox{\hyperlink{classDDSDataReaderListener}{DDSData\+Reader\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{, }\item[{\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}}}]{mask}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates a \doxylink{classDDSDataReader}{DDSData\+Reader} that will be attached and belong to the \doxylink{classDDSSubscriber}{DDSSubscriber}. 
+
+\begin{DoxyPrecond}{Precondition}
+If subscriber is enabled, the topic must be enabled. If it is not, this operation will fail and no \doxylink{classDDSDataReader}{DDSData\+Reader} will be created. 
+
+The given \doxylink{classDDSTopicDescription}{DDSTopic\+Description} must have been created from the same participant as this subscriber. If it was created from a different participant, this method will return NULL. 
+\end{DoxyPrecond}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The \doxylink{classDDSTopicDescription}{DDSTopic\+Description} that the \doxylink{classDDSDataReader}{DDSData\+Reader} will be associated with. Cannot be NULL. \\
+\hline
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The qos of the \doxylink{classDDSDataReader}{DDSData\+Reader}. The special value \doxylink{group__DDSSubscriberModule_ga10e72a8d4b8ee4d40a7dd8a603927288}{DDS\+\_\+\+DATAREADER\+\_\+\+QOS\+\_\+\+DEFAULT} can be used to indicate that the \doxylink{classDDSDataReader}{DDSData\+Reader} should be created with the default \doxylink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos} set in the \doxylink{classDDSSubscriber}{DDSSubscriber}.  \\
+\hline
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The listener of the \doxylink{classDDSDataReader}{DDSData\+Reader}. \\
+\hline
+{\em mask} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Changes of communication status to be invoked on the listener. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{classDDSDataReader}{DDSData\+Reader} of a derived class specific to the data-\/type associated with the \doxylink{classDDSTopic}{DDSTopic} or NULL if an error occurred. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{ARINC 653 API Restriction\+:}
+This function {\itshape  must } only be called before a partition enters {\itshape  NORMAL } mode. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{group__DDSQosTypesModule_DDSQosTypesModule_usage}{Specifying QoS on entities}{1} for information on setting QoS before entity creation 
+
+\doxylink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos} for rules on consistency among QoS 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSSubscriber_a5dbe420933d7ab3b9d6bf1d2abd6c904}\index{DDSSubscriber@{DDSSubscriber}!delete\_datareader@{delete\_datareader}}
+\index{delete\_datareader@{delete\_datareader}!DDSSubscriber@{DDSSubscriber}}
+\doxyparagraph{\texorpdfstring{delete\_datareader()}{delete\_datareader()}}
+{\footnotesize\ttfamily \label{classDDSSubscriber_a5dbe420933d7ab3b9d6bf1d2abd6c904} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSSubscriber\+::delete\+\_\+datareader (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*}}]{a\+\_\+datareader}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Deletes a \doxylink{classDDSDataReader}{DDSData\+Reader} that belongs to the \doxylink{classDDSSubscriber}{DDSSubscriber}. 
+
+\begin{DoxyPrecond}{Precondition}
+If the \doxylink{classDDSDataReader}{DDSData\+Reader} does not belong to the \doxylink{classDDSSubscriber}{DDSSubscriber}, or if there are any existing objects that are attached to the \doxylink{classDDSDataReader}{DDSData\+Reader}, or if there are outstanding loans on samples (as a result of a call to read(), take(), or one of the variants thereof), the operation fails with the error \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Listener installed on the \doxylink{classDDSDataReader}{DDSData\+Reader} will not be called after this method completes successfully. 
+\end{DoxyPostcond}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+\_\+datareader} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The \doxylink{classDDSDataReader}{DDSData\+Reader} to be deleted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}. 
+\end{DoxyReturn}
+\Hypertarget{classDDSSubscriber_a04d43ea1ba0f27b6868be97980cd0f34}\index{DDSSubscriber@{DDSSubscriber}!get\_default\_datareader\_qos@{get\_default\_datareader\_qos}}
+\index{get\_default\_datareader\_qos@{get\_default\_datareader\_qos}!DDSSubscriber@{DDSSubscriber}}
+\doxyparagraph{\texorpdfstring{get\_default\_datareader\_qos()}{get\_default\_datareader\_qos()}}
+{\footnotesize\ttfamily \label{classDDSSubscriber_a04d43ea1ba0f27b6868be97980cd0f34} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSSubscriber\+::get\+\_\+default\+\_\+datareader\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Copies the default \doxylink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos} values into the provided \doxylink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos} instance. 
+
+The retrieved {\ttfamily qos} will match the set of values specified on the last successful call to \doxylink{classDDSSubscriber_a64c411c5b8c29594c0e4fa3f7e592c95}{DDSSubscriber\+::set\+\_\+default\+\_\+datareader\+\_\+qos}, or else, if the call was never made, the default values from its owning \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. 
+
+This method may potentially allocate memory depending on the sequences contained in some QoS policies. 
+
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos} to be filled-\/up.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSSubscriberModule_ga10e72a8d4b8ee4d40a7dd8a603927288}{DDS\+\_\+\+DATAREADER\+\_\+\+QOS\+\_\+\+DEFAULT} 
+
+\doxylink{classDDSSubscriber_adf2acf9e22681064e6966cac2258ac5c}{DDSSubscriber\+::create\+\_\+datareader} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSSubscriber_a64c411c5b8c29594c0e4fa3f7e592c95}\index{DDSSubscriber@{DDSSubscriber}!set\_default\_datareader\_qos@{set\_default\_datareader\_qos}}
+\index{set\_default\_datareader\_qos@{set\_default\_datareader\_qos}!DDSSubscriber@{DDSSubscriber}}
+\doxyparagraph{\texorpdfstring{set\_default\_datareader\_qos()}{set\_default\_datareader\_qos()}}
+{\footnotesize\ttfamily \label{classDDSSubscriber_a64c411c5b8c29594c0e4fa3f7e592c95} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSSubscriber\+::set\+\_\+default\+\_\+datareader\+\_\+qos (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Sets the default \doxylink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos} values for this subscriber. 
+
+This call causes the default values inherited from the owning \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} to be overridden. 
+
+This default value will be used for newly created \doxylink{classDDSDataReader}{DDSData\+Reader} if \doxylink{group__DDSSubscriberModule_ga10e72a8d4b8ee4d40a7dd8a603927288}{DDS\+\_\+\+DATAREADER\+\_\+\+QOS\+\_\+\+DEFAULT} is specified as the {\ttfamily qos} parameter when \doxylink{classDDSSubscriber_adf2acf9e22681064e6966cac2258ac5c}{DDSSubscriber\+::create\+\_\+datareader} is called. 
+
+\begin{DoxyPrecond}{Precondition}
+The specified QoS policies must be consistent, or else the operation will have no effect and fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+\end{DoxyPrecond}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The default \doxylink{structDDS__DataReaderQos}{DDS\+\_\+\+Data\+Reader\+Qos} to be set to. The special value \doxylink{group__DDSSubscriberModule_ga10e72a8d4b8ee4d40a7dd8a603927288}{DDS\+\_\+\+DATAREADER\+\_\+\+QOS\+\_\+\+DEFAULT} may be passed as {\ttfamily qos} to indicate that the default QoS should be reset back to the initial values the factory would have used if \doxylink{classDDSSubscriber_a64c411c5b8c29594c0e4fa3f7e592c95}{DDSSubscriber\+::set\+\_\+default\+\_\+datareader\+\_\+qos} had never been called.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+\end{DoxyReturn}
+\Hypertarget{classDDSSubscriber_a84a62949544b56d16be800aabb795e6b}\index{DDSSubscriber@{DDSSubscriber}!delete\_contained\_entities@{delete\_contained\_entities}}
+\index{delete\_contained\_entities@{delete\_contained\_entities}!DDSSubscriber@{DDSSubscriber}}
+\doxyparagraph{\texorpdfstring{delete\_contained\_entities()}{delete\_contained\_entities()}}
+{\footnotesize\ttfamily \label{classDDSSubscriber_a84a62949544b56d16be800aabb795e6b} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSSubscriber\+::delete\+\_\+contained\+\_\+entities (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Deletes all the entities that were created by means of the "{}create"{} operation on the \doxylink{classDDSSubscriber}{DDSSubscriber}. 
+
+Deletes all contained \doxylink{classDDSDataReader}{DDSData\+Reader} objects. This pattern is applied recursively. In this manner, the operation \doxylink{classDDSSubscriber_a84a62949544b56d16be800aabb795e6b}{DDSSubscriber\+::delete\+\_\+contained\+\_\+entities} on the \doxylink{classDDSSubscriber}{DDSSubscriber} will end up deleting all the entities recursively contained in the \doxylink{classDDSSubscriber}{DDSSubscriber}, that is also the objects belonging to the contained \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+The operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} if any of the contained entities is in a state where it cannot be deleted. This will occur, for example, if a contained \doxylink{classDDSDataReader}{DDSData\+Reader} cannot be deleted because the application has called a \doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read} or \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take} operation and has not called the corresponding \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan} operation to return the loaned samples. 
+
+Once \doxylink{classDDSSubscriber_a84a62949544b56d16be800aabb795e6b}{DDSSubscriber\+::delete\+\_\+contained\+\_\+entities} completes successfully, the application may delete the \doxylink{classDDSSubscriber}{DDSSubscriber}, knowing that it has no contained \doxylink{classDDSDataReader}{DDSData\+Reader} objects. 
+
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} 
+\end{DoxyReturn}
+\Hypertarget{classDDSSubscriber_ab460a755c0c4772aa5837db9a9522cbe}\index{DDSSubscriber@{DDSSubscriber}!lookup\_datareader@{lookup\_datareader}}
+\index{lookup\_datareader@{lookup\_datareader}!DDSSubscriber@{DDSSubscriber}}
+\doxyparagraph{\texorpdfstring{lookup\_datareader()}{lookup\_datareader()}}
+{\footnotesize\ttfamily \label{classDDSSubscriber_ab460a755c0c4772aa5837db9a9522cbe} 
+virtual \mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*} DDSSubscriber\+::lookup\+\_\+datareader (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{topic\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Retrieves an existing \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Name of the \doxylink{classDDSTopicDescription}{DDSTopic\+Description} that the retrieved \doxylink{classDDSDataReader}{DDSData\+Reader} is attached to. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{classDDSDataReader}{DDSData\+Reader} that belongs to the \doxylink{classDDSSubscriber}{DDSSubscriber} attached to the \doxylink{classDDSTopicDescription}{DDSTopic\+Description} with {\ttfamily topic\+\_\+name}. If no such \doxylink{classDDSDataReader}{DDSData\+Reader} exists, this operation returns NULL. 
+\end{DoxyReturn}
+The returned \doxylink{classDDSDataReader}{DDSData\+Reader} may be enabled or disabled. 
+
+If more than one \doxylink{classDDSDataReader}{DDSData\+Reader} is attached to the \doxylink{classDDSSubscriber}{DDSSubscriber}, this operation may return any one of them. 
+
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSSubscriber_a4a9f523fbdc3b76786ca6373781b40e4}\index{DDSSubscriber@{DDSSubscriber}!lookup\_datareader\_by\_name@{lookup\_datareader\_by\_name}}
+\index{lookup\_datareader\_by\_name@{lookup\_datareader\_by\_name}!DDSSubscriber@{DDSSubscriber}}
+\doxyparagraph{\texorpdfstring{lookup\_datareader\_by\_name()}{lookup\_datareader\_by\_name()}}
+{\footnotesize\ttfamily \label{classDDSSubscriber_a4a9f523fbdc3b76786ca6373781b40e4} 
+virtual \mbox{\hyperlink{classDDSDataReader}{DDSData\+Reader}} \texorpdfstring{$\ast$}{*} DDSSubscriber\+::lookup\+\_\+datareader\+\_\+by\+\_\+name (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{reader\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Retrieves a \doxylink{classDDSDataReader}{DDSData\+Reader} by its entity name within this \doxylink{classDDSSubscriber}{DDSSubscriber} 
+
+This returned \doxylink{classDDSDataReader}{DDSData\+Reader} is either enabled or disabled. 
+
+Every \doxylink{classDDSDataReader}{DDSData\+Reader} in the system has an entity name which is configured and stored in the Entity\+Name policy, ENTITY\+\_\+\+NAME. 
+
+This operation retrieves a \doxylink{classDDSDataReader}{DDSData\+Reader} within the \doxylink{classDDSSubscriber}{DDSSubscriber} given the entity\textquotesingle{}s name. If there are several \doxylink{classDDSDataReader}{DDSData\+Reader} with the same name within the \doxylink{classDDSSubscriber}{DDSSubscriber}, this method returns the first matching occurrence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reader\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Entity name of the \doxylink{classDDSDataReader}{DDSData\+Reader}. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first \doxylink{classDDSDataReader}{DDSData\+Reader} found with the specified name or NULL if it is not found. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSSubscriber_ab619b94a9e759f503c2398b546604764}\index{DDSSubscriber@{DDSSubscriber}!get\_participant@{get\_participant}}
+\index{get\_participant@{get\_participant}!DDSSubscriber@{DDSSubscriber}}
+\doxyparagraph{\texorpdfstring{get\_participant()}{get\_participant()}}
+{\footnotesize\ttfamily \label{classDDSSubscriber_ab619b94a9e759f503c2398b546604764} 
+virtual \mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*} DDSSubscriber\+::get\+\_\+participant (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} to which the \doxylink{classDDSSubscriber}{DDSSubscriber} belongs. 
+
+\begin{DoxyReturn}{Returns}
+the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} to which the \doxylink{classDDSSubscriber}{DDSSubscriber} belongs. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSSubscriber_a96e16e85eafba3460ff09984123045ee}\index{DDSSubscriber@{DDSSubscriber}!set\_qos@{set\_qos}}
+\index{set\_qos@{set\_qos}!DDSSubscriber@{DDSSubscriber}}
+\doxyparagraph{\texorpdfstring{set\_qos()}{set\_qos()}}
+{\footnotesize\ttfamily \label{classDDSSubscriber_a96e16e85eafba3460ff09984123045ee} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSSubscriber\+::set\+\_\+qos (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Sets the subscriber QoS. 
+
+This operation modifies the QoS of the \doxylink{classDDSSubscriber}{DDSSubscriber}. 
+
+The \doxylink{structDDS__SubscriberQos_a5b0e4b5eccb7b96354b2c61b1ea1fcdb}{DDS\+\_\+\+Subscriber\+Qos\+::entity\+\_\+factory} can be changed. The other policies are immutable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos} to be set to. Policies must be consistent. Policies cannot be changed after \doxylink{classDDSSubscriber}{DDSSubscriber} is enabled. The special value \doxylink{group__DDSDomainParticipantModule_ga3c20eb7d1a9415848fc49cf3cc62db9a}{DDS\+\_\+\+SUBSCRIBER\+\_\+\+QOS\+\_\+\+DEFAULT} can be used to indicate that the QoS of the \doxylink{classDDSSubscriber}{DDSSubscriber} should be changed to match the current default \doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos} set in the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a6e50f4433cf3e47737f4d317d0a4a707}{DDS\+\_\+\+RETCODE\+\_\+\+IMMUTABLE\+\_\+\+POLICY}, or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos} for rules on consistency among QoS 
+
+\doxysectlink{dds_cpp_infrastructure.hxx_Entity_set_qos}{set\+\_\+qos (abstract)}{2} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSSubscriber_adf31ff9f56ee66ece9c11e853c7acf52}\index{DDSSubscriber@{DDSSubscriber}!get\_qos@{get\_qos}}
+\index{get\_qos@{get\_qos}!DDSSubscriber@{DDSSubscriber}}
+\doxyparagraph{\texorpdfstring{get\_qos()}{get\_qos()}}
+{\footnotesize\ttfamily \label{classDDSSubscriber_adf31ff9f56ee66ece9c11e853c7acf52} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSSubscriber\+::get\+\_\+qos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos}} \&}]{qos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gets the subscriber QoS. 
+
+This method may potentially allocate memory depending on the sequences contained in some QoS policies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em qos} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{structDDS__SubscriberQos}{DDS\+\_\+\+Subscriber\+Qos} to be filled in.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{dds_cpp_infrastructure.hxx_Entity_get_qos}{get\+\_\+qos (abstract)}{2} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSSubscriber_a03067c499bfe70435f61e15273d70cec}\index{DDSSubscriber@{DDSSubscriber}!set\_listener@{set\_listener}}
+\index{set\_listener@{set\_listener}!DDSSubscriber@{DDSSubscriber}}
+\doxyparagraph{\texorpdfstring{set\_listener()}{set\_listener()}}
+{\footnotesize\ttfamily \label{classDDSSubscriber_a03067c499bfe70435f61e15273d70cec} 
+virtual \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSSubscriber\+::set\+\_\+listener (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDDSSubscriberListener}{DDSSubscriber\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{, }\item[{\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}}}]{mask}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Sets the subscriber listener. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{classDDSSubscriberListener}{DDSSubscriber\+Listener} to set to. \\
+\hline
+{\em mask} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} \doxylink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask} associated with the \doxylink{classDDSSubscriberListener}{DDSSubscriber\+Listener}.  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{dds_cpp_infrastructure.hxx_Entity_set_listener}{set\+\_\+listener (abstract)}{2} 
+\end{DoxySeeAlso}
+\Hypertarget{classDDSSubscriber_a23d7c2fd2000b58aee875d1eeecb9aa6}\index{DDSSubscriber@{DDSSubscriber}!get\_listener@{get\_listener}}
+\index{get\_listener@{get\_listener}!DDSSubscriber@{DDSSubscriber}}
+\doxyparagraph{\texorpdfstring{get\_listener()}{get\_listener()}}
+{\footnotesize\ttfamily \label{classDDSSubscriber_a23d7c2fd2000b58aee875d1eeecb9aa6} 
+virtual \mbox{\hyperlink{classDDSSubscriberListener}{DDSSubscriber\+Listener}} \texorpdfstring{$\ast$}{*} DDSSubscriber\+::get\+\_\+listener (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the subscriber listener. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{classDDSSubscriberListener}{DDSSubscriber\+Listener} of the \doxylink{classDDSSubscriber}{DDSSubscriber}. 
+\end{DoxyReturn}

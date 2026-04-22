@@ -1,0 +1,57 @@
+\doxysubsection{DDS\+\_\+\+Latency\+Budget\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__LatencyBudgetQosPolicy}{}\label{structDDS__LatencyBudgetQosPolicy}\index{DDS\_LatencyBudgetQosPolicy@{DDS\_LatencyBudgetQosPolicy}}
+
+
+Provides a hint as to the maximum acceptable delay from the time the data is written to the time it is received by the subscribing applications.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \mbox{\hyperlink{structDDS__LatencyBudgetQosPolicy_a28d7a05d6a5559f3e174c5bebe0852b4}{duration}}
+\begin{DoxyCompactList}\small\item\em Duration of the maximum acceptable delay. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Provides a hint as to the maximum acceptable delay from the time the data is written to the time it is received by the subscribing applications. 
+
+This policy is a {\itshape hint} to a DDS implementation; it can be used to change how it processes and sends data that has low latency requirements. The DDS specification does not mandate whether or how this policy is used. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSTopic}{DDSTopic}, \doxylink{classDDSDataReader}{DDSData\+Reader}, \doxylink{classDDSDataWriter}{DDSData\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}, \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa126ff1b38cdfc905353cb2dac57b6796}{DDS\+\_\+\+REQUESTED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = YES ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_yes}{YES} ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__PublishModeQosPolicy}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy} 
+
+\doxylink{classDDSFlowController}{DDSFlow\+Controller} 
+\end{DoxySeeAlso}
+\hypertarget{structDDS__LatencyBudgetQosPolicy_DDSLatencyBudgetQosModule_usage}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{structDDS__LatencyBudgetQosPolicy_DDSLatencyBudgetQosModule_usage}
+This policy provides a means for the application to indicate to the middleware the urgency of the data communication. By having a non-\/zero {\ttfamily duration}, RTI Connext DDS Micro can optimize its internal operation. 
+
+RTI Connext DDS Micro uses this policy only in conjunction with \doxylink{group__DDSPublishModeQosModule_gga7c71d1e8aba7e852f23c9fcce4b80b42a4ca8021581a2541bb90d19d64fb0ac1e}{DDS\+\_\+\+ASYNCHRONOUS\+\_\+\+PUBLISH\+\_\+\+MODE\+\_\+\+QOS} \doxylink{classDDSDataWriter}{DDSData\+Writer} instances associated with a \doxylink{group__DDSFlowControllerModule_ggacdd2356baadedf00457c9ce32f5ca115afb77daa170cc951b2387ca9e24003a38}{DDS\+\_\+\+EDF\+\_\+\+FLOW\+\_\+\+CONTROLLER\+\_\+\+SCHED\+\_\+\+POLICY} \doxylink{classDDSFlowController}{DDSFlow\+Controller}. Together with the time of write, \doxylink{structDDS__LatencyBudgetQosPolicy_a28d7a05d6a5559f3e174c5bebe0852b4}{DDS\+\_\+\+Latency\+Budget\+Qos\+Policy\+::duration} determines the deadline of each individual sample. RTI Connext DDS Micro uses this information to prioritize the sending of asynchronously published data. \hypertarget{dds_c_infrastructure.h_DDSLatencyBudgetQosModule_compatibility}{}\doxysubsubsection{\texorpdfstring{Compatibility}{Compatibility}}\label{dds_c_infrastructure.h_DDSLatencyBudgetQosModule_compatibility}
+The value offered is considered compatible with the value requested if and only if the inequality {\itshape offered duration \texorpdfstring{$<$}{<}= requested duration} evaluates to \textquotesingle{}TRUE\textquotesingle{}. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__LatencyBudgetQosPolicy_a28d7a05d6a5559f3e174c5bebe0852b4}\index{DDS\_LatencyBudgetQosPolicy@{DDS\_LatencyBudgetQosPolicy}!duration@{duration}}
+\index{duration@{duration}!DDS\_LatencyBudgetQosPolicy@{DDS\_LatencyBudgetQosPolicy}}
+\doxyparagraph{\texorpdfstring{duration}{duration}}
+{\footnotesize\ttfamily \label{structDDS__LatencyBudgetQosPolicy_a28d7a05d6a5559f3e174c5bebe0852b4} 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} DDS\+\_\+\+Latency\+Budget\+Qos\+Policy\+::duration}
+
+
+
+Duration of the maximum acceptable delay. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 0 (meaning minimize the delay) 

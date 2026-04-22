@@ -1,0 +1,91 @@
+Vulnerabilities
+===============
+
+.. Release Notes from this point.
+
+The following vulnerabilities are fixed in this release.
+
+See also `RTI Connext Security Bulletins and Advisories <https://community.rti.com/static/documentation/connext-dds/current/doc/vulnerabilities/>`__
+for a complete list of vulnerabilities in RTI releases that have been published
+through the `CVE® Program <https://www.cve.org/About/Overview/>`__. That list
+may be more up-to-date.
+
+:critical:`[Critical]` Potential stack buffer underflow in |me_h| during message processing
+-------------------------------------------------------------------------------------------
+
+.. rubric:: User Impact without Security
+
+A vulnerability in |me| core libraries could have resulted in a stack buffer
+underflow when receiving malicious RTPS messages.
+
+- CVSS v3.1 Base Score: 9.1 CRITICAL
+- CVSS v3.1 Vector: `CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H <https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H>`__
+- CVSS v4.0 Base Score: 8.8 HIGH
+- CVSS v4.0 Vector: `CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:H/SC:N/SI:N/SA:N <https://www.first.org/cvss/calculator/4.0#CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:H/SC:N/SI:N/SA:N>`__
+
+.. rubric:: User Impact with Security
+
+There is no impact when enabling certain Security features; see Mitigations
+for more information.
+
+.. rubric:: Mitigations
+
+* Enable :ref:`section-psk`.
+
+* Protect your network against unauthorized access.
+
+[RTI Issue ID MICRO-12773]
+
+:critical:`[Critical]` Potential out-of-bounds read in |me_h| during message processing
+---------------------------------------------------------------------------------------
+
+.. rubric:: User Impact without Security
+
+A vulnerability in |me| core libraries could have resulted in an out-of-bounds
+read when receiving malicious RTPS messages.
+
+- CVSS v3.1 Base Score: 7.5 HIGH
+- CVSS v3.1 Vector: 
+  `CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H <https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H>`__
+- CVSS v4.0 Base Score: 8.8 HIGH
+- CVSS v4.0 Vector:
+  `CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:H/SC:N/SI:N/SA:N <https://www.first.org/cvss/calculator/4.0#CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:H/SC:N/SI:N/SA:N>`__
+
+.. rubric:: User Impact with Security
+
+There is no impact when enabling certain Security features; see Mitigations for
+more information.
+
+.. rubric:: Mitigations
+
+* Enable :ref:`section-psk`.
+
+* Protect your network against unauthorized access.
+
+[RTI Issue ID MICRO-12769]
+
+:minor:`[Minor]` Potential-man-in-the-middle attack in Micro Application Generator when using Socket Appender in Apache Log4j™ 
+------------------------------------------------------------------------------------------------------------------------------
+The logging system in :ref:`Micro Application Generator <section-appgen>` could
+be configured to employ the Socket Appender in Apache Log4j, which is affected
+by the vulnerability `CVE-2025-68161 <https://www.cve.org/CVERecord?id=CVE-2025-68161>`__.
+
+This vulnerability has been fixed by upgrading Apache Log4j to version 2.25.3.
+
+.. rubric:: User Impact without Security
+
+The associated CVE could be exploited by manipulating files in the |me|
+installation.
+
+- CVSS v3.1 Score: 4.0 MEDIUM
+- CVSS v3.1 Vector:
+  `CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N <https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N>`__
+- CVSS v4.0 Score: 2.1 LOW
+- CVSS v4.0 Vector:
+  `CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:L/SA:N <https://www.first.org/cvss/calculator/4.0#CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:L/SA:N>`__
+
+.. rubric:: User Impact with Security
+
+Same impact as described in "User Impact without Security" above.
+
+[RTI Issue ID MAG-247]

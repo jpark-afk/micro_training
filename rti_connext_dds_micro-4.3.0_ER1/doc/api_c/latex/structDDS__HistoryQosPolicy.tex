@@ -1,0 +1,83 @@
+\doxysubsection{DDS\+\_\+\+History\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__HistoryQosPolicy}{}\label{structDDS__HistoryQosPolicy}\index{DDS\_HistoryQosPolicy@{DDS\_HistoryQosPolicy}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Specifies the behavior of RTI Connext DDS Micro when a sample value changes one or more times before it can be successfully communicated to existing subscribers.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSHistoryQosModule_ga96c54dadb2beb87b23776e766e282185}{DDS\+\_\+\+History\+Qos\+Policy\+Kind}} \mbox{\hyperlink{structDDS__HistoryQosPolicy_a3cb2743cd13a81614bcc4f314cd640ab}{kind}}
+\begin{DoxyCompactList}\small\item\em Specifies the kind of history to be kept. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__HistoryQosPolicy_aef0fb3fd3579866be17d1a936f5e3729}{depth}}
+\begin{DoxyCompactList}\small\item\em Specifies the number of samples to be kept when the {\ttfamily kind} is \doxylink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a993d3120b7bbb347ce11e0e6f68b29ff}{DDS\+\_\+\+KEEP\+\_\+\+LAST\+\_\+\+HISTORY\+\_\+\+QOS}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Specifies the behavior of RTI Connext DDS Micro when a sample value changes one or more times before it can be successfully communicated to existing subscribers. 
+
+This {\ttfamily Qos\+Policy} controls whether RTI Connext DDS Micro should deliver only the most recent value, attempt to deliver all intermediate values, or do something in between. 
+
+On the publishing side this policy controls the samples that should be maintained by the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} on behalf of existing \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities. 
+
+On the subscribing side it controls the samples that should be maintained until the application takes them from RTI Connext DDS Micro. 
+
+RTI Connext DDS Micro supports the \doxylink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a993d3120b7bbb347ce11e0e6f68b29ff}{DDS\+\_\+\+KEEP\+\_\+\+LAST\+\_\+\+HISTORY\+\_\+\+QOS} kind. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}, \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}, \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = NO ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ReliabilityQosPolicy}{DDS\+\_\+\+Reliability\+Qos\+Policy} 
+
+\doxylink{structDDS__HistoryQosPolicy}{DDS\+\_\+\+History\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\hypertarget{structDDS__HistoryQosPolicy_DDSHistoryQosModule_usage}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{structDDS__HistoryQosPolicy_DDSHistoryQosModule_usage}
+This policy controls the behavior of RTI Connext DDS Micro when an instance value changes before it is communicated to its existing \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities. 
+
+When the kind is set to \doxylink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a993d3120b7bbb347ce11e0e6f68b29ff}{DDS\+\_\+\+KEEP\+\_\+\+LAST\+\_\+\+HISTORY\+\_\+\+QOS}, RTI Connext DDS Micro will only keep the latest values of the instance and discard older ones. The value of {\ttfamily depth} regulates the maximum number of values that RTI Connext DDS Micro will maintain and deliver. The default for depth is 1, which means only the most recent value is delivered. \hypertarget{dds_c_infrastructure.h_DDSHistoryQosModule_consistency}{}\doxysubsubsection{\texorpdfstring{Consistency}{Consistency}}\label{dds_c_infrastructure.h_DDSHistoryQosModule_consistency}
+The {\ttfamily depth} setting must be consistent with the \doxylink{group__DDSResourceLimitsQosModule}{RESOURCE\+\_\+\+LIMITS} {\ttfamily max\+\_\+samples\+\_\+per\+\_\+instance} setting. This requires the following constraint\+: {\itshape depth \texorpdfstring{$<$}{<}= max\+\_\+samples\+\_\+per\+\_\+instance}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__HistoryQosPolicy_a3cb2743cd13a81614bcc4f314cd640ab}\index{DDS\_HistoryQosPolicy@{DDS\_HistoryQosPolicy}!kind@{kind}}
+\index{kind@{kind}!DDS\_HistoryQosPolicy@{DDS\_HistoryQosPolicy}}
+\doxyparagraph{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily \label{structDDS__HistoryQosPolicy_a3cb2743cd13a81614bcc4f314cd640ab} 
+\mbox{\hyperlink{group__DDSHistoryQosModule_ga96c54dadb2beb87b23776e766e282185}{DDS\+\_\+\+History\+Qos\+Policy\+Kind}} DDS\+\_\+\+History\+Qos\+Policy\+::kind}
+
+
+
+Specifies the kind of history to be kept. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a993d3120b7bbb347ce11e0e6f68b29ff}{DDS\+\_\+\+KEEP\+\_\+\+LAST\+\_\+\+HISTORY\+\_\+\+QOS} \Hypertarget{structDDS__HistoryQosPolicy_aef0fb3fd3579866be17d1a936f5e3729}\index{DDS\_HistoryQosPolicy@{DDS\_HistoryQosPolicy}!depth@{depth}}
+\index{depth@{depth}!DDS\_HistoryQosPolicy@{DDS\_HistoryQosPolicy}}
+\doxyparagraph{\texorpdfstring{depth}{depth}}
+{\footnotesize\ttfamily \label{structDDS__HistoryQosPolicy_aef0fb3fd3579866be17d1a936f5e3729} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+History\+Qos\+Policy\+::depth}
+
+
+
+Specifies the number of samples to be kept when the {\ttfamily kind} is \doxylink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a993d3120b7bbb347ce11e0e6f68b29ff}{DDS\+\_\+\+KEEP\+\_\+\+LAST\+\_\+\+HISTORY\+\_\+\+QOS}. 
+
+If a value other than 1 is specified, ensure it is consistent with the \doxylink{group__DDSResourceLimitsQosModule}{RESOURCE\+\_\+\+LIMITS} policy\+: 
+
+{\ttfamily depth} \texorpdfstring{$<$}{<}= \doxylink{structDDS__ResourceLimitsQosPolicy_ae3d9339bebf4c7163cf6dff82882cbef}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+samples\+\_\+per\+\_\+instance} 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 1 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1,2147483647\mbox{]} 

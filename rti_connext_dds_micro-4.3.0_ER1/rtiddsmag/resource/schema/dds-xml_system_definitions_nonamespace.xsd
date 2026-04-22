@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <!-- Include all the necessary building blocks -->
+    <xs:include schemaLocation="dds-xml_deployment_definitions_nonamespace.xsd" />
+
+    <!-- Define DDS top-level element -->
+    <xs:complexType name="ddsSystem">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="types" type="typeLibrary" />
+            <xs:element name="qos_library" type="qosLibrary" />
+            <xs:element name="domain_library" type="domainLibrary" />
+            <xs:element name="domain_participant_library" 
+                        type="participantLibrary" />
+            <xs:element name="application_library" 
+                        type="applicationLibrary" />
+            <xs:element name="node_library" type="nodeLibrary" />
+            <xs:element name="deployment_library" type="deploymentLibrary" />
+            <xs:element name="configuration_variables"
+                            type="KeyValuePairSeq">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[
+                        Defines a set of default values for user variables.
+                        The values specified in this section can be overridden
+                        by environment variables.
+                        ]]>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+        <xs:attribute name="version"
+                          type="xs:string"
+                          use="optional"
+                          default="7.3.1"/>
+    </xs:complexType>
+
+</xs:schema>

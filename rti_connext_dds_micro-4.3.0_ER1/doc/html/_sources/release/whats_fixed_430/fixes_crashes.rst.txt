@@ -1,0 +1,22 @@
+Crashes
+=======
+
+.. Release Notes from this point.
+
+:major:`[Major]` Content-filtered DataWriter could crash or fail to send messages
+---------------------------------------------------------------------------------
+When a *DataWriter* had writer-side content filtering enabled, calling
+``unregister_instance()`` or ``dispose()`` with a valid instance handle
+and ``NULL`` instance data would cause a crash.
+
+Calling either operation with non-``NULL`` instance data that did not pass the
+content filter would instead cause messages to be silently discarded.
+
+[RTI Issue ID MICRO-12610]
+
+:major:`[Major]` Potential crash from malformed data fragments
+--------------------------------------------------------------
+|me| was not robust against malformed data fragments, which could
+lead to a crash.
+
+[RTI Issue ID MICRO-12559]

@@ -1,0 +1,12 @@
+Reliability Protocol and Wire Representation
+============================================
+
+.. Release Notes from this point.
+
+:minor:`[Minor]` DataWriter resent already-acknowledged samples when responding to ACKNACK on a lossy network
+-------------------------------------------------------------------------------------------------------------
+When a GAP message was lost on the wire, a *DataWriter* could resend a
+sample that the *DataReader* had already acknowledged, producing
+spurious log warnings on the *DataReader*.
+
+[RTI Issue ID MICRO-11946]

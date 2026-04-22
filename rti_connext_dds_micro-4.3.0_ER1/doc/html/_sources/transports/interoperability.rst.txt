@@ -1,0 +1,15 @@
+Interoperating with |core_pro_h| Transports
+-------------------------------------------
+
+When interoperating with |core_pro|, |me| must specify at least one 
+unicast transport for each *DataWriter* and *DataReader*, either from 
+:link_connextmicro_dds_api_c_up_one:`DDS_DomainParticipantQos::transports <structDDS__DomainParticipantQos.html>` 
+or the endpoint :link_connextmicro_dds_api_c_up_one:`DDS_DataReaderQos::transport <structDDS__DataReaderQos.html>` 
+and :link_connextmicro_dds_api_c_up_one:`DDS_DataWriterQos::transport <structDDS__DataWriterQos.html>`, 
+as it expects to use the unicast transport's RTPS port mapping to determine 
+automatic participant IDs if needed. This also affects |me| itself, 
+where participant IDs must be set manually if only multicast transports 
+are enabled.
+
+Also, when interoperating with |core_pro|, only one multicast transport 
+can be specified per *DataReader* of |me|.

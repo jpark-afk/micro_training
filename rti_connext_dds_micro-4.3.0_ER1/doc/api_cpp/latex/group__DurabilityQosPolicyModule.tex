@@ -1,0 +1,49 @@
+\doxysubsubsubsubsection{DURABILITY}
+\hypertarget{group__DurabilityQosPolicyModule}{}\label{group__DurabilityQosPolicyModule}\index{DURABILITY@{DURABILITY}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Specifies the Durability properties used by a \doxylink{classDDSDataWriter}{DDSData\+Writer} and/or \doxylink{classDDSDataReader}{DDSData\+Reader}.  
+
+
+\doxysubsubsubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__DurabilityQosPolicy}{DDS\+\_\+\+Durability\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em Durability properties that affect the life-\/cycle of published data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__DurabilityQosPolicyModule_ga4bc6b72c72928cb9ed6432e3e6a83e2e}{DDS\+\_\+\+Durability\+Qos\+Policy\+Kind}} \{ \mbox{\hyperlink{group__DurabilityQosPolicyModule_gga4bc6b72c72928cb9ed6432e3e6a83e2eab81cc94a7a319b48b17e177d217a09d4}{DDS\+\_\+\+VOLATILE\+\_\+\+DURABILITY\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DurabilityQosPolicyModule_gga4bc6b72c72928cb9ed6432e3e6a83e2ea82f8bcc308fa4721d8d8525c383e7d25}{DDS\+\_\+\+TRANSIENT\+\_\+\+LOCAL\+\_\+\+DURABILITY\+\_\+\+QOS}}
+, {\bfseries DDS\+\_\+\+TRANSIENT\+\_\+\+DURABILITY\+\_\+\+QOS}
+, {\bfseries DDS\+\_\+\+PERSISTENT\+\_\+\+DURABILITY\+\_\+\+QOS}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerated values used to describe the durability of published data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Specifies the Durability properties used by a \doxylink{classDDSDataWriter}{DDSData\+Writer} and/or \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+
+
+\doxysubsubsubsubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__DurabilityQosPolicyModule_ga4bc6b72c72928cb9ed6432e3e6a83e2e}\index{DURABILITY@{DURABILITY}!DDS\_DurabilityQosPolicyKind@{DDS\_DurabilityQosPolicyKind}}
+\index{DDS\_DurabilityQosPolicyKind@{DDS\_DurabilityQosPolicyKind}!DURABILITY@{DURABILITY}}
+\doxyparagraph{\texorpdfstring{DDS\_DurabilityQosPolicyKind}{DDS\_DurabilityQosPolicyKind}}
+{\footnotesize\ttfamily \label{group__DurabilityQosPolicyModule_ga4bc6b72c72928cb9ed6432e3e6a83e2e} 
+enum \mbox{\hyperlink{group__DurabilityQosPolicyModule_ga4bc6b72c72928cb9ed6432e3e6a83e2e}{DDS\+\_\+\+Durability\+Qos\+Policy\+Kind}}}
+
+
+
+Enumerated values used to describe the durability of published data. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_VOLATILE\_DURABILITY\_QOS@{DDS\_VOLATILE\_DURABILITY\_QOS}!DURABILITY@{DURABILITY}}\index{DURABILITY@{DURABILITY}!DDS\_VOLATILE\_DURABILITY\_QOS@{DDS\_VOLATILE\_DURABILITY\_QOS}}}\Hypertarget{group__DurabilityQosPolicyModule_gga4bc6b72c72928cb9ed6432e3e6a83e2eab81cc94a7a319b48b17e177d217a09d4}\label{group__DurabilityQosPolicyModule_gga4bc6b72c72928cb9ed6432e3e6a83e2eab81cc94a7a319b48b17e177d217a09d4} 
+DDS\+\_\+\+VOLATILE\+\_\+\+DURABILITY\+\_\+\+QOS&Volatile durability. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_TRANSIENT\_LOCAL\_DURABILITY\_QOS@{DDS\_TRANSIENT\_LOCAL\_DURABILITY\_QOS}!DURABILITY@{DURABILITY}}\index{DURABILITY@{DURABILITY}!DDS\_TRANSIENT\_LOCAL\_DURABILITY\_QOS@{DDS\_TRANSIENT\_LOCAL\_DURABILITY\_QOS}}}\Hypertarget{group__DurabilityQosPolicyModule_gga4bc6b72c72928cb9ed6432e3e6a83e2ea82f8bcc308fa4721d8d8525c383e7d25}\label{group__DurabilityQosPolicyModule_gga4bc6b72c72928cb9ed6432e3e6a83e2ea82f8bcc308fa4721d8d8525c383e7d25} 
+DDS\+\_\+\+TRANSIENT\+\_\+\+LOCAL\+\_\+\+DURABILITY\+\_\+\+QOS&Transient local durability. {\bfseries{NOTE\+:}} Not supported when using the INTRA transport because a \doxylink{classDDSDataReader}{DDSData\+Reader} cannot receive historical samples via INTRA. See the User\textquotesingle{}s Manual for more details. \\
+\hline
+
+\end{DoxyEnumFields}

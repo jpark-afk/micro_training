@@ -1,0 +1,33 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2022-2025
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+SET(CMAKE_SYSTEM_NAME Linux)
+
+SET(COMPILER_PATH "/usr/bin" CACHE INTERNAL "COMPILER_PATH" FORCE)
+
+SET(RTIME_PLATFORM_SUPPORTS_ZCOPY_V2 TRUE CACHE BOOL "Platform supports ZCOPYv2")
+SET(RTIME_INCLUDE_PSL_PSK_SUPPORT TRUE CACHE BOOL "Enable PSL PSK")
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Platform/linux.tc)
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/gcc_pi.tc)
+
+INCLUDE_GCC_COMPILER_PSL("13.3.0")
+
+SET(RTIME_OSAPI_ENABLE_STRICT_POSIX FALSE)
+
+SET(RTIME_CERT TRUE)
+SET(RTI_NO_SHARED_LIB TRUE)
+SET(RTIME_NO_SHARED_LIB TRUE)
+SET(RTIME_OSAPI_PLATFORM posix)
+
+IF (NOT DEFINED RTIME_UDP_ENABLE_MULTICAST)
+    SET(RTIME_UDP_ENABLE_MULTICAST TRUE)
+ENDIF()
+

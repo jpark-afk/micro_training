@@ -1,0 +1,23 @@
+Transports
+==========
+
+.. Release Notes from this point.
+
+:trivial:`[Trivial]` UDP registration documented incorrectly
+------------------------------------------------------------
+The |me| documentation stated incorrectly that the UDP transport was
+automatically registered.
+
+[RTI Issue ID MICRO-11445]
+
+
+:trivial:`[Trivial]` Internal UDP pings failed to send
+------------------------------------------------------
+Internal UDP pings failed to send, which would cause |me| to log the following
+warning on startup:
+
+.. code-block:: bash
+
+  WARNING: ModuleID=4 Errcode=235
+
+[RTI Issue ID MICRO-8929]

@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.21. Lightweight Security Plugin &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 ER1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.22. Memory Management" href="memory.html" />
+    <link rel="prev" title="3.20. Example Applications" href="examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0 ER1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Programmer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">3.2. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">3.3. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">3.4. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">3.5. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">3.6. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html">3.7. User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html">3.8. Partitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html">3.9. Content Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">3.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">3.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">3.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">3.13. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html">3.14. Sending Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html">3.15. Zero Copy Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html">3.16. FlatData Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html">3.17. Application Generation Using XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">3.18. Building Against FACE Conformance Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">3.19. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.20. Example Applications</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.21. Lightweight Security Plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">3.21.1. Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#downloading-and-installing-the-lightweight-security-plugin">3.21.2. Downloading and Installing the Lightweight Security Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#package-contents">3.21.2.1. Package contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started">3.21.3. Getting Started</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#include-header-files">3.21.3.1. Include header files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#link-application-and-libraries">3.21.3.2. Link application and libraries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enable-lightweight-security-in-your-application">3.21.3.3. Enable lightweight security in your application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#specify-the-plugin-in-the-domainparticipant-qos">3.21.3.4. Specify the plugin in the DomainParticipant QoS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-the-plugin">3.21.3.5. Configure the plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-a-protected-domainparticipant">3.21.3.6. Create a protected DomainParticipant</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-the-lightweight-security-plugin">3.21.4. Configuring the Lightweight Security Plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#technical-considerations">3.21.5. Technical Considerations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rtps-transport-only">3.21.5.1. RTPS transport only</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#maximum-transmission-unit-mtu">3.21.5.2. Maximum Transmission Unit (MTU)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interoperability">3.21.6. Interoperability</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#additional-authenticated-data-aad">3.21.6.1. Additional Authenticated Data (AAD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#passphrase-id-limitations">3.21.6.2. Passphrase ID limitations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">3.22. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html">3.23. Transport Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html">3.24. Startup Time Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">14. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">3. </span>Programmer’s Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">3.21. </span>Lightweight Security Plugin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lightweight-security-plugin">
+<span id="section-psk"></span><h1><span class="section-number">3.21. </span>Lightweight Security Plugin<a class="headerlink" href="#lightweight-security-plugin" title="Permalink to this headline">¶</a></h1>
+<p>The <em>Lightweight Security Plugin</em> is an addon for <em>Connext Micro</em> that offers an efficient
+solution for securing RTPS communication at the domain level. This plugin
+protects your domain from unauthorized participants and ensures the integrity
+and confidentiality of RTPS messages.</p>
+<div class="section" id="overview">
+<h2><span class="section-number">3.21.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The <em>Lightweight Security Plugin</em> uses symmetric encryption, deriving keys from
+a combination of publicly-available data and a user-provided pre-shared key
+(PSK) seed. Pre-shared key protection offers metadata and data protection to
+RTPS messages and restricts communication only to <em>DomainParticipants</em> holding
+the correct PSK. This architecture offers a streamlined path to deploy security
+without the overhead of full public key infrastructure.</p>
+<p>The plugin also includes a <em>passphrase tracker</em>, a component that periodically
+checks for updates to the PSK passphrase. This feature allows you to rotate the
+passphrase without restarting your application.</p>
+<p>The <em>Lightweight Security Plugin</em> consists of a Platform Independent Library
+(PIL) and a Transform Platform Support Library (PSL). The Transform PSL is an
+abstraction layer that allows seamless integration with a cryptographic
+backend. The plugin includes a reference implementation that integrates with
+<a class="reference external" href="https://github.com/openssl/openssl/tree/openssl-3.5.5">OpenSSL 3.5</a> <a class="footnote-reference brackets" href="#id2" id="id1">1</a>
+and a file-based provider for the passphrase tracker.</p>
+<p>This modular design makes the <em>Lightweight Security Plugin</em> an ideal choice for
+applications that demand robust protection without compromising on portability
+or efficiency.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>You can substitute in your own Transform PSL to meet performance,
+certification, or compliance requirements. For details, please contact
+RTI through <a class="reference external" href="https://support.rti.com/">support.rti.com</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="downloading-and-installing-the-lightweight-security-plugin">
+<h2><span class="section-number">3.21.2. </span>Downloading and Installing the Lightweight Security Plugin<a class="headerlink" href="#downloading-and-installing-the-lightweight-security-plugin" title="Permalink to this headline">¶</a></h2>
+<p>Once you have access to the <em>Lightweight Security Plugin</em>, you can download the
+following package files from <a class="reference external" href="https://support.rti.com/">support.rti.com</a>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_connext_dds_micro-&lt;version&gt;-lw-security-host.rtipkg</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_connext_dds_micro-&lt;version&gt;-lw-security-target-openssl-3.5-&lt;architecture&gt;.rtipkg</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openssl-3.5-micro-&lt;version&gt;-target-&lt;architecture&gt;.rtipkg</span></code> (<em>Optional</em>)</p></li>
+</ul>
+<p>Download the host package with <code class="docutils literal notranslate"><span class="pre">&lt;version&gt;</span></code> 4.3.0 ER1, and a target package
+with <code class="docutils literal notranslate"><span class="pre">&lt;version&gt;</span></code> 4.3.0 ER1 and <code class="docutils literal notranslate"><span class="pre">&lt;architecture&gt;</span></code> matching your CPU and
+compiler.</p>
+<p>To install the <em>Lightweight Security Plugins</em> packages, follow the same
+instructions for installing <em>Connext Micro</em> packages in
+<a class="reference internal" href="../gettingstarted/before.html#section-installing-connext-micro"><span class="std std-ref">Installing Connext Micro</span></a>.</p>
+<div class="section" id="package-contents">
+<h3><span class="section-number">3.21.2.1. </span>Package contents<a class="headerlink" href="#package-contents" title="Permalink to this headline">¶</a></h3>
+<p>The host package contains the necessary header files for lightweight security
+development.</p>
+<p>The target package provides the Platform Independent Library (PIL) and Transform
+Platform Support Library (PSL) specific to your target architecture. The
+Transform PSL is dependent on OpenSSL; RTI builds and tests the PSL against
+<a class="reference external" href="https://github.com/openssl/openssl/tree/openssl-3.5.4">OpenSSL 3.5</a>.
+<a class="reference external" href="https://github.com/openssl/openssl/tree/openssl-3.5.4">OpenSSL 3.5</a>.</p>
+<p>The OpenSSL target package simply contains the OpenSSL 3.5 release. RTI provides
+this for convenience, but you may use any OpenSSL distribution ABI compatible
+with 3.5.4. The OpenSSL source can be found at <a class="reference external" href="https://openssl-library.org/source/">https://openssl-library.org/source/</a>.</p>
+<p>The package also includes a reference implementation of the passphrase tracker
+provider that reads the passphrase from a file.</p>
+</div>
+</div>
+<div class="section" id="getting-started">
+<h2><span class="section-number">3.21.3. </span>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>This section will walk you through the steps needed to enable the <em>Lightweight
+Security Plugin</em> in your application and and run it in your domain. We will
+use the provided reference implementation of the Transform PSL with <a class="reference external" href="https://github.com/openssl/openssl/tree/openssl-3.5.4">OpenSSL 3.5</a> and the file-based provider
+for the passphrase tracker.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also generate an example application with <em>rtiddsgen</em> that uses
+lightweight security. Refer to <a class="reference internal" href="examples.html#example-generation"><span class="std std-ref">Example Applications</span></a> for more information.</p>
+</div>
+<div class="section" id="include-header-files">
+<h3><span class="section-number">3.21.3.1. </span>Include header files<a class="headerlink" href="#include-header-files" title="Permalink to this headline">¶</a></h3>
+<p>The following header files are required to use the <em>Lightweight Security Plugin</em>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dds_psk/dds_psk.h</span></code>: provides the functions and types needed to register the
+<em>Lightweight Security Plugin</em> with <em>Connext Micro</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_psk/pskpsl/psk_ossl_transform.h</span></code>: provides the function
+<code class="docutils literal notranslate"><span class="pre">PSK_OSSL_get_interface</span></code> to retrieve the reference Transform PSL interface
+implementation based on OpenSSL.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_psl/pskpsl/psk_file_pass_tracker.h</span></code>: provides the function
+<code class="docutils literal notranslate"><span class="pre">PSK_FilePassTracker_get_interface</span></code> to retrieve the reference <em>file
+passphrase tracker</em> provider interface.</p></li>
+</ul>
+</div>
+<div class="section" id="link-application-and-libraries">
+<h3><span class="section-number">3.21.3.2. </span>Link application and libraries<a class="headerlink" href="#link-application-and-libraries" title="Permalink to this headline">¶</a></h3>
+<p>To link an application with the lightweight security feature, the following
+libraries are required in the listed order:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/&lt;arch&gt;/</span></code></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code> (must be linked before <code class="docutils literal notranslate"><span class="pre">rti_me</span></code>)</p></li>
+</ol>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/&lt;arch&gt;-&lt;PSL&gt;/</span></code></p>
+<ol class="arabic simple" start="2">
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_pskpsl_openssl3</span></code> (must be linked before <code class="docutils literal notranslate"><span class="pre">rti_me</span></code>)</p></li>
+</ol>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RTIMEHOME/thirdparty/openssl-3.5.4-&lt;arch&gt;/&lt;debug|release&gt;-&lt;shared|static&gt;/lib</span></code></p>
+<ol class="arabic simple" start="3">
+<li><p><code class="docutils literal notranslate"><span class="pre">libcrypto</span></code></p></li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section" id="enable-lightweight-security-in-your-application">
+<h3><span class="section-number">3.21.3.3. </span>Enable lightweight security in your application<a class="headerlink" href="#enable-lightweight-security-in-your-application" title="Permalink to this headline">¶</a></h3>
+<p>To use lightweight security, you must first register the <em>Lightweight Security Plugin</em>
+library with <em>Connext Micro</em> via the <a class="reference external" href="../../../doc/api_c/html/group__DDSPSKModule.html">DDS_PskLibrary_register()</a> function, as shown
+below:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">     </span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_PskServiceFactoryProperty</span><span class="w"> </span><span class="n">psk_svc_property</span><span class="w"> </span><span class="o">=</span>
+<span class="w">         </span><span class="n">DDS_PskServiceFactoryProperty_INITIALIZER</span><span class="p">;</span>
+<span class="w">     </span><span class="n">psk_svc_property</span><span class="p">.</span><span class="n">psl_get_interface_func</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PSK_OSSL_get_interface</span><span class="p">;</span>
+<span class="w">     </span><span class="n">psk_svc_property</span><span class="p">.</span><span class="n">pass_tracker_get_interface_func</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PSK_FilePassTracker_get_interface</span><span class="p">;</span>
+<span class="w">     </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">DDS_PskLibrary_register</span><span class="p">(</span>
+<span class="w">                           </span><span class="n">registry</span><span class="p">,</span>
+<span class="w">                           </span><span class="o">&amp;</span><span class="n">psk_svc_property</span><span class="p">))</span>
+<span class="w">     </span><span class="p">{</span>
+<span class="w">       </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Lightweight Security Plugin registration error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using the C++ API, register the <em>Lightweight Security Plugin</em> using the
+same method as the C API, shown above.</p>
+</div>
+<p>This function takes a property structure with the following fields:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../doc/api_c/html/structDDS__PskServiceFactoryProperty.html">service_name</a>: a unique identifier for this registration within the
+<em>DomainParticipantFactory</em>. The <em>DomainParticipant</em> QoS references this name
+to select which library registration to use. If set to NULL, the default
+name <code class="docutils literal notranslate"><span class="pre">DDS_PSK_DEFAULT_SUITE_NAME</span></code> will be used.</p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structDDS__PskServiceFactoryProperty.html">psl_get_interface_func</a>: a function pointer used to retrieve the Transform PSL
+interface. When using the reference Transform PSL provided by RTI, set this to
+<code class="docutils literal notranslate"><span class="pre">PSK_OSSL_get_interface</span></code> <a class="footnote-reference brackets" href="#id4" id="id3">2</a>.</p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structDDS__PskServiceFactoryProperty.html">psl_config</a>: An opaque pointer passed to the Transform PSL creation
+function. When using the RTI-provided Transform PSL, this field resolves to
+<a class="reference external" href="../../../doc/api_c/html/structDDS__SecTransform__Configuration.html">DDS_SecTransform_Configuration</a>.
+Its type is <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">DDS_SecTransform_Configuration</span> <span class="pre">*</span></code>, as shown in the
+example below:</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_SecTransform_Configuration</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">PSK_OSSL_get_default_configuration</span><span class="p">();</span>
+</pre></div>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p>This function is provided by <code class="docutils literal notranslate"><span class="pre">rti_me_psl/pskpsl/psk_ossl_transform.h</span></code>.</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../doc/api_c/html/structDDS__PskServiceFactoryProperty.html">pass_tracker_get_interface_func</a>: a function pointer used to retrieve the passphrase tracker
+provider interface. When using the reference <em>file passtracker</em> provided by RTI, set this to
+<code class="docutils literal notranslate"><span class="pre">PSK_FilePassTracker_get_interface</span></code>.</p></li>
+<li><p><a class="reference external" href="../../../doc/api_c/html/structDDS__PskServiceFactoryProperty.html">pass_tracker_config</a>: An opaque pointer passed to the passphrase tracker creation
+function. When using the RTI-provided <em>file passtracker</em>, this field resolves to
+<a class="reference external" href="../../../doc/api_c/html/structPSK__PassTrackerConfiguration.html">PSK_PassTrackerConfiguration</a>.
+Its type is <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">PSK_PassTrackerConfiguration</span> <span class="pre">*</span></code>, as shown in the example below:</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">PSK_PassTrackerConfiguration</span><span class="w"> </span><span class="n">pass_tracker_config</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">PSK_FilePassTracker_get_default_configuration</span><span class="p">();</span>
+</pre></div>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets">3</span></dt>
+<dd><p>This function is provided by <code class="docutils literal notranslate"><span class="pre">rti_me_psl/pskpsl/psk_file_pass_tracker.h</span></code>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="specify-the-plugin-in-the-domainparticipant-qos">
+<h3><span class="section-number">3.21.3.4. </span>Specify the plugin in the DomainParticipant QoS<a class="headerlink" href="#specify-the-plugin-in-the-domainparticipant-qos" title="Permalink to this headline">¶</a></h3>
+<p>Assign the <a class="reference external" href="../../../doc/api_c/html/structDDS__PskServiceFactoryProperty.html">service_name</a>
+that you specified during registration to the
+<code class="docutils literal notranslate"><span class="pre">DomainParticipantQos.trust.suite</span></code> field with the following function:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">RT_ComponentFactoryId_set_name</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dp_qos</span><span class="p">.</span><span class="n">trust</span><span class="p">.</span><span class="n">suite</span><span class="p">,</span><span class="w"> </span><span class="n">DDS_PSK_DEFAULT_SUITE_NAME</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function tells the <em>DomainParticipant</em> to enable the <em>Lightweight Security
+Plugin</em> and identifies which registered instance to use.</p>
+</div>
+<div class="section" id="configure-the-plugin">
+<h3><span class="section-number">3.21.3.5. </span>Configure the plugin<a class="headerlink" href="#configure-the-plugin" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Lightweight Security Plugin</em> accepts the following properties (in the
+<a class="reference external" href="../../../doc/api_c/html/group__DDSPropertyQosModule.html">PROPERTY QoS</a>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dds.sec.crypto.rtps_psk_secret_passphrase</span></code> (<em>Required</em>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dds.sec.access.rtps_psk_protection_kind</span></code> (<em>Optional</em>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dds.sec.crypto.rtps_psk_symmetric_cipher_algorithm</span></code> (<em>Optional</em>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">com.rti.serv.secure.cryptography.max_blocks_per_session</span></code> (<em>Optional</em>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">com.rti.serv.secure.pass_tracker.period_sec</span></code> (<em>Optional</em>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">com.rti.serv.secure.pass_tracker.period_nsec</span></code> (<em>Optional</em>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">com.rti.serv.secure.pass_tracker.provider_arg</span></code> (<em>Optional</em>)</p></li>
+</ul>
+<p>For more information about these properties, refer to
+<a class="reference internal" href="#section-configuring-psk"><span class="std std-ref">Configuring the Lightweight Security Plugin</span></a>. For now, set these properties as shown in the
+example snippet below:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_DomainParticipantQos</span><span class="w"> </span><span class="n">dp_qos</span><span class="w"> </span><span class="o">=</span>
+<span class="w">  </span><span class="n">DDS_DomainParticipantQos_INITIALIZER</span><span class="p">;</span>
+
+<span class="w">  </span><span class="cm">/* Required property*/</span>
+<span class="w">  </span><span class="n">DDS_PropertyQosPolicyHelper_add_property</span><span class="p">(</span>
+<span class="w">      </span><span class="o">&amp;</span><span class="n">dp_qos</span><span class="p">.</span><span class="n">property</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;dds.sec.crypto.rtps_psk_secret_passphrase&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;data:,404166165:castle super radar denial swing lunar kind swarm wet toilet output harbor basic begin margin huge year visit&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">DDS_BOOLEAN_FALSE</span><span class="p">);</span>
+
+<span class="w">  </span><span class="cm">/* Optional Properties */</span>
+<span class="w">  </span><span class="n">DDS_PropertyQosPolicyHelper_add_property</span><span class="p">(</span>
+<span class="w">      </span><span class="o">&amp;</span><span class="n">dp_qos</span><span class="p">.</span><span class="n">property</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;dds.sec.access.rtps_psk_protection_kind&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;ENCRYPT&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">DDS_BOOLEAN_FALSE</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">DDS_PropertyQosPolicyHelper_add_property</span><span class="p">(</span>
+<span class="w">      </span><span class="o">&amp;</span><span class="n">dp_qos</span><span class="p">.</span><span class="n">property</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;dds.sec.crypto.rtps_psk_symmetric_cipher_algorithm&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;AUTO&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">DDS_BOOLEAN_FALSE</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">DDS_PropertyQosPolicyHelper_add_property</span><span class="p">(</span>
+<span class="w">      </span><span class="o">&amp;</span><span class="n">dp_qos</span><span class="p">.</span><span class="n">property</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;com.rti.serv.secure.cryptography.max_blocks_per_session&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;256&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">DDS_BOOLEAN_FALSE</span><span class="p">);</span>
+
+<span class="w">  </span><span class="cm">/* PassTracker properties */</span>
+<span class="w">  </span><span class="n">DDS_PropertyQosPolicyHelper_add_property</span><span class="p">(</span>
+<span class="w">      </span><span class="o">&amp;</span><span class="n">dp_qos</span><span class="p">.</span><span class="n">property</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;com.rti.serv.secure.pass_tracker.provider_arg&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;file:./passphrase.txt&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">DDS_BOOLEAN_FALSE</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">DDS_PropertyQosPolicyHelper_add_property</span><span class="p">(</span>
+<span class="w">      </span><span class="o">&amp;</span><span class="n">dp_qos</span><span class="p">.</span><span class="n">property</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;com.rti.serv.secure.pass_tracker.period_sec&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;5&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">DDS_BOOLEAN_FALSE</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-protected-domainparticipant">
+<h3><span class="section-number">3.21.3.6. </span>Create a protected DomainParticipant<a class="headerlink" href="#create-a-protected-domainparticipant" title="Permalink to this headline">¶</a></h3>
+<p>Invoke the function <a class="reference external" href="../../../doc/api_c/html/group__DDSDomainParticipantFactoryModule.html">DDS_DomainParticipantFactory_create_participant</a>
+with the QoS <code class="docutils literal notranslate"><span class="pre">dp_qos</span></code>.</p>
+<p>At this point, your application is protected by the <em>Lightweight Security
+Plugin</em> and ready to run!</p>
+</div>
+</div>
+<div class="section" id="configuring-the-lightweight-security-plugin">
+<span id="section-configuring-psk"></span><h2><span class="section-number">3.21.4. </span>Configuring the Lightweight Security Plugin<a class="headerlink" href="#configuring-the-lightweight-security-plugin" title="Permalink to this headline">¶</a></h2>
+<p>The following table lists the properties used to configure the <em>Lightweight
+Security Plugin</em> and detailed descriptions of their use. Refer to the OMD <a class="reference external" href="https://www.omg.org/spec/DDS-SECURITY/1.1/PDF">DDS
+Security Specification 1.1</a> for
+additional information.</p>
+<p>All of the properties below have string values.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property Name</p></th>
+<th class="head"><p>Property Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dds.sec.crypto.rtps_psk_secret_passphrase</span></code></p></td>
+<td><p>Passphrase used to derive the per-participant key used for encoding RTPS
+messages (in combination with other publicly available data).</p>
+<p>This property is mutable through the <em>DomainParticipant</em> <code class="docutils literal notranslate"><span class="pre">set_qos</span></code> API.
+The <em>DomainParticipant</em> will use the updated passphrase to derive the new
+local and remote pre-shared keys. From that point on, the
+<em>DomainParticipant</em> will use the new keys to encrypt and decrypt RTPS
+messages with PSK protection. You should expect warning messages (about
+receiving messages encoded with a different pre-shared key identifier) as
+you change the property value throughout your system. Once all your
+<em>DomainParticipants</em> have the same passphrase, all PSK protected traffic
+will be encoded and decoded with consistent keys. At that point, warning
+messages will stop.</p>
+<p>Updating the value of this property implies a change in the secret key
+AND in the key identifier. Each secret key should be associated with a
+unique key identifier. Updating the secret key without changing the key
+identifier is not allowed and will result in set_qos returning
+<code class="docutils literal notranslate"><span class="pre">DDS_RETCODE_NOT_ALLOWED_BY_SECURITY</span></code>.</p>
+<p>The pre-shared secret identifier should not be reused; you may
+set a new secret key with an old key identifier, but doing so is not
+advised. In that case, <em>Lightweight Security Plugin</em> may end up using
+the old pre-shared key to try (unsuccessfully) to decode an RTPS message
+that was encoded using the new key.</p>
+<p>The passphrase must follow the format
+<code class="docutils literal notranslate"><span class="pre">data:,&lt;passphrase_id&gt;:&lt;passphrase&gt;</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;passphrase_id&gt;</span></code> is a unique four-byte integer number that identifies
+the key. It must be in the [0, 2^32 - 1] range, excluding the values that
+have 0xFF as the least significant byte (e.g., 255, 1023, 2047, etc.).
+<code class="docutils literal notranslate"><span class="pre">&lt;passphrase_id&gt;</span></code> must be provided to support proper handling of
+different passphrase revisions, and it must be consistent across all the
+<em>DomainParticipants</em> within a domain. This value must be different with
+every passphrase change, otherwise the update will be rejected. RTI
+recommends using incremental subsequent values for every new key
+provided. Rolling back to a lower number (e.g., 0) after the indexes have
+been exhausted is acceptable.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;passphrase&gt;</span></code> is the secret passphrase string that the <em>Lightweight
+Security Plugin</em> will use to derive the per-participant pre-shared key.
+<code class="docutils literal notranslate"><span class="pre">&lt;passphrase&gt;</span></code> must contain up to 512 ASCII printable
+characters (character codes 32 to 126, both included). The first and last
+characters of the <code class="docutils literal notranslate"><span class="pre">&lt;passphrase&gt;</span></code> shall not be the space character
+(character code 32).</p>
+<p><strong>Default</strong>: not set</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>It is your responsibility to provide a key seed with good entropy
+and length. Ideally, the pre-shared key seed should be a true random
+256-bit seed. There are a few methods to obtain such a string. For
+example, one could use a specialized dictionary (e.g., BIP39) to draw
+words from, or a Base64-encoded sequence of random binary bits. Note
+that actual entropy may be less than what the length of the string
+suggests. For example, the ASCII character space does not use the whole
+8-bit space: instead, only 5~6 bits are used. To obtain the desirable
+entropy and strength, one would need at least 256/5.5 = 47 truly random
+characters. A dictionary-based approach offers less entropy, and the
+seed created this way would need to be longer.</p>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dds.sec.crypto.rtps_psk_symmetric_cipher_algorithm</span></code></p></td>
+<td><p><em>Optional</em>.</p>
+<p>Algorithm used to protect RTPS messages with pre-shared key (PSK)
+protection. The available options are <code class="docutils literal notranslate"><span class="pre">AES256+GCM</span></code> and <code class="docutils literal notranslate"><span class="pre">AES128+GCM</span></code>.
+The number indicates the number of bits in the key in either the GMAC or
+GCM variant of the algorithm. This property only sets the algorithm and
+key length; see the note below for more information about setting the
+algorithm’s variant.</p>
+<p><strong>Enum</strong>: <code class="docutils literal notranslate"><span class="pre">AUTO</span></code> (equivalent to <code class="docutils literal notranslate"><span class="pre">AES256+GCM</span></code>), <code class="docutils literal notranslate"><span class="pre">AES128+GCM</span></code>,
+<code class="docutils literal notranslate"><span class="pre">AES256+GCM</span></code></p>
+<p><strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">AUTO</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This property must be configured consistently throughout your system.
+All <em>DomainParticipants</em> must have the same value in order to
+communicate.</p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dds.sec.access.rtps_psk_protection_kind</span></code></p></td>
+<td><p><em>Optional</em>.</p>
+<p>Specifies whether the <em>Lightweight Security Plugin</em> should only
+protect message integrity OR both integrity and confidentiality.</p>
+<p><strong>Enum</strong>: <code class="docutils literal notranslate"><span class="pre">NONE</span></code> (do not protect), <code class="docutils literal notranslate"><span class="pre">SIGN</span></code> (protect integrity),
+<code class="docutils literal notranslate"><span class="pre">ENCRYPT</span></code> (protect integrity and confidentiality).</p>
+<p><strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">ENCRYPT</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">com.rti.serv.secure.cryptography.max_blocks_per_session</span></code></p></td>
+<td><p><em>Optional</em>.</p>
+<p>The number of message blocks that can be protected with the same
+Session Key. Whenever the number of blocks exceeds this value, a new
+Session Key is computed. The block size is always 128 bits (the AES block
+size). You can specify this value in decimal, octal, or hex format. This</p>
+<p>value is an unsigned 64-bit integer.</p>
+<p><strong>Unsigned Integer</strong>: <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">MAX_UINT64]</span></code></p>
+<p><strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">MAX_UINT64</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">com.rti.serv.secure.pass_tracker.period_sec</span></code></p></td>
+<td><p><em>Optional</em>.</p>
+<p>The number of seconds the passphrase tracker waits between checks for
+passphrase updates.</p>
+<p><strong>Unsigned Integer</strong>: <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">MAX_UINT32]</span></code></p>
+<p><strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">1</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">com.rti.serv.secure.pass_tracker.period_nsec</span></code></p></td>
+<td><p><em>Optional</em>.</p>
+<p>The number of nanoseconds the passphrase tracker waits between checks
+for passphrase updates.</p>
+<p><strong>Unsigned Integer</strong>: <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">999999999]</span></code></p>
+<p><strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">com.rti.serv.secure.pass_tracker.provider_arg</span></code></p></td>
+<td><p><em>Optional</em>.</p>
+<p>Argument passed to the passphrase tracker provider. When using the
+file-based provider, this property should contain the path to the
+passphrase file. The file should contain the passphrase in the same
+format as the <code class="docutils literal notranslate"><span class="pre">dds.sec.crypto.rtps_psk_secret_passphrase</span></code> property.</p>
+<p><strong>String</strong></p>
+<p><strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">NULL</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="technical-considerations">
+<h2><span class="section-number">3.21.5. </span>Technical Considerations<a class="headerlink" href="#technical-considerations" title="Permalink to this headline">¶</a></h2>
+<p>Consider the following when using the <em>Lightweight Security Plugin</em>:</p>
+<div class="section" id="rtps-transport-only">
+<h3><span class="section-number">3.21.5.1. </span>RTPS transport only<a class="headerlink" href="#rtps-transport-only" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Lightweight Security Plugin</em> only protects transports that use the RTPS
+protocol. That means that INTRA and Zero Copy V2 transports cannot be protected
+with the <em>Lightweight Security Plugin</em>.</p>
+</div>
+<div class="section" id="maximum-transmission-unit-mtu">
+<h3><span class="section-number">3.21.5.2. </span>Maximum Transmission Unit (MTU)<a class="headerlink" href="#maximum-transmission-unit-mtu" title="Permalink to this headline">¶</a></h3>
+<p>RTI limits the maximum size of a single packet to 65535 bytes. If using a
+transport that can support an MTU greater than this, the size will be truncated
+to 65535 bytes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Types that exceed this limit can still be fragmented and sent by <em>Connext Micro</em>. This
+only limits the size of individual packets.</p>
+</div>
+</div>
+</div>
+<div class="section" id="interoperability">
+<h2><span class="section-number">3.21.6. </span>Interoperability<a class="headerlink" href="#interoperability" title="Permalink to this headline">¶</a></h2>
+<p>The <em>Lightweight Security Plugin</em> interoperates with the <em>Connext</em> <em>Professional</em>
+<em>Lightweight Builtin Security Plugins</em> security solution out of the box, with
+some considerations explained in the following sections.</p>
+<p>The <em>Lightweight Security Plugin</em> is also compatible with <em>Connext</em> <em>Professional</em>’s
+<em>Builtin Security Plugins</em> when the <em>Builtin Security Plugins</em> are configured
+for compatibility; refer to
+<a class="reference external" href="https://community.rti.com/static/documentation/connext-dds/current/doc/manuals/connext_dds_secure/users_manual/p3_advanced/pre-shared_key.html#light-sp-builtin-heading-and-sp-builtin-heading-interoperability">Lightweight Builtin Security Plugins and Builtin Security Plugins Interoperability</a>
+for more information.</p>
+<div class="section" id="additional-authenticated-data-aad">
+<h3><span class="section-number">3.21.6.1. </span>Additional Authenticated Data (AAD)<a class="headerlink" href="#additional-authenticated-data-aad" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Lightweight Security Plugin</em> always uses AAD, which adds a header extension
+to RTPS messages. <em>Connext</em> <em>Professional</em> allows you to disable this. For successful
+interoperability between <em>Connext Micro</em> and <em>Connext</em> <em>Professional</em>, you must configure <em>Connext</em> <em>Professional</em> to
+always enable AAD by setting the <a class="reference external" href="https://community.rti.com/static/documentation/connext-dds/7.3.1/doc/manuals/connext_dds_secure/users_manual/p2_core/cryptography.html#properties-for-configuring-cryptography">cryptography.enable_additional_authenticated_data</a>
+property to <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>.</p>
+</div>
+<div class="section" id="passphrase-id-limitations">
+<h3><span class="section-number">3.21.6.2. </span>Passphrase ID limitations<a class="headerlink" href="#passphrase-id-limitations" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> supports a <code class="docutils literal notranslate"><span class="pre">passphrase_id</span></code> (which is part of the passphrase) up to
+<code class="docutils literal notranslate"><span class="pre">MAX_UINT64</span></code>. However, <em>Connext</em> 7.3.0 and above only supports a <code class="docutils literal notranslate"><span class="pre">passphrase_id</span></code>
+up to 254. To ensure interoperability between <em>Connext Micro</em> and <em>Connext</em> <em>Professional</em>, choose a
+<code class="docutils literal notranslate"><span class="pre">passphrase_id</span></code> within the range of 0 to 254.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="memory.html" class="btn btn-neutral float-right" title="3.22. Memory Management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="examples.html" class="btn btn-neutral float-left" title="3.20. Example Applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+Define a Data Type
+==================
+
+.. highlight:: c
+
+To distribute data using |me|, you must first define a data type, then
+run the *rtiddsgen* IDL compiler. *rtiddsgen* will generate the type-specific
+support code that |me| needs to publish and subscribe to that data type.
+
+|me| accepts types definitions in Interface Definition Language (IDL) format.
+
+For instance, the HelloWorld examples provided with |me| use this simple
+type, which contains a string "msg" with a maximum length of 128 characters,
+excluding the ``NUL`` terminator.
+
+.. code-block:: idl
+
+    struct HelloWorld
+    {
+        string<128> msg;
+    };
+
+For more details, see :doc:`../programmersguide/types`.

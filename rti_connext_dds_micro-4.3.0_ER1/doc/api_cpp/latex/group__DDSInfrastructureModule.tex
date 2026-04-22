@@ -1,0 +1,86 @@
+\doxysubsubsection{Infrastructure Module}
+\hypertarget{group__DDSInfrastructureModule}{}\label{group__DDSInfrastructureModule}\index{Infrastructure Module@{Infrastructure Module}}
+
+
+Defines the abstract classes and the interfaces that are refined by the other modules. Contains common definitions such as return codes, status values, and QoS policies.  
+
+
+\doxysubsubsubsubsection*{Topics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSTimeSupportModule}{Time Support}}
+\begin{DoxyCompactList}\small\item\em Time and duration types and defines. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSGUIDSupportModule}{GUID Support}}
+\begin{DoxyCompactList}\small\item\em GUID type and defines. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSSequenceNumberSupportModule}{Sequence Number Support}}
+\begin{DoxyCompactList}\small\item\em Sequence number type and defines. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule}{Return Codes}}
+\begin{DoxyCompactList}\small\item\em Types of return codes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSStatusTypesModule}{Status Kinds}}
+\begin{DoxyCompactList}\small\item\em Kinds of communication status. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSQosTypesModule}{Qo\+S Policies}}
+\begin{DoxyCompactList}\small\item\em Quality of Service (QoS) policies. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSConditionsModule}{Conditions and Wait\+Sets}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classDDSCondition}{DDSCondition} and \doxylink{classDDSWaitSet}{DDSWait\+Set} and related items. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSEntityModule}{Entity Support}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classDDSEntity}{DDSEntity}, \doxylink{classDDSListener}{DDSListener} and related items. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSSequenceModule}{Sequence Support}}
+\begin{DoxyCompactList}\small\item\em Defines sequence interface and primitive data types sequences. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSExceptionTypesModule}{Exception codes}}
+\begin{DoxyCompactList}\small\item\em Exception codes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSMicroTypesModule}{Type Support}}
+\begin{DoxyCompactList}\small\item\em Type Plugin. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSStringClass}{String Support}}
+\begin{DoxyCompactList}\small\item\em String creation, cloning, assignment, and deletion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__SampleIdentity__t}{DDS\+\_\+\+Sample\+Identity\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Data structure used to provide explicit identity information about a published data sample. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__WriteParams__t}{DDS\+\_\+\+Write\+Params\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Data structure used to provide custom parameters to a \doxylink{classDDSDataWriter}{DDSData\+Writer}\textquotesingle{}s write operation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DDSInfrastructureModule_gabcb97cfbe1ea6d80ab1d772b6241c0b7}{DDS\+\_\+\+WRITEPARAMS\+\_\+\+DEFAULT}}
+\begin{DoxyCompactList}\small\item\em Default values used to initialize instances of \doxylink{structDDS__WriteParams__t}{DDS\+\_\+\+Write\+Params\+\_\+t}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Defines the abstract classes and the interfaces that are refined by the other modules. Contains common definitions such as return codes, status values, and QoS policies. 
+
+Defines the DDS infrastructure package.
+
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__DDSInfrastructureModule_gabcb97cfbe1ea6d80ab1d772b6241c0b7}\index{Infrastructure Module@{Infrastructure Module}!DDS\_WRITEPARAMS\_DEFAULT@{DDS\_WRITEPARAMS\_DEFAULT}}
+\index{DDS\_WRITEPARAMS\_DEFAULT@{DDS\_WRITEPARAMS\_DEFAULT}!Infrastructure Module@{Infrastructure Module}}
+\doxyparagraph{\texorpdfstring{DDS\_WRITEPARAMS\_DEFAULT}{DDS\_WRITEPARAMS\_DEFAULT}}
+{\footnotesize\ttfamily \label{group__DDSInfrastructureModule_gabcb97cfbe1ea6d80ab1d772b6241c0b7} 
+\#define DDS\+\_\+\+WRITEPARAMS\+\_\+\+DEFAULT}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_SAMPLE\_IDENTITY\_UNKNOWN,\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_SAMPLE\_IDENTITY\_UNKNOWN,\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__DDSTimeSupportModule_gac99dcc849b77a82c132b902492fa7b03}{DDS\_TIME\_ZERO}},\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_HANDLE\_NIL\_NATIVE\ \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Default values used to initialize instances of \doxylink{structDDS__WriteParams__t}{DDS\+\_\+\+Write\+Params\+\_\+t}. 
+
+\input{group__DDSTimeSupportModule}
+\input{group__DDSGUIDSupportModule}
+\input{group__DDSSequenceNumberSupportModule}
+\input{group__DDSReturnTypesModule}
+\input{group__DDSStatusTypesModule}
+\input{group__DDSQosTypesModule}
+\input{group__DDSConditionsModule}
+\input{group__DDSEntityModule}
+\input{group__DDSSequenceModule}
+\input{group__DDSExceptionTypesModule}
+\input{group__DDSMicroTypesModule}
+\input{group__DDSStringClass}

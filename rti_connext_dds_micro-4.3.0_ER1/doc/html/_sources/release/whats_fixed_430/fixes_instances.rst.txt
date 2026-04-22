@@ -1,0 +1,21 @@
+Instances
+=========
+
+.. Release Notes from this point.
+
+:minor:`[Minor]` Instance state transition inconsistent with |core_pro_h|
+-------------------------------------------------------------------------
+If a *DataWriter* called ``dispose()`` for an instance that was already 
+unregistered, a *DataReader* would propagate the
+``DDS_NOT_ALIVE_DISPOSED_INSTANCE_STATE``
+instance state even if the instance had not received any samples. 
+This behavior was different from |core_pro|.
+
+A new policy, :link_connextmicro_dds_api_c_up_two:`DataReaderQos.protocol.propagate_dispose_of_unregistered_instances <structDDS__DataReaderProtocolQosPolicy.html#a6e29a7af72fac32b0567da59c800b558>`,
+has been added to control if the *DataReader* should propagate
+``DDS_NOT_ALIVE_DISPOSED_INSTANCE_STATE``, even when no samples have been
+received for the instance. When set to ``false``, the behavior is identical
+to |core_pro|.
+
+[RTI Issue ID MICRO-2346]
+

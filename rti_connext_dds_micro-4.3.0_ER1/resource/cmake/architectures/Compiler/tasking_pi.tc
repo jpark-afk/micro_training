@@ -1,0 +1,34 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2019-2020
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+################################################################################
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/tasking.tc)
+
+MACRO(INCLUDE_TASKING_COMPILER_PIL version)
+    SET(RTIME_PIL TRUE)
+    ADD_DEFINITIONS(-DRTI_PIL=1)
+    ADD_DEFINITIONS(-DOSAPI_DONT_HAVE_REALLOC=1)
+ENDMACRO()
+
+MACRO(INCLUDE_TASKING_COMPILER_PSL version)
+    get_filename_component(tc ${CMAKE_CURRENT_LIST_FILE} NAME)
+    STRING(REGEX MATCH "(.*)-(.*)" pil_match ${tc})
+    IF(pil_match)
+        SET(RTIME_PIL_ARCH ${CMAKE_MATCH_1})
+    ELSE()
+        MESSAGE(FATAL_ERROR "No PIL found")
+    ENDIF()
+    SET(RTIME_PSL TRUE)
+    ADD_DEFINITIONS(-DRTI_PSL=1)
+    ADD_DEFINITIONS(-DOSAPI_DONT_HAVE_REALLOC=1)
+ENDMACRO()
+
+SET(RTIME_OSAPI_COMPILER osapi_cc_tasking.h)
+ADD_DEFINITIONS(-DOSAPI_CC_DEF_H=osapi/${RTIME_OSAPI_COMPILER})
+SET(OSAPI_CC_DEF_H_SET TRUE)

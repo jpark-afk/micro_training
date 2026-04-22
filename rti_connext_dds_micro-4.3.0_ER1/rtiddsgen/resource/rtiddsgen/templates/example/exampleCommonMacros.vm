@@ -1,0 +1,5650 @@
+##/* $Id$
+##
+##   (c) Copyright, Real-Time Innovations, Inc. 2020-2024.  All rights reserved.
+##   No duplications, whole or partial, manual or electronic, may be made
+##   without prior written permission.  Any such copies, or
+##   revisions thereof, must display this notice unaltered.
+##   This code contains trade secrets of Real-Time Innovations, Inc.
+
+##modification history:
+##---------------------
+##10a,07jul20,fmt created
+
+##---------------------------------------------------------------------
+##
+##             Macros for Example Application Sources
+##
+##---------------------------------------------------------------------
+##---------------------------------------------------------------------
+
+
+##******************************************************************************
+## Macros for the README.txt
+##******************************************************************************
+
+#macro(readmeHeader)
+#if($envMap.language.equals("Cpp"))
+#if ($use_dpde)
+C++ ${envMap.idlFileName} Dynamic Discovery Example
+#else
+C++ ${envMap.idlFileName} Static Discovery Example
+#end
+#else
+#if ($use_dpde)
+C ${envMap.idlFileName} Dynamic Discovery Example
+#else
+C ${envMap.idlFileName} Static Discovery Example
+#end
+#end
+=====================
+
+An example publication and subscription pair to send and receive the type
+provide by user.
+
+#if ($use_static_udp)
+This example uses static UDP interface configuration.
+
+#end
+#if ($use_dpde)
+Discovery of endpoints is done with the dynamic-endpoint discovery.
+#else
+Discovery of endpoints is done with the static-endpoint discovery.
+#end
+
+Purpose
+=======
+
+#if ($use_static_udp)
+This example uses static UDP interface configuration. Using this API
+the UDP transport is statically configured. This is useful in systems
+which are not able to return the installed UDP interfaces (name, IP
+address, mask...).
+
+#end
+#if (!$use_mag)
+This example shows how to perform basic publish-subscribe communication.
+#else
+This example shows how to create an application using Micro Application
+Generation and XML files.
+#end
+#if ($use_shared_memory)
+
+This example only uses shared memory as transport. For this reason both the
+publisher and subscriber applications need to run on the same OS.
+#end
+
+#if ($use_dpde)
+This example performs endpoint discovery dynamically: state of remote endpoints
+are propagated automatically by built-in discovery endpoints, and the user does
+not need to manually configure remote endpoint state.
+#else
+This example performs endpoint discovery statically: state of remote remote
+endpoints are manually configured by the user, and only configured endpoints
+can be discovered.
+#end
+
+#if (${use_listener})
+Subscriber application creates a DataReader which uses a listener to receive
+notifications about new samples and matched publishers. These notifications are
+received in the middleware thread (instead of the application thread).
+#else
+Subscriber application creates a DataReader which uses a Waitset to receive
+notifications about new samples and matched publishers. These notifications are
+received in the application thread (instead of the middleware thread).
+#end
+
+#if ($use_crc)
+This example configures the CRC QoS to allow the generation of a checksum value.
+It determines which checksums are allowed and whether they should be sent.
+#end
+
+#if ($use_zcv2)
+In addition, the example enables the Zero Copy v2 interface to communicate
+with shared memory.
+#end
+
+#if ($use_content_filter)
+In addition, this example demonstrates how to configure a content filter for a
+DataReader.
+#end
+
+#end ##  #macro(readmeHeader)
+
+
+#macro(readmeHowToCompileAndRun)
+How to Compile and Run
+======================
+
+--------------------
+Compiling with CMake
+--------------------
+Before compiling, set environment variable RTIMEHOME to the Connext Micro
+installation directory.
+
+#if ($use_secure)
+Set environment variable OPENSSLHOME to the folder where OpenSSL libraries
+and header files are found. These libraries should match those used to build
+RTI Connext Micro.
+
+If you built the RTI Connext Micro libraries using an external libxml2
+version than the one shipped with the product, environment variable SYSLIBXML2
+must be set properly to link the external library, and LIBXML2HOME can be used
+to inform the build system on where to find it (if not located in a system path).
+
+#end
+
+#if ($use_cert_api_only)
+In order to compile the CERT example it is necessary to first compile the
+RTI Connext Micro libraries using the CERT profile. To compile RTI Connext Micro
+with the CERT profile, use one of the CERT architectures as the target to
+rtime-make. To see a list of architectures with the CERT profile, use:
+
+rtime-make --list
+
+Architectures ending with CERT, such as x64Linux6gcc13.3.0CERT, compiles
+RTI Connext Micro with CERT profile:
+
+rtime-make --target x64Linux6gcc13.3.0CERT  .....
+
+#end
+
+#if ($use_mag)
+Depending on the number of interfaces in the local machine, you might need
+to limit what interfaces are actually used by RTI Connext Micro. You can find
+that setting in file ${envMap.idlFileName}Qos.xml, XML element <allow_interfaces_list>.
+#set ( $cmake_option_win_bat = "-DRTIME_MAG_FILES_eq_${envMap.idlFileName}.xml" )
+#set ( $cmake_option_win = "-DRTIME_MAG_FILES=${envMap.idlFileName}.xml" )
+#set ( $cmake_option = "-DRTIME_MAG_FILES=${envMap.idlFileName}.xml" )
+#else
+#set ( $cmake_option_win_bat = "" )
+#set ( $cmake_option_win = "" )
+#set ( $cmake_option = "" )
+#end
+#if ($use_secure)
+#set ( $cmake_option_win_bat = "${cmake_option_win_bat} -DRTIME_SECURE_eq_true" )
+#set ( $cmake_option_win = "${cmake_option_win} -DRTIME_SECURE=true" )
+#set ( $cmake_option = "${cmake_option} -DRTIME_SECURE=true" )
+#end
+#if($use_cert_api_only)
+#set ( $cmake_option_win_bat = "${cmake_option_win_bat} -DRTIME_CERT_eq_true" )
+#set ( $cmake_option_win = "${cmake_option_win} -DRTIME_CERT=true" )
+#set ( $cmake_option = "${cmake_option} -DRTIME_CERT=true" )
+#end
+#if ($use_psk)
+#set ( $cmake_option_win_bat = "${cmake_option_win_bat} -DRTIME_LIGHTWEIGHT_SECURE_eq_true" )
+#set ( $cmake_option_win = "${cmake_option_win} -DRTIME_LIGHTWEIGHT_SECURE=true" )
+#set ( $cmake_option = "${cmake_option} -DRTIME_LIGHTWEIGHT_SECURE=true" )
+#end
+
+#if ($use_zcv2)
+Zero Copy v2 requires that any IDL type file must start with @transfer_mode(SHMEM_REF).
+#end
+#if ($use_psk)
+Set OPENSSLHOME to the install location of OpenSSL. This example has been tested with 3.5.5.
+#end
+
+The RTI Connext Micro installation includes a bash (Unix) and BAT (Windows)
+script to simplify the invocation of CMake. These scripts are a convenient way
+to invoke CMake with the correct options. E.g:
+
+Linux
+-----
+cd "<${envMap.idlFileName}Application directory>"
+rtime-make --config <Debug|Release> --build --name x64Linux3gcc4.8.2 --target Linux --source-dir . -G "Unix Makefiles" --delete ${cmake_option} [-DRTIME_IDL_ADD_REGENERATE_TYPESUPPORT_RULE=true]
+
+Windows
+-------
+cd "<${envMap.idlFileName}Application directory>"
+rtime-make.bat --config <Debug|Release> --build --name i86Win32VS2010 --target Windows --source-dir . -G "Visual Studio 10 2010" --delete ${cmake_option_win_bat} [-DRTIME_IDL_ADD_REGENERATE_TYPESUPPORT_RULE_eq_true]
+
+Note: When building for Windows on any architecture other than x86, the user
+must add the -A option for their architecture. For example, "-A x64".
+
+Darwin
+------
+cd "<${envMap.idlFileName}Application directory>"
+rtime-make --config <Debug|Release> --build --name x64Darwin17.3.0Clang9.0.0 --target Darwin --source-dir . -G "Unix Makefiles" --delete ${cmake_option} [-DRTIME_IDL_ADD_REGENERATE_TYPESUPPORT_RULE=true]
+
+The executable can be found on directory "objs"
+
+
+It is also possible to compile using CMake, if desired:
+
+
+Linux
+-----
+cmake [-DRTIME_IDL_ADD_REGENERATE_TYPESUPPORT_RULE=true] [-DCMAKE_BUILD_TYPE=<Debug|Release>] ${cmake_option} -G "Unix Makefiles" -B./<your build directory> -H. -DRTIME_TARGET_NAME=x64Linux3gcc4.8.2
+cmake --build ./<your build directory> [--config <Debug|Release>]
+
+Windows
+-------
+cmake [-DRTIME_IDL_ADD_REGENERATE_TYPESUPPORT_RULE=true] [-DCMAKE_BUILD_TYPE=<Debug|Release>] ${cmake_option_win} -G "Visual Studio 10 2010" -B./<your build directory> -H. -DRTIME_TARGET_NAME=i86Win32VS2010
+cmake --build ./<your build directory> [--config <Debug|Release>]
+
+Note: When building for Windows on any architecture other than x86, the user
+must add the -A option for their architecture. For example, "-A x64".
+
+Darwin
+------
+cmake [-DRTIME_IDL_ADD_REGENERATE_TYPESUPPORT_RULE=true] [-DCMAKE_BUILD_TYPE=<Debug|Release>] ${cmake_option} -G "Unix Makefiles" -B./<your build directory> -H. -DRTIME_TARGET_NAME=x64Darwin17.3.0Clang9.0.0
+cmake --build ./<your build directory> [--config <Debug|Release>]
+
+The executable can be found on ./objs
+
+Option -DRTIME_IDL_ADD_REGENERATE_TYPESUPPORT_RULE=true adds a rule to regenerate
+type support plugin source files if the input IDL/XML file changes.
+Default value is 'false'.
+
+Option -DEXCLUDE_SHMEM=true excludes the Shared memory libraries from being
+included in builds.
+
+Option -DEXCLUDE_ZCV2=true excludes the ZCv2 libraries from being
+included in builds.
+
+#if (${use_mag})
+Option -DRTIME_MAG_FILES=<XML file with Application Generation definitions> adds
+a rule to generate application support files from XML.
+Default value is 'false'.
+
+#end
+#if ($use_secure)
+Option -DRTIME_SECURE=true adds the secure libraries as a dependency for the linker
+and invokes OpenSSL to generate all the secure certificates.
+Default value is 'false'.
+
+#end
+#if($use_cert_api_only)
+Option -DRTIME_CERT=true needs to be used to compile an example compatible with
+cert API.
+Default value is 'false'.
+
+#end
+
+------------------------------------------------------
+Running ${envMap.idlFileName}_publisher and ${envMap.idlFileName}_subscriber
+------------------------------------------------------
+
+#if (!$use_mag)
+By default the example uses two interfaces to receive samples. The names of these
+interfaces are configured in file ${envMap.idlFileName}Application.${fileExtension}.
+Some OS installations might use different names which would prevent communication.
+For this reason it is recommended to use option -udp_intf <interface name>. Normally
+you can use command 'ifconfig' (Linux) and 'ipconfig' (Windows) to know the name
+of all available interfaces.
+#else
+By default the example uses all available interfaces to receive samples. This can
+cause communication problems if the number of available interfaces is greater than
+the default maximum in Connext Micro. For this reason it is recommended
+restrict the number of interfaces to use by adding elements in 'allow_interfaces_list'
+in file ${envMap.idlFileName}Qos.xml.
+#end
+
+E.g. in case the ${envMap.idlFileName} has been compiled for Linux i86Linux3gcc4.8.2 run the subscriber by typing:
+#if (${use_mag})
+#set ( $extra_options = "" )
+#elseif (${use_secure} && ${use_udp})
+#set ( $extra_options = " [-udp_intf <interface name>] [-peer <address>]" )
+#elseif (${use_udp})
+#set ( $extra_options = "[-domain <Domain_ID>] [-udp_intf <interface name>] [-peer <address>]" )
+#else
+#set ( $extra_options = "[-domain <Domain_ID>]" )
+#end
+
+objs/x64Linux3gcc4.8.2/${envMap.idlFileName}_subscriber ${extra_options} [-sleep <sleep_time>] [-count <count>]
+
+and run the publisher by typing:
+
+objs/x64Linux3gcc4.8.2/${envMap.idlFileName}_publisher ${extra_options} [-sleep <sleep_time>] [-count <count>]
+#end  ##macro(readmeHowToCompileAndRun)
+
+#macro(readmeSourceOverview)
+Source Overview
+===============
+
+Type ${constructMap.nativeFQName} is provided by user and defined in file
+"${envMap.idlFileName}.idl".
+
+For convenience a CMakeList.txt is also generated so the example can be easily
+compiled with CMake. A dependency can be added so the type-plugin interface
+is regenerated if file ${envMap.idlFileName}.idl changes.
+
+For the type to be usable by Connext Micro, type-support files must be
+generated that implement a type-plugin interface. The CMakeList.txt file
+will generate these support files, by invoking rtiddsgen. Note that rtiddsgen
+can be invoked manually, with an example command like this:
+
+#if ($use_cert_api_only)
+"$(RTIMEHOME)/rtiddsmag/scripts/rtiddsgen" -micro -language $language -interpreted 0 ${envMap.idlFileName}.idl
+
+Note: The -interpreted 0 option generates CDR type support instead of the
+default XTypes support. This is required for the CERT profile, which does
+not include the XTypes library.
+#else
+"$(RTIMEHOME)/rtiddsmag/scripts/rtiddsgen" -micro -language $language ${envMap.idlFileName}.idl
+#end
+#if ($use_mag)
+
+For the applications to be usable by Connext Micro, application-support
+files must be generated that define the necessary data structures with the
+application's information. The CMakeList.txt file will generate these support
+files, by invoking rtiddsmag. Note that rtiddsmag can be invoked manually,
+with an example command like this:
+
+"$(RTIMEHOME)/rtiddsmag/scripts/rtiddsmag" -language $language ${envMap.idlFileName}.xml -referencedFile ${envMap.idlFileName}Qos.xml
+#end
+
+#if ($use_mag)
+The generated source files are ${envMap.idlFileName}.${fileExtension},
+${envMap.idlFileName}Support.${fileExtension},
+${envMap.idlFileName}Plugin.${fileExtension} and
+${envMap.idlFileName}Appgen.${fileExtension}. Associated header files
+are also generated.
+The generated XML files are ${envMap.idlFileName}.xml
+and ${envMap.idlFileName}Qos.xml.
+#else
+The generated source files are ${envMap.idlFileName}.${fileExtension},
+${envMap.idlFileName}Support.${fileExtension}, and
+${envMap.idlFileName}Plugin.${fileExtension}. Associated header files are also
+generated.
+#end
+
+The DataWriter and DataReader of the type are managed in
+${envMap.idlFileName}_publisher.${fileExtension} and
+${envMap.idlFileName}_subscriber.${fileExtension}, respectively. The
+DomainParticipant of each is managed in
+${envMap.idlFileName}Application.${fileExtension}.
+#end  ## #macro(readmeSourceOverview)
+
+#macro(readmeExampleFilesOverview)
+Example Files Overview
+======================
+
+${envMap.idlFileName}Application.${fileExtension}:
+This file contains the logic for creating an application. This includes steps
+for configuring discovery and creating a DomainParticipant. This file also
+includes code for registering a type with the DomainParticipant.
+
+${envMap.idlFileName}_publisher.${fileExtension}:
+This file contains the logic for creating a Publisher and a DataWriter, and
+sending data.
+
+${envMap.idlFileName}_subscriber.${fileExtension}:
+This file contains the logic for creating a Subscriber and a DataReader, a
+DataReaderListener, and listening for data.
+
+${envMap.idlFileName}Plugin.${fileExtension}:
+This file creates the plugin for the ${envMap.idlFileName} data type.  This
+file contains the code for serializing and deserializing the ${envMap.idlFileName}
+type, creating, copying, printing and deleting the ${envMap.idlFileName} type,
+determining the size of the serialized type, and handling hashing a key, and
+creating the plug-in.
+
+${envMap.idlFileName}Support.${fileExtension}:
+This file defines the ${envMap.idlFileName} type and its typed DataWriter,
+DataReader, and Sequence.
+
+${envMap.idlFileName}.${fileExtension}:
+This file contains the APIs for managing the ${envMap.idlFileName} type.
+#if ($use_mag)
+
+${envMap.idlFileName}Appgen.${fileExtension}:
+This file contains the necessary data structures with the application's
+information.
+
+${envMap.idlFileName}.xml:
+This file contains the Publisher and Subscriber applications definition. That
+is the types, topics, DomainParticipants, DataWriter and DataReaders that each
+application uses.
+
+${envMap.idlFileName}Qos.xml:
+This file contains the QoS used by the DDS entities created in the Publisher and
+Subscriber applications.
+#end
+#end ## #macro(readmeExampleFilesOverview)
+
+##******************************************************************************
+## Macros for psk
+##******************************************************************************
+
+#macro(commonPsk)
+/* PSK PropertyQos settings */
+typedef struct PropertyValue
+{
+    const char *name;
+    const char *value;
+} PropertyValue_T;
+
+const PropertyValue_T psk_dp_property_qos[] =
+{
+    {
+        .name = "dds.sec.crypto.rtps_psk_symmetric_cipher_algorithm",
+        .value = "AUTO"
+    },
+    {
+        .name = "dds.sec.crypto.rtps_psk_secret_passphrase",
+        .value = "data:,404166165:castle super radar denial swing lunar kind swarm wet toilet output harbor basic begin margin huge year visit"
+    },
+    {
+        .name = "dds.sec.access.rtps_psk_protection_kind",
+        .value = "ENCRYPT"
+    },
+    {
+        .name = "com.rti.serv.secure.cryptography.max_blocks_per_session",
+        .value = "2147483647"
+    }
+};
+
+static int
+err_listener(
+    const char *msg,
+    size_t msg_len,
+    void *user_ptr)
+{
+    (void)msg_len;
+    unsigned int *failed_count_ptr = (unsigned int *)user_ptr;
+
+    if (failed_count_ptr != 0)
+    {
+        unsigned int failed_count = *failed_count_ptr;
+        failed_count++;
+        *failed_count_ptr = failed_count;
+    }
+
+    printf("Error message from the PSK PSL:\n%s\n\n", msg);
+
+    return 1;
+}
+#end
+
+#macro(varPsk)
+    struct DDS_PskServiceFactoryProperty psk_svc_property =
+        DDS_PskServiceFactoryProperty_INITIALIZER;
+    struct DDS_SecTransform_Configuration psl_config = {0};
+    static unsigned int failed_count = 0;
+#end
+
+#macro(setupPsk)
+    psl_config.err_listener.callback = err_listener;
+    psl_config.err_listener.user_ptr = &failed_count;
+    psk_svc_property.psl_get_interface_func = PSK_OSSL_get_interface;
+    psk_svc_property.psl_config = &psl_config;
+
+    if(!DDS_PskLibrary_register(
+            registry,
+            &psk_svc_property))
+    {
+        printf("failed to register psk library \n");
+        goto done;
+    }
+
+    if (!RT_ComponentFactoryId_set_name(&dp_qos.trust.suite, DDS_PSK_DEFAULT_SUITE_NAME))
+    {
+        printf("failed to set PSK plugin name\n");
+        goto done;
+    }
+
+    for (DDS_UnsignedLong i = 0; i < sizeof(psk_dp_property_qos) / sizeof(PropertyValue_T); ++i)
+    {
+        if (DDS_PropertyQosPolicyHelper_add_property(
+                &dp_qos.property,
+                psk_dp_property_qos[i].name,
+                psk_dp_property_qos[i].value,
+                DDS_BOOLEAN_FALSE) != DDS_RETCODE_OK)
+        {
+            printf("failed to set %s property\n", psk_dp_property_qos[i].name);
+            goto done;
+        }
+    }
+#end
+#macro(finalizePsk)
+    if(!DDS_PskLibrary_unregister(
+        registry,
+        psk_svc_property.service_name))
+    {
+        printf("failed to unregister psk library \n");
+        return;
+    }
+#end
+##******************************************************************************
+## Macros for content_filer
+##******************************************************************************
+
+#macro(findContentFilter)
+#set($filterFoundMember = false)
+#foreach ($member in $constructMap.memberFieldMapList)
+    #if (($member.nativeTypeFQName == "DDS_Octet")
+            || ($member.nativeTypeFQName == "DDS_Short")
+            || ($member.nativeTypeFQName == "DDS_UnsignedShort")
+            || ($member.nativeTypeFQName == "DDS_Long")
+            || ($member.nativeTypeFQName == "DDS_UnsignedLong")
+            || ($member.nativeTypeFQName == "DDS_LongLong")
+            || ($member.nativeTypeFQName == "DDS_UnsignedLongLong"))
+        #set($filterFoundMember = true)
+        #set($filterMember = $member.name)
+        #set($filterExpression = "${filterMember} = %0")
+        #set($filterParam = "0")
+        #set($filterSetSample = "sample->${filterMember} = (${member.nativeTypeFQName})(i % 2);")
+        #set($filterPrintFormat = "%d")
+        #set($filterPrintMember = "(int)(sample->${filterMember})")
+        #break
+    #elseif (($member.nativeTypeFQName == "DDS_Float")
+            || ($member.nativeTypeFQName == "DDS_Double"))
+        #set($filterFoundMember = true)
+        #set($filterMember = $member.name)
+        #set($filterExpression = "${filterMember} > %0")
+        #set($filterParam = "0.5")
+        #set($filterSetSample = "sample->${filterMember} = (${member.nativeTypeFQName})(i % 2);")
+        #set($filterPrintFormat = "%f")
+        #set($filterPrintMember = "(double)(sample->${filterMember})")
+        #break
+    #elseif ($member.nativeTypeFQName == "DDS_Boolean")
+        #set($filterFoundMember = true)
+        #set($filterMember = $member.name)
+        #set($filterExpression = "${filterMember} = %0")
+        #set($filterParam = "TRUE")
+        #set($filterSetSample = "sample->${filterMember} = (i % 2 == 0) ? DDS_BOOLEAN_TRUE : DDS_BOOLEAN_FALSE;")
+        #set($filterPrintFormat = "%d")
+        #set($filterPrintMember = "(sample->${filterMember} ? 1 : 0)")
+        #break
+    #elseif ($member.isEnum)
+        #set($filterFoundMember = true)
+        #set($filterMember = $member.name)
+        #set($filterExpression = "${filterMember} = %0")
+        #set($filterParam = "'${member.defaultEnumMemberName}'")
+        #set($filterSetSample = "sample->${filterMember} = (${member.nativeTypeFQName})(i % 2);")
+        #set($filterPrintFormat = "%d")
+        #set($filterPrintMember = "(int)(sample->${filterMember})")
+        #break
+    #elseif ($member.nativeTypeFQName == "DDS_Char")
+        #set($filterFoundMember = true)
+        #set($filterMember = $member.name)
+        #set($filterExpression = "${filterMember} = %0")
+        #set($filterParam = "'A'")
+        #set($filterSetSample = "sample->${filterMember} = (i % 2 == 0) ? 'A' : 'B';")
+        #set($filterPrintFormat = "%c")
+        #set($filterPrintMember = "sample->${filterMember}")
+        #break
+    #end
+#end ## #foreach
+#set($filterTypeNameUpper = $constructMap.nativeFQName.toUpperCase())
+#end ## #macro(findContentFilter)
+
+#macro(defineContentFilter)
+#if (!$filterFoundMember)
+    /*
+     * WARNING: Could not find a supported field in $constructMap.nativeFQName to
+     * filter on. Use a different type or configure the filter manually.
+     *
+     * This is an example of how to configure a content filter for the DataReader:
+     *
+     * dr_qos.content_filter.filter_name = DDS_String_dup("MyFilter");
+     * dr_qos.content_filter.filter_class_name = DDS_String_dup(DDS_SQL_CONTENT_FILTER_CLASS);
+     * dr_qos.content_filter.filter_expression = DDS_String_dup("configure a filter expression here");
+     */
+
+#else
+    /* This is an example of how to configure a content filter for the DataReader: */
+    dr_qos.content_filter.filter_name = DDS_String_dup("MyFilter");
+    dr_qos.content_filter.filter_class_name = DDS_String_dup(DDS_SQL_CONTENT_FILTER_CLASS);
+    dr_qos.content_filter.filter_expression = DDS_String_dup("$filterExpression");
+    if (!DDS_StringSeq_set_maximum(&dr_qos.content_filter.expression_parameters, 1)) {
+        printf("failed to set maximum of expression_parameters\n");
+        goto done;
+    }
+    if (!DDS_StringSeq_set_length(&dr_qos.content_filter.expression_parameters, 1)) {
+        printf("failed to set length of expression_parameters\n");
+        goto done;
+    }
+    *DDS_StringSeq_get_reference(&dr_qos.content_filter.expression_parameters, 0) = DDS_String_dup("$filterParam");
+
+#end
+#end ## #macro(defineContentFilter)
+
+#macro(printWroteFilteredSample)
+#if ($filterFoundMember)
+    printf("Wrote sample ${envMap.POUND_CHAR}%d with ${filterMember} = ${filterPrintFormat}\n", (i + 1), ${filterPrintMember});
+#else
+    printf("Wrote sample ${envMap.POUND_CHAR}%d\n", (i + 1));
+#end
+#end ## #macro(printWroteFilteredSample)
+
+#macro(printReceivedFilteredSample)
+#if ($filterFoundMember)
+    printf("Received a valid sample with ${filterMember} = ${filterPrintFormat}\n", ${filterPrintMember});
+#else
+    printf("Valid sample received\n");
+#end
+#end ## #macro(printReceivedFilteredSample)
+
+#macro(setFilteredSample)
+#if ($filterFoundMember)
+    /* Alternate the sample value so that some samples pass the content
+     * filter and some do not.
+     */
+    $filterSetSample
+#end
+#end ## #macro(setFilteredSample)
+
+##---------------------------------------------------------------------
+## Custom filter implementation for embedding in application.c.
+## application.c already has the required headers via
+## commonIncludesC and the Application.h header.
+##---------------------------------------------------------------------
+#macro(customFilterImplementationC)
+#if ($filterFoundMember)
+
+/*
+ * ----------------------------------------------------------------
+ * Custom Content Filter Implementation
+ * ----------------------------------------------------------------
+ */
+
+struct ${constructMap.nativeFQName}CustomCompiledFilter
+{
+    DDS_Boolean in_use;
+    DDS_LongLong divisor;
+};
+
+struct ${constructMap.nativeFQName}CustomFilter
+{
+    struct ${constructMap.nativeFQName}CustomFilterProperty property;
+    struct ${constructMap.nativeFQName}CustomCompiledFilter *compiled_pool;
+    RTI_UINT32 pool_size;
+};
+
+static void *
+${constructMap.nativeFQName}CustomFilter_create_instance(
+        const struct DDS_FilterResourceLimits *resource_limits,
+        const void *property)
+{
+    struct ${constructMap.nativeFQName}CustomFilter *filter = NULL;
+
+    if ((resource_limits == NULL) || (property == NULL))
+    {
+        printf("CustomFilter_create_instance: unexpected NULL argument\n");
+        return NULL;
+    }
+
+    OSAPI_Heap_allocate_struct(
+            &filter,
+            struct ${constructMap.nativeFQName}CustomFilter);
+    if (filter == NULL)
+    {
+        printf("CustomFilter_create_instance: failed to allocate filter\n");
+        return NULL;
+    }
+
+    filter->property =
+            *(const struct ${constructMap.nativeFQName}CustomFilterProperty *)property;
+    filter->pool_size = (RTI_UINT32)resource_limits->filter_expression_max_count;
+
+    OSAPI_Heap_allocate_array(
+            &filter->compiled_pool,
+            filter->pool_size,
+            struct ${constructMap.nativeFQName}CustomCompiledFilter);
+    if (filter->compiled_pool == NULL)
+    {
+        printf("CustomFilter_create_instance: failed to allocate compiled pool\n");
+        OSAPI_Heap_free_struct(filter);
+        return NULL;
+    }
+
+    OSAPI_Memory_zero(
+            filter->compiled_pool,
+            filter->pool_size
+                    * sizeof(struct ${constructMap.nativeFQName}CustomCompiledFilter));
+
+    return filter;
+}
+
+${envMap.POUND_CHAR}ifndef RTI_CERT
+static void
+${constructMap.nativeFQName}CustomFilter_delete_instance(
+        void *filter_instance)
+{
+    struct ${constructMap.nativeFQName}CustomFilter *filter =
+            (struct ${constructMap.nativeFQName}CustomFilter *)filter_instance;
+
+    if (filter_instance == NULL)
+    {
+        printf("CustomFilter_delete_instance: unexpected NULL filter_instance\n");
+        return;
+    }
+
+    OSAPI_Heap_free_array(filter->compiled_pool);
+    OSAPI_Heap_free_struct(filter);
+}
+${envMap.POUND_CHAR}endif /* !RTI_CERT */
+
+static DDS_Boolean
+${constructMap.nativeFQName}CustomFilter_compile(
+        void *filter_instance,
+        void **compiled_expression_out,
+        const char *expression,
+        const struct DDS_StringSeq *parameters,
+        const struct DDS_TypeCode *type_code,
+        const char *type_class_name)
+{
+    struct ${constructMap.nativeFQName}CustomFilter *filter =
+            (struct ${constructMap.nativeFQName}CustomFilter *)filter_instance;
+    struct ${constructMap.nativeFQName}CustomCompiledFilter *compiled = NULL;
+    const char *param_str = NULL;
+    RTI_UINT32 i = 0;
+
+    UNUSED_ARG(type_code);
+
+    if ((filter_instance == NULL)
+        || (compiled_expression_out == NULL)
+        || (expression == NULL)
+        || (parameters == NULL)
+        || (type_class_name == NULL))
+    {
+        printf("CustomFilter_compile: unexpected NULL argument\n");
+        return DDS_BOOLEAN_FALSE;
+    }
+
+    /* Validate type class name */
+    if (OSAPI_String_cmp(type_class_name, "${constructMap.FQName}") != 0)
+    {
+        printf("CustomFilter_compile: unsupported type: %s\n", type_class_name);
+        return DDS_BOOLEAN_FALSE;
+    }
+
+    /* Validate expression matches expected pattern.
+     * This example only supports a single fixed expression for simplicity.
+     */
+    if (OSAPI_String_cmp(expression, ${filterTypeNameUpper}_CUSTOM_FILTER_EXPRESSION) != 0)
+    {
+        printf("CustomFilter_compile: unsupported expression: %s\n", expression);
+        return DDS_BOOLEAN_FALSE;
+    }
+
+    /* Need exactly 1 parameter ($0 = divisor) */
+    if (DDS_StringSeq_get_length(parameters) < 1)
+    {
+        printf("CustomFilter_compile: expected 1 parameter, got %d\n",
+                DDS_StringSeq_get_length(parameters));
+        return DDS_BOOLEAN_FALSE;
+    }
+
+    param_str = *DDS_StringSeq_get_reference(parameters, 0);
+    if (param_str == NULL)
+    {
+        printf("CustomFilter_compile: parameter 0 is NULL\n");
+        return DDS_BOOLEAN_FALSE;
+    }
+
+    /* Find an unused entry in the preallocated pool */
+    for (i = 0; i < filter->pool_size; i++)
+    {
+        if (!filter->compiled_pool[i].in_use)
+        {
+            compiled = &filter->compiled_pool[i];
+            break;
+        }
+    }
+
+    if (compiled == NULL)
+    {
+        printf("CustomFilter_compile: compiled filter pool exhausted\n");
+        return DDS_BOOLEAN_FALSE;
+    }
+
+    compiled->in_use = DDS_BOOLEAN_TRUE;
+    compiled->divisor = (DDS_LongLong)atol(param_str);
+    if (compiled->divisor == 0)
+    {
+        printf("CustomFilter_compile: divisor must not be 0\n");
+        compiled->in_use = DDS_BOOLEAN_FALSE;
+        return DDS_BOOLEAN_FALSE;
+    }
+    *compiled_expression_out = compiled;
+
+    return DDS_BOOLEAN_TRUE;
+}
+
+static DDS_Boolean
+${constructMap.nativeFQName}CustomFilter_evaluate(
+        void *filter_instance,
+        void *compiled_expression,
+        const void *sample,
+        DDS_Boolean *result_out)
+{
+    struct ${constructMap.nativeFQName}CustomCompiledFilter *compiled =
+            (struct ${constructMap.nativeFQName}CustomCompiledFilter *)compiled_expression;
+    const struct ${constructMap.nativeFQName} *typed_sample =
+            (const struct ${constructMap.nativeFQName} *)sample;
+
+    if ((filter_instance == NULL)
+        || (compiled_expression == NULL)
+        || (sample == NULL)
+        || (result_out == NULL))
+    {
+        printf("CustomFilter_evaluate: unexpected NULL argument\n");
+        return DDS_BOOLEAN_FALSE;
+    }
+
+    UNUSED_ARG(filter_instance);
+
+    *result_out =
+            (((DDS_LongLong)typed_sample->${filterMember} % compiled->divisor) == 0)
+            ? DDS_BOOLEAN_TRUE : DDS_BOOLEAN_FALSE;
+
+    return DDS_BOOLEAN_TRUE;
+}
+
+static void
+${constructMap.nativeFQName}CustomFilter_finalize(
+        void *filter_instance,
+        void *compiled_expression)
+{
+    struct ${constructMap.nativeFQName}CustomCompiledFilter *compiled =
+            (struct ${constructMap.nativeFQName}CustomCompiledFilter *)compiled_expression;
+
+    UNUSED_ARG(filter_instance);
+
+    if (compiled_expression == NULL)
+    {
+        printf("CustomFilter_finalize: unexpected NULL compiled_expression\n");
+        return;
+    }
+
+    compiled->in_use = DDS_BOOLEAN_FALSE;
+}
+
+static const struct DDS_ContentFilterI
+${constructMap.nativeFQName}CustomFilter_fv_interface =
+{
+    ${constructMap.nativeFQName}CustomFilter_create_instance,
+${envMap.POUND_CHAR}ifndef RTI_CERT
+    ${constructMap.nativeFQName}CustomFilter_delete_instance,
+${envMap.POUND_CHAR}endif
+    ${constructMap.nativeFQName}CustomFilter_compile,
+    ${constructMap.nativeFQName}CustomFilter_evaluate,
+    ${constructMap.nativeFQName}CustomFilter_finalize
+};
+
+const struct DDS_ContentFilterI *
+${constructMap.nativeFQName}CustomFilter_get_interface(void)
+{
+    return &${constructMap.nativeFQName}CustomFilter_fv_interface;
+}
+
+#end ## filterFoundMember
+#end ## #macro(customFilterImplementationC)
+
+#macro(defineCustomContentFilter)
+#if (!$filterFoundMember)
+    /*
+     * WARNING: Could not find a supported field in
+     * $constructMap.nativeFQName to filter on. Use a
+     * different type or configure the filter manually.
+     */
+
+#else
+    /* Register custom content filter class */
+    {
+        struct ${constructMap.nativeFQName}CustomFilterProperty
+                filter_property =
+                ${constructMap.nativeFQName}CustomFilterProperty_INITIALIZER;
+        retcode =
+                DDS_DomainParticipant_register_contentfilter(
+                        application->participant,
+                        ${filterTypeNameUpper}_CUSTOM_FILTER_CLASS_NAME,
+                        ${constructMap.nativeFQName}CustomFilter_get_interface(),
+                        &filter_property);
+        if (retcode != DDS_RETCODE_OK)
+        {
+            printf("failed to register custom filter\n");
+            goto done;
+        }
+    }
+
+    /* Configure content filter QoS for the DataReader */
+    dr_qos.content_filter.filter_name =
+            DDS_String_dup("MyFilter");
+    dr_qos.content_filter.filter_class_name =
+            DDS_String_dup(
+                    ${filterTypeNameUpper}_CUSTOM_FILTER_CLASS_NAME);
+    dr_qos.content_filter.filter_expression =
+            DDS_String_dup(
+                    ${filterTypeNameUpper}_CUSTOM_FILTER_EXPRESSION);
+    if (!DDS_StringSeq_set_maximum(
+                &dr_qos.content_filter.expression_parameters,
+                1))
+    {
+        printf("failed to set maximum of "
+               "expression_parameters\n");
+        goto done;
+    }
+    if (!DDS_StringSeq_set_length(
+                &dr_qos.content_filter.expression_parameters,
+                1))
+    {
+        printf("failed to set length of "
+               "expression_parameters\n");
+        goto done;
+    }
+    *DDS_StringSeq_get_reference(
+            &dr_qos.content_filter.expression_parameters,
+            0) = DDS_String_dup("2");
+
+#end
+#end ## #macro(defineCustomContentFilter)
+
+#macro(publisherRegisterCustomFilterC)
+#if ($filterFoundMember)
+    /* Register custom content filter class for
+     * writer-side filtering */
+    {
+        struct ${constructMap.nativeFQName}CustomFilterProperty
+                filter_property =
+                ${constructMap.nativeFQName}CustomFilterProperty_INITIALIZER;
+        retcode =
+                DDS_DomainParticipant_register_contentfilter(
+                        application->participant,
+                        ${filterTypeNameUpper}_CUSTOM_FILTER_CLASS_NAME,
+                        ${constructMap.nativeFQName}CustomFilter_get_interface(),
+                        &filter_property);
+        if (retcode != DDS_RETCODE_OK)
+        {
+            printf("failed to register custom filter\n");
+            goto done;
+        }
+    }
+#end
+#end ## #macro(publisherRegisterCustomFilterC)
+
+#macro(publisherAssertRemoteSubWithFilterC)
+#if (!$use_dpde)
+    rem_subscription_data.key.value[DDS_BUILTIN_TOPIC_KEY_OBJECT_ID] = 200;
+    rem_subscription_data.topic_name =
+            DDS_String_dup(application->topic_name);
+    rem_subscription_data.type_name =
+            DDS_String_dup(application->type_name);
+
+${envMap.POUND_CHAR}ifdef USE_RELIABLE_QOS
+    rem_subscription_data.reliability.kind =
+            DDS_RELIABLE_RELIABILITY_QOS;
+${envMap.POUND_CHAR}else
+    rem_subscription_data.reliability.kind =
+            DDS_BEST_EFFORT_RELIABILITY_QOS;
+${envMap.POUND_CHAR}endif
+
+#if ($filterFoundMember)
+    /* Populate content filter info so writer can perform
+     * writer-side filtering for this remote reader.
+     * content_filtered_topic_name = "<topic>::<filter_name>"
+     */
+    {
+        char cft_name[256];
+        int n = snprintf(cft_name, sizeof(cft_name), "%s::MyFilter",
+                         application->topic_name);
+        if ((n < 0) || (n >= (int)sizeof(cft_name)))
+        {
+            printf("failed to format content filtered topic name\n");
+            goto done;
+        }
+        rem_subscription_data.content_filter
+                .content_filtered_topic_name =
+                DDS_String_dup(cft_name);
+    }
+    rem_subscription_data.content_filter
+            .related_topic_name =
+            DDS_String_dup(application->topic_name);
+    rem_subscription_data.content_filter
+            .filter_class_name =
+            DDS_String_dup(
+                    ${filterTypeNameUpper}_CUSTOM_FILTER_CLASS_NAME);
+    rem_subscription_data.content_filter
+            .filter_expression =
+            DDS_String_dup(
+                    ${filterTypeNameUpper}_CUSTOM_FILTER_EXPRESSION);
+    if (!DDS_StringSeq_set_maximum(
+                &rem_subscription_data.content_filter
+                        .expression_parameters,
+                1))
+    {
+        printf("failed to set maximum of remote "
+               "expression_parameters\n");
+        goto done;
+    }
+    if (!DDS_StringSeq_set_length(
+                &rem_subscription_data.content_filter
+                        .expression_parameters,
+                1))
+    {
+        printf("failed to set length of remote "
+               "expression_parameters\n");
+        goto done;
+    }
+    *DDS_StringSeq_get_reference(
+            &rem_subscription_data.content_filter
+                    .expression_parameters,
+            0) = DDS_String_dup("2");
+
+#end
+    if (DDS_RETCODE_OK != DPSE_RemoteSubscription_assert(
+                              application->participant,
+                              "subscriber",
+                              &rem_subscription_data,
+                              ${constructMap.nativeFQNameInModule}I_get_key_kind()))
+    {
+        printf("failed to assert remote subscription\n");
+        goto done;
+    }
+
+#end
+#end ## #macro(publisherAssertRemoteSubWithFilterC)
+
+##******************************************************************************
+## Macros for the C Application Source file
+##******************************************************************************
+
+#macro(commonIncludesC)
+${envMap.POUND_CHAR}include "rti_me_c.h"
+
+${envMap.POUND_CHAR}include <stdio.h>
+${envMap.POUND_CHAR}include <stdlib.h>
+${envMap.POUND_CHAR}include <string.h>
+
+#if ($use_dpde)
+${envMap.POUND_CHAR}include "disc_dpde/disc_dpde_discovery_plugin.h"
+#else
+${envMap.POUND_CHAR}include "disc_dpse/disc_dpse_dpsediscovery.h"
+#end
+${envMap.POUND_CHAR}include "wh_sm/wh_sm_history.h"
+${envMap.POUND_CHAR}include "rh_sm/rh_sm_history.h"
+${envMap.POUND_CHAR}include "netio/netio_udp.h"
+#if(${constructMap.isMetpType} && !$use_zcv2)
+/* The shared memory transport is used to send data using Zero Copy v1. */
+${envMap.POUND_CHAR}include "netio_shmem/netio_shmem.h"
+#else
+#if ($use_shared_memory)
+/* We need to enable shared memory transport. */
+${envMap.POUND_CHAR}include "netio_shmem/netio_shmem.h"
+#end
+#end
+#if ($use_zcv2)
+
+/* Implementation of the user's notification mechanism. */
+${envMap.POUND_CHAR}include "netio_zcopy/netio_zcopy_default_notif_mech.h"
+${envMap.POUND_CHAR}include "netio_zcopy/netio_zcopy.h"
+
+#end
+#if ($use_mag)
+${envMap.POUND_CHAR}include "app_gen/app_gen.h"
+${envMap.POUND_CHAR}include "app_gen/app_gen_plugin.h"
+${envMap.POUND_CHAR}include "dds_c/dds_c_profile.h"
+${envMap.POUND_CHAR}include "dds_c/dds_c_profile_plugin.h"
+
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Appgen.h"
+
+#end
+#if ($use_secure)
+/* Include header file for Built-in DDS Security Plugins C API */
+${envMap.POUND_CHAR}include "sec_core/sec_core_c.h"
+
+#end
+#if ($use_content_filter)
+${envMap.POUND_CHAR}include "dds_filter/dds_filter.h"
+#end
+#if ($use_custom_content_filter)
+${envMap.POUND_CHAR}include "osapi/osapi_heap.h"
+${envMap.POUND_CHAR}include "osapi/osapi_string.h"
+#end
+
+${envMap.POUND_CHAR}include "${envMap.idlFileName}.h"
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Plugin.h"
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Support.h"
+
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Application.h"
+#if ($use_psk)
+${envMap.POUND_CHAR}include "dds_psk/dds_psk.h"
+${envMap.POUND_CHAR}include "rti_me_psl/pskpsl/psk_ossl_transform.h"
+
+#commonPsk()
+#end
+#end  ## #macro(commonIncludesC)
+#macro(functionApplicationHelpC)
+void
+Application_help(char *appname)
+{
+    printf("%s [options]\n", appname);
+    printf("options:\n");
+    printf("-h                      - This text\n");
+#if (!$use_mag)
+    printf("-domain <id>            - DomainId (default: 0)\n");
+#if ($use_udp)
+    printf("-udp_intf <intf>        - udp interface (no default)\n");
+    printf("-peer <address>         - peer address (no default)\n");
+#end
+#end
+    printf("-count <count>          - count (default 0. Runs forever.)\n");
+    printf("-sleep <ms>             - sleep between sends (default 1s)\n");
+#if (${use_secure})
+    printf("-ca-id <ca.pem>         - %s (default: %s)\n",
+        "URL of Identity Certificate Authority's certificate",
+        PEER_MATERIAL_DEFAULT.ca_id_cert);
+    printf("-ca-perm <ca.pem>       - %s (default: %s)\n",
+        "URL of Permissions Certificate Authority's certificate",
+        PEER_MATERIAL_DEFAULT.ca_perm_cert);
+    printf("-key <peer_key.pem>     - %s (default: %s)\n",
+        "URL of DomainParticipants's private key",
+        PEER_MATERIAL_DEFAULT.peer_key);
+    printf("-cert <peer.pem>        - %s (default: %s)\n",
+        "URL of DomainParticipants's certificate",
+        PEER_MATERIAL_DEFAULT.peer_cert);
+    printf("-gov <governance.p7s>   - %s (default: %s)\n",
+        "URL of signed XML governance file",
+        PEER_MATERIAL_DEFAULT.xml_gov);
+    printf("-perm <permissions.p7s> - %s (default: %s)\n",
+        "URL of signed XML permissions file",
+        PEER_MATERIAL_DEFAULT.xml_perm);
+#end
+    printf("\n");
+}
+#end  ## #macro(functionApplicationHelpC)
+
+#macro(configureContentFilterResourceLimits)
+#if($use_content_filter)
+    /* Optionally, configure the capabilities and resources for content filtering */
+
+    /* If you wanted to disable content filtering for this participant, that could
+     * be done by clearing the filter plugin name in the Participant's Filter QoS.
+     */
+    /* RT_ComponentFactoryId_clear(&dp_qos.filter.name); */
+
+    /* If you wanted to disable writer-side filtering to reduce memory usage
+     * at the cost of network bandwidth, then that could be done by setting:
+     */
+    /* dp_qos.filter.disable_writer_filtering = DDS_BOOLEAN_TRUE; */
+
+    /* The resource limits for the feature can be modified to either reduce the
+     * memory usage or allow longer or more complicated filters.
+     */
+    dp_qos.filter.resource_limits.filter_expression_max_length = 63;
+    dp_qos.filter.resource_limits.filter_expression_max_count = DDS_LENGTH_AUTO;
+    dp_qos.filter.resource_limits.filter_parameter_max_count_per_expression = 4;
+    dp_qos.filter.resource_limits.filter_parameter_max_length = 15;
+
+#if ($use_custom_content_filter && $use_cert_api_only)
+    dp_qos.filter.resource_limits.filter_class_max_count = 1;
+    dp_qos.filter.resource_limits.filter_class_max_length = 7;
+#elseif ($use_custom_content_filter)
+    dp_qos.filter.resource_limits.filter_class_max_count = 2;
+    dp_qos.filter.resource_limits.filter_class_max_length = 7;
+    dp_qos.filter.resource_limits.sql_predicate_max_count_per_expression = 4;
+#else
+    dp_qos.filter.resource_limits.filter_class_max_count = 1;
+    dp_qos.filter.resource_limits.filter_class_max_length = 7;
+    dp_qos.filter.resource_limits.sql_predicate_max_count_per_expression = 4;
+#end
+#end
+#end ## #macro(configureContentFilterResourceLimits)
+
+#macro(functionApplicationCreateDeclare)
+struct Application *
+Application_create(
+    const char *local_participant_name,
+    const char *remote_participant_name,
+#if (!${use_mag})
+    DDS_Long domain_id,
+#end
+#if ($use_udp && (!${use_mag}))
+    char *udp_intf,
+    char *peer,
+#end
+    DDS_Long sleep_time,
+#if (${use_secure})
+    DDS_Long count,
+    struct ApplicationSecMaterial *sec_material)
+#else
+    DDS_Long count)
+#end
+{
+    DDS_ReturnCode_t retcode;
+    DDS_DomainParticipantFactory *factory = NULL;
+#if (!${use_autoenable_entities})
+    struct DDS_DomainParticipantFactoryQos dpf_qos =
+        DDS_DomainParticipantFactoryQos_INITIALIZER;
+#end
+    struct DDS_DomainParticipantQos dp_qos =
+        DDS_DomainParticipantQos_INITIALIZER;
+    DDS_Boolean success = DDS_BOOLEAN_FALSE;
+    RT_Registry_T *registry = NULL;
+#if(${use_udp})
+    struct UDP_InterfaceFactoryProperty *udp_property = NULL;
+#end
+#if( ${constructMap.isMetpType} || ${use_shared_memory})
+#if(!$use_zcv2)
+    struct NETIO_SHMEMInterfaceFactoryProperty shmem_property =
+        NETIO_SHMEMINTERFACE_FACTORY_PROPERTY_DEFAULT;
+#end
+#end
+#if($use_dpde)
+    struct DPDE_DiscoveryPluginProperty discovery_plugin_properties =
+        DPDE_DiscoveryPluginProperty_INITIALIZER;
+#else
+    struct DPSE_DiscoveryPluginProperty discovery_plugin_properties =
+        DPSE_DiscoveryPluginProperty_INITIALIZER;
+#end
+#if ($use_zcv2)
+    struct ZCOPY_NotifInterfaceFactoryProperty notif_prop =
+                ZCOPY_NotifInterfaceFactoryProperty_INITIALIZER;
+    struct ZCOPY_NotifMechanismProperty notif_mech_prop =
+                ZCOPY_NotifMechanismProperty_INITIALIZER;
+#end
+    struct Application *application = NULL;
+#if (${use_secure})
+    struct Application def_application = Application_INITIALIZER;
+#end
+#if($use_dpde)
+    (void)local_participant_name;
+    (void)remote_participant_name;
+#end
+#if ($use_static_udp)
+    (void)udp_intf;
+#end
+#if ($use_psk)
+#varPsk()
+#end
+
+    /* Uncomment to increase verbosity level:
+       OSAPI_Log_set_verbosity(OSAPI_LOG_VERBOSITY_WARNING);
+     */
+    application = (struct Application *)malloc(sizeof(struct Application));
+
+    if (application == NULL)
+    {
+        printf("failed to allocate application\n");
+        goto done;
+    }
+
+    application->sleep_time = sleep_time;
+    application->count = count;
+
+    factory = DDS_DomainParticipantFactory_get_instance();
+
+    registry = DDS_DomainParticipantFactory_get_registry(factory);
+
+    if (!RT_Registry_register(
+             registry,
+             DDSHST_WRITER_DEFAULT_HISTORY_NAME,
+             WHSM_HistoryFactory_get_interface(),
+             NULL,
+             NULL))
+    {
+        printf("failed to register wh\n");
+        goto done;
+    }
+
+    if (!RT_Registry_register(
+             registry,
+             DDSHST_READER_DEFAULT_HISTORY_NAME,
+             RHSM_HistoryFactory_get_interface(),
+             NULL,
+             NULL))
+    {
+        printf("failed to register rh\n");
+        goto done;
+    }
+
+    /* If the UDP transport has already been registered, unregister it to
+     * set new properties.
+     */
+    if (RT_Registry_unregister(registry, NETIO_DEFAULT_UDP_NAME, NULL, NULL))
+    {
+        printf("Unregistered existing UDP transport.\n");
+    }
+#if(${use_udp})
+    udp_property = (struct UDP_InterfaceFactoryProperty *)
+        malloc(sizeof(struct UDP_InterfaceFactoryProperty));
+    if (udp_property == NULL)
+    {
+        printf("failed to allocate udp properties\n");
+        goto done;
+    }
+    *udp_property = UDP_INTERFACE_FACTORY_PROPERTY_DEFAULT;
+
+#if (!$use_static_udp)
+    /* For additional allowed interface(s), increase maximum and length, and
+       set interface below:
+    */
+    if (!DDS_StringSeq_set_maximum(&udp_property->allow_interface,2))
+    {
+        printf("failed to set allow_interface maximum\n");
+        goto done;
+    }
+    if (!DDS_StringSeq_set_length(&udp_property->allow_interface,2))
+    {
+        printf("failed to set allow_interface length\n");
+        goto done;
+    }
+
+    /* loopback interface */
+${envMap.POUND_CHAR}if defined(RTI_DARWIN) || defined(RTI_VXWORKS) || defined(RTI_QNX)
+    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) =
+         DDS_String_dup("lo0");
+${envMap.POUND_CHAR}elif defined (RTI_LINUX)
+    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) =
+        DDS_String_dup("lo");
+${envMap.POUND_CHAR}elif defined(RTI_WIN32)
+    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) =
+        DDS_String_dup("Loopback Pseudo-Interface 1");
+${envMap.POUND_CHAR}else
+    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) =
+        DDS_String_dup("lo");
+${envMap.POUND_CHAR}endif
+
+    if (udp_intf != NULL)
+    { /* use interface supplied on command line */
+        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) =
+            DDS_String_dup(udp_intf);
+    }
+    else                /* use hardcoded interface */
+    {
+${envMap.POUND_CHAR}if defined(RTI_DARWIN)
+        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) =
+            DDS_String_dup("en1");
+${envMap.POUND_CHAR}elif defined (RTI_LINUX)
+        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) =
+            DDS_String_dup("eth0");
+${envMap.POUND_CHAR}elif defined (RTI_VXWORKS)
+        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) =
+            DDS_String_dup("geisc0");
+${envMap.POUND_CHAR}elif defined(RTI_WIN32)
+        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) =
+            DDS_String_dup("Local Area Connection");
+${envMap.POUND_CHAR}else
+        *DDS_StringSeq_get_reference(&udp_property->allow_interface,1) =
+            DDS_String_dup("ce0");
+${envMap.POUND_CHAR}endif
+    }
+#else
+    /* In this example we manually configure what interfaces are available.
+     * First we disable reading out the interface list. Note that on some
+     * platforms reading out the interface list has been compiled out, so
+     * this property has no effect.
+     */
+#if (!$use_cert_api_only)
+    udp_property->disable_auto_interface_config = RTI_TRUE;
+#end
+    /* Allow and deny lists are still valid. If none are specified then
+     * all interfaces are valid.
+     */
+    if (!DDS_StringSeq_set_maximum(&udp_property->allow_interface,1))
+    {
+        printf("failed to set allow_interface maximum\n");
+        goto done;
+    }
+    if (!DDS_StringSeq_set_length(&udp_property->allow_interface,1))
+    {
+        printf("failed to set allow_interface length\n");
+        goto done;
+    }
+
+    /* The name of the interface can be the anything, upto
+     * UDP_INTERFACE_MAX_IFNAME characters including the '\0' character
+     */
+    *DDS_StringSeq_get_reference(&udp_property->allow_interface,0) =
+        DDS_String_dup("loopback");
+
+    /* This function takes the following arguments:
+     * Param 1 is the iftable in the UDP property
+     * Param 2 is the IP address of the interface in host order
+     * Param 3 is the Netmask of the interface
+     * Param 4 is the name of the interface
+     * Param 5 are flags. The following flags are supported (use OR for multiple):
+     *      UDP_INTERFACE_INTERFACE_UP_FLAG - Interface is up
+     *      UDP_INTERFACE_INTERFACE_MULTICAST_FLAG - Interface supports multicast
+     */
+    if (!UDP_InterfaceTable_add_entry(
+             &udp_property->if_table,
+             0x7f000001,
+             0xff000000,
+             "loopback",
+#if($use_cert_api_only)
+             UDP_INTERFACE_INTERFACE_UP_FLAG))
+#else
+             UDP_INTERFACE_INTERFACE_UP_FLAG |
+             UDP_INTERFACE_INTERFACE_MULTICAST_FLAG))
+#end
+    {
+        printf("failed to add interface\n");
+        goto done;
+    }
+#end
+
+    if (!RT_Registry_register(
+             registry,
+             NETIO_DEFAULT_UDP_NAME,
+             UDP_InterfaceFactory_get_interface(),
+             (struct RT_ComponentFactoryProperty*)udp_property,
+             NULL))
+    {
+       printf("failed to register udp\n");
+       goto done;
+    }
+
+#end ##  #if(!${use_shared_memory})
+#if (!${use_autoenable_entities})
+    DDS_DomainParticipantFactory_get_qos(factory, &dpf_qos);
+    dpf_qos.entity_factory.autoenable_created_entities = DDS_BOOLEAN_FALSE;
+    DDS_DomainParticipantFactory_set_qos(factory, &dpf_qos);
+
+#end ## use_autoenable_entities
+
+#if ($use_zcv2)
+    if (!NDDS_Transport_ZeroCopy_initialize(registry, NULL, NULL))
+    {
+        printf("failed to initialize Zerocopy \n");
+        goto done;
+    }
+
+    /* The following QoS can be used to configure Zero Copy v2. */
+    /* The Notification interface address: */
+    notif_mech_prop.intf_addr = 0;
+
+    /* User property that is handed to the downstream transport. */
+    notif_prop.user_property = &notif_mech_prop;
+
+    /* The maximum number of samples that each notification interface
+     * can process for the DataReader. */
+    notif_prop.max_samples_per_notif = 1;
+
+    if (!ZCOPY_NotifMechanism_register(registry, NETIO_DEFAULT_NOTIF_NAME, &notif_prop))
+    {
+        printf("failed to register notif\n");
+        goto done;
+    }
+
+#end
+
+#if ($use_content_filter)
+    /* Enable the content filtering feature */
+    if (DDS_FilterPluginFactory_register() != DDS_RETCODE_OK)
+    {
+        printf("failed to register filter plugin factory\n");
+        goto done;
+    }
+
+#end
+
+#if(!${use_shared_memory})
+    if (peer == NULL)
+    {
+        peer = "_udp://127.0.0.1"; /* default to loopback */
+    }
+
+#end
+#if($use_dpde)
+#if($use_secure)
+    /* In order to speed up mutual detection between participants and trigger
+     * the authentication handshake, we reduce the liveliness assertion period
+     * in the discovery plugin properties */
+    discovery_plugin_properties.participant_liveliness_assert_period.sec = 5;
+
+#end
+    if (!RT_Registry_register(
+             registry,
+             "dpde",
+             DPDE_DiscoveryFactory_get_interface(),
+             &discovery_plugin_properties._parent,
+             NULL))
+    {
+        printf("failed to register dpde\n");
+        goto done;
+    }
+#else
+#if ($use_secure)
+    /* In order to speed up mutual detection between participants and trigger
+     * the authentication handshake, we reduce the liveliness assertion period
+     * in the discovery plugin properties */
+    dpse_properties.participant_liveliness_assert_period.sec = 5;
+
+#end
+    if (!RT_Registry_register(
+             registry,
+             "dpse",
+             DPSE_DiscoveryFactory_get_interface(),
+             &discovery_plugin_properties._parent,
+             NULL))
+    {
+        printf("failed to register dpse\n");
+        goto done;
+    }
+#end
+
+    if (!RT_ComponentFactoryId_set_name(&dp_qos.discovery.discovery.name,"$discovery_plugin_name"))
+    {
+        printf("failed to set discovery plugin name\n");
+        goto done;
+    }
+
+#if( ${constructMap.isMetpType} || ${use_shared_memory})
+#if(!$use_zcv2)
+    if (!RT_Registry_register(
+             registry,
+             NETIO_DEFAULT_SHMEM_NAME,
+             NETIO_SHMEMInterfaceFactory_get_interface(),
+             (struct RT_ComponentFactoryProperty*) &shmem_property,
+             NULL))
+    {
+        printf("failed to register shmem\n");
+        goto done;
+    }
+#end
+#if(${use_shared_memory})
+    if (!DDS_StringSeq_set_maximum(&dp_qos.transports.enabled_transports, 1))
+    {
+        printf("failed to set transports.enabled_transports maximum\n");
+        goto done;
+    }
+    if (!DDS_StringSeq_set_length(&dp_qos.transports.enabled_transports, 1))
+    {
+        printf("failed to set transports.enabled_transports length\n");
+        goto done;
+    }
+    *DDS_StringSeq_get_reference(&dp_qos.transports.enabled_transports,0) = DDS_String_dup(NETIO_DEFAULT_SHMEM_NAME);
+
+    DDS_StringSeq_set_maximum(&dp_qos.discovery.enabled_transports,1);
+    DDS_StringSeq_set_length(&dp_qos.discovery.enabled_transports,1);
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.enabled_transports,0) = DDS_String_dup("_shmem://");
+
+    DDS_StringSeq_set_maximum(&dp_qos.user_traffic.enabled_transports,1);
+    DDS_StringSeq_set_length(&dp_qos.user_traffic.enabled_transports,1);
+    *DDS_StringSeq_get_reference(&dp_qos.user_traffic.enabled_transports,0) = DDS_String_dup("_shmem://");
+
+    DDS_StringSeq_set_maximum(&dp_qos.discovery.initial_peers,1);
+    DDS_StringSeq_set_length(&dp_qos.discovery.initial_peers,1);
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.initial_peers,0) = DDS_String_dup("_shmem://");
+#elseif(${use_zcv2})
+    if (!DDS_StringSeq_set_maximum(&dp_qos.transports.enabled_transports, 2))
+    {
+        printf("failed to set transports.enabled_transports maximum \n");
+        goto done;
+    }
+    if (!DDS_StringSeq_set_length(&dp_qos.transports.enabled_transports, 2))
+    {
+        printf("failed to set transports.enabled_transports length \n");
+        goto done;
+    }
+
+    /* Enabled UDP and notification: */
+    *DDS_StringSeq_get_reference(&dp_qos.transports.enabled_transports,0) = DDS_String_dup("notif");
+    *DDS_StringSeq_get_reference(&dp_qos.transports.enabled_transports,1) = DDS_String_dup(NETIO_DEFAULT_UDP_NAME);
+
+    /* Only enabled discovery for UDP: */
+    DDS_StringSeq_set_maximum(&dp_qos.discovery.enabled_transports,1);
+    DDS_StringSeq_set_length(&dp_qos.discovery.enabled_transports,1);
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.enabled_transports,0) = DDS_String_dup("_udp://");
+
+    /* User traffic is only on notification: */
+    DDS_StringSeq_set_maximum(&dp_qos.user_traffic.enabled_transports,1);
+    DDS_StringSeq_set_length(&dp_qos.user_traffic.enabled_transports,1);
+    *DDS_StringSeq_get_reference(&dp_qos.user_traffic.enabled_transports,0) = DDS_String_dup("notif://");
+
+    /* Default Peer: */
+    DDS_StringSeq_set_maximum(&dp_qos.discovery.initial_peers,1);
+    DDS_StringSeq_set_length(&dp_qos.discovery.initial_peers,1);
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.initial_peers,0) = DDS_String_dup(peer);
+#else
+    if (!DDS_StringSeq_set_maximum(&dp_qos.transports.enabled_transports, 2))
+    {
+        printf("failed to set transports.enabled_transports maximum\n");
+        goto done;
+    }
+    if (!DDS_StringSeq_set_length(&dp_qos.transports.enabled_transports, 2))
+    {
+        printf("failed to set transports.enabled_transports length\n");
+        goto done;
+    }
+    *DDS_StringSeq_get_reference(&dp_qos.transports.enabled_transports,0) = DDS_String_dup(NETIO_DEFAULT_SHMEM_NAME);
+    *DDS_StringSeq_get_reference(&dp_qos.transports.enabled_transports,1) = DDS_String_dup(NETIO_DEFAULT_UDP_NAME);
+
+    DDS_StringSeq_set_maximum(&dp_qos.discovery.enabled_transports,2);
+    DDS_StringSeq_set_length(&dp_qos.discovery.enabled_transports,2);
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.enabled_transports,0) = DDS_String_dup("_shmem://");
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.enabled_transports,1) = DDS_String_dup("_udp://");
+
+    DDS_StringSeq_set_maximum(&dp_qos.user_traffic.enabled_transports,2);
+    DDS_StringSeq_set_length(&dp_qos.user_traffic.enabled_transports,2);
+    *DDS_StringSeq_get_reference(&dp_qos.user_traffic.enabled_transports,0) = DDS_String_dup("_shmem://");
+    *DDS_StringSeq_get_reference(&dp_qos.user_traffic.enabled_transports,1) = DDS_String_dup("_udp://");
+
+    DDS_StringSeq_set_maximum(&dp_qos.discovery.initial_peers,2);
+    DDS_StringSeq_set_length(&dp_qos.discovery.initial_peers,2);
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.initial_peers,0) = DDS_String_dup("_shmem://");
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.initial_peers,1) = DDS_String_dup(peer);
+#end
+#else
+
+    if (!DDS_StringSeq_set_maximum(&dp_qos.transports.enabled_transports,1))
+    {
+        printf("failed to set maximum for transports.enabled_transports\n");
+        goto done;
+    }
+
+    if (!DDS_StringSeq_set_length(&dp_qos.transports.enabled_transports,1))
+    {
+        printf("failed to set length for transports.enabled_transports\n");
+        goto done;
+    }
+    *DDS_StringSeq_get_reference(&dp_qos.transports.enabled_transports,0) = DDS_String_dup("_udp");
+
+    if (!DDS_StringSeq_set_maximum(&dp_qos.discovery.enabled_transports,3))
+    {
+        printf("failed to set maximum for discovery.enabled_transports\n");
+        goto done;
+    }
+
+    if (!DDS_StringSeq_set_length(&dp_qos.discovery.enabled_transports,3))
+    {
+        printf("failed to set length for discovery.enabled_transports\n");
+        goto done;
+    }
+
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.enabled_transports,0) =
+                                     DDS_String_dup("_udp://239.255.0.1");
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.enabled_transports,1) =
+                                     DDS_String_dup("_udp://");
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.enabled_transports,2) =
+                                     DDS_String_dup("_udp://127.0.0.1");
+
+    if (!DDS_StringSeq_set_maximum(&dp_qos.user_traffic.enabled_transports,2))
+    {
+        printf("failed to set maximum for user_traffic.enabled_transports\n");
+        goto done;
+    }
+
+    if (!DDS_StringSeq_set_length(&dp_qos.user_traffic.enabled_transports,2))
+    {
+        printf("failed to set length for user_traffic.enabled_transports\n");
+        goto done;
+    }
+
+    *DDS_StringSeq_get_reference(&dp_qos.user_traffic.enabled_transports,0) =
+                        DDS_String_dup("_udp://");
+    *DDS_StringSeq_get_reference(&dp_qos.user_traffic.enabled_transports,1) =
+                        DDS_String_dup("_udp://127.0.0.1");
+
+    if (!DDS_StringSeq_set_maximum(&dp_qos.discovery.initial_peers,1))
+    {
+        printf("failed to set initial peers maximum\n");
+        goto done;
+    }
+    if (!DDS_StringSeq_set_length(&dp_qos.discovery.initial_peers,1))
+    {
+        printf("failed to set initial peers length\n");
+        goto done;
+    }
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.initial_peers,0) =
+        DDS_String_dup(peer);
+#end
+
+    /* if there are more remote or local endpoints, you need to increase these limits */
+    dp_qos.resource_limits.max_destination_ports = 32;
+    dp_qos.resource_limits.max_receive_ports = 32;
+    dp_qos.resource_limits.local_topic_allocation = 1;
+    dp_qos.resource_limits.local_type_allocation = 1;
+    dp_qos.resource_limits.local_reader_allocation = 1;
+    dp_qos.resource_limits.local_writer_allocation = 1;
+    dp_qos.resource_limits.remote_participant_allocation = 8;
+    dp_qos.resource_limits.remote_reader_allocation = 8;
+    dp_qos.resource_limits.remote_writer_allocation = 8;
+#if ($use_psk)
+#setupPsk()
+#end
+#if($use_crc)
+    /* The following QoS can be used to configure checksum.
+     * compute_crc indicates to add the RTPS checksum submessage to every
+     * message. check_crc enables validation of received checksum submessages.
+     * computed_crc_kind is a bitmask indicating which checksum is used for
+     * sent messages. allowed_crc_mask is a mask of checksums that are enabled
+     * for validating incoming packets. require_crc requires discovered
+     * participants to send a checksum. Currently Connext DDS Pro does not
+     * support require_crc as an option so it is set to false so that the
+     * application interoperates with Pro.
+     */
+    dp_qos.protocol.compute_crc = DDS_BOOLEAN_TRUE;
+    dp_qos.protocol.check_crc = DDS_BOOLEAN_TRUE;
+    dp_qos.protocol.require_crc = DDS_BOOLEAN_FALSE;
+    dp_qos.protocol.computed_crc_kind =  DDS_CHECKSUM_BUILTIN128;
+    dp_qos.protocol.allowed_crc_mask = DDS_CHECKSUM_BUILTIN_ANY;
+#end
+
+#if(!$use_dpde)
+    /* Must set the name of the domain participant in QoS for discovery */
+    strncpy(dp_qos.participant_name.name,
+            local_participant_name,
+            sizeof(dp_qos.participant_name.name) - 1);
+    dp_qos.participant_name.name[sizeof(dp_qos.participant_name.name) - 1] = '\0';
+#end
+
+#configureContentFilterResourceLimits()
+
+#if (${use_secure})
+${envMap.POUND_CHAR}ifdef USE_SECURITY
+    /* Register security plugin factories and configure QoS to enable them */
+    if (!Application_configure_security(
+            application, registry, &dp_qos, sec_material))
+    {
+        printf("failed to configure security\n");
+        goto done;
+    }
+${envMap.POUND_CHAR}endif /* USE_SECURITY */
+#end
+    application->participant = DDS_DomainParticipantFactory_create_participant(
+                                   factory,
+                                   domain_id,
+                                   &dp_qos,
+                                   NULL,
+                                   DDS_STATUS_MASK_NONE);
+
+    if (application->participant == NULL)
+    {
+        printf("failed to create participant\n");
+        goto done;
+    }
+
+    strncpy(application->type_name,
+            ${constructMap.nativeFQName}TypeSupport_get_type_name(),
+            sizeof(application->type_name) - 1);
+    application->type_name[sizeof(application->type_name) - 1] = '\0';
+    retcode = ${constructMap.nativeFQName}TypeSupport_register_type(
+                  application->participant,
+                  application->type_name);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to register type: %s\n", application->type_name);
+        goto done;
+    }
+
+    snprintf(application->topic_name,
+             sizeof(application->topic_name),
+             "Example %s",
+             "${constructMap.nativeFQName}");
+
+    application->topic = DDS_DomainParticipant_create_topic(
+                             application->participant,
+                             application->topic_name,
+                             application->type_name,
+                             &DDS_TOPIC_QOS_DEFAULT,
+                             NULL,
+                             DDS_STATUS_MASK_NONE);
+    if (application->topic == NULL)
+    {
+        printf("topic == NULL\n");
+        goto done;
+    }
+
+#if(!$use_dpde)
+    retcode = DPSE_RemoteParticipant_assert(
+                  application->participant,
+                  remote_participant_name);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to assert remote participant\n");
+        goto done;
+    }
+#end
+
+    success = DDS_BOOLEAN_TRUE;
+
+  done:
+${envMap.POUND_CHAR}ifndef RTI_CERT
+    DDS_DomainParticipantQos_finalize(&dp_qos);
+${envMap.POUND_CHAR}endif
+
+    if (!success)
+    {
+#if (${use_udp})
+${envMap.POUND_CHAR}ifndef RTI_CERT
+        if (udp_property != NULL)
+        {
+            UDP_InterfaceFactoryProperty_finalize(udp_property);
+            free(udp_property);
+        }
+${envMap.POUND_CHAR}endif
+
+#end
+        if (application != NULL)
+        {
+${envMap.POUND_CHAR}ifndef RTI_CERT
+            free(application);
+${envMap.POUND_CHAR}endif
+            application = NULL;
+        }
+    }
+
+    return application;
+}
+#end  ## #macro(functionApplicationCreateDeclare)
+
+
+#macro(functionApplicationEnableC)
+#if (!${use_autoenable_entities})
+DDS_ReturnCode_t
+Application_enable(struct Application *application)
+{
+    DDS_Entity *entity;
+    DDS_ReturnCode_t retcode;
+
+    entity = DDS_DomainParticipant_as_entity(application->participant);
+
+    retcode = DDS_Entity_enable(entity);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to enable entity\n");
+    }
+
+    return retcode;
+}
+#end
+#end  ## #macro(functionApplicationEnableC)
+
+#macro(functionApplicationDeleteC)
+${envMap.POUND_CHAR}ifndef RTI_CERT
+void
+Application_delete(struct Application *application)
+{
+    DDS_ReturnCode_t retcode;
+    RT_Registry_T *registry = NULL;
+    DDS_DomainParticipantFactory *factory = NULL;
+#if (${use_udp})
+    struct UDP_InterfaceFactoryProperty *udp_property = NULL;
+#end
+#if ($use_psk)
+    struct DDS_PskServiceFactoryProperty psk_svc_property =
+    DDS_PskServiceFactoryProperty_INITIALIZER;
+#end
+    if (application == NULL)
+    {
+        return;
+    }
+
+    factory = DDS_DomainParticipantFactory_get_instance();
+
+    if (application->participant != NULL)
+    {
+        retcode = DDS_DomainParticipant_delete_contained_entities(
+                      application->participant);
+        if (retcode != DDS_RETCODE_OK)
+        {
+            printf("failed to delete contained entities (retcode=%d)\n",retcode);
+        }
+
+        retcode = DDS_DomainParticipantFactory_delete_participant(
+                      factory,
+                      application->participant);
+        if (retcode != DDS_RETCODE_OK)
+        {
+            printf("failed to delete participant: %d\n", retcode);
+            return;
+        }
+    }
+
+    registry = DDS_DomainParticipantFactory_get_registry(factory);
+
+#if (${use_secure})
+${envMap.POUND_CHAR}ifdef USE_SECURITY
+    if (!Application_finalize_security(application, registry))
+    {
+        printf("failed to finalize security\n");
+        return;
+    }
+${envMap.POUND_CHAR}endif
+
+#end
+#if(${constructMap.isMetpType} || ${use_shared_memory})
+#if(!$use_zcv2)
+    if (!RT_Registry_unregister(registry, NETIO_DEFAULT_SHMEM_NAME, NULL, NULL))
+    {
+        printf("failed to unregister shmem\n");
+        return;
+    }
+#end
+#end
+#if (${use_udp})
+    if (!RT_Registry_unregister(
+             registry,
+             NETIO_DEFAULT_UDP_NAME,
+             (struct RT_ComponentFactoryProperty**)&udp_property,
+             NULL))
+    {
+       printf("failed to unregister udp\n");
+       return;
+    }
+    if (udp_property != NULL)
+    {
+        UDP_InterfaceFactoryProperty_finalize(udp_property);
+        free(udp_property);
+        udp_property = NULL;
+    }
+
+#end
+
+#if ($use_zcv2)
+
+    if (!ZCOPY_NotifMechanism_unregister(registry,NETIO_DEFAULT_NOTIF_NAME))
+    {
+        printf("failed to unregister the Notification Interface \n");
+        return;
+    }
+
+    if (!NDDS_Transport_ZeroCopy_finalize(registry,NULL))
+    {
+        printf("failed to finalize the Notification Interface \n");
+        return;
+    }
+#end
+#if ($use_content_filter)
+
+    if (DDS_FilterPluginFactory_unregister() != DDS_RETCODE_OK)
+    {
+        printf("failed to unregister filter plugin factory\n");
+        return;
+    }
+#end
+
+    if (!RT_Registry_unregister(registry, "$discovery_plugin_name", NULL, NULL))
+    {
+        printf("failed to unregister $discovery_plugin_name\n");
+        return;
+    }
+    if (!RT_Registry_unregister(
+             registry,
+             DDSHST_READER_DEFAULT_HISTORY_NAME,
+             NULL,
+             NULL))
+    {
+        printf("failed to unregister rh\n");
+        return;
+    }
+
+#if (!$use_zcv2)
+    if (!RT_Registry_unregister(
+             registry,
+             DDSHST_WRITER_DEFAULT_HISTORY_NAME,
+             NULL,
+             NULL))
+    {
+        printf("failed to unregister wh\n");
+        return;
+    }
+#end
+#if ($use_psk)
+#finalizePsk()
+
+#end
+    free(application);
+
+    retcode = DDS_DomainParticipantFactory_finalize_instance();
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to finalize instance %d\n", retcode);
+        return;
+    }
+}
+
+${envMap.POUND_CHAR}endif /* !RTI_CERT */
+#end  ## #macro(functionApplicationDeleteC)
+
+
+##******************************************************************************
+## Common macros for the C Publisher and Subscriber Source files
+##******************************************************************************
+
+#macro(publisherSubscriberIncludesC)
+${envMap.POUND_CHAR}include "rti_me_c.h"
+
+${envMap.POUND_CHAR}include <stdio.h>
+${envMap.POUND_CHAR}include <stdlib.h>
+${envMap.POUND_CHAR}include <string.h>
+
+${envMap.POUND_CHAR}include "wh_sm/wh_sm_history.h"
+${envMap.POUND_CHAR}include "rh_sm/rh_sm_history.h"
+
+${envMap.POUND_CHAR}include "${envMap.idlFileName}.h"
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Support.h"
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Plugin.h"
+
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Application.h"
+
+#if (!$use_dpde)
+${envMap.POUND_CHAR}include "disc_dpse/disc_dpse_dpsediscovery.h"
+#end
+#if ($use_zcv2)
+${envMap.POUND_CHAR}include "netio_zcopy/netio_zcopy_default_notif_mech.h"
+#end
+#if ($use_content_filter)
+${envMap.POUND_CHAR}include "dds_filter/dds_filter.h"
+#end
+#end  ## #macro(publisherSubscriberIncludesC)
+
+
+##******************************************************************************
+## Common macros for the C and CPP Publisher and Subscriber Source files
+##******************************************************************************
+
+#macro(functionPublisherSubscriberSleep)
+#if($use_cert_api_only)
+/* OSAPI_Thread_sleep() is not included in Connext DDS Cert because it might not
+ * be thread safe. For this reason a call to OSAPI_Thread_sleep() cannot be done
+ * in this example. Instead we use the code below.
+ */
+${envMap.POUND_CHAR}if OSAPI_INCLUDE_POSIX
+{
+    struct timespec remain, next;
+    int rval;
+    time_t is;
+
+    is = (time_t)(application->sleep_time / 1000);
+
+    next.tv_sec = is;
+    next.tv_nsec = ((application->sleep_time - ((DDS_Long)is * 1000)) * 1000000);
+
+    do
+    {
+        rval = nanosleep(&next, &remain);
+        if ((rval == -1) && (errno == EINTR))
+        {
+            next = remain;
+        }
+    } while ((rval == -1) && (errno == EINTR));
+}
+${envMap.POUND_CHAR}elif RTI_VXWORKS
+    taskDelay(((sysClkRateGet() * application->sleep_time) + 500) / 1000);
+${envMap.POUND_CHAR}elif RTI_WIN32
+    Sleep((DWORD)application->sleep_time);
+${envMap.POUND_CHAR}else
+    ${envMap.POUND_CHAR}error "Implementation of sleep() needed"
+${envMap.POUND_CHAR}endif
+#else
+OSAPI_Thread_sleep((RTI_UINT32)application->sleep_time);
+#end
+#end  ##  #macro(functionPublisherSubscriberCallMainWArgs $is_publisher)
+
+
+#macro(functionPublisherSubscriberCallMainWArgs $is_publisher)
+#if ($use_mag)
+#if ($is_publisher)
+    return publisher_main_w_args(sleep_time, count);
+#else
+    return subscriber_main_w_args(sleep_time, count);
+#end
+#else   ##  #if ($use_mag)
+#if (!${use_udp})
+#if ($is_publisher)
+    return publisher_main_w_args(domain_id, sleep_time, count);
+#else
+    return subscriber_main_w_args(domain_id, sleep_time, count);
+#end
+#else   ##  #if ($use_udp)
+#if (${use_secure})
+#if ($is_publisher)
+    return publisher_main_w_args(domain_id, udp_intf, peer, sleep_time, count, &sec_material);
+#else
+    return subscriber_main_w_args(domain_id, udp_intf, peer, sleep_time, count, &sec_material);
+#end
+#else
+#if ($is_publisher)
+    return publisher_main_w_args(domain_id, udp_intf, peer, sleep_time, count);
+#else
+    return subscriber_main_w_args(domain_id, udp_intf, peer, sleep_time, count);
+#end
+#end
+#end
+#end
+#end  ##  #macro(functionPublisherSubscriberCallMainWArgs $is_publisher)
+
+
+#macro(functionPublisherSubscriberMain $is_publisher $is_c)
+${envMap.POUND_CHAR}if !(defined(RTI_VXWORKS) && !defined(__RTP__))
+int
+main(int argc, char **argv)
+{
+    ${dds2_ns}Long i = 0;
+#if (!$use_mag)
+    ${dds2_ns}Long domain_id = 0;
+#if (!${use_shared_memory})
+    char *peer = NULL;
+    char *udp_intf = NULL;
+#end
+#end
+    ${dds2_ns}Long sleep_time = 1000;
+    ${dds2_ns}Long count = 0;
+#if(${use_secure})
+#if ($is_c)
+    struct ApplicationSecMaterial sec_material = PEER_MATERIAL_DEFAULT;
+#else
+    ApplicationSecMaterial sec_material = PEER_MATERIAL_DEFAULT;
+#end
+#end
+
+    for (i = 1; i < argc; ++i)
+    {
+#if (!$use_mag)
+        if (!strcmp(argv[i], "-domain"))
+        {
+            ++i;
+            if (i == argc)
+            {
+                printf("-domain <domain_id>\n");
+                return -1;
+            }
+            domain_id = (DDS_Long)strtol(argv[i], NULL, 0);
+        }
+#if (${use_udp})
+        else if (!strcmp(argv[i], "-udp_intf"))
+        {
+            ++i;
+            if (i == argc)
+            {
+                printf("-udp_intf <interface>\n");
+                return -1;
+            }
+            udp_intf = argv[i];
+        }
+        else if (!strcmp(argv[i], "-peer"))
+        {
+            ++i;
+            if (i == argc)
+            {
+                printf("-peer <address>\n");
+                return -1;
+            }
+            peer = argv[i];
+        }
+#end
+        else if (!strcmp(argv[i], "-sleep"))
+#else
+        if (!strcmp(argv[i], "-sleep"))
+#end
+        {
+            ++i;
+            if (i == argc)
+            {
+                printf("-sleep_time <sleep_time>\n");
+                return -1;
+            }
+            sleep_time = (DDS_Long)strtol(argv[i], NULL, 0);
+        }
+        else if (!strcmp(argv[i], "-count"))
+        {
+            ++i;
+            if (i == argc)
+            {
+                printf("-count <count>\n");
+                return -1;
+            }
+            count = (DDS_Long)strtol(argv[i], NULL, 0);
+        }
+#if(${use_secure})
+        else if (!strcmp(argv[i], "-ca-id"))
+        {
+            ++i;
+            if (i == argc)
+            {
+                printf("-ca-id <ca.pem>\n");
+                return -1;
+            }
+            sec_material.ca_id_cert = argv[i];
+        }
+        else if (!strcmp(argv[i], "-ca-perm"))
+        {
+            ++i;
+            if (i == argc)
+            {
+                printf("-ca-perm <ca.pem>\n");
+                return -1;
+            }
+            sec_material.ca_perm_cert = argv[i];
+        }
+        else if (!strcmp(argv[i], "-key"))
+        {
+            ++i;
+            if (i == argc)
+            {
+                printf("-key <peer_key.pem>\n");
+                return -1;
+            }
+            sec_material.peer_key = argv[i];
+        }
+        else if (!strcmp(argv[i], "-cert"))
+        {
+            ++i;
+            if (i == argc)
+            {
+                printf("-cert <peer.pem>\n");
+                return -1;
+            }
+            sec_material.peer_cert = argv[i];
+        }
+        else if (!strcmp(argv[i], "-gov"))
+        {
+            ++i;
+            if (i == argc)
+            {
+                printf("-gov <governance.p7s>\n");
+                return -1;
+            }
+            sec_material.xml_gov = argv[i];
+        }
+        else if (!strcmp(argv[i], "-perm"))
+        {
+            ++i;
+            if (i == argc)
+            {
+                printf("-perm <permissions.p7s>\n");
+                return -1;
+            }
+            sec_material.xml_perm = argv[i];
+        }
+#end
+        else if (!strcmp(argv[i], "-h"))
+        {
+#if ($is_c)
+            Application_help(argv[0]);
+#else
+            Application::help(argv[0]);
+#end
+            return 0;
+        }
+        else
+        {
+            printf("unknown option: %s\n", argv[i]);
+            return -1;
+        }
+    }
+
+#functionPublisherSubscriberCallMainWArgs($is_publisher)
+}
+${envMap.POUND_CHAR}elif defined(RTI_VXWORKS)
+int
+#if ($is_publisher)
+publisher_main(void)
+#else
+subscriber_main(void)
+#end
+{
+#if (!$use_mag)
+    /* Explicitly configure args below */
+    ${dds2_ns}Long domain_id = 0;
+#if (!${use_shared_memory})
+    char *peer = "_udp://127.0.0.1";
+    char *udp_intf = NULL;
+#end
+#end
+    ${dds2_ns}Long sleep_time = 1000;
+    ${dds2_ns}Long count = 0;
+#if(${use_secure})
+#if ($is_c)
+    struct ApplicationSecMaterial sec_material = PEER_MATERIAL_DEFAULT;
+#else
+    ApplicationSecMaterial sec_material = PEER_MATERIAL_DEFAULT;
+#end
+#end
+
+#functionPublisherSubscriberCallMainWArgs($is_publisher)
+}
+${envMap.POUND_CHAR}endif
+#end  ## #macro(functionPublisherSubscriberMain)
+
+
+##******************************************************************************
+## Macros for the C Publisher Source file
+##******************************************************************************
+
+
+#macro(functionPublisherPublicationMatchedC)
+static void
+${constructMap.nativeFQName}Publisher_on_publication_matched(
+    void *listener_data,
+    DDS_DataWriter *writer,
+    const struct DDS_PublicationMatchedStatus *status)
+{
+    (void)listener_data;
+    (void)writer;
+
+    if (status->current_count_change > 0)
+    {
+        printf("Matched a subscriber\n");
+    }
+    else if (status->current_count_change < 0)
+    {
+        printf("Unmatched a subscriber\n");
+    }
+}
+#end  ## #macro(functionPublisherMainC)
+
+
+#macro(declareFunctionPublisherMainWArgsC)
+static int
+publisher_main_w_args(
+#if (!${use_mag})
+    DDS_Long domain_id,
+#end
+#if(${use_udp} && (!${use_mag}))
+    char *udp_intf,
+    char *peer,
+#end
+    DDS_Long sleep_time,
+#if (${use_secure})
+    DDS_Long count,
+    struct ApplicationSecMaterial *sec_material)
+#else
+    DDS_Long count)
+#end
+{
+    DDS_Publisher *publisher;
+    DDS_DataWriter *datawriter;
+    ${constructMap.nativeFQName}DataWriter *hw_datawriter;
+    struct DDS_DataWriterQos dw_qos = DDS_DataWriterQos_INITIALIZER;
+    DDS_ReturnCode_t retcode;
+    ${constructMap.nativeFQName} *sample = NULL;
+    struct Application *application = NULL;
+    DDS_Long i;
+    struct DDS_DataWriterListener dw_listener = DDS_DataWriterListener_INITIALIZER;
+    int ret_value = -1;
+#if (!$use_dpde)
+    struct DDS_SubscriptionBuiltinTopicData rem_subscription_data =
+        DDS_SubscriptionBuiltinTopicData_INITIALIZER;
+#end
+
+#end  ## #macro(declareFunctionPublisherMainWArgsC)
+
+
+#macro(publisherMainWArgsPreCreateDataWriterC)
+    ##
+    ## When the type is not annotated with @transfer_mode (SHMEM_REF)
+    ## proceed to create the sample using the type support
+    ##
+#if(!${constructMap.isMetpType})
+    sample = ${constructMap.nativeFQName}TypeSupport_create_data();
+    if (sample == NULL)
+    {
+        printf("failed ${constructMap.nativeFQName}TypeSupport_create_data\n");
+        return -1;
+    }
+#end
+
+    application = Application_create(
+                      "publisher",
+                      "subscriber",
+#if (!${use_mag})
+                      domain_id,
+#end
+#if (${use_udp} && (!${use_mag}))
+                      udp_intf,
+                      peer,
+#end
+                      sleep_time,
+#if (${use_secure})
+                      count,
+                      sec_material);
+#else
+                      count);
+#end
+
+    if (application == NULL)
+    {
+        printf("failed Application create\n");
+        goto done;
+    }
+
+    publisher = DDS_DomainParticipant_create_publisher(
+                    application->participant,
+                    &DDS_PUBLISHER_QOS_DEFAULT,
+                    NULL,
+                    DDS_STATUS_MASK_NONE);
+    if (publisher == NULL)
+    {
+        printf("publisher == NULL\n");
+        goto done;
+    }
+
+${envMap.POUND_CHAR}ifdef USE_RELIABLE_QOS
+    dw_qos.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;
+${envMap.POUND_CHAR}else
+    dw_qos.reliability.kind = DDS_BEST_EFFORT_RELIABILITY_QOS;
+${envMap.POUND_CHAR}endif
+    dw_qos.resource_limits.max_samples_per_instance = 32;
+    dw_qos.resource_limits.max_instances = 2;
+    dw_qos.resource_limits.max_samples = dw_qos.resource_limits.max_instances *
+                                dw_qos.resource_limits.max_samples_per_instance;
+    dw_qos.history.depth = 32;
+    dw_qos.protocol.rtps_reliable_writer.heartbeat_period.sec = 0;
+    dw_qos.protocol.rtps_reliable_writer.heartbeat_period.nanosec = 250000000;
+
+    dw_listener.on_publication_matched = ${constructMap.nativeFQName}Publisher_on_publication_matched;
+
+#if (!$use_dpde)
+    dw_qos.protocol.rtps_object_id = 100;
+#end
+
+#end  ## #macro(publisherMainWArgsPreCreateDataWriterC)
+
+
+#macro(publisherMainWArgsCreateDataWriterC)
+    datawriter = DDS_Publisher_create_datawriter(
+                     publisher,
+                     application->topic,
+                     &dw_qos,
+                     &dw_listener,
+                     DDS_PUBLICATION_MATCHED_STATUS);
+
+    if (datawriter == NULL)
+    {
+        printf("datawriter == NULL\n");
+        goto done;
+    }
+
+#end  ## #macro(publisherMainWArgsCreateDataWriterC)
+
+
+#macro(publisherMainWArgsAssertRemoteSubscriptionC)
+    rem_subscription_data.key.value[DDS_BUILTIN_TOPIC_KEY_OBJECT_ID] = 200;
+    rem_subscription_data.topic_name = DDS_String_dup(application->topic_name);
+    rem_subscription_data.type_name = DDS_String_dup(application->type_name);
+
+${envMap.POUND_CHAR}ifdef USE_RELIABLE_QOS
+    rem_subscription_data.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;
+${envMap.POUND_CHAR}else
+    rem_subscription_data.reliability.kind  = DDS_BEST_EFFORT_RELIABILITY_QOS;
+${envMap.POUND_CHAR}endif
+
+    if (DDS_RETCODE_OK != DPSE_RemoteSubscription_assert(
+                              application->participant,
+                              "subscriber",
+                              &rem_subscription_data,
+                              ${constructMap.nativeFQNameInModule}I_get_key_kind()))
+    {
+        printf("failed to assert remote subscription\n");
+        goto done;
+    }
+
+#end  ## #macro(publisherMainWArgsAssertRemoteSubscriptionC)
+
+
+#macro(publisherMainWArgsEnableApplicationC)
+#if (!${use_autoenable_entities})
+    retcode = Application_enable(application);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to enable application\n");
+        goto done;
+    }
+
+#end
+    hw_datawriter = ${constructMap.nativeFQName}DataWriter_narrow(datawriter);
+
+${envMap.POUND_CHAR}ifdef RTI_CERT
+${envMap.POUND_CHAR}ifdef RTI_VXWORKS
+    /** End initialization, disable further dynamic memory allocation ***/
+    memAllocDisable();
+${envMap.POUND_CHAR}endif
+${envMap.POUND_CHAR}endif
+
+    for (i = 0; (application->count <= 0) || (i < application->count); ++i)
+    {
+#if(${constructMap.isMetpType})
+        retcode = ${constructMap.nativeFQName}DataWriter_get_loan(hw_datawriter, &sample);
+        if (retcode != DDS_RETCODE_OK)
+        {
+            printf("Failed to get loaned sample\n");
+            return -1;
+        }
+#end
+
+        /* TODO set sample attributes here */
+#if ($use_content_filter)
+
+        #setFilteredSample()
+#end
+
+        retcode = ${constructMap.nativeFQName}DataWriter_write(
+                      hw_datawriter,
+                      sample,
+                      &DDS_HANDLE_NIL);
+        if (retcode != DDS_RETCODE_OK)
+        {
+            printf("Failed to write sample\n");
+        }
+        else
+        {
+#if (!${use_content_filter})
+            printf("Wrote sample ${envMap.POUND_CHAR}%d\n",(i+1));
+#else
+            #printWroteFilteredSample()
+#end
+        }
+
+        #functionPublisherSubscriberSleep()
+    }
+
+    ret_value = 0;
+
+  done:
+
+#end  ## #macro(publisherMainWArgsEnableApplicationC)
+
+
+#macro(publisherMainWArgsDeleteApplicationC)
+#publisherMainWArgsDeleteApplicationOnlyC()
+${envMap.POUND_CHAR}ifndef RTI_CERT
+    retcode = DDS_DataWriterQos_finalize(&dw_qos);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("Cannot finalize DataWriterQos\n");
+        return -1;
+    }
+
+#if (!$use_dpde)
+    if (DDS_SubscriptionBuiltinTopicData_finalize(&rem_subscription_data) !=
+            DDS_BOOLEAN_TRUE)
+    {
+        printf("Cannot finalize DDS_SubscriptionBuiltinTopicData\n");
+        return -1;
+    }
+
+#end
+${envMap.POUND_CHAR}endif
+#end  ## #macro(publisherMainWArgsDeleteApplicationC)
+
+
+#macro(publisherMainWArgsDeleteApplicationOnlyC)
+${envMap.POUND_CHAR}ifndef RTI_CERT
+    if (application != NULL)
+    {
+        Application_delete(application);
+    }
+
+#if (!${constructMap.isMetpType})
+    if (sample != NULL)
+    {
+        ${constructMap.nativeFQName}TypeSupport_delete_data(sample);
+    }
+
+#end
+${envMap.POUND_CHAR}endif
+#end
+
+
+#macro(publisherMainWArgsReturnC)
+
+    return ret_value;
+}
+#end  ## #macro(publisherMainWArgsReturnC)
+
+
+##******************************************************************************
+## Macros for the C Subscriber Source file
+##******************************************************************************
+
+#macro(subscriberFilterDeclarationsC)
+#if (${use_listener})
+${envMap.POUND_CHAR}ifdef USE_SAMPLE_FILTER
+${envMap.POUND_CHAR}ifdef FILTER_ON_DESERIALIZE
+
+/* See Wire Protocol Specification on http://www.omg.org/spec/DDSI-RTPS/2.2/
+ * for more details about CDR encapsulation.
+ */
+
+/*ci \brief Unsigned Long type size */
+${envMap.POUND_CHAR}define UNSIGNED_LONG_SIZE  4
+
+/*i
+ * \brief Example helper function to deserialize an unsigned long
+ *
+ * \param[in]  src_buffer      Pointer to CDR stream buffer
+ * \param[in]  need_byte_swap  Indicates whether it is needed to swap bytes
+ * \param[out] instance        Deserialized unsigned long
+ */
+/*
+ * static void
+ * ${constructMap.nativeFQName}Subscriber_deserialize_unsigned_long(
+ *     char **src_buffer,
+ *     RTI_BOOL need_byte_swap,
+ *     DDS_UnsignedLong *instance)
+ * {
+ *     RTI_INT32 i;
+ *     if (need_byte_swap)
+ *     {
+ *         for (i = 3; i >= 0; --i)
+ *         {
+ *             *((RTI_INT8*)instance + i) = *((*src_buffer)++);
+ *         }
+ *     }
+ *     else
+ *     {
+ *         *instance = *(RTI_UINT32*)(*src_buffer);
+ *         (*src_buffer) += CDR_LONG_SIZE;
+ *     }
+ * }
+ */
+
+/*i
+ * \brief Implementation of \ref DDS_DataReaderListener::on_before_sample_deserialize
+ */
+static DDS_Boolean
+${constructMap.nativeFQName}Subscriber_on_before_sample_deserialize(
+    void *listener_data,
+    DDS_DataReader *reader,
+    struct NDDS_Type_Plugin *plugin,
+    struct CDR_Stream_t *stream,
+    DDS_Boolean *dropped)
+{
+    (void)listener_data;
+    (void)reader;
+    (void)plugin;
+    (void)stream;
+
+    /* Filtering Example:
+     * If we have a IDL with an attribute id, we can filter samples
+     * based on the value of this attribute. The following code filters
+     * out samples with even id values.
+     *
+     * Note primitive types must be aligned to their length in the CDR stream.
+     * For example, a long must start on a 4-byte boundary. The boundaries are
+     * counted from the start of the CDR stream.
+     * As the sample 'id' is the first data in the stream it is already aligned.
+     * Position 0 (beginning of the stream) is aligned to 4 (size of long).
+     *
+     * NOTE: If you want to use a different field for filtering (e.g. you type does
+     * not have a field called id as first field), you will need to reimplement this
+     * function and ${constructMap.nativeFQName}Subscriber_deserialize_unsigned_long
+     * to match your type.
+     *
+     * DDS_Long id = 0;
+     * RTI_BOOL need_byte_swap = DDS_BOOLEAN_FALSE;
+     * char *src_buffer = NULL;
+     *
+     * need_byte_swap = CDR_Stream_is_byte_swapped(stream);
+     * src_buffer = CDR_Stream_get_current_position_ptr(stream);
+     *
+     * if (!CDR_Stream_check_size(stream, UNSIGNED_LONG_SIZE))
+     * {
+     *     printf("Failed to deserialize id. The stream is too short, missing data\n");
+     *     goto done;
+     * }
+     *
+     * ${constructMap.nativeFQName}Subscriber_deserialize_unsigned_long(
+     *     &src_buffer,
+     *     need_byte_swap,
+     *     (DDS_UnsignedLong*)&id);
+     *
+     * *dropped = (id % 2 == 0) ? DDS_BOOLEAN_TRUE : DDS_BOOLEAN_FALSE;
+     */
+
+    /* TODO implement filter logic here */
+    *dropped = DDS_BOOLEAN_FALSE;
+
+    return DDS_BOOLEAN_TRUE;
+}
+
+${envMap.POUND_CHAR}else
+
+/*i
+ * \brief Helper function to filter an ${constructMap.nativeFQName} sample
+ *
+ * \param[in]  sample       A ${constructMap.nativeFQName} data sample to filter
+ * \param[out] drop_sample  Out parameter determining whether the sample
+ *                          should be filtered out or not.
+ */
+static void
+${constructMap.nativeFQName}Subscriber_filter_sample(
+    ${constructMap.nativeFQName} *sample,
+    DDS_Boolean *drop_sample)
+{
+    (void)sample;
+
+    /* Filtering Example:
+     * If we have a IDL with an attribute id, we can filter samples
+     * based on the value of this attribute. The following code
+     * filters out samples with even id values.
+     *
+     * *drop_sample = (sample->id % 2 == 0) ? DDS_BOOLEAN_TRUE : DDS_BOOLEAN_FALSE;
+     */
+
+    /* TODO implement filter logic here */
+    *drop_sample = DDS_BOOLEAN_FALSE;
+}
+
+/*i
+ * \brief Implementation of \ref DDS_DataReaderListener::on_before_sample_commit
+ */
+static DDS_Boolean
+${constructMap.nativeFQName}Subscriber_on_before_sample_commit(
+    void *listener_data,
+    DDS_DataReader *reader,
+    const void *const sample,
+    const struct DDS_SampleInfo *const sample_info,
+    DDS_Boolean *dropped)
+{
+    ${constructMap.nativeFQName} *hw_sample = (${constructMap.nativeFQName} *)sample;
+
+    (void)listener_data;
+    (void)reader;
+    (void)sample_info;
+
+    ${constructMap.nativeFQName}Subscriber_filter_sample(hw_sample, dropped);
+
+    if (*dropped)
+    {
+        printf("\nSample filtered, before commit...\n");
+    }
+
+    return DDS_BOOLEAN_TRUE;
+}
+${envMap.POUND_CHAR}endif /* FILTER_ON_DESERIALIZE */
+${envMap.POUND_CHAR}endif /* USE_SAMPLE_FILTER */
+#end
+#end  ## #macro(subscriberFilterDeclarationsC)
+
+
+#macro(functionSubscriberSubscriptionMatchedC)
+static void
+${constructMap.nativeFQName}Subscriber_on_subscription_matched(
+    void *listener_data,
+    DDS_DataReader *reader,
+    const struct DDS_SubscriptionMatchedStatus *status)
+{
+    (void)listener_data;
+    (void)reader;
+
+    if (status->current_count_change > 0)
+    {
+        printf("Matched a publisher\n");
+    }
+    else if (status->current_count_change < 0)
+    {
+        printf("Unmatched a publisher\n");
+    }
+}
+#end  ## #macro(functionSubscriberSubscriptionMatchedC)
+
+
+#macro(functionSubscriberOnDataAvailableC)
+static void
+${constructMap.nativeFQName}Subscriber_on_data_available(
+    void *listener_data,
+    DDS_DataReader * reader)
+{
+    ${constructMap.nativeFQName}DataReader *hw_reader = ${constructMap.nativeFQName}DataReader_narrow(reader);
+    DDS_ReturnCode_t retcode;
+    struct DDS_SampleInfo *sample_info = NULL;
+    ${constructMap.nativeFQName} *sample = NULL;
+
+    struct DDS_SampleInfoSeq info_seq =
+        DDS_SEQUENCE_INITIALIZER;
+    struct ${constructMap.nativeFQName}Seq sample_seq =
+        DDS_SEQUENCE_INITIALIZER;
+
+    DDS_Long i;
+    DDS_Long *total_samples = (DDS_Long*) listener_data;
+
+    retcode = ${constructMap.nativeFQName}DataReader_take(
+                  hw_reader,
+                  &sample_seq,
+                  &info_seq,
+                  DDS_LENGTH_UNLIMITED,
+                  DDS_ANY_SAMPLE_STATE,
+                  DDS_ANY_VIEW_STATE,
+                  DDS_ANY_INSTANCE_STATE);
+
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to take data, retcode(%d)\n", retcode);
+        goto done;
+    }
+
+    /* Print each valid sample taken */
+    for (i = 0; i < ${constructMap.nativeFQName}Seq_get_length(&sample_seq); ++i)
+    {
+        sample_info = DDS_SampleInfoSeq_get_reference(&info_seq, i);
+
+        if (sample_info->valid_data)
+        {
+            #if(${constructMap.isMetpType})
+            DDS_Boolean is_data_consistent = DDS_BOOLEAN_FALSE;
+
+            sample = ${constructMap.nativeFQName}Seq_get_reference(&sample_seq, i);
+
+            retcode = ${constructMap.nativeFQName}DataReader_is_data_consistent(
+                hw_reader,
+                &is_data_consistent,
+                sample,
+                sample_info);
+
+            if (retcode == DDS_RETCODE_OK)
+            {
+                if (is_data_consistent)
+                {
+                    printf("Sample is consistent\n");
+                    printf("Processing is valid\n");
+                    *total_samples += 1;
+                }
+                else
+                {
+                    printf("Sample is NOT consistent\n");
+                }
+            }
+            #else
+            sample = ${constructMap.nativeFQName}Seq_get_reference(&sample_seq, i);
+
+#if (!${use_content_filter})
+            printf("Valid sample received\n");
+#else
+            #printReceivedFilteredSample()
+#end
+
+            *total_samples += 1;
+
+            /* TODO read and process sample attributes here */
+            (void)sample;
+
+            #end
+        }
+        else
+        {
+            printf("\nSample received\n\tINVALID DATA\n");
+        }
+    }
+
+    ${constructMap.nativeFQName}DataReader_return_loan(hw_reader, &sample_seq, &info_seq);
+
+done:
+${envMap.POUND_CHAR}ifndef RTI_CERT
+    ${constructMap.nativeFQName}Seq_finalize(&sample_seq);
+    DDS_SampleInfoSeq_finalize(&info_seq);
+${envMap.POUND_CHAR}else
+    return;
+${envMap.POUND_CHAR}endif
+}
+#end  ## #macro(functionSubscriberOnDataAvailableC)
+
+
+#macro(declareFunctionSubscriberMainWArgsC)
+static int
+subscriber_main_w_args(
+#if (!${use_mag})
+    DDS_Long domain_id,
+#end
+#if (${use_udp} && (!${use_mag}))
+    char *udp_intf,
+    char *peer,
+#end
+    DDS_Long sleep_time,
+#if (${use_secure})
+    DDS_Long count,
+    struct ApplicationSecMaterial *sec_material)
+#else
+    DDS_Long count)
+#end
+{
+    DDS_Subscriber *subscriber;
+    DDS_DataReader *datareader;
+    struct DDS_DataReaderQos dr_qos = DDS_DataReaderQos_INITIALIZER;
+    DDS_ReturnCode_t retcode;
+    struct Application *application;
+
+#if (!$use_dpde)
+    struct DDS_PublicationBuiltinTopicData rem_publication_data =
+        DDS_PublicationBuiltinTopicData_INITIALIZER;
+
+#end
+#if ($use_listener)
+    struct DDS_DataReaderListener dr_listener =
+        DDS_DataReaderListener_INITIALIZER;
+
+#else
+    /* Waitset variables */
+    DDS_WaitSet *waitset = NULL;
+    DDS_StatusCondition *dr_condition = NULL;
+    struct DDS_ConditionSeq active_conditions =
+            DDS_SEQUENCE_INITIALIZER;
+    DDS_Boolean finalize_active_conditions = DDS_BOOLEAN_FALSE;
+
+#end
+    int ret_value = -1;
+    DDS_Long total_samples = 0;
+    DDS_Long i;
+
+#end  ## #macro(declareFunctionSubscriberMainWArgsC)
+
+
+#macro(subscriberMainWArgsPreCreateDataReaderC)
+    application = Application_create(
+                      "subscriber",
+                      "publisher",
+#if (!${use_mag})
+                      domain_id,
+#end
+#if (${use_udp} && (!${use_mag}))
+                      udp_intf,
+                      peer,
+#end
+                      sleep_time,
+#if (${use_secure})
+                      count,
+                      sec_material);
+#else
+    count);
+#end
+
+    if (application == NULL)
+    {
+        printf("application cannot be created\n");
+        goto done;
+    }
+
+    subscriber = DDS_DomainParticipant_create_subscriber(
+                     application->participant,
+                     &DDS_SUBSCRIBER_QOS_DEFAULT,
+                     NULL,
+                     DDS_STATUS_MASK_NONE);
+    if (subscriber == NULL)
+    {
+        printf("subscriber == NULL\n");
+        goto done;
+    }
+
+#if (!$use_content_filter)
+    /* Publisher sends samples with id = 0 or id = 1, so 2 instances maximum.
+     * But in case filtering is done, all samples with 'id = 0' are
+     * filtered so only one instance is needed.
+     */
+${envMap.POUND_CHAR}ifdef USE_SAMPLE_FILTER
+    dr_qos.resource_limits.max_instances = 1;
+${envMap.POUND_CHAR}else
+    dr_qos.resource_limits.max_instances = 2;
+${envMap.POUND_CHAR}endif
+
+#else
+    dr_qos.resource_limits.max_instances = 1;
+#end
+    dr_qos.resource_limits.max_samples_per_instance = 32;
+    dr_qos.resource_limits.max_samples = dr_qos.resource_limits.max_instances *
+                                dr_qos.resource_limits.max_samples_per_instance;
+    /* if there are more remote writers, you need to increase these limits */
+    dr_qos.reader_resource_limits.max_remote_writers = 10;
+    dr_qos.reader_resource_limits.max_remote_writers_per_instance = 10;
+    dr_qos.history.depth = 32;
+
+    /* Reliability QoS */
+${envMap.POUND_CHAR}ifdef USE_RELIABLE_QOS
+    dr_qos.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;
+${envMap.POUND_CHAR}else
+    dr_qos.reliability.kind = DDS_BEST_EFFORT_RELIABILITY_QOS;
+${envMap.POUND_CHAR}endif
+
+#if ($use_listener)
+#if (!$use_content_filter)
+${envMap.POUND_CHAR}ifdef USE_SAMPLE_FILTER
+    /* choose one callback to enable */
+${envMap.POUND_CHAR}ifdef FILTER_ON_DESERIALIZE
+    dr_listener.on_before_sample_deserialize =
+        ${constructMap.nativeFQName}Subscriber_on_before_sample_deserialize;
+${envMap.POUND_CHAR}else
+    dr_listener.on_before_sample_commit =
+        ${constructMap.nativeFQName}Subscriber_on_before_sample_commit;
+${envMap.POUND_CHAR}endif  /* FILTER_ON_DESERIALIZE */
+${envMap.POUND_CHAR}endif  /* USE_SAMPLE_FILTER */
+
+#end
+    dr_listener.on_data_available = ${constructMap.nativeFQName}Subscriber_on_data_available;
+    dr_listener.on_subscription_matched =
+        ${constructMap.nativeFQName}Subscriber_on_subscription_matched;
+
+    dr_listener.as_listener.listener_data = &total_samples;
+
+#end
+#if (!$use_dpde)
+    dr_qos.protocol.rtps_object_id = 200;
+
+#end
+
+#if ($use_content_filter)
+#if ($use_custom_content_filter)
+#defineCustomContentFilter()
+#else
+#defineContentFilter()
+#end
+#end
+#end  ## #macro(subscriberMainWArgsPreCreateDataReaderC)
+
+
+#macro(subscriberMainWArgsCreateDataReaderC)
+#if ($use_listener)
+    datareader = DDS_Subscriber_create_datareader(
+                     subscriber,
+                     DDS_Topic_as_topicdescription(application->topic),
+                     &dr_qos,
+                     &dr_listener,
+                     DDS_DATA_AVAILABLE_STATUS | DDS_SUBSCRIPTION_MATCHED_STATUS);
+#else
+    datareader = DDS_Subscriber_create_datareader(
+                     subscriber,
+                     DDS_Topic_as_topicdescription(application->topic),
+                     &dr_qos,
+                     NULL,
+                     DDS_STATUS_MASK_NONE);
+#end
+
+    if (datareader == NULL)
+    {
+        printf("datareader == NULL\n");
+        goto done;
+    }
+
+#if (!$use_listener)
+    /* Initialize waitset related variables */
+    if (!DDS_ConditionSeq_initialize(&active_conditions))
+    {
+        printf("cannot initialize active_conditions\n");
+        goto done;
+    }
+    finalize_active_conditions = DDS_BOOLEAN_TRUE;
+    if (!DDS_ConditionSeq_set_maximum(&active_conditions, 1))
+    {
+        printf("cannot set maximum of active_conditions\n");
+        goto done;
+    }
+
+    waitset = DDS_WaitSet_new();
+    if (waitset == NULL )
+    {
+        printf("waitset == NULL\n");
+        goto done;
+    }
+
+    dr_condition = DDS_Entity_get_statuscondition(
+                        DDS_DataReader_as_entity(datareader));
+
+    retcode = DDS_StatusCondition_set_enabled_statuses(
+                  dr_condition,
+                  DDS_DATA_AVAILABLE_STATUS | DDS_SUBSCRIPTION_MATCHED_STATUS);
+
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("Cannot set status condition's enabled statuses\n");
+        goto done;
+    }
+
+    retcode = DDS_WaitSet_attach_condition(
+                waitset,
+                DDS_StatusCondition_as_condition(dr_condition));
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("Cannot attach DR condition to waitset\n");
+        goto done;
+    }
+
+#end
+#end  ## #macro(subscriberMainWArgsCreateWaitsetC)
+
+
+#macro(subscriberMainWArgsAssertRemotePublicationC)
+    rem_publication_data.key.value[DDS_BUILTIN_TOPIC_KEY_OBJECT_ID] = 100;
+    rem_publication_data.topic_name = DDS_String_dup(application->topic_name);
+    rem_publication_data.type_name = DDS_String_dup(application->type_name);
+
+${envMap.POUND_CHAR}ifdef USE_RELIABLE_QOS
+    rem_publication_data.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;
+${envMap.POUND_CHAR}else
+    rem_publication_data.reliability.kind  = DDS_BEST_EFFORT_RELIABILITY_QOS;
+${envMap.POUND_CHAR}endif
+
+    retcode = DPSE_RemotePublication_assert(
+       application->participant,
+       "publisher",
+       &rem_publication_data,
+       ${constructMap.nativeFQNameInModule}I_get_key_kind());
+
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to assert remote publication\n");
+        goto done;
+    }
+
+#end  ## #macro(subscriberMainWArgsAssertRemotePublicationC)
+
+
+#macro(subscriberMainWArgsApplicationEnableC)
+#if (!${use_autoenable_entities})
+    retcode = Application_enable(application);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to enable application\n");
+        goto done;
+    }
+
+#end
+#end  ## #macro(subscriberMainWArgsApplicationEnableC)
+
+
+#macro(subscriberMainWArgsListenerWaitForSamplesC)
+${envMap.POUND_CHAR}ifdef RTI_CERT
+${envMap.POUND_CHAR}ifdef RTI_VXWORKS
+    /** End initialization, disable further dynamic memory allocation ***/
+    memAllocDisable();
+${envMap.POUND_CHAR}endif
+${envMap.POUND_CHAR}endif
+
+    for (i = 0; (application->count <= 0) || (i < application->count); ++i)
+    {
+        printf("Subscriber sleeping for %d msec...\n", application->sleep_time);
+
+        #functionPublisherSubscriberSleep()
+    }
+
+    ret_value = 0;
+
+    done:
+
+#end  ## #macro(subscriberMainWArgsListenerWaitForSamplesC)
+
+
+#macro(subscriberMainWArgsWaitsetWaitForSamplesC)
+    for (i = 0; (application->count <= 0) || (i < application->count); ++i)
+    {
+        ${constructMap.nativeFQName}Subscriber_wait_for_data(
+            application,
+            datareader,
+            waitset,
+            &active_conditions,
+            &total_samples);
+
+        printf(
+            "Received %d out %d expected samples\n",
+            total_samples,
+            application->count);
+    }
+
+    ret_value = 0;
+
+    done:
+
+#end  ## #macro(subscriberMainWArgsListenerWaitForSamplesC)
+
+
+#macro(subscriberMainWArgsDeleteWaitsetC)
+    if (waitset != NULL)
+    {
+        retcode = DDS_WaitSet_detach_condition(
+                    waitset, DDS_StatusCondition_as_condition(dr_condition));
+        if (retcode != DDS_RETCODE_OK)
+        {
+            printf("Cannot detach condition from waitset\n");
+            return -1;
+        }
+        else
+        {
+            retcode = DDS_WaitSet_delete(waitset);
+            if (retcode != DDS_RETCODE_OK)
+            {
+                printf("Cannot delete waitset\n");
+                return -1;
+            }
+        }
+
+    }
+    if (finalize_active_conditions)
+    {
+        if (!DDS_ConditionSeq_finalize(&active_conditions))
+        {
+            printf("Cannot finalize active_conditions sequence\n");
+            return -1;
+        }
+    }
+
+#end  ## #macro(subscriberMainWArgsDeleteWaitsetC)
+
+
+#macro(subscriberMainWArgsDeleteApplicationC)
+#subscriberMainWArgsDeleteApplicationOnlyC()
+${envMap.POUND_CHAR}ifndef RTI_CERT
+    retcode = DDS_DataReaderQos_finalize(&dr_qos);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("Cannot finalize DataReaderQos\n");
+        return -1;
+    }
+
+#if (!$use_dpde)
+    if (DDS_PublicationBuiltinTopicData_finalize(&rem_publication_data) !=
+            DDS_BOOLEAN_TRUE)
+    {
+        printf("Cannot finalize DDS_PublicationBuiltinTopicData\n");
+        return -1;
+    }
+
+#end
+${envMap.POUND_CHAR}endif
+#end  ## #macro(subscriberMainWArgsDeleteApplicationC)
+
+
+#macro(subscriberMainWArgsReturnC)
+    if (ret_value == 0)
+    {
+        printf("Samples received %d\n", total_samples);
+        if (total_samples == 0)
+        {
+            return -1;
+        }
+    }
+
+    return ret_value;
+}
+#end  ## #macro(subscriberMainWArgsReturnC)
+
+
+#macro(subscriberMainWArgsDeleteApplicationOnlyC)
+${envMap.POUND_CHAR}ifndef RTI_CERT
+    if (application != NULL)
+    {
+        Application_delete(application);
+    }
+
+${envMap.POUND_CHAR}endif
+#end
+
+
+##******************************************************************************
+## Macros for the CPP Application Source file
+##******************************************************************************
+
+#macro(commonIncludesCPP)
+${envMap.POUND_CHAR}ifndef rti_me_cpp_hxx
+${envMap.POUND_CHAR}include "rti_me_cpp.hxx"
+${envMap.POUND_CHAR}endif
+
+${envMap.POUND_CHAR}include <stdio.h>
+${envMap.POUND_CHAR}include <stdlib.h>
+${envMap.POUND_CHAR}include <string.h>
+
+#if(!$use_mag)
+
+${envMap.POUND_CHAR}include "dds_cpp/dds_cpp_dpde.hxx"
+${envMap.POUND_CHAR}include "dds_cpp/dds_cpp_wh_sm.hxx"
+${envMap.POUND_CHAR}include "dds_cpp/dds_cpp_rh_sm.hxx"
+${envMap.POUND_CHAR}include "dds_cpp/dds_cpp_netio.hxx"
+#if(${constructMap.isMetpType} && !$use_zcv2)
+
+/* Need to enable shared memory transport. The shared memory transport
+ * is need to enable sending data using zero copies
+ */
+${envMap.POUND_CHAR}include "dds_cpp/dds_cpp_netio_shmem.hxx"
+#end
+#else
+${envMap.POUND_CHAR}include "app_gen/app_gen.h"
+${envMap.POUND_CHAR}include "app_gen/app_gen_plugin.h"
+${envMap.POUND_CHAR}include "dds_c/dds_c_profile.h"
+${envMap.POUND_CHAR}include "dds_c/dds_c_profile_plugin.h"
+#end
+
+#if ($use_secure)
+/* Include header file for Built-in DDS Security Plugins CPP API */
+${envMap.POUND_CHAR}include "sec_core/sec_core_cpp.h"
+
+#end
+${envMap.POUND_CHAR}include "${envMap.idlFileName}.h"
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Plugin.h"
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Support.h"
+
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Application.h"
+
+#if($use_mag)
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Appgen.h"
+
+#end
+#end  ## #macro(commonIncludesCPP)
+
+#macro(functionApplicationHelpCPP)
+void
+Application::help(char *appname)
+{
+    printf("%s [options]\n", appname);
+    printf("options:\n");
+    printf("-h                      - This text\n");
+#if (!$use_mag)
+    printf("-domain <id>            - DomainId (default: 0)\n");
+    printf("-udp_intf <intf>        - udp interface (no default)\n");
+    printf("-peer <address>         - peer address (no default)\n");
+#end
+    printf("-count <count>          - count (default -1)\n");
+    printf("-sleep <ms>             - sleep between sends (default 1s)\n");
+#if (${use_secure})
+    printf("-ca-id <ca.pem>         - %s (default: %s)\n",
+        "URL of Identity Certificate Authority's certificate",
+        PEER_MATERIAL_DEFAULT.ca_id_cert);
+    printf("-ca-perm <ca.pem>       - %s (default: %s)\n",
+        "URL of Permissions Certificate Authority's certificate",
+        PEER_MATERIAL_DEFAULT.ca_perm_cert);
+    printf("-key <peer_key.pem>     - %s (default: %s)\n",
+        "URL of DomainParticipants's private key",
+        PEER_MATERIAL_DEFAULT.peer_key);
+    printf("-cert <peer.pem>        - %s (default: %s)\n",
+        "URL of DomainParticipants's certificate",
+        PEER_MATERIAL_DEFAULT.peer_cert);
+    printf("-gov <governance.p7s>   - %s (default: %s)\n",
+        "URL of signed XML governance file",
+        PEER_MATERIAL_DEFAULT.xml_gov);
+    printf("-perm <permissions.p7s> - %s (default: %s)\n",
+        "URL of signed XML permissions file",
+        PEER_MATERIAL_DEFAULT.xml_perm);
+#end
+    printf("\n");
+}
+#end  ## #macro(functionApplicationHelpCPP)
+
+#macro(functionApplicationInitializeDeclareCPP)
+${dds2_ns}ReturnCode_t
+Application::initialize(
+    const char *local_participant_name,
+    const char *remote_participant_name,
+    ${dds2_ns}Long domain_id,
+    char *udp_intf,
+    char *peer,
+    ${dds2_ns}Long sleep_time_arg,
+#if (${use_secure})
+    ${dds2_ns}Long count_arg,
+    ApplicationSecMaterial *sec_material)
+#else
+    ${dds2_ns}Long count_arg)
+#end
+{
+    ${dds2_ns}ReturnCode_t retcode;
+#if (!${use_autoenable_entities})
+    ${dds2_ns}DomainParticipantFactoryQos dpf_qos;
+#end
+    ${dds2_ns}DomainParticipantQos dp_qos;
+#if($use_dpde)
+    ${dpde2_ns}DiscoveryPluginProperty dpde_properties;
+#else
+    ${dpse2_ns}DiscoveryPluginProperty dpse_properties;
+#end
+    ${dds2_ns}Boolean success = ${dds2_ns}BOOLEAN_FALSE;
+    ${rt_ns}Registry *registry = NULL;
+    ${udp2_ns}InterfaceFactoryProperty *udp_property = NULL;
+#if(${constructMap.isMetpType} && !$use_zcv2)
+    ${netioshmem_ns}InterfaceFactoryProperty shmem_property;
+#end
+#if($use_dpde)
+
+    (void)local_participant_name;
+    (void)remote_participant_name;
+#end
+
+    /* Uncomment to increase verbosity level:
+       OSAPI_Log_set_verbosity(OSAPI_LOG_VERBOSITY_WARNING);
+    */
+
+    this->sleep_time = sleep_time_arg;
+    this->count = count_arg;
+
+    registry = ${dpf_name}->get_registry();
+
+    if (!registry->register_component(
+             "wh",
+             ${wh_ns}HistoryFactory::get_interface(),
+             NULL,
+             NULL))
+    {
+        printf("failed to register wh\n");
+        goto done;
+    }
+
+    if (!registry->register_component(
+             "rh",
+             ${rh_ns}HistoryFactory::get_interface(),
+             NULL,
+             NULL))
+    {
+        printf("failed to register rh\n");
+        goto done;
+    }
+
+    /* If the UDP transport has already been registered, unregister it to
+     * set new properties.
+     */
+    if (registry->unregister(${netio_ns}DEFAULT_UDP_NAME, NULL, NULL))
+    {
+        printf("Unregistered existing UDP transport.\n");
+    }
+
+    udp_property = new ${udp2_ns}InterfaceFactoryProperty();
+    if (udp_property == NULL)
+    {
+        printf("failed to allocate udp properties\n");
+        goto done;
+    }
+
+    /* For additional allowed interface(s), increase maximum and length, and
+       set interface below:
+    */
+    if (!udp_property->allow_interface.maximum(2))
+    {
+        printf("failed to set allow_interface maximum\n");
+        goto done;
+    }
+    if (!udp_property->allow_interface.length(2))
+    {
+        printf("failed to set allow_interface length\n");
+        goto done;
+    }
+
+    /* loopback interface */
+${envMap.POUND_CHAR}if defined(RTI_DARWIN) || defined(RTI_VXWORKS) || defined(RTI_QNX)
+    udp_property->allow_interface[0] = ${dds2_ns}String_dup("lo0");
+${envMap.POUND_CHAR}elif defined (RTI_LINUX)
+    udp_property->allow_interface[0] = ${dds2_ns}String_dup("lo");
+${envMap.POUND_CHAR}elif defined(RTI_WIN32)
+    udp_property->allow_interface[0] =
+        DDS_String_dup("Loopback Pseudo-Interface 1");
+${envMap.POUND_CHAR}else
+    udp_property->allow_interface[0] = ${dds2_ns}String_dup("lo");
+${envMap.POUND_CHAR}endif
+
+    if (udp_intf != NULL)
+    { /* use interface supplied on command line */
+        udp_property->allow_interface[1] =
+            ${dds2_ns}String_dup(udp_intf);
+    }
+    else
+    {                /* use hardcoded interface */
+${envMap.POUND_CHAR}if defined(RTI_DARWIN)
+        udp_property->allow_interface[1] =
+            ${dds2_ns}String_dup("en1");
+${envMap.POUND_CHAR}elif defined (RTI_LINUX)
+        udp_property->allow_interface[1] =
+            ${dds2_ns}String_dup("eth0");
+${envMap.POUND_CHAR}elif defined (RTI_VXWORKS)
+        udp_property->allow_interface[1] =
+            ${dds2_ns}String_dup("motetsec0");
+${envMap.POUND_CHAR}elif defined(RTI_WIN32)
+        udp_property->allow_interface[1] =
+            ${dds2_ns}String_dup("Local Area Connection");
+${envMap.POUND_CHAR}else
+        udp_property->allow_interface[1] =
+            ${dds2_ns}String_dup("ce0");
+${envMap.POUND_CHAR}endif
+    }
+
+    if (!registry->register_component(
+             ${netio_ns}DEFAULT_UDP_NAME,
+             ${udp_ns}InterfaceFactory::get_interface(),
+             &udp_property->_parent._parent,
+             NULL))
+    {
+        printf("failed to register udp\n");
+        goto done;
+    }
+
+#if (!${use_autoenable_entities})
+    ${dpf_name}->get_qos(dpf_qos);
+    dpf_qos.entity_factory.autoenable_created_entities = ${dds2_ns}BOOLEAN_FALSE;
+    ${dpf_name}->set_qos(dpf_qos);
+
+#end
+    if (peer == NULL)
+    {
+        peer = (char *)"_udp://127.0.0.1"; /* default to loopback */
+    }
+
+#if($use_dpde)
+#if ($use_secure)
+    /* In order to speed up mutual detection between participants and trigger
+     * the authentication handshake, we reduce the liveliness assertion period
+     * in the discovery plugin properties */
+    dpde_properties.participant_liveliness_assert_period.sec = 5;
+
+#end
+    if (!registry->register_component(
+                              "dpde",
+                              ${dpde_ns}DiscoveryFactory::get_interface(),
+                              &dpde_properties._parent,
+                              NULL))
+    {
+        printf("failed to register dpde\n");
+        goto done;
+    }
+#else
+#if ($use_secure)
+    /* In order to speed up mutual detection between participants and trigger
+     * the authentication handshake, we reduce the liveliness assertion period
+     * in the discovery plugin properties */
+    dpde_properties.participant_liveliness_assert_period.sec = 5;
+
+#end
+    if (!registry->register_component(
+                              "dpse",
+                              ${dpse_ns}DiscoveryFactory::get_interface(),
+                              &dpse_properties._parent,
+                              NULL))
+    {
+        printf("failed to register dpse\n");
+        goto done;
+    }
+#end
+
+    if (!dp_qos.discovery.discovery.name.set_name("$discovery_plugin_name"))
+    {
+        printf("failed to set discovery plugin name\n");
+        goto done;
+    }
+
+#if(${constructMap.isMetpType} && !$use_zcv2)
+    if (!registry->register_component(
+            NETIO_DEFAULT_SHMEM_NAME,
+            ${shmem_ns}InterfaceFactory::get_interface(),
+            &shmem_property._parent._parent,
+            NULL))
+    {
+    	printf("failed to register shared memory interface factory\n");
+        goto done;
+    }
+
+    dp_qos.transports.enabled_transports.maximum(2);
+    dp_qos.transports.enabled_transports.length(2);
+    dp_qos.transports.enabled_transports[0] = ${dds2_ns}String_dup("_shmem");
+    dp_qos.transports.enabled_transports[1] = ${dds2_ns}String_dup("_udp");
+
+    dp_qos.discovery.enabled_transports.maximum(2);
+    dp_qos.discovery.enabled_transports.length(2);
+    dp_qos.discovery.enabled_transports[0] = ${dds2_ns}String_dup("_shmem://");
+    dp_qos.discovery.enabled_transports[1] = ${dds2_ns}String_dup("_udp://");
+
+    dp_qos.user_traffic.enabled_transports.maximum(2);
+    dp_qos.user_traffic.enabled_transports.length(2);
+    dp_qos.user_traffic.enabled_transports[0] = ${dds2_ns}String_dup("_shmem://");
+    dp_qos.user_traffic.enabled_transports[1] = ${dds2_ns}String_dup("_udp://");
+
+    dp_qos.discovery.initial_peers.maximum(2);
+    dp_qos.discovery.initial_peers.length(2);
+    dp_qos.discovery.initial_peers[0] = ${dds2_ns}String_dup("_shmem://");
+    dp_qos.discovery.initial_peers[1] = ${dds2_ns}String_dup(peer);
+#else
+    if (!dp_qos.transports.enabled_transports.maximum(1))
+    {
+        printf("failed to set maximum for transports.enabled_transports\n");
+        goto done;
+    }
+
+    if (!dp_qos.transports.enabled_transports.length(1))
+    {
+        printf("failed to set length for transports.enabled_transports\n");
+        goto done;
+    }
+    dp_qos.transports.enabled_transports[0] = ${dds2_ns}String_dup("_udp");
+
+    if (!dp_qos.discovery.enabled_transports.maximum(3))
+    {
+        printf("failed to set maximum for discovery.enabled_transports\n");
+        goto done;
+    }
+
+    if (!dp_qos.discovery.enabled_transports.length(3))
+    {
+        printf("failed to set length for discovery.enabled_transports\n");
+        goto done;
+    }
+
+    dp_qos.discovery.enabled_transports[0] =
+                                     ${dds2_ns}String_dup("_udp://239.255.0.1");
+
+    dp_qos.discovery.enabled_transports[1] =
+                                     ${dds2_ns}String_dup("_udp://");
+
+    dp_qos.discovery.enabled_transports[2] =
+                                     ${dds2_ns}String_dup("_udp://127.0.0.1");
+
+    if (!dp_qos.user_traffic.enabled_transports.maximum(2))
+    {
+        printf("failed to set maximum for user_traffic.enabled_transports\n");
+        goto done;
+    }
+
+    if (!dp_qos.user_traffic.enabled_transports.length(2))
+    {
+        printf("failed to set length for user_traffic.enabled_transports\n");
+        goto done;
+    }
+
+    dp_qos.user_traffic.enabled_transports[0] =
+                        ${dds2_ns}String_dup("_udp://");
+    dp_qos.user_traffic.enabled_transports[1] =
+                        ${dds2_ns}String_dup("_udp://127.0.0.1");
+
+    dp_qos.discovery.initial_peers.maximum(1);
+    dp_qos.discovery.initial_peers.length(1);
+    dp_qos.discovery.initial_peers[0] = ${dds2_ns}String_dup(peer);
+#end
+
+    /* if there are more remote or local endpoints, you need to increase these limits */
+    dp_qos.resource_limits.max_destination_ports = 32;
+    dp_qos.resource_limits.max_receive_ports = 32;
+    dp_qos.resource_limits.local_topic_allocation = 1;
+    dp_qos.resource_limits.local_type_allocation = 1;
+    dp_qos.resource_limits.local_reader_allocation = 1;
+    dp_qos.resource_limits.local_writer_allocation = 1;
+    dp_qos.resource_limits.remote_participant_allocation = 8;
+    dp_qos.resource_limits.remote_reader_allocation = 8;
+    dp_qos.resource_limits.remote_writer_allocation = 8;
+
+#if(!$use_dpde)
+    /* Must set the name of the domain participant in QoS for discovery */
+    strncpy(dp_qos.participant_name.name,
+            local_participant_name,
+            sizeof(dp_qos.participant_name.name) - 1);
+    dp_qos.participant_name.name[sizeof(dp_qos.participant_name.name) - 1] = '\0';
+#end
+
+#configureContentFilterResourceLimits()
+
+#if (${use_secure})
+#ifdef USE_SECURITY
+    if (${dds2_ns}RETCODE_OK !=
+            this->configure_security(registry, dp_qos, sec_material))
+    {
+        printf("failed to configure security\n");
+        goto done;
+    }
+#endif /* USE_SECURITY */
+
+#end
+    this->participant = ${dpf_name}->create_participant(
+                                    (${dds2_ns}DomainId_t)domain_id,
+                                    dp_qos,
+                                    NULL,
+                                    ${dds2_ns}STATUS_MASK_NONE);
+
+    if (this->participant == NULL)
+    {
+        printf("failed to create participant\n");
+        goto done;
+    }
+
+    strncpy(this->type_name,
+            ${constructMap.nativeFQName}TypeSupport::get_type_name(),
+            sizeof(this->type_name) - 1);
+    this->type_name[sizeof(this->type_name) - 1] = '\0';
+    retcode = ${constructMap.nativeFQName}TypeSupport::register_type(
+                  this->participant,
+                  this->type_name);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to register type: %s\n", this->type_name);
+        goto done;
+    }
+
+    strncpy(this->topic_name,
+            "Example ${constructMap.nativeFQName}",
+            sizeof(this->topic_name) - 1);
+    this->topic_name[sizeof(this->topic_name) - 1] = '\0';
+    this->topic = this->participant->create_topic(
+                      this->topic_name,
+                      this->type_name,
+                      ${dds2_ns}TOPIC_QOS_DEFAULT,
+                      NULL,
+                      ${dds2_ns}STATUS_MASK_NONE);
+    if (this->topic == NULL)
+    {
+        printf("topic == NULL\n");
+        goto done;
+    }
+
+#if(!$use_dpde)
+    retcode = ${dpse_ns}DiscoveryPlugin::RemoteParticipant_assert(
+                  this->participant,
+                  remote_participant_name);
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed to assert remote participant\n");
+        goto done;
+    }
+#end
+
+    success = ${dds2_ns}BOOLEAN_TRUE;
+
+  done:
+
+    if (!success)
+    {
+        if (udp_property != NULL)
+        {
+            delete udp_property;
+            udp_property = NULL;
+        }
+    }
+
+    return (success ? ${dds2_ns}RETCODE_OK : ${dds2_ns}RETCODE_ERROR);
+}
+#end  ## #macro(functionApplicationInitializeDeclareCPP)
+
+
+#macro(functionApplicationEnableCPP)
+#if (!${use_autoenable_entities})
+${dds2_ns}ReturnCode_t
+Application::enable()
+{
+    ${dds2_ns}ReturnCode_t retcode;
+
+    retcode = this->participant->enable();
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed to enable entity\n");
+    }
+
+    return retcode;
+}
+#end
+#end  ## #macro(functionApplicationEnableCPP)
+
+#macro(functionApplicationConstructorCPP)
+Application::Application()
+{
+    this->participant = NULL;
+#if (!$use_mag)
+    this->topic = NULL;
+    this->topic_name[0] = '\0';
+    this->type_name[0] = '\0';
+#end
+    this->sleep_time = 1000;
+    this->count = 0;
+#if ($use_secure)
+    sec_material = NULL;
+#end
+}
+#end  ## #macro(functionApplicationConstructorCPP)
+
+
+#macro(functionApplicationDeleteCPP)
+Application::~Application()
+{
+    ${dds2_ns}ReturnCode_t retcode;
+    ${rt_ns}Registry *registry = NULL;
+    ${udp2_ns}InterfaceFactoryProperty *udp_property = NULL;
+
+    if (this->participant != NULL)
+    {
+        retcode = this->participant->delete_contained_entities();
+        if (retcode != DDS_RETCODE_OK)
+        {
+            printf("failed to delete contained entities (retcode=%d)\n",retcode);
+        }
+
+        retcode = ${dpf_name}->delete_participant(this->participant);
+        if (retcode != ${dds2_ns}RETCODE_OK)
+        {
+            printf("failed to delete participant: %d\n", retcode);
+            return;
+        }
+        this->participant = NULL;
+    }
+
+    registry = ${dpf_name}->get_registry();
+
+#if(${constructMap.isMetpType} && !$use_zcv2)
+    if (!registry->unregister(NETIO_DEFAULT_SHMEM_NAME, NULL, NULL))
+    {
+        printf("failed to unregister shmem\n");
+        return;
+    }
+#end
+
+    if (!registry->unregister(
+             ${netio_ns}DEFAULT_UDP_NAME,
+             (RT_ComponentFactoryProperty**)&udp_property,
+             NULL))
+    {
+       printf("failed to unregister udp\n");
+       return;
+    }
+    if (udp_property != NULL)
+    {
+        delete udp_property;
+        udp_property = NULL;
+    }
+
+#if (${use_secure})
+    if (!SECCORE_SecurePluginFactory::unregister_suite(registry, NULL))
+    {
+        printf("failed to unregister security plugins\n");
+        return;
+    }
+
+#end
+    if (!registry->unregister("${discovery_plugin_name}", NULL, NULL))
+    {
+        printf("failed to unregister ${discovery_plugin_name}\n");
+        return;
+    }
+
+    if (!registry->unregister("rh", NULL, NULL))
+    {
+        printf("failed to unregister rh\n");
+        return;
+    }
+
+    if (!registry->unregister("wh", NULL, NULL))
+    {
+        printf("failed to unregister wh\n");
+        return;
+    }
+
+    retcode = ${dpf_name}->finalize_instance();
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to finalize instance (retcode=%d)\n",retcode);
+        return;
+    }
+}
+#end  ## #macro(functionApplicationDeleteCPP)
+
+
+##******************************************************************************
+## Common macros for the CPP Publisher and Subscriber Source files
+##******************************************************************************
+
+#macro(publisherSubscriberIncludesCPP)
+${envMap.POUND_CHAR}ifndef rti_me_cpp_hxx
+${envMap.POUND_CHAR}include "rti_me_cpp.hxx"
+${envMap.POUND_CHAR}endif
+
+${envMap.POUND_CHAR}include <stdio.h>
+${envMap.POUND_CHAR}include <stdlib.h>
+${envMap.POUND_CHAR}include <string.h>
+
+${envMap.POUND_CHAR}include "wh_sm/wh_sm_history.h"
+${envMap.POUND_CHAR}include "rh_sm/rh_sm_history.h"
+
+${envMap.POUND_CHAR}include "${envMap.idlFileName}.h"
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Support.h"
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Plugin.h"
+
+${envMap.POUND_CHAR}include "${envMap.idlFileName}Application.h"
+#end  ## #macro(publisherSubscriberIncludesCPP)
+
+
+##******************************************************************************
+## Macros for the CPP Publisher Source files
+##******************************************************************************
+
+#macro(classDeclarationDataWriterListenerCPP)
+#set($nativeFQNameArray = $constructMap.nativeFQName.replaceFirst("^::", "").split("::"))
+#foreach ($module in $nativeFQNameArray)
+#*--*##if($foreach.count  < $nativeFQNameArray.size())
+#*----*#namespace $module
+#*----*#{
+#*--*##end
+#end
+class ${nativeFQName}DataWriterListener : public ${dds_ns}DataWriterListener
+{
+public:
+    ${nativeFQName}DataWriterListener() : ${dds_ns}DataWriterListener() { }
+    ~${nativeFQName}DataWriterListener() { }
+
+    virtual void on_publication_matched(
+        ${dds_ns}DataWriter *writer,
+        const ${dds2_ns}PublicationMatchedStatus& status)
+    {
+        (void)writer;
+
+        if (status.current_count_change > 0)
+        {
+            printf("Matched a subscriber\n");
+        }
+        else if (status.current_count_change < 0)
+        {
+            printf("Unmatched a subscriber\n");
+        }
+    }
+};
+#foreach ($module in $nativeFQNameArray)
+#*--*##if($foreach.count  < $nativeFQNameArray.size())
+#*----*#}
+#*--*##end
+#end
+#end  ## #macro(classDeclarationDataWriterListenerCPP)
+
+
+#macro(functionDeclarationBuildDataSampleCPP)
+#*——*##if($constructMap.languageBinding.equals("FLAT_DATA")
+        && $constructMap.extensibility.equals("MUTABLE_EXTENSIBILITY"))
+bool build_data_sample(${constructMap.nativeFQName}Builder& builder)
+{
+        // Build the ${constructMap.nativeFQName} data sample using the builder
+        //
+        // For example:
+        //
+#*--*##foreach($member in $constructMap.memberFieldMapList)
+#*------*##if(!$member.isPrimitive)
+#*--------*##if($member.extensibility == "MUTABLE_EXTENSIBILITY" || $member.seqSize || $member.strSize)
+        // auto ${member.name}_builder = builder.build_${member.name}();
+        // ... build ${member.name}
+        // ${member.name}_builder.finish();
+        //
+#*--------*##else ## non-mutable
+        // auto ${member.name}_offset = builder.add_${member.name}();
+        // ... fill ${member.name}_offset
+        //
+#*--------*##end
+#*------*##else ## primitive
+        // builder.add_${member.name}(...);
+        //
+#*------*##end ## primitive
+#*--*##end
+
+    return true;
+}
+#*--*##end
+#end  ## #macro(functionDeclarationBuildDataSampleCPP)
+
+
+#macro(declareFunctionPublisherMainWArgsCPP)
+static int
+publisher_main_w_args(
+    ${dds2_ns}Long domain_id,
+    char *udp_intf,
+    char *peer,
+    ${dds2_ns}Long sleep_time,
+#if (${use_secure})
+    ${dds2_ns}Long count,
+    ApplicationSecMaterial *sec_material)
+#else
+    ${dds2_ns}Long count)
+#end
+{
+    Application *application = NULL;
+    ${dds_ns}Publisher *publisher = NULL;
+    ${dds_ns}DataWriter *datawriter = NULL;
+    ${constructMap.nativeFQName}DataWriter *hw_writer = NULL;
+    ${dds2_ns}DataWriterQos dw_qos;
+    ${dds2_ns}ReturnCode_t retcode;
+    ${constructMap.nativeFQName} *sample = NULL;
+    ${dds2_ns}Long i;
+    ${constructMap.nativeFQName}DataWriterListener dw_listener;
+    int ret_value = -1;
+#if (!$use_dpde)
+    size_t topic_name_len;
+    size_t type_name_len;
+
+    /* Need this to manually assert builtin topic data */
+    struct DDS_SubscriptionBuiltinTopicData rem_subscription_data;
+
+#end
+#end  ## #macro(declareFunctionPublisherMainWArgsCPP)
+
+
+#macro(publisherMainWArgsPreCreateDataWriterCPP)
+#if(!${constructMap.isMetpType} && !$constructMap.languageBinding.equals("FLAT_DATA"))
+    ##
+    ## When the type is not annotated with @transfer_mode (SHMEM_REF)
+    ## proceed to create the sample using the type support
+    ##
+    sample = ${constructMap.nativeFQName}TypeSupport::create_data();
+    if (sample == NULL)
+    {
+        printf("failed ${constructMap.nativeFQName}_create\n");
+        goto done;
+    }
+
+#end
+    application = new Application();
+    if (application == NULL)
+    {
+        printf("failed Application new\n");
+        goto done;
+    }
+
+    retcode = application->initialize(
+                  "publisher",
+                  "subscriber",
+                  domain_id,
+                  udp_intf,
+                  peer,
+                  sleep_time,
+#if (${use_secure})
+                  count,
+                  sec_material);
+#else
+                  count);
+#end
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed Application initialize\n");
+        goto done;
+    }
+
+    publisher = application->participant->create_publisher(
+                        ${dds2_ns}PUBLISHER_QOS_DEFAULT,
+                        NULL,
+                        ${dds2_ns}STATUS_MASK_NONE);
+    if (publisher == NULL)
+    {
+        printf("publisher == NULL\n");
+        goto done;
+    }
+
+    retcode = publisher->get_default_datawriter_qos(dw_qos);
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed get_default_datawriter_qos\n");
+        goto done;
+    }
+
+${envMap.POUND_CHAR}ifdef USE_RELIABLE_QOS
+    dw_qos.reliability.kind = ${dds2_ns}RELIABLE_RELIABILITY_QOS;
+${envMap.POUND_CHAR}else
+    dw_qos.reliability.kind = ${dds2_ns}BEST_EFFORT_RELIABILITY_QOS;
+${envMap.POUND_CHAR}endif
+    dw_qos.resource_limits.max_samples = 32;
+    dw_qos.resource_limits.max_samples_per_instance = 32;
+    dw_qos.resource_limits.max_instances = 1;
+    dw_qos.history.depth = 32;
+
+#if (!$use_dpde)
+    dw_qos.protocol.rtps_object_id = 100;
+
+#end
+#end  ## #macro(publisherMainWArgsPreCreateDataWriterCPP)
+
+
+#macro(publisherMainWArgsCreateDataWriterCPP)
+    datawriter = publisher->create_datawriter(
+                     application->topic,
+                     dw_qos,
+                     &dw_listener,
+                     DDS_PUBLICATION_MATCHED_STATUS);
+    if (datawriter == NULL)
+    {
+        printf("datawriter == NULL\n");
+        goto done;
+    }
+
+#end  ## #macro(publisherMainWArgsCreateDataWriterCPP)
+
+
+#macro(publisherMainWArgsAsseertRemoteSubscriptionCPP)
+    rem_subscription_data.key.value[DDS_BUILTIN_TOPIC_KEY_OBJECT_ID] = 200;
+
+    topic_name_len = strlen(application->topic_name);
+    if (topic_name_len >= RTPS_PATHNAME_LEN_MAX)
+    {
+        topic_name_len = RTPS_PATHNAME_LEN_MAX - 1;
+    }
+    memcpy(rem_subscription_data.topic_name,
+                        application->topic_name,
+                        topic_name_len);
+
+    rem_subscription_data.topic_name[topic_name_len] = '\0';
+
+    type_name_len = strlen(application->type_name);
+    if (type_name_len >= RTPS_PATHNAME_LEN_MAX)
+    {
+        type_name_len = RTPS_PATHNAME_LEN_MAX - 1;
+    }
+    memcpy(rem_subscription_data.type_name,
+                        application->type_name,
+                        type_name_len);
+
+    rem_subscription_data.type_name[type_name_len] = '\0';
+
+${envMap.POUND_CHAR}ifdef USE_RELIABLE_QOS
+    rem_subscription_data.reliability.kind = ${dds2_ns}RELIABLE_RELIABILITY_QOS;
+${envMap.POUND_CHAR}else
+    rem_subscription_data.reliability.kind  = ${dds2_ns}BEST_EFFORT_RELIABILITY_QOS;
+${envMap.POUND_CHAR}endif
+
+#if($constructMap.languageBinding.equals("FLAT_DATA"))
+    if (!rem_subscription_data.representation.value.maximum(1))
+    {
+        printf("failed to set representation.value.maximum\n");
+        goto done;
+    }
+    if (!rem_subscription_data.representation.value.length(1))
+    {
+        printf("failed to set representation.value.length\n");
+        goto done;
+    }
+    rem_subscription_data.representation.value[0] = DDS_XCDR2_DATA_REPRESENTATION;
+
+#end
+    if (${dds2_ns}RETCODE_OK !=
+        ${dpse_ns}DiscoveryPlugin::RemoteSubscription_assert(
+           application->participant,
+           "subscriber",
+           &rem_subscription_data,
+           ${constructMap.nativeFQName}I_get_key_kind()))
+    {
+        printf("failed to assert remote subscription\n");
+        goto done;
+    }
+
+#end  ## #macro(publisherMainWArgsAsseertRemoteSubscriptionCPP)
+
+
+#macro(publisherMainWArgsEnableApplicationCPP)
+#if (!${use_autoenable_entities})
+    retcode = application->enable();
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed to enable application\n");
+        goto done;
+    }
+
+#end
+    hw_writer = ${constructMap.nativeFQName}DataWriter::narrow(datawriter);
+    if (hw_writer == NULL)
+    {
+        printf("failed datawriter narrow\n");
+        goto done;
+    }
+
+    /* TODO set sample attributes here or inside the for loop (or both) */
+
+    for (i = 0; (application->count == 0) || (i < application->count); ++i)
+    {
+        #if(${constructMap.isMetpType} && !$constructMap.languageBinding.equals("FLAT_DATA"))
+
+            retcode = hw_writer->get_loan(sample);
+            /* TODO set sample attributes here */
+
+            if (retcode != ${dds2_ns}RETCODE_OK)
+            {
+               	printf("Failed to get loaned sample\n");
+                goto done;
+            }
+
+        #else
+            #if ($constructMap.languageBinding.equals("FLAT_DATA"))
+                #if ($constructMap.extensibility.equals("MUTABLE_EXTENSIBILITY"))
+                        ${constructMap.nativeFQName}Builder builder = rti::flat::build_data<${constructMap.nativeFQName}>(hw_writer);
+                        if (builder.check_failure())
+                        {
+                            printf("builder creation error\n");
+                            goto done;
+                        }
+
+                        // Build the ${constructMap.nativeFQName} data sample using the builder
+                        if (!build_data_sample(builder))
+                        {
+                            printf("error building the sample\n");
+                            goto done;
+                        }
+
+                        // Create the sample
+                        sample = builder.finish_sample();
+                        if (sample == NULL)
+                        {
+                            printf("finish_sample() error\n");
+                            goto done;
+                        }
+
+                #else
+                        retcode = hw_writer->get_loan(sample);
+                        // use flat data APIs to populate flat_data final type
+                        if (retcode != ${dds2_ns}RETCODE_OK)
+                        {
+                            printf("Failed to get loaned sample\n");
+                            goto done;
+                        }
+
+                #end
+            #end
+        #end
+
+        retcode = hw_writer->write(*sample, ${dds2_ns}HANDLE_NIL);
+        if (retcode != ${dds2_ns}RETCODE_OK)
+        {
+            printf("Failed to write sample\n");
+        }
+        else
+        {
+            printf("Wrote sample ${envMap.POUND_CHAR}%d\n",(i+1));
+        }
+
+        #functionPublisherSubscriberSleep()
+    }
+
+    ret_value = 0;
+
+  done:
+
+#end  ## #macro(publisherMainWArgsEnableApplicationCPP)
+
+
+#macro(publisherMainWArgsDeleteApplicationCPP)
+    if (application != NULL)
+    {
+        delete application;
+    }
+
+#if(!${constructMap.isMetpType} && !$constructMap.languageBinding.equals("FLAT_DATA"))
+    if (sample != NULL)
+    {
+        ${constructMap.nativeFQName}TypeSupport::delete_data(sample);
+    }
+
+#end
+#end  ## #macro(publisherMainWArgsDeleteApplicationCPP)
+
+
+#macro(publisherMainWArgsReturnCPP)
+
+    return ret_value;
+}
+#end  ## #macro(publisherMainWArgsReturnCPP)
+
+
+
+##******************************************************************************
+## Macros for the CPP Subscriber Source file
+##******************************************************************************
+
+#macro(classDeclarationDataReaderListenerCPP)
+#set($nativeFQNameArray = $constructMap.nativeFQName.replaceFirst("^::", "").split("::"))
+#foreach ($module in $nativeFQNameArray)
+#*--*##if($foreach.count  < $nativeFQNameArray.size())
+#*----*#namespace $module
+#*----*#{
+#*--*##end
+#end
+class ${nativeFQName}ReaderListener : public ${dds_ns}DataReaderListener
+{
+  public:
+
+    DDS_Long total_samples;
+
+    ${nativeFQName}ReaderListener()
+    {
+        total_samples = 0;
+    }
+
+    virtual void on_data_available(${dds_ns}DataReader *reader);
+
+    virtual void on_subscription_matched(
+        ${dds_ns}DataReader *writer,
+        const ${dds2_ns}SubscriptionMatchedStatus& status)
+    {
+        (void)writer;
+
+        if (status.current_count_change > 0)
+        {
+            printf("Matched a publisher\n");
+        }
+        else if (status.current_count_change < 0)
+        {
+            printf("Unmatched a publisher\n");
+        }
+    }
+};
+
+template <typename T>
+void take_and_print(typename T::DataReader* reader, ${dds2_ns}Long *total_samples)
+{
+    ${constructMap.nativeFQName}Seq data_seq;
+    ${dds2_ns}SampleInfoSeq info_seq;
+    ${dds2_ns}ReturnCode_t retcode;
+    int i;
+
+    retcode = reader->take(
+            data_seq,
+            info_seq,
+            ${dds2_ns}LENGTH_UNLIMITED,
+            ${dds2_ns}ANY_SAMPLE_STATE,
+            ${dds2_ns}ANY_VIEW_STATE,
+            ${dds2_ns}ANY_INSTANCE_STATE);
+
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed to take data, retcode(%d)\n", retcode);
+        goto done;
+    }
+
+    for (i = 0; i < data_seq.length(); ++i)
+    {
+        if (!info_seq[i].valid_data)
+        {
+            printf("Got metadata. Instance State: %d.\n",
+                    info_seq[i].instance_state);
+        }
+        else
+        {
+            #if ($constructMap.languageBinding.equals("FLAT_DATA"))
+            // To access the data members, get the root to the flat-data sample:
+            // ${constructMap.nativeFQName}Offset sample_root = sample_seq[i]->root();
+            // use flat-data APIs to access individual members
+            (*total_samples)++;
+            #elseif(${constructMap.isMetpType})
+            ${dds2_ns}Boolean is_data_consistent = ${dds2_ns}BOOLEAN_FALSE;
+            ${constructMap.nativeFQName} *sample = NULL;
+
+            sample = &data_seq[i];
+
+            retcode = reader->is_data_consistent(
+                          is_data_consistent,
+                          *sample,
+                          info_seq[i]);
+            if (retcode == ${dds2_ns}RETCODE_OK)
+            {
+                if (is_data_consistent)
+                {
+                    printf("Sample is consistent\n");
+                    printf("Processing is valid\n");
+                    (*total_samples)++;
+                }
+                else
+                {
+                    printf("Sample is NOT consistent\n");
+                }
+            }
+            #else
+            ${constructMap.nativeFQName} *sample;
+
+            sample = &data_seq[i];
+            printf("Data received.\n");
+            (*total_samples)++;
+
+            /* TODO read and process sample attributes here */
+            (void)sample;
+            #end
+            }
+    }
+
+    /* Return the loaned data */
+    reader->return_loan(data_seq, info_seq);
+
+done:
+#if ($constructMap.languageBinding.equals("FLAT_DATA"))
+    return;
+#else
+    ${constructMap.nativeFQName}Seq_finalize(&data_seq);
+#end
+}
+
+void
+${nativeFQName}ReaderListener::on_data_available(${dds_ns}DataReader *reader)
+{
+    ${constructMap.nativeFQName}DataReader *hw_reader = ${constructMap.nativeFQName}DataReader::narrow(reader);
+    take_and_print< ${constructMap.nativeFQName}>(hw_reader, &total_samples);
+}
+#set($nativeFQNameArray = $constructMap.nativeFQName.replaceFirst("^::", "").split("::"))
+#foreach ($module in $nativeFQNameArray)
+#*--*##if($foreach.count  < $nativeFQNameArray.size())
+#*----*#}
+#*--*##end
+#end
+#end  ## #macro(classDeclarationDataReaderListenerCPP)
+
+
+#macro(declareFunctionSubscriberMainWArgsCPP)
+static int
+subscriber_main_w_args(
+    ${dds2_ns}Long domain_id,
+    char *udp_intf,
+    char *peer,
+    ${dds2_ns}Long sleep_time,
+#if (${use_secure})
+    ${dds2_ns}Long count,
+    ApplicationSecMaterial *sec_material)
+#else
+    ${dds2_ns}Long count)
+#end
+{
+    ${dds_ns}Subscriber *subscriber = NULL;
+    ${dds_ns}DataReader *datareader = NULL;
+    ${dds2_ns}DataReaderQos dr_qos;
+    ${dds2_ns}ReturnCode_t retcode;
+    Application *application;
+#if (!$use_dpde)
+    size_t topic_name_len;
+    size_t type_name_len;
+#end
+#if ($use_listener)
+    ${constructMap.nativeFQName}ReaderListener listener;
+#else
+
+    /* Waitset variables
+     * -----------------------
+     * You need to create a waitset, a DDSStatusCondition where you will
+     * store the datareader events to be handled, and a timeout so the
+     * waitset does not block forever.
+     */
+    ${dds_ns}WaitSet waitset;
+    ${dds_ns}StatusCondition *status_condition = NULL;
+    ${dds2_ns}Duration_t wait_timeout = { 1, 0 };
+    int active_conditions = 0;
+    /* Create a sequence of DDSCondition
+     * where you will receive the triggered conditions.
+     */
+    ${dds_ns}ConditionSeq active_conditions_seq;
+    ${constructMap.nativeFQName}DataReader *hw_datareader = NULL;
+#end
+#if (!$use_dpde)
+
+    /* Need this to manually assert builtin topic data */
+    struct DDS_PublicationBuiltinTopicData rem_publication_data;
+#end
+
+#if (!$use_listener)
+
+    DDS_Long total_samples = 0;
+#end
+    int ret_value = -1;
+
+#end  ## #macro(declareFunctionSubscriberMainWArgsCPP)
+
+
+#macro(subscriberMainWArgsPreCreateDataReaderCPP)
+    application = new Application();
+    if (application == NULL)
+    {
+        printf("failed Application new\n");
+        goto done;
+    }
+
+    retcode = application->initialize(
+                  "subscriber",
+                  "publisher",
+                  domain_id,
+                  udp_intf,
+                  peer,
+                  sleep_time,
+#if (${use_secure})
+                  count,
+                  sec_material);
+#else
+                  count);
+#end
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed Application initialize\n");
+        goto done;
+    }
+
+    subscriber = application->participant->create_subscriber(
+                        ${dds2_ns}SUBSCRIBER_QOS_DEFAULT,NULL,
+                        ${dds2_ns}STATUS_MASK_NONE);
+    if (subscriber == NULL)
+    {
+        printf("subscriber == NULL\n");
+        goto done;
+    }
+
+    retcode = subscriber->get_default_datareader_qos(dr_qos);
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed get_default_datareader_qos\n");
+        goto done;
+    }
+
+    dr_qos.resource_limits.max_samples = 32;
+    dr_qos.resource_limits.max_instances = 1;
+    dr_qos.resource_limits.max_samples_per_instance = 32;
+    /* if there are more remote writers, you need to increase these limits */
+    dr_qos.reader_resource_limits.max_remote_writers = 10;
+    dr_qos.reader_resource_limits.max_remote_writers_per_instance = 10;
+    dr_qos.history.depth = 32;
+
+    /* Reliability QoS */
+${envMap.POUND_CHAR}ifdef USE_RELIABLE_QOS
+    dr_qos.reliability.kind = ${dds2_ns}RELIABLE_RELIABILITY_QOS;
+${envMap.POUND_CHAR}else
+    dr_qos.reliability.kind = ${dds2_ns}BEST_EFFORT_RELIABILITY_QOS;
+${envMap.POUND_CHAR}endif
+
+#if (!$use_dpde)
+    dr_qos.protocol.rtps_object_id = 200;
+
+#end
+#end  ## #macro(subscriberMainWArgsPreCreateDataReaderCPP)
+
+
+#macro(subscriberMainWArgsCreateDataReaderCPP)
+#if ($use_listener)
+    datareader = subscriber->create_datareader(
+                     application->topic,
+                     dr_qos,
+                     &listener,
+                     (${dds2_ns}StatusMask)${dds2_ns}DATA_AVAILABLE_STATUS | DDS_SUBSCRIPTION_MATCHED_STATUS);
+#else
+    datareader = subscriber->create_datareader(
+                     application->topic,
+                     dr_qos,
+                     NULL,
+                     ${dds2_ns}STATUS_MASK_NONE);
+#end
+
+    if (datareader == NULL)
+    {
+        printf("datareader == NULL\n");
+        goto done;
+    }
+
+#if (!$use_listener)
+    /* Call to get_statuscondition() method to obtain a reference
+     * to the datareader status_condition.
+     */
+    status_condition = datareader->get_statuscondition();
+    if (!status_condition)
+    {
+        printf("Error getting status_condition from datareader.\n");
+        goto done;
+    }
+
+    /* Using that reference, we can set the events we want to handle with
+     * our waitset. In this example we handle on_data_available and
+     * on_subscription_matched.
+     */
+    retcode = status_condition->set_enabled_statuses(
+                  (${dds2_ns}StatusMask)${dds2_ns}DATA_AVAILABLE_STATUS | DDS_SUBSCRIPTION_MATCHED_STATUS);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("Error setting enabled statuses\n.");
+        goto done;
+    }
+
+    /* Initialize waitset related variables */
+    if (!active_conditions_seq.maximum(2))
+    {
+        printf("Error setting maximum of active_conditions\n");
+        goto done;
+    }
+
+    /* Finally attach the previously configured status_condition
+     * that will trigger the waitset activation */
+    retcode = waitset.attach_condition(status_condition);
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("Error attaching condition to waitset.\n");
+        goto done;
+    }
+
+    hw_datareader = ${constructMap.nativeFQName}DataReader::narrow(datareader);
+    if (hw_datareader == NULL)
+    {
+        printf("narrow error\n");
+        goto done;
+    }
+
+    /* End of waitset configuration */
+
+#end
+#end  ## #macro(subscriberMainWArgsCreateDataReaderCPP)
+
+
+#macro(subscriberMainWArgsAssertRemotePublicationsCPP)
+    rem_publication_data.key.value[DDS_BUILTIN_TOPIC_KEY_OBJECT_ID] = 100;
+
+    topic_name_len = strlen(application->topic_name);
+    if (topic_name_len >= RTPS_PATHNAME_LEN_MAX)
+    {
+        topic_name_len = RTPS_PATHNAME_LEN_MAX - 1;
+    }
+    memcpy(rem_publication_data.topic_name,
+                        application->topic_name,
+                        topic_name_len);
+
+    rem_publication_data.topic_name[topic_name_len] = '\0';
+
+    type_name_len = strlen(application->type_name);
+    if (type_name_len >= RTPS_PATHNAME_LEN_MAX)
+    {
+        type_name_len = RTPS_PATHNAME_LEN_MAX - 1;
+    }
+    memcpy(rem_publication_data.type_name,
+                        application->type_name,
+                        type_name_len);
+
+    rem_publication_data.type_name[type_name_len] = '\0';
+
+${envMap.POUND_CHAR}ifdef USE_RELIABLE_QOS
+    rem_publication_data.reliability.kind = ${dds2_ns}RELIABLE_RELIABILITY_QOS;
+${envMap.POUND_CHAR}else
+    rem_publication_data.reliability.kind  = ${dds2_ns}BEST_EFFORT_RELIABILITY_QOS;
+${envMap.POUND_CHAR}endif
+
+#if($constructMap.languageBinding.equals("FLAT_DATA"))
+    if (!rem_publication_data.representation.value.maximum(1))
+    {
+        printf("failed to set representation.value.maximum\n");
+        goto done;
+    }
+    if (!rem_publication_data.representation.value.length(1))
+    {
+        printf("failed to set representation.value.length\n");
+        goto done;
+    }
+    rem_publication_data.representation.value[0] = DDS_XCDR2_DATA_REPRESENTATION;
+
+#end
+    retcode = ${dpse_ns}DiscoveryPlugin::RemotePublication_assert(
+       application->participant,
+       "publisher",
+       &rem_publication_data,
+       ${constructMap.nativeFQName}I_get_key_kind());
+
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed to assert remote publication\n");
+        goto done;
+    }
+
+#end  ##  #macro(subscriberMainWArgsAssertRemotePublicationsCPP)
+
+
+#macro(subscriberMainWArgsApplicationEnableCPP)
+#if (!${use_autoenable_entities})
+    retcode = application->enable();
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed to enable application\n");
+        goto done;
+    }
+
+#end
+#end  ## #macro(subscriberMainWArgsApplicationEnableCPP)
+
+
+#macro(subscriberMainWArgsListenerWaitForSamplesCPP)
+    for (int i = 0; (application->count <= 0) || (i < application->count); ++i)
+    {
+        printf("Subscriber sleeping for %d msec...\n", application->sleep_time);
+
+        #functionPublisherSubscriberSleep()
+    }
+
+    ret_value = 0;
+
+    done:
+
+#end  ## #macro(subscriberMainWArgsListenerWaitForSamplesCPP)
+
+
+#macro(subscriberMainWArgsWaitsetWaitForSamplesCPP)
+    wait_timeout.sec = application->sleep_time / 1000;
+    wait_timeout.nanosec = (DDS_UnsignedLong)
+            ((application->sleep_time - wait_timeout.sec * 1000) * 1000 * 1000);
+
+    /* Main loop */
+    for (int curr_count = 0;
+         (application->count == 0 ) || ( curr_count < application->count );
+         ++curr_count)
+    {
+        /* wait() blocks execution of the thread until one or more attached
+         * Conditions become true, or until a user-specified timeout expires.
+         */
+        retcode = waitset.wait(active_conditions_seq, wait_timeout);
+        if (retcode == ${dds2_ns}RETCODE_TIMEOUT)
+        {
+            printf("Wait timed out. No conditions were triggered.\n");
+            continue;
+        }
+        else if (retcode != ${dds2_ns}RETCODE_OK)
+        {
+            printf("Wait error: %d\n", retcode);
+            break;
+        }
+
+        /* Get the number of active conditions */
+        active_conditions = active_conditions_seq.length();
+        printf("Got %d active conditions\n", active_conditions);
+
+        for (int i = 0; i < active_conditions; ++i)
+        {
+            /* Compare with Status Conditions */
+            if (active_conditions_seq[i] == status_condition)
+            {
+                /* Get the status changes so we can check which status
+                 * condition triggered. */
+                ${dds2_ns}StatusMask triggeredmask =
+                        hw_datareader->get_status_changes();
+
+                /* Subscription matched */
+                if (triggeredmask & DDS_SUBSCRIPTION_MATCHED_STATUS)
+                {
+                    DDS_SubscriptionMatchedStatus sub_matched_stat;
+
+                    hw_datareader->get_subscription_matched_status(sub_matched_stat);
+
+                    printf(
+                        "Subscription matched => Cumulative matches = %d\n",
+                        sub_matched_stat.total_count);
+                }
+
+                /* Data available */
+                if (triggeredmask & (${dds2_ns}StatusMask)${dds2_ns}DATA_AVAILABLE_STATUS)
+                {
+                    /* Current conditions match our conditions to read data, so
+                     * we can read data just like we would do in any other
+                     * example. */
+                    ${constructMap.nativeFQName}Seq data_seq;
+                    ${dds2_ns}SampleInfoSeq info_seq;
+
+                    /* Access data using read(), take(), etc.  If you fail to do
+                     * this the condition will remain true, and the WaitSet will
+                     * wake up immediately - causing high CPU usage when it does
+                     * not sleep in the loop */
+                    do
+                    {
+                        retcode = hw_datareader->take(
+                                data_seq, info_seq, ${dds2_ns}LENGTH_UNLIMITED,
+                                ${dds2_ns}ANY_SAMPLE_STATE, ${dds2_ns}ANY_VIEW_STATE,
+                                ${dds2_ns}ANY_INSTANCE_STATE);
+                        if (retcode == ${dds2_ns}RETCODE_OK)
+                        {
+                            for (int j = 0; j < data_seq.length(); ++j)
+                            {
+                                if (!info_seq[j].valid_data)
+                                {
+                                    printf("Got metadata. Instance State: %d.\n",
+                                            info_seq[j].instance_state);
+                                }
+                                else
+                                {
+                                    #if ($constructMap.languageBinding.equals("FLAT_DATA"))
+                                    // To access the data members, get the root to the flat-data sample:
+                                    // ${constructMap.nativeFQName}Offset sample_root = sample_seq[i]->root();
+                                    // use flat-data APIs to access individual members
+                                    total_samples++;
+                                    #elseif(${constructMap.isMetpType})
+                                    ${dds2_ns}Boolean is_data_consistent = ${dds2_ns}BOOLEAN_FALSE;
+                                    ${constructMap.nativeFQName} *sample = NULL;
+
+                                    sample = &data_seq[j];
+
+                                    retcode = hw_datareader->is_data_consistent(
+                                                  is_data_consistent,
+                                                  *sample,
+                                                  info_seq[j]);
+                                    if (retcode == ${dds2_ns}RETCODE_OK)
+                                    {
+                                        if (is_data_consistent)
+                                        {
+                                            printf("Sample is consistent\n");
+                                            printf("Processing is valid\n");
+                                            total_samples++;
+                                        }
+                                        else
+                                        {
+                                            printf("Sample is NOT consistent\n");
+                                        }
+                                    }
+                                    #else
+                                    printf("Data received.\n");
+                                    total_samples++;
+                                    #end
+                                }
+                            }
+                            /* Return the loaned data */
+                            hw_datareader->return_loan(data_seq, info_seq);
+                        }
+                        else if (retcode != ${dds2_ns}RETCODE_NO_DATA)
+                        {
+                            printf("Error while reading data! Retcode: %d.\n",
+                                    retcode);
+                        }
+                    } while (retcode == ${dds2_ns}RETCODE_OK);
+                }
+            }
+        }
+    }
+
+    ret_value = 0;
+
+    /* Clean the resources */
+    done:
+
+#end ##   #subscriberMainWArgsWaitsetWaitForSamplesCPP)
+
+
+#macro(subscriberMainWArgsDeleteApplicationCPP)
+    if (application != NULL)
+    {
+        delete application;
+    }
+
+#end  ## #macro(subscriberMainWArgsDeleteApplicationCPP)
+
+
+#macro(subscriberMainWArgsReturnCPP)
+    if (ret_value == 0)
+    {
+#if ($use_listener)
+        printf("Samples received %d\n", listener.total_samples);
+        if (listener.total_samples == 0)
+#else
+        printf("Samples received %d\n", total_samples);
+        if (total_samples == 0)
+#end
+        {
+            return -1;
+        }
+    }
+
+    return ret_value;
+}
+#end  ## #macro(subscriberMainWArgsReturnCPP)
+
+
+##******************************************************************************
+## Macro for the mag C Application file
+##******************************************************************************
+
+
+#macro(functionMagApplicationCreateDeclare)
+struct Application *
+Application_create(
+    const char *participant_name,
+    DDS_Long sleep_time,
+    DDS_Long count)
+{
+    DDS_DomainParticipantFactory *factory = NULL;
+    DDS_Boolean success = DDS_BOOLEAN_FALSE;
+    struct Application *application = NULL;
+    RT_Registry_T *registry = NULL;
+    struct APPGEN_FactoryProperty model_xml = APPGEN_FactoryProperty_INITIALIZER;
+
+    /* Uncomment to increase verbosity level:
+       OSAPI_Log_set_verbosity(OSAPI_LOG_VERBOSITY_WARNING);
+     */
+
+    application = (struct Application *)malloc(sizeof(struct Application));
+    if (application == NULL)
+    {
+        printf("failed to allocate application\n");
+        goto done;
+    }
+
+    application->sleep_time = sleep_time;
+    application->count = count;
+
+    factory = DDS_DomainParticipantFactory_get_instance();
+
+    registry = DDS_DomainParticipantFactory_get_registry(factory);
+
+    /* This pointer must be valid as long as the Micro
+     * Application Generation plugin is registered
+     */
+    model_xml._model = APPGEN_get_library_seq();
+    if (!APPGEN_Factory_register(registry, &model_xml))
+    {
+        printf("failed to register Application Generation\n");
+        goto done;
+    }
+
+    application->participant =
+        DDS_DomainParticipantFactory_create_participant_from_config(
+        factory,
+        participant_name);
+
+    if (application->participant == NULL)
+    {
+        printf("failed to create participant\n");
+        goto done;
+    }
+
+    success = DDS_BOOLEAN_TRUE;
+
+  done:
+
+    if (!success)
+    {
+${envMap.POUND_CHAR}ifndef RTI_CERT
+        if (application != NULL)
+        {
+            free(application);
+        }
+${envMap.POUND_CHAR}endif
+        application = NULL;
+    }
+
+    return application;
+}
+#end ##  #macro(functionMagApplicationCreateDeclare)
+
+
+#macro(functionMagApplicationDeleteC)
+${envMap.POUND_CHAR}ifndef RTI_CERT
+void
+Application_delete(struct Application *application)
+{
+    DDS_ReturnCode_t retcode;
+    RT_Registry_T *registry = NULL;
+    DDS_DomainParticipantFactory *factory = NULL;
+
+    factory = DDS_DomainParticipantFactory_get_instance();
+    registry = DDS_DomainParticipantFactory_get_registry(factory);
+
+    retcode = DDS_DomainParticipant_delete_contained_entities(
+                  application->participant);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to delete contained entities: %d\n",retcode);
+    }
+
+    retcode = DDS_DomainParticipantFactory_delete_participant(
+                  factory, application->participant);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to delete participant: %d\n", retcode);
+        return;
+    }
+
+    if (!APPGEN_Factory_unregister(registry, NULL))
+    {
+        printf("failed to unregister Application Generation\n");
+    }
+
+    free(application);
+
+    retcode = DDS_DomainParticipantFactory_finalize_instance();
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to finalize domain participant factory: %d\n", retcode);
+        return;
+    }
+}
+${envMap.POUND_CHAR}endif
+#end  ## #macro(functionMagApplicationDeleteC)
+
+
+##******************************************************************************
+## Macros for the mag C publisher file
+##******************************************************************************
+
+
+#macro(declareFunctionMagPublisherMainWArgsC)
+static int
+publisher_main_w_args(DDS_Long sleep_time, DDS_Long count)
+{
+    DDS_DataWriter *datawriter;
+    ${constructMap.nativeFQName}DataWriter *hw_datawriter;
+    DDS_ReturnCode_t retcode;
+    ${constructMap.nativeFQName} *sample = NULL;
+    struct Application *application = NULL;
+    DDS_Long i;
+    struct DDS_DataWriterListener dw_listener =
+        DDS_DataWriterListener_INITIALIZER;
+    int ret_value = -1;
+
+    ##
+    ## When the type is not annotated with @transfer_mode (SHMEM_REF)
+    ## proceed to create the sample using the type support
+    ##
+#if(!${constructMap.isMetpType})
+    sample = ${constructMap.nativeFQName}TypeSupport_create_data();
+    if (sample == NULL)
+    {
+        printf("failed ${constructMap.nativeFQName}TypeSupport_create_data\n");
+        return -1;
+    }
+#end
+
+    application = Application_create(PUB_PARTICIPANT_NAME, sleep_time, count);
+
+    if (application == NULL)
+    {
+        printf("failed Application create\n");
+        goto done;
+    }
+
+    datawriter = DDS_DomainParticipant_lookup_datawriter_by_name(
+                     application->participant,
+                     PUB_DATAWRITER_NAME);
+    if (datawriter == NULL)
+    {
+        printf("datawriter == NULL\n");
+        goto done;
+    }
+
+    dw_listener.on_publication_matched =
+        ${constructMap.nativeFQName}Publisher_on_publication_matched;
+
+    retcode = DDS_DataWriter_set_listener(
+                  datawriter,
+                  &dw_listener,
+                  DDS_PUBLICATION_MATCHED_STATUS);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to set writer listener\n");
+        goto done;
+    }
+
+#end  ## #macro(declareFunctionMagPublisherMainWArgsC)
+
+
+##******************************************************************************
+## Macros for the mag C subscriber file
+##******************************************************************************
+
+
+#macro(declareFunctionMagSubscriberMainWArgsC)
+static int
+subscriber_main_w_args(
+    DDS_Long sleep_time,
+    DDS_Long count)
+{
+    DDS_DataReader *datareader;
+    DDS_ReturnCode_t retcode;
+    struct Application *application;
+    struct DDS_DataReaderListener dr_listener =
+        DDS_DataReaderListener_INITIALIZER;
+    int ret_value = -1;
+    DDS_Long total_samples = 0;
+    DDS_Long i;
+
+    application = Application_create(SUB_PARTICIPANT_NAME, sleep_time, count);
+
+    if (application == NULL)
+    {
+        printf("failed Application create\n");
+        goto done;
+    }
+
+    datareader = DDS_DomainParticipant_lookup_datareader_by_name(
+                     application->participant,
+                     SUB_DATAREADER_NAME);
+    if (datareader == NULL)
+    {
+        printf("datareader == NULL\n");
+        goto done;
+    }
+
+#if ($use_listener && !$use_content_filter)
+${envMap.POUND_CHAR}ifdef USE_SAMPLE_FILTER
+    /* choose one callback to enable */
+${envMap.POUND_CHAR}ifdef FILTER_ON_DESERIALIZE
+    dr_listener.on_before_sample_deserialize =
+        ${constructMap.nativeFQName}Subscriber_on_before_sample_deserialize;
+${envMap.POUND_CHAR}else
+    dr_listener.on_before_sample_commit =
+        ${constructMap.nativeFQName}Subscriber_on_before_sample_commit;
+${envMap.POUND_CHAR}endif  /* FILTER_ON_DESERIALIZE */
+${envMap.POUND_CHAR}endif  /* USE_SAMPLE_FILTER */
+
+#end
+    dr_listener.on_data_available = ${constructMap.nativeFQName}Subscriber_on_data_available;
+    dr_listener.on_subscription_matched =
+        ${constructMap.nativeFQName}Subscriber_on_subscription_matched;
+
+    dr_listener.as_listener.listener_data = &total_samples;
+
+    retcode = DDS_DataReader_set_listener(
+                  datareader,
+                  &dr_listener,
+                  DDS_DATA_AVAILABLE_STATUS | DDS_SUBSCRIPTION_MATCHED_STATUS);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to set reader listener\n");
+        goto done;
+    }
+
+#if (!${use_autoenable_entities})
+    retcode = Application_enable(application);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed to enable application\n");
+        goto done;
+    }
+
+#end
+#end  ## #macro(declareFunctionMagSubscriberMainWArgsC)
+
+
+
+##******************************************************************************
+## Macros for the mag XML files
+##******************************************************************************
+
+
+#macro(declareXMLHeader)
+<?xml version="1.0"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/6.0.1/rti_dds_profiles.xsd">
+#end   ## #macro(declareXMLHeader)
+
+
+#macro(declareXMLEnd)
+</dds>
+#end   ## #macro(declareXMLEnd)
+
+
+#macro(declareDomainLibrary)
+    <!-- Domain Library -->
+    <domain_library name="${constructMap.name}Library">
+        <domain name="${constructMap.name}Domain" domain_id="0">
+            <register_type name="${constructMap.name}" type_ref="${constructMap.nativeFQName}">
+            </register_type>
+
+            <topic name="${constructMap.name}Topic" register_type_ref="${constructMap.name}">
+                <registered_name>${constructMap.name}Topic</registered_name>
+            </topic>
+        </domain>
+    </domain_library>
+#end  ## #macro(declareDomainLibrary)
+
+
+#macro(declareDomainParticipantLibrary)
+    <!-- Participant Library -->
+    <domain_participant_library name="${constructMap.name}AppLibrary">
+        <domain_participant name="${constructMap.name}DPDEPubDP"
+            domain_ref="${constructMap.name}Library::${constructMap.name}Domain">
+            <publisher name="${constructMap.name}DPDEPub">
+                <data_writer topic_ref="${constructMap.name}Topic" name="${constructMap.name}DPDEDW">
+                    <datawriter_qos base_name="QosLibrary::DPDEProfile"/>
+                </data_writer>
+            </publisher>
+            <participant_qos base_name="QosLibrary::DPDEProfile"/>
+        </domain_participant>
+
+        <domain_participant name="${constructMap.name}DPDESubDP"
+            domain_ref="${constructMap.name}Library::${constructMap.name}Domain">
+            <subscriber name="${constructMap.name}DPDESub">
+                <data_reader topic_ref="${constructMap.name}Topic" name="${constructMap.name}DPDEDR">
+                    <datareader_qos base_name="QosLibrary::DPDEProfile"/>
+                </data_reader>
+            </subscriber>
+            <participant_qos base_name="QosLibrary::DPDEProfile"/>
+        </domain_participant>
+    </domain_participant_library>
+#end  ## #macro(declareDomainParticipantLibrary)
+
+
+#macro(declareDomainParticipantLibraryDPSE)
+    <!-- Participant Library -->
+    <domain_participant_library name="${constructMap.name}AppLibrary">
+        <domain_participant name="${constructMap.name}DPSEPubDP"
+            domain_ref="${constructMap.name}Library::${constructMap.name}Domain">
+            <publisher name="${constructMap.name}DPSEPub">
+                <data_writer topic_ref="${constructMap.name}Topic" name="${constructMap.name}DPSEDW">
+                    <datawriter_qos base_name="QosLibrary::DPSEProfile"/>
+                </data_writer>
+            </publisher>
+            <participant_qos base_name="QosLibrary::DPSEProfile"/>
+        </domain_participant>
+
+        <domain_participant name="${constructMap.name}DPSESubDP"
+            domain_ref="${constructMap.name}Library::${constructMap.name}Domain">
+            <subscriber name="${constructMap.name}DPSESub">
+                <data_reader topic_ref="${constructMap.name}Topic" name="${constructMap.name}DPSEDR">
+                    <datareader_qos base_name="QosLibrary::DPSEProfile"/>
+                </data_reader>
+            </subscriber>
+            <participant_qos base_name="QosLibrary::DPSEProfile"/>
+        </domain_participant>
+    </domain_participant_library>
+#end  ## #macro(declareDomainParticipantLibrary)
+
+
+#macro(declareQosLibrary)
+    <qos_library name="QosLibrary">
+        <qos_profile name="DefaultProfile" is_default_participant_factory_profile="true">
+#if (!${use_autoenable_entities})
+            <!-- Participant Factory Qos -->
+            <participant_factory_qos>
+                <entity_factory>
+                    <autoenable_created_entities>false</autoenable_created_entities>
+                </entity_factory>
+            </participant_factory_qos>
+#end
+#end  ## #macro(declareQosLibrary)
+
+
+#macro(declareQosLibraryEnd)
+    </qos_library>
+#end  ## #macro(declareQosLibraryEnd)
+
+
+#macro(declareQosProfileEnd)
+        </qos_profile>
+#end  ## #macro(declareQosProfileEnd)
+
+
+#macro(declareDomainParticipantQosStart)
+            <!-- Participant Qos -->
+            <participant_qos>
+#end   ##  #macro(declareDomainParticipantQos)
+
+
+#macro(declareDomainParticipantQosEnd)
+            </participant_qos>
+#end   ##  #macro(declareDomainParticipantEnd)
+
+
+#macro(declareDomainParticipantQosTransports)
+                <discovery>
+                    <accept_unknown_peers>true</accept_unknown_peers>
+                    <initial_peers>
+#if(${use_udp})
+                        <element>udpv4://127.0.0.1</element>
+                        <element>udpv4://239.255.0.1</element>
+#end
+#if(${constructMap.isMetpType} || ${use_shared_memory})
+                        <element>shmem://</element>
+#end
+                    </initial_peers>
+                    <enabled_transports>
+#if(${use_udp})
+                        <element>udpv4</element>
+#end
+#if(${constructMap.isMetpType} || ${use_shared_memory})
+                        <element>shmem</element>
+#end
+                    </enabled_transports>
+#if(${use_udp})
+                    <multicast_receive_addresses>
+                        <element>udpv4://239.255.0.1</element>
+                    </multicast_receive_addresses>
+#end
+                </discovery>
+                <default_unicast>
+                    <value>
+                        <element>
+                            <transports>
+#if(${use_udp})
+                                <element>udpv4</element>
+#end
+#if(${constructMap.isMetpType} || ${use_shared_memory})
+                                <element>shmem</element>
+#end
+                            </transports>
+                        </element>
+                    </value>
+                </default_unicast>
+                <transport_builtin>
+#if((${constructMap.isMetpType} || ${use_shared_memory}) && (${use_udp}))
+                    <mask>UDPv4|SHMEM</mask>
+#else
+#if(${constructMap.isMetpType} || ${use_shared_memory})
+                    <mask>SHMEM</mask>
+#else
+                    <mask>UDPv4</mask>
+#end
+#end
+#if(${use_udp})
+#if(!${use_static_udp})
+                    <udpv4>
+                        <ignore_loopback_interface>0</ignore_loopback_interface>
+                        <!-- Set correct interface name(s) and enable to use
+                             only these network interfaces -->
+                        <!--allow_interfaces_list>
+                            <element>Wi-Fi</element>
+                        </allow_interfaces_list-->
+                        <recv_socket_buffer_size>65535</recv_socket_buffer_size>
+                        <send_socket_buffer_size>65535</send_socket_buffer_size>
+                    </udpv4>
+#else
+                    <udpv4>
+                        <disable_auto_interface_config>true</disable_auto_interface_config>
+                        <interface_table>
+                            <element>
+                                <interface_name>udp_intf0</interface_name>
+                                <address>127.0.0.1</address>
+                                <net_mask>255.255.255.1</net_mask>
+                                <flags>UDP_INTERFACE_INTERFACE_UP_FLAG|UDP_INTERFACE_INTERFACE_MULTICAST_FLAG</flags>
+                            </element>
+                        </interface_table>
+                        <ignore_loopback_interface>0</ignore_loopback_interface>
+                        <recv_socket_buffer_size>65535</recv_socket_buffer_size>
+                        <send_socket_buffer_size>65535</send_socket_buffer_size>
+                    </udpv4>
+#end
+#end
+                </transport_builtin>
+#end   ##  #macro(declareDomainParticipantQosTransports)
+
+
+#macro(declareDomainParticipantQosResourceLimits)
+                <resource_limits>
+                    <local_writer_allocation>
+                        <max_count>1</max_count>
+                    </local_writer_allocation>
+                    <local_reader_allocation>
+                        <max_count>1</max_count>
+                        </local_reader_allocation>
+                    <local_publisher_allocation>
+                        <max_count>1</max_count>
+                    </local_publisher_allocation>
+                    <local_subscriber_allocation>
+                        <max_count>1</max_count>
+                        </local_subscriber_allocation>
+                    <local_topic_allocation>
+                        <max_count>1</max_count>
+                        </local_topic_allocation>
+                    <local_type_allocation>
+                        <max_count>1</max_count>
+                        </local_type_allocation>
+                    <remote_participant_allocation>
+                        <max_count>8</max_count>
+                        </remote_participant_allocation>
+                    <remote_writer_allocation>
+                        <max_count>32</max_count>
+                    </remote_writer_allocation>
+                    <remote_reader_allocation>
+                        <max_count>32</max_count>
+                    </remote_reader_allocation>
+                    <max_receive_ports>32</max_receive_ports>
+                    <max_destination_ports>32</max_destination_ports>
+                    <matching_reader_writer_pair_allocation>
+                        <max_count>128</max_count>
+                    </matching_reader_writer_pair_allocation>
+                    <matching_writer_reader_pair_allocation>
+                        <max_count>128</max_count>
+                    </matching_writer_reader_pair_allocation>
+                </resource_limits>
+#end  ## #macro(declareDomainParticipantQosResourceLimits)
+
+
+#macro(declareDataWriterQos)
+            <!-- DataWriter Qos -->
+            <datawriter_qos>
+                <history>
+                    <depth>32</depth>
+                </history>
+                <resource_limits>
+                    <max_instances>2</max_instances>
+                    <max_samples>64</max_samples>
+                    <max_samples_per_instance>32</max_samples_per_instance>
+                </resource_limits>
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <protocol>
+                    <rtps_reliable_writer>
+                        <heartbeat_period>
+                            <nanosec>250000000</nanosec>
+                            <sec>0</sec>
+                        </heartbeat_period>
+                    </rtps_reliable_writer>
+                </protocol>
+#if(${constructMap.isMetpType})
+                <transfer_mode>
+                    <shmem_ref_settings>
+                        <!-- Needed when using Zero Copy transport so that
+                             reader can verify if sample is consistent -->
+                        <enable_data_consistency_check>true</enable_data_consistency_check>
+                    </shmem_ref_settings>
+                </transfer_mode>
+#end
+            </datawriter_qos>
+#end   ##  #macro(declareDataWriterQos)
+
+
+#macro(declareDataReaderQos)
+            <!-- DataReader Qos -->
+            <datareader_qos>
+                <history>
+                    <depth>32</depth>
+                </history>
+                <resource_limits>
+                    <max_instances>2</max_instances>
+                    <max_samples>64</max_samples>
+                    <max_samples_per_instance>32</max_samples_per_instance>
+                </resource_limits>
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <reader_resource_limits>
+                    <max_remote_writers>10</max_remote_writers>
+                    <max_remote_writers_per_instance>10</max_remote_writers_per_instance>
+                </reader_resource_limits>
+            </datareader_qos>
+#end   ###macro(declareDataReaderQos)
+
+
+#macro(declareDiscoveryQosProfile)
+#if($use_dpde)
+        <qos_profile name="DPDEProfile" base_name="DefaultProfile">
+            <participant_qos>
+                <discovery_config>
+                    <builtin_discovery_plugins>SDP</builtin_discovery_plugins>
+                </discovery_config>
+            </participant_qos>
+        </qos_profile>
+#else
+        <qos_profile name="DPSEProfile" base_name="DefaultProfile">
+            <participant_qos>
+                <discovery_config>
+                    <builtin_discovery_plugins>DPSE</builtin_discovery_plugins>
+                </discovery_config>
+            </participant_qos>
+        </qos_profile>
+#end
+#end  ## #macro(declareDiscoveryQosProfile)
+
+
+
+##******************************************************************************
+## Macros for the mag C++ Application file
+##******************************************************************************
+
+
+#macro(functionMagApplicationCreateDeclareCPP)
+DDS_ReturnCode_t
+Application::initialize(
+    const char *participant_name,
+    ${dds2_ns}Long sleep_time_arg,
+    ${dds2_ns}Long count_arg)
+{
+    ${dds2_ns}Boolean success = DDS_BOOLEAN_FALSE;
+    RTRegistry *registry = NULL;
+    struct APPGEN_FactoryProperty model_xml = APPGEN_FactoryProperty_INITIALIZER;
+
+    /* Uncomment to increase verbosity level:
+       OSAPI_Log_set_verbosity(OSAPI_LOG_VERBOSITY_WARNING);
+    */
+
+    this->sleep_time = sleep_time_arg;
+    this->count = count_arg;
+
+    registry = ${dpf_name}->get_registry();
+
+    /* This pointer must be valid as long as the Micro
+     * Application Generation plugin is registered
+     */
+    model_xml._model = APPGEN_get_library_seq();
+    if (!registry->register_component(
+                              PROFILE_DEFAULT_APPGEN_NAME,
+                              APPGEN_Factory_get_interface(),
+                              &model_xml._parent, NULL))
+    {
+        printf("failed to register Application Generation\n");
+        goto done;
+    }
+
+    this->participant = ${dpf_name}->create_participant_from_config(
+                            participant_name);
+    if (this->participant == NULL)
+    {
+        printf("failed to create participant\n");
+        goto done;
+    }
+
+    success = ${dds2_ns}BOOLEAN_TRUE;
+
+  done:
+
+    return (success ? ${dds2_ns}RETCODE_OK : ${dds2_ns}RETCODE_ERROR);
+}
+#end ##  #macro(functionMagApplicationCreateDeclareCPP)
+
+
+#macro(functionMagApplicationDeleteCPP)
+Application::~Application()
+{
+    ${dds2_ns}ReturnCode_t retcode;
+    RTRegistry *registry = NULL;
+
+    registry = ${dpf_name}->get_registry();
+
+    if (this->participant != NULL)
+    {
+        retcode = participant->delete_contained_entities();
+        if (retcode != DDS_RETCODE_OK)
+        {
+            printf("failed to delete contained entities\n");
+        }
+
+        retcode = ${dpf_name}->delete_participant(this->participant);
+        if (retcode != DDS_RETCODE_OK)
+        {
+            printf("failed to delete participant\n");
+            return;
+        }
+    }
+
+    if (!registry->unregister(PROFILE_DEFAULT_APPGEN_NAME, NULL, NULL))
+    {
+        printf("failed to unregister application generation factory\n");
+        return;
+    }
+
+    retcode = ${dpf_name}->finalize_instance();
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed to finalize instance (retcode=%d)\n",retcode);
+        return;
+    }
+}
+#end  ## #macro(functionMagApplicationDeleteCPP)
+
+
+
+##******************************************************************************
+## Macros for the mag C++ Publisher file
+##******************************************************************************
+
+
+#macro(declareFunctionMagPublisherMainWArgsCPP)
+static int
+publisher_main_w_args(${dds2_ns}Long sleep_time, ${dds2_ns}Long count)
+{
+    Application *application = NULL;
+
+    ${dds_ns}DataWriter *datawriter = NULL;
+    ${constructMap.nativeFQName}DataWriter *hw_writer = NULL;
+    ${dds2_ns}ReturnCode_t retcode;
+    ${constructMap.nativeFQName} *sample = NULL;
+    ${dds2_ns}Long i;
+    ${constructMap.nativeFQName}DataWriterListener dw_listener;
+    int ret_value = -1;
+
+#if(!${constructMap.isMetpType} && !$constructMap.languageBinding.equals("FLAT_DATA"))
+    ##
+    ## When the type is not annotated with @transfer_mode (SHMEM_REF)
+    ## proceed to create the sample using the type support
+    ##
+    sample = ${constructMap.nativeFQName}TypeSupport::create_data();
+    if (sample == NULL)
+    {
+        printf("failed ${constructMap.nativeFQName}_create\n");
+        goto done;
+    }
+
+#end
+
+    application = new Application();
+    if (application == NULL)
+    {
+        printf("failed Application new\n");
+        goto done;
+    }
+
+    retcode = application->initialize(
+                   PUB_PARTICIPANT_NAME,
+                   sleep_time,
+                   count);
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed Application initialize\n");
+        goto done;
+    }
+
+    datawriter = application->participant->lookup_datawriter_by_name(
+                     PUB_DATAWRITER_NAME);
+    if (datawriter == NULL)
+    {
+        printf("datawriter == NULL\n");
+        goto done;
+    }
+
+    retcode = datawriter->set_listener(
+                  &dw_listener,
+                  DDS_PUBLICATION_MATCHED_STATUS);
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed to set writer listener\n");
+        goto done;
+    }
+
+#end  ## #macro(declareFunctionMagPublisherMainWArgsCPP)
+
+
+
+##******************************************************************************
+## Macros for the mag C++ subscriber file
+##******************************************************************************
+
+
+#macro(declareFunctionMagSubscriberMainWArgsCPP)
+static int
+subscriber_main_w_args(
+    ${dds2_ns}Long sleep_time,
+    ${dds2_ns}Long count)
+{
+    ${dds_ns}DataReader *datareader = NULL;
+    ${constructMap.nativeFQName}ReaderListener listener;
+    ${dds2_ns}ReturnCode_t retcode;
+    Application *application = NULL;
+    int ret_value = -1;
+    DDS_Long i;
+
+    application = new Application();
+    if (application == NULL)
+    {
+        printf("failed Application new\n");
+        goto done;
+    }
+
+    retcode = application->initialize(SUB_PARTICIPANT_NAME,
+                                      sleep_time,
+                                      count);
+    if (retcode != DDS_RETCODE_OK)
+    {
+        printf("failed Application initialize\n");
+        goto done;
+    }
+
+    datareader = application->participant->lookup_datareader_by_name(
+                     SUB_DATAREADER_NAME);
+    if (datareader == NULL)
+    {
+        printf("datareader == NULL\n");
+        goto done;
+    }
+
+    retcode = datareader->set_listener(
+                  &listener,
+                  ${dds2_ns}DATA_AVAILABLE_STATUS |
+                  ${dds2_ns}SUBSCRIPTION_MATCHED_STATUS);
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed to set listener\n");
+        goto done;
+    }
+
+#if (!${use_autoenable_entities})
+    retcode = application->enable();
+    if (retcode != ${dds2_ns}RETCODE_OK)
+    {
+        printf("failed to enable application\n");
+        goto done;
+    }
+
+#end
+#end  ## #macro(declareFunctionMagSubscriberMainWArgsC)

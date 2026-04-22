@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.8. Create DataWriter &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 ER1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.9. Create Subscriber" href="createsubscriber.html" />
+    <link rel="prev" title="2.7. Create Publisher" href="createpublisher.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0 ER1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Developing Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="prepare_development_environment.html">2.1. Prepare Your Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="definedatatype.html">2.2. Define a Data Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generatesupportcode.html">2.3. Generate Type Support Code with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createapp.html">2.4. Create an Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configureUDPtransport.html">2.5. Configure UDP Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createdomainparticipant.html">2.6. Create DomainParticipant, Topic, and Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createpublisher.html">2.7. Create Publisher</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.8. Create DataWriter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dpse-discovery-assert-remote-subscription">2.8.1. DPSE Discovery: Assert Remote Subscription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-samples">2.8.2. Writing Samples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="createsubscriber.html">2.9. Create Subscriber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createdatareader.html">2.10. Create DataReader</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">14. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">2. </span>Developing Applications</a> &raquo;</li>
+        
+      <li><span class="section-number">2.8. </span>Create DataWriter</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="create-datawriter">
+<h1><span class="section-number">2.8. </span>Create DataWriter<a class="headerlink" href="#create-datawriter" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">DDS_DataWriter</span><span class="w"> </span><span class="o">*</span><span class="n">datawriter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">DDS_DataWriterQos</span><span class="w"> </span><span class="n">dw_qos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DataWriterQos_INITIALIZER</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">DDS_DataWriterListener</span><span class="w"> </span><span class="n">dw_listener</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DataWriterListener_INITIALIZER</span><span class="p">;</span>
+
+<span class="cm">/* Configure writer Qos */</span>
+
+<span class="cm">/* Setting the rtps_object_id is only required when using DPSE */</span>
+<span class="n">dw_qos</span><span class="p">.</span><span class="n">protocol</span><span class="p">.</span><span class="n">rtps_object_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="n">dw_qos</span><span class="p">.</span><span class="n">reliability</span><span class="p">.</span><span class="n">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_RELIABLE_RELIABILITY_QOS</span><span class="p">;</span>
+<span class="n">dw_qos</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">max_samples_per_instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">dw_qos</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">max_instances</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">dw_qos</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">max_samples</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">dw_qos</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">max_samples_per_instance</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dw_qos</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">max_instances</span><span class="p">;</span>
+<span class="n">dw_qos</span><span class="p">.</span><span class="n">history</span><span class="p">.</span><span class="n">depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">dw_qos</span><span class="p">.</span><span class="n">durability</span><span class="p">.</span><span class="n">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_VOLATILE_DURABILITY_QOS</span><span class="p">;</span>
+<span class="n">dw_qos</span><span class="p">.</span><span class="n">protocol</span><span class="p">.</span><span class="n">rtps_reliable_writer</span><span class="p">.</span><span class="n">heartbeat_period</span><span class="p">.</span><span class="n">sec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">dw_qos</span><span class="p">.</span><span class="n">protocol</span><span class="p">.</span><span class="n">rtps_reliable_writer</span><span class="p">.</span><span class="n">heartbeat_period</span><span class="p">.</span><span class="n">nanosec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">250000000</span><span class="p">;</span>
+
+<span class="cm">/* Set enabled listener callbacks */</span>
+<span class="n">dw_listener</span><span class="p">.</span><span class="n">on_publication_matched</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HelloWorldPublisher_on_publication_matched</span><span class="p">;</span>
+
+<span class="n">datawriter</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">DDS_Publisher_create_datawriter</span><span class="p">(</span><span class="n">publisher</span><span class="p">,</span>
+<span class="w">                                    </span><span class="n">topic</span><span class="p">,</span>
+<span class="w">                                    </span><span class="o">&amp;</span><span class="n">dw_qos</span><span class="p">,</span>
+<span class="w">                                    </span><span class="o">&amp;</span><span class="n">dw_listener</span><span class="p">,</span>
+<span class="w">                                    </span><span class="n">DDS_PUBLICATION_MATCHED_STATUS</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">datawriter</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* failure */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <a class="reference external" href="../../../doc/api_c/html/structDDS__DataWriterListener.html">DataWriterListener</a> has its callbacks selectively enabled by the DDS
+status mask. In the example, the mask has set the <a class="reference external" href="../../../doc/api_c/html/structDDS__DataWriterListener.html">on_publication_matched</a>
+status, and accordingly the <a class="reference external" href="../../../doc/api_c/html/structDDS__DataWriterListener.html">DataWriterListener</a> has its
+<a class="reference external" href="../../../doc/api_c/html/structDDS__DataWriterListener.html">on_publication_matched</a> assigned to a callback function.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">HelloWorldPublisher_on_publication_matched</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">listener_data</span><span class="p">,</span>
+<span class="w">                                                </span><span class="n">DDS_DataWriter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">writer</span><span class="p">,</span>
+<span class="w">                                                </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_PublicationMatchedStatus</span><span class="w"> </span><span class="o">*</span><span class="n">status</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* Print on match/unmatch */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="o">-&gt;</span><span class="n">current_count_change</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Matched a subscriber</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Unmatched a subscriber</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="dpse-discovery-assert-remote-subscription">
+<h2><span class="section-number">2.8.1. </span>DPSE Discovery: Assert Remote Subscription<a class="headerlink" href="#dpse-discovery-assert-remote-subscription" title="Permalink to this headline">¶</a></h2>
+<p>A publishing application using <a class="reference external" href="../../../doc/api_c/html/group__DPSEModule.html">DPSE</a> discovery must specify the other
+<em>DataReaders</em> that its <em>DataWriters</em> are allowed to discover.  Like the API
+for asserting a remote participant, the <a class="reference external" href="../../../doc/api_c/html/group__DPSEModule.html">DPSE</a> API for asserting a remote
+subscription must be called for each remote <em>DataReader</em> that a <em>DataWriter</em>
+may discover.</p>
+<p>Whereas asserting a remote participant requires only the remote <em>Participant</em>’s
+name, asserting a remote subscription requires more configuration, as all
+QoS policies of the subscription necessary to determine matching must be
+known and thus specified.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_SubscriptionBuiltinTopicData</span><span class="w"> </span><span class="n">rem_subscription_data</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">DDS_SubscriptionBuiltinTopicData_INITIALIZER</span><span class="p">;</span>
+
+<span class="cm">/* Set Reader&#39;s protocol.rtps_object_id */</span>
+<span class="n">rem_subscription_data</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="n">DDS_BUILTIN_TOPIC_KEY_OBJECT_ID</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span><span class="p">;</span>
+
+<span class="n">rem_subscription_data</span><span class="p">.</span><span class="n">topic_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;Example HelloWorld&quot;</span><span class="p">);</span>
+<span class="n">rem_subscription_data</span><span class="p">.</span><span class="n">type_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;HelloWorld&quot;</span><span class="p">);</span>
+
+<span class="n">rem_subscription_data</span><span class="p">.</span><span class="n">reliability</span><span class="p">.</span><span class="n">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_RELIABLE_RELIABILITY_QOS</span><span class="p">;</span>
+
+<span class="n">retcode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DPSE_RemoteSubscription_assert</span><span class="p">(</span><span class="n">participant</span><span class="p">,</span>
+<span class="w">                                         </span><span class="s">&quot;Participant_2&quot;</span><span class="p">,</span>
+<span class="w">                                         </span><span class="o">&amp;</span><span class="n">rem_subscription_data</span><span class="p">,</span>
+<span class="w">                                         </span><span class="n">HelloWorld_get_key_kind</span><span class="p">(</span><span class="n">HelloWorldTypePlugin_get</span><span class="p">(),</span>
+<span class="w">                                         </span><span class="nb">NULL</span><span class="p">)));</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">retcode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DDS_RETCODE_OK</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* failure */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="writing-samples">
+<h2><span class="section-number">2.8.2. </span>Writing Samples<a class="headerlink" href="#writing-samples" title="Permalink to this headline">¶</a></h2>
+<p>Within the generated type support code are declarations of the type-specific
+<em>DataWriter</em>.  For the HelloWorld type, this is the HelloWorldDataWriter.</p>
+<p>Writing a HelloWorld sample is done by calling the write API of the
+HelloWorldDataWriter.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">HelloWorldDataWriter</span><span class="w"> </span><span class="o">*</span><span class="n">hw_datawriter</span><span class="p">;</span>
+<span class="n">DDS_ReturnCode_t</span><span class="w"> </span><span class="n">retcode</span><span class="p">;</span>
+<span class="n">HelloWorld</span><span class="w"> </span><span class="o">*</span><span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="cm">/* Create and set sample */</span>
+<span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HelloWorld_create</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sample</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* failure */</span>
+<span class="p">}</span>
+<span class="n">sprintf</span><span class="p">(</span><span class="n">sample</span><span class="o">-&gt;</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello World!&quot;</span><span class="p">);</span>
+
+<span class="cm">/* Write sample  */</span>
+<span class="n">hw_datawriter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HelloWorldDataWriter_narrow</span><span class="p">(</span><span class="n">datawriter</span><span class="p">);</span>
+
+<span class="n">retcode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HelloWorldDataWriter_write</span><span class="p">(</span><span class="n">hw_datawriter</span><span class="p">,</span><span class="w"> </span><span class="n">sample</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DDS_HANDLE_NIL</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">retcode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DDS_RETCODE_OK</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* failure */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For more information, see <a class="reference internal" href="../programmersguide/sending.html"><span class="doc">Sending Data</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="createsubscriber.html" class="btn btn-neutral float-right" title="2.9. Create Subscriber" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="createpublisher.html" class="btn btn-neutral float-left" title="2.7. Create Publisher" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

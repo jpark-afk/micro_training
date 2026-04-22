@@ -1,0 +1,198 @@
+\doxysubsection{Zero Copy v2 API}
+\hypertarget{group__ZCV2Module}{}\label{group__ZCV2Module}\index{Zero Copy v2 API@{Zero Copy v2 API}}
+
+
+NETIO Zero Copy v2 interface.  
+
+
+\doxysubsubsubsection*{Topics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ZCOPY__NotifInterfaceClass}{Notification Interface}}
+\begin{DoxyCompactList}\small\item\em ZCOPY Notification Interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structZCOPY__NotifMechanismProperty}{ZCOPY\+\_\+\+Notif\+Mechanism\+Property}}
+\begin{DoxyCompactList}\small\item\em Notification mechanism property for the default implementation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structZCOPY__NotifInterfaceFactoryProperty}{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property}}
+\begin{DoxyCompactList}\small\item\em Notification interface property. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structZCOPY__NotifUserInterfaceI}{ZCOPY\+\_\+\+Notif\+User\+InterfaceI}}
+\begin{DoxyCompactList}\small\item\em Notification mechanism user interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__ZCV2Module_gaf98352e1c7da18386ed4ae09396ca583}{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em Constant to initialize a \doxylink{structZCOPY__NotifInterfaceFactoryProperty}{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__ZCV2Module_ga0122fbd8523c10635e8436139c58283a}{ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+create\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}upstream, void \texorpdfstring{$\ast$}{*}user\+\_\+property)
+\begin{DoxyCompactList}\small\item\em Create an instance of a user interface with upstream as the owner. \end{DoxyCompactList}\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__ZCV2Module_ga9d88c0c1f26ceb0b5425016d497aa3bd}{ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+delete\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf)
+\begin{DoxyCompactList}\small\item\em Delete an instance of a user interface. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__ZCV2Module_ga29f5575a4b537cf8412ca89b6ba8d22c}{ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+reserve\+\_\+address\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}src\+\_\+addr, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}port\+\_\+entry\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Reserve an address on a user interface. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__ZCV2Module_ga4d3514daf067762d237c95d6a5e77077}{ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+release\+\_\+address\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}src\+\_\+addr, void \texorpdfstring{$\ast$}{*}port\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Release an address on a user interface. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__ZCV2Module_gaf59465542f055bd1d89aa86a3c0394ce}{ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+add\+\_\+route\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}source, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}destination, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}route\+\_\+entry\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Add a route on a user interface. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__ZCV2Module_ga10c0ae898713c6c461c8b2bd49d26fa3}{ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+delete\+\_\+route\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}source, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}destination, void \texorpdfstring{$\ast$}{*}route\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Delete a route on a user interface. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__ZCV2Module_ga2d0a31454f0107b78bf0a34e2144d983}{ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+send\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}source, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}destination, void \texorpdfstring{$\ast$}{*}route\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Send a notification on a user interface. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__ZCV2Module_ga014db2e9329d30274d7c3dea87c383e3}{ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+bind\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}src\+\_\+addr, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}dst\+\_\+addr, void \texorpdfstring{$\ast$}{*}port\+\_\+entry, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}bind\+\_\+entry\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Bind an address on a user interface. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__ZCV2Module_ga67032066a7804b32e7f764e7258b2f49}{ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+unbind\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}src\+\_\+addr, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}dst\+\_\+addr, void \texorpdfstring{$\ast$}{*}port\+\_\+entry, void \texorpdfstring{$\ast$}{*}bind\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Unbind an address on a user interface. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__ZCV2Module_ga4e4c31c0270c11cb7ad461813fc72ed2}{ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+notify\+\_\+port\+Func}}) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, void \texorpdfstring{$\ast$}{*}port\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Notify a specific receive port. \end{DoxyCompactList}\item 
+typedef struct ZCOPY\+\_\+\+Notif\+User\+InterfaceI \mbox{\hyperlink{group__ZCV2Module_ga93dbfbe1912819cdef170ceb97377bfe}{ZCOPY\+\_\+\+Notif\+User\+InterfaceI}}
+\begin{DoxyCompactList}\small\item\em Notification mechanism user interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+NETIO Zero Copy v2 interface. 
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  The NETIO Zero Copy v2 module implements the RTI Connext DDS Micro Zero Copy v2 interface. 
+
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__ZCV2Module_gaf98352e1c7da18386ed4ae09396ca583}\index{Zero Copy v2 API@{Zero Copy v2 API}!ZCOPY\_NotifInterfaceFactoryProperty\_INITIALIZER@{ZCOPY\_NotifInterfaceFactoryProperty\_INITIALIZER}}
+\index{ZCOPY\_NotifInterfaceFactoryProperty\_INITIALIZER@{ZCOPY\_NotifInterfaceFactoryProperty\_INITIALIZER}!Zero Copy v2 API@{Zero Copy v2 API}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifInterfaceFactoryProperty\_INITIALIZER}{ZCOPY\_NotifInterfaceFactoryProperty\_INITIALIZER}}
+{\footnotesize\ttfamily \label{group__ZCV2Module_gaf98352e1c7da18386ed4ae09396ca583} 
+\#define ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property\+\_\+\+INITIALIZER}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ NETIO\_InterfaceFactoryProperty\_INITIALIZER,\ \textcolor{comment}{/*\ \_parent\ */}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ 1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ max\_samples\_per\_notif\ */}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ NULL,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ user\_intf\ */}\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ NULL,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ user\_property\ */}\ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Constant to initialize a \doxylink{structZCOPY__NotifInterfaceFactoryProperty}{ZCOPY\+\_\+\+Notif\+Interface\+Factory\+Property}. 
+
+
+
+\doxysubsubsection{Typedef Documentation}
+\Hypertarget{group__ZCV2Module_ga0122fbd8523c10635e8436139c58283a}\index{Zero Copy v2 API@{Zero Copy v2 API}!ZCOPY\_NotifUserInterface\_createFunc@{ZCOPY\_NotifUserInterface\_createFunc}}
+\index{ZCOPY\_NotifUserInterface\_createFunc@{ZCOPY\_NotifUserInterface\_createFunc}!Zero Copy v2 API@{Zero Copy v2 API}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifUserInterface\_createFunc}{ZCOPY\_NotifUserInterface\_createFunc}}
+{\footnotesize\ttfamily \label{group__ZCV2Module_ga0122fbd8523c10635e8436139c58283a} 
+typedef \mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+create\+Func) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}upstream, void \texorpdfstring{$\ast$}{*}user\+\_\+property)}
+
+
+
+Create an instance of a user interface with upstream as the owner. 
+
+\Hypertarget{group__ZCV2Module_ga9d88c0c1f26ceb0b5425016d497aa3bd}\index{Zero Copy v2 API@{Zero Copy v2 API}!ZCOPY\_NotifUserInterface\_deleteFunc@{ZCOPY\_NotifUserInterface\_deleteFunc}}
+\index{ZCOPY\_NotifUserInterface\_deleteFunc@{ZCOPY\_NotifUserInterface\_deleteFunc}!Zero Copy v2 API@{Zero Copy v2 API}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifUserInterface\_deleteFunc}{ZCOPY\_NotifUserInterface\_deleteFunc}}
+{\footnotesize\ttfamily \label{group__ZCV2Module_ga9d88c0c1f26ceb0b5425016d497aa3bd} 
+typedef void(\texorpdfstring{$\ast$}{*} ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+delete\+Func) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf)}
+
+
+
+Delete an instance of a user interface. 
+
+\Hypertarget{group__ZCV2Module_ga29f5575a4b537cf8412ca89b6ba8d22c}\index{Zero Copy v2 API@{Zero Copy v2 API}!ZCOPY\_NotifUserInterface\_reserve\_addressFunc@{ZCOPY\_NotifUserInterface\_reserve\_addressFunc}}
+\index{ZCOPY\_NotifUserInterface\_reserve\_addressFunc@{ZCOPY\_NotifUserInterface\_reserve\_addressFunc}!Zero Copy v2 API@{Zero Copy v2 API}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifUserInterface\_reserve\_addressFunc}{ZCOPY\_NotifUserInterface\_reserve\_addressFunc}}
+{\footnotesize\ttfamily \label{group__ZCV2Module_ga29f5575a4b537cf8412ca89b6ba8d22c} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+reserve\+\_\+address\+Func) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}src\+\_\+addr, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}port\+\_\+entry\+\_\+out)}
+
+
+
+Reserve an address on a user interface. 
+
+Instruct the notification mechanism interface specified by user\+\_\+intf to setup resources for listening to messages on the address src\+\_\+addr and return a port\+\_\+entry\+\_\+out. The port\+\_\+entry\+\_\+out will be provided to a bind call. \Hypertarget{group__ZCV2Module_ga4d3514daf067762d237c95d6a5e77077}\index{Zero Copy v2 API@{Zero Copy v2 API}!ZCOPY\_NotifUserInterface\_release\_addressFunc@{ZCOPY\_NotifUserInterface\_release\_addressFunc}}
+\index{ZCOPY\_NotifUserInterface\_release\_addressFunc@{ZCOPY\_NotifUserInterface\_release\_addressFunc}!Zero Copy v2 API@{Zero Copy v2 API}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifUserInterface\_release\_addressFunc}{ZCOPY\_NotifUserInterface\_release\_addressFunc}}
+{\footnotesize\ttfamily \label{group__ZCV2Module_ga4d3514daf067762d237c95d6a5e77077} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+release\+\_\+address\+Func) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}src\+\_\+addr, void \texorpdfstring{$\ast$}{*}port\+\_\+entry)}
+
+
+
+Release an address on a user interface. 
+
+Instruct the notification mechanism interface specified by user\+\_\+intf to release resources for listening to messages on the address src\+\_\+addr. \Hypertarget{group__ZCV2Module_gaf59465542f055bd1d89aa86a3c0394ce}\index{Zero Copy v2 API@{Zero Copy v2 API}!ZCOPY\_NotifUserInterface\_add\_routeFunc@{ZCOPY\_NotifUserInterface\_add\_routeFunc}}
+\index{ZCOPY\_NotifUserInterface\_add\_routeFunc@{ZCOPY\_NotifUserInterface\_add\_routeFunc}!Zero Copy v2 API@{Zero Copy v2 API}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifUserInterface\_add\_routeFunc}{ZCOPY\_NotifUserInterface\_add\_routeFunc}}
+{\footnotesize\ttfamily \label{group__ZCV2Module_gaf59465542f055bd1d89aa86a3c0394ce} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+add\+\_\+route\+Func) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}source, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}destination, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}route\+\_\+entry\+\_\+out)}
+
+
+
+Add a route on a user interface. 
+
+Instruct the notification mechanism interface specified by user\+\_\+intf to add a route from the source to the destination. The route\+\_\+entry\+\_\+out will be provided to the user later when calling send. \Hypertarget{group__ZCV2Module_ga10c0ae898713c6c461c8b2bd49d26fa3}\index{Zero Copy v2 API@{Zero Copy v2 API}!ZCOPY\_NotifUserInterface\_delete\_routeFunc@{ZCOPY\_NotifUserInterface\_delete\_routeFunc}}
+\index{ZCOPY\_NotifUserInterface\_delete\_routeFunc@{ZCOPY\_NotifUserInterface\_delete\_routeFunc}!Zero Copy v2 API@{Zero Copy v2 API}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifUserInterface\_delete\_routeFunc}{ZCOPY\_NotifUserInterface\_delete\_routeFunc}}
+{\footnotesize\ttfamily \label{group__ZCV2Module_ga10c0ae898713c6c461c8b2bd49d26fa3} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+delete\+\_\+route\+Func) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}source, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}destination, void \texorpdfstring{$\ast$}{*}route\+\_\+entry)}
+
+
+
+Delete a route on a user interface. 
+
+Not available in CERT. 
+
+Instruct the notification mechanism interface specified by user\+\_\+intf to remove a route from the source to the destination. \Hypertarget{group__ZCV2Module_ga2d0a31454f0107b78bf0a34e2144d983}\index{Zero Copy v2 API@{Zero Copy v2 API}!ZCOPY\_NotifUserInterface\_sendFunc@{ZCOPY\_NotifUserInterface\_sendFunc}}
+\index{ZCOPY\_NotifUserInterface\_sendFunc@{ZCOPY\_NotifUserInterface\_sendFunc}!Zero Copy v2 API@{Zero Copy v2 API}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifUserInterface\_sendFunc}{ZCOPY\_NotifUserInterface\_sendFunc}}
+{\footnotesize\ttfamily \label{group__ZCV2Module_ga2d0a31454f0107b78bf0a34e2144d983} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+send\+Func) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}source, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}destination, void \texorpdfstring{$\ast$}{*}route\+\_\+entry)}
+
+
+
+Send a notification on a user interface. 
+
+Instruct the notification mechanism interface specified by user\+\_\+intf to send a notification to the destination using the route\+\_\+entry. \Hypertarget{group__ZCV2Module_ga014db2e9329d30274d7c3dea87c383e3}\index{Zero Copy v2 API@{Zero Copy v2 API}!ZCOPY\_NotifUserInterface\_bindFunc@{ZCOPY\_NotifUserInterface\_bindFunc}}
+\index{ZCOPY\_NotifUserInterface\_bindFunc@{ZCOPY\_NotifUserInterface\_bindFunc}!Zero Copy v2 API@{Zero Copy v2 API}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifUserInterface\_bindFunc}{ZCOPY\_NotifUserInterface\_bindFunc}}
+{\footnotesize\ttfamily \label{group__ZCV2Module_ga014db2e9329d30274d7c3dea87c383e3} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+bind\+Func) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}src\+\_\+addr, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}dst\+\_\+addr, void \texorpdfstring{$\ast$}{*}port\+\_\+entry, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}bind\+\_\+entry\+\_\+out)}
+
+
+
+Bind an address on a user interface. 
+
+Instruct the notification mechanism interface specified by user\+\_\+intf to start listening for messages on the address specified by src\+\_\+addr on the given port\+\_\+entry. \Hypertarget{group__ZCV2Module_ga67032066a7804b32e7f764e7258b2f49}\index{Zero Copy v2 API@{Zero Copy v2 API}!ZCOPY\_NotifUserInterface\_unbindFunc@{ZCOPY\_NotifUserInterface\_unbindFunc}}
+\index{ZCOPY\_NotifUserInterface\_unbindFunc@{ZCOPY\_NotifUserInterface\_unbindFunc}!Zero Copy v2 API@{Zero Copy v2 API}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifUserInterface\_unbindFunc}{ZCOPY\_NotifUserInterface\_unbindFunc}}
+{\footnotesize\ttfamily \label{group__ZCV2Module_ga67032066a7804b32e7f764e7258b2f49} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+unbind\+Func) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}src\+\_\+addr, struct \mbox{\hyperlink{structNETIO__Address}{NETIO\+\_\+\+Address}} \texorpdfstring{$\ast$}{*}dst\+\_\+addr, void \texorpdfstring{$\ast$}{*}port\+\_\+entry, void \texorpdfstring{$\ast$}{*}bind\+\_\+entry)}
+
+
+
+Unbind an address on a user interface. 
+
+Instruct the notification mechanism interface specified by user\+\_\+intf to stop listening for messages on the address specified by src\+\_\+addr. \Hypertarget{group__ZCV2Module_ga4e4c31c0270c11cb7ad461813fc72ed2}\index{Zero Copy v2 API@{Zero Copy v2 API}!ZCOPY\_NotifUserInterface\_notify\_portFunc@{ZCOPY\_NotifUserInterface\_notify\_portFunc}}
+\index{ZCOPY\_NotifUserInterface\_notify\_portFunc@{ZCOPY\_NotifUserInterface\_notify\_portFunc}!Zero Copy v2 API@{Zero Copy v2 API}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifUserInterface\_notify\_portFunc}{ZCOPY\_NotifUserInterface\_notify\_portFunc}}
+{\footnotesize\ttfamily \label{group__ZCV2Module_ga4e4c31c0270c11cb7ad461813fc72ed2} 
+typedef \mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}}(\texorpdfstring{$\ast$}{*} ZCOPY\+\_\+\+Notif\+User\+Interface\+\_\+notify\+\_\+port\+Func) (\mbox{\hyperlink{group__NETIO__InterfaceClass_ga641b1c13763da299ff816e04622e817a}{NETIO\+\_\+\+Interface\+\_\+T}} \texorpdfstring{$\ast$}{*}user\+\_\+intf, void \texorpdfstring{$\ast$}{*}port\+\_\+entry)}
+
+
+
+Notify a specific receive port. 
+
+Instruct the notification mechanism interface specified by user\+\_\+intf to notify the receive port specified by port\+\_\+entry. \Hypertarget{group__ZCV2Module_ga93dbfbe1912819cdef170ceb97377bfe}\index{Zero Copy v2 API@{Zero Copy v2 API}!ZCOPY\_NotifUserInterfaceI@{ZCOPY\_NotifUserInterfaceI}}
+\index{ZCOPY\_NotifUserInterfaceI@{ZCOPY\_NotifUserInterfaceI}!Zero Copy v2 API@{Zero Copy v2 API}}
+\doxyparagraph{\texorpdfstring{ZCOPY\_NotifUserInterfaceI}{ZCOPY\_NotifUserInterfaceI}}
+{\footnotesize\ttfamily \label{group__ZCV2Module_ga93dbfbe1912819cdef170ceb97377bfe} 
+typedef struct ZCOPY\+\_\+\+Notif\+User\+InterfaceI ZCOPY\+\_\+\+Notif\+User\+InterfaceI}
+
+
+
+Notification mechanism user interface. 
+
+Interface functions for the notification mechanism user interface. This allows the user to specify custom implementations of the notification mechanism. The Default Notification Mechanism provided with /ndds can be accessed using \+::\+DDSZCOPY\+\_\+\+Notif\+User\+Interface\+::get\+\_\+interface. \begin{DoxySeeAlso}{See also}
+\+::\+DDSZCOPY\+\_\+\+Notif\+Mechanism\+::register 
+\end{DoxySeeAlso}
+\input{group__ZCOPY__NotifInterfaceClass}

@@ -1,0 +1,40 @@
+Introduction
+------------
+
+In |rti_me|, DDS entities exchange information using transports. Transports
+exhange data with peer transports, and |me| entities can generally exchange
+information using different types of transports, e.g. UDPv4 or a serial port.
+All transports send and receive RTPS messages encapsulated in the transport's
+native format, e.g. UDP packets.
+
+|rti_me| has a pluggable-transports architecture. The core of |me| is
+transport agnostic — it does not make any assumptions about the actual
+transports used to send and receive messages. Instead, |me| uses an abstract
+"transport API" to interact with the transport plugins that implement that API.
+A transport plugin implements the abstract transport API, and performs the
+actual work of sending and receiving messages over a physical transport.
+
+In |me| a Network Input/Output (NETIO) interface is a software layer that
+may send and/or receive data from a higher and/or lower level locally, as
+well as communicate with a peer. A transport is a NETIO interface that is at
+the lowest level of the protocol stack. For example, the UDP NETIO interface
+is a transport.
+
+A transport can send and receive on addresses as defined by the concrete
+transport. For example, the |me| UDP transport can listen to and send to
+UDPv4 ports and addresses. In order to establish communication between two
+transports, the addresses that the transport can listen to must be determined
+and announced to other *DomainParticipants* that want to communicate with it.
+This document describes how the addresses are reserved and how these addresses
+are used by the DDS layer in |me|.
+
+While the NETIO interface is not limited to DDS, the rest of this document
+is written in the context of how |me| uses the NETIO interfaces as part
+of the DDS implementation.
+
+|me| does not track the maximum message size of other nodes in the
+system. Therefore, |me| relies on consistent configuration accross all
+the nodes in the system in order to successfully send and receive data.
+For example, if a |me| node has a maximum message size  of 8000 bytes
+and another |me| node sends 9000 bytes the data will be sent,
+but not received.

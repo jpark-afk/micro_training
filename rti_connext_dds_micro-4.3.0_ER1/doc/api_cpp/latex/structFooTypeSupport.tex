@@ -1,0 +1,310 @@
+\doxysubsection{Foo\+Type\+Support Class Reference}
+\hypertarget{structFooTypeSupport}{}\label{structFooTypeSupport}\index{FooTypeSupport@{FooTypeSupport}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} {\itshape \doxylink{group__DDSDocGuideModule_a_st_generic}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}generic\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} User data type specific interface.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+data.\+hxx$>$}
+
+\doxysubsubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{structFooTypeSupport_afbd0288fab9d2e6f842b5e12629e21bb}{initialize\+\_\+data}} (Foo \texorpdfstring{$\ast$}{*}sample)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Initialize data type. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{structFooTypeSupport_a2821b6b88264a6d614e9cd949ab8b75c}{finalize\+\_\+data}} (Foo \texorpdfstring{$\ast$}{*}sample)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Finalize data type. \end{DoxyCompactList}\item 
+static Foo \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structFooTypeSupport_a1077466e1b5620ce7416c7846eed6724}{create\+\_\+data}} ()
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Create a data type and initialize it. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooTypeSupport_a1c196cde7eaaee2dfe3d5056559a6207}{delete\+\_\+data}} (Foo \texorpdfstring{$\ast$}{*}sample)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Destroy a user data type instance. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{structFooTypeSupport_a81c77ff19f222437e5243a03273788e8}{copy\+\_\+data}} (Foo \texorpdfstring{$\ast$}{*}dst\+\_\+data, Foo \texorpdfstring{$\ast$}{*}src\+\_\+data)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Copy data type. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooTypeSupport_a25b70f0c36cbb4ba95e6ef08e094e84c}{register\+\_\+type}} (\mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*}participant, const char \texorpdfstring{$\ast$}{*}type\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Allows an application to communicate to RTI Connext DDS Micro the existence of a data type. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooTypeSupport_af4334ac8c5ccfca30dd5a9bd808cb6bc}{unregister\+\_\+type}} (\mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*}participant, const char \texorpdfstring{$\ast$}{*}type\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Allows an application to unregister a data type from RTI Connext DDS Micro. After calling unregister\+\_\+type, no further communication using that type is possible. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooTypeSupport_a7197370f5d81fa75e979a778548c3949}{serialize\+\_\+data\+\_\+to\+\_\+cdr\+\_\+buffer\+\_\+ex}} (char \texorpdfstring{$\ast$}{*}buffer, unsigned int \&length, const TData \texorpdfstring{$\ast$}{*}a\+\_\+data, \mbox{\hyperlink{group__DDSDataRepresentationQosModule_ga1f9f23529f5b33d00ab4b4a456bb6aeb}{DDS\+\_\+\+Data\+Representation\+Id\+\_\+t}} representation)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Serializes the input sample into a buffer of octets. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooTypeSupport_a127dcf15b156a894742e8d6aa89c6a57}{serialize\+\_\+data\+\_\+to\+\_\+cdr\+\_\+buffer}} (char \texorpdfstring{$\ast$}{*}buffer, unsigned int \&length, const TData \texorpdfstring{$\ast$}{*}a\+\_\+data)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Serializes the input sample into a CDR buffer of octets. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{structFooTypeSupport_a74f963f23f7fda7fe7c058e964e5c12c}{deserialize\+\_\+data\+\_\+from\+\_\+cdr\+\_\+buffer}} (TData \texorpdfstring{$\ast$}{*}a\+\_\+data, const char \texorpdfstring{$\ast$}{*}buffer, unsigned int length)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Deserializes a sample from a buffer of octets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} {\itshape \doxylink{group__DDSDocGuideModule_a_st_generic}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}generic\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} User data type specific interface. 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{structFooTypeSupport_afbd0288fab9d2e6f842b5e12629e21bb}\index{FooTypeSupport@{FooTypeSupport}!initialize\_data@{initialize\_data}}
+\index{initialize\_data@{initialize\_data}!FooTypeSupport@{FooTypeSupport}}
+\doxyparagraph{\texorpdfstring{initialize\_data()}{initialize\_data()}}
+{\footnotesize\ttfamily \label{structFooTypeSupport_afbd0288fab9d2e6f842b5e12629e21bb} 
+static bool Foo\+Type\+Support\+::initialize\+\_\+data (\begin{DoxyParamCaption}\item[{Foo \texorpdfstring{$\ast$}{*}}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Initialize data type. 
+
+The {\itshape generated} implementation of the operation knows how to initialize a data type. This method is typically called to initialize a data type that is allocated on the stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sample} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structFooTypeSupport_a2821b6b88264a6d614e9cd949ab8b75c}{Foo\+Type\+Support\+::finalize\+\_\+data} 
+\end{DoxySeeAlso}
+\Hypertarget{structFooTypeSupport_a2821b6b88264a6d614e9cd949ab8b75c}\index{FooTypeSupport@{FooTypeSupport}!finalize\_data@{finalize\_data}}
+\index{finalize\_data@{finalize\_data}!FooTypeSupport@{FooTypeSupport}}
+\doxyparagraph{\texorpdfstring{finalize\_data()}{finalize\_data()}}
+{\footnotesize\ttfamily \label{structFooTypeSupport_a2821b6b88264a6d614e9cd949ab8b75c} 
+static bool Foo\+Type\+Support\+::finalize\+\_\+data (\begin{DoxyParamCaption}\item[{Foo \texorpdfstring{$\ast$}{*}}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Finalize data type. 
+
+The {\itshape generated} implementation of the operation knows how to finalize a data type. This method is typically called to finalize a data type that has previously been initialized. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sample} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structFooTypeSupport_afbd0288fab9d2e6f842b5e12629e21bb}{Foo\+Type\+Support\+::initialize\+\_\+data} 
+\end{DoxySeeAlso}
+\Hypertarget{structFooTypeSupport_a1077466e1b5620ce7416c7846eed6724}\index{FooTypeSupport@{FooTypeSupport}!create\_data@{create\_data}}
+\index{create\_data@{create\_data}!FooTypeSupport@{FooTypeSupport}}
+\doxyparagraph{\texorpdfstring{create\_data()}{create\_data()}}
+{\footnotesize\ttfamily \label{structFooTypeSupport_a1077466e1b5620ce7416c7846eed6724} 
+static Foo \texorpdfstring{$\ast$}{*} Foo\+Type\+Support\+::create\+\_\+data (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Create a data type and initialize it. 
+
+Memory for a data type is allocated from memory using  internal RTI Connext DDS Micro memory allocation and deallocation APIs.  The implementation of these APIs are specific to a particular platform. For this reason it is of the utmost importance that \doxylink{structFooTypeSupport_a1077466e1b5620ce7416c7846eed6724}{Foo\+Type\+Support\+::create\+\_\+data} is not called until \doxylink{classDDSDomainParticipantFactory_af97713a0773c8f0d6d5bcd63409bfdbd}{DDSDomain\+Participant\+Factory\+::get\+\_\+instance} has been called successfully. The \doxylink{classDDSDomainParticipantFactory}{DDSDomain\+Participant\+Factory} initializes the RTI Connext DDS Micro system, including any memory management initialization. 
+
+The {\itshape generated} implementation of the operation knows how to instantiate a data type and initialize it properly. 
+
+All memory for the type is deeply allocated. 
+
+\begin{DoxyReturn}{Returns}
+newly created data type 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{API Restriction\+:}
+This function {\itshape  must } only be called after \doxylink{classDDSDomainParticipantFactory_af97713a0773c8f0d6d5bcd63409bfdbd}{DDSDomain\+Participant\+Factory\+::get\+\_\+instance}. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structFooTypeSupport_a1c196cde7eaaee2dfe3d5056559a6207}{Foo\+Type\+Support\+::delete\+\_\+data}  
+\end{DoxySeeAlso}
+\Hypertarget{structFooTypeSupport_a1c196cde7eaaee2dfe3d5056559a6207}\index{FooTypeSupport@{FooTypeSupport}!delete\_data@{delete\_data}}
+\index{delete\_data@{delete\_data}!FooTypeSupport@{FooTypeSupport}}
+\doxyparagraph{\texorpdfstring{delete\_data()}{delete\_data()}}
+{\footnotesize\ttfamily \label{structFooTypeSupport_a1c196cde7eaaee2dfe3d5056559a6207} 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Type\+Support\+::delete\+\_\+data (\begin{DoxyParamCaption}\item[{Foo \texorpdfstring{$\ast$}{*}}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Destroy a user data type instance. 
+
+The {\itshape generated} implementation of the operation knows how to destroy a data type and return all resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sample} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structFooTypeSupport_a1077466e1b5620ce7416c7846eed6724}{Foo\+Type\+Support\+::create\+\_\+data} 
+\end{DoxySeeAlso}
+\Hypertarget{structFooTypeSupport_a81c77ff19f222437e5243a03273788e8}\index{FooTypeSupport@{FooTypeSupport}!copy\_data@{copy\_data}}
+\index{copy\_data@{copy\_data}!FooTypeSupport@{FooTypeSupport}}
+\doxyparagraph{\texorpdfstring{copy\_data()}{copy\_data()}}
+{\footnotesize\ttfamily \label{structFooTypeSupport_a81c77ff19f222437e5243a03273788e8} 
+static bool Foo\+Type\+Support\+::copy\+\_\+data (\begin{DoxyParamCaption}\item[{Foo \texorpdfstring{$\ast$}{*}}]{dst\+\_\+data}{, }\item[{Foo \texorpdfstring{$\ast$}{*}}]{src\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Copy data type. 
+
+The {\itshape generated} implementation of the operation knows how to copy value of a data type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dst\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Data type to copy value to. Cannot be NULL. \\
+\hline
+{\em src\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Data type to copy value from. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\Hypertarget{structFooTypeSupport_a25b70f0c36cbb4ba95e6ef08e094e84c}\index{FooTypeSupport@{FooTypeSupport}!register\_type@{register\_type}}
+\index{register\_type@{register\_type}!FooTypeSupport@{FooTypeSupport}}
+\doxyparagraph{\texorpdfstring{register\_type()}{register\_type()}}
+{\footnotesize\ttfamily \label{structFooTypeSupport_a25b70f0c36cbb4ba95e6ef08e094e84c} 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Type\+Support\+::register\+\_\+type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*}}]{participant}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{type\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Allows an application to communicate to RTI Connext DDS Micro the existence of a data type. 
+
+The {\itshape generated} implementation of the operation embeds all the knowledge that has to be communicated to the middleware in order to make it able to manage the contents of data of that type. This includes in particular the key definition that will allow RTI Connext DDS Micro to distinguish different instances of the same type. 
+
+The same \doxylink{group__DDSUserDataModule_ga1d7eeb034b2611d4d5f588beea376e22}{DDS\+\_\+\+TYPESUPPORT\+\_\+\+CPP} can be registered multiple times with a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} using the same or different values for the {\ttfamily type\+\_\+name}. If {\ttfamily register\+\_\+type} is called multiple times on the same \doxylink{group__DDSUserDataModule_ga1d7eeb034b2611d4d5f588beea376e22}{DDS\+\_\+\+TYPESUPPORT\+\_\+\+CPP} with the same \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} and {\ttfamily type\+\_\+name}, the second (and subsequent) registrations return \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a4f3bc70d86031a38bba356c4b534979f}{DDS\+\_\+\+RETCODE\+\_\+\+OK}. A type must be registered and unregistered an equal number of times. 
+
+\begin{DoxyPrecond}{Precondition}
+Cannot use the same {\ttfamily type\+\_\+name} to register two different \doxylink{group__DDSUserDataModule_ga1d7eeb034b2611d4d5f588beea376e22}{DDS\+\_\+\+TYPESUPPORT\+\_\+\+CPP} with the same \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}, or else the operation will fail and \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} will be returned. 
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em participant} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} to register the data type {\ttfamily Foo} with. Cannot be NULL. \\
+\hline
+{\em type\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the type name under with the data type {\ttfamily Foo} is registered with the participant; this type name is used when creating a new \doxylink{classDDSTopic}{DDSTopic}. (See \doxylink{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}{DDSDomain\+Participant\+::create\+\_\+topic}.) The name may not be longer than 255 characters. If name is NULL, the typename specified in IDL is used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES}. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDomainParticipant_a429c2e4de82957e2ea01dd6d16560e2f}{DDSDomain\+Participant\+::create\+\_\+topic} 
+\end{DoxySeeAlso}
+\Hypertarget{structFooTypeSupport_af4334ac8c5ccfca30dd5a9bd808cb6bc}\index{FooTypeSupport@{FooTypeSupport}!unregister\_type@{unregister\_type}}
+\index{unregister\_type@{unregister\_type}!FooTypeSupport@{FooTypeSupport}}
+\doxyparagraph{\texorpdfstring{unregister\_type()}{unregister\_type()}}
+{\footnotesize\ttfamily \label{structFooTypeSupport_af4334ac8c5ccfca30dd5a9bd808cb6bc} 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Type\+Support\+::unregister\+\_\+type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDDSDomainParticipant}{DDSDomain\+Participant}} \texorpdfstring{$\ast$}{*}}]{participant}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{type\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Allows an application to unregister a data type from RTI Connext DDS Micro. After calling unregister\+\_\+type, no further communication using that type is possible. 
+
+The {\itshape generated} implementation of the operation removes all the information about a type from RTI Connext DDS Micro. No further communication using that type is possible. 
+
+\begin{DoxyPrecond}{Precondition}
+A type with {\ttfamily type\+\_\+name} is registered with the participant and all \doxylink{classDDSTopic}{DDSTopic} objects referencing the type have been destroyed. If the type is not registered with the participant, or if any \doxylink{classDDSTopic}{DDSTopic} is associated with the type, the operation will fail with \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ac47a8e813f6e5d652f67dbc551b9f62e}{DDS\+\_\+\+RETCODE\+\_\+\+ERROR}. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+All information about the type is removed from RTI Connext DDS Micro. No further communication using this type is possible. 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em participant} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} to unregister the data type {\ttfamily Foo} from. Cannot be NULL. \\
+\hline
+{\em type\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the type name under with the data type {\ttfamily Foo} is registered with the participant. The name should match a name that has been previously used to register a type with the participant. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}, \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER} or \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ac47a8e813f6e5d652f67dbc551b9f62e}{DDS\+\_\+\+RETCODE\+\_\+\+ERROR} 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+SAFE. 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDDSDomainParticipant_a8b3171bd5b731d936560ba4de4c9887c}{DDSDomain\+Participant\+::register\+\_\+type} 
+\end{DoxySeeAlso}
+\Hypertarget{structFooTypeSupport_a7197370f5d81fa75e979a778548c3949}\index{FooTypeSupport@{FooTypeSupport}!serialize\_data\_to\_cdr\_buffer\_ex@{serialize\_data\_to\_cdr\_buffer\_ex}}
+\index{serialize\_data\_to\_cdr\_buffer\_ex@{serialize\_data\_to\_cdr\_buffer\_ex}!FooTypeSupport@{FooTypeSupport}}
+\doxyparagraph{\texorpdfstring{serialize\_data\_to\_cdr\_buffer\_ex()}{serialize\_data\_to\_cdr\_buffer\_ex()}}
+{\footnotesize\ttfamily \label{structFooTypeSupport_a7197370f5d81fa75e979a778548c3949} 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Type\+Support\+::serialize\+\_\+data\+\_\+to\+\_\+cdr\+\_\+buffer\+\_\+ex (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{unsigned int \&}]{length}{, }\item[{const TData \texorpdfstring{$\ast$}{*}}]{a\+\_\+data}{, }\item[{\mbox{\hyperlink{group__DDSDataRepresentationQosModule_ga1f9f23529f5b33d00ab4b4a456bb6aeb}{DDS\+\_\+\+Data\+Representation\+Id\+\_\+t}}}]{representation}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Serializes the input sample into a buffer of octets. 
+
+This method serializes a sample into a buffer of octets using the input data representation. See \doxylink{structFooTypeSupport_a127dcf15b156a894742e8d6aa89c6a57}{Foo\+Type\+Support\+::serialize\+\_\+data\+\_\+to\+\_\+cdr\+\_\+buffer} for details. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Input sample. Cannot be NULL.  \\
+\hline
+{\em buffer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Serialization buffer.  \\
+\hline
+{\em length} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Serialization buffer length.  \\
+\hline
+{\em representation} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Representation used to serialize the data. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}  
+\end{DoxyReturn}
+\Hypertarget{structFooTypeSupport_a127dcf15b156a894742e8d6aa89c6a57}\index{FooTypeSupport@{FooTypeSupport}!serialize\_data\_to\_cdr\_buffer@{serialize\_data\_to\_cdr\_buffer}}
+\index{serialize\_data\_to\_cdr\_buffer@{serialize\_data\_to\_cdr\_buffer}!FooTypeSupport@{FooTypeSupport}}
+\doxyparagraph{\texorpdfstring{serialize\_data\_to\_cdr\_buffer()}{serialize\_data\_to\_cdr\_buffer()}}
+{\footnotesize\ttfamily \label{structFooTypeSupport_a127dcf15b156a894742e8d6aa89c6a57} 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Type\+Support\+::serialize\+\_\+data\+\_\+to\+\_\+cdr\+\_\+buffer (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{unsigned int \&}]{length}{, }\item[{const TData \texorpdfstring{$\ast$}{*}}]{a\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Serializes the input sample into a CDR buffer of octets. 
+
+This method serializes a sample into a buffer of octets and it uses CDR as the data representation. Calling this method is equivalent to calling \doxylink{structFooTypeSupport_a7197370f5d81fa75e979a778548c3949}{Foo\+Type\+Support\+::serialize\+\_\+data\+\_\+to\+\_\+cdr\+\_\+buffer\+\_\+ex} with \doxylink{group__DDSDataRepresentationQosModule_gaee990eb6602d375230a0921b1213b890}{DDS\+\_\+\+AUTO\+\_\+\+DATA\+\_\+\+REPRESENTATION} as the representation. 
+
+The input buffer must be big enough to store the serialized representation of the sample. Otherwise, the method will return an error. 
+
+To determine the minimum size of the input buffer, the user must call this method with the buffer set to NULL. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Input sample. Cannot be NULL.  \\
+\hline
+{\em buffer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Serialization buffer.  \\
+\hline
+{\em length} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_inout}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}inout\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. When {\ttfamily buffer} is set to NULL, after the method executes, {\ttfamily length} will contain a buffer size big enough to hold the serialized data. When {\ttfamily buffer} is not NULL, {\ttfamily length} must contain the size of the input buffer when the method is invoked. After the method executes, {\ttfamily length} will be updated to contain the actual size of the serialized content, which may be smaller than the size obtained when {\ttfamily buffer} is set to NULL.  \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}  
+\end{DoxyReturn}
+\Hypertarget{structFooTypeSupport_a74f963f23f7fda7fe7c058e964e5c12c}\index{FooTypeSupport@{FooTypeSupport}!deserialize\_data\_from\_cdr\_buffer@{deserialize\_data\_from\_cdr\_buffer}}
+\index{deserialize\_data\_from\_cdr\_buffer@{deserialize\_data\_from\_cdr\_buffer}!FooTypeSupport@{FooTypeSupport}}
+\doxyparagraph{\texorpdfstring{deserialize\_data\_from\_cdr\_buffer()}{deserialize\_data\_from\_cdr\_buffer()}}
+{\footnotesize\ttfamily \label{structFooTypeSupport_a74f963f23f7fda7fe7c058e964e5c12c} 
+static \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} Foo\+Type\+Support\+::deserialize\+\_\+data\+\_\+from\+\_\+cdr\+\_\+buffer (\begin{DoxyParamCaption}\item[{TData \texorpdfstring{$\ast$}{*}}]{a\+\_\+data}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{unsigned int}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Deserializes a sample from a buffer of octets. 
+
+This method deserializes a sample from a CDR buffer of octets. 
+
+The content of the buffer generated by the method \doxylink{structFooTypeSupport_a127dcf15b156a894742e8d6aa89c6a57}{Foo\+Type\+Support\+::serialize\+\_\+data\+\_\+to\+\_\+cdr\+\_\+buffer} can be provided to this method to get the sample back. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+\_\+data} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Output sample. Cannot be NULL.  \\
+\hline
+{\em buffer} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Deserialization buffer. Cannot be NULL.\\
+\hline
+{\em length} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}. Length of the serialized representation of the sample in the buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1}  
+\end{DoxyReturn}

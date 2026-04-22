@@ -1,0 +1,275 @@
+##/* $Id$
+##
+##   (c) Copyright, Real-Time Innovations, Inc. 2001.  All rights reserved.
+##   No duplications, whole or partial, manual or electronic, may be made
+##   without prior written permission.  Any such copies, or
+##   revisions thereof, must display this notice unaltered.
+##   This code contains trade secrets of Real-Time Innovations, Inc.
+
+##modification history:
+##---------------------
+##10a,16jan13, ajm RRTIDDSGEN-52 Renaming variables and functions for the codereview
+##10a,4dec12, ajm Refactoring of the code and variable names.
+##10a,25oct12, ajm Refactorizing code and variable names:
+##                typeIdl-->nativeTypeFQName, pathName-->FQName
+##10a,21oct11,ajm Adding a return at the end of the file
+##10a,11oct11, Fixing issues and adding union support for C++
+##10a,10oct11,ajm Adding union support
+##10a,29sep11,ajm adding forward declaration and namespace support
+##10a,22sep11,ajm adding valuetypes support
+##10a,15sep11,ajm Fixing more typedef issues
+##10a,15sep11,ajm Fixing issues with typedefs
+##10a,14sep11,ajm Refactor typedef
+##10a,2sep11,jmt Adding typedef support for sequences and arrays of sequences
+##10a,01se11,jmt Adding typedef support for primitive types and typedef arrays
+##10a,29ag11,ajm Created
+
+##----------------------------------------------------------------
+##-----------------------------------------------------------------
+##
+##             Macros for the TypePluginKeyElementsMacro in C
+##
+##------------------------------------------------------------------
+##------------------------------------------------------------------
+## Contains the macros related to the key members in the structure
+##---------------------------------------------------------------------
+##---------------------------------------------------------------------
+
+##******************************************************************************
+## Macro to serialize_key members
+##******************************************************************************
+#macro(serialize_keyMicroMicro $struct)
+#*--*##if($struct.hasKey || $struct.constructKind=="alias")
+#*----*##foreach($member in $struct.memberFieldMapList)
+#*------*##if($member.isKey || $struct.constructKind=="alias")
+#*----------*##serializeMemberMicroMicro($member "_key")
+#*------*##end##memberiskey
+#*----*##end##foreach
+#*--*##else
+#*----*##if(!${struct.hasKeyBaseType})
+        if (!${struct.baseTypeFQName}_cdr_serialize(
+                    plugin,stream,sample,destination)) {
+                return RTI_FALSE;
+            }
+#*----*##end##hasKeyBaseType
+#*--*##end##haskey
+#end
+
+
+
+##******************************************************************************
+## Macro to deserialize_key members
+##******************************************************************************
+
+#macro(deserialize_keyMicroMicro $struct)
+#*--*##if($struct.hasKey || $struct.constructKind=="alias")
+#*----*##foreach($member in $struct.memberFieldMapList)
+#*-----*##if($member.isKey || $struct.constructKind=="alias")
+#*--------*##deserializeMemberMicroMicro($member "_key")
+#*------*##end##memberiskey
+#*----*##end##foreach
+#*--*##else
+#*----*##if(!${struct.hasKeyBaseType})
+        if (!${struct.baseTypeFQName}_cdr_deserialize(
+                plugin,void_sample,stream,source)) {
+                 return RTI_FALSE;
+            }
+#*----*##end
+#*--*##end
+#end
+
+
+##******************************************************************************
+## Macro to serialize_key_max
+##******************************************************************************
+
+#macro(get_serialized_key_sizeMicroMicro $struct)
+#*--*##if($struct.hasKey || $struct.constructKind=="alias")
+#*----*##foreach($member in $struct.memberFieldMapList)
+#*------*##if($member.isKey || $struct.constructKind=="alias")
+#*--------*##if($member.dimensionList &&$member.seqSize)
+#*----------*# #getMaxSizeArrayofSeqMicroMicro($member "key")
+#*--------*##elseif($member.seqSize)
+    {
+        RTI_UINT32 seq_size;
+        seq_size = #getMaxSizeSeqMicroMicro($member "key" "current_alignment");
+        /* Check for overflow in sequence size calculation */
+        if (seq_size == 0) {
+            return 0;
+        }
+        /* Check for overflow in addition */
+        if (current_alignment > (UINT_MAX - seq_size)) {
+            return 0;
+        }
+        current_alignment += seq_size;
+    }
+#*--------*##elseif($member.dimensionList)
+    {
+        RTI_UINT32 array_size;
+        array_size = #getMaxSizeSerialized_PrimitiveArrayMicroMicro($member "key");
+        /* Check for overflow in array size calculation */
+        if (array_size == 0) {
+            return 0;
+        }
+        /* Check for overflow in addition */
+        if (current_alignment > (UINT_MAX - array_size)) {
+            return 0;
+        }
+        current_alignment += array_size;
+    }
+#*--------*##elseif($member.typeKind=="user")
+    {
+        RTI_UINT32 user_key_size;
+        user_key_size = ${member.nativeTypeFQName}_get_serialized_key_size(
+            plugin, current_alignment);
+        /* Check for overflow in user type key size calculation */
+        if (user_key_size == 0) {
+            return 0;
+        }
+        /* Check for overflow in addition */
+        if (current_alignment > (UINT_MAX - user_key_size)) {
+            return 0;
+        }
+        current_alignment += user_key_size;
+    }
+ #*----------*##else
+    {
+        RTI_UINT32 element_size;
+        element_size = ${member.elementSizeMethod}(
+            current_alignment #if($member.strSize), (${member.strSize})+1#end);
+        /* Check for overflow in addition */
+        if (current_alignment > (UINT_MAX - element_size)) {
+            return 0;
+        }
+        current_alignment += element_size;
+    }
+#*--------*##end
+#*------*##end
+#*----*##end
+#*--*##else
+#*------*##if(!${struct.hasKeyBaseType})
+    {
+        RTI_UINT32 base_sample_size;
+        base_sample_size = ${struct.baseTypeFQName}_get_serialized_sample_size(
+            plugin, current_alignment, param);
+        /* Check for overflow in base sample size calculation */
+        if (base_sample_size == 0) {
+            return 0;
+        }
+        /* Check for overflow in addition */
+        if (current_alignment > (UINT_MAX - base_sample_size)) {
+            return 0;
+        }
+        current_alignment += base_sample_size;
+    }
+#*--*##end
+#*--*##end
+#end
+
+##******************************************************************************
+## Macro to copyKeyCode
+##******************************************************************************
+
+#macro(copyKeyCodeMicroMicro $member)
+#*--*##if($member.dimensionList &&  $member.seqSize)
+#*----*##copyKeyCodeArrayofSeqMicroMicro($member)
+#*--*##elseif($member.seqSize)
+#*----*##copyKeyCodeSeqMicroMicro($member)
+#*--*##elseif($member.dimensionList)
+#*----*##copyKeyCodeArrayMicroMicro($member)
+#*--*##elseif($member.typeKind=="user")
+#*----*##copyKeyCodeUserMicroMicro($member)
+#*----*##elseif($member.strSize)
+if (!${member.elementCopyMethod}(
+        dst->${member.name}, src->${member.name}, (${member.strSize}) + 1)) {
+        return RTI_FALSE;
+    }
+#*----*##else
+if (!${member.elementCopyMethod}(
+        &dst->${member.name}, &src->${member.name})) {
+        return RTI_FALSE;
+    }
+#*--*##end
+#end
+
+##-----------------------------------------------------------------------------
+## Macro to copyKey Array of Sequence
+##-----------------------------------------------------------------------------
+#macro(copyKeyCodeArrayofSeqMicroMicro $member)
+{
+        RTI_UINT32 i;
+
+        for (i = 0; i <  #addDimensionMultiplicationMicroMicro($member); i++) {
+        #copyKeyCodeSeqMicroMicro($member)
+        }
+}
+#end
+
+##-----------------------------------------------------------------------------
+## Macro to copyKey typedef (alias)
+##-----------------------------------------------------------------------------
+#macro(copyKeyCodeUserMicroMicro $member)
+   if (!${member.nativeTypeFQName}_copy(
+        &dst->${member.name}, &src->${member.name})) {
+        return RTI_FALSE;
+    }
+
+#end
+
+##-----------------------------------------------------------------------------
+## Macro to copyKey Sequence
+##-----------------------------------------------------------------------------
+#macro(copyKeyCodeSeqMicroMicro $member)
+   if (!${member.sequenceCopyMethod}(&dst->${member.name}#if($member.dimensionList)[i]#end,
+                                      &src->${member.name}#if($member.dimensionList)[i]#end #if($member.strSize && !$member.typeKind.equals("user")),(${member.strSize}))#end) {
+
+        return RTI_FALSE;
+    }
+
+#end
+
+##-----------------------------------------------------------------------------
+## Macro to copyKey Array
+##-----------------------------------------------------------------------------
+
+#macro(copyKeyCodeArrayMicroMicro $member)
+#*--*##if ($member.typeKind=="user")
+    {
+        int i = 0;
+        ${member.nativeTypeFQName}* elemOut = ( ${member.nativeTypeFQName}*) &dst->${member.name}[0];
+        const  ${member.nativeTypeFQName}* elemIn = (const  ${member.nativeTypeFQName}*) &src->${member.name}[0];
+
+        for (i = 0; i < #addDimensionMultiplicationMicroMicro($member);
+             ++i, ++elemOut, ++elemIn)
+        {
+            if (!${member.nativeTypeFQName}_copy(elemOut,(const  ${member.nativeTypeFQName}*)elemIn))
+            {
+                return RTI_FALSE;
+            }
+        }
+     }
+#*--*##elseif ($member.strSize)
+#*--*# if (!CDR_StringArray_copy(
+#*--*#        dst->${member.name}, src->${member.name},
+#*--*#        #addDimensionMultiplicationMicroMicro($member), (${member.strSize}) + 1,
+#*--*#        ${member.typeEnum})) {
+#*--*#        return RTI_FALSE;
+#*--*#    }
+#*--*##else
+#*--*# CDR_Primitive_copy_array(dst->${member.name}, src->${member.name}, (#addDimensionMultiplicationMicroMicro($member)*${member.elementSize}));
+#*--*##end
+#end
+
+
+##******************************************************************************
+## Key code macro from here to the end
+##******************************************************************************
+
+#macro(keyCodeMicroMicro $struct)
+#*--*##if($struct.hasKey || $struct.hasKeyBaseType)
+
+##break ##To avoid the repetition if there are more than one key field
+#end
+#end
+
+

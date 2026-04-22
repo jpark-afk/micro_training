@@ -1,0 +1,59 @@
+\doxysubsubsubsubsection{PRESENTATION}
+\hypertarget{group__DDSPresentationQosModule}{}\label{group__DDSPresentationQosModule}\index{PRESENTATION@{PRESENTATION}}
+
+
+Specifies how the samples representing changes to data instances are presented to a subscribing application.  
+
+
+\doxysubsubsubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__PresentationQosPolicy}{DDS\+\_\+\+Presentation\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em Specifies how the samples representing changes to data instances are presented to a subscribing application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__DDSPresentationQosModule_ga123d979f855f637f32eb525b778175b2}{DDS\+\_\+\+Presentation\+Qos\+Policy\+Access\+Scope\+Kind}} \{ \mbox{\hyperlink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ab7e8c01f13b9c46013094fdee7d6af36}{DDS\+\_\+\+INSTANCE\+\_\+\+PRESENTATION\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2a6d21a371adc6e10a62c2739171f5c22f}{DDS\+\_\+\+TOPIC\+\_\+\+PRESENTATION\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ae0591a04e045da1d86f25fa8bec39937}{DDS\+\_\+\+GROUP\+\_\+\+PRESENTATION\+\_\+\+QOS}}
+, {\bfseries DDS\+\_\+\+HIGHEST\+\_\+\+OFFERED\+\_\+\+PRESENTATION\+\_\+\+QOS}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of presentation "{}access scope"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsubsection{Detailed Description}
+Specifies how the samples representing changes to data instances are presented to a subscribing application. 
+
+
+
+\doxysubsubsubsubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__DDSPresentationQosModule_ga123d979f855f637f32eb525b778175b2}\index{PRESENTATION@{PRESENTATION}!DDS\_PresentationQosPolicyAccessScopeKind@{DDS\_PresentationQosPolicyAccessScopeKind}}
+\index{DDS\_PresentationQosPolicyAccessScopeKind@{DDS\_PresentationQosPolicyAccessScopeKind}!PRESENTATION@{PRESENTATION}}
+\doxyparagraph{\texorpdfstring{DDS\_PresentationQosPolicyAccessScopeKind}{DDS\_PresentationQosPolicyAccessScopeKind}}
+{\footnotesize\ttfamily \label{group__DDSPresentationQosModule_ga123d979f855f637f32eb525b778175b2} 
+enum \mbox{\hyperlink{group__DDSPresentationQosModule_ga123d979f855f637f32eb525b778175b2}{DDS\+\_\+\+Presentation\+Qos\+Policy\+Access\+Scope\+Kind}}}
+
+
+
+Kinds of presentation "{}access scope"{}. 
+
+Access scope determines the largest scope spanning the entities for which the order and coherency of changes can be preserved. 
+
+\begin{DoxyParagraph}{QoS\+:}
+\doxylink{structDDS__PresentationQosPolicy}{DDS\+\_\+\+Presentation\+Qos\+Policy} 
+\end{DoxyParagraph}
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_INSTANCE\_PRESENTATION\_QOS@{DDS\_INSTANCE\_PRESENTATION\_QOS}!PRESENTATION@{PRESENTATION}}\index{PRESENTATION@{PRESENTATION}!DDS\_INSTANCE\_PRESENTATION\_QOS@{DDS\_INSTANCE\_PRESENTATION\_QOS}}}\Hypertarget{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ab7e8c01f13b9c46013094fdee7d6af36}\label{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ab7e8c01f13b9c46013094fdee7d6af36} 
+DDS\+\_\+\+INSTANCE\+\_\+\+PRESENTATION\+\_\+\+QOS&{\bfseries{\mbox{[}default\mbox{]}}} for \doxylink{classDDSDataReader}{DDSData\+Reader}. Scope spans only a single instance. Indicates that changes to one instance need not be coherent nor ordered with respect to changes to any other instance. In other words, order and coherent changes apply to each instance separately.~\newline
+ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_TOPIC\_PRESENTATION\_QOS@{DDS\_TOPIC\_PRESENTATION\_QOS}!PRESENTATION@{PRESENTATION}}\index{PRESENTATION@{PRESENTATION}!DDS\_TOPIC\_PRESENTATION\_QOS@{DDS\_TOPIC\_PRESENTATION\_QOS}}}\Hypertarget{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2a6d21a371adc6e10a62c2739171f5c22f}\label{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2a6d21a371adc6e10a62c2739171f5c22f} 
+DDS\+\_\+\+TOPIC\+\_\+\+PRESENTATION\+\_\+\+QOS&{\bfseries{\mbox{[}default\mbox{]}}} for \doxylink{classDDSDataWriter}{DDSData\+Writer}. Scope spans all instances within the same \doxylink{classDDSDataWriter}{DDSData\+Writer} or \doxylink{classDDSDataReader}{DDSData\+Reader}, but not across instances in different \doxylink{classDDSDataWriter}{DDSData\+Writer} or \doxylink{classDDSDataReader}{DDSData\+Reader} entities. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_GROUP\_PRESENTATION\_QOS@{DDS\_GROUP\_PRESENTATION\_QOS}!PRESENTATION@{PRESENTATION}}\index{PRESENTATION@{PRESENTATION}!DDS\_GROUP\_PRESENTATION\_QOS@{DDS\_GROUP\_PRESENTATION\_QOS}}}\Hypertarget{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ae0591a04e045da1d86f25fa8bec39937}\label{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ae0591a04e045da1d86f25fa8bec39937} 
+DDS\+\_\+\+GROUP\+\_\+\+PRESENTATION\+\_\+\+QOS&Scope spans all instances belonging to \doxylink{classDDSDataWriter}{DDSData\+Writer} or \doxylink{classDDSDataReader}{DDSData\+Reader} entities within the same \doxylink{classDDSPublisher}{DDSPublisher} or \doxylink{classDDSSubscriber}{DDSSubscriber}. \\
+\hline
+
+\end{DoxyEnumFields}

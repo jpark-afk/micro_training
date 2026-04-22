@@ -1,0 +1,53 @@
+\doxysubsection{DDS\+\_\+\+Data\+Representation\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__DataRepresentationQosPolicy}{}\label{structDDS__DataRepresentationQosPolicy}\index{DDS\_DataRepresentationQosPolicy@{DDS\_DataRepresentationQosPolicy}}
+
+
+This QoS policy contains a list of representation identifiers used by \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} and \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities to negotiate which data representation to use.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__DataRepresentationIdSeq}{DDS\+\_\+\+Data\+Representation\+Id\+Seq}} \mbox{\hyperlink{structDDS__DataRepresentationQosPolicy_a23c8c2372aa0f8ef4d57019fc8d75534}{value}}
+\begin{DoxyCompactList}\small\item\em Sequence of representation identifiers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+This QoS policy contains a list of representation identifiers used by \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} and \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities to negotiate which data representation to use. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}, \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}, \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Status\+:}
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}, \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa126ff1b38cdfc905353cb2dac57b6796}{DDS\+\_\+\+REQUESTED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = YES ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_until_enable}{UNTIL ENABLE} ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSDataRepresentationQosModule}{DATA\+\_\+\+REPRESENTATION} 
+\end{DoxySeeAlso}
+This policy has request-\/offer semantics. A \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} may only offer a single representation. Attempting to put multiple representations in a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will result in \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY}. A \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} will use its offered policy to communicate with its matched \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities. A \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} requests one or more representations. If a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} offers a representation that is contained within the sequence of the \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}, the offer satisfies the request and the policies are compatible. Otherwise, they are incompatible. 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__DataRepresentationQosPolicy_a23c8c2372aa0f8ef4d57019fc8d75534}\index{DDS\_DataRepresentationQosPolicy@{DDS\_DataRepresentationQosPolicy}!value@{value}}
+\index{value@{value}!DDS\_DataRepresentationQosPolicy@{DDS\_DataRepresentationQosPolicy}}
+\doxyparagraph{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily \label{structDDS__DataRepresentationQosPolicy_a23c8c2372aa0f8ef4d57019fc8d75534} 
+struct \mbox{\hyperlink{structDDS__DataRepresentationIdSeq}{DDS\+\_\+\+Data\+Representation\+Id\+Seq}} DDS\+\_\+\+Data\+Representation\+Qos\+Policy\+::value}
+
+
+
+Sequence of representation identifiers. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} For \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}, \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}, and \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}, a list with one element\+: \doxylink{group__DDSDataRepresentationQosModule_gaee990eb6602d375230a0921b1213b890}{DDS\+\_\+\+AUTO\+\_\+\+DATA\+\_\+\+REPRESENTATION}. 
+
+\begin{DoxyNote}{Note}
+An empty sequence is equivalent to a list with one element\+: \doxylink{group__DDSDataRepresentationQosModule_ga5c620e2796edac5ec51a3cb78831f046}{DDS\+\_\+\+XCDR\+\_\+\+DATA\+\_\+\+REPRESENTATION}. 
+\end{DoxyNote}

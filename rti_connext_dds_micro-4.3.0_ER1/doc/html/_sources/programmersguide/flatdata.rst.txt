@@ -1,0 +1,47 @@
+FlatData Language Binding
+=========================
+
+This section is organized as follows:
+
+.. contents::
+   :local:
+   :depth: 2
+
+Overview
+--------
+
+|me| supports the FlatData™ language binding in the same manner as |core_pro|.
+However, |me| only supports the FlatData language binding for traditional C++
+APIs, whereas |core_pro| also supports it for the Modern C++ API. The FlatData
+language binding is not supported for the C language binding.
+
+Getting Started
+---------------
+
+The best way to start is to generate an example by creating an example IDL file
+HelloWorld.idl containing the following IDL type:
+
+.. code-block:: idl
+
+   @final 
+   @language_binding(FLAT_DATA)
+   struct HelloWorld
+   {
+      long a;
+   }
+
+Next, run:
+
+.. code-block:: bash
+
+  rtiddsgen -example -micro -language C++ HelloWorld.idl
+
+Further Information
+-------------------
+
+For more details about this feature, please see 
+:link_external_community_doc_pro_um:`the FlatData Language Binding section <index.htm#users_manual/SendingLDFlatData.htm>`
+in the :link_external_community_doc_pro_um:`RTI Connext DDS Core Libraries User's Manual <index.htm>`.
+
+For details on how to build and read a FlatData sample, see
+:link_connextmicro_dds_api_c_up_one:`FlatData <group__RTIFlatDataModule.html>`.

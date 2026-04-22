@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.5. DDS Domains &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 ER1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.6. Discovery" href="discovery.html" />
+    <link rel="prev" title="3.4. Receiving Data" href="receiving.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0 ER1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Programmer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">3.2. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">3.3. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">3.4. Receiving Data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.5. DDS Domains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fundamentals-of-dds-domains-and-domainparticipants">3.5.1. Fundamentals of DDS Domains and DomainParticipants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#discovery-announcements">3.5.2. Discovery Announcements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">3.6. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html">3.7. User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html">3.8. Partitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html">3.9. Content Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">3.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">3.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">3.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">3.13. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html">3.14. Sending Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html">3.15. Zero Copy Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html">3.16. FlatData Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html">3.17. Application Generation Using XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">3.18. Building Against FACE Conformance Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">3.19. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.20. Example Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html">3.21. Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">3.22. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html">3.23. Transport Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html">3.24. Startup Time Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">14. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">3. </span>Programmer’s Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">3.5. </span>DDS Domains</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dds-domains">
+<span id="section-dds-domains"></span><h1><span class="section-number">3.5. </span>DDS Domains<a class="headerlink" href="#dds-domains" title="Permalink to this headline">¶</a></h1>
+<p>This section discusses how to use <em>DomainParticipants</em>. It describes the types of operations
+that are available for them and their QosPolicies.</p>
+<p>The goal of this section is to help you become familiar with the objects you need for setting
+up your <em>RTI</em> <em>Connext Micro</em> application. For specific details on any mentioned operations, see the
+<a class="reference external" href="../../../doc/api_cpp/html/index.html">C API Reference</a> and <a class="reference external" href="../../../doc/api_cpp/html/index.html">C++ API Reference</a> documentation.</p>
+<div class="section" id="fundamentals-of-dds-domains-and-domainparticipants">
+<h2><span class="section-number">3.5.1. </span>Fundamentals of DDS Domains and DomainParticipants<a class="headerlink" href="#fundamentals-of-dds-domains-and-domainparticipants" title="Permalink to this headline">¶</a></h2>
+<p><em>DomainParticipants</em> are the focal point for creating, destroying, and managing other
+<em>RTI</em> <em>Connext Micro</em> objects. A DDS <em>domain</em> is a logical network of applications: only applications
+that belong to the same DDS <em>domain</em> may communicate using <em>Connext Micro</em>. A DDS <em>domain</em> is
+identified by a unique integer value known as a domain ID. An application participates in a
+DDS domain by creating a <em>DomainParticipant</em> for that domain ID.</p>
+<div class="figure align-default" id="id1">
+<span id="figure-applications-and-domains"></span><img alt="../_images/ApplicationsAndDomains.png" src="../_images/ApplicationsAndDomains.png" />
+<p class="caption"><span class="caption-number">Figure 3.2 </span><span class="caption-text">Relationship between Applications and DDS Domains—Applications can belong to
+multiple DDS domains. <em>A</em> belongs to DDS domains 1 and 2. Applications in the
+same DDS domain can communicate with each other, such as <em>A</em> and <em>B</em>, or <em>A</em>
+and <em>C</em>. Applications in different DDS domains, such as <em>B</em> and <em>C</em>, are not
+aware of each other and will not exchange messages.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>As seen in <a class="reference internal" href="#figure-applications-and-domains"><span class="std std-numref">Figure 3.2</span></a>, a single
+application can participate in multiple DDS domains by creating multiple <em>DomainParticipants</em>
+with different domain IDs. <em>DomainParticipants</em> in the same DDS domain form a logical network;
+they are isolated from <em>DomainParticipants</em> of other DDS domains, even those running on the
+same set of physical computers sharing the same physical network. <em>DomainParticipants</em> in
+different DDS domains will never exchange messages with each other. Thus, a DDS domain
+establishes a “virtual network” linking all <em>DomainParticipants</em> that share the same domain ID.</p>
+<p>An application that wants to participate in a certain DDS domain will need to create a
+<em>DomainParticipant</em>. As seen in <a class="reference internal" href="#figure-dds-domain-package"><span class="std std-numref">Figure 3.3</span></a>, a <em>DomainParticipant</em> object
+is a container for all other <em>Entities</em> that belong to the same DDS domain. It acts as factory
+for the <em>Publisher</em>, <em>Subscriber</em>, and <em>Topic</em> entities. (As seen in <a class="reference internal" href="sending.html"><span class="doc">Sending Data</span></a> and
+<a class="reference internal" href="receiving.html"><span class="doc">Receiving Data</span></a>, in turn, <em>Publishers</em> are factories for <em>DataWriters</em> and <em>Subscribers</em>
+are factories for <em>DataReaders</em>). <em>DomainParticipants</em> cannot contain other <em>DomainParticipants</em>.</p>
+<p>Like all <em>Entities</em>, <em>DomainParticipants</em> have QosPolicies and <em>Listeners</em>. The
+<em>DomainParticipant</em> entity also allows you to set ‘default’ values for the QosPolicies for all
+the entities created from it or from the entities that it creates (<em>Publishers</em>, <em>Subscribers</em>,
+<em>Topics</em>, <em>DataWriters</em>, and <em>DataReaders</em>).</p>
+<div class="figure align-default" id="id2">
+<span id="figure-dds-domain-package"></span><img alt="../_images/DDSDomainPackage.png" src="../_images/DDSDomainPackage.png" />
+<p class="caption"><span class="caption-number">Figure 3.3 </span><span class="caption-text">DDS Domain Module—Unsupported operations in <em>Connext Micro</em> are blurred out.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="discovery-announcements">
+<h2><span class="section-number">3.5.2. </span>Discovery Announcements<a class="headerlink" href="#discovery-announcements" title="Permalink to this headline">¶</a></h2>
+<p>Each <em>DomainParticipant</em> announces locators that other <em>DomainParticipants</em>
+must use to communicate with it. A locator is an address that consists of an
+address kind, a port number, and an address. Four locator types are defined:</p>
+<ul class="simple">
+<li><p>A <strong>unicast meta-traffic locator</strong>. This locator type is used to identify
+where unicast discovery messages shall be sent. A maximum of four
+locators of this type can be specified.</p></li>
+<li><p>A <strong>multicast meta-traffic locator</strong>. This locator type is used to identify
+where multicast discovery messages shall be sent. A maximum of four
+locators of this type can be specified.</p></li>
+<li><p>A <strong>unicast user-traffic locator</strong>. This locator type is used to identify
+where unicast user-traffic messages shall be sent. A maximum of four
+locators of this type can be specified.</p></li>
+<li><p>A <strong>multicast user-traffic locator</strong>. This locator type is used to identify
+where multicast user-traffic messages shall be sent. A maximum of four
+locators of this type can be specified.</p></li>
+</ul>
+<p>It is important to note that a maximum of <em>four</em> locators of
+<em>each</em> kind can be sent in a <em>DomainParticipant</em> discovery message.</p>
+<p>The locators in a <em>DomainParticipant</em>’s discovery announcement is used for
+two purposes:</p>
+<ul class="simple">
+<li><p>It informs other <em>DomainParticipants</em> where to send their discovery
+announcements to this <em>DomainParticipants</em>.</p></li>
+<li><p>It informs the <em>DataReaders</em> and <em>DataWriters</em> in other <em>DomainParticipants</em>
+where to send data to the <em>DataReaders</em> and <em>DataWriters</em> in this
+<em>DomainParticipant</em> unless a <em>DataReader</em> or <em>DataWriter</em> specifies its own
+locators.</p></li>
+</ul>
+<p>If a <em>DataReader</em> or <em>DataWriter</em> specifies its own locators, only user-traffic
+locators can be specified, and the exact same rules apply as for a
+<em>DomainParticipant</em>.</p>
+<p>This document uses <em>address</em> and <em>locator</em> interchangeably. An address corresponds
+to the port and address part of a locator. The same address may exist as
+different kinds, in which case they are unique.</p>
+<p>For more details about the discovery process, see the <a class="reference internal" href="discovery.html"><span class="doc">Discovery</span></a> section.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="discovery.html" class="btn btn-neutral float-right" title="3.6. Discovery" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="receiving.html" class="btn btn-neutral float-left" title="3.4. Receiving Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,559 @@
+\doxysubsection{dds\+\_\+psk\+\_\+log.\+h File Reference}
+\hypertarget{dds__psk__log_8h}{}\label{dds__psk__log_8h}\index{dds\_psk\_log.h@{dds\_psk\_log.h}}
+
+
+DDS\+\_\+\+PSK module log codes.  
+
+
+{\ttfamily \#include "{}osapi/osapi\+\_\+log.\+h"{}}\newline
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a2e6f56f20e2b0772d7ba191bb8122584}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+LIBRARY\+\_\+\+REGISTER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 1)
+\begin{DoxyCompactList}\small\item\em Failed to register the DDS\+\_\+\+PSK library. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a6e92cd0ecbc66a8df8c2a87ef8f35294}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+LIBRARY\+\_\+\+UNREGISTER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 2)
+\begin{DoxyCompactList}\small\item\em Failed to unregister the DDS\+\_\+\+PSK library. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_aa1547a4d3d14f9f269f4e0a99ce6374b}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+EXCEPTION\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 3)
+\begin{DoxyCompactList}\small\item\em Log trust exceptions. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a0b88dc925c38a8d7a5305abeb06850fd}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+INVALID\+\_\+\+IDENTITY\+\_\+\+HANDLE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 4)
+\begin{DoxyCompactList}\small\item\em Invalid identity handle. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_aa48f5f8575e8340796cfffe2e0140a25}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+INVALID\+\_\+\+PARTICIPANT\+\_\+\+GUID\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 5)
+\begin{DoxyCompactList}\small\item\em Invalid identity handle. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a5dcb5855702ddada750b6c379282b6e5}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+GET\+\_\+\+IDENTITY\+\_\+\+TOKEN\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 6)
+\begin{DoxyCompactList}\small\item\em Invalid identity handle. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_ab546f51bb48b39e225b9ccae4d51163b}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+AUTH\+\_\+\+CREATION\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 18)
+\begin{DoxyCompactList}\small\item\em Failed to create the DDS\+\_\+\+PSK Auth plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a5aaa448f62a06cc00776d403c3076974}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+CREATION\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 19)
+\begin{DoxyCompactList}\small\item\em Failed to create the DDS\+\_\+\+PSK Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a1ad185921649ded705a48eda61042a26}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+PASSPHRASE\+\_\+\+PARSING\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 20)
+\begin{DoxyCompactList}\small\item\em Failed to process the PSK passphrase. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a21b6459d10869eb9a3954b14ca5491ef}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+PROPERTY\+\_\+\+PARSING\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 21)
+\begin{DoxyCompactList}\small\item\em Failed to process Property\+QoS. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a64cf0cd6c38f2d7dec6b15998511fbfc}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+KEY\+\_\+\+HANDLE\+\_\+\+DB\+\_\+\+PROCESS\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 22)
+\begin{DoxyCompactList}\small\item\em Failed to process the Key handle DB. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_abe3539a326c26a357a0d46c48e057bea}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+KEY\+\_\+\+MATERIAL\+\_\+\+DERIVATION\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 23)
+\begin{DoxyCompactList}\small\item\em Failed to derive key material in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a2ae1f50105c5b1b23c4c33036ab0d8ec}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+SESSION\+\_\+\+KEY\+\_\+\+DERIVATION\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 24)
+\begin{DoxyCompactList}\small\item\em Failed to derive the session key. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_ad9a68d2941ea16fb1134d01ad578a1bd}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+RANDOM\+\_\+\+VALUE\+\_\+\+GENERATION\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 25)
+\begin{DoxyCompactList}\small\item\em Failed to generate a random value. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a7deb2b0255de52e50a2805455c158386}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+SHA256\+\_\+\+COMPUTATION\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 26)
+\begin{DoxyCompactList}\small\item\em Failed to compute SHA256 hash. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_ae8eb692f4840fbac3ca62c0b6e7d0334}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ASSERT\+\_\+\+MASTER\+\_\+\+INFO\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 27)
+\begin{DoxyCompactList}\small\item\em Failed to assert master info in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_ac505a5f68ec8d16d74d526166905699f}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ASSERT\+\_\+\+SESSION\+\_\+\+INFO\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 28)
+\begin{DoxyCompactList}\small\item\em Failed to assert session info in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a8893ceab901e5b41877ac9aaf41ac455}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+REGISTER\+\_\+\+PARTICIPANT\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 29)
+\begin{DoxyCompactList}\small\item\em Failed to register remote participant in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a44578055ae97dd3f36111237d0629ad3}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+SENDER\+\_\+\+KEY\+\_\+\+ID\+\_\+\+PREFIX\+\_\+\+DERIVATION\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 30)
+\begin{DoxyCompactList}\small\item\em Failed to derive sender key ID prefix. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_aca6e03258afd51e2b44aaf1b09da8670}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+SECTRANSFORM\+\_\+\+MANIPULATE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 31)
+\begin{DoxyCompactList}\small\item\em Failed to manipulate transform in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a5586d1de4b14c20a69ac51083f532bad}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+SECTRANSFORM\+\_\+\+DECODE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 32)
+\begin{DoxyCompactList}\small\item\em Failed to decode transform in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a61a834f06ad798bb4c8619536a156298}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ENCODE\+\_\+\+RTPS\+\_\+\+MESSAGE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 33)
+\begin{DoxyCompactList}\small\item\em Failed to encode in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_aac7762ea229eb38831b7db12e1138afa}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ENCODE\+\_\+\+SERIALIZE\+\_\+\+SECBODY\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 34)
+\begin{DoxyCompactList}\small\item\em Failed to encode serialize secbody in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_ac7f76a487db38fb5a8ed597d2ba4bc92}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ENCODE\+\_\+\+SERIALIZE\+\_\+\+POSTFIX\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 35)
+\begin{DoxyCompactList}\small\item\em Failed to encode serialize postfix in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_ab52fd37c2a66f109041dbb7f322bb351}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ENCODE\+\_\+\+SERIALIZE\+\_\+\+PREFIX\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 36)
+\begin{DoxyCompactList}\small\item\em Failed to serialize prefix in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a6fe8a5ea5828385f885fd67fb035f1ec}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+DECODE\+\_\+\+PROCESS\+\_\+\+TOTAL\+\_\+\+HEADER\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 37)
+\begin{DoxyCompactList}\small\item\em Failed to process total header in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_abbe1069bdee70087ca75f629920c6ba1}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+DECODE\+\_\+\+INFO\+\_\+\+SRC\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 38)
+\begin{DoxyCompactList}\small\item\em Failed to decode info src in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a40539fe8b339b231e6080c55b0c6923f}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+DECODE\+\_\+\+RTPS\+\_\+\+MESSAGE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 39)
+\begin{DoxyCompactList}\small\item\em Failed to decode RTPS message in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a6edea157d95f1c42d2c09beaedd17918}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+DECODE\+\_\+\+LOOKUP\+\_\+\+POSTFIX\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 40)
+\begin{DoxyCompactList}\small\item\em Failed to decode lookup postfix in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_aa33077c6147882c0b66e56d1cb4fa499}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+DECODE\+\_\+\+SEC\+\_\+\+RTPS\+\_\+\+POSTFIX\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 41)
+\begin{DoxyCompactList}\small\item\em Failed to decode SEC RTPS Postfix in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a3db3b6a5a2daa3823cb9066b59773ff4}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+DECODE\+\_\+\+SEC\+\_\+\+RTPS\+\_\+\+PREFIX\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 42)
+\begin{DoxyCompactList}\small\item\em Failed to process SEC RTPS Prefix in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a68b01e2460b2d49e7cad564cb2b6299f}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ASSERT\+\_\+\+MASTER\+\_\+\+HANDLE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 43)
+\begin{DoxyCompactList}\small\item\em Failed to assert master handle in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_aabb21851beb6ed0fc9de1761cfe850e0}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+GET\+\_\+\+TRANSFORM\+\_\+\+STATE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 44)
+\begin{DoxyCompactList}\small\item\em Failed to get decode transform state in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a85be2c108d23ab0688805557aa988285}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+SESSION\+\_\+\+INFO\+\_\+\+MUTEX\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 45)
+\begin{DoxyCompactList}\small\item\em Failed to lock session info mutex in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a1b98607a6206b4dfb22c285a969ee8c8}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+GET\+\_\+\+MASTER\+\_\+\+HANDLE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 46)
+\begin{DoxyCompactList}\small\item\em Failed to get master handle in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a150c598ce5e7e8ea55f8c0285855c327}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+ACCESS\+\_\+\+CONTROL\+\_\+\+GET\+\_\+\+CONFIG\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 47)
+\begin{DoxyCompactList}\small\item\em Failed to get Access Control configuration. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a1bbf1dd72ebfc3aa31b21c74b36f066a}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+ACCESS\+\_\+\+CONTROL\+\_\+\+PARSE\+\_\+\+PROPERTY\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 48)
+\begin{DoxyCompactList}\small\item\em Failed to parse Access Control property. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a916ac747d3642b1f1abcad365aa3d42f}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+PASSPHRASE\+\_\+\+UPDATE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 50)
+\begin{DoxyCompactList}\small\item\em Failed to process the PSK passphrase. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a27132c09eae18944da4b9d94fb1b7851}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+SESSION\+\_\+\+KEY\+\_\+\+DERIVATION\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 51)
+\begin{DoxyCompactList}\small\item\em Failed to derive session key in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_acee5dec475acb8d450e460aa6816a4d0}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+COMPUTE\+\_\+\+HKDF\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 52)
+\begin{DoxyCompactList}\small\item\em Failed to compute HKDF in the Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a58ec4a015f1ada2749f37cbebb4618b4}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+INITIALIZATION\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 53)
+\begin{DoxyCompactList}\small\item\em Failed to create the DDS\+\_\+\+PSK Interceptor plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a2b3e65982941345525cd817268b1c96f}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+UNSUPPORTED\+\_\+\+URI\+\_\+\+SCHEME\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 54)
+\begin{DoxyCompactList}\small\item\em Passphrase URI scheme is not supported. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a484f35306ac0dbd1f5d8e9c24c7aa58d}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+PASS\+\_\+\+TRACKER\+\_\+\+CREATE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 55)
+\begin{DoxyCompactList}\small\item\em Failed to create pass tracker. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_a760dd32cb4a53074bdca2c900bd92075}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+PASS\+\_\+\+TRACKER\+\_\+\+DELETE\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 56)
+\begin{DoxyCompactList}\small\item\em Failed to delete pass tracker. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__psk__log_8h_af212c81037cf8e62307669508c1c0a4f}{DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+PASS\+\_\+\+TRACKER\+\_\+\+CALLBACK\+\_\+\+FAILED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 57)
+\begin{DoxyCompactList}\small\item\em Pass tracker timeout callback failed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+DDS\+\_\+\+PSK module log codes. 
+
+
+
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{dds__psk__log_8h_a2e6f56f20e2b0772d7ba191bb8122584}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_LIBRARY\_REGISTER\_EC@{DDS\_PSK\_LOG\_LIBRARY\_REGISTER\_EC}}
+\index{DDS\_PSK\_LOG\_LIBRARY\_REGISTER\_EC@{DDS\_PSK\_LOG\_LIBRARY\_REGISTER\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_LIBRARY\_REGISTER\_EC}{DDS\_PSK\_LOG\_LIBRARY\_REGISTER\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a2e6f56f20e2b0772d7ba191bb8122584} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+LIBRARY\+\_\+\+REGISTER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 1)}
+
+
+
+Failed to register the DDS\+\_\+\+PSK library. 
+
+\Hypertarget{dds__psk__log_8h_a6e92cd0ecbc66a8df8c2a87ef8f35294}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_LIBRARY\_UNREGISTER\_EC@{DDS\_PSK\_LOG\_LIBRARY\_UNREGISTER\_EC}}
+\index{DDS\_PSK\_LOG\_LIBRARY\_UNREGISTER\_EC@{DDS\_PSK\_LOG\_LIBRARY\_UNREGISTER\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_LIBRARY\_UNREGISTER\_EC}{DDS\_PSK\_LOG\_LIBRARY\_UNREGISTER\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a6e92cd0ecbc66a8df8c2a87ef8f35294} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+LIBRARY\+\_\+\+UNREGISTER\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 2)}
+
+
+
+Failed to unregister the DDS\+\_\+\+PSK library. 
+
+\Hypertarget{dds__psk__log_8h_aa1547a4d3d14f9f269f4e0a99ce6374b}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_TRUST\_EXCEPTION\_EC@{DDS\_PSK\_LOG\_TRUST\_EXCEPTION\_EC}}
+\index{DDS\_PSK\_LOG\_TRUST\_EXCEPTION\_EC@{DDS\_PSK\_LOG\_TRUST\_EXCEPTION\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_TRUST\_EXCEPTION\_EC}{DDS\_PSK\_LOG\_TRUST\_EXCEPTION\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_aa1547a4d3d14f9f269f4e0a99ce6374b} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+EXCEPTION\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 3)}
+
+
+
+Log trust exceptions. 
+
+\Hypertarget{dds__psk__log_8h_a0b88dc925c38a8d7a5305abeb06850fd}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_TRUST\_INVALID\_IDENTITY\_HANDLE\_EC@{DDS\_PSK\_LOG\_TRUST\_INVALID\_IDENTITY\_HANDLE\_EC}}
+\index{DDS\_PSK\_LOG\_TRUST\_INVALID\_IDENTITY\_HANDLE\_EC@{DDS\_PSK\_LOG\_TRUST\_INVALID\_IDENTITY\_HANDLE\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_TRUST\_INVALID\_IDENTITY\_HANDLE\_EC}{DDS\_PSK\_LOG\_TRUST\_INVALID\_IDENTITY\_HANDLE\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a0b88dc925c38a8d7a5305abeb06850fd} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+INVALID\+\_\+\+IDENTITY\+\_\+\+HANDLE\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 4)}
+
+
+
+Invalid identity handle. 
+
+\Hypertarget{dds__psk__log_8h_aa48f5f8575e8340796cfffe2e0140a25}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_TRUST\_INVALID\_PARTICIPANT\_GUID\_EC@{DDS\_PSK\_LOG\_TRUST\_INVALID\_PARTICIPANT\_GUID\_EC}}
+\index{DDS\_PSK\_LOG\_TRUST\_INVALID\_PARTICIPANT\_GUID\_EC@{DDS\_PSK\_LOG\_TRUST\_INVALID\_PARTICIPANT\_GUID\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_TRUST\_INVALID\_PARTICIPANT\_GUID\_EC}{DDS\_PSK\_LOG\_TRUST\_INVALID\_PARTICIPANT\_GUID\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_aa48f5f8575e8340796cfffe2e0140a25} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+INVALID\+\_\+\+PARTICIPANT\+\_\+\+GUID\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 5)}
+
+
+
+Invalid identity handle. 
+
+\Hypertarget{dds__psk__log_8h_a5dcb5855702ddada750b6c379282b6e5}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_TRUST\_GET\_IDENTITY\_TOKEN\_FAILED\_EC@{DDS\_PSK\_LOG\_TRUST\_GET\_IDENTITY\_TOKEN\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_TRUST\_GET\_IDENTITY\_TOKEN\_FAILED\_EC@{DDS\_PSK\_LOG\_TRUST\_GET\_IDENTITY\_TOKEN\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_TRUST\_GET\_IDENTITY\_TOKEN\_FAILED\_EC}{DDS\_PSK\_LOG\_TRUST\_GET\_IDENTITY\_TOKEN\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a5dcb5855702ddada750b6c379282b6e5} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+TRUST\+\_\+\+GET\+\_\+\+IDENTITY\+\_\+\+TOKEN\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 6)}
+
+
+
+Invalid identity handle. 
+
+\Hypertarget{dds__psk__log_8h_ab546f51bb48b39e225b9ccae4d51163b}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_AUTH\_CREATION\_EC@{DDS\_PSK\_LOG\_AUTH\_CREATION\_EC}}
+\index{DDS\_PSK\_LOG\_AUTH\_CREATION\_EC@{DDS\_PSK\_LOG\_AUTH\_CREATION\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_AUTH\_CREATION\_EC}{DDS\_PSK\_LOG\_AUTH\_CREATION\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_ab546f51bb48b39e225b9ccae4d51163b} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+AUTH\+\_\+\+CREATION\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 18)}
+
+
+
+Failed to create the DDS\+\_\+\+PSK Auth plugin. 
+
+\Hypertarget{dds__psk__log_8h_a5aaa448f62a06cc00776d403c3076974}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_CREATION\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_CREATION\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_CREATION\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_CREATION\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_CREATION\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_CREATION\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a5aaa448f62a06cc00776d403c3076974} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+CREATION\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 19)}
+
+
+
+Failed to create the DDS\+\_\+\+PSK Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a1ad185921649ded705a48eda61042a26}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_PASSPHRASE\_PARSING\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_PASSPHRASE\_PARSING\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_PASSPHRASE\_PARSING\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_PASSPHRASE\_PARSING\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_PASSPHRASE\_PARSING\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_PASSPHRASE\_PARSING\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a1ad185921649ded705a48eda61042a26} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+PASSPHRASE\+\_\+\+PARSING\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 20)}
+
+
+
+Failed to process the PSK passphrase. 
+
+\Hypertarget{dds__psk__log_8h_a21b6459d10869eb9a3954b14ca5491ef}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_PROPERTY\_PARSING\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_PROPERTY\_PARSING\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_PROPERTY\_PARSING\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_PROPERTY\_PARSING\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_PROPERTY\_PARSING\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_PROPERTY\_PARSING\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a21b6459d10869eb9a3954b14ca5491ef} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+PROPERTY\+\_\+\+PARSING\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 21)}
+
+
+
+Failed to process Property\+QoS. 
+
+\Hypertarget{dds__psk__log_8h_a64cf0cd6c38f2d7dec6b15998511fbfc}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_KEY\_HANDLE\_DB\_PROCESS\_FAILED\_EC@{DDS\_PSK\_LOG\_KEY\_HANDLE\_DB\_PROCESS\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_KEY\_HANDLE\_DB\_PROCESS\_FAILED\_EC@{DDS\_PSK\_LOG\_KEY\_HANDLE\_DB\_PROCESS\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_KEY\_HANDLE\_DB\_PROCESS\_FAILED\_EC}{DDS\_PSK\_LOG\_KEY\_HANDLE\_DB\_PROCESS\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a64cf0cd6c38f2d7dec6b15998511fbfc} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+KEY\+\_\+\+HANDLE\+\_\+\+DB\+\_\+\+PROCESS\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 22)}
+
+
+
+Failed to process the Key handle DB. 
+
+\Hypertarget{dds__psk__log_8h_abe3539a326c26a357a0d46c48e057bea}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_KEY\_MATERIAL\_DERIVATION\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_KEY\_MATERIAL\_DERIVATION\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_KEY\_MATERIAL\_DERIVATION\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_KEY\_MATERIAL\_DERIVATION\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_KEY\_MATERIAL\_DERIVATION\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_KEY\_MATERIAL\_DERIVATION\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_abe3539a326c26a357a0d46c48e057bea} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+KEY\+\_\+\+MATERIAL\+\_\+\+DERIVATION\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 23)}
+
+
+
+Failed to derive key material in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a2ae1f50105c5b1b23c4c33036ab0d8ec}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_SESSION\_KEY\_DERIVATION\_FAILED\_EC@{DDS\_PSK\_LOG\_SESSION\_KEY\_DERIVATION\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_SESSION\_KEY\_DERIVATION\_FAILED\_EC@{DDS\_PSK\_LOG\_SESSION\_KEY\_DERIVATION\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_SESSION\_KEY\_DERIVATION\_FAILED\_EC}{DDS\_PSK\_LOG\_SESSION\_KEY\_DERIVATION\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a2ae1f50105c5b1b23c4c33036ab0d8ec} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+SESSION\+\_\+\+KEY\+\_\+\+DERIVATION\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 24)}
+
+
+
+Failed to derive the session key. 
+
+\Hypertarget{dds__psk__log_8h_ad9a68d2941ea16fb1134d01ad578a1bd}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_RANDOM\_VALUE\_GENERATION\_FAILED\_EC@{DDS\_PSK\_LOG\_RANDOM\_VALUE\_GENERATION\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_RANDOM\_VALUE\_GENERATION\_FAILED\_EC@{DDS\_PSK\_LOG\_RANDOM\_VALUE\_GENERATION\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_RANDOM\_VALUE\_GENERATION\_FAILED\_EC}{DDS\_PSK\_LOG\_RANDOM\_VALUE\_GENERATION\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_ad9a68d2941ea16fb1134d01ad578a1bd} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+RANDOM\+\_\+\+VALUE\+\_\+\+GENERATION\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 25)}
+
+
+
+Failed to generate a random value. 
+
+\Hypertarget{dds__psk__log_8h_a7deb2b0255de52e50a2805455c158386}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_SHA256\_COMPUTATION\_FAILED\_EC@{DDS\_PSK\_LOG\_SHA256\_COMPUTATION\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_SHA256\_COMPUTATION\_FAILED\_EC@{DDS\_PSK\_LOG\_SHA256\_COMPUTATION\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_SHA256\_COMPUTATION\_FAILED\_EC}{DDS\_PSK\_LOG\_SHA256\_COMPUTATION\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a7deb2b0255de52e50a2805455c158386} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+SHA256\+\_\+\+COMPUTATION\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 26)}
+
+
+
+Failed to compute SHA256 hash. 
+
+\Hypertarget{dds__psk__log_8h_ae8eb692f4840fbac3ca62c0b6e7d0334}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_MASTER\_INFO\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_MASTER\_INFO\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_MASTER\_INFO\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_MASTER\_INFO\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_MASTER\_INFO\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_MASTER\_INFO\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_ae8eb692f4840fbac3ca62c0b6e7d0334} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ASSERT\+\_\+\+MASTER\+\_\+\+INFO\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 27)}
+
+
+
+Failed to assert master info in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_ac505a5f68ec8d16d74d526166905699f}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_SESSION\_INFO\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_SESSION\_INFO\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_SESSION\_INFO\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_SESSION\_INFO\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_SESSION\_INFO\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_SESSION\_INFO\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_ac505a5f68ec8d16d74d526166905699f} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ASSERT\+\_\+\+SESSION\+\_\+\+INFO\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 28)}
+
+
+
+Failed to assert session info in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a8893ceab901e5b41877ac9aaf41ac455}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_REGISTER\_PARTICIPANT\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_REGISTER\_PARTICIPANT\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_REGISTER\_PARTICIPANT\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_REGISTER\_PARTICIPANT\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_REGISTER\_PARTICIPANT\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_REGISTER\_PARTICIPANT\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a8893ceab901e5b41877ac9aaf41ac455} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+REGISTER\+\_\+\+PARTICIPANT\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 29)}
+
+
+
+Failed to register remote participant in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a44578055ae97dd3f36111237d0629ad3}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_SENDER\_KEY\_ID\_PREFIX\_DERIVATION\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_SENDER\_KEY\_ID\_PREFIX\_DERIVATION\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_SENDER\_KEY\_ID\_PREFIX\_DERIVATION\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_SENDER\_KEY\_ID\_PREFIX\_DERIVATION\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_SENDER\_KEY\_ID\_PREFIX\_DERIVATION\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_SENDER\_KEY\_ID\_PREFIX\_DERIVATION\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a44578055ae97dd3f36111237d0629ad3} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+SENDER\+\_\+\+KEY\+\_\+\+ID\+\_\+\+PREFIX\+\_\+\+DERIVATION\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 30)}
+
+
+
+Failed to derive sender key ID prefix. 
+
+\Hypertarget{dds__psk__log_8h_aca6e03258afd51e2b44aaf1b09da8670}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_SECTRANSFORM\_MANIPULATE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_SECTRANSFORM\_MANIPULATE\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_SECTRANSFORM\_MANIPULATE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_SECTRANSFORM\_MANIPULATE\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_SECTRANSFORM\_MANIPULATE\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_SECTRANSFORM\_MANIPULATE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_aca6e03258afd51e2b44aaf1b09da8670} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+SECTRANSFORM\+\_\+\+MANIPULATE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 31)}
+
+
+
+Failed to manipulate transform in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a5586d1de4b14c20a69ac51083f532bad}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_SECTRANSFORM\_DECODE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_SECTRANSFORM\_DECODE\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_SECTRANSFORM\_DECODE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_SECTRANSFORM\_DECODE\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_SECTRANSFORM\_DECODE\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_SECTRANSFORM\_DECODE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a5586d1de4b14c20a69ac51083f532bad} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+SECTRANSFORM\+\_\+\+DECODE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 32)}
+
+
+
+Failed to decode transform in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a61a834f06ad798bb4c8619536a156298}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_RTPS\_MESSAGE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_RTPS\_MESSAGE\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_RTPS\_MESSAGE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_RTPS\_MESSAGE\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_RTPS\_MESSAGE\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_RTPS\_MESSAGE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a61a834f06ad798bb4c8619536a156298} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ENCODE\+\_\+\+RTPS\+\_\+\+MESSAGE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 33)}
+
+
+
+Failed to encode in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_aac7762ea229eb38831b7db12e1138afa}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_SECBODY\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_SECBODY\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_SECBODY\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_SECBODY\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_SECBODY\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_SECBODY\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_aac7762ea229eb38831b7db12e1138afa} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ENCODE\+\_\+\+SERIALIZE\+\_\+\+SECBODY\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 34)}
+
+
+
+Failed to encode serialize secbody in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_ac7f76a487db38fb5a8ed597d2ba4bc92}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_POSTFIX\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_POSTFIX\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_POSTFIX\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_POSTFIX\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_POSTFIX\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_POSTFIX\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_ac7f76a487db38fb5a8ed597d2ba4bc92} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ENCODE\+\_\+\+SERIALIZE\+\_\+\+POSTFIX\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 35)}
+
+
+
+Failed to encode serialize postfix in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_ab52fd37c2a66f109041dbb7f322bb351}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_PREFIX\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_PREFIX\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_PREFIX\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_PREFIX\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_PREFIX\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_ENCODE\_SERIALIZE\_PREFIX\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_ab52fd37c2a66f109041dbb7f322bb351} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ENCODE\+\_\+\+SERIALIZE\+\_\+\+PREFIX\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 36)}
+
+
+
+Failed to serialize prefix in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a6fe8a5ea5828385f885fd67fb035f1ec}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_PROCESS\_TOTAL\_HEADER\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_PROCESS\_TOTAL\_HEADER\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_PROCESS\_TOTAL\_HEADER\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_PROCESS\_TOTAL\_HEADER\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_PROCESS\_TOTAL\_HEADER\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_PROCESS\_TOTAL\_HEADER\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a6fe8a5ea5828385f885fd67fb035f1ec} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+DECODE\+\_\+\+PROCESS\+\_\+\+TOTAL\+\_\+\+HEADER\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 37)}
+
+
+
+Failed to process total header in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_abbe1069bdee70087ca75f629920c6ba1}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_INFO\_SRC\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_INFO\_SRC\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_INFO\_SRC\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_INFO\_SRC\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_INFO\_SRC\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_INFO\_SRC\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_abbe1069bdee70087ca75f629920c6ba1} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+DECODE\+\_\+\+INFO\+\_\+\+SRC\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 38)}
+
+
+
+Failed to decode info src in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a40539fe8b339b231e6080c55b0c6923f}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_RTPS\_MESSAGE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_RTPS\_MESSAGE\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_RTPS\_MESSAGE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_RTPS\_MESSAGE\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_RTPS\_MESSAGE\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_RTPS\_MESSAGE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a40539fe8b339b231e6080c55b0c6923f} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+DECODE\+\_\+\+RTPS\+\_\+\+MESSAGE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 39)}
+
+
+
+Failed to decode RTPS message in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a6edea157d95f1c42d2c09beaedd17918}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_LOOKUP\_POSTFIX\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_LOOKUP\_POSTFIX\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_LOOKUP\_POSTFIX\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_LOOKUP\_POSTFIX\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_LOOKUP\_POSTFIX\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_LOOKUP\_POSTFIX\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a6edea157d95f1c42d2c09beaedd17918} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+DECODE\+\_\+\+LOOKUP\+\_\+\+POSTFIX\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 40)}
+
+
+
+Failed to decode lookup postfix in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_aa33077c6147882c0b66e56d1cb4fa499}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_SEC\_RTPS\_POSTFIX\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_SEC\_RTPS\_POSTFIX\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_SEC\_RTPS\_POSTFIX\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_SEC\_RTPS\_POSTFIX\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_SEC\_RTPS\_POSTFIX\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_SEC\_RTPS\_POSTFIX\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_aa33077c6147882c0b66e56d1cb4fa499} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+DECODE\+\_\+\+SEC\+\_\+\+RTPS\+\_\+\+POSTFIX\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 41)}
+
+
+
+Failed to decode SEC RTPS Postfix in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a3db3b6a5a2daa3823cb9066b59773ff4}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_SEC\_RTPS\_PREFIX\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_SEC\_RTPS\_PREFIX\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_SEC\_RTPS\_PREFIX\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_SEC\_RTPS\_PREFIX\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_SEC\_RTPS\_PREFIX\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_DECODE\_SEC\_RTPS\_PREFIX\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a3db3b6a5a2daa3823cb9066b59773ff4} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+DECODE\+\_\+\+SEC\+\_\+\+RTPS\+\_\+\+PREFIX\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 42)}
+
+
+
+Failed to process SEC RTPS Prefix in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a68b01e2460b2d49e7cad564cb2b6299f}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_MASTER\_HANDLE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_MASTER\_HANDLE\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_MASTER\_HANDLE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_MASTER\_HANDLE\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_MASTER\_HANDLE\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_ASSERT\_MASTER\_HANDLE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a68b01e2460b2d49e7cad564cb2b6299f} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+ASSERT\+\_\+\+MASTER\+\_\+\+HANDLE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 43)}
+
+
+
+Failed to assert master handle in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_aabb21851beb6ed0fc9de1761cfe850e0}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_GET\_TRANSFORM\_STATE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_GET\_TRANSFORM\_STATE\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_GET\_TRANSFORM\_STATE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_GET\_TRANSFORM\_STATE\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_GET\_TRANSFORM\_STATE\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_GET\_TRANSFORM\_STATE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_aabb21851beb6ed0fc9de1761cfe850e0} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+GET\+\_\+\+TRANSFORM\+\_\+\+STATE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 44)}
+
+
+
+Failed to get decode transform state in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a85be2c108d23ab0688805557aa988285}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_SESSION\_INFO\_MUTEX\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_SESSION\_INFO\_MUTEX\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_SESSION\_INFO\_MUTEX\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_SESSION\_INFO\_MUTEX\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_SESSION\_INFO\_MUTEX\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_SESSION\_INFO\_MUTEX\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a85be2c108d23ab0688805557aa988285} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+SESSION\+\_\+\+INFO\+\_\+\+MUTEX\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 45)}
+
+
+
+Failed to lock session info mutex in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a1b98607a6206b4dfb22c285a969ee8c8}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_GET\_MASTER\_HANDLE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_GET\_MASTER\_HANDLE\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_GET\_MASTER\_HANDLE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_GET\_MASTER\_HANDLE\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_GET\_MASTER\_HANDLE\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_GET\_MASTER\_HANDLE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a1b98607a6206b4dfb22c285a969ee8c8} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+GET\+\_\+\+MASTER\+\_\+\+HANDLE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 46)}
+
+
+
+Failed to get master handle in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a150c598ce5e7e8ea55f8c0285855c327}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_ACCESS\_CONTROL\_GET\_CONFIG\_FAILED\_EC@{DDS\_PSK\_LOG\_ACCESS\_CONTROL\_GET\_CONFIG\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_ACCESS\_CONTROL\_GET\_CONFIG\_FAILED\_EC@{DDS\_PSK\_LOG\_ACCESS\_CONTROL\_GET\_CONFIG\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_ACCESS\_CONTROL\_GET\_CONFIG\_FAILED\_EC}{DDS\_PSK\_LOG\_ACCESS\_CONTROL\_GET\_CONFIG\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a150c598ce5e7e8ea55f8c0285855c327} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+ACCESS\+\_\+\+CONTROL\+\_\+\+GET\+\_\+\+CONFIG\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 47)}
+
+
+
+Failed to get Access Control configuration. 
+
+\Hypertarget{dds__psk__log_8h_a1bbf1dd72ebfc3aa31b21c74b36f066a}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_ACCESS\_CONTROL\_PARSE\_PROPERTY\_FAILED\_EC@{DDS\_PSK\_LOG\_ACCESS\_CONTROL\_PARSE\_PROPERTY\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_ACCESS\_CONTROL\_PARSE\_PROPERTY\_FAILED\_EC@{DDS\_PSK\_LOG\_ACCESS\_CONTROL\_PARSE\_PROPERTY\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_ACCESS\_CONTROL\_PARSE\_PROPERTY\_FAILED\_EC}{DDS\_PSK\_LOG\_ACCESS\_CONTROL\_PARSE\_PROPERTY\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a1bbf1dd72ebfc3aa31b21c74b36f066a} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+ACCESS\+\_\+\+CONTROL\+\_\+\+PARSE\+\_\+\+PROPERTY\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 48)}
+
+
+
+Failed to parse Access Control property. 
+
+\Hypertarget{dds__psk__log_8h_a916ac747d3642b1f1abcad365aa3d42f}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_PASSPHRASE\_UPDATE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_PASSPHRASE\_UPDATE\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_PASSPHRASE\_UPDATE\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_PASSPHRASE\_UPDATE\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_PASSPHRASE\_UPDATE\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_PASSPHRASE\_UPDATE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a916ac747d3642b1f1abcad365aa3d42f} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+PASSPHRASE\+\_\+\+UPDATE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 50)}
+
+
+
+Failed to process the PSK passphrase. 
+
+\Hypertarget{dds__psk__log_8h_a27132c09eae18944da4b9d94fb1b7851}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_SESSION\_KEY\_DERIVATION\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_SESSION\_KEY\_DERIVATION\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_SESSION\_KEY\_DERIVATION\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_SESSION\_KEY\_DERIVATION\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_SESSION\_KEY\_DERIVATION\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_SESSION\_KEY\_DERIVATION\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a27132c09eae18944da4b9d94fb1b7851} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+SESSION\+\_\+\+KEY\+\_\+\+DERIVATION\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 51)}
+
+
+
+Failed to derive session key in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_acee5dec475acb8d450e460aa6816a4d0}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_COMPUTE\_HKDF\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_COMPUTE\_HKDF\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_COMPUTE\_HKDF\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_COMPUTE\_HKDF\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_COMPUTE\_HKDF\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_COMPUTE\_HKDF\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_acee5dec475acb8d450e460aa6816a4d0} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+COMPUTE\+\_\+\+HKDF\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 52)}
+
+
+
+Failed to compute HKDF in the Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a58ec4a015f1ada2749f37cbebb4618b4}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_INITIALIZATION\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_INITIALIZATION\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_INITIALIZATION\_FAILED\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_INITIALIZATION\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_INITIALIZATION\_FAILED\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_INITIALIZATION\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a58ec4a015f1ada2749f37cbebb4618b4} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+INITIALIZATION\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 53)}
+
+
+
+Failed to create the DDS\+\_\+\+PSK Interceptor plugin. 
+
+\Hypertarget{dds__psk__log_8h_a2b3e65982941345525cd817268b1c96f}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_INTERCEPTOR\_UNSUPPORTED\_URI\_SCHEME\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_UNSUPPORTED\_URI\_SCHEME\_EC}}
+\index{DDS\_PSK\_LOG\_INTERCEPTOR\_UNSUPPORTED\_URI\_SCHEME\_EC@{DDS\_PSK\_LOG\_INTERCEPTOR\_UNSUPPORTED\_URI\_SCHEME\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_INTERCEPTOR\_UNSUPPORTED\_URI\_SCHEME\_EC}{DDS\_PSK\_LOG\_INTERCEPTOR\_UNSUPPORTED\_URI\_SCHEME\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a2b3e65982941345525cd817268b1c96f} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+INTERCEPTOR\+\_\+\+UNSUPPORTED\+\_\+\+URI\+\_\+\+SCHEME\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 54)}
+
+
+
+Passphrase URI scheme is not supported. 
+
+\Hypertarget{dds__psk__log_8h_a484f35306ac0dbd1f5d8e9c24c7aa58d}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_PASS\_TRACKER\_CREATE\_FAILED\_EC@{DDS\_PSK\_LOG\_PASS\_TRACKER\_CREATE\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_PASS\_TRACKER\_CREATE\_FAILED\_EC@{DDS\_PSK\_LOG\_PASS\_TRACKER\_CREATE\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_PASS\_TRACKER\_CREATE\_FAILED\_EC}{DDS\_PSK\_LOG\_PASS\_TRACKER\_CREATE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a484f35306ac0dbd1f5d8e9c24c7aa58d} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+PASS\+\_\+\+TRACKER\+\_\+\+CREATE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 55)}
+
+
+
+Failed to create pass tracker. 
+
+\Hypertarget{dds__psk__log_8h_a760dd32cb4a53074bdca2c900bd92075}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_PASS\_TRACKER\_DELETE\_FAILED\_EC@{DDS\_PSK\_LOG\_PASS\_TRACKER\_DELETE\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_PASS\_TRACKER\_DELETE\_FAILED\_EC@{DDS\_PSK\_LOG\_PASS\_TRACKER\_DELETE\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_PASS\_TRACKER\_DELETE\_FAILED\_EC}{DDS\_PSK\_LOG\_PASS\_TRACKER\_DELETE\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_a760dd32cb4a53074bdca2c900bd92075} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+PASS\+\_\+\+TRACKER\+\_\+\+DELETE\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 56)}
+
+
+
+Failed to delete pass tracker. 
+
+\Hypertarget{dds__psk__log_8h_af212c81037cf8e62307669508c1c0a4f}\index{dds\_psk\_log.h@{dds\_psk\_log.h}!DDS\_PSK\_LOG\_PASS\_TRACKER\_CALLBACK\_FAILED\_EC@{DDS\_PSK\_LOG\_PASS\_TRACKER\_CALLBACK\_FAILED\_EC}}
+\index{DDS\_PSK\_LOG\_PASS\_TRACKER\_CALLBACK\_FAILED\_EC@{DDS\_PSK\_LOG\_PASS\_TRACKER\_CALLBACK\_FAILED\_EC}!dds\_psk\_log.h@{dds\_psk\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_PSK\_LOG\_PASS\_TRACKER\_CALLBACK\_FAILED\_EC}{DDS\_PSK\_LOG\_PASS\_TRACKER\_CALLBACK\_FAILED\_EC}}
+{\footnotesize\ttfamily \label{dds__psk__log_8h_af212c81037cf8e62307669508c1c0a4f} 
+\#define DDS\+\_\+\+PSK\+\_\+\+LOG\+\_\+\+PASS\+\_\+\+TRACKER\+\_\+\+CALLBACK\+\_\+\+FAILED\+\_\+\+EC~(\mbox{\hyperlink{osapi__log_8h_afd5f071821021a0731e9f4b0aab2c638}{SEC\+\_\+\+CORE\+\_\+\+LOG\+\_\+\+BASE}} + 57)}
+
+
+
+Pass tracker timeout callback failed. 
+

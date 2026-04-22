@@ -1,0 +1,367 @@
+\doxysubsection{UDP\+\_\+\+Interface\+Factory\+Property Struct Reference}
+\hypertarget{structUDP__InterfaceFactoryProperty}{}\label{structUDP__InterfaceFactoryProperty}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Properties for the UDP Transport.  
+
+
+
+
+{\ttfamily \#include $<$netio\+\_\+udp.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct REDA\+\_\+\+String\+Seq \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a2e1586f513fd5522f4c26d6363a1ba51}{allow\+\_\+interface}}
+\begin{DoxyCompactList}\small\item\em Sequence of allowed interface names. \end{DoxyCompactList}\item 
+struct REDA\+\_\+\+String\+Seq \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_ab02b55b237708693e3c3b0271283cc43}{deny\+\_\+interface}}
+\begin{DoxyCompactList}\small\item\em Sequence of denied interface names. This list is checked after the allow\+\_\+interface list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_aedc266a1ce90f2eedbd719b5e92b486d}{max\+\_\+send\+\_\+buffer\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em The size of the send socket buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a01cd7d60006e47a404d86fc77c0e7d11}{max\+\_\+receive\+\_\+buffer\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em The size of the receive socket buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_afebc1cfe35fb3798114fd8784a97d248}{max\+\_\+message\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em The maximum size of the message which can be sent or received. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_aa651374b1fb82fae5fa482fddf28b7fd}{max\+\_\+send\+\_\+message\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em The maximum size of the message which can be sent. This is only a hint and not enforced. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a52026b0be0a5f2ae846ae63834e7694f}{multicast\+\_\+ttl}}
+\begin{DoxyCompactList}\small\item\em The maximum TTL. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structUDP__NatEntrySeq}{UDP\+\_\+\+Nat\+Entry\+Seq}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_aa497775dbc8f1aa5952ad9d003882377}{nat}}
+\begin{DoxyCompactList}\small\item\em Configure network address translation (NAT). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structUDP__InterfaceTableEntrySeq}{UDP\+\_\+\+Interface\+Table\+Entry\+Seq}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a61d176e08cb5a278b2a71631ce1bcd9b}{if\+\_\+table}}
+\begin{DoxyCompactList}\small\item\em The interface table if interfaces are added manually. \end{DoxyCompactList}\item 
+REDA\+\_\+\+String\+\_\+T \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_aff2088ef166bf479e614e037c74c087f}{multicast\+\_\+interface}}
+\begin{DoxyCompactList}\small\item\em The network interface to use to send to multicast. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a2bbd12f406c4e1fc08b59849673db49f}{is\+\_\+default\+\_\+interface}}
+\begin{DoxyCompactList}\small\item\em If this should be considered the default UDP interface if no other UDP interface is found to handle a route. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a11b68fafc45b32ba10b86c231457a94b}{disable\+\_\+auto\+\_\+interface\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em Disable reading of available network interfaces using system information and instead rely on the manually configured interface table. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a8433b887c96fd2a7cc93af0dd751ee3b}{multicast\+\_\+loopback\+\_\+disabled}}
+\begin{DoxyCompactList}\small\item\em Prevents the transport plugin from putting multicast packets onto the loopback interface. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structOSAPI__ThreadProperty}{OSAPI\+\_\+\+Thread\+Property}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a15871ccc1c128e460e1b29ce02e771e3}{recv\+\_\+thread}}
+\begin{DoxyCompactList}\small\item\em Thread properties for each receive thread created by this NETIO interface. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_aa4e62e5866deb95d52f19d014e70fbff}{enable\+\_\+interface\+\_\+bind}}
+\begin{DoxyCompactList}\small\item\em Bind receive sockets to specific interfaces. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_ae5215efcb37088abe207cdc256f11c26}{disable\+\_\+multicast\+\_\+bind}}
+\begin{DoxyCompactList}\small\item\em Disable a multicast receive socket binding to a multicast address. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a9f35b17c4682f01a2dbdbef62fa76df4}{disable\+\_\+multicast\+\_\+interface\+\_\+select}}
+\begin{DoxyCompactList}\small\item\em Do not select outgoing interfaces when sending to multicast groups. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structUDP__TransformRuleSeq}{UDP\+\_\+\+Transform\+Rule\+Seq}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_ada54a383e944642e7c3cb93a45cac2f8}{source\+\_\+rules}}
+\begin{DoxyCompactList}\small\item\em Rules for how to transform received UDP payloads based on the source address. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structUDP__TransformRuleSeq}{UDP\+\_\+\+Transform\+Rule\+Seq}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a7764c373b621ae9feded18ae11611eaa}{destination\+\_\+rules}}
+\begin{DoxyCompactList}\small\item\em Rules for how to transform sent UDP payloads based on the destination address. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__UDPPluginModule_ga007fea2be5560faf97bd529f002bfe2d}{UDP\+\_\+\+Transform\+Udp\+Mode\+\_\+T}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a92f19d7324846fbeeb8c3540666395d9}{transform\+\_\+udp\+\_\+mode}}
+\begin{DoxyCompactList}\small\item\em Determines how regular UDP is supported when transformations are supported. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a1a24458fd34244c7b163579096b5fb5a}{transform\+\_\+locator\+\_\+kind}}
+\begin{DoxyCompactList}\small\item\em The locator to use for locators that have transformations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a4a5560016272c9899137e585fe29b274}{transport\+\_\+priority\+\_\+mapping\+\_\+low}}
+\begin{DoxyCompactList}\small\item\em Set low value of output range to IPv4 TOS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a18212e981dd462d34cfaace08a7602f9}{transport\+\_\+priority\+\_\+mapping\+\_\+high}}
+\begin{DoxyCompactList}\small\item\em Highest transport priority value for DSCP mapping. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_a8e854e0e3363683822a17028069593f6}{transport\+\_\+priority\+\_\+mask}}
+\begin{DoxyCompactList}\small\item\em Set mask for use of transport priority field. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} \mbox{\hyperlink{structUDP__InterfaceFactoryProperty_ab84f9474c74a607e48a7b401aa70e690}{max\+\_\+unicast\+\_\+send\+\_\+sockets}}
+\begin{DoxyCompactList}\small\item\em The number of unicast send sockets to create per transport instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Properties for the UDP Transport. 
+
+\label{structUDP__InterfaceFactoryProperty_note}%
+\Hypertarget{structUDP__InterfaceFactoryProperty_note}%
+{\bfseries{NOTE\+:}} some default values (or entire data fields) may not be used on certain platforms. Refer to the Platform Notes in the User\textquotesingle{}s Manual for more details. 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structUDP__InterfaceFactoryProperty_a2e1586f513fd5522f4c26d6363a1ba51}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!allow\_interface@{allow\_interface}}
+\index{allow\_interface@{allow\_interface}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{allow\_interface}{allow\_interface}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a2e1586f513fd5522f4c26d6363a1ba51} 
+struct REDA\+\_\+\+String\+Seq UDP\+\_\+\+Interface\+Factory\+Property\+::allow\+\_\+interface}
+
+
+
+Sequence of allowed interface names. 
+
+\Hypertarget{structUDP__InterfaceFactoryProperty_ab02b55b237708693e3c3b0271283cc43}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!deny\_interface@{deny\_interface}}
+\index{deny\_interface@{deny\_interface}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{deny\_interface}{deny\_interface}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_ab02b55b237708693e3c3b0271283cc43} 
+struct REDA\+\_\+\+String\+Seq UDP\+\_\+\+Interface\+Factory\+Property\+::deny\+\_\+interface}
+
+
+
+Sequence of denied interface names. This list is checked after the allow\+\_\+interface list. 
+
+\Hypertarget{structUDP__InterfaceFactoryProperty_aedc266a1ce90f2eedbd719b5e92b486d}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!max\_send\_buffer\_size@{max\_send\_buffer\_size}}
+\index{max\_send\_buffer\_size@{max\_send\_buffer\_size}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{max\_send\_buffer\_size}{max\_send\_buffer\_size}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_aedc266a1ce90f2eedbd719b5e92b486d} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} UDP\+\_\+\+Interface\+Factory\+Property\+::max\+\_\+send\+\_\+buffer\+\_\+size}
+
+
+
+The size of the send socket buffer. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 256 \texorpdfstring{$\ast$}{*} 1024, 65535 for QNX (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_a01cd7d60006e47a404d86fc77c0e7d11}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!max\_receive\_buffer\_size@{max\_receive\_buffer\_size}}
+\index{max\_receive\_buffer\_size@{max\_receive\_buffer\_size}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{max\_receive\_buffer\_size}{max\_receive\_buffer\_size}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a01cd7d60006e47a404d86fc77c0e7d11} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} UDP\+\_\+\+Interface\+Factory\+Property\+::max\+\_\+receive\+\_\+buffer\+\_\+size}
+
+
+
+The size of the receive socket buffer. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 256 \texorpdfstring{$\ast$}{*} 1024, 65535 for QNX (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_afebc1cfe35fb3798114fd8784a97d248}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!max\_message\_size@{max\_message\_size}}
+\index{max\_message\_size@{max\_message\_size}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{max\_message\_size}{max\_message\_size}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_afebc1cfe35fb3798114fd8784a97d248} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} UDP\+\_\+\+Interface\+Factory\+Property\+::max\+\_\+message\+\_\+size}
+
+
+
+The maximum size of the message which can be sent or received. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 8 \texorpdfstring{$\ast$}{*} 1024 (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) {\bfseries{\mbox{[}range\mbox{]}}} 1 -\/ UDP\+\_\+\+MAX\+\_\+\+PACKET\+\_\+\+SIZE (65507) (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_aa651374b1fb82fae5fa482fddf28b7fd}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!max\_send\_message\_size@{max\_send\_message\_size}}
+\index{max\_send\_message\_size@{max\_send\_message\_size}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{max\_send\_message\_size}{max\_send\_message\_size}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_aa651374b1fb82fae5fa482fddf28b7fd} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} UDP\+\_\+\+Interface\+Factory\+Property\+::max\+\_\+send\+\_\+message\+\_\+size}
+
+
+
+The maximum size of the message which can be sent. This is only a hint and not enforced. 
+
+This parameters is useful to UDP transformation functions which must allocate a buffer to put the result in. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} -\/1, but note that this is a place holder for UDP\+\_\+\+MAX\+\_\+\+MESSAGE\+\_\+\+SIZE\+\_\+\+UNLIMITED (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_a52026b0be0a5f2ae846ae63834e7694f}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!multicast\_ttl@{multicast\_ttl}}
+\index{multicast\_ttl@{multicast\_ttl}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{multicast\_ttl}{multicast\_ttl}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a52026b0be0a5f2ae846ae63834e7694f} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} UDP\+\_\+\+Interface\+Factory\+Property\+::multicast\+\_\+ttl}
+
+
+
+The maximum TTL. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 1 (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_aa497775dbc8f1aa5952ad9d003882377}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!nat@{nat}}
+\index{nat@{nat}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{nat}{nat}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_aa497775dbc8f1aa5952ad9d003882377} 
+struct \mbox{\hyperlink{structUDP__NatEntrySeq}{UDP\+\_\+\+Nat\+Entry\+Seq}} UDP\+\_\+\+Interface\+Factory\+Property\+::nat}
+
+
+
+Configure network address translation (NAT). 
+
+Configure network address translation (NAT). This feature only supports translation between a private and public IP address; UDP ports are not translated. Does not support any hole punching technique or WAN server, thus is only useful when the private and public address mapping is static. Please refer to \doxylink{structUDP__NatEntrySeq}{UDP\+\_\+\+Nat\+Entry\+Seq} for the definition of the sequence element. \Hypertarget{structUDP__InterfaceFactoryProperty_a61d176e08cb5a278b2a71631ce1bcd9b}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!if\_table@{if\_table}}
+\index{if\_table@{if\_table}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{if\_table}{if\_table}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a61d176e08cb5a278b2a71631ce1bcd9b} 
+struct \mbox{\hyperlink{structUDP__InterfaceTableEntrySeq}{UDP\+\_\+\+Interface\+Table\+Entry\+Seq}} UDP\+\_\+\+Interface\+Factory\+Property\+::if\+\_\+table}
+
+
+
+The interface table if interfaces are added manually. 
+
+\Hypertarget{structUDP__InterfaceFactoryProperty_aff2088ef166bf479e614e037c74c087f}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!multicast\_interface@{multicast\_interface}}
+\index{multicast\_interface@{multicast\_interface}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{multicast\_interface}{multicast\_interface}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_aff2088ef166bf479e614e037c74c087f} 
+REDA\+\_\+\+String\+\_\+T UDP\+\_\+\+Interface\+Factory\+Property\+::multicast\+\_\+interface}
+
+
+
+The network interface to use to send to multicast. 
+
+\Hypertarget{structUDP__InterfaceFactoryProperty_a2bbd12f406c4e1fc08b59849673db49f}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!is\_default\_interface@{is\_default\_interface}}
+\index{is\_default\_interface@{is\_default\_interface}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{is\_default\_interface}{is\_default\_interface}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a2bbd12f406c4e1fc08b59849673db49f} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} UDP\+\_\+\+Interface\+Factory\+Property\+::is\+\_\+default\+\_\+interface}
+
+
+
+If this should be considered the default UDP interface if no other UDP interface is found to handle a route. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 1 (RTI\+\_\+\+TRUE) (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_a11b68fafc45b32ba10b86c231457a94b}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!disable\_auto\_interface\_config@{disable\_auto\_interface\_config}}
+\index{disable\_auto\_interface\_config@{disable\_auto\_interface\_config}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{disable\_auto\_interface\_config}{disable\_auto\_interface\_config}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a11b68fafc45b32ba10b86c231457a94b} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} UDP\+\_\+\+Interface\+Factory\+Property\+::disable\+\_\+auto\+\_\+interface\+\_\+config}
+
+
+
+Disable reading of available network interfaces using system information and instead rely on the manually configured interface table. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 0 (RTI\+\_\+\+FALSE) (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_a8433b887c96fd2a7cc93af0dd751ee3b}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!multicast\_loopback\_disabled@{multicast\_loopback\_disabled}}
+\index{multicast\_loopback\_disabled@{multicast\_loopback\_disabled}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{multicast\_loopback\_disabled}{multicast\_loopback\_disabled}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a8433b887c96fd2a7cc93af0dd751ee3b} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} UDP\+\_\+\+Interface\+Factory\+Property\+::multicast\+\_\+loopback\+\_\+disabled}
+
+
+
+Prevents the transport plugin from putting multicast packets onto the loopback interface. 
+
+If multicast loopback is disabled (this value is set to 1), then when sending multicast packets, RTI Connext DDS Micro will not put a copy of the packets on the loopback interface. This prevents applications on the same node (including itself) from receiving those packets. 
+
+This value is set to 0 by default, meaning multicast loopback is enabled. 
+
+Disabling multicast loopback (setting this value to 1) may result in minor performance gains when using multicast. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 0 (RTI\+\_\+\+FALSE) (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_a15871ccc1c128e460e1b29ce02e771e3}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!recv\_thread@{recv\_thread}}
+\index{recv\_thread@{recv\_thread}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{recv\_thread}{recv\_thread}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a15871ccc1c128e460e1b29ce02e771e3} 
+struct \mbox{\hyperlink{structOSAPI__ThreadProperty}{OSAPI\+\_\+\+Thread\+Property}} UDP\+\_\+\+Interface\+Factory\+Property\+::recv\+\_\+thread}
+
+
+
+Thread properties for each receive thread created by this NETIO interface. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} See \+::\+DDS\+\_\+\+UDP\+\_\+\+THREAD\+\_\+\+PROPERTY\+\_\+\+DEFAULT for more detail (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_aa4e62e5866deb95d52f19d014e70fbff}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!enable\_interface\_bind@{enable\_interface\_bind}}
+\index{enable\_interface\_bind@{enable\_interface\_bind}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{enable\_interface\_bind}{enable\_interface\_bind}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_aa4e62e5866deb95d52f19d014e70fbff} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} UDP\+\_\+\+Interface\+Factory\+Property\+::enable\+\_\+interface\+\_\+bind}
+
+
+
+Bind receive sockets to specific interfaces. 
+
+When this is set to 1, the UDP transport binds each receive port to a specific interface when the allow\+\_\+interface/deny\+\_\+interface lists are non-\/empty. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 0 (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_ae5215efcb37088abe207cdc256f11c26}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!disable\_multicast\_bind@{disable\_multicast\_bind}}
+\index{disable\_multicast\_bind@{disable\_multicast\_bind}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{disable\_multicast\_bind}{disable\_multicast\_bind}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_ae5215efcb37088abe207cdc256f11c26} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} UDP\+\_\+\+Interface\+Factory\+Property\+::disable\+\_\+multicast\+\_\+bind}
+
+
+
+Disable a multicast receive socket binding to a multicast address. 
+
+NOTE\+: This option has no effect on Windows. On Windows a multicast socket is only bound to the UDP port. 
+
+The default value is 0, meaning that a multicast socket is bound to both the UDP port and multicast address. 
+
+When this is set to 1, the UDP transport binds a multicast receive socket only to the UDP port. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 0 (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_a9f35b17c4682f01a2dbdbef62fa76df4}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!disable\_multicast\_interface\_select@{disable\_multicast\_interface\_select}}
+\index{disable\_multicast\_interface\_select@{disable\_multicast\_interface\_select}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{disable\_multicast\_interface\_select}{disable\_multicast\_interface\_select}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a9f35b17c4682f01a2dbdbef62fa76df4} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} UDP\+\_\+\+Interface\+Factory\+Property\+::disable\+\_\+multicast\+\_\+interface\+\_\+select}
+
+
+
+Do not select outgoing interfaces when sending to multicast groups. 
+
+The default value is 0 and RTI Connext DDS Micro will select the outgoing interfaces when sending to multicast either using the allow\+\_\+interface and deny\+\_\+interface properties, or the multicast\+\_\+interface property. 
+
+When this is set to 1, RTI Connext DDS Micro will not select the outgoing interface when sending to multicast groups. This may be useful if the OS has fine grained control to select which interface should be used to send to multicast. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 0 (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_ada54a383e944642e7c3cb93a45cac2f8}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!source\_rules@{source\_rules}}
+\index{source\_rules@{source\_rules}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{source\_rules}{source\_rules}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_ada54a383e944642e7c3cb93a45cac2f8} 
+struct \mbox{\hyperlink{structUDP__TransformRuleSeq}{UDP\+\_\+\+Transform\+Rule\+Seq}} UDP\+\_\+\+Interface\+Factory\+Property\+::source\+\_\+rules}
+
+
+
+Rules for how to transform received UDP payloads based on the source address. 
+
+\Hypertarget{structUDP__InterfaceFactoryProperty_a7764c373b621ae9feded18ae11611eaa}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!destination\_rules@{destination\_rules}}
+\index{destination\_rules@{destination\_rules}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{destination\_rules}{destination\_rules}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a7764c373b621ae9feded18ae11611eaa} 
+struct \mbox{\hyperlink{structUDP__TransformRuleSeq}{UDP\+\_\+\+Transform\+Rule\+Seq}} UDP\+\_\+\+Interface\+Factory\+Property\+::destination\+\_\+rules}
+
+
+
+Rules for how to transform sent UDP payloads based on the destination address. 
+
+\Hypertarget{structUDP__InterfaceFactoryProperty_a92f19d7324846fbeeb8c3540666395d9}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!transform\_udp\_mode@{transform\_udp\_mode}}
+\index{transform\_udp\_mode@{transform\_udp\_mode}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{transform\_udp\_mode}{transform\_udp\_mode}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a92f19d7324846fbeeb8c3540666395d9} 
+\mbox{\hyperlink{group__UDPPluginModule_ga007fea2be5560faf97bd529f002bfe2d}{UDP\+\_\+\+Transform\+Udp\+Mode\+\_\+T}} UDP\+\_\+\+Interface\+Factory\+Property\+::transform\+\_\+udp\+\_\+mode}
+
+
+
+Determines how regular UDP is supported when transformations are supported. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} UDP\+\_\+\+TRANSFORM\+\_\+\+UDP\+\_\+\+MODE\+\_\+\+DISABLED (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_a1a24458fd34244c7b163579096b5fb5a}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!transform\_locator\_kind@{transform\_locator\_kind}}
+\index{transform\_locator\_kind@{transform\_locator\_kind}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{transform\_locator\_kind}{transform\_locator\_kind}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a1a24458fd34244c7b163579096b5fb5a} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} UDP\+\_\+\+Interface\+Factory\+Property\+::transform\+\_\+locator\+\_\+kind}
+
+
+
+The locator to use for locators that have transformations. 
+
+When transformation rules have been enabled, they are announced as a vendor-\/specific locator. This property overrides this value. 
+
+NOTE\+: Changing this value may prevent communication. 
+
+NOTE\+: Must be greater or equal than NETIO\+\_\+\+ADDRESS\+\_\+\+KIND\+\_\+\+USER and not equal to NETIO\+\_\+\+ADDRESS\+\_\+\+KIND\+\_\+\+SHMEM or NETIO\+\_\+\+ADDRESS\+\_\+\+KIND\+\_\+\+INTRA. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} NETIO\+\_\+\+ADDRESS\+\_\+\+KIND\+\_\+\+TUDPv4 (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) \Hypertarget{structUDP__InterfaceFactoryProperty_a4a5560016272c9899137e585fe29b274}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!transport\_priority\_mapping\_low@{transport\_priority\_mapping\_low}}
+\index{transport\_priority\_mapping\_low@{transport\_priority\_mapping\_low}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{transport\_priority\_mapping\_low}{transport\_priority\_mapping\_low}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a4a5560016272c9899137e585fe29b274} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} UDP\+\_\+\+Interface\+Factory\+Property\+::transport\+\_\+priority\+\_\+mapping\+\_\+low}
+
+
+
+Set low value of output range to IPv4 TOS. 
+
+This is used in conjunction with \doxylink{structUDP__InterfaceFactoryProperty_a8e854e0e3363683822a17028069593f6}{transport\+\_\+priority\+\_\+mask} and \doxylink{structUDP__InterfaceFactoryProperty_a18212e981dd462d34cfaace08a7602f9}{transport\+\_\+priority\+\_\+mapping\+\_\+high} to define the mapping from the DDS transport priority to the IPv4 TOS field. Defines the low value of the output range for scaling. 
+
+Note that IPv4 TOS is generally an 8-\/bit value. The default value is 0. \Hypertarget{structUDP__InterfaceFactoryProperty_a18212e981dd462d34cfaace08a7602f9}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!transport\_priority\_mapping\_high@{transport\_priority\_mapping\_high}}
+\index{transport\_priority\_mapping\_high@{transport\_priority\_mapping\_high}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{transport\_priority\_mapping\_high}{transport\_priority\_mapping\_high}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a18212e981dd462d34cfaace08a7602f9} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} UDP\+\_\+\+Interface\+Factory\+Property\+::transport\+\_\+priority\+\_\+mapping\+\_\+high}
+
+
+
+Highest transport priority value for DSCP mapping. 
+
+When \doxylink{structUDP__InterfaceFactoryProperty_a8e854e0e3363683822a17028069593f6}{transport\+\_\+priority\+\_\+mask} is non-\/zero, this value defines the highest transport priority value that will be mapped to DSCP. Transport priority values higher than this value will be mapped to DSCP 63. 
+
+The default value is 255. \Hypertarget{structUDP__InterfaceFactoryProperty_a8e854e0e3363683822a17028069593f6}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!transport\_priority\_mask@{transport\_priority\_mask}}
+\index{transport\_priority\_mask@{transport\_priority\_mask}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{transport\_priority\_mask}{transport\_priority\_mask}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_a8e854e0e3363683822a17028069593f6} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} UDP\+\_\+\+Interface\+Factory\+Property\+::transport\+\_\+priority\+\_\+mask}
+
+
+
+Set mask for use of transport priority field. 
+
+This is used in conjunction with \doxylink{structUDP__InterfaceFactoryProperty_a4a5560016272c9899137e585fe29b274}{transport\+\_\+priority\+\_\+mapping\+\_\+low} and \doxylink{structUDP__InterfaceFactoryProperty_a18212e981dd462d34cfaace08a7602f9}{transport\+\_\+priority\+\_\+mapping\+\_\+high} to define the mapping from the DDS transport priority to the IPv4 TOS field. Defines a contiguous region of bits in the 32-\/bit transport priority value that is used to generate values for the IPv4 TOS field on an outgoing socket. For example, the value 0x0000ff00 causes bits 9-\/16 (8 bits) to be used in the mapping. The value will be scaled from the mask range (0x0000 -\/ 0xff00 in this case) to the range specified by low and high. If the mask is set to zero, then the transport will not set IPv4 TOS for send sockets. \Hypertarget{structUDP__InterfaceFactoryProperty_ab84f9474c74a607e48a7b401aa70e690}\index{UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}!max\_unicast\_send\_sockets@{max\_unicast\_send\_sockets}}
+\index{max\_unicast\_send\_sockets@{max\_unicast\_send\_sockets}!UDP\_InterfaceFactoryProperty@{UDP\_InterfaceFactoryProperty}}
+\doxyparagraph{\texorpdfstring{max\_unicast\_send\_sockets}{max\_unicast\_send\_sockets}}
+{\footnotesize\ttfamily \label{structUDP__InterfaceFactoryProperty_ab84f9474c74a607e48a7b401aa70e690} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} UDP\+\_\+\+Interface\+Factory\+Property\+::max\+\_\+unicast\+\_\+send\+\_\+sockets}
+
+
+
+The number of unicast send sockets to create per transport instance. 
+
+By default, the transport uses a single socket per instance for outgoing unicast communication. 
+
+When this value is greater than 1, the transport creates the specified number of send sockets per instance for outgoing communication. 
+
+This setting is particularly useful when used with the \doxylink{group__DDSTransportPriorityQosModule}{TRANSPORT\+\_\+\+PRIORITY} QoS policy. When the transport creates multiple sockets, it maintains an internal priority-\/to-\/socket mapping. For each outgoing message, the transport computes the effective priority (after applying the configured priority mask and mapping range) and selects a preferred socket based on this mapping. 
+
+If the selected socket is already configured with the required priority, the transport sends the message immediately. Otherwise, the transport updates the socket’s IP\+\_\+\+TOS value before transmission. Increasing the number of sockets therefore reduces the likelihood of runtime priority reconfiguration and can improve performance in systems that use multiple distinct priorities. 
+
+You can configure the value to match the total number of distinct effective priorities assigned to all \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} and \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} instances using the interface. When the number of sockets is greater than or equal to the number of distinct effective priorities, each priority can be associated with a dedicated socket, eliminating the need for priority updates at runtime. 
+
+If the number of sockets is smaller than the number of distinct effective priorities, multiple priorities will share sockets. In this case, the transport distributes priorities evenly across the available sockets. However, because priorities are numeric values, certain structured priority sets (for example, DSCP codepoints that are spaced at regular intervals) may cluster onto the same socket depending on the configured socket count. For best distribution, avoid choosing a socket count that shares common divisors with typical priority spacing (for example, powers of 2 when using DSCP values that are multiples of 8). 
+
+{\bfseries{NOTE\+:}} Increasing the number of sockets increases memory usage and file descriptor consumption. You should balance performance benefits against memory and resource overhead when selecting an appropriate value. {\bfseries{\mbox{[}default\mbox{]}}} 1 (\doxylink{structUDP__InterfaceFactoryProperty_note}{note}) 

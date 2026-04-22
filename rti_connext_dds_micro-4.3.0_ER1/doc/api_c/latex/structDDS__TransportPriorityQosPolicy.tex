@@ -1,0 +1,37 @@
+\doxysubsection{DDS\+\_\+\+Transport\+Priority\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__TransportPriorityQosPolicy}{}\label{structDDS__TransportPriorityQosPolicy}\index{DDS\_TransportPriorityQosPolicy@{DDS\_TransportPriorityQosPolicy}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  This QoS policy allows the application to take advantage of transports that are capable of sending messages with different priorities.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+transport\+\_\+priority\+\_\+qos.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__TransportPriorityQosPolicy_a47435f55f48cd2c39c6a2229c38040df}{value}}
+\begin{DoxyCompactList}\small\item\em This policy is a hint to the infrastructure as to how to set the priority of the underlying transport used to send the data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  This QoS policy allows the application to take advantage of transports that are capable of sending messages with different priorities. 
+
+The Transport Priority QoS policy is optional and only supported on certain OSs and transports. It allows you to specify on a per \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} or \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} basis that the data sent by that endpoint is of a different priority. The DDS specification does not indicate how a DDS implementation should treat data of different priorities. It is often difficult or impossible for DDS implementations to treat data of higher priority differently than data of lower priority, especially when data is being sent (delivered to a physical transport) directly by the thread that called Foo\+Data\+Writer\+\_\+write. Also, many physical network transports themselves do not have an end-\/user controllable level of data packet priority.-\/-\/\texorpdfstring{$>$}{>} 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__TransportPriorityQosPolicy_a47435f55f48cd2c39c6a2229c38040df}\index{DDS\_TransportPriorityQosPolicy@{DDS\_TransportPriorityQosPolicy}!value@{value}}
+\index{value@{value}!DDS\_TransportPriorityQosPolicy@{DDS\_TransportPriorityQosPolicy}}
+\doxyparagraph{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily \label{structDDS__TransportPriorityQosPolicy_a47435f55f48cd2c39c6a2229c38040df} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Transport\+Priority\+Qos\+Policy\+::value}
+
+
+
+This policy is a hint to the infrastructure as to how to set the priority of the underlying transport used to send the data. 
+
+You may choose any value within the range of a 32-\/bit signed integer; higher values indicate higher priority. However, any further interpretation of this policy is specific to a particular transport. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 0 

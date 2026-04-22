@@ -1,0 +1,124 @@
+|core_h| Tools
+==============
+
+In general, |me| is compatible with RTI tools and other products. The 
+following sections provide additional information for each product.
+
+Admin Console
+-------------
+
+Admin Console can discover and display |me| applications that use full
+dynamic discovery (DPDE). When using static discovery (DPSE), it is required
+to use the Limited Bandwidth Endpoint Discovery (LBED) that is available as a
+separate product for |core_pro|. With the library a configuration
+file with the discovery configuration must be provided (just as in
+the case for products such as Routing Service, etc.). This is provided
+through the QoS XML file.
+
+Data can be visualized from |me| *DataWriters*. Keep in mind that |me|
+does not currently distribute type information and the type information has
+to be provided through an XML file using the "Create Subscription" dialog.
+Unlike some other products, this information cannot be provided through the
+QoS XML file. To provide the data types to Admin Console, first run the code
+generator with the ``-convertToXml`` option:
+
+.. code-block:: bash
+
+    rtiddsgen -convertToXml <file>
+
+Then click on the “Load Data Types from XML file” hyperlink in the
+"Create Subscription" dialog and add the generated IDL file.
+
+Other Features Supported:
+
+- Match analysis is supported.
+- Discovery-based QoS are shown.
+
+The following resource-limits in |me| must be incremented as follows when
+using Admin Console:
+
+- Add 24 to DDS_DomainParticipantResourceLimitsQosPolicy::remote_reader_allocation
+- Add 24 to DDS_DomainParticipantResourceLimitsQosPolicy::remote_writer_allocation
+- Add 1  to DDS_DomainParticipantResourceLimitsQosPolicy::remote_participant_allocation
+- Add 1  to DDS_DomainParticipantResourceLimitsQosPolicy::remote_participant_allocation if data-visualization is used
+
+|me| does not currently support any administration capabilities or services,
+and does not match with the Admin Console *DataReaders* and *DataWriters*.
+However, if matching *DataReaders* and *DataWriters* are created, e.g., by the
+application, the following resource must be updated:
+
+- Add 48 to DDS_DomainParticipantResourceLimitsQosPolicy::matching_writer_reader_pair_allocation
+
+Distributed Logger
+------------------
+
+This product is not supported by |me|.
+
+LabVIEW
+-------
+
+The LabVIEW toolkit uses |core_pro|, and it must be configured as any other
+|core_pro| application. A possible option is to use the builtin |core_pro|
+profile: BuiltinQosLib::Generic.ConnextMicroCompatibility.
+
+Monitor
+-------
+
+This product is not supported by |me|.
+
+Recording Service
+-----------------
+
+RTI Recorder
+............
+
+RTI Recorder is compatible with |me| in the following ways:
+
+- If static endpoint discovery is used, Recorder is compatible starting
+  with version 5.1.0.3 and onwards.
+- If dynamic endpoint discovery is used, Recorder is compatible with |me|
+  the same way it is with any other DDS application.
+- In both cases, type information has to be provided via XML. Read
+  :link_external_community_kb:`Recording Data with RTI Connext Micro <recording-topics-rti-connext-dds-micro-applications-rti-recording-service>` for more information.
+
+RTI Replay
+..........
+
+RTI Replay is compatible with |me| in the following ways:
+
+- If static endpoint discovery is used, Replay is compatible starting with
+  version 5.1.0.3 and onwards.
+- If dynamic endpoint discovery is used, Replay is compatible with |me|
+  the same way it is with any other DDS application.
+- In both cases, type information has to be provided via XML. Read
+  :link_external_community_kb:`Recording Data with RTI Connext Micro <recording-topics-rti-connext-dds-micro-applications-rti-recording-service>`
+  for more information on how to convert from IDL to XML.
+
+RTI Converter
+.............
+
+Databases recorded with |me| contains no type information in the
+DCPSPublication table, but the type information can be provided via XML. Read
+:link_external_community_kb:`Recording Data with RTI Connext Micro <recording-topics-rti-connext-dds-micro-applications-rti-recording-service>`
+for more information on how to convert from IDL to XML.
+
+Wireshark
+---------
+
+Wireshark fully supports |me|.
+
+
+Persistence Service
+-------------------
+
+|me| only supports VOLATILE and TRANSIENT_LOCAL durability and does not
+support the use of Persistence Service.
+
+
+.. _section-appgen-interoperability:
+
+Application Generation Using XML
+--------------------------------
+
+An application defined in XML can be shared between |me| and |core_pro|, with 
+the limitations documented in :ref:`section-appgen`.

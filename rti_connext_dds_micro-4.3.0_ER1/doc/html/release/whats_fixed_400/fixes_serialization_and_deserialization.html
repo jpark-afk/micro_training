@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>10.5.8.2. Serialization and Deserialization &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 ER1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/custom.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="10.5.8.3. Usability" href="fixes_usability.html" />
+    <link rel="prev" title="10.5.8.1. Discovery" href="fixes_discovery.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0 ER1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">10. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../compatibility.html">10.1. Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported_platforms.html">10.2. Supported Platforms and Programming Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whats_new_430.html">10.3. What’s New in 4.3.0 ER1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whats_fixed_430/whats_fixed_430_index.html">10.4. What’s Fixed in 4.3.0 ER1</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../previous_release.html">10.5. Previous Releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../whats_new_420.html">10.5.1. What’s New in 4.2.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_fixed_420/whats_fixed_420_index.html">10.5.2. What’s Fixed in 4.2.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_new_410.html">10.5.3. What’s New in 4.1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_fixed_410/whats_fixed_410_index.html">10.5.4. What’s Fixed in 4.1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_new_401.html">10.5.5. What’s New in 4.0.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_fixed_401/whats_fixed_401_index.html">10.5.6. What’s Fixed in 4.0.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_new_400.html">10.5.7. What’s New in 4.0.0</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="whats_fixed_400_index.html">10.5.8. What’s Fixed in 4.0.0</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="fixes_discovery.html">10.5.8.1. Discovery</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">10.5.8.2. Serialization and Deserialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_usability.html">10.5.8.3. Usability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_transports.html">10.5.8.4. Transports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_reliability_protocol_and_wire_representation.html">10.5.8.5. Reliability Protocol and Wire Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_logging.html">10.5.8.6. Logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_performance_and_scalability.html">10.5.8.7. Performance and Scalability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_apis_c_or_traditional_cpp.html">10.5.8.8. APIs (C or Traditional C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_generated_code_c_cpp_modern_cpp.html">10.5.8.9. Generated Code (C, Traditional C++, and Modern C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_mag.html">10.5.8.10. Micro Application Generator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_omg_specification_compliance.html">10.5.8.11. OMG Specification Compliance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_interoperability.html">10.5.8.12. Interoperability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_vulnerabilities.html">10.5.8.13. Vulnerabilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_other.html">10.5.8.14. Other</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../known_issues.html">10.6. Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../experimental_features.html">10.7. Experimental Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">14. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html"><span class="section-number">10. </span>Release Notes</a> &raquo;</li>
+        
+          <li><a href="../previous_release.html"><span class="section-number">10.5. </span>Previous Releases</a> &raquo;</li>
+        
+          <li><a href="whats_fixed_400_index.html"><span class="section-number">10.5.8. </span>What’s Fixed in 4.0.0</a> &raquo;</li>
+        
+      <li><span class="section-number">10.5.8.2. </span>Serialization and Deserialization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="serialization-and-deserialization">
+<h1><span class="section-number">10.5.8.2. </span>Serialization and Deserialization<a class="headerlink" href="#serialization-and-deserialization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="critical-datareader-on-a-topic-using-an-appendable-type-may-receive-samples-with-incorrect-value">
+<h2><span class="section-number">10.5.8.2.1. </span><span class="critical">[Critical]</span> DataReader on a Topic using an appendable type may receive samples with incorrect value<a class="headerlink" href="#critical-datareader-on-a-topic-using-an-appendable-type-may-receive-samples-with-incorrect-value" title="Permalink to this headline">¶</a></h2>
+<p>A <em>DataReader</em> subscribing to a <em>Topic</em> on an appendable type may have
+received incorrect samples from a matching <em>DataWriter</em>.</p>
+<p>The problem only occurred when the <em>DataWriter</em> published a type with
+fewer members than the <em>DataReader</em> type. For example, consider a
+<em>DataWriter</em> on FooBase and a <em>DataReader</em> on FooDerived:</p>
+<div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>@appendable<span class="w"> </span>struct<span class="w"> </span>FooBase<span class="w"> </span>{
+<span class="w">    </span>sequence<span class="o">&lt;</span>uint8,<span class="mi">1024</span><span class="o">&gt;</span>base_value;
+};
+
+@appendable<span class="w"> </span>struct<span class="w"> </span>FooDerived<span class="w"> </span>{
+<span class="w">    </span>sequence<span class="o">&lt;</span>uint8,<span class="mi">1024</span><span class="o">&gt;</span><span class="w"> </span>base_value;
+<span class="w">    </span>@default(<span class="mi">12</span>)<span class="w"> </span>uint8<span class="w"> </span>derived_value;
+};
+</pre></div>
+</div>
+<p>In this case, the serialized sample stream would be padded with extra
+bytes to align the stream to 4 bytes as required by the OMG <a class="reference external" href="https://www.omg.org/spec/DDS-XTypes/1.3">Extensible
+and Dynamic Topic Types for DDS</a>
+specification, version 1.3. However, the additional padding bytes were
+incorrectly interpreted as part of the data and <code class="docutils literal notranslate"><span class="pre">derived_value</span></code> may
+have been set to a random value.</p>
+<p>For example, in the case above, when the <em>DataWriter</em> published a sample
+with type FooBase, in some cases the <em>DataReader</em> received a sample in
+which the field <code class="docutils literal notranslate"><span class="pre">derived_value</span></code> was set to 0 instead of 12.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Connext Micro</em> does not support the <code class="docutils literal notranslate"><span class="pre">&#64;default</span></code> annotation.</p>
+</div>
+<p>[RTI Issue ID MICRO-6402]</p>
+</div>
+<div class="section" id="critical-malformed-samples-with-invalid-strings-not-dropped-by-datareader">
+<h2><span class="section-number">10.5.8.2.2. </span><span class="critical">[Critical]</span> Malformed samples with invalid strings not dropped by DataReader<a class="headerlink" href="#critical-malformed-samples-with-invalid-strings-not-dropped-by-datareader" title="Permalink to this headline">¶</a></h2>
+<p>A <em>DataReader</em> may have provided the application a malformed sample containing
+an invalid value (not Null-terminated) for a string member. The string member
+may not have been Null-terminated, resulting in undefined behavior if the
+application tried to access it.</p>
+<p>Now, the <em>DataReader</em> will not deserialize the sample and the sample will not
+be provided to the application.</p>
+<p>[RTI Issue ID MICRO-3039]</p>
+</div>
+<div class="section" id="major-float-and-double-ranges-may-not-have-been-enforced-correctly">
+<h2><span class="section-number">10.5.8.2.3. </span><span class="major">[Major]</span> Float and double ranges may not have been enforced correctly<a class="headerlink" href="#major-float-and-double-ranges-may-not-have-been-enforced-correctly" title="Permalink to this headline">¶</a></h2>
+<p>Float and double ranges may not have been enforced correctly. Float and double member
+values that should not have passed the check ended up passing it.</p>
+<p>This issue only occurred under any of the following conditions:</p>
+<p>For “float”:</p>
+<ul class="simple">
+<li><p>When &#64;min was set to -3.4E38 for a member, a value smaller than &#64;min passed the
+check when it should not have.</p></li>
+<li><p>When &#64;max was set to 3.4E38 for a member, a value greater than &#64;max passed the
+check when it should not have.</p></li>
+</ul>
+<p>For “double”:</p>
+<ul class="simple">
+<li><p>When &#64;min was set to -1.7E+308 for a member, a value smaller than &#64;min passed
+the check when it should not have.</p></li>
+<li><p>When &#64;max was set to 1.7E+308 for a member, a value greater than &#64;max passed the
+check when it should not have.</p></li>
+</ul>
+<p>For “float” and “double”:</p>
+<ul class="simple">
+<li><p>When the member value was set to INFINITY, samples passed the range check when
+they should not have.</p></li>
+<li><p>When the member value was set to NaN, samples passed the range check when they
+should not have.</p></li>
+</ul>
+<p>[RTI Issue ID MICRO-3280]</p>
+</div>
+<div class="section" id="major-deserialization-of-tampered-corrupted-samples-may-have-unexpectedly-succeeded">
+<h2><span class="section-number">10.5.8.2.4. </span><span class="major">[Major]</span> Deserialization of tampered/corrupted samples may have unexpectedly succeeded<a class="headerlink" href="#major-deserialization-of-tampered-corrupted-samples-may-have-unexpectedly-succeeded" title="Permalink to this headline">¶</a></h2>
+<p>A <em>DataReader</em> may not have detected that a truncated sample due to corruption
+or tampering was invalid. As a result, the application may have received
+samples with invalid content.</p>
+<p>Now, the deserialization of corrupted samples
+fails, and they are not provided to the application.</p>
+<p>[RTI Issue ID MICRO-3057]</p>
+</div>
+<div class="section" id="major-invalid-serialization-of-samples-with-types-containing-nested-structures-with-primitive-members-that-require-padding">
+<h2><span class="section-number">10.5.8.2.5. </span><span class="major">[Major]</span> Invalid serialization of samples with types containing nested structures with primitive members that require padding<a class="headerlink" href="#major-invalid-serialization-of-samples-with-types-containing-nested-structures-with-primitive-members-that-require-padding" title="Permalink to this headline">¶</a></h2>
+<p>In <em>Connext DDS</em> 6.0.1 and earlier, the serialization of samples with a type
+containing two or more levels of nested complex types, where the nested types
+have primitive members that require padding, may have failed. This means that
+a <em>DataReader</em> may have received an invalid value for a sample. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Level</span><span class="o">-</span><span class="mi">2</span> <span class="n">Nested</span> <span class="nb">type</span>
+   <span class="n">struct</span> <span class="n">Struct1</span> <span class="p">{</span>
+      <span class="n">uint8</span> <span class="n">m1</span><span class="p">;</span>
+      <span class="n">uint8</span> <span class="n">m2</span><span class="p">;</span>
+      <span class="n">int32</span> <span class="n">m3</span><span class="p">;</span>
+   <span class="p">};</span>
+
+   <span class="o">//</span> <span class="n">Level</span><span class="o">-</span><span class="mi">1</span> <span class="n">Nested</span> <span class="nb">type</span>
+   <span class="n">struct</span> <span class="n">Struct2</span> <span class="p">{</span>
+      <span class="n">int32</span> <span class="n">m1</span><span class="p">;</span>
+      <span class="n">int32</span> <span class="n">m2</span><span class="p">;</span>
+      <span class="n">uint8</span> <span class="n">m3</span><span class="p">;</span>
+      <span class="n">uint8</span> <span class="n">m4</span><span class="p">;</span>
+      <span class="n">Struct1</span> <span class="n">m5</span><span class="p">;</span>
+   <span class="p">};</span>
+
+   <span class="n">struct</span> <span class="n">Struct3</span> <span class="p">{</span>
+      <span class="n">Struct2</span> <span class="n">m1</span><span class="p">;</span>
+   <span class="p">};</span>
+</pre></div>
+</div>
+<p>In the above example, Struct2 and Struct1 are nested, and there is padding
+between Struct1::m2 (1-byte aligned) and Struct1::m3 (4-byte aligned) of 2
+bytes.</p>
+<p>This issue only applied to nested types that are appendable or final for
+XCDR1 data representation or final for XCDR2 data representation.</p>
+<p>This problem affected DynamicData and the generated code for the following
+languages: C, C++, C++03, and C++11.</p>
+<p>For generated code, a potential workaround to this problem was to generate
+code with a value of 1 or 0 for the -optimization, but this may have had
+performance implications.</p>
+<p>[RTI Issue ID MICRO-2744]</p>
+</div>
+<div class="section" id="minor-serialization-of-string-members-did-not-check-for-null-terminated-strings-in-c-traditional-c-and-modern-c">
+<h2><span class="section-number">10.5.8.2.6. </span><span class="minor">[Minor]</span> Serialization of string members did not check for null-terminated strings in C, traditional C++, and modern C++<a class="headerlink" href="#minor-serialization-of-string-members-did-not-check-for-null-terminated-strings-in-c-traditional-c-and-modern-c" title="Permalink to this headline">¶</a></h2>
+<p>The code executed by a <em>DataWriter</em> that serializes string members in a Topic
+type did not check that the strings are null-terminated. This may have led to
+undefined behavior, because the serialization code calls strlen.</p>
+<p>This problem has been fixed. The serialization code now checks for
+null-terminated strings with the maximum allowed length and reports the
+following error if the string is not well-formed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RTIXCdrInterpreter_serializeString</span><span class="p">:</span><span class="n">StrStruct</span><span class="p">:</span><span class="n">member2</span> <span class="n">serialization</span> <span class="n">error</span><span class="o">.</span> <span class="n">String</span> <span class="n">length</span> <span class="p">(</span><span class="n">at</span> <span class="n">least</span> <span class="mi">6</span><span class="p">)</span> <span class="ow">is</span> <span class="n">larger</span> <span class="n">than</span> <span class="n">maximum</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>[RTI Issue ID MICRO-3040]</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fixes_usability.html" class="btn btn-neutral float-right" title="10.5.8.3. Usability" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fixes_discovery.html" class="btn btn-neutral float-left" title="10.5.8.1. Discovery" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

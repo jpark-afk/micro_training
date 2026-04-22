@@ -1,0 +1,89 @@
+###############################################################################
+# Copyright (c) 2016-2026 Real-Time Innovations, Inc. All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may2016 tk Written
+################################################################################
+SET(CC_COMMON   "/nologo /W3 -DRTI_WIN32")
+SET(CXX_COMMON   "-DRTI_WIN32")
+SET(CC_DEBUG    "${CC_COMMON} /Zi /Od")
+SET(CC_RELEASE  "${CC_COMMON}")
+SET(CXX_DEBUG    "${CXX_COMMON} /Zi /Od")
+SET(CXX_RELEASE  "${CXX_COMMON} ")
+
+SET(_RTIME_CC stdc)
+
+SET(CMAKE_C_FLAGS_DEBUG "${CC_DEBUG} ${CC_ARCH}"
+    CACHE INTERNAL "CMAKE_C_FLAGS_DEBUG" FORCE)
+
+SET(CMAKE_CXX_FLAGS_DEBUG "${CXX_DEBUG} ${CC_ARCH}"
+    CACHE INTERNAL "CMAKE_CXX_FLAGS_DEBUG" FORCE)
+
+SET(CMAKE_C_FLAGS_RELEASE "${CC_RELEASE} ${CC_ARCH} -DNDEBUG"
+    CACHE INTERNAL "CMAKE_C_FLAGS_RELEASE" FORCE)
+
+SET(CMAKE_CXX_FLAGS_RELEASE "${CXX_RELEASE} ${CC_ARCH} -DNDEBUG"
+    CACHE INTERNAL "CMAKE_CXX_FLAGS_RELEASE" FORCE)
+
+set(ldflags " /nodefaultlib:libc.lib /nodefaultlib:libcd.lib /defaultlib:Winmm.lib")
+string(APPEND CMAKE_EXE_LINKER_FLAGS "${ldflags}")
+string(APPEND CMAKE_MODULE_LINKER_FLAGS "${ldflags}")
+string(APPEND CMAKE_SHARED_LINKER_FLAGS "${ldflags}")
+
+SET(CMAKE_EXE_LINKER_FLAGS
+        "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:console /OPT:NOREF"
+    CACHE INTERNAL
+        "CMAKE_EXE_LINKER_FLAGS" FORCE)
+
+if (RTI_DEBUG_BUILD)
+    string(APPEND CMAKE_EXE_LINKER_FLAGS " /defaultlib:msvcrtd.lib")
+elseif (NOT RTI_NO_SHARED_LIB AND NOT RTI_DEBUG_BUILD)
+    string(APPEND CMAKE_EXE_LINKER_FLAGS " /nodefaultlib:msvcrtd.lib")
+    string(APPEND CMAKE_EXE_LINKER_FLAGS " /defaultlib:msvcrt.lib")
+endif()
+
+string(APPEND CMAKE_EXE_LINKER_FLAGS " /nodefaultlib:libcmt.lib")
+string(APPEND CMAKE_EXE_LINKER_FLAGS " /nodefaultlib:libcmtd.lib")
+
+IF (MSVC AND NOT RTI_USE_NMAKE)
+    ADD_COMPILE_OPTIONS(
+            $<$<CONFIG:>:/MD>
+            $<$<CONFIG:Debug>:/MDd>
+            $<$<CONFIG:Release>:/MD>
+    )
+ENDIF()
+
+IF (${TARGET_HELP})
+ELSE()
+IF ((${RTIME_TARGET_NAME} MATCHES "Win32") OR
+    (${RTIME_TARGET_NAME} MATCHES "Win64") OR
+    (${RTIME_TARGET_NAME} MATCHES "arm64") OR
+    (${RTIME_TARGET_NAME} MATCHES "PEvs"))
+        ADD_DEFINITIONS(-DWIN32_LEAN_AND_MEAN)
+        ADD_DEFINITIONS(-D_WIN32_WINNT=0x0601)
+    ENDIF()
+    ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
+ENDIF()
+
+IF (${TARGET_HELP})
+    MESSAGE("COMPILER NOTES\n")
+    MESSAGE(" The following MSVC specific flags are used based on RTIME_TARGET_NAME\n")
+    MESSAGE(" - If x64 is part of the name 64 bit is used")
+    MESSAGE(" - If i86 is part of the name 32 bit is used")
+    MESSAGE(" - If i86 or x64 is not found, the default is used\n")
+    MESSAGE(" The following flags are added:")
+    MESSAGE(" - For C Debug libraries:  ${CC_DEBUG}")
+    MESSAGE(" - For C++ Debug libraries:  ${CXX_DEBUG}")
+    MESSAGE(" - For C Release libraries:  ${CC_RELEASE}")
+    MESSAGE(" - For C++ Release libraries:  ${CXX_RELEASE}\n\n")
+    RETURN()
+ENDIF()

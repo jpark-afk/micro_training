@@ -1,0 +1,55 @@
+\doxysubsubsubsubsection{LIVELINESS}
+\hypertarget{group__DDSLivelinessQosModule}{}\label{group__DDSLivelinessQosModule}\index{LIVELINESS@{LIVELINESS}}
+
+
+Determines the mechanism and parameters used by the application to determine whether a \doxylink{classDDSEntity}{DDSEntity} is alive.  
+
+
+\doxysubsubsubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__LivelinessQosPolicy}{DDS\+\_\+\+Liveliness\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em Determines the mechanism and parameters used by the application to determine whether a \doxylink{classDDSEntity}{DDSEntity} is alive. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__DDSLivelinessQosModule_ga3ea638553fd66356c38071040de062e5}{DDS\+\_\+\+Liveliness\+Qos\+Policy\+Kind}} \{ \mbox{\hyperlink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5ad9cee7b01dd754152a13b6999b57911b}{DDS\+\_\+\+AUTOMATIC\+\_\+\+LIVELINESS\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a5519eb00b713987173ff0858e7e3c1f0}{DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+PARTICIPANT\+\_\+\+LIVELINESS\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a6ea670a089709fe482e1c92f5ad1c255}{DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+TOPIC\+\_\+\+LIVELINESS\+\_\+\+QOS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of liveliness. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsubsection{Detailed Description}
+Determines the mechanism and parameters used by the application to determine whether a \doxylink{classDDSEntity}{DDSEntity} is alive. 
+
+
+
+\doxysubsubsubsubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__DDSLivelinessQosModule_ga3ea638553fd66356c38071040de062e5}\index{LIVELINESS@{LIVELINESS}!DDS\_LivelinessQosPolicyKind@{DDS\_LivelinessQosPolicyKind}}
+\index{DDS\_LivelinessQosPolicyKind@{DDS\_LivelinessQosPolicyKind}!LIVELINESS@{LIVELINESS}}
+\doxyparagraph{\texorpdfstring{DDS\_LivelinessQosPolicyKind}{DDS\_LivelinessQosPolicyKind}}
+{\footnotesize\ttfamily \label{group__DDSLivelinessQosModule_ga3ea638553fd66356c38071040de062e5} 
+enum \mbox{\hyperlink{group__DDSLivelinessQosModule_ga3ea638553fd66356c38071040de062e5}{DDS\+\_\+\+Liveliness\+Qos\+Policy\+Kind}}}
+
+
+
+Kinds of liveliness. 
+
+\begin{DoxyParagraph}{QoS\+:}
+\doxylink{structDDS__LivelinessQosPolicy}{DDS\+\_\+\+Liveliness\+Qos\+Policy} 
+\end{DoxyParagraph}
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_AUTOMATIC\_LIVELINESS\_QOS@{DDS\_AUTOMATIC\_LIVELINESS\_QOS}!LIVELINESS@{LIVELINESS}}\index{LIVELINESS@{LIVELINESS}!DDS\_AUTOMATIC\_LIVELINESS\_QOS@{DDS\_AUTOMATIC\_LIVELINESS\_QOS}}}\Hypertarget{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5ad9cee7b01dd754152a13b6999b57911b}\label{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5ad9cee7b01dd754152a13b6999b57911b} 
+DDS\+\_\+\+AUTOMATIC\+\_\+\+LIVELINESS\+\_\+\+QOS&{\bfseries{\mbox{[}default\mbox{]}}} The infrastructure will automatically signal liveliness for \doxylink{classDDSDataWriter}{DDSData\+Writer} entities at least as often as required by the \doxylink{classDDSDataWriter}{DDSData\+Writer}\textquotesingle{}s {\ttfamily lease\+\_\+duration}. A \doxylink{classDDSDataWriter}{DDSData\+Writer} with this setting does not need to take any specific action to be considered alive. The \doxylink{classDDSDataWriter}{DDSData\+Writer} is only \textquotesingle{}not alive\textquotesingle{} when the participant terminates or when a network problem prevents the current participant from contacting that remote participant. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_MANUAL\_BY\_PARTICIPANT\_LIVELINESS\_QOS@{DDS\_MANUAL\_BY\_PARTICIPANT\_LIVELINESS\_QOS}!LIVELINESS@{LIVELINESS}}\index{LIVELINESS@{LIVELINESS}!DDS\_MANUAL\_BY\_PARTICIPANT\_LIVELINESS\_QOS@{DDS\_MANUAL\_BY\_PARTICIPANT\_LIVELINESS\_QOS}}}\Hypertarget{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a5519eb00b713987173ff0858e7e3c1f0}\label{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a5519eb00b713987173ff0858e7e3c1f0} 
+DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+PARTICIPANT\+\_\+\+LIVELINESS\+\_\+\+QOS&RTI Connext DDS Micro will assume that as long as at least one \doxylink{classDDSDataWriter}{DDSData\+Writer} belonging to the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} (or the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} itself) has asserted its liveliness, then the other \doxylink{classDDSDataWriter}{DDSData\+Writer} entities belonging to that same \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} are also alive. The user application takes responsibility to signal liveliness to RTI Connext DDS Micro either by calling \doxylink{classDDSDomainParticipant_a38271f0e046ef131a994dab7f255b2be}{DDSDomain\+Participant\+::assert\+\_\+liveliness}, or by calling \doxylink{classDDSDataWriter_af6c957991d7f956b5a16ba20bd800beb}{DDSData\+Writer\+::assert\+\_\+liveliness}, or \doxylink{structFooDataWriter_ab2c44dd15f5daf7eddf3773239101478}{Foo\+Data\+Writer\+::write} on any \doxylink{classDDSDataWriter}{DDSData\+Writer} belonging to the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_MANUAL\_BY\_TOPIC\_LIVELINESS\_QOS@{DDS\_MANUAL\_BY\_TOPIC\_LIVELINESS\_QOS}!LIVELINESS@{LIVELINESS}}\index{LIVELINESS@{LIVELINESS}!DDS\_MANUAL\_BY\_TOPIC\_LIVELINESS\_QOS@{DDS\_MANUAL\_BY\_TOPIC\_LIVELINESS\_QOS}}}\Hypertarget{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a6ea670a089709fe482e1c92f5ad1c255}\label{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a6ea670a089709fe482e1c92f5ad1c255} 
+DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+TOPIC\+\_\+\+LIVELINESS\+\_\+\+QOS&RTI Connext DDS Micro will only assume liveliness of the \doxylink{classDDSDataWriter}{DDSData\+Writer} if the application has asserted liveliness of that \doxylink{classDDSDataWriter}{DDSData\+Writer} itself. The user application takes responsibility to signal liveliness to RTI Connext DDS Micro using the \doxylink{classDDSDataWriter_af6c957991d7f956b5a16ba20bd800beb}{DDSData\+Writer\+::assert\+\_\+liveliness} method, or by writing some data. \\
+\hline
+
+\end{DoxyEnumFields}

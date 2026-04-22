@@ -1,0 +1,53 @@
+\doxysubsection{DDS\+\_\+\+Destination\+Order\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__DestinationOrderQosPolicy}{}\label{structDDS__DestinationOrderQosPolicy}\index{DDS\_DestinationOrderQosPolicy@{DDS\_DestinationOrderQosPolicy}}
+
+
+Destination order policies that affect the ordering of subscribed data.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DestinationOrderQosPolicyModule_ga8f1c0c2b179c6281aa9e92d5ea88cbfe}{DDS\+\_\+\+Destination\+Order\+Qos\+Policy\+Kind}} \mbox{\hyperlink{structDDS__DestinationOrderQosPolicy_a6b16d4602f9b8dde684f8dd737958bd1}{kind}}
+\begin{DoxyCompactList}\small\item\em The kind of destination ordering that applies to subscribed data. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \mbox{\hyperlink{structDDS__DestinationOrderQosPolicy_a692d1a1f1117dbb9eadb980a41f8a156}{source\+\_\+timestamp\+\_\+tolerance}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Allowed tolerance between source timestamps of consecutive samples. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Destination order policies that affect the ordering of subscribed data. 
+
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__DestinationOrderQosPolicy_a6b16d4602f9b8dde684f8dd737958bd1}\index{DDS\_DestinationOrderQosPolicy@{DDS\_DestinationOrderQosPolicy}!kind@{kind}}
+\index{kind@{kind}!DDS\_DestinationOrderQosPolicy@{DDS\_DestinationOrderQosPolicy}}
+\doxyparagraph{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily \label{structDDS__DestinationOrderQosPolicy_a6b16d4602f9b8dde684f8dd737958bd1} 
+\mbox{\hyperlink{group__DestinationOrderQosPolicyModule_ga8f1c0c2b179c6281aa9e92d5ea88cbfe}{DDS\+\_\+\+Destination\+Order\+Qos\+Policy\+Kind}} DDS\+\_\+\+Destination\+Order\+Qos\+Policy\+::kind}
+
+
+
+The kind of destination ordering that applies to subscribed data. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DestinationOrderQosPolicyModule_gga8f1c0c2b179c6281aa9e92d5ea88cbfeaa718dc1f974fc792af552d293986bb26}{DDS\+\_\+\+BY\+\_\+\+RECEPTION\+\_\+\+TIMESTAMP\+\_\+\+DESTINATIONORDER\+\_\+\+QOS} \Hypertarget{structDDS__DestinationOrderQosPolicy_a692d1a1f1117dbb9eadb980a41f8a156}\index{DDS\_DestinationOrderQosPolicy@{DDS\_DestinationOrderQosPolicy}!source\_timestamp\_tolerance@{source\_timestamp\_tolerance}}
+\index{source\_timestamp\_tolerance@{source\_timestamp\_tolerance}!DDS\_DestinationOrderQosPolicy@{DDS\_DestinationOrderQosPolicy}}
+\doxyparagraph{\texorpdfstring{source\_timestamp\_tolerance}{source\_timestamp\_tolerance}}
+{\footnotesize\ttfamily \label{structDDS__DestinationOrderQosPolicy_a692d1a1f1117dbb9eadb980a41f8a156} 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} DDS\+\_\+\+Destination\+Order\+Qos\+Policy\+::source\+\_\+timestamp\+\_\+tolerance}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Allowed tolerance between source timestamps of consecutive samples. 
+
+When a \doxylink{classDDSDataWriter}{DDSData\+Writer} sets \doxylink{structDDS__DestinationOrderQosPolicy}{DDS\+\_\+\+Destination\+Order\+Qos\+Policy} to \doxylink{group__DestinationOrderQosPolicyModule_gga8f1c0c2b179c6281aa9e92d5ea88cbfeac7a65745504a7d4ccbc41299154fe67b}{DDS\+\_\+\+BY\+\_\+\+SOURCE\+\_\+\+TIMESTAMP\+\_\+\+DESTINATIONORDER\+\_\+\+QOS}, when writing a sample, its timestamp must not be less than the timestamp of the previously written sample. However, if it is less than the timestamp of the previously written sample but the difference is less than this tolerance, the sample will use the previously written sample\textquotesingle{}s timestamp. Otherwise, if the difference is greater than this tolerance, the write will fail. 
+
+\doxylink{group__DestinationOrderQosPolicyModule_gga8f1c0c2b179c6281aa9e92d5ea88cbfeac7a65745504a7d4ccbc41299154fe67b}{DDS\+\_\+\+BY\+\_\+\+SOURCE\+\_\+\+TIMESTAMP\+\_\+\+DESTINATIONORDER\+\_\+\+QOS} is not supported on the \doxylink{classDDSDataReader}{DDSData\+Reader}. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 100 milliseconds for \doxylink{classDDSDataWriter}{DDSData\+Writer} 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1 nanosec, 1 year\mbox{]} 

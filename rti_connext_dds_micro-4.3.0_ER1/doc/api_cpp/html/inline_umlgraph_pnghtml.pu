@@ -1,0 +1,25 @@
+@startuml DDSPackages.png
+  package "Domain Module" {
+  }
+
+  package "Publication Module" {
+  }
+
+  package "Subscription Module" {
+  }
+
+  package "Topic Module" {
+  }
+
+  package "Infrastructure Module" {
+  }
+
+  "Domain Module" ..> "Publication Module"
+  "Domain Module" ..> "Topic Module"
+  "Domain Module" ..> "Subscription Module"
+
+  "Publication Module" ..> "Topic Module"
+  "Subscription Module" ..> "Topic Module"
+
+  "Topic Module" ..> "Infrastructure Module"
+@enduml

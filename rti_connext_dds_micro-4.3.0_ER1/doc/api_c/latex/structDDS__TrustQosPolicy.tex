@@ -1,0 +1,50 @@
+\doxysubsection{DDS\+\_\+\+Trust\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__TrustQosPolicy}{}\label{structDDS__TrustQosPolicy}\index{DDS\_TrustQosPolicy@{DDS\_TrustQosPolicy}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Configures the security plugin suite used by a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+domain.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+RT\+\_\+\+Component\+Factory\+Id\+\_\+T \mbox{\hyperlink{structDDS__TrustQosPolicy_adb92e03749296fd07d571240751486e3}{suite}}
+\begin{DoxyCompactList}\small\item\em The name of the registered security plugin suite to use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Configures the security plugin suite used by a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = N/A ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} ~\newline
+ 
+\end{DoxyParagraph}
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__TrustQosPolicy_adb92e03749296fd07d571240751486e3}\index{DDS\_TrustQosPolicy@{DDS\_TrustQosPolicy}!suite@{suite}}
+\index{suite@{suite}!DDS\_TrustQosPolicy@{DDS\_TrustQosPolicy}}
+\doxyparagraph{\texorpdfstring{suite}{suite}}
+{\footnotesize\ttfamily \label{structDDS__TrustQosPolicy_adb92e03749296fd07d571240751486e3} 
+RT\+\_\+\+Component\+Factory\+Id\+\_\+T DDS\+\_\+\+Trust\+Qos\+Policy\+::suite}
+
+
+
+The name of the registered security plugin suite to use. 
+
+Identifies which registered security plugin suite the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} will use for secure communication. The name must match the name used when registering the plugin suite with the RT\+\_\+\+Registry. 
+
+Use RT\+\_\+\+Component\+Factory\+Id\+\_\+set\+\_\+name to set this field. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos} 
+\end{DoxySeeAlso}
+{\bfseries{\mbox{[}default\mbox{]}}} Empty (no security plugin suite). 

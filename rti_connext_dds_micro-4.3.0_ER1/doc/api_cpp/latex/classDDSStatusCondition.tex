@@ -1,0 +1,94 @@
+\doxysubsection{DDSStatus\+Condition Class Reference}
+\hypertarget{classDDSStatusCondition}{}\label{classDDSStatusCondition}\index{DDSStatusCondition@{DDSStatusCondition}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A specific \doxylink{classDDSCondition}{DDSCondition} that is associated with each \doxylink{classDDSEntity}{DDSEntity}.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+cpp\+\_\+infrastructure.\+hxx$>$}
+
+Inheritance diagram for DDSStatus\+Condition\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classDDSStatusCondition}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} \mbox{\hyperlink{classDDSStatusCondition_a9884488dfbbcde49e350767ba0428184}{get\+\_\+enabled\+\_\+statuses}} ()
+\begin{DoxyCompactList}\small\item\em Get the list of statuses enabled on an \doxylink{classDDSEntity}{DDSEntity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{classDDSStatusCondition_af02bd19a79d790314604d3e1196c356e}{set\+\_\+enabled\+\_\+statuses}} (\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} mask)
+\begin{DoxyCompactList}\small\item\em This operation defines the list of communication statuses that determine the {\ttfamily trigger\+\_\+value} of the \doxylink{classDDSStatusCondition}{DDSStatus\+Condition}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classDDSStatusCondition_ae40c89863c454bc715c54b21a6ce070e}\label{classDDSStatusCondition_ae40c89863c454bc715c54b21a6ce070e} 
+class {\bfseries DDSEntity}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A specific \doxylink{classDDSCondition}{DDSCondition} that is associated with each \doxylink{classDDSEntity}{DDSEntity}. 
+
+The {\ttfamily trigger\+\_\+value} of the \doxylink{classDDSStatusCondition}{DDSStatus\+Condition} depends on the communication status of that entity (e.\+g., arrival of data, loss of information, etc.), \textquotesingle{}filtered\textquotesingle{} by the set of {\ttfamily enabled\+\_\+statuses} on the \doxylink{classDDSStatusCondition}{DDSStatus\+Condition}. 
+
+This release supports the following subset of communication statuses that can be associated with a \doxylink{classDDSStatusCondition}{DDSStatus\+Condition} \+: 
+
+\doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa9d2d926d515abd0ddd0b537efd42f03e}{DDS\+\_\+\+DATA\+\_\+\+AVAILABLE\+\_\+\+STATUS} 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__DDSStatusTypesModule}{Status Kinds} 
+
+\doxylink{classDDSWaitSet}{DDSWait\+Set}, \doxylink{classDDSCondition}{DDSCondition} 
+
+\doxylink{classDDSListener}{DDSListener} 
+\end{DoxySeeAlso}
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classDDSStatusCondition_a9884488dfbbcde49e350767ba0428184}\index{DDSStatusCondition@{DDSStatusCondition}!get\_enabled\_statuses@{get\_enabled\_statuses}}
+\index{get\_enabled\_statuses@{get\_enabled\_statuses}!DDSStatusCondition@{DDSStatusCondition}}
+\doxyparagraph{\texorpdfstring{get\_enabled\_statuses()}{get\_enabled\_statuses()}}
+{\footnotesize\ttfamily \label{classDDSStatusCondition_a9884488dfbbcde49e350767ba0428184} 
+\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} DDSStatus\+Condition\+::get\+\_\+enabled\+\_\+statuses (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get the list of statuses enabled on an \doxylink{classDDSEntity}{DDSEntity}. 
+
+\begin{DoxyReturn}{Returns}
+list of enabled statuses. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}
+\Hypertarget{classDDSStatusCondition_af02bd19a79d790314604d3e1196c356e}\index{DDSStatusCondition@{DDSStatusCondition}!set\_enabled\_statuses@{set\_enabled\_statuses}}
+\index{set\_enabled\_statuses@{set\_enabled\_statuses}!DDSStatusCondition@{DDSStatusCondition}}
+\doxyparagraph{\texorpdfstring{set\_enabled\_statuses()}{set\_enabled\_statuses()}}
+{\footnotesize\ttfamily \label{classDDSStatusCondition_af02bd19a79d790314604d3e1196c356e} 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DDSStatus\+Condition\+::set\+\_\+enabled\+\_\+statuses (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}}}]{mask}{}\end{DoxyParamCaption})}
+
+
+
+This operation defines the list of communication statuses that determine the {\ttfamily trigger\+\_\+value} of the \doxylink{classDDSStatusCondition}{DDSStatus\+Condition}. 
+
+This operation may change the {\ttfamily trigger\+\_\+value} of the \doxylink{classDDSStatusCondition}{DDSStatus\+Condition}. 
+
+\doxylink{classDDSWaitSet}{DDSWait\+Set} objects\textquotesingle{} behavior depends on the changes of the {\ttfamily trigger\+\_\+value} of their attached conditions. Therefore, any \doxylink{classDDSWaitSet}{DDSWait\+Set} to which the \doxylink{classDDSStatusCondition}{DDSStatus\+Condition} is attached is potentially affected by this operation. 
+
+If this method is not invoked, the default list of enabled statuses includes all the statuses. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mask} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} the list of enables statuses (see \doxylink{group__DDSStatusTypesModule}{Status Kinds}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of the \doxysectlink{group__DDSReturnTypesModule_DDSReturnTypesModule_std_retcodes}{Standard Return Codes}{1} 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{MT Safety\+:}
+This operation is thread safe. However, note that the arguments are not protected from being modified by other threads and must not be modified until the call returns. 
+\end{DoxyParagraph}

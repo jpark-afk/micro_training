@@ -1,0 +1,449 @@
+.. _section-startup-time:
+
+Startup Time Guidelines
+=======================
+
+This section provides guidelines to measure and reduce initialization
+and discovery time in |me|. These tips apply to any deployment where startup
+time matters, such as automotive or industrial systems with strict startup
+budgets.
+
+Understanding the startup process
+---------------------------------
+
+Startup in |me| has four phases:
+
+#. Creation of local DDS entities (*DomainParticipants*, *Topics*,
+   *DataWriters*, and *DataReaders*);
+#. Enabling those entities;
+#. Discovery processing, where your *DomainParticipants* exchange discovery
+   traffic with remote *DomainParticipants*;
+#. Discovery completion, where your application has discovered all expected
+   remote *DomainParticipants* and endpoints.
+
+The :link_connextmicro_dds_api_c_up_one:`autoenable_created_entities <structDDS__EntityFactoryQosPolicy.html#a4b650acc47f1a51eefd90a072d6a70f6>`
+setting controls whether these phases overlap. When autoenable is TRUE,
+entities are enabled as they are created, so discovery can begin before all
+entities exist; phases 1, 2, and 3 run partially in parallel. When
+autoenable is FALSE, you create all entities first (disabled), then enable
+the *DomainParticipant*. Discovery begins only after the *DomainParticipant*
+is enabled.
+
+This section separates startup into two measurable intervals:
+initialization time (phases 1 and 2) and discovery time (phases 3 and 4).
+These intervals can be tuned independently.
+
+Initialization time
+................... 
+
+This is the interval from application start until all
+required local DDS entities are created and enabled. This includes
+creating and enabling the *DomainParticipant* and any locally required
+*Topics*, *DataWriters*, *DataReaders*, and associated local resource
+allocation.
+
+When autoenable is TRUE, discovery may overlap with
+initialization Time. It excludes waiting for remote discovery or matching
+and any platform or network bring-up outside DDS initialization.
+
+Discovery time
+..............
+
+This is the interval from when the *DomainParticipant* is
+enabled until your application has discovered the expected set of remote
+*DomainParticipants* and endpoints. It includes *DomainParticipants* discovery and endpoint
+discovery traffic and processing, but excludes protocols above DDS discovery
+unless explicitly stated.
+
+Application-installed listeners (e.g., ``on_subscription_matched``,
+``on_publication_matched``) run on discovery threads and can increase
+discovery time if they perform expensive operations, such as logging.
+
+.. _section-startup-init-guidelines:
+
+Minimizing startup time
+-----------------------
+
+Slow startup is commonly caused by unoptimized builds, blocking I/O during
+startup, or oversized resource limits. The following sections describe
+application design choices, QoS configuration, and build settings that
+affect startup time.
+
+.. note::
+
+   Some platforms have specific startup-time guidance. See
+   :ref:`section-platform-notes` for details on your target platform.
+
+Application design
+..................
+
+The following subsections describe application-level design decisions that
+can affect startup time.
+
+.. _section-startup-participant-architecture:
+
+Participant and domain architecture
+'''''''''''''''''''''''''''''''''''
+
+Each *DomainParticipant* adds initialization overhead and consumes internal
+resources. Use one *DomainParticipant* per application as the default
+approach, and only introduce additional *DomainParticipants* when you need to
+communicate in multiple DDS domains.
+
+If your system has groups of applications that do not need to communicate
+with each other, place them in separate DDS domains to reduce discovery
+traffic and prevent exceeding discovery resources (e.g., the maximum number
+of remote entities).
+
+For a general overview of *DomainParticipants* and the discovery process,
+see :ref:`section-discovery`.
+
+.. _section-startup-enablement-strategy:
+
+Enabling entities manually
+''''''''''''''''''''''''''
+
+When many entities are created at startup, enabling them incrementally or
+relying on autoenable increases initialization time and may impact
+discovery time determinism. If your application design permits it, create
+all DDS entities disabled (set :link_connextmicro_dds_api_c_up_one:`autoenable_created_entities <structDDS__EntityFactoryQosPolicy.html#a4b650acc47f1a51eefd90a072d6a70f6>`
+to FALSE) and call
+:link_connextmicro_dds_api_c_up_one:`DDS_Entity_enable() <group__DDSEntityModule.html#ga892fed8d9375b7c3c5f1f610f87e18da>`
+with the following syntax after all entities are created:
+
+.. code-block:: c
+
+   DDS_Entity_enable(DDS_DomainParticipant_as_entity(participant))
+
+.. _section-startup-discovery-plugin:
+
+Discovery plugin selection
+''''''''''''''''''''''''''
+
+|me| provides two discovery plugins with different startup characteristics:
+:ref:`DPDE (Dynamic Participant Dynamic Endpoint) <dynamic_endpoint_disc>` and
+:ref:`DPSE (Dynamic Participant Static Endpoint) <static_endpoint_disc>`.
+
+DPSE has a smaller base footprint (~14 KB) than DPDE (~48 KB) because DPDE
+creates three pairs of built-in *DataWriters* and *DataReaders* for
+*DomainParticipant*, publication, and subscription discovery traffic, while
+DPSE creates only one pair (for *DomainParticipant* discovery). This difference
+becomes more pronounced as you add more endpoints.
+
+If your deployment topology is fixed and known at build time, use DPSE; it
+reduces both initialization overhead and discovery traffic. If your topology is
+dynamic or you need to discover endpoints at runtime, use DPDE. See
+:ref:`section-discovery` for configuration details of both plugins.
+
+.. _section-startup-discovery-topology:
+
+Transport and peer configuration
+''''''''''''''''''''''''''''''''
+
+Enable only the transports your deployment requires. Each enabled transport
+adds initialization work: socket/port setup, internal tables, and resource
+allocation. See :doc:`../transports/registration` for details on how to
+register and enable transports.
+
+By default, for the UDP transport, |me| uses all available network interfaces.
+Use ``allow_interface`` or ``deny_interface`` on the transport's
+:link_connextmicro_dds_api_c_up_one:`UDP_InterfaceFactoryProperty <structUDP__InterfaceFactoryProperty.html>`
+to restrict which network interfaces are used by a *DomainParticipant*.
+Limiting interfaces to those required by your deployment reduces the number
+of locators advertised in discovery announcements, the number of discovery
+messages sent, and the number of sockets opened at startup. See
+:doc:`../transports/UDP` for details.
+
+List only the minimal set of peers your *DomainParticipant* needs to discover
+in ``DDS_DiscoveryQosPolicy.initial_peers``, and use explicit *DomainParticipant*
+indices (e.g., ``[0-2]@_udp://10.10.30.1``) rather than the default range.
+If using multicast discovery, you can include just the multicast address
+instead of individual peers. Each entry in the peer list generates discovery
+announcements, so removing unnecessary entries and narrowing index ranges
+directly reduces discovery traffic. See :ref:`configuring-participant-discovery-peers`
+for the peer descriptor format.
+
+QoS and resource configuration
+..............................
+
+The following subsections detail QoS and memory settings that can impact
+startup time, and how to optimize them.
+
+.. _section-startup-resource-sizing:
+
+Memory and resource sizing
+''''''''''''''''''''''''''
+
+|me| allocates resources up-front. Limits that are too small cause discovery
+failures (such as "out of records" or "resource limit exceeded"), while limits
+that are too large increase startup time and memory footprint. Size your
+resource limits to match your actual deployment.
+
+- **Per-DomainParticipant discovery limits:** These limits control how many
+  remote entities the *DomainParticipant* can store
+  during discovery. If they are too small, you may see "out of records" or
+  "resource limit exceeded" errors even when your per-endpoint limits are
+  large enough.
+
+  Configure the following fields under
+  :link_connextmicro_dds_api_c_up_one:`DDS_DomainParticipantQos.resource_limits <structDDS__DomainParticipantQos.html#ab52b04a5ddfb4bdf50534ef410a65fc2>`:
+
+  .. list-table::
+    :widths: 12 18
+    :header-rows: 1
+
+    * - Field
+      - Description
+    * - ``remote_participant_allocation``
+      - Maximum number of remote *DomainParticipants* expected in the DDS domain.
+    * - ``remote_reader_allocation``
+      - Maximum total number of remote *DataReaders* across all remote *DomainParticipants*.
+    * - ``remote_writer_allocation``
+      - Maximum total number of remote *DataWriters* across all remote *DomainParticipants*.
+    * - ``matching_writer_reader_pair_allocation``
+      - Maximum number of endpoint matches expected. A useful rule of thumb
+        is ``(local_reader_count + local_writer_count) *
+        max_remote_participants``.
+
+  |br|
+
+- **Per-endpoint matching limits:** These limits control how many remote
+  endpoints each local endpoint can
+  track and match. Configure ``max_remote_writers`` under
+  :link_connextmicro_dds_api_c_up_one:`DDS_DataReaderQos.reader_resource_limits <structDDS__DataReaderQos.html#ac6f4f6e01f59c4d53490717db313bd43>`
+  and ``max_remote_readers`` under
+  :link_connextmicro_dds_api_c_up_one:`DDS_DataWriterQos.writer_resource_limits <structDDS__DataWriterQos.html#a14ef85955ab7c01c1b4eff56e2479149>`.
+
+  |br|
+
+- **Per-endpoint history and storage**: These limits affect how many samples are kept in memory, and can noticeably
+  affect initialization time and memory footprint. Configure ``max_samples``,
+  ``max_instances``, and ``max_samples_per_instance`` under
+  :link_connextmicro_dds_api_c_up_one:`DDS_DataReaderQos.resource_limits <structDDS__DataReaderQos.html#a27f550c1f22be54dfe3b69e007fabad2>` and
+  :link_connextmicro_dds_api_c_up_one:`DDS_DataWriterQos.resource_limits <structDDS__DataWriterQos.html#acba41cd24991ce678ad133bcc276b55c>`.
+
+  .. note::
+
+    For example, setting ``remote_participant_allocation = 100`` when
+    your deployment has 5 *DomainParticipants* wastes memory and increases
+    initialization time. Start with limits that match your known topology
+    and increase them only if discovery fails.
+
+.. _section-startup-transport-buffers:
+
+Transport buffer sizing
+'''''''''''''''''''''''
+
+Small send and receive buffers may limit discovery throughput and increase
+discovery completion time as *DomainParticipant* and endpoint counts grow.
+For the UDP transport, your operating system may cap effective socket buffer
+sizes regardless of what your application requests; even when you request large
+buffers, the OS may clamp them based on kernel limits. See
+:doc:`../transports/UDP` for information on where UDP buffer settings are
+configured.
+
+For the :ref:`section-shared-memory-transport`, the receive queue depth
+(``received_message_count_max``) and receive buffer size
+(``receive_buffer_size``) on
+:link_connextmicro_dds_api_c_up_one:`NETIO_SHMEMInterfaceFactoryProperty <structNETIO__SHMEMInterfaceFactoryProperty.html>` control
+how much discovery traffic can be buffered. See
+:ref:`section-shmem-configuration` for details.
+
+Adjust buffer sizes based on observed throughput, packet drops, and CPU
+utilization. If discovery traffic shows drops or "receive buffer errors,"
+increase OS socket buffer limits and verify the effective buffer sizes.
+
+.. _section-startup-discovery-guidelines:
+.. _section-startup-reduce-bandwidth:
+
+Discovery traffic tuning
+''''''''''''''''''''''''
+
+As *DomainParticipant* and endpoint counts increase, discovery performance
+becomes bandwidth and burst-driven. The following properties control discovery
+traffic and timing. They are fields of
+:link_connextmicro_dds_api_c_up_one:`DPDE_DiscoveryPluginProperty <structDPDE__DiscoveryPluginProperty.html>`;
+see the API reference for the complete list.
+
+- **Limit initial DomainParticipant announcement bursts:** When a
+  *DomainParticipant* is enabled, it sends a burst of announcements.
+  At larger scales, this burstiness can amplify congestion and increase discovery
+  completion time. Configure ``initial_participant_announcements`` and
+  ``initial_participant_announcement_period`` in
+  :link_connextmicro_dds_api_c_up_one:`DPDE_DiscoveryPluginProperty <structDPDE__DiscoveryPluginProperty.html>`
+  to control this behavior.
+
+  For bandwidth-constrained links or large-scale deployments, reduce the
+  announcement count or increase the interval from the default values.
+
+  |br|
+
+- **Relax DomainParticipant liveliness traffic where permitted:**
+  *DomainParticipants* liveliness assertions generate periodic network traffic.
+  Aggressive settings add background load during discovery-heavy phases.
+  Configure ``participant_liveliness_assert_period`` and
+  ``participant_liveliness_lease_duration`` in
+  :link_connextmicro_dds_api_c_up_one:`DPDE_DiscoveryPluginProperty <structDPDE__DiscoveryPluginProperty.html>`.
+
+  Ensure ``participant_liveliness_assert_period`` is less than or equal to
+  ``participant_liveliness_lease_duration``. A common approach is to set the
+  assert period to a fraction of the lease duration, to tolerate occasional
+  assertion loss while still meeting liveliness requirements.
+
+  |br|
+
+- **Use multicast discovery when available:** Unicast-only discovery
+  increases bandwidth and processing cost as
+  *DomainParticipant* count grows. If your deployment network supports
+  multicast, use it to reduce fan-out.
+
+  To enable multicast, add a multicast locator (e.g., ``_udp://239.255.0.1``) to
+  :link_connextmicro_dds_api_c_up_one:`discovery.enabled_transports <structDDS__DiscoveryQosPolicy.html#a9ee4ed308f6ef12bbc2299fe242f5f36>`
+  for discovery traffic and to :link_connextmicro_dds_api_c_up_one:`user_traffic.enabled_transports <structDDS__UserTrafficQosPolicy.html#ad38e4eb3463ff0bd1c49765d4f5b8255>`
+  for user data traffic. With DPSE, a multicast locator alone can be sufficient.
+  With DPDE, always include both a unicast locator (e.g., ``_udp://``) and a
+  multicast locator; |me| will select the appropriate locator based on the
+  message type.
+
+  For best-effort user data traffic, a multicast locator alone is sufficient.
+  For reliable user data traffic, it is necessary to include both unicast and
+  multicast locators to enable efficient communication.
+
+  |br|
+
+- **Tune DPDE built-in endpoint reliability resources and timers:** DPDE's
+  built-in endpoint buffering and retransmission settings can change
+  discovery bandwidth and CPU usage, especially on lossy links or at large
+  scale.
+
+  Increasing ``max_samples_per_builtin_endpoint_reader`` can improve
+  robustness (fewer drops and out-of-order rejections) during high discovery
+  bursts, but doing so also increases memory usage.
+
+  Smaller retransmission periods and higher retry limits can increase
+  discovery traffic and CPU usage, but these may also reduce discovery completion
+  time on lossy networks. The relevant
+  :link_connextmicro_dds_api_c_up_one:`DDS_DiscoveryPluginProperties <structDPDE__DiscoveryPluginProperty.html>`
+  fields are:
+
+  - ``builtin_writer_heartbeat_period``
+  - ``builtin_writer_heartbeats_per_max_samples``
+  - ``builtin_endpoint_reader_nack_period``
+  - ``builtin_writer_max_heartbeat_retries``
+
+  When you tune these properties, document the tradeoff you are targeting
+  (memory vs. drops vs. bandwidth) and validate by measuring discovery
+  completion time alongside packet rates and CPU utilization.
+
+.. _section-startup-build-settings:
+
+Build settings
+..............
+
+|me| ships prebuilt release and debug libraries. Use the release libraries
+for startup-time measurements; debug libraries include additional error
+checking that increases initialization time.
+
+Build your own application code with ``-O2`` (or equivalent) for production
+and for any measurements used to validate startup requirements. The same
+applies if you are building |me| from source. Do not use ``-O0`` or ``-Og``
+for startup-time measurements.
+
+.. _section-measuring-startup:
+
+Measuring startup time
+----------------------
+
+To optimize startup, you need to measure initialization time and discovery
+time separately.
+
+.. note::
+
+   Console I/O during startup can account for a large portion of the total
+   startup time and increase run-to-run variability, particularly on
+   embedded targets. Defer or remove diagnostic output while measuring;
+   if you need logs for debugging, capture them to a memory buffer rather
+   than a serial console.
+
+.. _section-startup-measure-init:
+
+How to measure initialization time
+...................................
+
+Capture a timestamp before you create the *DomainParticipant* and another
+immediately after ``DDS_Entity_enable()`` returns for the *DomainParticipant*
+(or after the last entity is created, if autoenable is TRUE). The difference is
+your initialization time.
+
+.. _section-startup-measure-discovery:
+
+How to measure discovery time
+.............................
+
+Discovery time starts when the *DomainParticipant* is enabled and ends when
+your application has discovered all expected remote *DomainParticipants* and
+endpoints. You can detect discovery completion using listener callbacks or a
+*WaitSet*.
+
+To use listener callbacks, set the ``on_subscription_matched`` callback on
+your *DataReaders* and the ``on_publication_matched`` callback on your *DataWriters*. Each
+time a callback fires with ``status.current_count_change > 0``, a new match
+has occurred. When the total match count across all your endpoints reaches
+the expected value, discovery is complete. Capture a timestamp at that
+point.
+
+To use a *WaitSet*, attach a ``DDS_StatusCondition`` with
+``DDS_SUBSCRIPTION_MATCHED_STATUS`` (or ``DDS_PUBLICATION_MATCHED_STATUS``)
+to a ``DDS_WaitSet``. Call ``DDS_WaitSet_wait()`` in a loop, checking the
+match count after each trigger until all expected matches are reached.
+
+For more information on listeners and status conditions, see
+:doc:`receiving` and :doc:`sending`.
+
+.. _section-startup-reporting:
+
+What to record
+..............
+
+Startup-time measurements are most useful when accompanied by the
+conditions under which they were taken. The following details help when
+comparing results across environments or configurations:
+
+- Whether ``autoenable_created_entities`` was TRUE or FALSE;
+- Whether release or debug libraries were used, and the compiler
+  optimization level;
+- The number of *DomainParticipants* and endpoints in the DDS domain during the
+  measurement.
+
+.. note::
+
+   Without these details, measurements from different environments or
+   configurations cannot be meaningfully compared.
+
+.. _section-startup-validation:
+
+Validating startup time improvements
+------------------------------------
+
+When evaluating a configuration change, compare initialization time and
+discovery time measurements before and after the change alongside the
+following indicators:
+
+- **Transport buffer error counters:** check for receive buffer overflows or
+  send failures. On Linux, ``netstat -su`` or ``ss -su`` shows UDP error
+  counters. On QNX or other RTOS platforms, consult your OS documentation
+  for equivalent counters.
+
+- **Packet rates and discovery message counts:** use ``tcpdump`` or
+  ``Wireshark`` to capture discovery traffic. Filter on the DDS discovery
+  ports and count SPDP (*DomainParticipant*) and SEDP (endpoint) messages.
+  High retransmission counts suggest packet loss or buffer exhaustion.
+
+- **CPU utilization during discovery:** monitor CPU usage during the discovery
+  phase. If a core is saturated, discovery processing may be the bottleneck
+  rather than network I/O.
+
+Reduced discovery completion time without increased packet loss or CPU
+saturation confirms the optimization is effective. If discovery time
+decreases but error counters rise, the change may have shifted the
+bottleneck rather than removed it.

@@ -1,0 +1,35 @@
+DDS Entities
+============
+
+The main classes extend an abstract base class called a DDS *Entity*. Every DDS
+*Entity* has a set of associated events known as statuses and a set of
+associated Quality of Service policies (QoS policies). In addition, a *Listener*
+may be registered with the *Entity* to be called when status changes occur. DDS
+*Entities* may also have attached DDS *Conditions*, which provide a way to wait
+for status changes. :numref:`figure-overview-dds-entities` presents an overview
+in a UML diagram.
+
+.. _figure-overview-dds-entities:
+
+.. figure:: ../images/EntitiesUML.png
+
+   Overview of DDS Entities
+
+Please note that |rti_me| does not support the following:
+
+- **MultiTopic**
+- **ContentFilteredTopic** [1]_
+- **ReadCondition**
+- **QueryConditions**
+
+.. [1] **ContentFilteredTopics** are not supported, but |me| does support
+   filtering data with a QoS policy. See :ref:`section-content-filtering` for
+   more information.
+
+For a general description of DDS *Entities* and their operations, please refer
+to :link_external_community_doc_pro_um:`the DDS Entities chapter <index.htm#users_manual/DDS_Entities.htm>`
+in the :link_external_community_doc_pro_um:`RTI Connext DDS Core Libraries User's Manual <index.htm>`.
+Note that |rti_me| does not support all APIs and QosPolicies; please refer to
+the :link_connextmicro_dds_api_c_up_one:`C API Reference <index.html>` and
+:link_connextmicro_dds_api_cpp_up_one:`C++ API Reference <index.html>`
+documentation for more information.

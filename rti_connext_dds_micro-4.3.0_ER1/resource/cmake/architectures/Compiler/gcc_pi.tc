@@ -1,0 +1,160 @@
+
+###############################################################################
+# Copyright (c) 2022-2026 Real-Time Innovations, Inc.
+#
+# All rights reserved.
+#
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+SET(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
+
+if(NOT DEFINED CMAKE_AR)
+    set(CMAKE_AR "${COMPILER_PATH}/${COMPILER_PREFIX}ar" CACHE INTERNAL "CMAKE_AR" FORCE)
+endif()
+
+if(NOT DEFINED CMAKE_RANLIB)
+    set(CMAKE_RANLIB "${COMPILER_PATH}/${COMPILER_PREFIX}ranlib" CACHE INTERNAL "CMAKE_RANLIB" FORCE)
+endif()
+
+MACRO(INCLUDE_GCC_COMPILER_PIL version)
+    set(opt_args ${ARGN})
+    if (opt_args)
+        list(GET opt_args 0 common_flags)
+    endif()
+    if ("${common_flags}" MATCHES "-m32")
+        set(common_link_flags "-m32")
+    endif()
+
+    set(CMAKE_C_FLAGS "-std=c99 -fsigned-char -nostdinc -Winit-self -fstrict-aliasing \
+        -Wmissing-declarations -Wall -Wextra -Wshadow \
+        -Wcast-align -Wunused -Wconversion -Wsign-conversion \
+        -Wdouble-promotion -Wstrict-prototypes ${common_flags}"
+    )
+    # Wpedantic was added in 4.9
+    if("${version}" VERSION_GREATER_EQUAL "4.9")
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wpedantic")
+    endif()
+
+    set(CMAKE_C_FLAGS_RELEASE "-O2")
+    set(CMAKE_C_FLAGS_DEBUG "-g")
+
+    set(CMAKE_CXX_FLAGS "-std=c++11 -fsigned-char -nostdinc  -Winit-self -fstrict-aliasing \
+        -Wmissing-declarations -Wall -Wextra \
+        -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused \
+        -Woverloaded-virtual -Wconversion -Wsign-conversion \
+        -Wdouble-promotion ${common_flags}"
+    )
+    # Wpedantic was added in 4.9
+    if("${version}" VERSION_GREATER_EQUAL "4.9")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpedantic")
+    endif()
+
+    set(CMAKE_CXX_FLAGS_RELEASE "-O2")
+    set(CMAKE_CXX_FLAGS_DEBUG "-g")
+
+    # Does not reliable work specify directly
+    # SET(CMAKE_SHARED_LINKER_FLAGS " -shared ${WEAK_SYMBOL_LINKER_FLAGS}" )
+
+    FOREACH(language C CXX)
+        SET(CMAKE_${language}_COMPILER_WORKS 1)
+        SET(CMAKE_${language}_ABI_COMPILED 1)
+        SET(CMAKE_${language}_COMPILE_OBJECT
+            "<CMAKE_${language}_COMPILER> <DEFINES> <INCLUDES> \
+            <FLAGS> -o <OBJECT> -c <SOURCE>"
+        )
+        SET(CMAKE_${language}_CREATE_PREPROCESSED_SOURCE
+            "<CMAKE_C_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -C \
+            -E <SOURCE> > <PREPROCESSED_SOURCE>"
+            CACHE INTERNAL "CMAKE_C_CREATE_PREPROCESSED_SOURCE" FORCE
+        )
+        SET(CMAKE_${language}_CREATE_STATIC_LIBRARY
+            "${CMAKE_AR} qc <TARGET> <OBJECTS>"
+        )
+    ENDFOREACH()
+    SET(CMAKE_C_COMPILER "${COMPILER_PATH}/${COMPILER_PREFIX}gcc")
+    SET(CMAKE_CXX_COMPILER "${COMPILER_PATH}/${COMPILER_PREFIX}g++")
+
+    SET(CMAKE_C_CREATE_SHARED_LIBRARY
+        "${COMPILER_PATH}/${COMPILER_PREFIX}gcc -shared ${WEAK_SYMBOL_LINKER_FLAGS} \
+        <LINK_FLAGS> ${common_link_flags} -o <TARGET> <OBJECTS> <LINK_LIBRARIES> "
+    )
+
+    SET(CMAKE_CXX_CREATE_SHARED_LIBRARY
+        "${COMPILER_PATH}/${COMPILER_PREFIX}g++ -shared ${WEAK_SYMBOL_LINKER_FLAGS} \
+        <LINK_FLAGS> ${common_link_flags} -o <TARGET> <OBJECTS> <LINK_LIBRARIES> "
+    )
+
+    SET(RTIME_PIL TRUE)
+    ADD_DEFINITIONS(-DRTI_PIL=1)
+ENDMACRO()
+
+MACRO(INCLUDE_GCC_COMPILER_PSL version)
+    set(opt_args ${ARGN})
+    if (opt_args)
+        list(GET opt_args 0 common_flags)
+    endif()
+
+    set(CMAKE_C_FLAGS "-std=c99 -Winit-self -fstrict-aliasing \
+        -fsigned-char \
+        -Wstrict-aliasing=3 -Wmissing-declarations -Wall \
+        -Wextra -Wshadow -Wcast-align -Wunused \
+        -Wconversion -Wsign-conversion -Wlogical-op \
+        -Wdouble-promotion -Wstrict-prototypes ${common_flags}"
+    )
+    # Wpedantic was added in 4.9
+    if("${version}" VERSION_GREATER_EQUAL "4.9")
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wpedantic")
+    endif()
+
+    set(CMAKE_C_FLAGS_DEBUG "-g")
+    set(CMAKE_C_FLAGS_RELEASE "-O2")
+
+    # -Wold-style-cast -Wlong-long
+    set(CMAKE_CXX_FLAGS "-Winit-self -fstrict-aliasing \
+        -fsigned-char \
+        -Wstrict-aliasing=3 -Wmissing-declarations -Wall \
+        -Wextra -Wshadow -Wnon-virtual-dtor \
+        -Wcast-align -Wunused -Woverloaded-virtual \
+        -Wconversion -Wsign-conversion -Wlogical-op \
+        -Wdouble-promotion ${common_flags}"
+    )
+    if("${version}" VERSION_GREATER_EQUAL "4.9")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpedantic")
+    endif()
+
+    set(CMAKE_CXX_FLAGS_DEBUG "-g")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O2")
+
+    get_filename_component(tc ${CMAKE_CURRENT_LIST_FILE} NAME)
+    STRING(REGEX MATCH "(.*)-(.*)" pil_match ${tc})
+    IF(pil_match)
+        SET(RTIME_PIL_ARCH ${CMAKE_MATCH_1})
+    ELSE()
+        MESSAGE(FATAL_ERROR "No PIL found")
+    ENDIF()
+    SET(RTIME_PSL TRUE)
+    ADD_DEFINITIONS(-DRTI_PSL=1)
+ENDMACRO()
+
+SET(CMAKE_INSTALL_RPATH "")
+SET(RTIME_OBJDUMP ${COMPILER_PATH}/${COMPILER_PREFIX}objdump)
+SET(RTIME_OBJDUMP_OPT --disassemble-all)
+SET(RTIME_OBJDUMPCHKSUM $ ${COMPILER_PATH}/${COMPILER_PREFIX}objdump)
+SET(RTIME_OBJDUMPCHKSUM_OPT --section=.text --section=.data --section=.rodata --disassemble-all)
+SET(RTIME_OBJ_SUFFIX o)
+SET(RTIME_AR_EXRACT -x)
+SET(RTIME_AR  ${COMPILER_PATH}/${COMPILER_PREFIX}ar)
+SET(RTIME_OSAPI_COMPILER osapi_cc_gcc.h)
+ADD_DEFINITIONS(-DOSAPI_CC_DEF_H=osapi/${RTIME_OSAPI_COMPILER})
+SET(OSAPI_CC_DEF_H_SET TRUE)
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+

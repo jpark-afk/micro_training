@@ -1,0 +1,29 @@
+Create Publisher
+================
+
+.. highlight:: c
+
+A DDS *Publisher* contains zero or more *DataWriters*. A publishing
+application must create at least one DDS *Publisher* and then a
+*DataWriter* for each *Topic* it wants to publish.
+
+Please refer to
+:link_connextmicro_dds_api_c_up_one:`PublisherQos<structDDS__PublisherQos.html>`
+and :link_connextmicro_dds_api_c_up_one:`DataWriterQos <structDDS__DataWriterQos.html>`
+for customizable policies for these DDS entities.
+
+- Create *Publisher*:
+
+  ::
+
+    DDS_Publisher *publisher = NULL;
+    publisher = DDS_DomainParticipant_create_publisher(participant,
+                                                       &DDS_PUBLISHER_QOS_DEFAULT,
+                                                       NULL,
+                                                       DDS_STATUS_MASK_NONE);
+    if (publisher == NULL)
+    {
+        /* failure */
+    }
+
+For more information, see :doc:`../programmersguide/sending`.

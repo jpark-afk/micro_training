@@ -1,0 +1,185 @@
+\doxysubsubsection{OSAPI Semaphore API}
+\hypertarget{group__OSAPI__SemaphoreClass}{}\label{group__OSAPI__SemaphoreClass}\index{OSAPI Semaphore API@{OSAPI Semaphore API}}
+
+
+Abstract Semaphore API.  
+
+
+\doxysubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga26862ed39eedb245d68ac6c3f533c002}{OSAPI\+\_\+\+SEMAPHORE\+\_\+\+TIMEOUT\+\_\+\+INFINITE}}~-\/1
+\begin{DoxyCompactList}\small\item\em If \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} is called with OSAPI\+\_\+\+SEMAPHORE\+\_\+\+TIMEOUT\+\_\+\+INFINITE as timeout, \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} will not return until the semaphore is signaled. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPI__SemaphoreClass_gad18da11c12e54fc34796f1cf75863368}{OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+OK}}~0
+\begin{DoxyCompactList}\small\item\em If \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} succeeds and the semaphore is signaled within the timeout period, \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} returns TRUE and sets the failure reason to OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+OK. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga5d0973176f8c835a86dfa806cc2885cb}{OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+TIMEOUT}}~1
+\begin{DoxyCompactList}\small\item\em If \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} was called with a timeout value different from OSAPI\+\_\+\+SEMAPHORE\+\_\+\+TIMEOUT\+\_\+\+INFINITE, and the semaphore was not signaled before the timeout expired, \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} returns TRUE and sets the failure reason to OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+TIMEOUT. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga2f31ed25f2817e972b7ba6a0ff76c285}{OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+ERROR}}~2
+\begin{DoxyCompactList}\small\item\em If \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} fails for an unknown reason, \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} returns FALSE and sets the failure reason to OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+ERROR. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct OSAPI\+\_\+\+Semaphore \mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga47359881e760aac45a3dff84c73cd78d}{OSAPI\+\_\+\+Semaphore\+\_\+T}}
+\begin{DoxyCompactList}\small\item\em Abstract Semaphore type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga47359881e760aac45a3dff84c73cd78d}{OSAPI\+\_\+\+Semaphore\+\_\+T}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__OSAPI__SemaphoreClass_gab9ddb08787020a88b111ddec188002fa}{OSAPI\+\_\+\+Semaphore\+\_\+new}} (void)
+\begin{DoxyCompactList}\small\item\em Create a Semaphore. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SemaphoreClass_gaf7ab3a59fb1ad4b88ccc97f7fc74e3c9}{OSAPI\+\_\+\+Semaphore\+\_\+delete}} (\mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga47359881e760aac45a3dff84c73cd78d}{OSAPI\+\_\+\+Semaphore\+\_\+T}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Delete a semaphore. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take}} (\mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga47359881e760aac45a3dff84c73cd78d}{OSAPI\+\_\+\+Semaphore\+\_\+T}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} timeout\+\_\+ms, \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}fail\+\_\+reason)
+\begin{DoxyCompactList}\small\item\em Take a Semaphore. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} \mbox{\hyperlink{group__OSAPI__SemaphoreClass_gae739c48b65990c0c12f399af1bc91276}{OSAPI\+\_\+\+Semaphore\+\_\+give}} (\mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga47359881e760aac45a3dff84c73cd78d}{OSAPI\+\_\+\+Semaphore\+\_\+T}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Give a Semaphore. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Abstract Semaphore API. 
+
+
+
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__OSAPI__SemaphoreClass_ga26862ed39eedb245d68ac6c3f533c002}\index{OSAPI Semaphore API@{OSAPI Semaphore API}!OSAPI\_SEMAPHORE\_TIMEOUT\_INFINITE@{OSAPI\_SEMAPHORE\_TIMEOUT\_INFINITE}}
+\index{OSAPI\_SEMAPHORE\_TIMEOUT\_INFINITE@{OSAPI\_SEMAPHORE\_TIMEOUT\_INFINITE}!OSAPI Semaphore API@{OSAPI Semaphore API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SEMAPHORE\_TIMEOUT\_INFINITE}{OSAPI\_SEMAPHORE\_TIMEOUT\_INFINITE}}
+{\footnotesize\ttfamily \label{group__OSAPI__SemaphoreClass_ga26862ed39eedb245d68ac6c3f533c002} 
+\#define OSAPI\+\_\+\+SEMAPHORE\+\_\+\+TIMEOUT\+\_\+\+INFINITE~-\/1}
+
+
+
+If \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} is called with OSAPI\+\_\+\+SEMAPHORE\+\_\+\+TIMEOUT\+\_\+\+INFINITE as timeout, \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} will not return until the semaphore is signaled. 
+
+\Hypertarget{group__OSAPI__SemaphoreClass_gad18da11c12e54fc34796f1cf75863368}\index{OSAPI Semaphore API@{OSAPI Semaphore API}!OSAPI\_SEMAPHORE\_RESULT\_OK@{OSAPI\_SEMAPHORE\_RESULT\_OK}}
+\index{OSAPI\_SEMAPHORE\_RESULT\_OK@{OSAPI\_SEMAPHORE\_RESULT\_OK}!OSAPI Semaphore API@{OSAPI Semaphore API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SEMAPHORE\_RESULT\_OK}{OSAPI\_SEMAPHORE\_RESULT\_OK}}
+{\footnotesize\ttfamily \label{group__OSAPI__SemaphoreClass_gad18da11c12e54fc34796f1cf75863368} 
+\#define OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+OK~0}
+
+
+
+If \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} succeeds and the semaphore is signaled within the timeout period, \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} returns TRUE and sets the failure reason to OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+OK. 
+
+\Hypertarget{group__OSAPI__SemaphoreClass_ga5d0973176f8c835a86dfa806cc2885cb}\index{OSAPI Semaphore API@{OSAPI Semaphore API}!OSAPI\_SEMAPHORE\_RESULT\_TIMEOUT@{OSAPI\_SEMAPHORE\_RESULT\_TIMEOUT}}
+\index{OSAPI\_SEMAPHORE\_RESULT\_TIMEOUT@{OSAPI\_SEMAPHORE\_RESULT\_TIMEOUT}!OSAPI Semaphore API@{OSAPI Semaphore API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SEMAPHORE\_RESULT\_TIMEOUT}{OSAPI\_SEMAPHORE\_RESULT\_TIMEOUT}}
+{\footnotesize\ttfamily \label{group__OSAPI__SemaphoreClass_ga5d0973176f8c835a86dfa806cc2885cb} 
+\#define OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+TIMEOUT~1}
+
+
+
+If \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} was called with a timeout value different from OSAPI\+\_\+\+SEMAPHORE\+\_\+\+TIMEOUT\+\_\+\+INFINITE, and the semaphore was not signaled before the timeout expired, \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} returns TRUE and sets the failure reason to OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+TIMEOUT. 
+
+\Hypertarget{group__OSAPI__SemaphoreClass_ga2f31ed25f2817e972b7ba6a0ff76c285}\index{OSAPI Semaphore API@{OSAPI Semaphore API}!OSAPI\_SEMAPHORE\_RESULT\_ERROR@{OSAPI\_SEMAPHORE\_RESULT\_ERROR}}
+\index{OSAPI\_SEMAPHORE\_RESULT\_ERROR@{OSAPI\_SEMAPHORE\_RESULT\_ERROR}!OSAPI Semaphore API@{OSAPI Semaphore API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_SEMAPHORE\_RESULT\_ERROR}{OSAPI\_SEMAPHORE\_RESULT\_ERROR}}
+{\footnotesize\ttfamily \label{group__OSAPI__SemaphoreClass_ga2f31ed25f2817e972b7ba6a0ff76c285} 
+\#define OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+ERROR~2}
+
+
+
+If \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} fails for an unknown reason, \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} returns FALSE and sets the failure reason to OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+ERROR. 
+
+
+
+\doxysubsubsubsection{Typedef Documentation}
+\Hypertarget{group__OSAPI__SemaphoreClass_ga47359881e760aac45a3dff84c73cd78d}\index{OSAPI Semaphore API@{OSAPI Semaphore API}!OSAPI\_Semaphore\_T@{OSAPI\_Semaphore\_T}}
+\index{OSAPI\_Semaphore\_T@{OSAPI\_Semaphore\_T}!OSAPI Semaphore API@{OSAPI Semaphore API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Semaphore\_T}{OSAPI\_Semaphore\_T}}
+{\footnotesize\ttfamily \label{group__OSAPI__SemaphoreClass_ga47359881e760aac45a3dff84c73cd78d} 
+typedef struct OSAPI\+\_\+\+Semaphore \mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga47359881e760aac45a3dff84c73cd78d}{OSAPI\+\_\+\+Semaphore\+\_\+T}}}
+
+
+
+Abstract Semaphore type. 
+
+
+
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__OSAPI__SemaphoreClass_gab9ddb08787020a88b111ddec188002fa}\index{OSAPI Semaphore API@{OSAPI Semaphore API}!OSAPI\_Semaphore\_new@{OSAPI\_Semaphore\_new}}
+\index{OSAPI\_Semaphore\_new@{OSAPI\_Semaphore\_new}!OSAPI Semaphore API@{OSAPI Semaphore API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Semaphore\_new()}{OSAPI\_Semaphore\_new()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SemaphoreClass_gab9ddb08787020a88b111ddec188002fa} 
+\mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga47359881e760aac45a3dff84c73cd78d}{OSAPI\+\_\+\+Semaphore\+\_\+T}} \texorpdfstring{$\ast$}{*} OSAPI\+\_\+\+Semaphore\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Create a Semaphore. 
+
+Create a new binary semaphore with an initial count of 0 and a maximum count of 1. A call to \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} will block until the semaphore is signaled with a call to \doxylink{group__OSAPI__SemaphoreClass_gae739c48b65990c0c12f399af1bc91276}{OSAPI\+\_\+\+Semaphore\+\_\+give}. 
+
+The created semaphore must be deleted using OSAPI\+\_\+\+Semaphore\+\_\+delete when no longer needed (only available when RTI\+\_\+\+CERT is not defined). 
+
+\begin{DoxyReturn}{Returns}
+Pointer to a semaphore with an initial count of 0 on success, NULL on failure. 
+\end{DoxyReturn}
+\Hypertarget{group__OSAPI__SemaphoreClass_gaf7ab3a59fb1ad4b88ccc97f7fc74e3c9}\index{OSAPI Semaphore API@{OSAPI Semaphore API}!OSAPI\_Semaphore\_delete@{OSAPI\_Semaphore\_delete}}
+\index{OSAPI\_Semaphore\_delete@{OSAPI\_Semaphore\_delete}!OSAPI Semaphore API@{OSAPI Semaphore API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Semaphore\_delete()}{OSAPI\_Semaphore\_delete()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SemaphoreClass_gaf7ab3a59fb1ad4b88ccc97f7fc74e3c9} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Semaphore\+\_\+delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga47359881e760aac45a3dff84c73cd78d}{OSAPI\+\_\+\+Semaphore\+\_\+T}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Delete a semaphore. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em self} & Semaphore created with \doxylink{group__OSAPI__SemaphoreClass_gab9ddb08787020a88b111ddec188002fa}{OSAPI\+\_\+\+Semaphore\+\_\+new}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure.
+\end{DoxyReturn}
+See Also \doxylink{group__OSAPI__SemaphoreClass_gab9ddb08787020a88b111ddec188002fa}{OSAPI\+\_\+\+Semaphore\+\_\+new} \Hypertarget{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}\index{OSAPI Semaphore API@{OSAPI Semaphore API}!OSAPI\_Semaphore\_take@{OSAPI\_Semaphore\_take}}
+\index{OSAPI\_Semaphore\_take@{OSAPI\_Semaphore\_take}!OSAPI Semaphore API@{OSAPI Semaphore API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Semaphore\_take()}{OSAPI\_Semaphore\_take()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Semaphore\+\_\+take (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga47359881e760aac45a3dff84c73cd78d}{OSAPI\+\_\+\+Semaphore\+\_\+T}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}}]{timeout\+\_\+ms}{, }\item[{\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \texorpdfstring{$\ast$}{*}}]{fail\+\_\+reason}{}\end{DoxyParamCaption})}
+
+
+
+Take a Semaphore. 
+
+Wait for the semaphore to be signaled. If the semaphore count is greater than 0, this function decrements the count and returns immediately. Otherwise, it blocks until the semaphore is signaled by \doxylink{group__OSAPI__SemaphoreClass_gae739c48b65990c0c12f399af1bc91276}{OSAPI\+\_\+\+Semaphore\+\_\+give} or the timeout expires. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Semaphore previously created with \doxylink{group__OSAPI__SemaphoreClass_gab9ddb08787020a88b111ddec188002fa}{OSAPI\+\_\+\+Semaphore\+\_\+new}. Cannot be NULL. \\
+\hline
+{\em timeout\+\_\+ms} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Timeout in milliseconds. The take call will wait at most timeout\+\_\+ms milliseconds before returning. If OSAPI\+\_\+\+SEMAPHORE\+\_\+\+TIMEOUT\+\_\+\+INFINITE is specified, the call will not return until the semaphore count is 1 or higher. \\
+\hline
+{\em fail\+\_\+reason} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Additional information when the call returns. Cannot be NULL. If RTI\+\_\+\+TRUE is returned and the semaphore was acquired, fail\+\_\+reason is set to OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+OK. If RTI\+\_\+\+TRUE is returned but the operation timed out, fail\+\_\+reason is set to OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+TIMEOUT. If RTI\+\_\+\+FALSE is returned, fail\+\_\+reason is set to OSAPI\+\_\+\+SEMAPHORE\+\_\+\+RESULT\+\_\+\+ERROR. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success (including timeout), RTI\+\_\+\+FALSE on error. 
+\end{DoxyReturn}
+See Also \doxylink{group__OSAPI__SemaphoreClass_gae739c48b65990c0c12f399af1bc91276}{OSAPI\+\_\+\+Semaphore\+\_\+give} 
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__OSAPI__SemaphoreClass_gae739c48b65990c0c12f399af1bc91276}\index{OSAPI Semaphore API@{OSAPI Semaphore API}!OSAPI\_Semaphore\_give@{OSAPI\_Semaphore\_give}}
+\index{OSAPI\_Semaphore\_give@{OSAPI\_Semaphore\_give}!OSAPI Semaphore API@{OSAPI Semaphore API}}
+\doxyparagraph{\texorpdfstring{OSAPI\_Semaphore\_give()}{OSAPI\_Semaphore\_give()}}
+{\footnotesize\ttfamily \label{group__OSAPI__SemaphoreClass_gae739c48b65990c0c12f399af1bc91276} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga94fd3acf535d88e621b6dba12e2befce}{RTI\+\_\+\+BOOL}} OSAPI\+\_\+\+Semaphore\+\_\+give (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__OSAPI__SemaphoreClass_ga47359881e760aac45a3dff84c73cd78d}{OSAPI\+\_\+\+Semaphore\+\_\+T}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Give a Semaphore. 
+
+Signal the semaphore by incrementing its count. If any threads are blocked waiting on this semaphore via \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take}, one of them will be unblocked. A semaphore can only be given if it is owned by the calling thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Semaphore previously created with \doxylink{group__OSAPI__SemaphoreClass_gab9ddb08787020a88b111ddec188002fa}{OSAPI\+\_\+\+Semaphore\+\_\+new}. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RTI\+\_\+\+TRUE on success, RTI\+\_\+\+FALSE on failure. 
+\end{DoxyReturn}
+See Also \doxylink{group__OSAPI__SemaphoreClass_ga9f9d0fd812bc225f349c4e5bf0975cc4}{OSAPI\+\_\+\+Semaphore\+\_\+take} 
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}, and \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+

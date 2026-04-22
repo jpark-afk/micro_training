@@ -1,0 +1,801 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.2. Building Connext Micro for Common Platforms &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 ER1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.3. Building Connext Micro with Compatibility for Connext Cert" href="cert_compatibility.html" />
+    <link rel="prev" title="6.1. Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0 ER1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Platforms Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">6.1. Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.2. Building Connext Micro for Common Platforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-the-build-environment">6.2.1. Setting up the build environment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-host-environment">6.2.1.1. The host environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-target-environment">6.2.1.2. The target environment</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-psl">6.2.2. Building the PSL</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#building-the-psl-with-rtime-make">6.2.2.1. Building the PSL with rtime-make</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-the-psl-with-cmake">6.2.2.2. Building the PSL with CMake</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-source">6.2.3. Building the source</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#building-with-rtime-make">6.2.3.1. Building with rtime-make</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-with-cmake">6.2.3.2. Building with CMake</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cross-compiling-me-h">6.2.4. Cross-compiling Connext Micro</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cert_compatibility.html">6.3. Building Connext Micro with Compatibility for Connext Cert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guid_generation.html">6.4. GUID Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">6.5. FreeRTOS Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux.html">6.6. Linux Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microsar.html">6.7. MicroSAR Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="macos.html">6.8. macOS Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qnx.html">6.9. QNX Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">6.10. Windows Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">14. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">6. </span>Platforms Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">6.2. </span>Building Connext Micro for Common Platforms</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="building-me-h-for-common-platforms">
+<span id="section-building-source"></span><h1><span class="section-number">6.2. </span>Building Connext Micro for Common Platforms<a class="headerlink" href="#building-me-h-for-common-platforms" title="Permalink to this headline">¶</a></h1>
+<p>This section describes how to compile <em>Connext Micro</em>, either the Platform Support
+Libraries (PSL) or the full source if available, for an architecture
+supported by RTI (see <a class="reference internal" href="../release/supported_platforms.html#rl-supported"><span class="std std-ref">Supported Platforms and Programming Languages</span></a> for more information).</p>
+<p>For information about how to compile and link
+<em>Connext Micro</em> applications, please refer to <a class="reference internal" href="../developing/prepare_development_environment.html#section-prepare-development-environment"><span class="std std-ref">Prepare Your Development Environment</span></a>.</p>
+<p>This section is written for developers and engineers with a background in
+software development. RTI recommends reading this section in order, as
+one subsection may refer to or assume knowledge about concepts described in a
+preceding subsection.</p>
+<div class="section" id="setting-up-the-build-environment">
+<span id="section-set-up-build-environment"></span><h2><span class="section-number">6.2.1. </span>Setting up the build environment<a class="headerlink" href="#setting-up-the-build-environment" title="Permalink to this headline">¶</a></h2>
+<p>The following terminology is used to refer to the environment in which <em>Connext Micro</em>
+is built and run:</p>
+<ul class="simple">
+<li><p>The <em>host</em> is the machine that runs the software to compile and
+link <em>Connext Micro</em>.</p></li>
+<li><p>The <em>target</em> is the machine that will run <em>Connext Micro</em>.</p></li>
+<li><p>In many cases <em>Connext Micro</em> is built <em>and</em> run on the same machine. This
+is referred to as a <em>self-hosted environment</em>.</p></li>
+</ul>
+<p>The <em>environment</em> is the collection of tools, OS, compiler, linker,
+hardware etc. needed to build and run applications.</p>
+<p>The word <em>must</em> describes a requirement that must be met.
+Failure to meet a <em>must</em> requirement may result in failure to
+compile, use, or run <em>Connext Micro</em>.</p>
+<p>The word <em>should</em> describes a requirement that is strongly recommended
+to be met. A failure to meet a <em>should</em> recommendation may
+require modification to how <em>Connext Micro</em> is built, used, or run.</p>
+<p>The word <em>may</em> is used to describe an optional feature.</p>
+<div class="section" id="the-host-environment">
+<h3><span class="section-number">6.2.1.1. </span>The host environment<a class="headerlink" href="#the-host-environment" title="Permalink to this headline">¶</a></h3>
+<p><em>Connext Micro</em> has been designed to be easy to build and to require few tools on
+the host.</p>
+<p>The host machine <strong>must</strong>:</p>
+<ul class="simple">
+<li><p>support long filenames (8.3 will not work). <em>Connext Micro</em> does not require a
+case-sensitive file-system.</p></li>
+<li><p>have the necessary compiler, linkers, and build-tools installed.</p></li>
+</ul>
+<p>The host machine <strong>should</strong>:</p>
+<ul class="simple">
+<li><p>have <a class="reference external" href="https://cmake.org/">CMake</a> installed. Note that it
+is not required to use <a class="reference external" href="https://cmake.org/">CMake</a> to build <em>Connext Micro</em>, but as a
+rule of thumb, if you are comfortable building <em>Connext Micro</em> from the command-line, we
+recommend using <a class="reference external" href="https://cmake.org/">CMake</a>.</p></li>
+<li><p>be able to run bash shell scripts (Linux and macOS systems) or BAT scripts
+(Windows systems).</p></li>
+</ul>
+<p>Supported host environments are Windows (cygwin and mingw are not tested),
+Linux, and macOS systems.</p>
+<p>Typical examples of host machines are:</p>
+<ul class="simple">
+<li><p>a Linux PC with the GNU tools installed (make, gcc, g++, etc.).</p></li>
+<li><p>a Mac computer with Xcode and the command-line tools installed.</p></li>
+<li><p>a Windows computer with Microsoft Visual Studio Express edition.</p></li>
+<li><p>a Linux, Mac or Windows computer with an embedded development tool-suite.</p></li>
+</ul>
+</div>
+<div class="section" id="the-target-environment">
+<h3><span class="section-number">6.2.1.2. </span>The target environment<a class="headerlink" href="#the-target-environment" title="Permalink to this headline">¶</a></h3>
+<p>The target compiler should:</p>
+<ul class="simple">
+<li><p>be C99 compliant. Note that many non-standard
+compilers work, but may require additional configuration.</p></li>
+<li><p>be C++98 compliant.</p></li>
+</ul>
+<p>The remainder of this manual assumes that the target environment is one
+supported by RTI:</p>
+<ul class="simple">
+<li><p>POSIX (Linux, macOS, QNX®)</p></li>
+<li><p>Windows</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="building-the-psl">
+<span id="psl-compiling"></span><h2><span class="section-number">6.2.2. </span>Building the PSL<a class="headerlink" href="#building-the-psl" title="Permalink to this headline">¶</a></h2>
+<p>As described in <a class="reference internal" href="introduction.html#section-libraries"><span class="std std-ref">Library descriptions</span></a>, <em>Connext Micro</em> comes with Platform Support
+Libraries (PSL) that are compatible with specific Platform Independent
+Libraries (PIL). The source code for the PSL is also available in the host
+package. This section describes how to build the PSL from the provided
+source code.</p>
+<p>RTI provides the PSL source code because it allows the PSL to be recompiled
+for a specific platform configuration. This may be important in some use cases
+if the header files include platform-specific information that is different
+from the binaries provided by RTI.</p>
+<p>There are two recommended methods to compile the PSL: by running the rtime-make
+script (which invokes CMake), or by invoking CMake manually. Both are described
+in more detail below.</p>
+<p><a class="reference external" href="https://cmake.org/">CMake</a> is the
+preferred tool to build <em>Connext Micro</em> because it simplifies configuring the <em>Connext Micro</em>
+build options and generates build files for a variety of environments.
+Note that CMake itself does not compile anything. CMake
+is used to <em>generate</em> build files for a number of environments,
+such as make, Eclipse® CDT, Xcode® and Visual Studio. Once the build-files
+have been generated, any of the tools mentioned can be used to build <em>Connext Micro</em>.
+This system makes it easier to support building <em>Connext Micro</em> in different build
+environments. CMake is easy to install with pre-built binaries
+for common environments and does not depend on external tools to build <em>Connext Micro</em>.</p>
+<div class="section" id="building-the-psl-with-rtime-make">
+<h3><span class="section-number">6.2.2.1. </span>Building the PSL with rtime-make<a class="headerlink" href="#building-the-psl-with-rtime-make" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Connext Micro</em> source bundle includes a bash (on Linux and macOS systems) and BAT
+(on Windows systems) script to
+simplify the invocation of <a class="reference external" href="https://cmake.org/">CMake</a>. These scripts are
+a convenient way to invoke <a class="reference external" href="https://cmake.org/">CMake</a> with the correct
+options.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>rtime-make must be invoked from the RTIMEHOME directory.</p>
+</div>
+<p>Run the rtime-make script with the following command:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">RTIMEHOME/resource/scripts/rtime-make --config Debug --target x86_64leElfgcc7.3.0-Linux4 \</span>
+<span class="go">                      -G &quot;Unix Makefiles&quot; --build</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-V2luZG93cw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">RTIMEHOME\resource\scripts\rtime-make -A x64 --config Debug --target x86_64lePEvs2017-Win10 \</span>
+<span class="go">                  -G &quot;Visual Studio 15 2017&quot; --build</span>
+</pre></div>
+</div>
+</div></div>
+<p>When the compilation has finished, the PSL is copied to the
+directory <code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/&lt;target&gt;</span></code> where <code class="docutils literal notranslate"><span class="pre">&lt;target&gt;</span></code> is the argument passed
+to the <code class="docutils literal notranslate"><span class="pre">--target</span> <span class="pre">&lt;target&gt;</span></code>.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The above command will overwrite the PSL installed by RTI. To use
+a different output directory refer to <a class="reference internal" href="#target-name"><span class="std std-ref">Specifying a different output directory</span></a>.</p>
+</div>
+</div></blockquote>
+<p>Here is an explanation of each argument in the above command:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">Debug</span></code>: Create Debug build. Use <code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">Release</span></code> to
+create a release build.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--target</span> <span class="pre">&lt;target&gt;</span></code>: The target for the sources to be built. Refer to
+<a class="reference internal" href="../release/supported_platforms.html#rl-supported"><span class="std std-ref">Supported Platforms and Programming Languages</span></a> for the architecture abbreviations of supported
+platforms.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--build</span></code>: Build the generated project files.</p></li>
+</ul>
+<p>To get a list of all the options, run:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">rtime-make -h</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>To get help for a specific target, run:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">rtime-make --target &lt;target&gt; --help</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="section" id="specifying-a-different-output-directory">
+<span id="target-name"></span><h4><span class="section-number">6.2.2.1.1. </span>Specifying a different output directory<a class="headerlink" href="#specifying-a-different-output-directory" title="Permalink to this headline">¶</a></h4>
+<p>By default, rtime-make copies the compiled PSL into a directory named
+<code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/&lt;target&gt;</span></code> where <code class="docutils literal notranslate"><span class="pre">&lt;target&gt;</span></code> is the argument that was passed
+to the <code class="docutils literal notranslate"><span class="pre">--target</span> <span class="pre">&lt;target&gt;</span></code> option.</p>
+<p>To copy the compiled PSL to a different output directory, the
+<code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">&lt;name&gt;</span></code> option can be used together with <code class="docutils literal notranslate"><span class="pre">--target</span> <span class="pre">&lt;target&gt;</span></code>.
+In this case, the PSL will be compiled using the same options as
+specified for <code class="docutils literal notranslate"><span class="pre">--target</span> <span class="pre">&lt;target&gt;</span></code>, but instead the PSLs will be
+copied to the directory <code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/&lt;name&gt;</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You should use the same naming convention for <code class="docutils literal notranslate"><span class="pre">--name</span></code> as for
+<code class="docutils literal notranslate"><span class="pre">--target</span></code>. <em>Connext Micro</em> may use the directory name to determine the
+appropriate Platform Independent Library (PIL) for the compiled
+PSL.</p>
+</div>
+<p>For example, the following command will compile the PSL using the
+same target configuration as for <code class="docutils literal notranslate"><span class="pre">x86_64leElfgcc7.3.0-Linux4</span></code>, but copy
+the compiled PSL to <code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/x86_64leElfgcc7.3.0-mypsl</span></code></p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">RTIMEHOME/resource/scripts/rtime-make --config Debug \</span>
+<span class="go">    --target x86_64leElfgcc7.3.0-Linux4 \</span>
+<span class="go">    --name x86_64leElfgcc7.3.0-mypsl \</span>
+<span class="go">    -G &quot;Unix Makefiles&quot; --build</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="building-the-psl-with-cmake">
+<h3><span class="section-number">6.2.2.2. </span>Building the PSL with CMake<a class="headerlink" href="#building-the-psl-with-cmake" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="preparing-to-build">
+<span id="prepare-psl"></span><h4><span class="section-number">6.2.2.2.1. </span>Preparing to build<a class="headerlink" href="#preparing-to-build" title="Permalink to this headline">¶</a></h4>
+<p>RTI recommends creating a unique directory for each build
+configuration. A build configuration can be created to address specific
+architectures, compiler settings, or different <em>Connext Micro</em> build options.</p>
+<p>RTI recommends assigning a descriptive <em>name</em> to each build
+configuration, using a common format. While there are no requirements to
+the format for functional correctness, the toolchain files in
+<a class="reference internal" href="#xbuild"><span class="std std-ref">Cross-compiling Connext Micro</span></a> use the <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> parameter passed to <code class="docutils literal notranslate"><span class="pre">--target</span> <span class="pre">&lt;name&gt;</span></code>
+to determine various compiler options and selections.</p>
+<p>RTI uses the following format for the target architecture PSL:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{cpu}{compiler}{profile}-{OS}
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{cpu}</span></code>: the CPU that the library was compiled for.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{compiler}</span></code>: the compiler used to build the library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{profile}</span></code>: CERT if the library was built to be Cert-compatible;
+otherwise empty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{OS}</span></code>: The operating system that the PSL was compiled for.</p></li>
+</ul>
+<p>Some examples of target names:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x86_64leElfgcc7.3.0-Linux4</span></code>: PSL for <em>Connext Micro</em> for an x64 CPU compiled using
+GCC 7.3.0 and running a Linux4 kernel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x86_64lePEvs2017-Win10</span></code>: PSL for <em>Connext Micro</em> for an x64 CPU compiled using VS2017
+and running in Windows 10.</p></li>
+</ul>
+<p>Files built by each build configuration will be stored under
+<code class="docutils literal notranslate"><span class="pre">RTIMEHOME/build/[Debug</span> <span class="pre">|</span> <span class="pre">Release]/&lt;name&gt;</span></code>. These directories are referred to
+as build directories or <code class="docutils literal notranslate"><span class="pre">RTIMEBUILD</span></code>. The structure of the <code class="docutils literal notranslate"><span class="pre">RTIMEBUILD</span></code>
+depends on the generated build files and should be regarded as an intermediate
+directory.</p>
+</div>
+<div class="section" id="creating-build-files-from-the-command-line">
+<h4><span class="section-number">6.2.2.2.2. </span>Creating build files from the command line<a class="headerlink" href="#creating-build-files-from-the-command-line" title="Permalink to this headline">¶</a></h4>
+<p>Open a terminal window in the <code class="docutils literal notranslate"><span class="pre">RTIMEHOME</span></code> directory and create the <code class="docutils literal notranslate"><span class="pre">RTIMEBUILD</span></code>
+directory. Change to the <code class="docutils literal notranslate"><span class="pre">RTIMEBUILD</span></code> directory and invoke CMake
+with the following arguments:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section assumes that cmake is invoked from the RTIMEHOME directory.</p>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cmake -G &lt;generator&gt; -DCMAKE_BUILD_TYPE=&lt;Debug | Release&gt; \</span>
+<span class="go">      -DCMAKE_TOOLCHAIN_FILE=&lt;toolchain file&gt;  \</span>
+<span class="go">      -DCMAKE_MODULE_PATH=RTIMEHOME/resource/cmake/architectures \</span>
+<span class="go">      -DRTIME_TARGET_NAME=&lt;target-name&gt; \</span>
+<span class="go">      -DRTIME_TARGET=&lt;target-name&gt; \</span>
+<span class="go">      RTIMEHOME</span>
+</pre></div>
+</div>
+<p>Depending on the generator, do one of the following:</p>
+<ul class="simple">
+<li><p>For IDE generators (such as Eclipse, Visual Studio, Xcode), open the generated
+solution/project files and build the project/solution.</p></li>
+<li><p>For command-line tools (such as make, nmake, ninja), run the build-tool.</p></li>
+</ul>
+<p>After a successful build, the output is placed in <code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/&lt;target-name&gt;</span></code>.</p>
+<p>The generated build files may contain different sub-projects that are
+specific to the tool. For example, in Xcode and Visual Studio, the following
+targets are available:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ALL_BUILD</span></code>: Builds all the projects.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\rti_me_&lt;name&gt;</span></code>: Builds only the specific library. Note that dependent
+libraries are built first.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ZERO_CHECK</span></code>: Runs <a class="reference external" href="https://cmake.org/">CMake</a> to regenerate project
+files in case something changed in the build input. This target does not
+need to be built manually.</p></li>
+</ul>
+<p>For command-line tools, try <code class="docutils literal notranslate"><span class="pre">&lt;tool&gt;</span> <span class="pre">help</span></code> for a list of available targets to
+build. For example, if makefiles were generated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">help</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="building-the-source">
+<span id="source-compiling"></span><h2><span class="section-number">6.2.3. </span>Building the source<a class="headerlink" href="#building-the-source" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This section only applies to <em>Connext Micro</em> source bundles (<code class="docutils literal notranslate"><span class="pre">rti_connext_dds_micro-&lt;version&gt;-source.zip</span></code>).
+For other bundles, refer to <a class="reference internal" href="#psl-compiling"><span class="std std-ref">Building the PSL</span></a>.</p>
+</div>
+<p>When you build <em>Connext Micro</em> from the source bundle, you have two options:</p>
+<ul class="simple">
+<li><p>Build a Platform Independent Library (PIL) and a compatible Platform Support
+Library (PSL).</p></li>
+<li><p>Build an integrated library.</p></li>
+</ul>
+<p>The source code for the PIL, PSL, and integrated libraries are all included in
+the source bundle. Refer to <a class="reference internal" href="introduction.html#section-libraries"><span class="std std-ref">Library descriptions</span></a> for more information
+on the differences between them. The following sections explain how to compile
+each library type.</p>
+<p>There are two recommended methods to compile libraries: by running the
+rtime-make script (which invokes CMake), or by invoking CMake manually. Both
+are described in more detail below.</p>
+<div class="section" id="building-with-rtime-make">
+<h3><span class="section-number">6.2.3.1. </span>Building with rtime-make<a class="headerlink" href="#building-with-rtime-make" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Connext Micro</em> source bundle includes a bash (on Linux and macOS systems) and BAT
+(on Windows systems) script to
+simplify the invocation of <a class="reference external" href="https://cmake.org/">CMake</a>. These scripts are
+a convenient way to invoke <a class="reference external" href="https://cmake.org/">CMake</a> with the correct
+options.</p>
+<p>Run the rtime-make script with the following commands:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-1-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-1-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-1-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><p>To build the PIL:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">RTIMEHOME/resource/scripts/rtime-make --config Debug --target x86_64leElfgcc7.3.0 \</span>
+<span class="go">                      -G &quot;Unix Makefiles&quot; --build</span>
+</pre></div>
+</div>
+<p>To build the PSL using the above PIL:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">RTIMEHOME/resource/scripts/rtime-make --config Debug --target x86_64leElfgcc7.3.0-Linux4 \</span>
+<span class="go">                      -G &quot;Unix Makefiles&quot; --build</span>
+</pre></div>
+</div>
+<p>To build the integrated library:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">RTIMEHOME/resource/scripts/rtime-make --config Debug --target x64Linux4gcc7.3.0 \</span>
+<span class="go">                      -G &quot;Unix Makefiles&quot; --build</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-V2luZG93cw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><p>To build the PIL:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">RTIMEHOME\resource\scripts\rtime-make -A x64 --config Debug --target x86_64lePEvs2017 \</span>
+<span class="go">                  -G &quot;Visual Studio 15 2017&quot; --build</span>
+</pre></div>
+</div>
+<p>To build the PSL using the above PIL:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">RTIMEHOME\resource\scripts\rtime-make -A x64 --config Debug --target x86_64lePEvs2017-Win10 \</span>
+<span class="go">                  -G &quot;Visual Studio 15 2017&quot; --build</span>
+</pre></div>
+</div>
+<p>To build the integrated library:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">RTIMEHOME\resource\scripts\rtime-make -A x64 --config Debug --target x64Win64VS2017 \</span>
+<span class="go">                  -G &quot;Visual Studio 15 2017&quot; --build</span>
+</pre></div>
+</div>
+</div></div>
+<p>Here is an explanation of each argument in the above commands:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">Debug</span></code>: Create Debug build.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--target</span> <span class="pre">&lt;target&gt;</span></code>: The target for the sources to be built. Refer to
+<a class="reference internal" href="../release/supported_platforms.html#rl-supported"><span class="std std-ref">Supported Platforms and Programming Languages</span></a> for the architecture abbreviations of supported
+platforms.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--build</span></code>: Build the generated project files.</p></li>
+</ul>
+<p>To get a list of all the options, run:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">rtime-make -h</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>To get help for a specific target, run:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">rtime-make --target &lt;target&gt; --help</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="building-with-cmake">
+<h3><span class="section-number">6.2.3.2. </span>Building with CMake<a class="headerlink" href="#building-with-cmake" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="prepare">
+<span id="id9"></span><h4><span class="section-number">6.2.3.2.1. </span>Preparing to build<a class="headerlink" href="#prepare" title="Permalink to this headline">¶</a></h4>
+<p>RTI recommends creating a unique directory for each build
+configuration. A build configuration can be created to address specific
+architectures, compiler settings, or different <em>Connext Micro</em> build options.</p>
+<p>RTI recommends assigning a descriptive <em>name</em> to each build
+configuration, using a common format. While there are no requirements to
+the format for functional correctness, the toolchain files in
+<a class="reference internal" href="#xbuild"><span class="std std-ref">Cross-compiling Connext Micro</span></a> use the <strong>RTIME_TARGET_NAME</strong> variable to determine various
+compiler options and selections.</p>
+<p>RTI uses the following formats for the target architecture libraries:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-UElM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-UElM" name="UElM" role="tab" tabindex="0">PIL</button><button aria-controls="panel-2-UFNM" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-UFNM" name="UFNM" role="tab" tabindex="-1">PSL</button><button aria-controls="panel-2-SW50ZWdyYXRlZA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-SW50ZWdyYXRlZA==" name="SW50ZWdyYXRlZA==" role="tab" tabindex="-1">Integrated</button></div><div aria-labelledby="tab-2-UElM" class="sphinx-tabs-panel group-tab" id="panel-2-UElM" name="UElM" role="tabpanel" tabindex="0"><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{cpu}{compiler}{profile}
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{cpu}</span></code>: the CPU that the library was compiled for.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{compiler}</span></code>: the compiler used to build the library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{profile}</span></code>: CERT if the library was built to be Cert-compatible;
+otherwise empty.</p></li>
+</ul>
+</div><div aria-labelledby="tab-2-UFNM" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UFNM" name="UFNM" role="tabpanel" tabindex="0"><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{cpu}{compiler}{profile}-{OS}
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{cpu}</span></code>: the CPU that the library was compiled for.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{compiler}</span></code>: the compiler used to build the library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{profile}</span></code>: CERT if the library was built to be Cert-compatible;
+otherwise empty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{OS}</span></code>: The operating system that the PSL was compiled for.</p></li>
+</ul>
+</div><div aria-labelledby="tab-2-SW50ZWdyYXRlZA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-SW50ZWdyYXRlZA==" name="SW50ZWdyYXRlZA==" role="tabpanel" tabindex="0"><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{cpu}{OS}{compiler}{profile}
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{cpu}</span></code>: the CPU that the library was compiled for.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{OS}</span></code>: The operating system that the integrated library was compiled for.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{compiler}</span></code>: the compiler used to build the library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{profile}</span></code>: CERT if the library was built to be Cert-compatible;
+otherwise empty.</p></li>
+</ul>
+</div></div>
+<p>Some examples of target names:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x86_64leElfgcc7.3.0</span></code>: PIL for an x64 CPU, compiled with gcc 7.3.0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x86_64leElfgcc7.3.0-Linux4</span></code>: PSL for an x64 CPU, running Ubuntu 18.04 LTS,
+compiled with gcc 7.3.0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x64Linux4gcc7.3.0</span></code>: Integrated library for an x64 CPU, running Ubuntu 18.04
+LTS, compiled with gcc 7.3.0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x86_64lePEvs2017</span></code>: PIL for an x64 CPU, compiled with Visual Studio 2017.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x86_64lePEvs2017-Win10</span></code>: PSL for an x64 CPU, running Windows 10,
+compiled with Visual Studio 2017.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x64Win64VS2017</span></code>: Integrated library for an x64 CPU, running Windows 10,
+compiled with Visual Studio 2017.</p></li>
+</ul>
+<p>Files built by each build configuration will be stored under
+<code class="docutils literal notranslate"><span class="pre">RTIMEHOME/build/[Debug</span> <span class="pre">|</span> <span class="pre">Release]/&lt;name&gt;</span></code>. These directories are referred to
+as build directories or <code class="docutils literal notranslate"><span class="pre">RTIMEBUILD</span></code>. The structure of the <code class="docutils literal notranslate"><span class="pre">RTIMEBUILD</span></code> depends on
+the generated build files and should be regarded as an intermediate directory.</p>
+</div>
+<div class="section" id="id10">
+<h4><span class="section-number">6.2.3.2.2. </span>Creating build files from the command line<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section assumes that CMake is invoked from the <code class="docutils literal notranslate"><span class="pre">RTIMEHOME</span></code> directory.
+For out-of-source builds using CMake, refer to <a class="reference internal" href="#out-of-source-cmake"><span class="std std-ref">Building with CMake outside of source</span></a>.</p>
+</div>
+<p>Open a terminal window in the <code class="docutils literal notranslate"><span class="pre">RTIMEHOME</span></code> directory and create the <code class="docutils literal notranslate"><span class="pre">RTIMEBUILD</span></code>
+directory. Change to the <code class="docutils literal notranslate"><span class="pre">RTIMEBUILD</span></code> directory and invoke CMake
+with the following arguments:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cmake -G &lt;generator&gt; -DCMAKE_BUILD_TYPE=&lt;Debug | Release&gt; \</span>
+<span class="go">      -DCMAKE_TOOLCHAIN_FILE=&lt;toolchain file&gt;  \</span>
+<span class="go">      -DCMAKE_MODULE_PATH=RTIMEHOME/resource/cmake/architectures \</span>
+<span class="go">      -DRTIME_TARGET_NAME=&lt;target-name&gt; \</span>
+<span class="go">      -DRTIME_TARGET=&lt;target-name&gt; \</span>
+<span class="go">      RTIMEHOME</span>
+</pre></div>
+</div>
+<p>Depending on the generator, do one of the following:</p>
+<ul class="simple">
+<li><p>For IDE generators (such as Eclipse, Visual Studio, Xcode), open the generated
+solution/project files and build the project/solution.</p></li>
+<li><p>For command-line tools (such as make, nmake, ninja), run the build-tool.</p></li>
+</ul>
+<p>After a successful build, the output is placed in <code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/&lt;name&gt;</span></code>.</p>
+<p>The generated build-files may contain different sub-projects that are
+specific to the tool. For example, in Xcode and Visual Studio the following
+targets are available:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ALL_BUILD</span></code>: Builds all the projects.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\rti_me_&lt;name&gt;</span></code>: Builds only the specific library. Note that that dependent
+libraries are built first.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ZERO_CHECK</span></code>: Runs <a class="reference external" href="https://cmake.org/">CMake</a> to regenerate project
+files in case something changed in the build input. This target does not
+need to be built manually.</p></li>
+</ul>
+<p>For command-line tools, try <code class="docutils literal notranslate"><span class="pre">&lt;tool&gt;</span> <span class="pre">help</span></code> for a list of available targets to
+build. For example, if makefiles were generated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">help</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-with-cmake-outside-of-source">
+<span id="out-of-source-cmake"></span><h4><span class="section-number">6.2.3.2.3. </span>Building with CMake outside of source<a class="headerlink" href="#building-with-cmake-outside-of-source" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This option is only available with the <em>Connext Micro</em> source bundle.</p>
+</div>
+</div></blockquote>
+<p>You may need to build <em>Connext Micro</em> in a directory that is located
+outside <code class="docutils literal notranslate"><span class="pre">RTIMEHOME</span></code> and to install <em>Connext Micro</em> in a separate installation directory.
+In this case, do the following:</p>
+<ol class="arabic simple">
+<li><p>Create a build directory and change the current directory to it.</p></li>
+<li><p>Invoke CMake with the following command to create build files for an
+integrated library:</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cmake -DCMAKE_TOOLCHAIN_FILE=&lt;RTI toolchain&gt; \</span>
+<span class="go">      -DRTIME_TARGET=&lt;target-name&gt; \</span>
+<span class="go">      -DRTIME_TARGET_NAME=&lt;target-name&gt; \</span>
+<span class="go">      -DCMAKE_BUILD_TYPE=[debug | Release]  \</span>
+<span class="go">      &lt;path to RTIMEHOME/CMakeLists.txt&gt;</span>
+</pre></div>
+</div>
+<p>Alternatively, you can create build files for split libraries.
+This requires two commands, one for the PIL and one for the PSL.</p>
+<p>To build the PIL:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cmake -DCMAKE_TOOLCHAIN_FILE=&lt;RTI toolchain&gt; \</span>
+<span class="go">      -DRTIME_TARGET=&lt;target-name&gt; \</span>
+<span class="go">      -DRTIME_TARGET_NAME=&lt;target-name&gt; \</span>
+<span class="go">      -DCMAKE_BUILD_TYPE=[debug | Release]  \</span>
+<span class="go">      &lt;path to RTIMEHOME/CMakeLists.txt&gt;</span>
+</pre></div>
+</div>
+<p>To build the PSL:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cmake -DCMAKE_TOOLCHAIN_FILE=&lt;RTI toolchain&gt; \</span>
+<span class="go">      -DRTIME_TARGET=&lt;target-name&gt; \</span>
+<span class="go">      -DRTIME_TARGET_NAME=&lt;target-name&gt; \</span>
+<span class="go">      -DCMAKE_BUILD_TYPE=[debug | Release]  \</span>
+<span class="go">      -DRTIME_PIL_PATH=&lt;path to  RTI&#39;s PIL if compiling a PSL&gt; \</span>
+<span class="go">      &lt;path to RTIMEHOME/CMakeLists.txt&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Invoke the build tool on the generated build-files:</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">make</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>Install the compiled libraries using <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--install</span></code>:</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cmake --install . --prefix &lt;install path&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The last command will copy the header files and libraries to:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;install</span> <span class="pre">path&gt;/include</span></code> (header files)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;install</span> <span class="pre">path&gt;/lib</span></code> (libraries)</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="cross-compiling-me-h">
+<span id="xbuild"></span><h2><span class="section-number">6.2.4. </span>Cross-compiling Connext Micro<a class="headerlink" href="#cross-compiling-me-h" title="Permalink to this headline">¶</a></h2>
+<p>Cross-compiling the <em>Connext Micro</em> source-code uses the exact same process described
+in <a class="reference internal" href="#source-compiling"><span class="std std-ref">Building the source</span></a>, but requires an additional toolchain file.
+A toolchain file is a <a class="reference external" href="https://cmake.org/">CMake</a> file that describes the compiler,
+linker, etc., needed to build the source for the target.</p>
+<p>To see a list of available targets, use <code class="docutils literal notranslate"><span class="pre">--list</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">rtime-make --list</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cert_compatibility.html" class="btn btn-neutral float-right" title="6.3. Building Connext Micro with Compatibility for Connext Cert" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="6.1. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

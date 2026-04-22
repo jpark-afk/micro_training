@@ -1,0 +1,50 @@
+{
+    "SPDXID": "SPDXRef-DOCUMENT",
+    "creationInfo": {
+        "created": "2026-03-30T16:08:28Z",
+        "creators": [
+            "Tool: rti-generate-sbom"
+        ]
+    },
+    "dataLicense": "CC0-1.0",
+    "name": "rti_me_ddsfilter_x86_64leElfgcc13.3.0@4.3.0_ER1",
+    "spdxVersion": "SPDX-2.3",
+    "documentNamespace": "https://rti.com/spdxdocs/rti_me_ddsfilter_x86_64leElfgcc13.3.0-4.3.0_ER1-dbc4e4a4-745d-4b46-adb9-56ecfefaced3",
+    "packages": [
+        {
+            "SPDXID": "SPDXRef-gnrtd0",
+            "downloadLocation": "NOASSERTION",
+            "filesAnalyzed": true,
+            "name": "rti_me_ddsfilter_x86_64leElfgcc13.3.0",
+            "versionInfo": "4.3.0_ER1"
+        },
+        {
+            "SPDXID": "SPDXRef-gnrtd1",
+            "downloadLocation": "NOASSERTION",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceLocator": "pkg:generic/connext_micro@4.3.0_ER1",
+                    "referenceType": "purl"
+                }
+            ],
+            "filesAnalyzed": true,
+            "homepage": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "name": "connext_micro",
+            "versionInfo": "4.3.0_ER1"
+        }
+    ],
+    "relationships": [
+        {
+            "spdxElementId": "SPDXRef-DOCUMENT",
+            "relatedSpdxElement": "SPDXRef-gnrtd0",
+            "relationshipType": "DESCRIBES"
+        },
+        {
+            "spdxElementId": "SPDXRef-gnrtd0",
+            "relatedSpdxElement": "SPDXRef-gnrtd1",
+            "relationshipType": "DEPENDS_ON"
+        }
+    ]
+}

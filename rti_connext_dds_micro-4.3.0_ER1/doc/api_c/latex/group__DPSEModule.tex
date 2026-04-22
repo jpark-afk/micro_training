@@ -1,0 +1,132 @@
+\doxysubsection{DPSE Static Discovery API}
+\hypertarget{group__DPSEModule}{}\label{group__DPSEModule}\index{DPSE Static Discovery API@{DPSE Static Discovery API}}
+\doxysubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDPSE__DiscoveryPluginProperty}{DPSE\+\_\+\+Discovery\+Plugin\+Property}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Properties for the Dynamic Participant/\+Static Endpoint (DPSE) discovery plugin. These properties can be configured while registering the plugin to control its behavior. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DPSEModule_gaad088a397dbd1727d3971a61872b3341}{DPSE\+\_\+\+Discovery\+Plugin\+Property\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em Initializer for the \doxylink{structDPSE__DiscoveryPluginProperty}{DPSE\+\_\+\+Discovery\+Plugin\+Property}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+DISC\+\_\+\+DPSEDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DPSEModule_gaeff489e2387e541b03a88ebcac1ec5dc}{DPSE\+\_\+\+Discovery\+Plugin\+Property\+\_\+initialize}} (struct \mbox{\hyperlink{structDPSE__DiscoveryPluginProperty}{DPSE\+\_\+\+Discovery\+Plugin\+Property}} \texorpdfstring{$\ast$}{*}dst)
+\begin{DoxyCompactList}\small\item\em Initialize a Discovery\+Plugin\+Property structure. \end{DoxyCompactList}\item 
+DISC\+\_\+\+DPSEDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DPSEModule_gaeab354bfc81475c02c8cf63b50df3772}{DPSE\+\_\+\+Remote\+Participant\+\_\+assert}} (\mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*}const participant, const char \texorpdfstring{$\ast$}{*}rem\+\_\+participant\+\_\+name)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Assert remote participant by passing in the name of that participant. \end{DoxyCompactList}\item 
+DISC\+\_\+\+DPSEDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DPSEModule_ga918c9548ab0d82b91c7820e0627065d0}{DPSE\+\_\+\+Remote\+Publication\+\_\+assert}} (\mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*}const participant, const char \texorpdfstring{$\ast$}{*}const rem\+\_\+participant\+\_\+name, const struct \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}const data, \mbox{\hyperlink{group__DDSMicroTypesModule_gad4a84f934521ca2bbf1649c8898cb1c6}{NDDS\+\_\+\+Type\+Plugin\+Key\+Kind}} key\+\_\+kind)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Assert remote publication by passing in the builtin data that describes the type, topic, and QoS of that remote publication. \end{DoxyCompactList}\item 
+DISC\+\_\+\+DPSEDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DPSEModule_gab242eae6e0c9dd41694eb5e87d1e0cb8}{DPSE\+\_\+\+Remote\+Subscription\+\_\+assert}} (\mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*}const participant, const char \texorpdfstring{$\ast$}{*}const rem\+\_\+participant\+\_\+name, const struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}const data, \mbox{\hyperlink{group__DDSMicroTypesModule_gad4a84f934521ca2bbf1649c8898cb1c6}{NDDS\+\_\+\+Type\+Plugin\+Key\+Kind}} key\+\_\+kind)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Assert remote subscription by passing in the builtin data that describes the type, topic, and QoS of that remote subscription. \end{DoxyCompactList}\item 
+DISC\+\_\+\+DPSEDll\+Export struct RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DPSEModule_ga0449e5fde0bb67ec5cbb2760e47bf3ff}{DPSE\+\_\+\+Discovery\+Factory\+\_\+get\+\_\+interface}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the singleton instance of the DPSE discovery plugin factory. The singleton instance of the factory is used when creating a domain participant. \end{DoxyCompactList}\item 
+DISC\+\_\+\+DPSEDll\+Export const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DPSEModule_ga242ba599ceb667ab89237e7d9e0f29ca}{DPSE\+\_\+\+Discovery\+Factory\+\_\+get\+\_\+version}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the version string for the DPSE library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  The RTI Connext DDS Micro support for DPSE discovery of remote entities. Please refer to the Discovery chapter in the User\textquotesingle{}s Manual for an example of how to register and use the DPSE plugin. 
+
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__DPSEModule_gaad088a397dbd1727d3971a61872b3341}\index{DPSE Static Discovery API@{DPSE Static Discovery API}!DPSE\_DiscoveryPluginProperty\_INITIALIZER@{DPSE\_DiscoveryPluginProperty\_INITIALIZER}}
+\index{DPSE\_DiscoveryPluginProperty\_INITIALIZER@{DPSE\_DiscoveryPluginProperty\_INITIALIZER}!DPSE Static Discovery API@{DPSE Static Discovery API}}
+\doxyparagraph{\texorpdfstring{DPSE\_DiscoveryPluginProperty\_INITIALIZER}{DPSE\_DiscoveryPluginProperty\_INITIALIZER}}
+{\footnotesize\ttfamily \label{group__DPSEModule_gaad088a397dbd1727d3971a61872b3341} 
+\#define DPSE\+\_\+\+Discovery\+Plugin\+Property\+\_\+\+INITIALIZER}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ RT\_ComponentFactoryProperty\_INITIALIZER,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{30,0\},\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{100,0\},\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ 5,\ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{1,0\},\ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_LENGTH\_AUTO,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ 4\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DDS\_PARTICIPANT\_MESSAGE\_READER\_RELIABILITY\_KIND\_INITIALIZER\ \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Initializer for the \doxylink{structDPSE__DiscoveryPluginProperty}{DPSE\+\_\+\+Discovery\+Plugin\+Property}. 
+
+
+
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__DPSEModule_gaeff489e2387e541b03a88ebcac1ec5dc}\index{DPSE Static Discovery API@{DPSE Static Discovery API}!DPSE\_DiscoveryPluginProperty\_initialize@{DPSE\_DiscoveryPluginProperty\_initialize}}
+\index{DPSE\_DiscoveryPluginProperty\_initialize@{DPSE\_DiscoveryPluginProperty\_initialize}!DPSE Static Discovery API@{DPSE Static Discovery API}}
+\doxyparagraph{\texorpdfstring{DPSE\_DiscoveryPluginProperty\_initialize()}{DPSE\_DiscoveryPluginProperty\_initialize()}}
+{\footnotesize\ttfamily \label{group__DPSEModule_gaeff489e2387e541b03a88ebcac1ec5dc} 
+DISC\+\_\+\+DPSEDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DPSE\+\_\+\+Discovery\+Plugin\+Property\+\_\+initialize (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structDPSE__DiscoveryPluginProperty}{DPSE\+\_\+\+Discovery\+Plugin\+Property}} \texorpdfstring{$\ast$}{*}}]{dst}{}\end{DoxyParamCaption})}
+
+
+
+Initialize a Discovery\+Plugin\+Property structure. 
+
+\Hypertarget{group__DPSEModule_gaeab354bfc81475c02c8cf63b50df3772}\index{DPSE Static Discovery API@{DPSE Static Discovery API}!DPSE\_RemoteParticipant\_assert@{DPSE\_RemoteParticipant\_assert}}
+\index{DPSE\_RemoteParticipant\_assert@{DPSE\_RemoteParticipant\_assert}!DPSE Static Discovery API@{DPSE Static Discovery API}}
+\doxyparagraph{\texorpdfstring{DPSE\_RemoteParticipant\_assert()}{DPSE\_RemoteParticipant\_assert()}}
+{\footnotesize\ttfamily \label{group__DPSEModule_gaeab354bfc81475c02c8cf63b50df3772} 
+DISC\+\_\+\+DPSEDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DPSE\+\_\+\+Remote\+Participant\+\_\+assert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*}const}]{participant}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{rem\+\_\+participant\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Assert remote participant by passing in the name of that participant. 
+
+DPSE discovery requires that you pre-\/configure your application with information about any remote participants that you intend to discover. The only information that needs to be pre-\/configured is the name of the remote \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} that your application intends to discover. \Hypertarget{group__DPSEModule_ga918c9548ab0d82b91c7820e0627065d0}\index{DPSE Static Discovery API@{DPSE Static Discovery API}!DPSE\_RemotePublication\_assert@{DPSE\_RemotePublication\_assert}}
+\index{DPSE\_RemotePublication\_assert@{DPSE\_RemotePublication\_assert}!DPSE Static Discovery API@{DPSE Static Discovery API}}
+\doxyparagraph{\texorpdfstring{DPSE\_RemotePublication\_assert()}{DPSE\_RemotePublication\_assert()}}
+{\footnotesize\ttfamily \label{group__DPSEModule_ga918c9548ab0d82b91c7820e0627065d0} 
+DISC\+\_\+\+DPSEDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DPSE\+\_\+\+Remote\+Publication\+\_\+assert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*}const}]{participant}{, }\item[{const char \texorpdfstring{$\ast$}{*}const}]{rem\+\_\+participant\+\_\+name}{, }\item[{const struct \mbox{\hyperlink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}const}]{data}{, }\item[{\mbox{\hyperlink{group__DDSMicroTypesModule_gad4a84f934521ca2bbf1649c8898cb1c6}{NDDS\+\_\+\+Type\+Plugin\+Key\+Kind}}}]{key\+\_\+kind}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Assert remote publication by passing in the builtin data that describes the type, topic, and QoS of that remote publication. 
+
+DPSE discovery requires that you pre-\/configure your application with information about any remote publications that you intend to discover and receive data from. The \doxylink{structDDS__PublicationBuiltinTopicData}{DDS\+\_\+\+Publication\+Builtin\+Topic\+Data} field must include the topic name, type name, and QoS of the remote \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} that you intend to receive communications from. 
+
+Additionally, this method takes a key\+\_\+kind argument that must match the key kind returned by the type plugin. \Hypertarget{group__DPSEModule_gab242eae6e0c9dd41694eb5e87d1e0cb8}\index{DPSE Static Discovery API@{DPSE Static Discovery API}!DPSE\_RemoteSubscription\_assert@{DPSE\_RemoteSubscription\_assert}}
+\index{DPSE\_RemoteSubscription\_assert@{DPSE\_RemoteSubscription\_assert}!DPSE Static Discovery API@{DPSE Static Discovery API}}
+\doxyparagraph{\texorpdfstring{DPSE\_RemoteSubscription\_assert()}{DPSE\_RemoteSubscription\_assert()}}
+{\footnotesize\ttfamily \label{group__DPSEModule_gab242eae6e0c9dd41694eb5e87d1e0cb8} 
+DISC\+\_\+\+DPSEDll\+Export \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} DPSE\+\_\+\+Remote\+Subscription\+\_\+assert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}} \texorpdfstring{$\ast$}{*}const}]{participant}{, }\item[{const char \texorpdfstring{$\ast$}{*}const}]{rem\+\_\+participant\+\_\+name}{, }\item[{const struct \mbox{\hyperlink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data}} \texorpdfstring{$\ast$}{*}const}]{data}{, }\item[{\mbox{\hyperlink{group__DDSMicroTypesModule_gad4a84f934521ca2bbf1649c8898cb1c6}{NDDS\+\_\+\+Type\+Plugin\+Key\+Kind}}}]{key\+\_\+kind}{}\end{DoxyParamCaption})}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Assert remote subscription by passing in the builtin data that describes the type, topic, and QoS of that remote subscription. 
+
+DPSE discovery requires that you pre-\/configure your application with information about any remote subscriptions that you intend to discover and send data to. The \doxylink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data} parameter must include the topic name, type name, and QoS of the remote \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} that your application intends to send data to. Additionally, if the remote \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} is listening on a non-\/default port, you must set the remote locator (including the non-\/default port) in the \doxylink{structDDS__SubscriptionBuiltinTopicData}{DDS\+\_\+\+Subscription\+Builtin\+Topic\+Data} that you intend to use to contact the remote \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}. 
+
+Additionally, this method takes a key\+\_\+kind argument that must match the key kind returned by the type plugin. \Hypertarget{group__DPSEModule_ga0449e5fde0bb67ec5cbb2760e47bf3ff}\index{DPSE Static Discovery API@{DPSE Static Discovery API}!DPSE\_DiscoveryFactory\_get\_interface@{DPSE\_DiscoveryFactory\_get\_interface}}
+\index{DPSE\_DiscoveryFactory\_get\_interface@{DPSE\_DiscoveryFactory\_get\_interface}!DPSE Static Discovery API@{DPSE Static Discovery API}}
+\doxyparagraph{\texorpdfstring{DPSE\_DiscoveryFactory\_get\_interface()}{DPSE\_DiscoveryFactory\_get\_interface()}}
+{\footnotesize\ttfamily \label{group__DPSEModule_ga0449e5fde0bb67ec5cbb2760e47bf3ff} 
+DISC\+\_\+\+DPSEDll\+Export struct RT\+\_\+\+Component\+FactoryI \texorpdfstring{$\ast$}{*} DPSE\+\_\+\+Discovery\+Factory\+\_\+get\+\_\+interface (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the singleton instance of the DPSE discovery plugin factory. The singleton instance of the factory is used when creating a domain participant. 
+
+This function gets the single singleton instance of the DPSE discovery plugin factory that is used by the middleware to create a DPSE plugin. In the future, as more discovery plug-\/ins are supported, they will be registered with the middleware by installing different discovery factory instances with the \doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory}. The singleton instance of the factory is registered with a name, and that name is specified in the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} \doxylink{structDDS__DiscoveryQosPolicy}{DDS\+\_\+\+Discovery\+Qos\+Policy}. This is used to create a discovery plug-\/in instance when creating a domain participant. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to DPSE discovery plugin factory 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__DiscoveryQosPolicy}{DDS\+\_\+\+Discovery\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\Hypertarget{group__DPSEModule_ga242ba599ceb667ab89237e7d9e0f29ca}\index{DPSE Static Discovery API@{DPSE Static Discovery API}!DPSE\_DiscoveryFactory\_get\_version@{DPSE\_DiscoveryFactory\_get\_version}}
+\index{DPSE\_DiscoveryFactory\_get\_version@{DPSE\_DiscoveryFactory\_get\_version}!DPSE Static Discovery API@{DPSE Static Discovery API}}
+\doxyparagraph{\texorpdfstring{DPSE\_DiscoveryFactory\_get\_version()}{DPSE\_DiscoveryFactory\_get\_version()}}
+{\footnotesize\ttfamily \label{group__DPSEModule_ga242ba599ceb667ab89237e7d9e0f29ca} 
+DISC\+\_\+\+DPSEDll\+Export const char \texorpdfstring{$\ast$}{*} DPSE\+\_\+\+Discovery\+Factory\+\_\+get\+\_\+version (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the version string for the DPSE library. 
+

@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.3. Transport Addresses &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 ER1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.4. Transport Port Number" href="portnumber.html" />
+    <link rel="prev" title="4.2. Transport Registration" href="registration.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0 ER1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Transports</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">4.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registration.html">4.2. Transport Registration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.3. Transport Addresses</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reserving-addresses-and-ports">4.3.1. Reserving addresses and ports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#address-limitations">4.3.2. Address limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#address-notation">4.3.3. Address notation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="portnumber.html">4.4. Transport Port Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interoperability.html">4.5. Interoperating with Connext Professional Transports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RTPS.html">4.6. RTPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="INTRA.html">4.7. INTRA Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SHMEM.html">4.8. Shared Memory Transport (SHMEM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy_v2.html">4.9. Zero Copy v2 Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UDP.html">4.10. UDP Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NETIO_DGRAM.html">4.11. NETIO Datagram Transport</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">14. Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">4. </span>Transports</a> &raquo;</li>
+        
+      <li><span class="section-number">4.3. </span>Transport Addresses</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="transport-addresses">
+<h1><span class="section-number">4.3. </span>Transport Addresses<a class="headerlink" href="#transport-addresses" title="Permalink to this headline">¶</a></h1>
+<p>In order for DDS entities to communicate, the DDS entities must know
+each other’s location. DDS entities may be colocated in the same
+<em>DomainParticipant</em>, may be located in different <em>DomainParticipants</em>
+within the same node, or may be located on different nodes connected by
+a network.</p>
+<p>In DDS, a location is called a <em>locator</em>. A locator uniquely describes
+how to reach one or more DDS entitites in a network. A DDS locator
+consists of the following parts:</p>
+<ul class="simple">
+<li><p>The locator <em>kind</em> identifies the type of locators; e.g., UDPv4.</p></li>
+<li><p>The locator <em>port</em> identifies the location of DDS entities at an address.
+The port number of a locator is not directly configurable; rather,
+it is configured indirectly by the <code class="docutils literal notranslate"><span class="pre">rtps_well_known_ports</span></code> attribute of the
+<a class="reference external" href="../../../doc/api_c/html/structDDS__WireProtocolQosPolicy.html">WireProtocolQosPolicy</a>
+of the <em>DomainParticipant</em>’s QoS, where a
+well-known, interoperable RTPS port number is assigned.</p></li>
+<li><p>The locator <em>address</em> indentifies the network address. Transports are
+concerned with exchanging messages using the network address.</p></li>
+</ul>
+<div class="section" id="reserving-addresses-and-ports">
+<h2><span class="section-number">4.3.1. </span>Reserving addresses and ports<a class="headerlink" href="#reserving-addresses-and-ports" title="Permalink to this headline">¶</a></h2>
+<p>Address reservation is the process to determine which locators should be
+used in the discovery announcement. Which transports and addresses to be used
+are determined as described in <a class="reference internal" href="../programmersguide/discovery.html"><span class="doc">Discovery</span></a>.</p>
+<p>When a <em>DomainParticipant</em> is created, it calculates a port number and tries to
+reserve this port on all addresses available in <em>all</em> the transports based
+on the registration properties. If the port cannot be reserved on all
+transports, then it release the port on <em>all</em> transports and tries again. If
+no free port can be found the process fails and the <em>DomainParticipant</em> cannot
+be created.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If an address is specified without the transport name as a prefix,
+(e.g. “192.168.1.1” instead of “_udp://192.168.1.1”) and multiple transports
+understand the address, the <em>first</em> transport that understands the
+address will also try to reserve it. Transports are sorted alphabetically
+by name. This feature allows backward compatibility with
+earlier versions of <em>Connext Micro</em>, but <em>should not be used</em>; it may be deprecated
+in future versions. Always specify addresses using the transport name as the
+prefix.</p>
+</div>
+</div>
+<div class="section" id="address-limitations">
+<h2><span class="section-number">4.3.2. </span>Address limitations<a class="headerlink" href="#address-limitations" title="Permalink to this headline">¶</a></h2>
+<p>The number of locators which can be announced is limited to <em>only</em>
+the first <em>four</em> for each type across <em>all</em> transports available for
+each policy. If more than four are available of any kind, these are <em>ignored</em>.
+This is by design, although it may be changed in the future. The order in
+which the locators are read from the platform is also not known; thus, if
+there are more than four possible locators, the four locators which will be
+used are not deterministic.</p>
+<p>To ensure that <em>all</em> the desired addresses and <em>only</em> the desired address
+are used in a transport, follow these rules:</p>
+<ul class="simple">
+<li><p>Make sure that no more than four unicast addresses and four multicast
+addresses can be returned across <em>all</em> transports for discovery traffic.</p></li>
+<li><p>Make sure that no more than four unicast addresses and four multicast
+addresses can be returned across <em>all</em> transports for user traffic.</p></li>
+<li><p>Make sure that no more than four unicast addresses and four multicast
+addresses can be returned across <em>all</em> transports for user-traffic,
+for <em>DataReader</em> and <em>DataWriter</em> specific locators, and that they do
+<em>not</em> duplicate any of the <em>DomainParticipant</em>’s locators.</p></li>
+</ul>
+</div>
+<div class="section" id="address-notation">
+<h2><span class="section-number">4.3.3. </span>Address notation<a class="headerlink" href="#address-notation" title="Permalink to this headline">¶</a></h2>
+<p>In <em>Connext Micro</em>, all addresses are specified as ASCII strings. The full
+address format is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[ ] denotes range or discreet values, unless enclosed in &#39;&#39;
+    which means a literal.
+
+ADDRESS = PREFIX://&lt;ADDRESS&gt; |
+          @PREFIX://&lt;ADDRESS&gt; |
+          INDEX@PREFIX://&lt;ADDRESS&gt;
+
+INDEX = INTEGER | &#39;[&#39; INTEGER &#39;]&#39; | &#39;[&#39; INTEGER-INTEGER &#39;]&#39; | &#39;[&#39; -INTEGER &#39;]&#39;
+
+PREFIX = [a-zA-Z_][0-9a-zA-Z_]+
+
+INTEGER = DEC_INTEGER | HEX_INTEGER
+
+DEC_INTEGER = [0-9]+
+
+HEX_INTEGER = [0x|0X][0-9a-fA-F]+
+
+ADDRESS = 0 or more 8bit characters
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that while a locator without a <code class="docutils literal notranslate"><span class="pre">PREFIX</span></code> is supported,
+it <em>should</em> always be used and is thus <em>not</em> marked as optional in
+the grammar.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="portnumber.html" class="btn btn-neutral float-right" title="4.4. Transport Port Number" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="registration.html" class="btn btn-neutral float-left" title="4.2. Transport Registration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

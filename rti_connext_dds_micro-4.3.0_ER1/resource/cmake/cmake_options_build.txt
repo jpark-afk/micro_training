@@ -1,0 +1,171 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2026
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Platform options file
+#
+# Modification History
+# --------------------
+# 12sep2016 tk Written
+################################################################################
+IF (RTIME_PRINT_CONFIG)
+    IF (NOT RTIME_PSL)
+        RTI_MESSAGE_STATUS("RTIME_EXCLUDE_CPP .....................: ${RTIME_EXCLUDE_CPP}")
+        RTI_MESSAGE_STATUS("RTIME_EXCLUDE_APPGEN ..................: ${RTIME_EXCLUDE_APPGEN}")
+        RTI_MESSAGE_STATUS("RTIME_EXCLUDE_DPDE ....................: ${RTIME_EXCLUDE_DPDE}")
+        RTI_MESSAGE_STATUS("RTIME_EXCLUDE_DPSE ....................: ${RTIME_EXCLUDE_DPSE}")
+        RTI_MESSAGE_STATUS("RTIME_EXCLUDE_SHMEM ...................: ${RTIME_EXCLUDE_SHMEM}")
+        RTI_MESSAGE_STATUS("RTIME_DISABLE_BUILDID .................: ${RTIME_DISABLE_BUILDID}")
+        RTI_MESSAGE_STATUS("RTIME_DDS_DISABLE_LIVELINESS_CHANNEL ..: ${RTIME_DDS_DISABLE_LIVELINESS_CHANNEL}")
+    ENDIF()
+    RTI_MESSAGE_STATUS("RTI_BUILD_UNITTESTS ................: ${RTI_BUILD_UNITTESTS}")
+    IF (NOT RTIME_PSL)
+        RTI_MESSAGE_STATUS("RTIME_BUILD_SINGLE_LIB .............: ${RTIME_BUILD_SINGLE_LIB}")
+    ENDIF()
+    RTI_MESSAGE_STATUS("RTIME_CERT .........................: ${RTIME_CERT}")
+    RTI_MESSAGE_STATUS("RTIME_NO_SHARED_LIB ................: ${RTIME_NO_SHARED_LIB}")
+    RETURN()
+ENDIF()
+
+SET(RTIME_CERT_DOC
+"Checking this option builds Micro as a single static library with only the Micro Cert APIs enabled")
+
+IF (RTIME_CERT)
+    SET(RTIME_CERT TRUE CACHE BOOL ${RTIME_CERT_DOC})
+    GET_PROPERTY(rti_cert_flags DIRECTORY PROPERTY
+                 COMPILE_DEFINITIONS)
+    LIST(LENGTH rti_cert_flags rti_cert_length)
+
+    # Unclear if rti_cert_flags can ever be < 0
+    IF (${rti_cert_length} GREATER -1)
+        LIST(FIND rti_cert_flags RTI_CERT rti_cert_index)
+        IF (${rti_cert_index} EQUAL -1)
+            SET_PROPERTY(DIRECTORY APPEND PROPERTY
+                         COMPILE_DEFINITIONS
+                         RTI_CERT)
+            GET_PROPERTY(rti_cert_flags DIRECTORY PROPERTY
+                        COMPILE_DEFINITIONS)
+        ENDIF()
+    ENDIF()
+ELSE()
+    SET(RTIME_CERT FALSE CACHE BOOL ${RTIME_CERT_DOC})
+ENDIF()
+
+MACRO(RTIME_SET_CERT_DEFAULT name cert_default default docstring)
+    IF (RTIME_CERT AND (NOT DEFINED ${name}))
+        SET(${name} ${cert_default} CACHE BOOL ${docstring})
+    ELSEIF (NOT DEFINED ${name})
+        SET(${name} ${default} CACHE BOOL ${docstring})
+    ELSE()
+        SET(${name} ${${name}} CACHE BOOL ${docstring}})
+    ENDIF()
+ENDMACRO()
+
+SET(RTIME_NO_SHARED_LIB_DOC
+"Checking this option builds Micro as a single static library")
+
+RTIME_SET_CERT_DEFAULT(RTIME_NO_SHARED_LIB TRUE FALSE RTIME_NO_SHARED_LIB_DOC)
+SET(RTI_NO_SHARED_LIB ${RTIME_NO_SHARED_LIB})
+
+SET(RTIME_EXCLUDE_CPP_DOC
+"Checking this option excludes C++ from the build")
+
+RTIME_SET_CERT_DEFAULT(RTIME_EXCLUDE_CPP TRUE FALSE RTIME_EXCLUDE_CPP_DOC)
+
+SET(RTIME_EXCLUDE_DPDE_DOC
+"Checking this option excludes disc_dpde (DPDE) from the build")
+
+RTIME_SET_CERT_DEFAULT(RTIME_EXCLUDE_DPDE TRUE FALSE RTIME_EXCLUDE_DPDE_DOC)
+
+SET(RTIME_EXCLUDE_DPSE_DOC
+"Checking this option excludes disc_dpse (DPSE) from the build")
+
+RTIME_SET_CERT_DEFAULT(RTIME_EXCLUDE_DPSE FALSE FALSE RTIME_EXCLUDE_DPSE_DOC)
+
+SET(RTIME_DISABLE_BUILDID_DOC
+"Checking this option disables generation of a build id")
+
+RTIME_SET_CERT_DEFAULT(RTIME_DISABLE_BUILDID TRUE FALSE RTIME_DISABLE_BUILDID_DOC)
+
+SET(RTIME_BUILD_SINGLE_LIB_DOC
+"Checking this option builds Micro as a single library")
+
+RTIME_SET_CERT_DEFAULT(RTIME_BUILD_SINGLE_LIB TRUE FALSE RTIME_BUILD_SINGLE_LIB_DOC)
+
+SET(RTIME_EXCLUDE_APPGEN_DOC
+"Checking this option excludes app_gen (MAG support) from the build")
+
+RTIME_SET_CERT_DEFAULT(RTIME_EXCLUDE_APPGEN FALSE FALSE RTIME_EXCLUDE_APPGEN_DOC)
+
+SET(RTIME_EXCLUDE_SHMEM_DOC
+"Checking this option excludes shared memory  from the build")
+
+RTIME_SET_CERT_DEFAULT(RTIME_EXCLUDE_SHMEM TRUE FALSE RTIME_EXCLUDE_SHMEM_DOC)
+
+IF (RTIME_CERT)
+    IF (NOT RTIME_EXCLUDE_DPDE)
+        RTI_MESSAGE_WARNING("RTIME_EXCLUDE_DPDE is FALSE with RTIME_CERT")
+    ENDIF()
+
+    IF (NOT RTIME_EXCLUDE_SHMEM)
+        RTI_MESSAGE_WARNING("RTIME_EXCLUDE_SHMEM is FALSE with RTIME_CERT")
+    ENDIF()
+
+    IF (NOT RTIME_EXCLUDE_APPGEN)
+        RTI_MESSAGE_WARNING("RTIME_EXCLUDE_APPGEN is FALSE with RTIME_CERT")
+    ENDIF()
+
+    IF (NOT RTIME_EXCLUDE_CPP)
+        RTI_MESSAGE_WARNING("RTIME_EXCLUDE_CPP is FALSE with RTIME_CERT")
+    ENDIF()
+
+    IF (NOT RTIME_BUILD_SINGLE_LIB)
+        RTI_MESSAGE_WARNING("RTIME_BUILD_SINGLE_LIB is FALSE with RTIME_CERT")
+    ENDIF()
+
+    IF (NOT RTIME_DISABLE_BUILDID)
+        RTI_MESSAGE_WARNING("RTIME_DISABLE_BUILDID is FALSE with RTIME_CERT")
+    ENDIF()
+
+    IF (RTIME_UDP_ENABLE_IPALIASES)
+        RTI_MESSAGE_WARNING("RTIME_UDP_ENABLE_IPALIASES is TRUE with RTIME_CERT")
+    ELSE()
+        SET(RTIME_UDP_ENABLE_IPALIASES FALSE)
+    ENDIF()
+
+    IF (RTIME_UDP_ENABLE_TRANSFORMS)
+        RTI_MESSAGE_WARNING("RTIME_UDP_ENABLE_TRANSFORMS is TRUE with RTIME_CERT")
+    ELSE()
+        SET(RTIME_UDP_ENABLE_TRANSFORMS FALSE)
+    ENDIF()
+ENDIF()
+
+#ZCOPY v2 specific flags
+IF (RTIME_PLATFORM_SUPPORTS_ZCOPY_V2)
+    SET(RTIME_INCLUDE_ZCOPY_V2 TRUE CACHE BOOL "Set this variable to include ZCOPY V2")
+ELSE()
+     #ZCOPYV2 is disabled by default
+     SET(RTIME_INCLUDE_ZCOPY_V2 FALSE CACHE BOOL "Set this variable to include ZCOPY V2")
+ENDIF()
+
+IF(RTIME_INCLUDE_ZCOPY_V2)
+    ADD_DEFINITIONS(-DRTIME_HAVE_ZCOPYV2=1)
+ENDIF()
+
+IF (RTIME_INCLUDE_PSL_PSK_SUPPORT)
+    SET(RTIME_INCLUDE_PSL_PSK TRUE CACHE BOOL "Set this variable to include PSL PSK" FORCE)
+ELSE()
+     #PSKPSL is disabled by default
+     SET(RTIME_INCLUDE_PSL_PSK FALSE CACHE BOOL "Set this variable to include PSL PSK" FORCE)
+ENDIF()
+
+IF (RTIME_INCLUDE_PSL_PSK)
+    ADD_DEFINITIONS(-DRTIME_HAVE_PSKPSL=1)
+ENDIF()

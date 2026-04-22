@@ -1,0 +1,40 @@
+
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2025-2025
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+# CMAKE_MINIMUM_REQUIRED(VERSION 3.6)
+INCLUDE(CMakeForceCompiler)
+SET(_RTIME_OSAPI_PLATFORM generic)
+
+SET(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+SET(TARGET_SUPPORTS_SHARED_LIBS FALSE)
+SET(CMAKE_C_OUTPUT_EXTENSION ".c.o")
+SET(CMAKE_CXX_OUTPUT_EXTENSION ".c.o")
+SET(CMAKE_C_OUTPUT_EXTENSION_REPLACE 1)
+SET(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
+SET(CMAKE_INSTALL_RPATH "")
+
+ADD_DEFINITIONS(-D__autosar__)
+ADD_DEFINITIONS(-DOSAPI_DONT_HAVE_REALLOC=1)
+
+SET(RTIME_INCLUDE_AUTOSAR true CACHE BOOL "" FORCE)
+SET(RTI_BUILD_UNITTESTS_AS_LIBS true CACHE BOOL "" FORCE)
+SET(RTIME_NO_SHARED_LIB true CACHE BOOL "" FORCE)
+SET(RTI_BUILD_UNITTESTS true CACHE BOOL "" FORCE)
+SET(RTIME_EXCLUDE_DT true CACHE BOOL "" FORCE)
+SET(RTIME_EXCLUDE_QTS true CACHE BOOL "" FORCE)
+SET(RTIME_EXCLUDE_CPP true CACHE BOOL "" FORCE) # Cannot be supported because CPP depends on shared memory
+SET(RTIME_EXCLUDE_SHMEM true CACHE BOOL "" FORCE)
+SET(RTIME_OSAPI_ENABLE_THREAD_SEMAPHORE false CACHE BOOL "" FORCE)
+SET(RTIME_UDP_EXCLUDE_BUILTIN TRUE)
+
+SET(CMAKE_C_CREATE_PREPROCESSED_SOURCE "<CMAKE_C_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -C -E <SOURCE> > <PREPROCESSED_SOURCE>")
+SET(CMAKE_CXX_CREATE_PREPROCESSED_SOURCE "<CMAKE_C_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -C -E <SOURCE> > <PREPROCESSED_SOURCE>")
+SET(CMAKE_MAKE_PROGRAM make)

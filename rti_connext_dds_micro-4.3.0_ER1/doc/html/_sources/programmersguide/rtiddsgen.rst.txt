@@ -1,0 +1,198 @@
+.. _section-rtiddsgen:
+
+Generating Type Support with rtiddsgen
+======================================
+
+Why Use rtiddsgen?
+------------------
+
+For |me| to publish and subscribe to topics of user-defined data types, the types
+must be defined and programmatically registered with |me|. A
+registered type is then serialized and deserialized by |me| through a
+pluggable interface that each type must implement.
+
+Rather than manually implementing each new type yourself, |me| provides
+you with the *rtiddsgen* IDL compiler to generate type support code.
+
+IDL Type Definition
+-------------------
+
+*rtiddsgen* for |me| accepts types defined in IDL. The HelloWorld
+examples included with |me| use the following HelloWorld.idl:
+
+.. code-block:: c
+
+  struct HelloWorld
+  {
+      string<128> msg;
+  };
+
+For further reference, see :link_external_community_doc_pro_um:`the section on Creating User Data Types with IDL <index.htm#users_manual/Creating_User_Data_Types_with_IDL.htm>` in
+the :link_external_community_doc_pro_um:`RTI Connext DDS Core Libraries User's Manual <index.htm>`.
+
+Generating Type Support
+-----------------------
+
+Before running *rtiddsgen*, you must set some environment variables:
+
+- ``RTIMEHOME`` sets the path to the |me| installation directory.
+- ``JREHOME`` sets the path for a Java JRE.
+
+  .. note::
+
+    A JRE is shipped with |core_pro| on platforms supported for the execution
+    of rtiddsgen (Linux®, Windows®, and macOS®). It is not necessary to
+    set ``JREHOME`` on these platforms, unless a specific JRE is preferred.
+
+Generating type support for C
+.............................
+
+Run *rtiddsgen* from the command line to generate C language type support for a
+UserType.idl (and replace any existing generated files):
+
+.. only:: not cert
+
+  .. code-block:: none
+
+    > $rti_connext_micro_root/bin/rtiddsgen -micro -language C -replace UserType.idl
+
+
+.. only:: cert
+
+  .. code-block:: none
+
+    > $rti_connext_micro_root/rti_me_cert.1.0/bin/rtiddsgen -micro -language C -replace UserType.idl
+
+.. only:: not cert
+
+  Generating type support for C++
+  ...............................
+
+  Run *rtiddsgen* from the command line to generate C++ language type-support for a
+  UserType.idl (and replace any existing generated files):
+
+  .. code-block:: bash
+
+    > $rti_connext_micro_root/bin/rtiddsgen -micro -language C++ -replace UserType.idl
+
+  .. note::
+
+    |me| only supports traditional C++.
+
+Notes on command line options
+.............................
+
+In order to generate type support for |me| with *rtiddsgen*,
+you must specify the ``-micro`` option on the command line.
+
+To list all command-line options specifically supported by *rtiddsgen*
+for |me|, enter: 
+
+.. code-block:: bash
+
+  > rtiddsgen -micro -help
+
+.. note::
+
+  You might notice that the previously available options
+  ``-language microC`` and ``-language microC++`` have been replaced
+  with ``-micro -language C`` and ``-micro -language C++``, respectively. It
+  is still possible to specify ``microC`` and ``microC++`` for backwards
+  compatibility, but we advise switching to using the ``-micro``
+  command-line option along with other arguments.
+
+Generated type support files
+............................
+
+*rtiddsgen* will produce the following header and source files for each IDL
+file passed to it:
+
+- ``UserType.h`` and ``UserType.c`` (``.cxx`` for C++) implement
+  creation/initialization and deletion (only for |me|) of a single
+  sample and a sequence of samples of the type (or types) defined in the
+  IDL description.
+
+- ``UserTypePlugin.h`` and ``UserTypePlugin.c`` (``.cxx`` for C++) implement the
+  pluggable type interface that |me| uses to serialize and deserialize
+  the type.
+
+- ``UserTypeSupport.h`` and ``UserTypeSupport.c`` (``.cxx`` for C++) define
+  type-specific *DataWriters* and *DataReaders* for user-defined types.
+
+.. only:: cert
+
+  .. note::
+      
+    When compiling the generated code for |me_cert|,
+    ``-DRTI_CERT`` must be passed to the C or C++ compiler.
+
+Using Custom Types in |me_h| Applications
+-----------------------------------------
+
+A |me| application must include the generated headers and register the
+type with the *DomainParticipant* before a topic of that
+type can be created. For an example HelloWorld type, the following code
+registers the type with the participant and then creates a topic of that type:
+
+.. code-block:: c
+
+       #include "HelloWorld.h"
+       #include "HelloWorldPlugin.h"
+       #include "HelloWorldSupport.h"
+
+       /* ... */
+
+       retcode = HelloWorldTypeSupport_register_type(application->participant,
+                                                     "HelloWorld");
+       if (retcode != DDS_RETCODE_OK)
+       {
+           /* Log an error */
+           goto done;
+       }
+
+       application->topic =
+           DDS_DomainParticipant_create_topic(application->participant,
+                                              "Example HelloWorld",
+                                              "HelloWorld",
+                                              &DDS_TOPIC_QOS_DEFAULT, NULL,
+                                              DDS_STATUS_MASK_NONE);
+
+       if (application->topic == NULL)
+       {
+           /* Log an error */
+           goto done;
+       }
+
+The generated source files must be compiled and linked with the application.
+See the full HelloWorld examples for further reference.
+
+Customizing Generated Code
+--------------------------
+
+*rtiddsgen* allows you to select whether you want to generate code
+to subscribe to and/or publish a custom data type. When generating code for
+subscriptions, only those parts of code dealing with deserialization
+of data and the implementation of a typed *DataReader* endpoint are generated.
+Conversely, only those parts of code addressing serialization and the
+implementation of a *DataWriter* are considered when generating publishing
+code.
+
+Control over these options is provided by two command-line arguments:
+
+- ``-reader`` generates code for deserializing custom data-types
+  and creating *DataReaders* for the type.
+- ``-writer`` generates code for serializing custom data-types
+  and creating *DataWriters* for the type.
+
+If neither of these two options are supplied to *rtiddsgen*, both
+*DataReaders* and *DataWriters* will be generated. If both options
+are supplied, both are enabled.
+
+.. _`rtiddsgen_unsupported_features`:
+
+Unsupported Features of rtiddsgen with |me_h|
+---------------------------------------------
+
+|me| supports a subset of the features and options in *rtiddsgen*.
+Use ``rtiddsgen -micro -help`` to see the list of features supported by
+*rtiddsgen* for |me|.

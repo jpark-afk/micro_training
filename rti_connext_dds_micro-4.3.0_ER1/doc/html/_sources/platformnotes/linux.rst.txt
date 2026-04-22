@@ -1,0 +1,268 @@
+.. raw:: latex
+
+  \newpage
+  \begin{landscape}
+
+Linux Platforms
+===============
+
+The following table shows the currently supported Linux platforms.
+
+.. list-table:: Supported Linux Platforms
+   :widths: 10 10 8 10 10 22 30
+   :header-rows: 1
+   :class: longtable
+
+   * - OS
+     - Version
+     - CPU
+     - Network Stack
+     - Toolchain
+     - Architecture PIL
+     - Architecture PSL
+   * - Ubuntu
+     - 24.04 LTS
+     - x64
+     - OS Default
+     - GCC 13.2.0
+     - x86_64leElfgcc13.2.0
+
+       x86_64leElfgcc13.2.0CERT
+     - x86_64leElfgcc13.2.0-Linux6
+
+       x86_64leElfgcc13.2.0CERT-Linux6
+   * - Ubuntu
+     - 18.04 LTS
+     - ARMv8 (64-bit)
+     - OS Default
+     - GCC 7.3.0
+     - armv8leElfgcc7.3.0
+
+       armv8leElfgcc7.3.0CERT
+     - armv8leElfgcc7.3.0-Linux4
+
+       armv8leElfgcc7.3.0CERT-Linux4
+   * - Yocto
+     - 5.15.96
+     - ARMv8-A (64-bit)
+     - OS Default
+     - GCC 11.3.1
+     - armv8aleElfgcc11.3.1
+
+       armv8aleElfgcc11.3.1CERT
+     - armv8aleElfgcc11.3.1-Linux5
+
+       armv8aleElfgcc11.3.1CERT-Linux5
+
+How the PIL was built for Linux platforms
+-----------------------------------------
+
+This section describes how RTI built the Platform Independent Library (PIL)
+for Linux.
+
+The following table shows the compiler flags RTI used to create
+the PIL for Linux platforms:
+
+.. list-table:: PIL Compiler Flags for Linux Platforms
+   :name: LinuxRequiredFlags
+   :widths: 30 20 50
+   :header-rows: 1
+   :class: longtable
+
+   * - Architecture
+     - Library Format
+     - Compiler Flags Used by RTI
+   * - x86_64leElfgcc13.2.0
+     - Static Release
+     - **C Flags:** -fsigned-char -O2 -nostdinc -fstrict-aliasing -fPIC -DNDEBUG |br|
+       **C++ Flags:** -std=c++11 -fsigned-char -O2 -nostdinc -fstrict-aliasing -fPIC -DNDEBUG |br|
+   * -
+     - Shared Release
+     - **C Flags:** -fsigned-char -O2 -nostdinc -fstrict-aliasing -fPIC -DNDEBUG |br|
+       **C++ Flags:** -std=c++11 -fsigned-char -O2 -nostdinc -fstrict-aliasing -fPIC -DNDEBUG |br|
+   * -
+     - Static Debug
+     - **C Flags:** -fsigned-char -nostdinc -fstrict-aliasing -g -fPIC |br|
+       **C++ Flags:** -std=c++11 -fsigned-char -nostdinc -fstrict-aliasing -g -fPIC |br|
+   * -
+     - Shared Debug
+     - **C Flags:** -fsigned-char -nostdinc -fstrict-aliasing -g -fPIC |br|
+       **C++ Flags:** -std=c++11 -fsigned-char -nostdinc -fstrict-aliasing -g -fPIC |br|
+
+   * - x86_64leElfgcc13.2.0CERT
+     - Static Release
+     - **C Flags:** -fsigned-char -O2 -nostdinc -fstrict-aliasing -fPIC -DNDEBUG |br|
+   * -
+     - Static Debug
+     - **C Flags:** -fsigned-char -nostdinc -fstrict-aliasing -g -fPIC |br|
+   * - armv8leElfgcc7.3.0
+     - Static Release
+     - **C Flags:** -fsigned-char -O2 -nostdinc -fstrict-aliasing -fPIC -DNDEBUG |br|
+       **C++ Flags:** -std=c++11 -fsigned-char -nostdinc -O2 -fstrict-aliasing -fPIC -DNDEBUG |br|
+   * -
+     - Shared Release
+     - **C Flags:** -fsigned-char -O2 -nostdinc -fstrict-aliasing -fPIC -DNDEBUG |br|
+       **C++ Flags:** -std=c++11 -fsigned-char -nostdinc -O2 -fstrict-aliasing -fPIC -DNDEBUG |br|
+   * -
+     - Static Debug
+     - **C Flags:** -fsigned-char -nostdinc -fstrict-aliasing -g -fPIC |br|
+       **C++ Flags:** -std=c++11 -fsigned-char -nostdinc -fstrict-aliasing -g -fPIC |br|
+   * -
+     - Shared Debug
+     - **C Flags:** -fsigned-char -nostdinc -fstrict-aliasing -g -fPIC |br|
+       **C++ Flags:** -std=c++11 -fsigned-char -nostdinc -fstrict-aliasing -g -fPIC |br|
+   * - armv8leElfgcc7.3.0CERT
+     - Static Release
+     - **C Flags:** -fsigned-char -O2 -nostdinc -fstrict-aliasing -fPIC -DNDEBUG |br|
+   * -
+     - Static Debug
+     - **C Flags:** -fsigned-char -nostdinc -fstrict-aliasing -g -fPIC |br|
+   * - armv8aleElfgcc11.3.1
+     - Static Release
+     - **C Flags:** -nostdinc -fstrict-aliasing -O -DNDEBUG -fPIC-DNDEBUG |br|
+       **C++ Flags:** -O -DNDEBUG -fPIC -DNDEBUG |br|
+   * -
+     - Shared Release
+     - **C Flags:** -nostdinc -fstrict-aliasing -O -DNDEBUG -fPIC -DNDEBUG |br|
+       **C++ Flags:** -O -DNDEBUG -fPIC -DNDEBUG |br|
+   * -
+     - Static Debug
+     - **C Flags:** -nostdinc -fstrict-aliasing -fsigned-char -O0 -g -fPIC |br|
+       **C++ Flags:** -O0 -g -fPIC |br|
+   * -
+     - Shared Debug
+     - **C Flags:** -nostdinc -fstrict-aliasing -fsigned-char -O0 -g -fPIC |br|
+       **C++ Flags:** -O0 -g -fPIC |br|
+   * - armv8aleElfgcc11.3.1CERT
+     - Static Release
+     - **C Flags:** -nostdinc -fstrict-aliasing -fsigned-char -O -DNDEBUG |br|
+   * -
+     - Static Debug
+     - **C Flags:** -fsigned-char -nostdinc -fstrict-aliasing -O0 -g |br|
+   * - armv8aleElfgcc11.3.1
+     - Static Release
+     - **C Flags:** -nostdinc -fstrict-aliasing -fsigned-char -O -DNDEBUG -fPIC -DNDEBUG |br|
+       **C++ Flags:** -O -DNDEBUG -fPIC |br|
+   * -
+     - Shared Release
+     - **C Flags:** -nostdinc -fstrict-aliasing -fsigned-char -O -DNDEBUG -fPIC -DNDEBUG |br|
+       **C++ Flags:** -O -DNDEBUG -fPIC |br|
+   * -
+     - Static Debug
+     - **C Flags:** -std=c99 -nostdinc -fstrict-aliasing -fsigned-char -O0 -g -fPIC |br|
+       **C++ Flags:** -O0 -g -fPIC |br|
+   * -
+     - Shared Debug
+     - **C Flags:** -std=c99 -nostdinc -fstrict-aliasing -fsigned-char -O0 -g -fPIC |br|
+       **C++ Flags:** -O0 -g -fPIC |br|
+   * - armv8aleElfgcc11.3.1CERT
+     - Static Release
+     - **C Flags:** -nostdinc -fstrict-aliasing -fsigned-char -O -DNDEBUG |br|
+   * -
+     - Static Debug
+     - **C Flags:** -fsigned-char -nostdinc -fstrict-aliasing -O0 -g |br|
+
+.. warning::
+
+  The |rti_me| platform independent libraries are built without the standard C
+  header-files. However, |me| makes one direct call to
+  the C library API ``qsort``. In addition, GCC may insert direct calls
+  to GLIBC functions and other required functions, such as default C++
+  constructors and destructors. For this reason, it is necessary to use a
+  GCC version that is compatible with the GCC version used to build the
+  platform independent libraries, or provide a C library with an implementation
+  of the required functions. Future versions of |rti_me| will remove these
+  dependencies.
+
+
+Building the PSL from source for Linux platforms
+------------------------------------------------
+
+Refer to :ref:`psl_compiling` for instructions on how to build your own
+Platform Support Library (PSL) for Linux platforms.
+
+The following table shows the compiler flags and required options that RTI
+used to build the PSL for Linux platforms. When you build the PSL with
+``rtime-make``, the ``--target`` argument automatically adds all the necessary
+flags for the specified architecture.
+
+.. list-table:: PSL Compiler Flags for Linux Platforms
+   :widths: 30 20 50
+   :header-rows: 1
+   :class: longtable
+
+   * - Architecture PSL
+     - Library Format
+     - Compiler Flags Used by RTI
+   * - x86_64leElfgcc13.2.0-Linux6
+     - Static Release
+     - **C Flags:** -O2 -fstrict-aliasing -fsigned-char -fPIC -DNDEBUG |br|
+       **C++ Flags:** -O2 -fstrict-aliasing -fsigned-char -fPIC -DNDEBUG |br|
+   * -
+     - Shared Release
+     - **C Flags:** -O2 -fstrict-aliasing -fsigned-char -fPIC -DNDEBUG |br|
+       **C++ Flags:** -O2 -fstrict-aliasing -fsigned-char -fPIC -DNDEBUG |br|
+   * -
+     - Static Debug
+     - **C Flags:** -std=c99 -fstrict-aliasing -fsigned-char -g -fPIC |br|
+       **C++ Flags:** -fstrict-aliasing -fsigned-char -g -fPIC |br|
+   * -
+     - Shared Debug
+     - **C Flags:** -std=c99 -fstrict-aliasing -fsigned-char -g -fPIC |br|
+       **C++ Flags:** -fstrict-aliasing -fsigned-char -g -fPIC |br|
+
+   * - x86_64leElfgcc13.2.0CERT-Linux6
+     - Static Release
+     - **C Flags:** -std=c99 -O2 -fstrict-aliasing -fsigned-char -fPIC -DNDEBUG |br|
+   * -
+     - Static Debug
+     - **C Flags:** -std=c99 -fstrict-aliasing -fsigned-char -g -fPIC |br|
+   * - armv8leElfgcc7.3.0-Linux4
+     - Static Release
+     - **C Flags:** -std=c99 -O2 -fstrict-aliasing -fsigned-char -fPIC -DNDEBUG |br|
+       **C++ Flags:** -O2 -fstrict-aliasing -fsigned-char -fPIC -DNDEBUG |br|
+   * -
+     - Shared Release
+     - **C Flags:** -std=c99 -O2 -fstrict-aliasing -fsigned-char -fPIC -DNDEBUG |br|
+       **C++ Flags:** -O2 -fstrict-aliasing -fsigned-char -fPIC -DNDEBUG |br|
+   * -
+     - Static Debug
+     - **C Flags:** -std=c99 -fstrict-aliasing -fsigned-char -g -fPIC |br|
+       **C++ Flags:** -fstrict-aliasing -fsigned-char -g -fPIC |br|
+   * -
+     - Shared Debug
+     - **C Flags:** -std=c99 -fstrict-aliasing -fsigned-char -g -fPIC |br|
+       **C++ Flags:** -fstrict-aliasing -fsigned-char -g -fPIC |br|
+   * - armv8leElfgcc7.3.0CERT-Linux4
+     - Static Release
+     - **C Flags:** -std=c99 -O2 -fstrict-aliasing -fsigned-char -fPIC -DNDEBUG |br|
+   * -
+     - Static Debug
+     - **C Flags:** -std=c99 -fstrict-aliasing -fsigned-char -g -fPIC |br|
+   * - armv8aleElfgcc11.3.1-Linux5
+     - Static Release
+     - **C Flags:** -std=c99 -fstrict-aliasing -fsigned-char -O -DNDEBUG |br|
+       **C++ Flags:** -O -fPIC -DNDEBUG |br|
+   * -
+     - Shared Release
+     - **C Flags:** -std=c99 -fstrict-aliasing -fsigned-char -O -DNDEBUG |br|
+       **C++ Flags:** -O -fPIC -DNDEBUG |br|
+   * -
+     - Static Debug
+     - **C Flags:** -std=c99 -fstrict-aliasing -fsigned-char -O0 -g -fPIC |br|
+       **C++ Flags:** -O0 -g |br|
+   * -
+     - Shared Debug
+     - **C Flags:**-std=c99 -fstrict-aliasing -fsigned-char -O0 -g -fPIC |br|
+       **C++ Flags:** -O0 -g |br|
+   * - armv8aleElfgcc11.3.1CERT-Linux5
+     - Static Release
+     - **C Flags:** -std=c99 -fstrict-aliasing -fsigned-char -O -DNDEBUG |br|
+   * -
+     - Static Debug
+     - **C Flags:** -std=c99 -fstrict-aliasing -fsigned-char -O0 -g |br|
+
+.. raw:: latex
+
+  \end{landscape}
+  \newpage

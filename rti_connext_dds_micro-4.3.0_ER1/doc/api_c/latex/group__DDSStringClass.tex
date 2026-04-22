@@ -1,0 +1,211 @@
+\doxysubsubsubsection{String Support}
+\hypertarget{group__DDSStringClass}{}\label{group__DDSStringClass}\index{String Support@{String Support}}
+
+
+String creation, cloning, assignment, and deletion.  
+
+
+\doxysubsubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSStringClass_gaf3b22138dd2db7f1f2a2445d671b9046}{DDS\+\_\+\+String\+\_\+alloc}} (\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} length)
+\begin{DoxyCompactList}\small\item\em Create a new empty string that can hold up to {\ttfamily length} characters. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSStringClass_gaab34d3575bf66cd95a890f7e21eb697a}{DDS\+\_\+\+String\+\_\+dup}} (const char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Clone a string. Creates a new string that duplicates the value of {\ttfamily string}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DDSStringClass_ga13074f0132f743923a4a36ee533997fe}{DDS\+\_\+\+String\+\_\+free}} (char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Delete a string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{group__DDSStringClass_ga201c0fddbe37cac7c7c715bd5b6414b8}{DDS\+\_\+\+String\+\_\+cmp}} (const char \texorpdfstring{$\ast$}{*}s1, const char \texorpdfstring{$\ast$}{*}s2)
+\begin{DoxyCompactList}\small\item\em Compare two strings. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{group__DDSStringClass_gac3a552e080fe48ab431b37aa2f9e127f}{DDS\+\_\+\+String\+\_\+ncmp}} (const char \texorpdfstring{$\ast$}{*}s1, const char \texorpdfstring{$\ast$}{*}s2, \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} num)
+\begin{DoxyCompactList}\small\item\em Compare two strings. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} \mbox{\hyperlink{group__DDSStringClass_ga4a79d662e45e641a3d6d6fdd9d85c594}{DDS\+\_\+\+String\+\_\+length}} (const char \texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Return the length of a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+String creation, cloning, assignment, and deletion. 
+
+The functions in this class ensure consistent cross-\/platform implementations for string creation (\doxylink{group__DDSStringClass_gaf3b22138dd2db7f1f2a2445d671b9046}{DDS\+\_\+\+String\+\_\+alloc()}), deletion (\doxylink{group__DDSStringClass_ga13074f0132f743923a4a36ee533997fe}{DDS\+\_\+\+String\+\_\+free()}), and cloning (\doxylink{group__DDSStringClass_gaab34d3575bf66cd95a890f7e21eb697a}{DDS\+\_\+\+String\+\_\+dup()}) that preserve the mutable value type semantics. These are to be viewed as functions that define a {\ttfamily string} class whose data is represented by a {\ttfamily \textquotesingle{}char\texorpdfstring{$\ast$}{*}\textquotesingle{}}.\hypertarget{group__DDSStringClass_DDSStringClass_conventions}{}\doxysubsubsubsubsection{\texorpdfstring{Conventions}{Conventions}}\label{group__DDSStringClass_DDSStringClass_conventions}
+The following conventions govern the memory management of strings in RTI Connext DDS Micro.
+
+
+\begin{DoxyItemize}
+\item The DDS implementation ensures that when value types containing strings are passed back and forth to the DDS APIs, the strings are created/deleted/assigned/cloned using the {\ttfamily string} class functions. 
+\begin{DoxyItemize}
+\item Value types containing strings have ownership of the contained string. Thus, when a value type is deleted, the contained string field is also deleted. 
+\end{DoxyItemize}
+\item The user must ensure that when value types containing strings are passed back and forth to the DDS APIs, the strings are created/deleted/assigned/cloned using the String class functions.  
+\end{DoxyItemize}
+
+The representation of a string in C/\+C++ unfortunately does not allow programs to detect how much memory has been allocated for a string. RTI Connext DDS Micro must therefore make some assumptions when a user requests that a string be copied into. The following rules apply when RTI Connext DDS Micro is copying into a string or string sequence\+:
+
+\begin{DoxyItemize}
+\item If the \textquotesingle{}char\texorpdfstring{$\ast$}{*}\textquotesingle{} is NULL, RTI Connext DDS Micro will log a warning and allocate a new string on behalf of the user. {\itshape To avoid leaking memory, you must ensure that the string will be freed (see \doxysectlink{group__DDSStringClass_DDSStringClass_usage}{Usage}{1} below)}. \item If the \textquotesingle{}char\texorpdfstring{$\ast$}{*}\textquotesingle{} is not NULL, RTI Connext DDS Micro will assume that you are managing the string\textquotesingle{}s memory yourself and have allocated enough memory to store the string to be copied. {\itshape RTI Connext DDS Micro will copy into your memory; to avoid memory corruption, be sure to allocate enough of it.} Also, {\itshape do not pass structures containing junk pointers into RTI Connext DDS Micro}; you are likely to crash.\end{DoxyItemize}
+\hypertarget{group__DDSStringClass_DDSStringClass_usage}{}\doxysubsubsubsubsection{\texorpdfstring{Usage}{Usage}}\label{group__DDSStringClass_DDSStringClass_usage}
+This requirement can generally be assured by adhering to the following {\itshape idiom} for manipulating strings.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Always\ use}
+\DoxyCodeLine{\ \ \ \ \ \mbox{\hyperlink{group__DDSStringClass_gaf3b22138dd2db7f1f2a2445d671b9046}{DDS\_String\_alloc}}()\ to\ create,}
+\DoxyCodeLine{\ \ \ \ \ \mbox{\hyperlink{group__DDSStringClass_gaab34d3575bf66cd95a890f7e21eb697a}{DDS\_String\_dup}}()\ to\ clone,}
+\DoxyCodeLine{\ \ \ \ \ \mbox{\hyperlink{group__DDSStringClass_ga13074f0132f743923a4a36ee533997fe}{DDS\_String\_free}}()\ to\ delete}
+\DoxyCodeLine{\ a\ \textcolor{keywordtype}{string}\ '\textcolor{keywordtype}{char}*'\ that\ is\ passed\ back\ and\ forth\ between}
+\DoxyCodeLine{\ user\ code\ and\ the\ DDS\ C/C++\ APIs.}
+
+\end{DoxyCode}
+
+
+Not adhering to this idiom can result in bad pointers, and incorrect memory being freed.
+
+In addition, the user code should be vigilant to avoid memory leaks. It is good practice to\+:
+
+\begin{DoxyItemize}
+\item Balance occurrences of \doxylink{group__DDSStringClass_gaf3b22138dd2db7f1f2a2445d671b9046}{DDS\+\_\+\+String\+\_\+alloc()}, \doxylink{group__DDSStringClass_gaab34d3575bf66cd95a890f7e21eb697a}{DDS\+\_\+\+String\+\_\+dup()}, with matching occurrences of \doxylink{group__DDSStringClass_ga13074f0132f743923a4a36ee533997fe}{DDS\+\_\+\+String\+\_\+free()} in the code. \item Finalize value types containing strings. In C++ the destructor accomplishes this automatically. in C, explicit "{}destructor"{} functions are provided; these functions are typically called "{}finalize."{} \end{DoxyItemize}
+
+
+\doxysubsubsubsubsection{Function Documentation}
+\Hypertarget{group__DDSStringClass_gaf3b22138dd2db7f1f2a2445d671b9046}\index{String Support@{String Support}!DDS\_String\_alloc@{DDS\_String\_alloc}}
+\index{DDS\_String\_alloc@{DDS\_String\_alloc}!String Support@{String Support}}
+\doxyparagraph{\texorpdfstring{DDS\_String\_alloc()}{DDS\_String\_alloc()}}
+{\footnotesize\ttfamily \label{group__DDSStringClass_gaf3b22138dd2db7f1f2a2445d671b9046} 
+char \texorpdfstring{$\ast$}{*} DDS\+\_\+\+String\+\_\+alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}}}]{length}{}\end{DoxyParamCaption})}
+
+
+
+Create a new empty string that can hold up to {\ttfamily length} characters. 
+
+A string created by this function must be deleted using \doxylink{group__DDSStringClass_ga13074f0132f743923a4a36ee533997fe}{DDS\+\_\+\+String\+\_\+free()}.
+
+This function will allocate enough memory to hold a string of {\ttfamily length} characters, {\bfseries{plus}} one additional byte to hold the NULL terminating character.
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Capacity of the string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly created non-\/\+NULL string upon success or NULL upon failure. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSStringClass_gaab34d3575bf66cd95a890f7e21eb697a}\index{String Support@{String Support}!DDS\_String\_dup@{DDS\_String\_dup}}
+\index{DDS\_String\_dup@{DDS\_String\_dup}!String Support@{String Support}}
+\doxyparagraph{\texorpdfstring{DDS\_String\_dup()}{DDS\_String\_dup()}}
+{\footnotesize\ttfamily \label{group__DDSStringClass_gaab34d3575bf66cd95a890f7e21eb697a} 
+char \texorpdfstring{$\ast$}{*} DDS\+\_\+\+String\+\_\+dup (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str}{}\end{DoxyParamCaption})}
+
+
+
+Clone a string. Creates a new string that duplicates the value of {\ttfamily string}. 
+
+A string created by this function must be deleted using \doxylink{group__DDSStringClass_ga13074f0132f743923a4a36ee533997fe}{DDS\+\_\+\+String\+\_\+free()}
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The string to duplicate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If {\ttfamily string} == NULL, this function always returns NULL. Otherwise, upon success it returns a newly created string whose value is {\ttfamily string}; upon failure it returns NULL. 
+\end{DoxyReturn}
+\Hypertarget{group__DDSStringClass_ga13074f0132f743923a4a36ee533997fe}\index{String Support@{String Support}!DDS\_String\_free@{DDS\_String\_free}}
+\index{DDS\_String\_free@{DDS\_String\_free}!String Support@{String Support}}
+\doxyparagraph{\texorpdfstring{DDS\_String\_free()}{DDS\_String\_free()}}
+{\footnotesize\ttfamily \label{group__DDSStringClass_ga13074f0132f743923a4a36ee533997fe} 
+void DDS\+\_\+\+String\+\_\+free (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str}{}\end{DoxyParamCaption})}
+
+
+
+Delete a string. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily string} must be either NULL, or must have been created using \doxylink{group__DDSStringClass_gaf3b22138dd2db7f1f2a2445d671b9046}{DDS\+\_\+\+String\+\_\+alloc()}, \doxylink{group__DDSStringClass_gaab34d3575bf66cd95a890f7e21eb697a}{DDS\+\_\+\+String\+\_\+dup()}
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em str} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The string to delete. \\
+\hline
+\end{DoxyParams}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__DDSStringClass_ga201c0fddbe37cac7c7c715bd5b6414b8}\index{String Support@{String Support}!DDS\_String\_cmp@{DDS\_String\_cmp}}
+\index{DDS\_String\_cmp@{DDS\_String\_cmp}!String Support@{String Support}}
+\doxyparagraph{\texorpdfstring{DDS\_String\_cmp()}{DDS\_String\_cmp()}}
+{\footnotesize\ttfamily \label{group__DDSStringClass_ga201c0fddbe37cac7c7c715bd5b6414b8} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} DDS\+\_\+\+String\+\_\+cmp (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{s1}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{s2}{}\end{DoxyParamCaption})}
+
+
+
+Compare two strings. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily s1} and s2 can be NULL or non-\/\+NULL.
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em s1} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} String 1 to compare. \\
+\hline
+{\em s2} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} String 2 to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if s1 equals s2, positive integer if s1 is greater than s2, negative integer if s1 is less than s2 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__DDSStringClass_gac3a552e080fe48ab431b37aa2f9e127f}\index{String Support@{String Support}!DDS\_String\_ncmp@{DDS\_String\_ncmp}}
+\index{DDS\_String\_ncmp@{DDS\_String\_ncmp}!String Support@{String Support}}
+\doxyparagraph{\texorpdfstring{DDS\_String\_ncmp()}{DDS\_String\_ncmp()}}
+{\footnotesize\ttfamily \label{group__DDSStringClass_gac3a552e080fe48ab431b37aa2f9e127f} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} DDS\+\_\+\+String\+\_\+ncmp (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{s1}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{s2}{, }\item[{\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}}}]{num}{}\end{DoxyParamCaption})}
+
+
+
+Compare two strings. 
+
+This function compares two strings for lexicographic equivalence, but only up to num bytes.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em s1} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Left side of comparison \\
+\hline
+\mbox{\texttt{ in}}  & {\em s2} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Right side of comparison \\
+\hline
+\mbox{\texttt{ in}}  & {\em num} & Maximum number of bytes to compare\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if s1 equals s2, positive integer if s1 is greater than s2, negative integer if s1 is less than s2 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}.
+
+\Hypertarget{group__DDSStringClass_ga4a79d662e45e641a3d6d6fdd9d85c594}\index{String Support@{String Support}!DDS\_String\_length@{DDS\_String\_length}}
+\index{DDS\_String\_length@{DDS\_String\_length}!String Support@{String Support}}
+\doxyparagraph{\texorpdfstring{DDS\_String\_length()}{DDS\_String\_length()}}
+{\footnotesize\ttfamily \label{group__DDSStringClass_ga4a79d662e45e641a3d6d6fdd9d85c594} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}} DDS\+\_\+\+String\+\_\+length (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{string}{}\end{DoxyParamCaption})}
+
+
+
+Return the length of a string. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily string} must be non-\/\+NULL
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em string} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} String to return length of\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+length of string. Does not include the NUL-\/termination character. If a NULL value is passed as argument, RTI\+\_\+\+SIZE\+\_\+\+INVALID will be returned. 
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{group__OSAPI__TypeClass_ga1f0630814d290ec970761b7a4bdff946}{RTI\+\_\+\+INT32}}, and \mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}}.
+

@@ -1,0 +1,43 @@
+Memory Leaks/Growth
+===================
+
+.. Release Notes from this point.
+
+:major:`[Major]` Possible memory leaks in CDR_WstringSeq_copy
+-------------------------------------------------------------
+If any of the buffers' allocation failed for a ``CDR_Wstring`` sequence,
+the previously allocated buffers would not be freed, causing a memory
+leak.
+
+[RTI Issue ID MICRO-9969]
+
+:major:`[Major]` DDS_DomainParticipantFactory_get_instance() not memory safe on some architectures
+--------------------------------------------------------------------------------------------------
+On architectures with weak memory ordering (such as ARM),
+``DDS_DomainParticipantFactory_get_instance()`` was not guaranteed to be
+memory safe.
+
+[RTI Issue ID MICRO-8004]
+
+:major:`[Major]` Possible memory leak from failed write of a new instance
+-------------------------------------------------------------------------
+Resources may have been leaked if the value of ``max_samples`` was
+greater than ``(max_instances * max_samples_per_instance)`` and the
+*DataWriter*'s sample resources had been exhausted.
+
+[RTI Issue ID MICRO-3129]
+
+:minor:`[Minor]` Possible memory leak when finalizing Publishers or Subscribers with Partition QoS
+--------------------------------------------------------------------------------------------------
+Under specific conditions, *Publishers* and *Subscribers* that had user-defined
+:link_connextmicro_dds_api_c_up_two:`Partition <group__DDSPartitionQosModule.html>` QoS policies would leak memory when finalized.
+
+[RTI Issue ID MICRO-11336]
+
+
+:minor:`[Minor]` Possible memory leak when Entities experienced errors on topic creation
+----------------------------------------------------------------------------------------
+During *DomainParticipant* topic creation, *Entities* would occasionally leak
+topic data memory if topic creation encountered an error.
+
+[RTI Issue ID MICRO-11341]

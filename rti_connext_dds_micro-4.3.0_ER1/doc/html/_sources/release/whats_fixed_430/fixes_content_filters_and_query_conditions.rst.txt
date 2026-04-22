@@ -1,0 +1,15 @@
+Content Filters and Query Conditions
+====================================
+
+.. Release Notes from this point.
+
+:major:`[Major]` Possible failure to deliver samples when prior samples were filtered
+-------------------------------------------------------------------------------------
+|me| sometimes failed to deliver samples to a *DataReader* if
+the last processed sample was filtered, either by a configured
+:link_connextmicro_dds_api_c_up_two:`ContentFilterQos <structDDS__ContentFilterQosPolicy.html>`
+or by a registered listener callback. This issue only
+occurred when a *DataWriter* stopped writing samples and a filtered
+sample was received out-of-order.
+
+[RTI Issue ID MICRO-11917]

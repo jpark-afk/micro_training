@@ -74,6 +74,17 @@ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100 --slave 
 sudo update-alternatives --config gcc
 gcc --version
 ```
+### glibc upgrade (issue/optional)
+```bash
+# adjust latest info of jammy (Ubuntu 22.04)
+sudo sed -i 's/jammy/noble/g' /etc/apt/sources.list
+sudo sed -i 's/jammy/noble/g' /etc/apt/sources.list.d/*.list
+sudo apt update
+
+# install GLIBC 2.39 
+sudo apt install libc6 libc6-dev libc-bin -y
+ldd --version
+```
 
 ## Set Envs
 ```bash
@@ -114,9 +125,8 @@ printf("%s\n", sample->message);
 
 ## Build (last option is very important!)
 ```bash
-$RTIMEHOME/resource/scripts/rtime-make --config Release --build --target x86_64leElfgcc13.3.0-Linux6 --source-dir . -G "Unix Makefiles" --delete -DRTIME_MAG_FILES=HelloWorld.xml
+$RTIMEHOME/resource/scripts/rtime-make --config Debug --build --target x86_64leElfgcc13.3.0-Linux6 --source-dir . -G "Unix Makefiles" --delete -DRTIME_MAG_FILES=HelloWorld.xml
 ```
-* Debug is not working at this moment.
 ## Run
 ```bash
 ./objs/x86_64leElfgcc13.3.0-Linux6/HelloWorld_publisher    

@@ -78,13 +78,13 @@ sed -i 's/\r$//' set_micro_env.sh
 ## Run MAG
 ```bash
 cd xml
-$RTIMEHOME/bin/rtiddsmag -language C -referencedFile HelloWorldQosDPSE.xml HelloWorldDPSE.xml
+$RTIMEHOME/bin/rtiddsmag -language C -referencedFile HelloWorldDPSEQos.xml HelloWorldDPSE.xml
 ```
 
 ## Generate Example codes and replace HelloWorld.xml
 Please backup the original file!
 ```bash
-$RTIMEHOME/bin/rtiddsgen -example -exampleTemplate mag/dpde -language C HelloWorldDPSE.xml -replace
+$RTIMEHOME/bin/rtiddsgen -example -exampleTemplate mag/dpse -language C HelloWorldDPSE.xml -replace
 ```
 ### Example code update
 ```c
@@ -114,8 +114,8 @@ $RTIMEHOME/resource/scripts/rtime-make --config Debug --build --target x86_64leE
 No need to set enabled_transport and initial_peers
 ```bash
 ## Windows
-.\objs\x86_64lePEvs2017-Win10\Debug\HelloWorld_publisherDPSE.exe 
+.\objs\x86_64lePEvs2017-Win10\Debug\HelloWorldDPSE_publisher.exe
 
 ## Linux
-./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorld_subscriberDPSE 
+./objs/x86_64leElfgcc12.3.0-Linux5/HelloWorldDPSE_subscriber 
 ```

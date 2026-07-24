@@ -6,6 +6,7 @@
 
 ## Unified entry script
 
+- Recreate or update `build_micro4_vtt.bat` first if it is missing or stale
 - .\\build_micro4_vtt.bat
 - .\\build_micro4_vtt.bat pil Debug verify
 - .\\build_micro4_vtt.bat psl Debug verify

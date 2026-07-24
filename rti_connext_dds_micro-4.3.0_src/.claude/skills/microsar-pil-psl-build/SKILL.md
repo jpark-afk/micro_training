@@ -8,6 +8,11 @@ disable-model-invocation: true
 
 Use this workflow when building PIL/PSL for MICROSAR AUTOSAR on Windows with VS2017 x86.
 
+Portable delivery rule
+
+- The distributable package is `build_micro_vtt.md`, `.claude`, and `playbooks`.
+- `build_micro4_vtt.bat`, the MICROSAR `.tc` files, and required CMake edits must be reproducible from that package even if they are absent in the target repo copy.
+
 Inputs
 
 - OSEK_PATH points to MICROSAR SIP root
@@ -22,11 +27,8 @@ Execution Steps
 1. Explore
 
 - Read [build_micro_vtt.md](build_micro_vtt.md)
-- Read [build_micro4_vtt.bat](build_micro4_vtt.bat)
-- Read [resource/cmake/architectures/i86lePEvs2017.tc](resource/cmake/architectures/i86lePEvs2017.tc)
-- Read [resource/cmake/architectures/i86lePEvs2017-MICROSAR4.tc](resource/cmake/architectures/i86lePEvs2017-MICROSAR4.tc)
-- Read [src/rti_me_psl/CMakeLists.txt](src/rti_me_psl/CMakeLists.txt)
-- If the wrapper is absent or inconsistent, rebuild it to match the regeneration checklist in build_micro_vtt.md before continuing.
+- Determine whether [build_micro4_vtt.bat](build_micro4_vtt.bat), [resource/cmake/architectures/i86lePEvs2017.tc](resource/cmake/architectures/i86lePEvs2017.tc), [resource/cmake/architectures/i86lePEvs2017-MICROSAR4.tc](resource/cmake/architectures/i86lePEvs2017-MICROSAR4.tc), and [src/rti_me_psl/CMakeLists.txt](src/rti_me_psl/CMakeLists.txt) exist or must be recreated.
+- If any of them are absent or inconsistent, rebuild them to match the regeneration rules in build_micro_vtt.md before continuing.
 
 1. Build PIL (C-only)
 

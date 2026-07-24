@@ -15,6 +15,9 @@ Build PIL and PSL for MICROSAR4 using VS2017 x86 and validate AUTOSAR callback s
 ## Baseline Source of Truth
 
 - build_micro_vtt.md
+
+Target-repo files that may need to be created or updated from this workflow:
+
 - build_micro4_vtt.bat
 - CMakeLists.txt
 - resource/cmake/architectures/i86lePEvs2017.tc
@@ -60,9 +63,9 @@ For build_micro4_vtt.bat changes or regeneration:
 
 1. Explore first:
    - Use subagent Explore to map PSL routing and toolchain flags.
-   - Read the checked-in workflow files before planning edits.
+   - Read the portable workflow files before planning edits.
 2. Plan next:
-   - List exact file changes and build commands.
+   - List exact file creations or updates and build commands.
 3. Implement:
    - Apply required config changes.
    - Back up each edited file to a sibling `.bak` file before modifying it.

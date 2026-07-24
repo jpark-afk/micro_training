@@ -3,6 +3,12 @@
 This file is the self-contained entrypoint for Visual Studio 2017 x86 MICROSAR VTT builds.
 The required generated artifacts are now part of the repo and can be maintained directly without relying on `.cheat`.
 
+Distribution intent for this workflow:
+
+- The portable delivery set is this file plus `.claude` and `playbooks`.
+- Other implementation files may already exist in a target repo, but they must be treated as regeneratable or updatable outputs of this workflow.
+- The delivery set must be sufficient to recreate or update `build_micro4_vtt.bat`, the MICROSAR target `.tc` files, and the required CMake edits in a fresh context.
+
 ## New Context Quick Start
 
 1. Confirm `OSEK_PATH` is already defined in the user environment.
@@ -40,6 +46,8 @@ Use [build_micro4_vtt.bat](build_micro4_vtt.bat) to run PIL-only, PSL-only, or c
 
 The workflow is considered reproducible only when a fresh shell can execute the wrapper directly from the repo root and complete build plus verification without any extra manual environment setup.
 
+When the wrapper or target files are absent, this document together with `.claude` and `playbooks` must still be sufficient to regenerate them.
+
 ## Managed Artifacts
 
 These files define the workflow and should be edited directly when the build logic changes:
@@ -54,6 +62,25 @@ These files define the workflow and should be edited directly when the build log
 
 Back up an existing file to a sibling `.bak` file before changing it.
 Changed CMake blocks should keep explicit `AI-MOD-BEGIN` and `AI-MOD-END` comments.
+
+## Delivery Contract
+
+The distributable workflow package consists of:
+
+- `build_micro_vtt.md`
+- `.claude`
+- `playbooks`
+
+The package is valid only if it contains enough information to recreate or update these target-repo files without `.cheat`:
+
+- `build_micro4_vtt.bat`
+- `resource/cmake/architectures/i86lePEvs2017.tc`
+- `resource/cmake/architectures/i86lePEvs2017-MICROSAR4.tc`
+- `src/rti_me_psl/CMakeLists.txt`
+- `CMakeLists.txt`
+
+If those targets already exist in the destination repo, the delivery package must be able to update them in place.
+If those targets do not exist, the delivery package must be able to generate them from the instructions preserved here and in `playbooks` and `.claude`.
 
 ## Mode Matrix
 
@@ -108,6 +135,8 @@ If `build_micro4_vtt.bat` is missing or must be rewritten in a new context, the 
 - invoke [playbooks/microsar-pil-psl/verify_psl_symbols.ps1](playbooks/microsar-pil-psl/verify_psl_symbols.ps1) for PSL verification
 
 If a regenerated wrapper does not satisfy every item above, it is not equivalent to the validated workflow.
+
+The same principle applies to the target `.tc` files and required CMake updates: they are outputs of the portable workflow package, not prerequisites of it.
 
 ## Build Commands
 

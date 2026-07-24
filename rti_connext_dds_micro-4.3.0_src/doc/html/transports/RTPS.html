@@ -1,0 +1,522 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.6. RTPS &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.7. INTRA Transport" href="INTRA.html" />
+    <link rel="prev" title="4.5. Interoperating with Connext Professional Transports" href="interoperability.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Transports</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">4.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registration.html">4.2. Transport Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addresses.html">4.3. Transport Addresses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portnumber.html">4.4. Transport Port Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interoperability.html">4.5. Interoperating with Connext Professional Transports</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.6. RTPS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#registration-of-rtps">4.6.1. Registration of RTPS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overriding-the-builtin-rtps-checksum-functions">4.6.2. Overriding the Builtin RTPS Checksum Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#checksum-function-definition">4.6.2.1. Checksum function definition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example">4.6.3. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="INTRA.html">4.7. INTRA Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SHMEM.html">4.8. Shared Memory Transport (SHMEM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy_v2.html">4.9. Zero Copy v2 Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UDP.html">4.10. UDP Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NETIO_DGRAM.html">4.11. NETIO Datagram Transport</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">4. </span>Transports</a> &raquo;</li>
+        
+      <li><span class="section-number">4.6. </span>RTPS</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rtps">
+<span id="transport-rtps"></span><h1><span class="section-number">4.6. </span>RTPS<a class="headerlink" href="#rtps" title="Permalink to this headline">¶</a></h1>
+<p>The RTPS transport encapsulates user-data in RTPS messages and parses
+received RTPS messages for user-data. This chapter describes
+how to configure RTPS.</p>
+<div class="section" id="registration-of-rtps">
+<h2><span class="section-number">4.6.1. </span>Registration of RTPS<a class="headerlink" href="#registration-of-rtps" title="Permalink to this headline">¶</a></h2>
+<p>RTPS is automatically registered when a <cite>DDS_DomainParticipantFactory</cite> is
+initialized with <cite>DDS_DomainParticipantFactory_get_instance()</cite>. In order to
+change the RTPS configuration, it is necessary to first unregister it from the
+participant factory, set the properties, and then register RTPS with the new
+properties. This process is identical to other plugins in <em>Connext Micro</em>, such as the
+UDP transport and discovery plugins.</p>
+<p>The following code shows the steps:</p>
+<blockquote>
+<div><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">RTPS_InterfaceFactoryProperty</span><span class="w"> </span><span class="o">*</span><span class="n">rtps_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">DDS_DomainParticipantFactory</span><span class="w"> </span><span class="o">*</span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">RT_Registry_T</span><span class="w"> </span><span class="o">*</span><span class="n">registry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_DomainParticipantQos</span><span class="w"> </span><span class="n">dp_qos</span><span class="w"> </span><span class="o">=</span>
+<span class="w">                            </span><span class="n">DDS_DomainParticipantQos_INITIALIZER</span><span class="p">;</span>
+<span class="w">    </span><span class="n">DDS_DomainId_t</span><span class="w"> </span><span class="n">domain_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* get the Domain Participant factory and registry*/</span>
+<span class="w">    </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipantFactory_get_instance</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">registry</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">DDS_DomainParticipantFactory_get_registry</span><span class="p">(</span><span class="n">factory</span><span class="p">);</span>
+
+
+<span class="w">    </span><span class="cm">/* unregister the RTPS transport */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">RT_Registry_unregister</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="n">NETIO_DEFAULT_RTPS_NAME</span><span class="p">,</span>
+<span class="w">                                </span><span class="nb">NULL</span><span class="p">,</span><span class="nb">NULL</span><span class="p">))</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;failed to unregister rtps</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">rtps_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">RTPS_InterfaceFactoryProperty</span><span class="w"> </span><span class="o">*</span><span class="p">)</span>
+<span class="w">            </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">RTPS_InterfaceFactoryProperty</span><span class="p">));</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rtps_property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;failed to allocate rtps properties</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* Set the new properties and register RTPS again */</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">RT_Registry_register</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="n">NETIO_DEFAULT_RTPS_NAME</span><span class="p">,</span>
+<span class="w">                </span><span class="n">RTPS_InterfaceFactory_get_interface</span><span class="p">(),</span>
+<span class="w">                </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">RT_ComponentFactoryProperty</span><span class="o">*</span><span class="p">)</span><span class="n">rtps_property</span><span class="p">,</span>
+<span class="w">                 </span><span class="nb">NULL</span><span class="p">))</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;failed to register rtps</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="n">DDS_DomainParticipantFactory_create_participant</span><span class="p">(</span>
+<span class="w">       </span><span class="n">factory</span><span class="p">,</span><span class="w"> </span><span class="n">domain_id</span><span class="p">,</span><span class="o">&amp;</span><span class="n">dp_qos</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="n">DDS_STATUS_MASK_NONE</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Please note that the RTPS properties <em>must</em> be valid for the <em>entire</em>
+life-cycle of the participant factory because RTPS <em>does not</em> make an
+internal copy. This saves memory when properties are stored in preallocated
+memory (for example in ROM).</p>
+</div>
+<div class="section" id="overriding-the-builtin-rtps-checksum-functions">
+<h2><span class="section-number">4.6.2. </span>Overriding the Builtin RTPS Checksum Functions<a class="headerlink" href="#overriding-the-builtin-rtps-checksum-functions" title="Permalink to this headline">¶</a></h2>
+<p>Some applications may require specialized functions to guarantee
+message integrity or may have special hardware that supports faster
+checksum calculations. <em>Connext Micro</em> provides a way for users to override the
+builtin checksum functions. Note that if a different checksum is calculated
+it may prevent interoperability with other DDS implementations.</p>
+<div class="section" id="checksum-function-definition">
+<h3><span class="section-number">4.6.2.1. </span>Checksum function definition<a class="headerlink" href="#checksum-function-definition" title="Permalink to this headline">¶</a></h3>
+<p>A checksum function must define a structure of the following type:</p>
+<blockquote>
+<div><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">RTPS_ChecksumClass</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">RTPS_ChecksumClassId_T</span><span class="w"> </span><span class="n">class_id</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">context</span><span class="p">;</span>
+<span class="w">    </span><span class="n">RTPS_ChecksumCalculate_T</span><span class="w"> </span><span class="n">checksum_calculate</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">RTPS_ChecksumClass_T</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The type has three members:</p>
+<ol class="arabic">
+<li><p>class_id - The class ID must be:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>RTPS_CHECKSUM_CLASSID_BUILTIN32 for the 32-bit checksum.</p></li>
+<li><p>RTPS_CHECKSUM_CLASSID_BUILTIN64 for the 64-bit checksum.</p></li>
+<li><p>RTPS_CHECKSUM_CLASSID_BUILTIN128 for the 128-bit checksum.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>context - An opaque object for you to provide context for
+this function. This context will be passed to the <cite>checksum_calculate</cite>
+every time it is called.</p></li>
+<li><p>checksum_calculate - The function pointer to the checksum function. The
+function is defined as</p>
+<blockquote>
+<div><blockquote>
+<div><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">RTI_BOOL</span>
+<span class="p">(</span><span class="o">*</span><span class="n">RTPS_ChecksumCalculate_T</span><span class="p">)(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">context</span><span class="p">,</span>
+<span class="w">                            </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">REDA_Buffer</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">RTI_UINT32</span><span class="w"> </span><span class="n">buf_length</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">RTPS_Checksum_T</span><span class="w"> </span><span class="o">*</span><span class="n">checksum</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul>
+<li><p>context: <em>Connext Micro</em> will pass in the context as defined in the class.</p></li>
+<li><p>buf: An array of REDA_Buffer. Each REDA_Buffer includes a pointer and size of the buffer.</p></li>
+<li><p>buf_length: The size of the array.</p></li>
+<li><p>checksum: This is the out parameter of this function.
+It is a union defined as follows:</p>
+<blockquote>
+<div><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="nc">RTPS_Checksum</span>
+<span class="p">{</span>
+<span class="w">        </span><span class="n">RTI_UINT32</span><span class="w"> </span><span class="n">checksum32</span><span class="p">;</span>
+<span class="w">        </span><span class="n">RTI_UINT64</span><span class="w"> </span><span class="n">checksum64</span><span class="p">;</span>
+<span class="w">        </span><span class="n">RTI_UINT8</span><span class="w"> </span><span class="n">checksum128</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+<span class="p">}</span><span class="w"> </span><span class="n">RTPS_Checksum_T</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p>Please note the following <em>important</em> information regarding the output values:</p>
+<ol class="arabic simple">
+<li><p>The number returned in checksum32 is assumed to be in <em>host order</em> endianness.</p></li>
+<li><p>The number returned in checksum64 is assumed to be in <em>host order</em> endianness.</p></li>
+<li><p>checksum128 is treated as an octet array.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="example">
+<h2><span class="section-number">4.6.3. </span>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Below is an example implementation of a custom CRC-32 function using the
+Intel intrinsic functions. It shows the QoS that needs to be set, as well
+as how to override the builtin checksum function.</p>
+<blockquote>
+<div><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">RTI_BOOL</span>
+<span class="nf">CrcClassTest_custom_crc32_other</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">context</span><span class="p">,</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">REDA_Buffer</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">RTI_UINT32</span><span class="w"> </span><span class="n">buf_length</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">RTPS_Checksum_T</span><span class="w"> </span><span class="o">*</span><span class="n">checksum</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">RTI_UINT32</span><span class="w"> </span><span class="n">crc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">RTI_UINT8</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">RTI_UINT8</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">pointer</span><span class="p">;</span>
+<span class="w">    </span><span class="n">RTI_UINT32</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">length</span><span class="p">;</span>
+<span class="w">    </span><span class="n">RTI_INT32</span><span class="w"> </span><span class="n">k</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">UNUSED_ARG</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UNUSED_ARG</span><span class="p">(</span><span class="n">buf_length</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">crc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_mm_crc32_u8</span><span class="p">(</span><span class="n">crc</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">checksum</span><span class="o">-&gt;</span><span class="n">checksum32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">crc</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">RTI_TRUE</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_DomainParticipantQos</span><span class="w"> </span><span class="n">dp_qos</span><span class="w"> </span><span class="o">=</span>
+<span class="w">            </span><span class="n">DDS_DomainParticipantQos_INITIALIZER</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">RTPS_InterfaceFactoryProperty</span><span class="w"> </span><span class="o">*</span><span class="n">rtps_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">DDS_DomainParticipantFactory</span><span class="w"> </span><span class="o">*</span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">RT_Registry_T</span><span class="w"> </span><span class="o">*</span><span class="n">registry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">DDS_DomainId_t</span><span class="w"> </span><span class="n">domain_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* Instantiate a RTPS_ChecksumClass for your custom function*/</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">RTPS_ChecksumClass</span><span class="w"> </span><span class="n">custom_crc32</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">RTPS_CHECKSUM_CLASSID_BUILTIN32</span><span class="p">,</span><span class="w"> </span><span class="cm">/*class_id*/</span>
+<span class="w">        </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="cm">/*context*/</span>
+<span class="w">        </span><span class="n">CrcClassTest_custom_crc32_other</span><span class="w"> </span><span class="cm">/*Custom function*/</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="cm">/* get the Domain Participant factory and registry*/</span>
+<span class="w">    </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipantFactory_get_instance</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">registry</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">DDS_DomainParticipantFactory_get_registry</span><span class="p">(</span><span class="n">factory</span><span class="p">);</span>
+
+
+<span class="w">    </span><span class="cm">/* unregister the RTPS transport */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">RT_Registry_unregister</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="n">NETIO_DEFAULT_RTPS_NAME</span><span class="p">,</span>
+<span class="w">                                </span><span class="nb">NULL</span><span class="p">,</span><span class="nb">NULL</span><span class="p">))</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;failed to unregister rtps</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">rtps_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">RTPS_InterfaceFactoryProperty</span><span class="w"> </span><span class="o">*</span><span class="p">)</span>
+<span class="w">            </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">RTPS_InterfaceFactoryProperty</span><span class="p">));</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rtps_property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;failed to allocate rtps properties</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="cm">/* the rtps property takes the structure with the custom</span>
+<span class="cm">     * function</span>
+<span class="cm">     */</span>
+
+<span class="w">    </span><span class="o">*</span><span class="n">rtps_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RTPS_INTERFACE_FACTORY_DEFAULT</span><span class="p">;</span>
+<span class="w">    </span><span class="n">rtps_property</span><span class="o">-&gt;</span><span class="n">checksum</span><span class="p">.</span><span class="n">allow_builtin_override</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RTI_TRUE</span><span class="p">;</span>
+<span class="w">    </span><span class="n">rtps_property</span><span class="o">-&gt;</span><span class="n">checksum</span><span class="p">.</span><span class="n">builtin_checksum32_class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">custom_crc32</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* register the RTPS transport */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">RT_Registry_register</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="n">NETIO_DEFAULT_RTPS_NAME</span><span class="p">,</span>
+<span class="w">                </span><span class="n">RTPS_InterfaceFactory_get_interface</span><span class="p">(),</span>
+<span class="w">                </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">RT_ComponentFactoryProperty</span><span class="o">*</span><span class="p">)</span><span class="n">rtps_property</span><span class="p">,</span>
+<span class="w">                 </span><span class="nb">NULL</span><span class="p">))</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;failed to register rtps</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="cm">/* modify the domain participant qos */</span>
+<span class="w">    </span><span class="n">dp_qos</span><span class="p">.</span><span class="n">protocol</span><span class="p">.</span><span class="n">compute_crc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_BOOLEAN_TRUE</span><span class="p">;</span>
+<span class="w">    </span><span class="n">dp_qos</span><span class="p">.</span><span class="n">protocol</span><span class="p">.</span><span class="n">check_crc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_BOOLEAN_TRUE</span><span class="p">;</span>
+<span class="w">    </span><span class="n">dp_qos</span><span class="p">.</span><span class="n">protocol</span><span class="p">.</span><span class="n">require_crc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_BOOLEAN_TRUE</span><span class="p">;</span>
+<span class="w">    </span><span class="n">dp_qos</span><span class="p">.</span><span class="n">protocol</span><span class="p">.</span><span class="n">computed_crc_kind</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">DDS_CHECKSUM_BUILTIN32</span><span class="p">;</span>
+<span class="w">    </span><span class="n">dp_qos</span><span class="p">.</span><span class="n">protocol</span><span class="p">.</span><span class="n">allowed_crc_mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_CHECKSUM_BUILTIN32</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* use the qos and the factory to create a participant */</span>
+
+<span class="w">    </span><span class="n">DDS_DomainParticipantFactory_create_participant</span><span class="p">(</span>
+<span class="w">       </span><span class="n">factory</span><span class="p">,</span><span class="w"> </span><span class="n">domain_id</span><span class="p">,</span><span class="o">&amp;</span><span class="n">dp_qos</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="n">DDS_STATUS_MASK_NONE</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="INTRA.html" class="btn btn-neutral float-right" title="4.7. INTRA Transport" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="interoperability.html" class="btn btn-neutral float-left" title="4.5. Interoperating with Connext Professional Transports" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

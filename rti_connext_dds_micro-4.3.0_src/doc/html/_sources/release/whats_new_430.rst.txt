@@ -1,0 +1,296 @@
+.. _whats-new-430:
+
+What's New in 4.3.0
+===================
+
+|rti_me| 4.3.0 is an LTS release. See the
+`Connext Releases <https://www.rti.com/products/connext-releases>`_
+page on the RTI website for more information on RTI's software release model.
+
+The following features are new since |me| 4.2.0.
+
+Build |me_h| applications for MicroSAR platforms
+------------------------------------------------
+
+.. PLATFORMS-5472
+
+This release adds support for MicroSAR platforms. Refer to
+:ref:`section-microsar-platforms` for more details.
+
+Generate AUTOSAR code with Micro Application Generator
+------------------------------------------------------
+
+.. MAG-285, MAG-286, MAG-287, MAG-288, MAG-289, MAG-290
+
+This release adds several new features to Micro Application Generator (MAG)
+which, taken together, enable you to generate AUTOSAR applications from
+XML configuration files. Refer to :ref:`section-generating-autosar-applications`
+for a walkthrough of the process. These new features include:
+
+DDS System XML model support
+............................
+
+MAG now supports the DDS System XML schema flow for application generation,
+which extends the capabilities of the standard XML configuration model. Refer
+to :ref:`section-define-your-system-xml` for details.
+
+Deployment-targeted code generation
+...................................
+
+A new ``-deployment <name>`` command-line option lets you generate code
+for a single deployment instance selected from a deployment scenario defined in
+the XML. Refer to :ref:`section-command-line-options` for more information.
+
+Application type selection
+..........................
+
+A new ``-applicationType <type>`` option controls the structure and templates
+used in code generation. Valid values are ``micro4``, ``cert``, and
+``autosar_cdd``. Refer to :ref:`section-command-line-options` for more
+information.
+
+.. attention::
+  
+  Currently, only ``autosar_cdd`` is fully supported for deployment-based code 
+  generation; see the :ref:`section-known-issues` section. This type generates
+  AUTOSAR-compliant code structure, including adapter layer separation and
+  AUTOSAR resource configuration templates. Other application types may be
+  supported in future releases.
+
+Speed up initialization on AUTOSAR systems with configurable thread safety
+--------------------------------------------------------------------------
+
+.. MICRO-11728
+
+This release adds a new AUTOSAR port property, ``enable_thread_safe_heap``,
+that allows the application to control whether heap allocation is protected by
+a mutex. When enabled,
+:link_connextmicro_dds_api_c_up_one:`OSAPI_Heap_allocate_buffer() <group__OSAPI__HeapClass.html#ga22b94c08e4ed2c569ea841b16a2ecebe>`
+acquires and releases a mutex around memory allocation to ensure thread safety.
+When disabled, the mutex is neither created nor used, reducing overhead in
+single-threaded or non-preemptive environments.
+
+Generate native applications with deployment-aware code generation 
+------------------------------------------------------------------
+
+.. MAG-221
+
+.. attention::
+
+   This is an experimental feature in |me| 4.3.0. It is not guaranteed to
+   be consistent or supported and should not be used in production.
+
+   Refer to :ref:`section-experimental-features` for more information.
+
+This release adds a new ``-deployment <name>`` command-line option to Micro
+Application Generator that lets you generate code for a specific deployment
+instance, selected from a deployment scenario defined in the XML. You can
+generate code for native |me| applications with the ``micro4`` option, as
+described in :ref:`section-generating-native-applications`.
+
+Content filtering no longer experimental
+----------------------------------------
+
+.. MICRO-11534
+
+|me| 4.2.0 introduced the content filtering feature, enabling *DataReaders*
+to filter incoming sample data. Instructions for implementing this feature are
+provided in the :ref:`section-content-filtering` section.
+
+In release 4.2.0, this feature was experimental, but in release 4.3.0, content
+filtering is ready for production use.
+
+Stabilized builtin DDS SQL Content Filter configuration
+-------------------------------------------------------
+
+.. MICRO-12797
+
+This release moves the configuration options for the builtin DDS SQL content
+filter from the ``DDS_FilterResourceLimits`` to a new ``DDS_SqlFilterProperty``.
+See :ref:`section-content-filtering` for how to configure the filter with this
+new property.
+
+Expanded SQL content filter capabilities and improved robustness
+----------------------------------------------------------------
+
+.. MICRO-12833
+
+This release extends the syntax accepted by |me|'s built-in SQL content filter
+and improves its robustness, including support in SQL filter expressions for
+nested struct field references with dotted notation and typedef alias
+resolution. The SQL parser and evaluator were also improved to better handle
+edge conditions relating to unsigned integers, malformed literals, and
+incompatible type comparisons. See :ref:`section-content-filtering` for more
+details.
+
+Reduce network and CPU usage with custom content filters
+--------------------------------------------------------
+
+.. MICRO-12059
+
+This release builds on the addition of DDS SQL filter support in |me| 4.2.0 by
+allowing the use of custom content filters. Content filtering can be used to
+reduce network and CPU usage by only sending samples over the network which
+reader's are interested in. See :ref:`section-content-filtering` for details
+on how to use this feature.
+
+Restart discovery after CPU suspension
+--------------------------------------
+
+.. MICRO-13431
+
+This release adds the ability for a *DomainParticipant* to restart the
+discovery process during runtime. This feature allows your application to
+return to a known state after suspending and resuming a CPU, among other use
+cases. See :ref:`section-suspend-resume-support` for more information.
+
+Prioritize data with the TRANSPORT_PRIORITY QoS policy
+------------------------------------------------------
+
+.. MICRO-12912
+
+This release introduces support for the :link_connextmicro_dds_api_c_up_one:`TRANSPORT_PRIORITY <structDDS__TransportPriorityQosPolicy.html>`
+QoS policy in |me|. This feature allows applications to assign priorities to
+outgoing network traffic so that the underlying operating system (OS) and
+network infrastructure can treat higher-priority messages preferentially.
+
+When enabled, the transport priority value specified in the QoS policy is
+mapped to the network packet's priority field, such as the IP Type of
+Service (TOS) or Differentiated Services Code Point (DSCP) field. This allows
+applications to influence packet scheduling and prioritization in the network
+stack, which can be useful for latency-sensitive data flows.
+
+|me| currently supports this feature on UDP transports. You can configure the
+mapping from DDS transport priority values to network packet priority through
+transport properties.
+
+.. note::
+
+  The actual prioritization behavior depends on the operating system and network
+  configuration. |me| sets the packet priority value, but enforcement of traffic
+  prioritization is handled by the OS networking stack and network
+  infrastructure.
+
+For more information on this feature, refer to the :ref:`section-transport-priority`
+section.
+
+Integrate rotating or on-demand credentials with Lightweight Security Plugin
+----------------------------------------------------------------------------
+
+.. MICRO-10272
+
+This release introduces the *passphrase tracker*, a mechanism that enables
+runtime passphrase rotation for the *Lightweight Security Plugin*. Previously,
+the pre-shared key (PSK) passphrase was fixed at initialization time. With the
+*passphrase tracker*, applications can now update the active passphrase without
+restarting, allowing integration with key management workflows that rotate
+credentials on a schedule or on demand.
+
+The *passphrase tracker* is designed around a pluggable provider model.
+Applications supply a provider implementation at configuration time, and the
+tracker automatically notifies the *Lightweight Security Plugin* whenever a new
+passphrase is available, re-deriving session keys transparently.
+
+|me| ships a reference implementation: the *file passtracker*, available in the
+``rti_me_psl`` PSL library. This implementation monitors a passphrase file on
+the file system and propagates any changes to the *Lightweight Security Plugin*
+automatically. The polling interval and startup behavior are configurable.
+
+.. note::
+
+  The *file passtracker* is only available on POSIX and Windows systems.
+  Applications targeting other platforms or requiring a different passphrase
+  source can provide a custom PSL implementation through the *passphrase
+  tracker* provider interface.
+
+For more information, refer to the :ref:`section-psk` section.
+
+Reduced heap memory usage
+-------------------------
+
+.. MICRO-11537
+
+This version of |me| uses less dynamically allocated memory on average than
+the previous release. Refer to the `RTI Connext Performance Benchmarks <https://community.rti.com/static/documentation/performance/benchmarks/index.html>`_
+on |rti_community| for more details.
+
+Resume DDS traffic without restarting ECUs with socket recovery
+---------------------------------------------------------------
+
+.. MICRO-12928
+
+This release adds automatic socket recovery support for AUTOSAR NoCom/FullCom
+transitions. When the TcpIp stack closes sockets during a NoCom event (e.g.,
+network management, diagnostic session, or bus-off), |me| now tracks affected
+receive sockets and automatically re-binds them when communication is restored
+(FullCom). This allows DDS traffic to resume without requiring an ECU restart.
+
+See :ref:`section-socket-recovery` for more information. This feature is not
+available in CERT builds.
+
+Default UDP transport name changed
+----------------------------------
+
+.. MAG-396
+
+Previously, Micro Application Generator (MAG) automatically appended an index
+to the UDP transport name; this has been disabled by default. It can be
+re-enabled by using the new command line parameter ``-incrementUdpName``. The
+default name for the UDP transport name has also been changed from ``udp`` to
+``udpv4``. See :ref:`section-appgen` for more information.
+
+Streamlined default MAG messages
+--------------------------------
+
+.. MAG-386
+
+Previously, running ``rtiddsmag`` without specifying verbosity
+(``-verbosity <number>``) would default to info level, which prints informative
+messages as well as warnings. This has been changed to ``warning`` level by
+default. See :ref:`section-command-line-options` for more information.
+
+Reduced runtime memory usage of MAG-generated code
+--------------------------------------------------
+
+.. MAG-405
+
+Starting with this release, all configuration structures generated by Micro
+Application Generator are now ``const``. This may reduce RAM usage significantly
+if read-only sections are not loaded in memory and instead remain in NVRAM.
+
+Third-party and open source software changes
+--------------------------------------------
+
+.. THIRDPARTY-529
+
+The following third-party software used by :ref:`Micro Application Generator <section-appgen>`
+has been upgraded:
+
+.. list-table:: MAG Third-Party Software Upgrades
+    :widths: 30 40 40
+    :header-rows: 1
+
+    * - Third-Party Software
+      - Old Version
+      - New Version
+    * - Apache Log4j
+      - 2.17.1
+      - 2.25.3
+    * - JAXB Runtime
+      - 2.3.1
+      - 2.3.9
+
+The following third-party software used by *rtiddsgen* has also been upgraded:
+
+.. list-table:: RTIDDSGEN Third-Party Software Upgrades
+    :widths: 30 40 40
+    :header-rows: 1
+
+    * - Third-Party Software
+      - Old Version
+      - New Version
+    * - Apache Log4j
+      - 2.17.1
+      - 2.25.3
+
+For more information, see the :ref:`section-3rd-party` section.

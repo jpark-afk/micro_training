@@ -1,0 +1,577 @@
+##/* $Id$
+##
+##   (c) Copyright, Real-Time Innovations, Inc. 2020.  All rights reserved.
+##   No duplications, whole or partial, manual or electronic, may be made
+##   without prior written permission.  Any such copies, or
+##   revisions thereof, must display this notice unaltered.
+##   This code contains trade secrets of Real-Time Innovations, Inc.
+
+##modification history:
+##---------------------
+##10a,07jul20,fmt created
+
+##---------------------------------------------------------------------
+##
+##             Macros for Example Application Header
+##
+##---------------------------------------------------------------------
+##---------------------------------------------------------------------
+
+#macro(setDefaultVariables)
+##Default is dpde example, using listeners, only UDP and not using MAG.
+#set( $use_listener = true )## if false example uses waitsets
+#set( $use_dpde = true )## if false example uses dpse
+#set( $use_udp = true )
+#set( $use_shared_memory = false )
+#set( $use_static_udp = false )## if false example uses dynamic configuration of udp. Only meaningful if uses_udp == true
+#set( $use_mag = false )## if true all entities are created using mag instead of API
+#set( $use_cert_api_only = false)
+#set( $use_secure = false)
+#set( $use_autoenable_entities = true)
+#if($userVarList.use_autoenable_entities && $userVarList.use_autoenable_entities.equals("false"))
+#set( $use_autoenable_entities = false)
+#end
+#set( $use_crc = false)
+#set( $use_zcv2 = false)
+#set( $use_psk = false)
+#set( $use_content_filter = false )
+#set( $use_custom_content_filter = false )
+#if($global.language.contains("C++"))
+#set ( $fileExtension = "cxx" )
+#set ( $language = "C++" )
+#else
+#set ( $fileExtension = "c" )
+#set ( $language = "C" )
+#end
+#end  ##   #macro(setDefaultVariables)
+
+#macro(setVariableDiscoveryPluginName)
+#if($use_dpde)
+#set( $discovery_plugin_name = "dpde" )
+#else
+#set( $discovery_plugin_name = "dpse" )
+#end
+#if ($use_dpde && $use_cert_api_only)
+${envMap.POUND_CHAR}error "DPDE discovery cannot be used with Cert"
+#end
+#end  ##   #macro(setDefaultVariables)
+
+$discovery_plugin_name
+
+##******************************************************************************
+## Macro for the C Application Header file
+##******************************************************************************
+#macro(fileApplicationHeaderC)
+${envMap.POUND_CHAR}ifndef Application_h
+${envMap.POUND_CHAR}define Application_h
+
+${envMap.POUND_CHAR}include "rti_me_c.h"
+
+#if (${use_secure})
+/*e \dref_Example_Config_UseSecure
+ * Define USE_SECURITY to register the RTI Security Plugin factories
+ * and enable them in the Application's DomainParticipant
+ */
+${envMap.POUND_CHAR}define USE_SECURITY
+
+#end
+/*e \dref_Example_Config_UseReliableQos
+ * Define USE_RELIABLE_QOS to use reliable
+ * reliability on the DataReader; otherwise, use
+ * best-effort reliability by default.
+ */
+
+${envMap.POUND_CHAR}define USE_RELIABLE_QOS
+
+#if ($use_listener && !$use_content_filter)
+/*e \dref_Example_Config_UseSampleFilter
+ * Define USE_SAMPLE_FILTER to filter samples
+ * using call-backs on the DataReader's listener.
+ * Modify the following functions to implement the filter logic:
+ * - "${constructMap.nativeFQName}Subscriber_filter_sample"
+ * - "${constructMap.nativeFQName}Subscriber_on_before_sample_deserialize"
+ * - "${constructMap.nativeFQName}Subscriber_on_before_sample_commit"
+ * - "${constructMap.nativeFQName}Subscriber_deserialize_unsigned_long"
+ */
+
+/*${envMap.POUND_CHAR}define USE_SAMPLE_FILTER*/
+
+/*e \dref_Example_Config_FilterOnDeserialize
+ * Define FILTER_ON_DESERIALIZE to enable
+ * filtering on call-back on_before_sample_deserialize;
+ * otherwise use call-back on_before_sample_commit
+ * by default. */
+
+/*${envMap.POUND_CHAR}define FILTER_ON_DESERIALIZE*/
+
+#end
+#if (${use_secure})
+/* Filenames of required cryptographic material and configuration files */
+struct ApplicationSecMaterial
+{
+    char *ca_id_cert;
+    char *ca_perm_cert;
+    char *peer_key;
+    char *peer_cert;
+    char *xml_gov;
+    char *xml_perm;
+};
+
+${envMap.POUND_CHAR}define ApplicationSecMaterial_INITIALIZER \
+{\
+    NULL, /* ca_id_cert */\
+    NULL, /* ca_perm_cert */\
+    NULL, /* peer_key */ \
+    NULL, /* peer_cert */ \
+    NULL, /* xml_gov */ \
+    NULL  /* xml_perm */ \
+}
+
+${envMap.POUND_CHAR}define ApplicationSecMaterial_is_valid(mat_) \
+(\
+    (mat_) != NULL && \
+    (mat_)->ca_id_cert != NULL && \
+    (mat_)->ca_perm_cert != NULL && \
+    (mat_)->peer_key != NULL && \
+    (mat_)->peer_cert != NULL && \
+    (mat_)->xml_gov != NULL && \
+    (mat_)->xml_perm != NULL \
+)
+
+${envMap.POUND_CHAR}define ApplicationSecMaterial_print_var(k_,v_) \
+    printf("${envMap.POUND_CHAR} %-18s : %s\n",(k_), (v_))
+
+${envMap.POUND_CHAR}define ApplicationSecMaterial_print(mat_) \
+{\
+    ApplicationSecMaterial_print_var("Identity CA,", (mat_)->ca_id_cert);   \
+    ApplicationSecMaterial_print_var("Permissions CA,", (mat_)->ca_perm_cert);   \
+    ApplicationSecMaterial_print_var("PEER certificate",(mat_)->peer_cert); \
+    ApplicationSecMaterial_print_var("PEER key",        (mat_)->peer_key);  \
+    ApplicationSecMaterial_print_var("XML governance",  (mat_)->xml_gov);   \
+    ApplicationSecMaterial_print_var("XML permissions", (mat_)->xml_perm);  \
+}
+
+extern const struct ApplicationSecMaterial PEER_MATERIAL_DEFAULT;
+
+#end
+struct Application
+{
+    DDS_DomainParticipant *participant;
+    char topic_name[RTPS_PATHNAME_LEN_MAX + 1];
+    char type_name[RTPS_PATHNAME_LEN_MAX + 1];
+    DDS_Long sleep_time;
+    DDS_Long count;
+    DDS_Topic *topic;
+#if (${use_secure})
+    struct ApplicationSecMaterial *sec_material;
+#end
+};
+
+#if (${use_secure})
+${envMap.POUND_CHAR}define Application_INITIALIZER \
+{\
+    NULL, /* participant */            \
+    "\0", /* topic_name */             \
+    "\0", /* type_name */              \
+    0,    /* sleep_time */             \
+    0,    /* count */                  \
+    NULL, /* topic */                  \
+    NULL  /* sec_material */ \
+}
+
+${envMap.POUND_CHAR}ifdef USE_SECURITY
+DDS_Boolean
+Application_configure_security(
+        struct Application *application,
+        RT_Registry_T *registry,
+        struct DDS_DomainParticipantQos *dp_qos,
+        struct ApplicationSecMaterial *sec_material);
+
+DDS_Boolean
+Application_finalize_security(
+        struct Application *application,
+        RT_Registry_T *registry);
+${envMap.POUND_CHAR}endif /* USE_SECURITY */
+
+#end
+extern void
+Application_help(char *appname);
+
+extern struct Application*
+Application_create(
+    const char *local_participant_name,
+    const char *remote_participant_name,
+    DDS_Long domain_id,
+#if (!$use_shared_memory)
+    char *udp_intf,
+    const char *peer,
+#end
+    DDS_Long sleep_time,
+#if (${use_secure})
+    DDS_Long count,
+    struct ApplicationSecMaterial *sec_material);
+#else
+    DDS_Long count);
+#end
+
+#if (!${use_autoenable_entities})
+extern DDS_ReturnCode_t
+Application_enable(struct Application *application);
+
+#end
+${envMap.POUND_CHAR}ifndef RTI_CERT
+extern void
+Application_delete(struct Application *application);
+
+${envMap.POUND_CHAR}endif
+#if ($use_custom_content_filter)
+
+${envMap.POUND_CHAR}include "dds_filter/dds_filter_content_filter.h"
+
+#if (!$filterFoundMember)
+/*
+ * WARNING: Could not find a supported field in
+ * $constructMap.nativeFQName to filter on. Use a
+ * different type or configure the filter manually.
+ */
+
+#else
+/*
+ * The name used to register this custom filter class with the
+ * DomainParticipant. Both the publisher and subscriber must use
+ * the same class name.
+ */
+${envMap.POUND_CHAR}define ${filterTypeNameUpper}_CUSTOM_FILTER_CLASS_NAME \
+    "CUSTOM"
+
+/*
+ * The filter expression. The custom filter's compile() callback
+ * parses this expression and the evaluate() callback applies it
+ * to each sample.
+ *
+ * Expression: "${filterMember} % $0 == 0"
+ *   - Filters samples where ${filterMember} is evenly divisible by
+ *     the value of the first parameter ($0). This uses the modulo
+ *     operator (%), which cannot be expressed in SQL content filters.
+ */
+${envMap.POUND_CHAR}define ${filterTypeNameUpper}_CUSTOM_FILTER_EXPRESSION \
+    "${filterMember} % $0 == 0"
+
+/*
+ * Property passed to create_instance(). Add fields here to
+ * pass configuration to your custom filter at creation time.
+ * If no property is needed, this struct and the corresponding
+ * property argument in create_instance() can be removed.
+ * The placeholder member avoids an empty struct.
+ */
+struct ${constructMap.nativeFQName}CustomFilterProperty
+{
+    RTI_INT32 placeholder;
+};
+
+${envMap.POUND_CHAR}define ${constructMap.nativeFQName}CustomFilterProperty_INITIALIZER \
+{ \
+    0 /* placeholder */ \
+}
+
+/*
+ * Returns the DDS_ContentFilterI interface for this custom
+ * filter. Pass the returned pointer to
+ * DDS_DomainParticipant_register_contentfilter().
+ */
+extern const struct DDS_ContentFilterI *
+${constructMap.nativeFQName}CustomFilter_get_interface(void);
+
+#end ## filterFoundMember
+#end ## use_custom_content_filter
+${envMap.POUND_CHAR}endif
+
+#end  ## #macro(fileApplicationHeaderC)
+
+##******************************************************************************
+## Macro for the CPP Application Header file
+##******************************************************************************
+
+#macro(setNamespaceNames $namespace)
+#if (${namespace})
+    #set ( $dpf_name = "TheParticipantFactory" )
+    #set ( $dds_ns = "" )
+    #set ( $dds2_ns = "" )
+    #set ( $dpde_ns = "DPDE::" )
+    #set ( $dpde2_ns = "DPDE::" )
+    #set ( $dpse_ns = "DPSE::" )
+    #set ( $dpse2_ns = "DPSE::" )
+    #set ( $rt_ns = "RT::" )
+    #set ( $udp_ns = "UDP::" )
+    #set ( $udp2_ns = "UDP::" )
+    #set ( $netioshmem_ns = "NETIO::SHMEM::" )
+    #set ( $shmem_ns = "NETIO::SHMEM::" )
+    #set ( $wh_ns = "WHSM::" )
+    #set ( $rh_ns = "RHSM::" )
+    #set ( $netio_ns = "NETIO::" )
+    #set ( $nativeFQName = ${constructMap.name} )
+#else
+    #set ( $dpf_name = "DDSTheParticipantFactory" )
+    #set ( $dds_ns = "DDS" )
+    #set ( $dds2_ns = "DDS_" )
+    #set ( $dpde_ns = "DPDE" )
+    #set ( $dpde2_ns = "DPDE_" )
+    #set ( $dpse_ns = "DPSE" )
+    #set ( $dpse2_ns = "DPSE_" )
+    #set ( $rt_ns = "RT" )
+    #set ( $udp_ns = "UDP" )
+    #set ( $udp2_ns = "UDP_" )
+    #set ( $netioshmem_ns = "NETIO_SHMEM" )
+    #set ( $shmem_ns = "SHMEM" )
+    #set ( $wh_ns = "WHSM" )
+    #set ( $rh_ns = "RHSM" )
+    #set ( $netio_ns = "NETIO_" )
+    #set ( $nativeFQName = ${constructMap.nativeFQName} )
+#end
+#end  ## #macro(setNamespaceNames)
+
+
+#macro(fileApplicationHeaderCPP $namespace)
+${envMap.POUND_CHAR}ifndef Application_h
+${envMap.POUND_CHAR}define Application_h
+
+${envMap.POUND_CHAR}ifndef rti_me_cpp_hxx
+${envMap.POUND_CHAR}include "rti_me_cpp.hxx"
+${envMap.POUND_CHAR}endif
+
+${envMap.POUND_CHAR}ifndef dds_cpp_netio_hxx
+${envMap.POUND_CHAR}include "dds_cpp/dds_cpp_netio.hxx"
+${envMap.POUND_CHAR}endif
+
+#if (${namespace})
+using namespace DDS;
+#end
+
+#if (${use_secure})
+/*e \dref_Example_Config_UseSecure
+ * Define USE_SECURITY to register the RTI Security Plugin factories
+ * and enable them in the Application's DomainParticipant
+ */
+${envMap.POUND_CHAR}define USE_SECURITY
+
+#end
+/* Define USE_RELIABLE_QOS to use reliable
+ * reliability; otherwise, best-effort is used
+ */
+${envMap.POUND_CHAR}define USE_RELIABLE_QOS
+
+#if (${use_secure})
+class ApplicationSecMaterial
+{
+public:
+
+    const char *ca_id_cert;
+    const char *ca_perm_cert;
+    const char *peer_key;
+    const char *peer_cert;
+    const char *xml_gov;
+    const char *xml_perm;
+
+    ApplicationSecMaterial(const char *ca_id_cert,
+                           const char *ca_perm_cert,
+                           const char *peer_key,
+                           const char *peer_cert,
+                           const char *xml_gov,
+                           const char *xml_perm);
+    ApplicationSecMaterial();
+    ~ApplicationSecMaterial();
+
+    void print();
+
+    bool is_valid();
+};
+
+extern ApplicationSecMaterial PEER_MATERIAL_DEFAULT;
+
+#end
+class Application
+{
+public:
+    ${dds_ns}DomainParticipant *participant;
+    ${dds_ns}Topic *topic;
+    char topic_name[RTPS_PATHNAME_LEN_MAX + 1];
+    char type_name[RTPS_PATHNAME_LEN_MAX + 1];
+    ${dds2_ns}Long sleep_time;
+    ${dds2_ns}Long count;
+    ${udp2_ns}InterfaceFactoryProperty *udp_property;
+#if (${use_secure})
+    ApplicationSecMaterial *sec_material;
+#end
+
+    static void help(char *appname);
+
+    ${dds2_ns}ReturnCode_t initialize(
+        const char *local_participant_name,
+        const char *remote_participant_name,
+        ${dds2_ns}Long domain_id,
+        char *udp_intf,
+        const char *peer,
+        ${dds2_ns}Long sleep_time_arg,
+#if (${use_secure})
+        ${dds2_ns}Long count_arg,
+        ApplicationSecMaterial *sec_material);
+#else
+        ${dds2_ns}Long count_arg);
+#end
+
+#if (!${use_autoenable_entities})
+    ${dds2_ns}ReturnCode_t enable();
+
+#end
+    Application();
+    ~Application();
+#if (${use_secure})
+
+${envMap.POUND_CHAR}ifdef USE_SECURITY
+private:
+    ${dds2_ns}ReturnCode_t configure_security(
+        RTRegistry *registry,
+        ${dds2_ns}DomainParticipantQos &dp_qos,
+        ApplicationSecMaterial *sec_material);
+${envMap.POUND_CHAR}endif
+#end
+};
+
+${envMap.POUND_CHAR}endif
+
+#end  ## #macro(fileApplicationHeaderCPP)
+
+
+##******************************************************************************
+## Macro for the mag C Application Header file
+##******************************************************************************
+
+#macro(fileApplicationMagHeaderC)
+${envMap.POUND_CHAR}ifndef Application_h
+${envMap.POUND_CHAR}define Application_h
+
+#if ($use_dpde)
+${envMap.POUND_CHAR}define PUB_PARTICIPANT_NAME  "${constructMap.name}AppLibrary::${constructMap.name}DPDEPubDP"
+${envMap.POUND_CHAR}define PUB_DATAWRITER_NAME   "${constructMap.name}DPDEPub::${constructMap.name}DPDEDW"
+${envMap.POUND_CHAR}define SUB_PARTICIPANT_NAME  "${constructMap.name}AppLibrary::${constructMap.name}DPDESubDP"
+${envMap.POUND_CHAR}define SUB_DATAREADER_NAME   "${constructMap.name}DPDESub::${constructMap.name}DPDEDR"
+#else
+${envMap.POUND_CHAR}define PUB_PARTICIPANT_NAME  "${constructMap.name}AppLibrary::${constructMap.name}DPSEPubDP"
+${envMap.POUND_CHAR}define PUB_DATAWRITER_NAME   "${constructMap.name}DPSEPub::${constructMap.name}DPSEDW"
+${envMap.POUND_CHAR}define SUB_PARTICIPANT_NAME  "${constructMap.name}AppLibrary::${constructMap.name}DPSESubDP"
+${envMap.POUND_CHAR}define SUB_DATAREADER_NAME   "${constructMap.name}DPSESub::${constructMap.name}DPSEDR"
+#end
+
+${envMap.POUND_CHAR}include "rti_me_c.h"
+#if (${use_listener} && !${use_content_filter})
+
+/*e \dref_Example_Config_UseSampleFilter
+ * Define USE_SAMPLE_FILTER to filter samples
+ * using call-backs on the DataReader's listener*/
+
+/*${envMap.POUND_CHAR}define USE_SAMPLE_FILTER*/
+
+/*e \dref_Example_Config_FilterOnDeserialize
+ * Define FILTER_ON_DESERIALIZE to enable
+ * filtering on call-back on_before_sample_deserialize;
+ * otherwise use call-back on_before_sample_commit
+ * by default. */
+
+/*${envMap.POUND_CHAR}define FILTER_ON_DESERIALIZE*/
+#end
+
+struct Application
+{
+    DDS_DomainParticipant *participant;
+    DDS_Long sleep_time;
+    DDS_Long count;
+};
+
+extern void
+Application_help(char *appname);
+
+extern struct Application*
+Application_create(
+    const char *participant_name,
+    DDS_Long sleep_time,
+    DDS_Long count);
+
+#if (!${use_autoenable_entities})
+extern DDS_ReturnCode_t
+Application_enable(struct Application *application);
+
+#end
+${envMap.POUND_CHAR}ifndef RTI_CERT
+extern void
+Application_delete(struct Application *application);
+
+${envMap.POUND_CHAR}endif
+${envMap.POUND_CHAR}endif
+#end  ## #macro(fileApplicationMagHeaderC)
+
+
+##******************************************************************************
+## Macro for the mag C++ Application Header file
+##******************************************************************************
+
+
+#macro(fileApplicationMagHeaderCPP)
+${envMap.POUND_CHAR}ifndef Application_h
+${envMap.POUND_CHAR}define Application_h
+
+#if ($use_dpde)
+${envMap.POUND_CHAR}define PUB_PARTICIPANT_NAME  "${constructMap.name}AppLibrary::${constructMap.name}DPDEPubDP"
+${envMap.POUND_CHAR}define PUB_DATAWRITER_NAME   "${constructMap.name}DPDEPub::${constructMap.name}DPDEDW"
+${envMap.POUND_CHAR}define SUB_PARTICIPANT_NAME  "${constructMap.name}AppLibrary::${constructMap.name}DPDESubDP"
+${envMap.POUND_CHAR}define SUB_DATAREADER_NAME   "${constructMap.name}DPDESub::${constructMap.name}DPDEDR"
+#else
+${envMap.POUND_CHAR}define PUB_PARTICIPANT_NAME  "${constructMap.name}AppLibrary::${constructMap.name}DPSEPubDP"
+${envMap.POUND_CHAR}define PUB_DATAWRITER_NAME   "${constructMap.name}DPDEPub::${constructMap.name}DPSEDW"
+${envMap.POUND_CHAR}define SUB_PARTICIPANT_NAME  "${constructMap.name}AppLibrary::${constructMap.name}DPSESubDP"
+${envMap.POUND_CHAR}define SUB_DATAREADER_NAME   "${constructMap.name}DPDESub::${constructMap.name}DPSEDR"
+#end
+
+${envMap.POUND_CHAR}ifndef rti_me_cpp_hxx
+${envMap.POUND_CHAR}include "rti_me_cpp.hxx"
+${envMap.POUND_CHAR}endif
+
+class Application
+{
+public:
+    ${dds_ns}DomainParticipant *participant;
+    ${dds2_ns}Long sleep_time;
+    ${dds2_ns}Long count;
+#if ($use_secure)
+#ifdef USE_SECURITY
+    ApplicationSecMaterial *sec_material;
+#endif /* USE_SECURITY */
+#end
+
+    static void help(char *appname);
+
+    ${dds2_ns}ReturnCode_t initialize(
+        const char *participant_name,
+        ${dds2_ns}Long sleep_time_arg,
+        ${dds2_ns}Long count_arg);
+
+#if (!${use_autoenable_entities})
+    ${dds2_ns}ReturnCode_t enable();
+
+#end
+    Application();
+    ~Application();
+
+#if ($use_secure)
+#ifdef USE_SECURITY
+private:
+    ${dds2_ns}ReturnCode_t configure_security(
+        RTRegistry *registry,
+        ${dds2_ns}DomainParticipantQos &dp_qos,
+        ApplicationSecMaterial *sec_material);
+#endif /* USE_SECURITY */
+#end
+};
+
+${envMap.POUND_CHAR}endif
+#end  ## #macro(fileApplicationMagHeaderCPP)
+

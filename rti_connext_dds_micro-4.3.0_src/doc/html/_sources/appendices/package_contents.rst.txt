@@ -1,0 +1,182 @@
+.. _section-package-contents:
+
+Appendix C: Package Contents
+============================
+
+This section provides an overview of the installation package contents, as well
+as the resultant directory structure in the |me| installation.
+
+.. _section-host-bundle:
+
+Host bundle
+-----------
+When installed, the host bundle (``rti_connext_dds_micro-<version>-host.rtipkg``)
+adds the following to the |me| directory:
+
+.. code-block:: none
+
+  --rti_connext_dds-<version>/
+    |
+    +--rti_connext_dds_micro-<version>/
+        |--bin/
+        |--doc/
+        |--example/
+        |--include/
+        |--resource/
+        |--rtiddsgen/
+        |--rtiddsmag/
+        |--CMakeLists.txt
+        |--ReadMe.html
+        +--src/
+           +--rti_me_psl
+
+- The ``bin/`` directory contains scripts for *rtiddsgen*, *rtiddsmag*, and
+  rtime-make.
+- The ``doc/`` directory contains this documentation, as well as the C and C++
+  API References.
+- The ``example/`` directory contains buildable example applications, as well as
+  instructions on how to build and run them. Refer to
+  :ref:`section-provided-examples` for more information.
+- The ``include/`` directory contains the public header files to compile applications.
+- The ``resource/`` directory contains the build system used for the examples
+  and Platform Support Libraries (PSL).
+- The ``rtiddsgen/`` directory contains an IDL compiler for type support code.
+- The ``rtiddsmag/`` directory contains a tool for generating application code
+  from XML descriptions.
+- CMakeLists.txt is the main input file to `CMake <https://cmake.org/>`_ and is used to
+  generate build files.
+- ``ReadMe.html`` opens this documentation.
+- ``src/`` contains the source files for all supported Platform Support
+  Libraries (PSL); refer to :ref:`section-target-bundle` for more information on
+  the PSL. These can be recompliled for specific platform
+  configurations, as described in :ref:`psl_compiling`.
+
+.. _section-target-bundle:
+
+Target bundle
+-------------
+When installed, the target bundle (``rti_connext_dds_micro-<version>-target-<architecture>.rtipkg``)
+adds the following to the |me| directory:
+
+.. code-block:: none
+
+  --rti_connext_dds-<version>/
+      |--rti_connext_dds_micro-<version>/
+              |--lib/
+              |    |--<arch>/
+              |    |     +---<arch libraries>
+              |    |--<arch>CERT/
+              |    |     +---<arch CERT libraries>
+              |    |--<arch>-<PSL>/
+              |    |     +-- <arch PSL libraries>
+              |    |--<arch>CERT-<PSL>/
+              |    |     +-- <arch CERT PSL libraries>
+              |
+              |--sbom/
+
+
+- The ``lib/`` directory contains the libraries needed to build |me|.
+
+  - ``<arch>`` contains pre-built Static and Dynamic (where supported) Release and Debug
+    libraries. These may be integrated libraries or Platform Independent Libraries; see
+    :ref:`section-libraries` below.
+  - ``<arch>CERT`` contains pre-built CERT profile Release and Debug libraries, if they
+    exist for the specific architecture. These may be integrated libraries or Platform
+    Independent Libraries; see :ref:`section-libraries` below.
+  - ``<arch>-<PSL>`` contains pre-built Platform Support Libraries for the
+    specific architecture.
+  - ``<arch>CERT-<PSL>`` contains CERT profile Platform Support Libraries, if
+    they exist for the specific architecture.
+
+- The ``sbom/`` directory contains the Software Bill of Materials (SBOM) for the
+  target libraries.
+
+Lightweight Security Plugin host bundle
+---------------------------------------
+When installed, the Lightweight Security Plugin host bundle
+(``rti_connext_dds_micro-<version>-lw-security-host.rtipkg``)
+adds the following to the |me| directory:
+
+.. code-block:: none
+
+  --rti_connext_dds-<version>/
+      |--rti_connext_dds_micro-<version>/
+              |--include/
+              |      |--rti_me/
+              |           |--dds_psk/
+              |           |--rti_me_psl/
+              |                |--pskpsl/
+              |--rtiddsgen/
+              |      +--<security-specific example templates>
+
+- The ``include/`` directory contains security-related header files to use
+  the security binaries. These header files do not include the security
+  interfaces.
+- The ``rtiddsgen/`` directory includes security-specific example templates.
+
+Lightweight Security Plugin target bundle
+-----------------------------------------
+When installed, the Lightweight Security Plugin target bundle
+(``rti_connext_dds_micro-<version>-lw-security-target-openssl-3.5-<architecture>.rtipkg``)
+adds the following to the |me| directory:
+
+.. code-block:: none
+
+  --rti_connext_dds-<version>/
+      |--rti_connext_dds_micro-<version>/
+              |--lib/
+              |      |--<arch>/
+              |      |     +--<arch PSK Security PIL>
+              |      |--<arch>-<PSL>/
+              |      |     +--<arch Transform PSL libraries>
+              |      |--<arch>CERT/
+              |      |     +--<arch CERT PSK Security PIL>
+              |      |--<arch>CERT-<PSL>/
+              |      |     +--<arch CERT Transform PSL libraries>
+              |
+              |--sbom/
+                      +--<*ddspsk*>
+                      +--<*pskpsl*>
+
+- The ``lib/`` directory includes the libraries for your architecture and
+  platform, including the pre-built Transform PSL (``pskpsl_openssl3``).
+- The ``sbom/`` directory includes the Software Bill of Materials (SBOM) for
+  the security target libraries.
+
+Appendix D: Directory Structure
+===============================
+The complete, default |me| installation is structured as shown below:
+
+.. code-block:: none
+
+   +--rti_connext_dds-<version>/
+      |
+      +--rti_connext_dds_micro-<version> (rti_connext_dds_micro-<version>-host.rtipkg)
+         |--bin/
+         |--doc/
+         |--example/
+         |--include/
+         |--resource/
+         |--rtiddsgen/
+         |--rtiddsmag/
+         |--CMakeLists.txt
+         |--ReadMe.html
+         |--sbom/
+         +--src/
+         |  +-- rti_me_psl
+         +--lib (rti_connext_dds_micro-<version>-target-<arch>.rtipkg)
+            +--<arch>
+            |  +---<arch libraries>
+            +--<arch>CERT
+            |   +---<arch libraries>
+            +--<arch>-<PSL>
+            |   +-- <arch PSL libraries>
+            +--<arch>CERT-<PSL>
+                  +-- <arch PSL libraries>
+
+
+This directory structure is recommended and *should* be used because:
+
+- The source bundle includes a helper script to run
+  `CMake <https://cmake.org/>`_ that expects this directory structure.
+- This directory structure supports multiple architectures.

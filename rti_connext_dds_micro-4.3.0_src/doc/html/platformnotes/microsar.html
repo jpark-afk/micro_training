@@ -1,0 +1,1323 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.7. MicroSAR Platforms &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.8. macOS Platforms" href="macos.html" />
+    <link rel="prev" title="6.6. Linux Platforms" href="linux.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Platforms Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">6.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">6.2. Building Connext Micro for Common Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cert_compatibility.html">6.3. Building Connext Micro with Compatibility for Connext Cert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guid_generation.html">6.4. GUID Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">6.5. FreeRTOS Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux.html">6.6. Linux Platforms</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.7. MicroSAR Platforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#port-overview">6.7.1. Port overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-configure-microsar">6.7.2. How to configure MicroSAR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dds-cdd-configuration">6.7.2.1. DDS CDD configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsw-configuration">6.7.2.2. BSW configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#domainparticipant-configuration">6.7.2.3. DomainParticipant configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#osapi-portproperty-reference">6.7.2.4. OSAPI_PortProperty reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nocom-fullcom-socket-recovery">6.7.3. NoCom/FullCom socket recovery</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#api">6.7.3.1. API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#how-the-pil-was-built-for-microsar-platforms">6.7.4. How the PIL was built for MicroSAR platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-psl-from-source-for-microsar-platforms">6.7.5. Building the PSL from source for MicroSAR platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#known-issues-and-limitations">6.7.6. Known issues and limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">6.7.7. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="macos.html">6.8. macOS Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qnx.html">6.9. QNX Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">6.10. Windows Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">6. </span>Platforms Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">6.7. </span>MicroSAR Platforms</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="microsar-platforms">
+<span id="section-microsar-platforms"></span><h1><span class="section-number">6.7. </span>MicroSAR Platforms<a class="headerlink" href="#microsar-platforms" title="Permalink to this headline">¶</a></h1>
+<p>The following table shows the currently supported MicroSAR platforms.</p>
+<table class="colwidths-given longtable docutils align-default" id="id3">
+<caption><span class="caption-number">Table 6.11 </span><span class="caption-text">Supported MicroSAR Platforms</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>OS</p></th>
+<th class="head"><p>Version</p></th>
+<th class="head"><p>CPU</p></th>
+<th class="head"><p>Network Stack</p></th>
+<th class="head"><p>Toolchain</p></th>
+<th class="head"><p>Architecture PIL</p></th>
+<th class="head"><p>Architecture PSL</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MicroSAR</p></td>
+<td><p>29.06.20 (AUTOSAR 4.2.2)</p></td>
+<td><p>TC397</p></td>
+<td><p>N/A</p></td>
+<td><p>Tasking 6.3r1p7</p></td>
+<td><p>tc39xtElfTasking6.3r1</p>
+<p>tc39xtElfTasking6.3r1CERT</p>
+</td>
+<td><p>tc39xtElfTasking6.3r1-MICROSAR4</p>
+<p>tc39xtElfTasking6.3r1CERT-MICROSAR4</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="port-overview">
+<h2><span class="section-number">6.7.1. </span>Port overview<a class="headerlink" href="#port-overview" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> includes support for AUTOSAR™ and enables <em>Connext Micro</em> applications to run on
+AUTOSAR systems. The support has been tested on the Infineon™ AURIX™ Application
+Kit TC397 TFT development board with Vector™ AUTOSAR implementation version
+4.2.2 and compiler TASKING™ v6.3r1.</p>
+<p>This manual explains how to compile and configure <em>Connext Micro</em> to run on AUTOSAR systems
+and the AUTOSAR configuration required by <em>Connext Micro</em>.</p>
+</div>
+<div class="section" id="how-to-configure-microsar">
+<h2><span class="section-number">6.7.2. </span>How to configure MicroSAR<a class="headerlink" href="#how-to-configure-microsar" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dds-cdd-configuration">
+<span id="section-dds-cdd-configuration"></span><h3><span class="section-number">6.7.2.1. </span>DDS CDD configuration<a class="headerlink" href="#dds-cdd-configuration" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../programmersguide/appgen.html#section-generating-autosar-applications"><span class="std std-ref">Generating AUTOSAR Applications</span></a> for instructions on how to
+generate an AUTOSAR CDD with Micro Application Generator.</p>
+</div>
+<p><em>Connext Micro</em> is integrated as an AUTOSAR Complex Device Driver (CDD) SW-Component with
+the short name <code class="docutils literal notranslate"><span class="pre">DdsCddType</span></code>. The CDD does not support multiple instantiation.
+The following runnables are required in the CDD:</p>
+<table class="colwidths-given docutils align-default" id="id4">
+<caption><span class="caption-number">Table 6.12 </span><span class="caption-text">Required Runnables</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Runnable</p></th>
+<th class="head"><p>Trigger Type</p></th>
+<th class="head"><p>Period/Condition</p></th>
+<th class="head"><p>Concurrent</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Start</p></td>
+<td><p>INIT-EVENT</p></td>
+<td><p>Once at ECU startup</p></td>
+<td><p>No</p></td>
+<td><p>Always</p></td>
+<td><p>Initialization runnable. Called once when the RTE starts. This runnable
+initializes the DDS CDD.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Run</p></td>
+<td><p>TIMING-EVENT</p></td>
+<td><p>Periodic</p></td>
+<td><p>No</p></td>
+<td><p>Always</p></td>
+<td><p>Periodic maintenance runnable. Maintains DDS QoS protocols (Discovery,
+Liveliness, Reliability), and processes internal timers. This is the
+main “heartbeat” of the DDS middleware on AUTOSAR.</p></td>
+</tr>
+<tr class="row-even"><td><p>RxIndication</p></td>
+<td><p>Called by TcpIp stack</p></td>
+<td><p>On UDP packet reception</p></td>
+<td><p>No</p></td>
+<td><p>Only if <code class="docutils literal notranslate"><span class="pre">use_udp_thread</span></code> is TRUE <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p></td>
+<td><p>Called by the AUTOSAR TcpIp stack (via socket owner or PDU callout) when
+a UDP packet is received. When <code class="docutils literal notranslate"><span class="pre">use_udp_thread</span></code> is TRUE, this runnable
+copies the received data into an internal buffer and fires the Internal
+Triggering Point (ITP_DdsCdd_RxIndication) to wake up the ProcessData
+runnable.</p>
+<p>The TcpIp stack calls one of the following <em>Connext Micro</em> callbacks depending on
+the socket owner configuration:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NETIO_Autosar_TcpIp_udp_rx_indication()</span></code> — when a socket owner is configured</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NETIO_Autosar_TcpIp_pdu_callout()</span></code> — when no socket owner is configured</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>ProcessData</p></td>
+<td><p>INTERNAL-TRIGGER-OCCURRED-EVENT</p></td>
+<td><p>Triggered by ITP from RxIndication</p></td>
+<td><p>No</p></td>
+<td><p>Only if <code class="docutils literal notranslate"><span class="pre">use_udp_thread</span></code> is TRUE</p></td>
+<td><p>Processes buffered UDP packets that were stored by RxIndication. It
+iterates through the internal receive buffer and dispatches each packet
+to the appropriate DDS DataReader via <code class="docutils literal notranslate"><span class="pre">NETIO_Autosar_udp_receive_callback()</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>When <code class="docutils literal notranslate"><span class="pre">use_udp_thread</span></code> is FALSE, incoming UDP packets are processed
+directly in the TcpIp callback context (synchronously), and the
+RxIndication/ProcessData runnables are not needed.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="bsw-configuration">
+<h3><span class="section-number">6.7.2.2. </span>BSW configuration<a class="headerlink" href="#bsw-configuration" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="os-configuration">
+<h4><span class="section-number">6.7.2.2.1. </span>OS configuration<a class="headerlink" href="#os-configuration" title="Permalink to this headline">¶</a></h4>
+<p>The DDS CDD requires the following OS resources:</p>
+<ul>
+<li><p>STANDARD OS Resource: The DDS CDD requires one OS resource for internal
+synchronization (mutexes/semaphores). The resource ID used is determined by
+the <code class="docutils literal notranslate"><span class="pre">mutex_resource_id</span></code> field in <code class="docutils literal notranslate"><span class="pre">OSAPI_PortProperty</span></code>.</p></li>
+<li><p>Events: If semaphores are used (<code class="docutils literal notranslate"><span class="pre">semaphore_max_count</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>), AUTOSAR events
+must be configured. The events are defined by <code class="docutils literal notranslate"><span class="pre">first_give_event</span></code> and
+<code class="docutils literal notranslate"><span class="pre">first_timeout_event</span></code> in <code class="docutils literal notranslate"><span class="pre">OSAPI_PortProperty</span></code>. Each event ID must be a
+power of 2.</p></li>
+<li><p>Alarms: If semaphores are used, AUTOSAR alarms are required for timeout
+support, starting from <code class="docutils literal notranslate"><span class="pre">first_alarm</span></code>.</p></li>
+<li><p>Task: At least one dedicated OS task should be configured
+for DDS CDD runnables. The task priority should be higher than application SW-Cs
+but lower than critical BSW tasks (Ethernet driver, TcpIp stack).</p>
+<p>Stack size recommendations depend on which runnables are mapped to each task:</p>
+<ul class="simple">
+<li><p><strong>DdsCddRun runnable:</strong> Allocate at least 2 KB of stack space for the task
+where this runnable is mapped.</p></li>
+<li><p><strong>RxIndication and ProcessData runnables</strong> (when <code class="docutils literal notranslate"><span class="pre">use_udp_thread</span></code> is TRUE):
+Allocate at least 5 KB of stack space for that task. Both runnables should
+be mapped to the same task.</p></li>
+<li><p><strong>Application-defined read/write runnables:</strong> The integrator is responsible
+for creating runnables that read from DDS <em>DataReaders</em> and write to DDS
+<em>DataWriters</em> based on their application’s topics. These runnables call
+<em>Connext Micro</em> APIs (e.g., <code class="docutils literal notranslate"><span class="pre">DataReader_take()</span></code>, <code class="docutils literal notranslate"><span class="pre">DataWriter_write()</span></code>). For the
+task(s) where these runnables are mapped, allocate at least 8 KB of
+additional stack space for DDS operations.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If all runnables are mapped to a single task, allocate at least 15 KB total.</p>
+</div>
+</li>
+<li><p>Spinlocks (optional): If <code class="docutils literal notranslate"><span class="pre">sync_type</span></code> is set to
+<code class="docutils literal notranslate"><span class="pre">OSAPI_AUTOSAR_SYNCKIND_SPINLOCK</span></code>, a spinlock must be configured in the OS
+and its ID set in <code class="docutils literal notranslate"><span class="pre">spinlock_id</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="tcpip-configuration">
+<h4><span class="section-number">6.7.2.2.2. </span>TcpIp configuration<a class="headerlink" href="#tcpip-configuration" title="Permalink to this headline">¶</a></h4>
+<p>The DDS CDD interfaces with the AUTOSAR TcpIp BSW module for all network
+communication. The following configuration is required:</p>
+<ul class="simple">
+<li><p>Socket Owner: Configure a socket owner for the DDS CDD so that <em>Connext Micro</em> can
+create and manage its own UDP sockets. Register the following callbacks:</p>
+<ul>
+<li><p>RxIndication: <code class="docutils literal notranslate"><span class="pre">NETIO_Autosar_TcpIp_udp_rx_indication</span></code> (called when UDP
+data is received)</p></li>
+<li><p>LocalIpAddrAssignmentChg: In this callback, DDS CDD can begin its
+initialization.</p></li>
+</ul>
+</li>
+<li><p>UDP Sockets: DDS requires at minimum 2 UDP sockets in unicast mode and 3 UDP
+sockets if multicast is enabled (2 unicast + 1 multicast). Ensure the TcpIp
+module is configured to support this number of sockets.</p></li>
+<li><p>IP Address: A static or DHCP-assigned IP address must be available. The DDS
+CDD waits for the IP address to be assigned before proceeding with full
+initialization.</p></li>
+</ul>
+</div>
+<div class="section" id="bswm-configuration">
+<h4><span class="section-number">6.7.2.2.3. </span>BswM configuration<a class="headerlink" href="#bswm-configuration" title="Permalink to this headline">¶</a></h4>
+<p>DDS entities (in particular the <em>DomainParticipant</em>) must only be created once
+the TcpIp stack is up and running with an IP address assigned, because entity
+creation triggers discovery messages that are sent to other peers on the
+network.</p>
+<p>We recommend the following approach:</p>
+<ol class="arabic simple">
+<li><p>The TcpIp stack initializes and assigns an IP address.</p></li>
+<li><p>The LocalIpAddrAssignmentChg callback for the socket owner fires, indicating
+TcpIp is ready.</p></li>
+<li><p>Only after this callback has been received should the DDS CDD proceed with
+creating DDS entities.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The exact mechanism to ensure TcpIp is ready before DDS entity creation is
+configurable and may vary per project. The key requirement is that DDS
+entities are not created until an IP address is available. One common
+approach is to use the BswM to gate <code class="docutils literal notranslate"><span class="pre">Rte_Start()</span></code> until after
+LocalIpAddrAssignmentChg has been received. Alternatively, the DDS CDD state
+machine can handle this internally by deferring entity creation until the
+callback sets a readiness flag.</p>
+</div>
+</div>
+</div>
+<div class="section" id="domainparticipant-configuration">
+<h3><span class="section-number">6.7.2.3. </span>DomainParticipant configuration<a class="headerlink" href="#domainparticipant-configuration" title="Permalink to this headline">¶</a></h3>
+<p>When creating a <em>DomainParticipant</em>, the <code class="docutils literal notranslate"><span class="pre">participant_id</span></code> field in
+<code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantQos.protocol</span></code> must be
+set to a unique value for each participant in the same domain on the same node.
+This ID is used by the RTPS protocol to distinguish participants and must not
+conflict with other participants on the network.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">DDS_DomainParticipantQos</span><span class="w"> </span><span class="n">dp_qos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipantQos_INITIALIZER</span><span class="p">;</span>
+
+<span class="cm">/* Set participant ID - must be unique per domain */</span>
+<span class="n">dp_qos</span><span class="p">.</span><span class="n">protocol</span><span class="p">.</span><span class="n">participant_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="n">participant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipantFactory_create_participant</span><span class="p">(</span>
+<span class="w">    </span><span class="n">dpf</span><span class="p">,</span><span class="w"> </span><span class="n">domain_id</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dp_qos</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">DDS_STATUS_MASK_NONE</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">participant_id</span></code> is not set explicitly, the default value depends on
+the platform. On AUTOSAR platforms, always set this field explicitly to
+ensure deterministic behavior and avoid conflicts with other participants.</p>
+</div>
+</div>
+<div class="section" id="osapi-portproperty-reference">
+<span id="section-osapi-portproperty-reference"></span><h3><span class="section-number">6.7.2.4. </span>OSAPI_PortProperty reference<a class="headerlink" href="#osapi-portproperty-reference" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">OSAPI_PortProperty</span></code> structure contains all platform-specific
+configuration for the <em>Connext Micro</em> AUTOSAR port. It is set via
+<code class="docutils literal notranslate"><span class="pre">OSPSL_AutosarSystem_set_property()</span></code> before <code class="docutils literal notranslate"><span class="pre">OSAPI_System_initialize()</span></code>
+is called. The default initializer is <code class="docutils literal notranslate"><span class="pre">OSAPI_PortProperty_INITIALIZER</span></code>. All
+fields default to <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, or <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>, except
+<code class="docutils literal notranslate"><span class="pre">enable_thread_safe_heap</span></code> which defaults to <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> and <code class="docutils literal notranslate"><span class="pre">sync_type</span></code> which
+defaults to <code class="docutils literal notranslate"><span class="pre">OSAPI_AUTOSAR_SYNCKIND_RESOURCES</span></code>.</p>
+<div class="section" id="system-configuration">
+<h4><span class="section-number">6.7.2.4.1. </span>System configuration<a class="headerlink" href="#system-configuration" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-given docutils align-default" id="id5">
+<caption><span class="caption-number">Table 6.13 </span><span class="caption-text">System configuration</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timer_resolution_ms</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uint32</span></code></p></td>
+<td><p>0</p></td>
+<td><p>Timer resolution in milliseconds. Determines the granularity of the DDS
+system clock. The DDS Run runnable period should match this value. A
+typical value is 10 (matching the 10 ms Run period).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="heap-configuration">
+<h4><span class="section-number">6.7.2.4.2. </span>Heap configuration<a class="headerlink" href="#heap-configuration" title="Permalink to this headline">¶</a></h4>
+<p><em>Connext Micro</em> on AUTOSAR uses a static heap (no dynamic malloc/free). Memory must be
+pre-allocated as one or more heap areas and provided to the port via these
+properties.</p>
+<table class="colwidths-given docutils align-default" id="id6">
+<caption><span class="caption-number">Table 6.14 </span><span class="caption-text">Heap Configuration</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 15%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">number_of_heap_areas</span></code></p></td>
+<td><p>uint32</p></td>
+<td><p>0</p></td>
+<td><p>Number of static memory areas provided for the DDS heap. Must be at
+least 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">heap_area_size</span></code></p></td>
+<td><p>const uint32*</p></td>
+<td><p>NULL</p></td>
+<td><p>Pointer to an array of sizes (in bytes) for each heap area. The first
+area must be large enough to hold at least the offset table for all
+memory areas (<code class="docutils literal notranslate"><span class="pre">sizeof(uint32)</span> <span class="pre">*</span> <span class="pre">(number_of_heap_areas</span> <span class="pre">+</span> <span class="pre">1)</span></code> for
+alignment).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">heap_area</span></code></p></td>
+<td><p>const char**</p></td>
+<td><p>NULL</p></td>
+<td><p>Pointer to an array of pointers to the pre-allocated memory buffers.
+Each buffer must be non-NULL and its corresponding size must be non-zero.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">enable_thread_safe_heap</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>TRUE</p></td>
+<td><p>Set to TRUE to enable thread-safe heap operations using the configured
+synchronization mechanism. Set to FALSE only in single-threaded
+configurations.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The AUTOSAR heap implementation does not support freeing memory. Once memory
+is allocated it cannot be returned to the heap. Plan your heap size
+accordingly.</p>
+</div>
+</div>
+<div class="section" id="mutex-configuration">
+<h4><span class="section-number">6.7.2.4.3. </span>Mutex configuration<a class="headerlink" href="#mutex-configuration" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-given docutils align-default" id="id7">
+<caption><span class="caption-number">Table 6.15 </span><span class="caption-text">Mutex Configuration</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 30%" />
+<col style="width: 20%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sync_type</span></code></p></td>
+<td><p>OSAPI_Autosar_SyncKind_T</p></td>
+<td><p>OSAPI_AUTOSAR_SYNCKIND_RESOURCES</p></td>
+<td><p>Synchronization mechanism. Use OSAPI_AUTOSAR_SYNCKIND_RESOURCES to use
+AUTOSAR STANDARD resources (GetResource/ReleaseResource). Use
+OSAPI_AUTOSAR_SYNCKIND_SPINLOCK to use spinlocks
+(GetSpinlock/ReleaseSpinlock). Spinlock support is only available when
+RTIME_AUTOSAR_SPINLOCK_ENABLED is 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mutex_resource_id</span></code></p></td>
+<td><p>ResourceType</p></td>
+<td><p>0</p></td>
+<td><p>The AUTOSAR resource ID allocated for DDS mutexes when sync_type is
+OSAPI_AUTOSAR_SYNCKIND_RESOURCES.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">spinlock_id</span></code></p></td>
+<td><p>uint16</p></td>
+<td><p>0</p></td>
+<td><p>The AUTOSAR spinlock ID to use when sync_type is
+OSAPI_AUTOSAR_SYNCKIND_SPINLOCK. Only available when
+RTIME_AUTOSAR_SPINLOCK_ENABLED is 1.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="semaphore-configuration">
+<h4><span class="section-number">6.7.2.4.4. </span>Semaphore configuration<a class="headerlink" href="#semaphore-configuration" title="Permalink to this headline">¶</a></h4>
+<p>AUTOSAR does not provide native semaphore support. <em>Connext Micro</em> implements semaphores
+using AUTOSAR Events and Alarms. If your application uses DDS features that
+require semaphores (e.g., blocking reads), these fields must be configured.</p>
+<table class="colwidths-given docutils align-default" id="id8">
+<caption><span class="caption-number">Table 6.16 </span><span class="caption-text">Semaphore Configuration</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 15%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">semaphore_max_count</span></code></p></td>
+<td><p>uint32</p></td>
+<td><p>0</p></td>
+<td><p>Maximum number of concurrent semaphores. Set to 0 to disable semaphore
+support. If non-zero, the <code class="docutils literal notranslate"><span class="pre">first_give_event</span></code>, <code class="docutils literal notranslate"><span class="pre">first_timeout_event</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">first_alarm</span></code> fields must also be configured. The number of bits between
+the bit indices of <code class="docutils literal notranslate"><span class="pre">first_give_event</span></code> and <code class="docutils literal notranslate"><span class="pre">first_timeout_event</span></code> must be ≥
+<code class="docutils literal notranslate"><span class="pre">semaphore_max_count</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">first_give_event</span></code></p></td>
+<td><p>EventMaskType</p></td>
+<td><p>0</p></td>
+<td><p>The first AUTOSAR event mask used for semaphore “give” signals. Must be
+a power of 2 and non-zero when <code class="docutils literal notranslate"><span class="pre">semaphore_max_count</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">first_timeout_event</span></code></p></td>
+<td><p>EventMaskType</p></td>
+<td><p>0</p></td>
+<td><p>The first AUTOSAR event mask used for semaphore timeout signals. Must be
+a power of 2, non-zero, and different from <code class="docutils literal notranslate"><span class="pre">first_give_event</span></code> when
+<code class="docutils literal notranslate"><span class="pre">semaphore_max_count</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">first_alarm</span></code></p></td>
+<td><p>AlarmType</p></td>
+<td><p>0</p></td>
+<td><p>The first AUTOSAR alarm ID used for semaphore timeouts. Must be non-zero
+when <code class="docutils literal notranslate"><span class="pre">semaphore_max_count</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>. The range [<code class="docutils literal notranslate"><span class="pre">first_alarm</span></code>, <code class="docutils literal notranslate"><span class="pre">first_alarm</span> <span class="pre">+</span>
+<span class="pre">semaphore_max_count</span></code>) must be valid alarm IDs.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="socket-configuration">
+<h4><span class="section-number">6.7.2.4.5. </span>Socket configuration<a class="headerlink" href="#socket-configuration" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-given docutils align-default" id="id9">
+<caption><span class="caption-number">Table 6.17 </span><span class="caption-text">Socket Configuration</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 30%" />
+<col style="width: 15%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">use_socket_owner</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>FALSE</p></td>
+<td><p>Set to TRUE to use the AUTOSAR TcpIp Socket Owner mechanism for socket
+management. When TRUE, <code class="docutils literal notranslate"><span class="pre">get_socket</span></code> must point to a valid function.
+When FALSE, <code class="docutils literal notranslate"><span class="pre">send_data</span></code> must point to a valid function. Note:
+<code class="docutils literal notranslate"><span class="pre">use_socket_owner</span> <span class="pre">=</span> <span class="pre">FALSE</span></code> has not been fully tested (see Known Issues).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max_receive_sockets</span></code></p></td>
+<td><p>uint8</p></td>
+<td><p>0</p></td>
+<td><p>Maximum number of receive sockets that DDS will create. Must be at
+least 1. A typical value for DDS with unicast is 4; with multicast
+enabled, use 5.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">get_socket</span></code></p></td>
+<td><p>NETIO_Autosar_TcpIp_get_socket</p></td>
+<td><p>NULL_PTR</p></td>
+<td><p>Function pointer for obtaining a TcpIp socket. Required when
+<code class="docutils literal notranslate"><span class="pre">use_socket_owner</span></code> is TRUE. The function signature is:
+<code class="docutils literal notranslate"><span class="pre">Std_ReturnType</span> <span class="pre">(*)(TcpIp_DomainType</span> <span class="pre">domain,</span> <span class="pre">TcpIp_ProtocolType</span> <span class="pre">protocol,</span> <span class="pre">TcpIp_SocketIdType</span> <span class="pre">*socket)</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">send_data</span></code></p></td>
+<td><p>NETIO_Autosar_TcpIp_send_dyn_data</p></td>
+<td><p>NULL_PTR</p></td>
+<td><p>Function pointer for sending UDP data. Required when <code class="docutils literal notranslate"><span class="pre">use_socket_owner</span></code>
+is FALSE. The function signature is: <code class="docutils literal notranslate"><span class="pre">Std_ReturnType</span> <span class="pre">(*)(const</span> <span class="pre">void</span> <span class="pre">*data_ptr,</span> <span class="pre">uint16</span> <span class="pre">length,</span> <span class="pre">const</span> <span class="pre">TcpIp_SockAddrType</span> <span class="pre">*remote_addr_ptr)</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max_local_addr_id</span></code></p></td>
+<td><p>TcpIp_LocalAddrIdType</p></td>
+<td><p>0</p></td>
+<td><p>Maximum configured IP address identifier. Represents the range top for
+configured IP addresses [0..max_local_addr_id].</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">send_local_addr_id</span></code></p></td>
+<td><p>TcpIp_LocalAddrIdType</p></td>
+<td><p>0</p></td>
+<td><p>Local address ID to use for outgoing packets. Must be in the range [0..max_local_addr_id]. This is the local IP address that will be used as the source address for outgoing UDP packets.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="udp-thread-configuration">
+<h4><span class="section-number">6.7.2.4.6. </span>UDP thread configuration<a class="headerlink" href="#udp-thread-configuration" title="Permalink to this headline">¶</a></h4>
+<p>These fields control how incoming UDP packets are processed. When
+<code class="docutils literal notranslate"><span class="pre">use_udp_thread</span></code> is TRUE, received packets are buffered and processed
+asynchronously by the ProcessData runnable. When FALSE, packets are processed
+directly in the TcpIp callback context.</p>
+<table class="colwidths-given docutils align-default" id="id10">
+<caption><span class="caption-number">Table 6.18 </span><span class="caption-text">UDP Thread Configuration</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 15%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">use_udp_thread</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>FALSE</p></td>
+<td><p>Set to TRUE to enable asynchronous UDP packet processing via a dedicated
+task/runnable. When TRUE, the RxIndication and ProcessData runnables
+must be configured in the CDD. When FALSE, packets are processed
+synchronously in the TcpIp callback.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">udp_receive_task_id</span></code></p></td>
+<td><p>TaskType</p></td>
+<td><p>0</p></td>
+<td><p>DEPRECATED. TO BE REMOVED</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">udp_packet_received_event</span></code></p></td>
+<td><p>EventMaskType</p></td>
+<td><p>0</p></td>
+<td><p>DEPRECATED. TO BE REMOVED</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">number_of_rcv_buffers</span></code></p></td>
+<td><p>uint8</p></td>
+<td><p>0</p></td>
+<td><p>Number of internal receive buffers for storing incoming UDP packets.
+Required when <code class="docutils literal notranslate"><span class="pre">use_udp_thread</span></code> is TRUE. Must be non-zero.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rcv_buffer_size</span></code></p></td>
+<td><p>uint32</p></td>
+<td><p>0</p></td>
+<td><p>Size in bytes of each receive buffer. Must accommodate the largest
+expected UDP packet. A typical value is 1500 (standard Ethernet MTU).
+Required when <code class="docutils literal notranslate"><span class="pre">use_udp_thread</span></code> is TRUE. Must be non-zero.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="logging-configuration">
+<h4><span class="section-number">6.7.2.4.7. </span>Logging configuration<a class="headerlink" href="#logging-configuration" title="Permalink to this headline">¶</a></h4>
+<p>These fields are only available when <code class="docutils literal notranslate"><span class="pre">OSAPI_ENABLE_LOG</span></code> is set to 1 at
+compile time.</p>
+<table class="colwidths-given docutils align-default" id="id11">
+<caption><span class="caption-number">Table 6.19 </span><span class="caption-text">Logging Configuration</span><a class="headerlink" href="#id11" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 15%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">log_dst_address</span></code></p></td>
+<td><p>uint32</p></td>
+<td><p>0</p></td>
+<td><p>Destination IP address for remote log output. Format is host-byte-order
+(e.g., 0xCA00A8C0 = 192.168.0.202). Set to 0 to disable remote logging.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">log_dst_port</span></code></p></td>
+<td><p>uint16</p></td>
+<td><p>0</p></td>
+<td><p>Destination UDP port for remote log output.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="routing-dds-errors-to-autosar-det">
+<h4><span class="section-number">6.7.2.4.8. </span>Routing DDS errors to AUTOSAR DET<a class="headerlink" href="#routing-dds-errors-to-autosar-det" title="Permalink to this headline">¶</a></h4>
+<p>By default, <em>Connext Micro</em> does not call <code class="docutils literal notranslate"><span class="pre">Det_ReportError</span></code>. The AUTOSAR port ships a
+built-in display handler, <code class="docutils literal notranslate"><span class="pre">OSAPI_AutosarLog_default_display</span></code>, that routes
+every DDS log entry to the AUTOSAR Default Error Tracer (DET) via
+<code class="docutils literal notranslate"><span class="pre">Det_ReportError</span></code>. This handler is only available when <code class="docutils literal notranslate"><span class="pre">OSAPI_ENABLE_LOG</span></code>
+is set to 1 at compile time.</p>
+<p><strong>How the handler works</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">OSAPI_AutosarLog_default_display</span></code> performs the following steps for each log
+entry:</p>
+<ol class="arabic simple">
+<li><p>Reads the current verbosity level via <code class="docutils literal notranslate"><span class="pre">OSAPI_Log_get_verbosity()</span></code>.</p></li>
+<li><p>Checks the log entry kind (<code class="docutils literal notranslate"><span class="pre">OSAPI_LOGKIND_INFO</span></code>,
+<code class="docutils literal notranslate"><span class="pre">OSAPI_LOGKIND_WARNING</span></code>, <code class="docutils literal notranslate"><span class="pre">OSAPI_LOGKIND_ERROR</span></code>,
+<code class="docutils literal notranslate"><span class="pre">OSAPI_LOGKIND_PRECONDITION</span></code>) against the current verbosity. Entries
+below the configured verbosity threshold are silently dropped and do not
+produce a DET report.</p></li>
+<li><p>Extracts the DDS <code class="docutils literal notranslate"><span class="pre">module_id</span></code> and <code class="docutils literal notranslate"><span class="pre">error_id</span></code> from the log entry’s error
+code.</p></li>
+<li><p>Packs both values into the two 8-bit DET fields (<code class="docutils literal notranslate"><span class="pre">ApiId</span></code> and <code class="docutils literal notranslate"><span class="pre">ErrorId</span></code>)
+as follows, to fit within DET’s field-width constraints:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ApiId[7:4]</span></code> = high nibble of <code class="docutils literal notranslate"><span class="pre">error_id</span></code> (bits [11:8])</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ApiId[3:0]</span></code> = <code class="docutils literal notranslate"><span class="pre">module_id[3:0]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ErrorId[7:0]</span></code> = low byte of <code class="docutils literal notranslate"><span class="pre">error_id</span></code> (bits [7:0])</p></li>
+</ul>
+</li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">Det_ReportError</span></code> with:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ModuleId</span></code> = <code class="docutils literal notranslate"><span class="pre">RTIME_DDS_MODULE_ID</span></code> (<code class="docutils literal notranslate"><span class="pre">0x010A</span></code>, the RTI OMG Vendor ID)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">InstanceId</span></code> = <code class="docutils literal notranslate"><span class="pre">RTIME_DDS_INSTANCE_ID</span></code> (<code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ApiId</span></code> and <code class="docutils literal notranslate"><span class="pre">ErrorId</span></code> as packed above.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>How to enable the handler</strong></p>
+<p>Call <code class="docutils literal notranslate"><span class="pre">OSAPI_Log_set_display_handler</span></code> during DDS initialization to
+replace the default display handler with the DET-reporting one:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#if OSAPI_ENABLE_LOG</span>
+<span class="n">OSAPI_Log_set_display_handler</span><span class="p">(</span>
+<span class="w">    </span><span class="p">(</span><span class="n">OSAPI_LogDisplay_T</span><span class="p">)</span><span class="o">&amp;</span><span class="n">OSAPI_AutosarLog_default_display</span><span class="p">,</span>
+<span class="w">    </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>The second argument (<code class="docutils literal notranslate"><span class="pre">param</span></code>) is not used by
+<code class="docutils literal notranslate"><span class="pre">OSAPI_AutosarLog_default_display</span></code> and must be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This handler respects the verbosity level configured via
+<code class="docutils literal notranslate"><span class="pre">OSAPI_Log_set_verbosity()</span></code>. Only log entries at or above the configured
+verbosity level will trigger a DET report. Guard the call with
+<code class="docutils literal notranslate"><span class="pre">#if</span> <span class="pre">OSAPI_ENABLE_LOG</span></code> to ensure it is only compiled when logging is
+enabled.</p>
+</div>
+</div>
+<div class="section" id="binding-receive-sockets-to-a-specific-interface">
+<h4><span class="section-number">6.7.2.4.9. </span>Binding receive sockets to a specific interface<a class="headerlink" href="#binding-receive-sockets-to-a-specific-interface" title="Permalink to this headline">¶</a></h4>
+<p>By default, <em>Connext Micro</em> binds receive sockets to <code class="docutils literal notranslate"><span class="pre">INADDR_ANY</span></code>, which means that
+incoming UDP packets are accepted on any network interface. In some AUTOSAR
+deployments with multiple network interfaces, it may be necessary to restrict
+DDS receive sockets to a specific interface so that packets are only received
+on the intended network.</p>
+<p>To enable this behavior, set the <code class="docutils literal notranslate"><span class="pre">enable_interface_bind</span></code> field to <code class="docutils literal notranslate"><span class="pre">RTI_TRUE</span></code>
+in the UDP transport property (<code class="docutils literal notranslate"><span class="pre">UDP_InterfaceFactoryProperty</span></code>) when
+registering the UDP transport. When this condition is met, receive
+sockets are bound to the specific local IP address of the selected interface
+rather than <code class="docutils literal notranslate"><span class="pre">INADDR_ANY</span></code>.</p>
+<p>On AUTOSAR, this binding works as follows: when a receive socket is bound to a
+specific IP address (not <code class="docutils literal notranslate"><span class="pre">INADDR_ANY</span></code>), the AUTOSAR socket wrapper
+(<code class="docutils literal notranslate"><span class="pre">NETIO_AutosarSocket_bind()</span></code>) calls <code class="docutils literal notranslate"><span class="pre">NETIO_AutosarSocket_find_local_addr_id()</span></code>
+to iterate through the configured TcpIp local address IDs (from 0 to
+<code class="docutils literal notranslate"><span class="pre">max_local_addr_id</span></code>) using <code class="docutils literal notranslate"><span class="pre">TcpIp_GetIpAddr()</span></code>. When a matching IP address is
+found, the corresponding <code class="docutils literal notranslate"><span class="pre">TcpIp_LocalAddrIdType</span></code> is passed to <code class="docutils literal notranslate"><span class="pre">TcpIp_Bind()</span></code>
+instead of <code class="docutils literal notranslate"><span class="pre">TCPIP_LOCALADDRID_ANY</span></code>.</p>
+<p><strong>Requirements:</strong></p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">max_local_addr_id</span></code> field in <code class="docutils literal notranslate"><span class="pre">OSAPI_PortProperty</span></code> must be set to the
+maximum configured IP address identifier in the TcpIp module, so that
+the address lookup covers all configured addresses.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">enable_interface_bind</span></code> field must be set to <code class="docutils literal notranslate"><span class="pre">RTI_TRUE</span></code> in the UDP
+transport property (<code class="docutils literal notranslate"><span class="pre">UDP_InterfaceFactoryProperty</span></code>) when registering the UDP transport.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_socket_owner</span></code> must be <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> in <code class="docutils literal notranslate"><span class="pre">OSAPI_PortProperty</span></code>, since the
+<code class="docutils literal notranslate"><span class="pre">TcpIp_Bind()</span></code> call with a specific local address ID is only performed
+when the socket owner mechanism is used. This feature is not supported when
+using SoAd PDU routing (<code class="docutils literal notranslate"><span class="pre">use_socket_owner</span> <span class="pre">=</span> <span class="pre">FALSE</span></code>).</p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">UDP_InterfaceFactoryProperty</span><span class="w"> </span><span class="n">udp_property</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">UDP_InterfaceFactoryProperty_INITIALIZER</span><span class="p">;</span>
+
+<span class="cm">/* Enable interface bind */</span>
+<span class="n">udp_property</span><span class="p">.</span><span class="n">enable_interface_bind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RTI_TRUE</span><span class="p">;</span>
+
+<span class="cm">/* Configure the allowed interface(s) */</span>
+<span class="n">DDS_StringSeq_set_maximum</span><span class="p">(</span><span class="o">&amp;</span><span class="n">udp_property</span><span class="p">.</span><span class="n">allow_interface</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="n">DDS_StringSeq_set_length</span><span class="p">(</span><span class="o">&amp;</span><span class="n">udp_property</span><span class="p">.</span><span class="n">allow_interface</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="o">*</span><span class="n">DDS_StringSeq_get_reference</span><span class="p">(</span><span class="o">&amp;</span><span class="n">udp_property</span><span class="p">.</span><span class="n">allow_interface</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;eth0&quot;</span><span class="p">);</span>
+
+<span class="cm">/* Register the UDP transport with the modified property */</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">RT_Registry_register</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="n">NETIO_DEFAULT_UDP_NAME</span><span class="p">,</span>
+<span class="w">        </span><span class="n">UDP_InterfaceFactory_get_interface</span><span class="p">(),</span>
+<span class="w">        </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">RT_ComponentFactoryProperty</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">udp_property</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* ERROR */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="nocom-fullcom-socket-recovery">
+<span id="section-socket-recovery"></span><h2><span class="section-number">6.7.3. </span>NoCom/FullCom socket recovery<a class="headerlink" href="#nocom-fullcom-socket-recovery" title="Permalink to this headline">¶</a></h2>
+<p>In some AUTOSAR deployments the communication stack can transition to a
+<em>NoCom</em> (no-communication) state — for example, when a network management
+event, a diagnostic session, or a bus-off condition causes the TcpIp stack to
+close all active UDP sockets and release the IP address.  When communication
+is later restored (<em>FullCom</em>), <em>Connext Micro</em> must re-open and re-bind its receive
+sockets so that DDS traffic can resume without restarting the ECU.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This feature applies <strong>only</strong> when the Socket Owner mechanism is used
+(<code class="docutils literal notranslate"><span class="pre">use_socket_owner</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> in <code class="docutils literal notranslate"><span class="pre">OSAPI_PortProperty</span></code>).  When SoAd PDU
+routing is used instead, socket lifecycle management is handled directly
+by SoAd and this recovery path is not needed.</p>
+</div>
+<p>This feature is not available in CERT builds (<code class="docutils literal notranslate"><span class="pre">RTI_CERT</span></code>).</p>
+<p><em>Connext Micro</em> tracks every active receive socket in an internal table (one entry per
+bound local port).  The recovery sequence has two stages:</p>
+<ol class="arabic">
+<li><p><strong>Socket closed (NoCom)</strong> — When the TcpIp stack closes a UDP socket it
+calls the application-registered <code class="docutils literal notranslate"><span class="pre">TcpIpEvent</span></code> callback with the event
+<code class="docutils literal notranslate"><span class="pre">TCPIP_UDP_CLOSED</span></code>.  The application must forward this event to <em>Connext Micro</em> by
+calling <code class="docutils literal notranslate"><span class="pre">NETIO_Autosar_on_socket_event()</span></code>.  <em>Connext Micro</em> looks up the socket ID
+in the internal receive-port table and marks the corresponding entry as
+<em>closed</em> (<code class="docutils literal notranslate"><span class="pre">is_open</span> <span class="pre">=</span> <span class="pre">FALSE</span></code>), so it is eligible for recovery when
+communication is restored.  Send sockets do not need explicit tracking
+because they are re-bound unconditionally during recovery.</p></li>
+<li><p><strong>IP address re-assigned (FullCom)</strong> — When the TcpIp stack re-assigns an
+IP address it calls the application-registered
+<code class="docutils literal notranslate"><span class="pre">LocalIpAddrAssignmentChg</span></code> callback with
+<code class="docutils literal notranslate"><span class="pre">TCPIP_IPADDR_STATE_ASSIGNED</span></code>.  The application must call
+<code class="docutils literal notranslate"><span class="pre">NETIO_Autosar_on_ip_assigned()</span></code> for every such event (except the very
+first one, which is the normal DDS startup path).  <em>Connext Micro</em> then performs the
+following steps for each registered UDP interface:</p>
+<ol class="loweralpha simple">
+<li><p>Re-binds all send sockets to the newly assigned local address ID.</p></li>
+<li><p>Iterates the receive-port table.  For each entry that is marked
+<em>closed</em> <strong>and</strong> whose bound IP address matches the newly assigned
+local address ID:</p>
+<ol class="lowerroman simple">
+<li><p>Deregisters the old socket ID from the TcpIp recvnotify callback
+table.</p></li>
+<li><p>Acquires a fresh socket ID from TcpIp via <code class="docutils literal notranslate"><span class="pre">TcpIp_GetSocket()</span></code>.</p></li>
+<li><p>Binds the new socket to the same local port that was active before
+the NoCom transition.</p></li>
+<li><p>Re-registers the <em>Connext Micro</em> receive callback (<code class="docutils literal notranslate"><span class="pre">UDP_Interface_receive_packet</span></code>)
+with the new socket ID.</p></li>
+<li><p>Updates the port entry with the new socket ID and marks it
+<em>open</em> again.</p></li>
+</ol>
+</li>
+</ol>
+<p>Both functions are serialised with the internal NETIO mutex and are
+idempotent — calling them when no recovery is needed returns
+<code class="docutils literal notranslate"><span class="pre">RTI_TRUE</span></code> immediately without modifying any state.</p>
+</li>
+</ol>
+<div class="section" id="api">
+<h3><span class="section-number">6.7.3.1. </span>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h3>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">NETIO_Autosar_on_socket_event</span></code></dt><dd><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Std_ReturnType</span><span class="w"> </span><span class="nf">NETIO_Autosar_on_socket_event</span><span class="p">(</span>
+<span class="w">    </span><span class="n">TcpIp_SocketIdType</span><span class="w"> </span><span class="n">socket_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">TcpIp_EventType</span><span class="w">    </span><span class="n">socket_event</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Call this from the <code class="docutils literal notranslate"><span class="pre">TcpIpEvent</span></code> socket-owner callback whenever the
+TcpIp stack reports a socket event.  Only <code class="docutils literal notranslate"><span class="pre">TCPIP_UDP_CLOSED</span></code> events
+are acted upon; all other event types are ignored.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">NETIO_Autosar_on_ip_assigned</span></code></dt><dd><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Std_ReturnType</span><span class="w"> </span><span class="nf">NETIO_Autosar_on_ip_assigned</span><span class="p">(</span>
+<span class="w">    </span><span class="n">TcpIp_LocalAddrIdType</span><span class="w"> </span><span class="n">local_addr_id</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Call this from the <code class="docutils literal notranslate"><span class="pre">LocalIpAddrAssignmentChg</span></code> socket-owner callback
+whenever an IP address transitions to <code class="docutils literal notranslate"><span class="pre">TCPIP_IPADDR_STATE_ASSIGNED</span></code>
+<em>after the initial DDS startup</em>.  Pass the <code class="docutils literal notranslate"><span class="pre">LocalAddrId</span></code> reported by
+the TcpIp stack so that <em>Connext Micro</em> can match it against the bound addresses of
+the affected sockets.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="how-the-pil-was-built-for-microsar-platforms">
+<h2><span class="section-number">6.7.4. </span>How the PIL was built for MicroSAR platforms<a class="headerlink" href="#how-the-pil-was-built-for-microsar-platforms" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how RTI built the Platform Independent Library (PIL)
+for MicroSAR platforms.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Connext Micro</em> requires the C-type “double” to be 64 bits. Any compiler option that
+treats a “double” as a “float” must not be enabled.</p>
+</div>
+<p>The following table shows the compiler flags RTI used to create
+the PIL for MicroSAR platforms:</p>
+<table class="colwidths-given longtable docutils align-default" id="pilflagsmicrosar">
+<caption><span class="caption-number">Table 6.20 </span><span class="caption-text">PIL Compiler Flags for MicroSAR Platforms</span><a class="headerlink" href="#pilflagsmicrosar" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Architecture PIL</p></th>
+<th class="head"><p>Library Format</p></th>
+<th class="head"><p>Compiler Flags Used by RTI</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tc39xtElfTasking6.3r1</p></td>
+<td><p>Static Release</p></td>
+<td><p>-Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ –core=tc1.6.2 –align=0 -Wc–no-warnings=504 -Wcp–no-warnings=550 –fp-model=c,F,L,N,R,S,T,Z –language=-gcc,-volatile,+strings,-kanji –iso=99 –switch=auto –compact-max-size=200 –error-limit=1 –source –integer-enumeration -t4 -Z0 -Y0 –default-near-size=0 -O2ROP -DNDEBUG</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Static Debug</p></td>
+<td><p>-Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ –core=tc1.6.2 –align=0 -Wc–no-warnings=504 -Wcp–no-warnings=550 –fp-model=c,F,L,N,R,S,T,Z –language=-gcc,-volatile,+strings,-kanji –iso=99 –switch=auto –compact-max-size=200 –error-limit=1 –source –integer-enumeration -t4 -Z0 -Y0 –default-near-size=0 -O0 -g2</p></td>
+</tr>
+<tr class="row-even"><td><p>tc39xtElfTasking6.3r1CERT</p></td>
+<td><p>Static Release</p></td>
+<td><p>-Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ –core=tc1.6.2 –align=0 -Wc–no-warnings=504 -Wcp–no-warnings=550 –fp-model=c,F,L,N,R,S,T,Z –language=-gcc,-volatile,+strings,-kanji –iso=99 –switch=auto –compact-max-size=200 –error-limit=1 –source –integer-enumeration -t4 -Z0 -Y0 –default-near-size=0 -O2ROP -DNDEBUG</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Static Debug</p></td>
+<td><p>-Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ –core=tc1.6.2 –align=0 -Wc–no-warnings=504 -Wcp–no-warnings=550 –fp-model=c,F,L,N,R,S,T,Z –language=-gcc,-volatile,+strings,-kanji –iso=99 –switch=auto –compact-max-size=200 –error-limit=1 –source –integer-enumeration -t4 -Z0 -Y0 –default-near-size=0 -O0 -g2</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-default" id="id12">
+<caption><span class="caption-number">Table 6.21 </span><span class="caption-text">Compiler Flag Details</span><a class="headerlink" href="#id12" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Flag</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-Ctc39xb</span></code></p></td>
+<td><p>Select the TC39xB CPU target</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-D__CPU__=tc39xb</span></code></p></td>
+<td><p>Define CPU type macro (required by MicroSAR headers)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-D__CPU_TC39XB__</span></code></p></td>
+<td><p>Define CPU-specific macro</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--core=tc1.6.2</span></code></p></td>
+<td><p>Select TriCore architecture core version 1.6.2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--align=0</span></code></p></td>
+<td><p>Default alignment (no forced alignment)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-Wc--no-warnings=504</span></code></p></td>
+<td><p>Suppress warning 504: macro redefined (for __CPU__)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-Wcp--no-warnings=550</span></code></p></td>
+<td><p>Suppress warning 550: variable set but never used</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--fp-model=c,F,L,N,R,S,T,Z</span></code></p></td>
+<td><p>Precise floating-point model ensuring 64-bit doubles</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--language=-gcc,-volatile,+strings,-kanji</span></code></p></td>
+<td><p>Language extensions configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--iso=99</span></code></p></td>
+<td><p>ISO C99 standard</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--switch=auto</span></code></p></td>
+<td><p>Automatic switch statement code generation</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--compact-max-size=200</span></code></p></td>
+<td><p>Maximum size for code compaction (reverse inlining)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--error-limit=1</span></code></p></td>
+<td><p>Stop after first error</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--source</span></code></p></td>
+<td><p>Merge C source as comments in assembly output</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--integer-enumeration</span></code></p></td>
+<td><p>Treat enums as int per ISO C99</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-t4</span></code></p></td>
+<td><p>Optimize for code size</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-Z0</span></code></p></td>
+<td><p>Disable __a0 (near addressing) allocation</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-Y0</span></code></p></td>
+<td><p>Disable __a1 (near addressing) allocation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--default-near-size=0</span></code></p></td>
+<td><p>Disable near-code optimizations (simplifies MPU config)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-O2ROP</span></code> (Release)</p></td>
+<td><p>Optimization level 2 with R, O, P optimizations</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-DNDEBUG</span></code> (Release)</p></td>
+<td><p>Disable debug assertions</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-O0</span></code> (Debug)</p></td>
+<td><p>No optimization</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-g2</span></code> (Debug)</p></td>
+<td><p>Full debug information</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="building-the-psl-from-source-for-microsar-platforms">
+<h2><span class="section-number">6.7.5. </span>Building the PSL from source for MicroSAR platforms<a class="headerlink" href="#building-the-psl-from-source-for-microsar-platforms" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how to build your own Platform Support Library (PSL)
+for MicroSAR.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Connext Micro</em> requires the C-type “double” to be 64 bits. Any compiler option that
+treats a “double” as a “float” must not be enabled.</p>
+</div>
+<p><em>Connext Micro</em> includes support to compile Platform Support Libraries (PSL) for MicroSAR
+using CMake. Refer to <a class="reference internal" href="building.html#section-set-up-build-environment"><span class="std std-ref">Setting up the build environment</span></a> before continuing
+with the following instructions.</p>
+<ol class="arabic">
+<li><p>Make sure CMake is in the path.</p></li>
+<li><p>Define the following environment variables:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OSEK_PATH</span></code>: Path to the Vector MicroSAR static code (SIP folder).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RTIME_TASKING_PATH</span></code>: Path to the Tasking compiler.</p></li>
+</ul>
+</li>
+<li><p>Enter the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rtime-make.bat<span class="w"> </span>--target<span class="w"> </span>tc39xtElfTasking6.3r1-MICROSAR4<span class="w"> </span>--name<span class="w"> </span>tc39xtElfTasking6.3r1-MICROSAR4<span class="w"> </span>--config<span class="w"> </span>Release<span class="w"> </span>--delete<span class="w"> </span>-G<span class="w"> </span><span class="s2">&quot;Ninja&quot;</span><span class="w"> </span>--build
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">rtime-make</span></code> uses the architecture specified with <code class="docutils literal notranslate"><span class="pre">--target</span></code> to
+determine a few settings needed by <em>Connext Micro</em>. Please refer to <a class="reference internal" href="building.html#prepare-psl"><span class="std std-ref">Preparing to build</span></a>
+for details.</p>
+</div>
+</li>
+<li><p>The <em>Connext Micro</em> PSL is available in:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>RTIMEHOME/lib/tc39xtElfTasking6.3r1-MICROSAR4
+</pre></div>
+</div>
+</li>
+</ol>
+<p>You must build applications with compatible flags to the PIL and PSL in
+order to operate with <em>Connext Micro</em>; the PSL must also be binary compatible with
+the PIL. Applications must not specify the <code class="docutils literal notranslate"><span class="pre">RTI_PSL</span></code> or <code class="docutils literal notranslate"><span class="pre">RTI_PIL</span></code>
+preprocessor definitions. When you build the PSL with <code class="docutils literal notranslate"><span class="pre">rtime-make</span></code>, the
+<code class="docutils literal notranslate"><span class="pre">--target</span></code> argument automatically adds all the necessary flags for the
+specified architecture.</p>
+<p>The following table shows the compiler flags and required options that RTI
+used to build the PSL for MicroSAR platforms.</p>
+<table class="colwidths-given longtable docutils align-default" id="id13">
+<caption><span class="caption-number">Table 6.22 </span><span class="caption-text">PSL Compiler Flags for MicroSAR Platforms</span><a class="headerlink" href="#id13" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Architecture PSL</p></th>
+<th class="head"><p>Library Format</p></th>
+<th class="head"><p>Compiler Flags Used by RTI</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tc39xtElfTasking6.3r1-MICROSAR4</p></td>
+<td><p>Static Release</p></td>
+<td><p>-D__autosar__=1 -DRTI_ENDIAN_LITTLE=1 -DRTIME_AUTOSAR_MICROSAR=1 -DRTI_AUTOSAR=1 -Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ –core=tc1.6.2 –align=0 -Wc–no-warnings=504 -Wcp–no-warnings=550 –fp-model=c,F,L,N,R,S,T,Z –language=-gcc,-volatile,+strings,-kanji –iso=99 –switch=auto –compact-max-size=200 –error-limit=1 –source –integer-enumeration -t4 -Z0 -Y0 –default-near-size=0 -O2ROP -DNDEBUG</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Static Debug</p></td>
+<td><p>-D__autosar__=1 -DRTI_ENDIAN_LITTLE=1 -DRTIME_AUTOSAR_MICROSAR=1 -DRTI_AUTOSAR=1 -Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ –core=tc1.6.2 –align=0 -Wc–no-warnings=504 -Wcp–no-warnings=550 –fp-model=c,F,L,N,R,S,T,Z –language=-gcc,-volatile,+strings,-kanji –iso=99 –switch=auto –compact-max-size=200 –error-limit=1 –source –integer-enumeration -t4 -Z0 -Y0 –default-near-size=0 -O0 -g2</p></td>
+</tr>
+<tr class="row-even"><td><p>tc39xtElfTasking6.3r1CERT-MICROSAR4</p></td>
+<td><p>Static Release</p></td>
+<td><p>-D__autosar__=1 -DRTI_ENDIAN_LITTLE=1 -DRTIME_AUTOSAR_MICROSAR=1 -DRTI_AUTOSAR=1 -Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ –core=tc1.6.2 –align=0 -Wc–no-warnings=504 -Wcp–no-warnings=550 –fp-model=c,F,L,N,R,S,T,Z –language=-gcc,-volatile,+strings,-kanji –iso=99 –switch=auto –compact-max-size=200 –error-limit=1 –source –integer-enumeration -t4 -Z0 -Y0 –default-near-size=0 -O2ROP -DNDEBUG</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Static Debug</p></td>
+<td><p>-D__autosar__=1 -DRTI_ENDIAN_LITTLE=1 -DRTIME_AUTOSAR_MICROSAR=1 -DRTI_AUTOSAR=1 -Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ –core=tc1.6.2 –align=0 -Wc–no-warnings=504 -Wcp–no-warnings=550 –fp-model=c,F,L,N,R,S,T,Z –language=-gcc,-volatile,+strings,-kanji –iso=99 –switch=auto –compact-max-size=200 –error-limit=1 –source –integer-enumeration -t4 -Z0 -Y0 –default-near-size=0 -O0 -g2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="known-issues-and-limitations">
+<h2><span class="section-number">6.7.6. </span>Known issues and limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default" id="id14">
+<caption><span class="caption-number">Table 6.23 </span><span class="caption-text">Known Issues and Limitations</span><a class="headerlink" href="#id14" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Issue</p></th>
+<th class="head"><p>Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enable_thread_safe_heap</span></code> set to FALSE</p></td>
+<td><p>Disabling this property may raise errors since we do not prevent
+multiple concurrent accesses to the heap. We recommend keeping this set
+to <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Spinlock synchronization not fully tested</p></td>
+<td><p>The port has not been tested with <code class="docutils literal notranslate"><span class="pre">sync_type</span></code> set to
+<code class="docutils literal notranslate"><span class="pre">OSAPI_AUTOSAR_SYNCKIND_SPINLOCK</span></code>. Use
+<code class="docutils literal notranslate"><span class="pre">OSAPI_AUTOSAR_SYNCKIND_RESOURCES</span></code> (the default) for production deployments.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">use_socket_owner</span> <span class="pre">=</span> <span class="pre">FALSE</span></code> not fully tested</p></td>
+<td><p>The port has not been tested with <code class="docutils literal notranslate"><span class="pre">use_socket_owner</span></code> set to FALSE. When
+<code class="docutils literal notranslate"><span class="pre">use_socket_owner</span></code> is FALSE, the <code class="docutils literal notranslate"><span class="pre">send_data</span></code> function pointer must be
+provided instead.</p></td>
+</tr>
+<tr class="row-odd"><td><p>No dynamic memory deallocation</p></td>
+<td><p>The AUTOSAR heap implementation does not support freeing memory
+(<code class="docutils literal notranslate"><span class="pre">OSAPI_DONT_HAVE_REALLOC</span></code>). Once memory is allocated from the static
+heap, it cannot be returned. Ensure sufficient heap area is provisioned.</p></td>
+</tr>
+<tr class="row-even"><td><p>Single instantiation only</p></td>
+<td><p>The DDS CDD does not support multiple instantiations.</p></td>
+</tr>
+<tr class="row-odd"><td><p>C++ not supported</p></td>
+<td><p>C++ compilation is excluded (<code class="docutils literal notranslate"><span class="pre">RTIME_EXCLUDE_CPP</span></code>). The AUTOSAR port is
+C-only.</p></td>
+</tr>
+<tr class="row-even"><td><p>Shared memory transport not supported</p></td>
+<td><p>Shared memory transport is excluded (<code class="docutils literal notranslate"><span class="pre">RTIME_EXCLUDE_SHMEM</span></code>) on AUTOSAR
+platforms.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Threads not supported</p></td>
+<td><p>AUTOSAR does not provide a standard thread API. The macro
+<code class="docutils literal notranslate"><span class="pre">OSAPI_NO_THREADS</span></code> is set to 1. All DDS processing is done within
+AUTOSAR runnables/tasks.</p></td>
+</tr>
+<tr class="row-even"><td><p>Flow controller and fragmentation not supported</p></td>
+<td><p>The DDS flow controller and fragmentation features are not supported on AUTOSAR platforms.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="example">
+<h2><span class="section-number">6.7.7. </span>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>For an in-depth example of how to successfully integrate <em>Connext Micro</em> with AUTOSAR and
+understand the resulting architecture, refer to
+<a class="reference internal" href="../appendices/autosar_integration.html#section-autosar-integration"><span class="std std-ref">Appendix A: AUTOSAR Integration Example</span></a> and <a class="reference internal" href="../appendices/autosar_architecture.html#section-autosar-architecture"><span class="std std-ref">Appendix B: AUTOSAR Architecture Example</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="macos.html" class="btn btn-neutral float-right" title="6.8. macOS Platforms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="linux.html" class="btn btn-neutral float-left" title="6.6. Linux Platforms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

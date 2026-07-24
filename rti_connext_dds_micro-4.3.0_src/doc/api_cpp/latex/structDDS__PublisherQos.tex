@@ -1,0 +1,83 @@
+\doxysubsection{DDS\+\_\+\+Publisher\+Qos Struct Reference}
+\hypertarget{structDDS__PublisherQos}{}\label{structDDS__PublisherQos}\index{DDS\_PublisherQos@{DDS\_PublisherQos}}
+
+
+QoS policies supported by a \doxylink{classDDSPublisher}{DDSPublisher} entity.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+publication.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__EntityFactoryQosPolicy}{DDS\+\_\+\+Entity\+Factory\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublisherQos_a99f7bc6a130ab99727212a24174585c6}{entity\+\_\+factory}}
+\begin{DoxyCompactList}\small\item\em Entity factory policy, \doxylink{group__DDSEntityFactoryQosModule}{ENTITY\+\_\+\+FACTORY}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PartitionQosPolicy}{DDS\+\_\+\+Partition\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublisherQos_a96c903f30dd0794f4de01a85a1e002ec}{partition}}
+\begin{DoxyCompactList}\small\item\em The \doxylink{classDDSPublisher}{DDSPublisher} PARTITION policy. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__GroupDataQosPolicy}{DDS\+\_\+\+Group\+Data\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublisherQos_ad99c76a97a261687a9bbeaf29c7118c2}{group\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Group data policy, \doxylink{group__DDSGroupDataQosModule}{GROUP\+\_\+\+DATA}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__EntityNameQosPolicy}{DDS\+\_\+\+Entity\+Name\+Qos\+Policy}} \mbox{\hyperlink{structDDS__PublisherQos_a93dfa4af1242c1cab54557b646b6664d}{publisher\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The \doxylink{classDDSPublisher}{DDSPublisher} name. \doxylink{group__DDSEntityNameQosModule}{ENTITY\+\_\+\+NAME}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+QoS policies supported by a \doxylink{classDDSPublisher}{DDSPublisher} entity. 
+
+If the call to \doxylink{classDDSPublisher_a10b103b79ad1f6463291a8b8189572fb}{DDSPublisher\+::set\+\_\+qos} attempts to change the PARTITION QoS then it will return \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY} 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__PublisherQos_a99f7bc6a130ab99727212a24174585c6}\index{DDS\_PublisherQos@{DDS\_PublisherQos}!entity\_factory@{entity\_factory}}
+\index{entity\_factory@{entity\_factory}!DDS\_PublisherQos@{DDS\_PublisherQos}}
+\doxyparagraph{\texorpdfstring{entity\_factory}{entity\_factory}}
+{\footnotesize\ttfamily \label{structDDS__PublisherQos_a99f7bc6a130ab99727212a24174585c6} 
+struct \mbox{\hyperlink{structDDS__EntityFactoryQosPolicy}{DDS\+\_\+\+Entity\+Factory\+Qos\+Policy}} DDS\+\_\+\+Publisher\+Qos\+::entity\+\_\+factory}
+
+
+
+Entity factory policy, \doxylink{group__DDSEntityFactoryQosModule}{ENTITY\+\_\+\+FACTORY}. 
+
+\Hypertarget{structDDS__PublisherQos_a96c903f30dd0794f4de01a85a1e002ec}\index{DDS\_PublisherQos@{DDS\_PublisherQos}!partition@{partition}}
+\index{partition@{partition}!DDS\_PublisherQos@{DDS\_PublisherQos}}
+\doxyparagraph{\texorpdfstring{partition}{partition}}
+{\footnotesize\ttfamily \label{structDDS__PublisherQos_a96c903f30dd0794f4de01a85a1e002ec} 
+struct \mbox{\hyperlink{structDDS__PartitionQosPolicy}{DDS\+\_\+\+Partition\+Qos\+Policy}} DDS\+\_\+\+Publisher\+Qos\+::partition}
+
+
+
+The \doxylink{classDDSPublisher}{DDSPublisher} PARTITION policy. 
+
+A set of strings that introduces logical PARTITIONs. 
+
+Only entities that belong to the same PARTITION can communicate to each other. The PARTITION QoS policy applies directly to \doxylink{classDDSPublisher}{DDSPublisher}.\doxylink{classDDSDataWriter}{DDSData\+Writer} belong to the PARTITIONs of the \doxylink{classDDSPublisher}{DDSPublisher} that created them. 
+
+The default PARTITION during initialization is the empty string, "{}"{}. 
+
+The number and size of partitions are bounded by the \doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy} settings configured on the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}\+: -\/ \doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_a6b37b5d8e18a9a3bb40178b74436ec28}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+partitions}\+: maximum number of partition name elements (default 64, cannot exceed 64). -\/ \doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_adaae0663c2f786d8779e126abf8f0779}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+partition\+\_\+cumulative\+\_\+characters}\+: maximum total characters across all partition names including NUL terminators (default 256, cannot exceed 256). -\/ \doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_ab231225ad10a34bfe49224823834a918}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+partition\+\_\+string\+\_\+size}\+: maximum characters in a single partition name (default DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED). 
+
+Exceeding any of these limits causes \doxylink{classDDSPublisher_a10b103b79ad1f6463291a8b8189572fb}{DDSPublisher\+::set\+\_\+qos} to return \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy} 
+\end{DoxySeeAlso}
+\doxylink{group__DDSPartitionQosModule}{PARTITION} \Hypertarget{structDDS__PublisherQos_ad99c76a97a261687a9bbeaf29c7118c2}\index{DDS\_PublisherQos@{DDS\_PublisherQos}!group\_data@{group\_data}}
+\index{group\_data@{group\_data}!DDS\_PublisherQos@{DDS\_PublisherQos}}
+\doxyparagraph{\texorpdfstring{group\_data}{group\_data}}
+{\footnotesize\ttfamily \label{structDDS__PublisherQos_ad99c76a97a261687a9bbeaf29c7118c2} 
+struct \mbox{\hyperlink{structDDS__GroupDataQosPolicy}{DDS\+\_\+\+Group\+Data\+Qos\+Policy}} DDS\+\_\+\+Publisher\+Qos\+::group\+\_\+data}
+
+
+
+Group data policy, \doxylink{group__DDSGroupDataQosModule}{GROUP\+\_\+\+DATA}. 
+
+\Hypertarget{structDDS__PublisherQos_a93dfa4af1242c1cab54557b646b6664d}\index{DDS\_PublisherQos@{DDS\_PublisherQos}!publisher\_name@{publisher\_name}}
+\index{publisher\_name@{publisher\_name}!DDS\_PublisherQos@{DDS\_PublisherQos}}
+\doxyparagraph{\texorpdfstring{publisher\_name}{publisher\_name}}
+{\footnotesize\ttfamily \label{structDDS__PublisherQos_a93dfa4af1242c1cab54557b646b6664d} 
+struct \mbox{\hyperlink{structDDS__EntityNameQosPolicy}{DDS\+\_\+\+Entity\+Name\+Qos\+Policy}} DDS\+\_\+\+Publisher\+Qos\+::publisher\+\_\+name}
+
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The \doxylink{classDDSPublisher}{DDSPublisher} name. \doxylink{group__DDSEntityNameQosModule}{ENTITY\+\_\+\+NAME}. 
+

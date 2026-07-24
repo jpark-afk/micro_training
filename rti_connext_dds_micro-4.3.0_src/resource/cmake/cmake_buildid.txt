@@ -1,0 +1,41 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2020
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+CMAKE_MINIMUM_REQUIRED(VERSION 3.12)
+
+#===============================================================================
+# Generate file with DDS Micro Build ID
+#===============================================================================
+
+if (NOT DEFINED RTIME_BUILD_ID)
+
+    IF (${HAS_STRING_TIMESTAMP})
+        message(STATUS "generating build timestamp ...")
+        string(TIMESTAMP generation_timestamp "%Y%m%dT%H%M%SZ" UTC)
+ELSE()
+        set(generation_timestamp "unsupported in cmake < 2.8.11")
+    ENDIF()
+
+    set(RTIME_BUILD_ID ${generation_timestamp})
+
+ELSE()
+
+    message(STATUS "using passed in build timestamp ${RTIME_BUILD_ID}")
+
+ENDIF()
+
+FILE(WRITE ${BUILD_ID_FILE} "#define RTIME_BUILD_ID \"${RTIME_BUILD_ID}\"")
+
+IF (${CMAKE_HOST_SYSTEM} MATCHES "Windows")
+    FILE(APPEND ${BUILD_ID_FILE} "\r\n")
+ELSE()
+    FILE(APPEND ${BUILD_ID_FILE} "\n")
+ENDIF()

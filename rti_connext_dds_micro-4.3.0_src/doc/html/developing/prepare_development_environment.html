@@ -1,0 +1,357 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.1. Prepare Your Development Environment &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.2. Define a Data Type" href="definedatatype.html" />
+    <link rel="prev" title="2. Developing Applications" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Developing Applications</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. Prepare Your Development Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set-environment-variables">2.1.1. Set environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-required-preprocessor-flags">2.1.2. Add required preprocessor flags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#link-applications-and-libraries">2.1.3. Link applications and libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="definedatatype.html">2.2. Define a Data Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generatesupportcode.html">2.3. Generate Type Support Code with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createapp.html">2.4. Create an Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configureUDPtransport.html">2.5. Configure UDP Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createdomainparticipant.html">2.6. Create DomainParticipant, Topic, and Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createpublisher.html">2.7. Create Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createdatawriter.html">2.8. Create DataWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createsubscriber.html">2.9. Create Subscriber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createdatareader.html">2.10. Create DataReader</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">2. </span>Developing Applications</a> &raquo;</li>
+        
+      <li><span class="section-number">2.1. </span>Prepare Your Development Environment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prepare-your-development-environment">
+<span id="section-prepare-development-environment"></span><h1><span class="section-number">2.1. </span>Prepare Your Development Environment<a class="headerlink" href="#prepare-your-development-environment" title="Permalink to this headline">¶</a></h1>
+<p>This section describes how to set up your development environment
+for <em>Connext Micro</em> applications, such as the required environment variables,
+compilers, compiler definitions, and libraries.</p>
+<div class="section" id="set-environment-variables">
+<h2><span class="section-number">2.1.1. </span>Set environment variables<a class="headerlink" href="#set-environment-variables" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">RTIMEHOME</span></code> environment variable must be set to the installation directory path
+for <em>RTI</em> <em>Connext Micro</em>. If you installed <em>RTI Connext</em> with default settings, <em>RTI</em> <em>Connext Micro</em> will be here:
+<code class="docutils literal notranslate"><span class="pre">&lt;path_to_connext_dds_installation&gt;/rti_connext_dds-&lt;version&gt;/rti_connext_micro-&lt;version&gt;</span></code>.
+If you copied <em>RTI</em> <em>Connext Micro</em> to another place, set <code class="docutils literal notranslate"><span class="pre">RTIMEHOME</span></code> to point to that location.</p>
+</div>
+<div class="section" id="add-required-preprocessor-flags">
+<h2><span class="section-number">2.1.2. </span>Add required preprocessor flags<a class="headerlink" href="#add-required-preprocessor-flags" title="Permalink to this headline">¶</a></h2>
+<p>All <em>Connext Micro</em> applications require the following preprocessor defines:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-IRTIMEHOME/include
+-IRTIMEHOME/include/rti_me
+</pre></div>
+</div>
+<p>Add the following preprocessor defines, according to your platform and
+compiler:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-V2luZG93cw==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="0">Windows</button><button aria-controls="panel-0-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-0-TGludXg=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="-1">Linux</button><button aria-controls="panel-0-UU5Y" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UU5Y" name="UU5Y" role="tab" tabindex="-1">QNX</button></div><div aria-labelledby="tab-0-V2luZG93cw==" class="sphinx-tabs-panel group-tab" id="panel-0-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><p>Using MSVSCC:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DOSAPI_CC_DEF_H</span><span class="o">=</span><span class="n">osapi</span><span class="o">/</span><span class="n">osapi_cc_msvsc</span><span class="o">.</span><span class="n">h</span>
+<span class="o">-</span><span class="n">DRTI_WIN32</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><p>Using clang:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DOSAPI_CC_DEF_H</span><span class="o">=</span><span class="n">osapi</span><span class="o">/</span><span class="n">osapi_cc_clang</span><span class="o">.</span><span class="n">h</span>
+<span class="o">-</span><span class="n">DRTI_DARWIN</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><p>Using GCC:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DOSAPI_CC_DEF_H</span><span class="o">=</span><span class="n">osapi</span><span class="o">/</span><span class="n">osapi_cc_gcc</span><span class="o">.</span><span class="n">h</span>
+<span class="o">-</span><span class="n">DRTI_LINUX</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-UU5Y" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UU5Y" name="UU5Y" role="tabpanel" tabindex="0"><p>Using QCC:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DOSAPI_CC_DEF_H</span><span class="o">=</span><span class="n">osapi</span><span class="o">/</span><span class="n">osapi_cc_qcc</span><span class="o">.</span><span class="n">h</span>
+<span class="o">-</span><span class="n">DRTI_QNX</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="link-applications-and-libraries">
+<h2><span class="section-number">2.1.3. </span>Link applications and libraries<a class="headerlink" href="#link-applications-and-libraries" title="Permalink to this headline">¶</a></h2>
+<p>Add the library path for both the PIL and PSL to the linker’s search path:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/&lt;arch&gt;/</span></code> (PIL)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/&lt;arch&gt;-&lt;PSL&gt;/</span></code> (PSL)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When executing executables that are linked with the <em>Connext Micro</em> shared libraries,
+you must add the path to the PIL architecture directory to the
+runtime linker’s search path.</p>
+</div>
+<p>To link a C application, the libraries are required in the following order:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/&lt;arch&gt;/</span></code></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_appgen</span></code> (if using the <a class="reference internal" href="../programmersguide/appgen.html#section-appgen"><span class="std std-ref">Application Generation Using XML</span></a> plugin)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_netiosdm</span></code> (if using <a class="reference internal" href="../programmersguide/zerocopy.html#section-zero-copy-transfer"><span class="std std-ref">Zero Copy Transfer</span></a> with the <a class="reference internal" href="../transports/SHMEM.html#section-shared-memory-transport"><span class="std std-ref">Shared Memory Transport (SHMEM)</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code> (if using the <a class="reference internal" href="../transports/zerocopy_v2.html#section-zero-copy-v2-transport"><span class="std std-ref">Zero Copy v2 Transport</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_netioshmem</span></code> (if using the <a class="reference internal" href="../transports/SHMEM.html#section-shared-memory-transport"><span class="std std-ref">Shared Memory Transport (SHMEM)</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code> (if using DPDE)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code> (if using DPSE)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code> (if using <a class="reference internal" href="../programmersguide/content_filtering.html#section-content-filtering"><span class="std std-ref">Content Filtering</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code> (if using XTypes)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code>, <code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code>, and <code class="docutils literal notranslate"><span class="pre">rti_me</span></code> (always required)</p></li>
+</ol>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/&lt;arch&gt;-&lt;PSL&gt;/</span></code></p>
+<ol class="arabic simple" start="10">
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_netiopsl</span></code> (when building with a Platform Independent Library)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_ospsl</span></code> (when building with a Platform Independent Library)</p></li>
+</ol>
+</li>
+</ul>
+<p>To link a C++ application, the libraries are required in the following order:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/&lt;arch&gt;/</span></code></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_appgen</span></code> (if using the <a class="reference internal" href="../programmersguide/appgen.html#section-appgen"><span class="std std-ref">Application Generation Using XML</span></a> plugin)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code> (if using XTypes)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_cpp</span></code>, <code class="docutils literal notranslate"><span class="pre">rti_me_netiosdm</span></code>, <code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code>, <code class="docutils literal notranslate"><span class="pre">rti_me_netioshmem</span></code>, <code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code>,
+<code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code>, <code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code> <a class="footnote-reference brackets" href="#id2" id="id1">1</a>, <code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code>, <code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code>, and <code class="docutils literal notranslate"><span class="pre">rti_me</span></code> (always required)</p></li>
+</ol>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Only required if using <a class="reference internal" href="../programmersguide/content_filtering.html#section-content-filtering"><span class="std std-ref">Content Filtering</span></a>.</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RTIMEHOME/lib/&lt;arch&gt;-&lt;PSL&gt;/</span></code></p>
+<ol class="arabic simple" start="4">
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_netiopsl_cpp</span></code> (when building with a Platform Independent Library)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_netiopsl</span></code> (when building with a Platform Independent Library)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_ospsl</span></code> (when building with a Platform Independent Library)</p></li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="definedatatype.html" class="btn btn-neutral float-right" title="2.2. Define a Data Type" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="2. Developing Applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

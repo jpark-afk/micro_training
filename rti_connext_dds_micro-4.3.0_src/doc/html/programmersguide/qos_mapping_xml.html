@@ -1,0 +1,1575 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.18. QoS Mapping in XML &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.19. Building Against FACE Conformance Libraries" href="face.html" />
+    <link rel="prev" title="3.17. Application Generation Using XML" href="appgen.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Programmer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">3.2. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">3.3. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">3.4. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">3.5. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">3.6. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html">3.7. User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html">3.8. Partitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html">3.9. Content Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">3.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">3.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">3.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">3.13. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html">3.14. Sending Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html">3.15. Zero Copy Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html">3.16. FlatData Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html">3.17. Application Generation Using XML</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.18. QoS Mapping in XML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#domain-participant-qos-qos-mapping">3.18.1. Domain Participant Qos QoS Mapping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#discovery-config">3.18.1.1. discovery_config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#default-unicast">3.18.1.2. default_unicast</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resource-limits">3.18.1.3. resource_limits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#domain-participant-factory-qos-qos-mapping">3.18.2. Domain Participant Factory Qos QoS Mapping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#top-level-fields">3.18.2.1. Top-level fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nested-resource-limits-systemresourcelimitsqospolicy">3.18.2.2. Nested resource_limits (systemResourceLimitsQosPolicy)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#publisher-qos-mapping">3.18.3. Publisher QoS mapping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">3.18.3.1. Top-level fields</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#subscriber-qos-mapping">3.18.4. Subscriber QoS mapping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.18.4.1. Top-level fields</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#topic-qos-mapping">3.18.5. Topic QoS mapping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.18.5.1. Top-level fields</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#datareader-qos-mapping">3.18.6. DataReader QoS mapping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.18.6.1. Top-level fields</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#datawriter-qos-mapping">3.18.7. DataWriter QoS mapping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.18.7.1. Top-level fields</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#structural-elements-mapping">3.18.8. Structural elements mapping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#filter-and-content-filter-datareader-element">3.18.8.1. <code class="docutils literal notranslate"><span class="pre">filter</span></code> and <code class="docutils literal notranslate"><span class="pre">content_filter</span></code> (DataReader element)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#register-type-domain-and-participant-element">3.18.8.2. <code class="docutils literal notranslate"><span class="pre">register_type</span></code> (Domain and Participant element)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiplicity-publisher-subscriber-datawriter-datareader-attribute">3.18.8.3. <code class="docutils literal notranslate"><span class="pre">multiplicity</span></code> (Publisher, Subscriber, DataWriter, DataReader attribute)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#base-name-and-base-names-qos-profile-inheritance">3.18.8.4. base_name and base_names (QoS profile inheritance)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#topic-domain-element">3.18.8.5. topic (Domain element)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-writer-publisher-participant-element">3.18.8.6. data_writer (Publisher, Participant element)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-reader-subscriber-participant-element">3.18.8.7. data_reader (Subscriber, Participant element)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#publisher-participant-element">3.18.8.8. publisher (Participant element)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subscriber-participant-element">3.18.8.9. subscriber (Participant element)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#domain-participant-participantlibrary-element">3.18.8.10. domain_participant (ParticipantLibrary element)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#domain-domainlibrary-element">3.18.8.11. domain (DomainLibrary element)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#domain-library-and-participant-library-root-elements">3.18.8.12. domain_library and participant_library (Root elements)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">3.19. Building Against FACE Conformance Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">3.20. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.21. Example Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html">3.22. Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">3.23. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html">3.24. Transport Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html">3.25. Startup Time Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">3. </span>Programmer’s Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">3.18. </span>QoS Mapping in XML</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="qos-mapping-in-xml">
+<h1><span class="section-number">3.18. </span>QoS Mapping in XML<a class="headerlink" href="#qos-mapping-in-xml" title="Permalink to this headline">¶</a></h1>
+<p>QOS definitions in XML are based on the “standard” mapping of QOS policy
+names and members as found in the <em>Connext Micro</em> documentation, plus the following
+additional members that are parsed by RTI MAG:</p>
+<div class="section" id="domain-participant-qos-qos-mapping">
+<h2><span class="section-number">3.18.1. </span>Domain Participant Qos QoS Mapping<a class="headerlink" href="#domain-participant-qos-qos-mapping" title="Permalink to this headline">¶</a></h2>
+<p>The following mapping documents the currently implemented MAG behavior for
+<code class="docutils literal notranslate"><span class="pre">domain_participant_qos</span></code> conversion that are additional to what Micro supported.</p>
+<p>General behavior:</p>
+<ul class="simple">
+<li><p>Tags present in Pro XML but not supported by Micro are ignored by MAG.</p></li>
+<li><p>MAG emits a warning when unsupported fields are encountered.</p></li>
+<li><p>Some fields are accepted by parser/validation, but only a subset is emitted
+into generated Micro configuration.</p></li>
+</ul>
+<div class="section" id="discovery-config">
+<h3><span class="section-number">3.18.1.1. </span>discovery_config<a class="headerlink" href="#discovery-config" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Pro XML tag</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">builtin_discovery_plugins</span></code></p></td>
+<td><p>Selects discovery kind (<code class="docutils literal notranslate"><span class="pre">DPDE</span></code> or <code class="docutils literal notranslate"><span class="pre">DPSE</span></code>)</p></td>
+<td><p>Discovery component type</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">participant_liveliness_lease_duration</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p>DPDE/DPSE discovery property</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">participant_liveliness_assert_period</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p>DPDE/DPSE discovery property</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">initial_participant_announcements</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p>DPDE/DPSE discovery property</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max_initial_participant_announcement_period</span></code> or <code class="docutils literal notranslate"><span class="pre">min_initial_participant_announcement_period</span></code></p></td>
+<td><p>Consumed (one announcement period value is selected)</p></td>
+<td><p>DPDE/DPSE discovery property</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">participant_message_reader_reliability_kind</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p>DPDE/DPSE discovery property</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max_participant_locators</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p>DPDE/DPSE discovery property</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max_locators_per_discovered_participant</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p>DPDE/DPSE discovery property</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cache_serialized_samples</span></code></p></td>
+<td><p>Consumed for DPDE</p></td>
+<td><p>DPDE discovery property</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">subscription_reader_resource_limits.max_samples</span></code></p></td>
+<td><p>Consumed for DPDE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">max_samples_per_builtin_endpoint_reader</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">subscription_reader_resource_limits.max_samples_per_remote_writer</span></code> or
+<code class="docutils literal notranslate"><span class="pre">publication_reader_resource_limits.max_samples_per_remote_writer</span></code> or
+<code class="docutils literal notranslate"><span class="pre">participant_reader_resource_limits.max_samples_per_remote_writer</span></code></p></td>
+<td><p>Consolidated to one Micro value (maximum, with unlimited handling)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">max_samples_per_remote_builtin_endpoint_writer</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">publication_writer.heartbeat_period</span></code></p></td>
+<td><p>Consumed for DPDE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">builtin_writer_heartbeat_period</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">publication_writer.max_heartbeat_retries</span></code></p></td>
+<td><p>Consumed for DPDE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">builtin_writer_max_heartbeat_retries</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">publication_writer.heartbeats_per_max_samples</span></code></p></td>
+<td><p>Consumed for DPDE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">builtin_writer_heartbeats_per_max_samples</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">subscription_reader.nack_period</span></code></p></td>
+<td><p>Consumed for DPDE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">builtin_endpoint_reader_nack_period</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="default-unicast">
+<h3><span class="section-number">3.18.1.2. </span>default_unicast<a class="headerlink" href="#default-unicast" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Pro XML tag</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">default_unicast.value[].transports</span></code> (+ optional <code class="docutils literal notranslate"><span class="pre">receive_port</span></code>)</p></td>
+<td><p>Converted into participant user-traffic transport/address entries</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">user_traffic.enabled_transports</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Transport names are normalized to internal/default names.</p></li>
+<li><p>If no explicit user traffic is configured, MAG may populate Micro defaults
+(for example, UDPv4 and INTRA when available).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="resource-limits">
+<h3><span class="section-number">3.18.1.3. </span>resource_limits<a class="headerlink" href="#resource-limits" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Pro XML tag</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">*_allocation.max_count</span></code> (for participant resource allocations)</p></td>
+<td><p>Consumed</p></td>
+<td><p>Corresponding Micro participant resource limits field</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">*_allocation.initial_count</span></code></p></td>
+<td><p>Ignored for Micro</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">*_allocation.incremental_count</span></code></p></td>
+<td><p>Ignored for Micro</p></td>
+<td><p>None</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">allocation_settings</span></code>, <code class="docutils literal notranslate"><span class="pre">max_count</span></code> is the only value used by Micro.</p>
+</div>
+</div>
+</div>
+<div class="section" id="domain-participant-factory-qos-qos-mapping">
+<h2><span class="section-number">3.18.2. </span>Domain Participant Factory Qos QoS Mapping<a class="headerlink" href="#domain-participant-factory-qos-qos-mapping" title="Permalink to this headline">¶</a></h2>
+<p>The following mapping documents the currently implemented MAG behavior for
+<code class="docutils literal notranslate"><span class="pre">domain_participant_factory_qos</span></code> conversion.</p>
+<div class="section" id="top-level-fields">
+<h3><span class="section-number">3.18.2.1. </span>Top-level fields<a class="headerlink" href="#top-level-fields" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Pro XML tag</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">entity_factory.autoenable_created_entities</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p>Factory entity factory QoS</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">resource_limits.max_participants</span></code></p></td>
+<td><p>Consumed (and auto-raised if needed)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">system_resource_limits.max_participants</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">resource_limits.max_components</span></code></p></td>
+<td><p>Consumed (and auto-raised if needed)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">system_resource_limits.max_components</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">base_name</span></code> / <code class="docutils literal notranslate"><span class="pre">base_names</span></code></p></td>
+<td><p>Used for QoS inheritance/profile resolution</p></td>
+<td><p>Not emitted as a Micro runtime QoS field</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">logging</span></code></p></td>
+<td><p>Ignored for Micro</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">monitoring</span></code></p></td>
+<td><p>Ignored for Micro</p></td>
+<td><p>None</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="nested-resource-limits-systemresourcelimitsqospolicy">
+<h3><span class="section-number">3.18.2.2. </span>Nested resource_limits (systemResourceLimitsQosPolicy)<a class="headerlink" href="#nested-resource-limits-systemresourcelimitsqospolicy" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Pro XML tag</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">resource_limits.max_participants</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">system_resource_limits.max_participants</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">resource_limits.max_components</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">system_resource_limits.max_components</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Unsupported factory QoS fields are warned and ignored by MAG.</p></li>
+<li><p>For this nested policy, MAG uses the two fields listed above.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="publisher-qos-mapping">
+<h2><span class="section-number">3.18.3. </span>Publisher QoS mapping<a class="headerlink" href="#publisher-qos-mapping" title="Permalink to this headline">¶</a></h2>
+<p>The following mapping documents the currently implemented MAG behavior for
+<code class="docutils literal notranslate"><span class="pre">publisher_qos</span></code> conversion.</p>
+<div class="section" id="id1">
+<h3><span class="section-number">3.18.3.1. </span>Top-level fields<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Pro XML tag</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">base_name</span></code> / <code class="docutils literal notranslate"><span class="pre">base_names</span></code></p></td>
+<td><p>Used for QoS inheritance/profile resolution</p></td>
+<td><p>Not emitted as a Micro runtime QoS field</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">entity_factory.autoenable_created_entities</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_PublisherQos::entity_factory.autoenable_created_entities</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">presentation</span></code></p></td>
+<td><p>Ignored for Micro — MAG emits a warning</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">partition.name</span></code></p></td>
+<td><p>Consumed — partition strings emitted as a <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span></code> array</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_PublisherQos::partition.name</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">group_data.value</span></code></p></td>
+<td><p>Consumed — octet bytes emitted as a <code class="docutils literal notranslate"><span class="pre">DDS_Octet</span></code> array</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_PublisherQos::group_data.value</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">publisher_name.name</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_PublisherQos::publisher_name.name</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">asynchronous_publisher</span></code></p></td>
+<td><p>Ignored for Micro — MAG emits a warning</p></td>
+<td><p>None</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Fields not in the supported set cause MAG to emit a warning and reset the field to its default value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">partition.name</span></code> and <code class="docutils literal notranslate"><span class="pre">group_data.value</span></code> are also referenced in generated remote-publication-data structs (<code class="docutils literal notranslate"><span class="pre">entities.h</span></code>) for DPDE discovery matching.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">publisher_name.name</span></code> is used both in the generated QoS initializer macro and as part of
+remote publication data struct naming.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="subscriber-qos-mapping">
+<h2><span class="section-number">3.18.4. </span>Subscriber QoS mapping<a class="headerlink" href="#subscriber-qos-mapping" title="Permalink to this headline">¶</a></h2>
+<p>The following mapping documents the currently implemented MAG behavior for
+<code class="docutils literal notranslate"><span class="pre">subscriber_qos</span></code> conversion.</p>
+<div class="section" id="id2">
+<h3><span class="section-number">3.18.4.1. </span>Top-level fields<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Pro XML tag</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">base_name</span></code> / <code class="docutils literal notranslate"><span class="pre">base_names</span></code></p></td>
+<td><p>Used for QoS inheritance/profile resolution</p></td>
+<td><p>Not emitted as a Micro runtime QoS field</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">entity_factory.autoenable_created_entities</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_SubscriberQos::entity_factory.autoenable_created_entities</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">presentation.access_scope</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_SubscriptionBuiltinTopicData::presentation.access_scope</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">presentation.coherent_access</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_SubscriptionBuiltinTopicData::presentation.coherent_access</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">presentation.ordered_access</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_SubscriptionBuiltinTopicData::presentation.ordered_access</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">partition.name</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_SubscriberQos::partition.name</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">group_data.value</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_SubscriberQos::group_data.value</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">subscriber_name.name</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_SubscriberQos::subscriber_name.name</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Fields not in the supported set cause MAG to emit a warning and reset the field to its default value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">presentation.*</span></code> is consumed when generating remote subscription data (<code class="docutils literal notranslate"><span class="pre">entities.h</span></code>) and is not part of the local <code class="docutils literal notranslate"><span class="pre">DDS_SubscriberQos</span></code> initializer macro.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">partition.name</span></code> and <code class="docutils literal notranslate"><span class="pre">group_data.value</span></code> are used in both the local subscriber QoS initializer macro and generated remote subscription data.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="topic-qos-mapping">
+<h2><span class="section-number">3.18.5. </span>Topic QoS mapping<a class="headerlink" href="#topic-qos-mapping" title="Permalink to this headline">¶</a></h2>
+<p>The following mapping documents the currently implemented MAG behavior for
+<code class="docutils literal notranslate"><span class="pre">topic_qos</span></code> conversion.</p>
+<div class="section" id="id3">
+<h3><span class="section-number">3.18.5.1. </span>Top-level fields<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Pro XML tag</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">base_name</span></code> / <code class="docutils literal notranslate"><span class="pre">base_names</span></code></p></td>
+<td><p>Used for QoS inheritance/profile resolution</p></td>
+<td><p>Not emitted as a Micro runtime QoS field</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">topic_data.value</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_TopicQos::topic_data.value</span></code> and built-in topic-data payload in generated remote endpoint data</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">durability.*</span></code></p></td>
+<td><p>Consumed only when <code class="docutils literal notranslate"><span class="pre">topic_qos</span></code> is used as a base for <code class="docutils literal notranslate"><span class="pre">datawriter_qos</span></code> / <code class="docutils literal notranslate"><span class="pre">datareader_qos</span></code></p></td>
+<td><p>Inherited into <code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::durability</span></code> / <code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::durability</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">deadline.period.*</span></code></p></td>
+<td><p>Consumed only through Topic-&gt;Writer/Reader QoS inheritance</p></td>
+<td><p>Inherited into <code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::deadline</span></code> / <code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::deadline</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">latency_budget.duration.*</span></code></p></td>
+<td><p>Consumed only through Topic-&gt;Writer/Reader QoS inheritance</p></td>
+<td><p>Inherited into <code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::latency_budget</span></code> / <code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::latency_budget</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">liveliness.*</span></code></p></td>
+<td><p>Consumed only through Topic-&gt;Writer/Reader QoS inheritance</p></td>
+<td><p>Inherited into <code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::liveliness</span></code> / <code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::liveliness</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reliability.*</span></code></p></td>
+<td><p>Consumed only through Topic-&gt;Writer/Reader QoS inheritance</p></td>
+<td><p>Inherited into <code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::reliability</span></code> / <code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::reliability</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">destination_order.*</span></code></p></td>
+<td><p>Consumed only through Topic-&gt;Writer/Reader QoS inheritance</p></td>
+<td><p>Inherited into <code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::destination_order</span></code> / <code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::destination_order</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">history.*</span></code></p></td>
+<td><p>Consumed only through Topic-&gt;Writer/Reader QoS inheritance</p></td>
+<td><p>Inherited into <code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::history</span></code> / <code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::history</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">resource_limits.*</span></code></p></td>
+<td><p>Consumed only through Topic-&gt;Writer/Reader QoS inheritance</p></td>
+<td><p>Inherited into <code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::resource_limits</span></code> / <code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::resource_limits</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ownership.kind</span></code></p></td>
+<td><p>Consumed only through Topic-&gt;Writer/Reader QoS inheritance</p></td>
+<td><p>Inherited into <code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::ownership</span></code> / <code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::ownership</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">representation.value</span></code> and <code class="docutils literal notranslate"><span class="pre">representation.compression_settings.*</span></code></p></td>
+<td><p>Consumed only through Topic-&gt;Writer/Reader QoS inheritance</p></td>
+<td><p>Inherited into <code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::representation</span></code> / <code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::representation</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transport_priority.value</span></code></p></td>
+<td><p>Consumed only through Topic-&gt;Writer/Reader QoS inheritance</p></td>
+<td><p>Inherited into <code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::transport_priority</span></code> / <code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::transport_priority</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">durability_service.*</span></code></p></td>
+<td><p>Not consumed by MAG for Topic QoS conversion</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lifespan.duration.*</span></code></p></td>
+<td><p>Not consumed by MAG for Topic QoS conversion</p></td>
+<td><p>None</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Unlike participant/publisher/subscriber QoS conversion, Topic QoS does not use a dedicated unsupported-field warning set in <code class="docutils literal notranslate"><span class="pre">ConverterUtils</span></code>; unsupported Topic members that are not mapped above remain effectively unused.</p></li>
+<li><p>Topic QoS local macro generation (<code class="docutils literal notranslate"><span class="pre">topicQos</span></code> in <code class="docutils literal notranslate"><span class="pre">qos.h.vm</span></code>) emits only management data and <code class="docutils literal notranslate"><span class="pre">topic_data</span></code>.</p></li>
+<li><p>Additional Topic fields become effective only when a DataWriter/DataReader inherits from a Topic QoS profile, via <code class="docutils literal notranslate"><span class="pre">QosUtils.inheritFromTopicQos(...)</span></code>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="datareader-qos-mapping">
+<h2><span class="section-number">3.18.6. </span>DataReader QoS mapping<a class="headerlink" href="#datareader-qos-mapping" title="Permalink to this headline">¶</a></h2>
+<p>The following mapping documents the currently implemented MAG behavior for
+<code class="docutils literal notranslate"><span class="pre">datareader_qos</span></code> conversion.</p>
+<div class="section" id="id4">
+<h3><span class="section-number">3.18.6.1. </span>Top-level fields<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Pro XML tag</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">base_name</span></code> / <code class="docutils literal notranslate"><span class="pre">base_names</span></code></p></td>
+<td><p>Used for QoS inheritance/profile resolution</p></td>
+<td><p>Not emitted as a Micro runtime QoS field</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">durability.kind</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::durability.kind</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">durability.direct_communication</span></code>, <code class="docutils literal notranslate"><span class="pre">durability.storage_settings.*</span></code></p></td>
+<td><p>Ignored for Micro - MAG emits warnings</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">deadline.period.sec/nanosec</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::deadline.period</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">liveliness.kind</span></code>, <code class="docutils literal notranslate"><span class="pre">liveliness.lease_duration.*</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::liveliness</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reliability.kind</span></code>, <code class="docutils literal notranslate"><span class="pre">reliability.max_blocking_time.*</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::reliability</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reliability.acknowledgment_kind</span></code>, <code class="docutils literal notranslate"><span class="pre">reliability.instance_state_consistency_kind</span></code>, <code class="docutils literal notranslate"><span class="pre">reliability.exact_reliability_kind_match</span></code></p></td>
+<td><p>Ignored for Micro - MAG emits warnings</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">destination_order.kind</span></code>, <code class="docutils literal notranslate"><span class="pre">destination_order.source_timestamp_tolerance.*</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::destination_order</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">history.kind</span></code>, <code class="docutils literal notranslate"><span class="pre">history.depth</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::history</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">resource_limits.max_samples</span></code>, <code class="docutils literal notranslate"><span class="pre">resource_limits.max_instances</span></code>, <code class="docutils literal notranslate"><span class="pre">resource_limits.max_samples_per_instance</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::resource_limits</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">resource_limits.*</span></code> (other members)</p></td>
+<td><p>Ignored for Micro - MAG emits warnings</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ownership.kind</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::ownership.kind</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">representation.value.element[]</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::representation.value</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">representation.compression_settings.*</span></code></p></td>
+<td><p>Ignored for Micro - MAG emits warnings</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">latency_budget.duration.sec/nanosec</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::latency_budget.duration</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">user_data.value</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::user_data.value</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transport_priority.value</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::transport_priority.value</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reader_resource_limits.max_remote_writers</span></code>, <code class="docutils literal notranslate"><span class="pre">max_remote_writers_per_instance</span></code>, <code class="docutils literal notranslate"><span class="pre">max_samples_per_remote_writer</span></code>, <code class="docutils literal notranslate"><span class="pre">max_outstanding_reads</span></code>, <code class="docutils literal notranslate"><span class="pre">max_routes_per_writer</span></code>, <code class="docutils literal notranslate"><span class="pre">max_fragmented_samples</span></code>, <code class="docutils literal notranslate"><span class="pre">max_fragmented_samples_per_remote_writer</span></code>, <code class="docutils literal notranslate"><span class="pre">shmem_ref_transfer_mode_attached_segment_allocation.max_count</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::reader_resource_limits</span></code> corresponding fields</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reader_resource_limits.instance_replacement.alive_instance_removal</span></code>, <code class="docutils literal notranslate"><span class="pre">disposed_instance_removal</span></code>, <code class="docutils literal notranslate"><span class="pre">no_writers_instance_removal</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::reader_resource_limits.instance_replacement</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reader_resource_limits.*</span></code> (other members)</p></td>
+<td><p>Ignored for Micro - MAG emits warnings</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">protocol.rtps_object_id</span></code>, <code class="docutils literal notranslate"><span class="pre">protocol.rtps_reliable_reader.nack_period.*</span></code>, <code class="docutils literal notranslate"><span class="pre">protocol.propagate_dispose_of_unregistered_instances</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::protocol</span></code> corresponding fields</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">protocol.*</span></code> (other members)</p></td>
+<td><p>Ignored for Micro - MAG emits warnings</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">subscription_name.name</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::subscription_name.name</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">unicast.value[].transports[]</span></code> + optional <code class="docutils literal notranslate"><span class="pre">receive_port</span></code></p></td>
+<td><p>Converted and consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::transport.enabled_transports</span></code> (internal micro transport list)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">multicast.value[].transports[]</span></code> + optional <code class="docutils literal notranslate"><span class="pre">receive_address</span></code>/<code class="docutils literal notranslate"><span class="pre">receive_port</span></code></p></td>
+<td><p>Converted and consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos::transport.enabled_transports</span></code> (internal micro transport list)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time_based_filter</span></code>, <code class="docutils literal notranslate"><span class="pre">reader_data_lifecycle</span></code>, <code class="docutils literal notranslate"><span class="pre">type_consistency</span></code>, <code class="docutils literal notranslate"><span class="pre">data_tags</span></code>, <code class="docutils literal notranslate"><span class="pre">transport_selection</span></code>, <code class="docutils literal notranslate"><span class="pre">property</span></code>, <code class="docutils literal notranslate"><span class="pre">availability</span></code>, <code class="docutils literal notranslate"><span class="pre">service</span></code>, <code class="docutils literal notranslate"><span class="pre">type_support</span></code></p></td>
+<td><p>Ignored for Micro - MAG emits warnings</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">topic_filter</span></code> (attribute)</p></td>
+<td><p>Parsed for profile/topic matching behavior only</p></td>
+<td><p>Not emitted as a runtime QoS struct field</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Unsupported fields are detected by <code class="docutils literal notranslate"><span class="pre">ConverterUtils</span></code> against <code class="docutils literal notranslate"><span class="pre">VALID_DATA_READER_POLICIES</span></code>; MAG warns and ignores unsupported values.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unicast</span></code> and <code class="docutils literal notranslate"><span class="pre">multicast</span></code> are normalized into <code class="docutils literal notranslate"><span class="pre">microTransports.enabledTransports</span></code> by <code class="docutils literal notranslate"><span class="pre">SystemModelProducer.addEnabledTransports(...)</span></code>; the template emits the resulting transport list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">content_filter</span></code> is configured from the <code class="docutils literal notranslate"><span class="pre">data_reader</span></code> entity-level filter (not a direct <code class="docutils literal notranslate"><span class="pre">datareader_qos</span></code> XML member) and is emitted through <code class="docutils literal notranslate"><span class="pre">contentFilterQosPolicy</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">property</span></code> is intentionally not emitted for DataReader QoS in current templates (<code class="docutils literal notranslate"><span class="pre">propertiesQosPolicy(</span> <span class="pre">$null,</span> <span class="pre">...)</span></code>).</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="datawriter-qos-mapping">
+<h2><span class="section-number">3.18.7. </span>DataWriter QoS mapping<a class="headerlink" href="#datawriter-qos-mapping" title="Permalink to this headline">¶</a></h2>
+<p>The following mapping documents the currently implemented MAG behavior for
+<code class="docutils literal notranslate"><span class="pre">datawriter_qos</span></code> conversion.</p>
+<div class="section" id="id5">
+<h3><span class="section-number">3.18.7.1. </span>Top-level fields<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Pro XML tag</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">base_name</span></code> / <code class="docutils literal notranslate"><span class="pre">base_names</span></code></p></td>
+<td><p>Used for QoS inheritance/profile resolution</p></td>
+<td><p>Not emitted as a Micro runtime QoS field</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">durability.kind</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::durability.kind</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">durability.direct_communication</span></code>, <code class="docutils literal notranslate"><span class="pre">durability.storage_settings.*</span></code></p></td>
+<td><p>Ignored for Micro - MAG emits warnings</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">deadline.period.sec/nanosec</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::deadline.period</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">liveliness.kind</span></code>, <code class="docutils literal notranslate"><span class="pre">liveliness.lease_duration.*</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::liveliness</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reliability.kind</span></code>, <code class="docutils literal notranslate"><span class="pre">reliability.max_blocking_time.*</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::reliability</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reliability.acknowledgment_kind</span></code>, <code class="docutils literal notranslate"><span class="pre">reliability.instance_state_consistency_kind</span></code>, <code class="docutils literal notranslate"><span class="pre">reliability.exact_reliability_kind_match</span></code></p></td>
+<td><p>Ignored for Micro - MAG emits warnings</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">destination_order.kind</span></code>, <code class="docutils literal notranslate"><span class="pre">destination_order.source_timestamp_tolerance.*</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::destination_order</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">history.kind</span></code>, <code class="docutils literal notranslate"><span class="pre">history.depth</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::history</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">resource_limits.max_samples</span></code>, <code class="docutils literal notranslate"><span class="pre">resource_limits.max_instances</span></code>, <code class="docutils literal notranslate"><span class="pre">resource_limits.max_samples_per_instance</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::resource_limits</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">resource_limits.*</span></code> (other members)</p></td>
+<td><p>Ignored for Micro - MAG emits warnings</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ownership.kind</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::ownership.kind</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ownership_strength.value</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::ownership_strength.value</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">representation.value.element[]</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::representation.value</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">representation.compression_settings.*</span></code></p></td>
+<td><p>Ignored for Micro - MAG emits warnings</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">latency_budget.duration.sec/nanosec</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::latency_budget.duration</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">user_data.value</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::user_data.value</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transport_priority.value</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::transport_priority.value</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">writer_resource_limits.max_remote_readers</span></code>, <code class="docutils literal notranslate"><span class="pre">max_routes_per_reader</span></code>, <code class="docutils literal notranslate"><span class="pre">writer_loaned_sample_allocation.max_count</span></code>, <code class="docutils literal notranslate"><span class="pre">initialize_writer_loaned_sample</span></code>, <code class="docutils literal notranslate"><span class="pre">max_remote_reader_filters</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::writer_resource_limits</span></code> corresponding fields</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">writer_resource_limits.*</span></code> (other members)</p></td>
+<td><p>Ignored for Micro - MAG emits warnings</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">protocol.rtps_object_id</span></code>, <code class="docutils literal notranslate"><span class="pre">protocol.rtps_reliable_writer.heartbeat_period.*</span></code>, <code class="docutils literal notranslate"><span class="pre">protocol.rtps_reliable_writer.heartbeats_per_max_samples</span></code>, <code class="docutils literal notranslate"><span class="pre">protocol.rtps_reliable_writer.max_send_window_size</span></code>, <code class="docutils literal notranslate"><span class="pre">protocol.rtps_reliable_writer.max_heartbeat_retries</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::protocol</span></code> corresponding fields</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">protocol.serialize_on_write</span></code></p></td>
+<td><p>Not configurable from XML for MAG writer path</p></td>
+<td><p>Always emitted as <code class="docutils literal notranslate"><span class="pre">true</span></code> by template</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">publication_name.name</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::publication_name.name</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">unicast.value[].transports[]</span></code> + optional <code class="docutils literal notranslate"><span class="pre">receive_port</span></code></p></td>
+<td><p>Converted and consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::transport.enabled_transports</span></code> (internal micro transport list)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">publish_mode.kind</span></code>, <code class="docutils literal notranslate"><span class="pre">publish_mode.flow_controller_name</span></code>, <code class="docutils literal notranslate"><span class="pre">publish_mode.priority</span></code></p></td>
+<td><p>Consumed (with flow-controller name validation/normalization)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::publish_mode</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transfer_mode.shmem_ref_settings.enable_data_consistency_check</span></code></p></td>
+<td><p>Consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::transfer_mode.shmem_ref_settings.enable_data_consistency_check</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">property.value[]</span></code></p></td>
+<td><p>Partially consumed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos::property.value</span></code> for Micro-supported property names only</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transport_selection</span></code>, <code class="docutils literal notranslate"><span class="pre">type_support</span></code>, <code class="docutils literal notranslate"><span class="pre">durability_service</span></code>, <code class="docutils literal notranslate"><span class="pre">lifespan</span></code>, <code class="docutils literal notranslate"><span class="pre">writer_data_lifecycle</span></code>, <code class="docutils literal notranslate"><span class="pre">data_tags</span></code>, <code class="docutils literal notranslate"><span class="pre">batch</span></code>, <code class="docutils literal notranslate"><span class="pre">service</span></code>, <code class="docutils literal notranslate"><span class="pre">multi_channel</span></code>, <code class="docutils literal notranslate"><span class="pre">availability</span></code>, <code class="docutils literal notranslate"><span class="pre">topic_query_dispatch</span></code></p></td>
+<td><p>Ignored for Micro - MAG emits warnings</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">topic_filter</span></code> (attribute)</p></td>
+<td><p>Parsed for profile/topic matching behavior only</p></td>
+<td><p>Not emitted as a runtime QoS struct field</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Unsupported fields are detected by <code class="docutils literal notranslate"><span class="pre">ConverterUtils</span></code> against <code class="docutils literal notranslate"><span class="pre">VALID_DATA_WRITER_POLICIES</span></code>; MAG warns and ignores unsupported values.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unicast</span></code> is normalized into <code class="docutils literal notranslate"><span class="pre">microTransports.enabledTransports</span></code> by <code class="docutils literal notranslate"><span class="pre">SystemModelProducer.addEnabledTransports(...)</span></code>; the template emits the resulting transport list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">publish_mode.flow_controller_name</span></code> is validated by <code class="docutils literal notranslate"><span class="pre">checkFlowController(...)</span></code>; built-in names are accepted directly, and custom names must use the expected prefix and be backed by participant properties.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">property</span></code> is emitted only for names in <code class="docutils literal notranslate"><span class="pre">VALID_PROPERTIES_TO_GENERATE</span></code> (via <code class="docutils literal notranslate"><span class="pre">QosUtils.microProperties(...)</span></code>); other property entries are not emitted into generated C QoS structures.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="structural-elements-mapping">
+<h2><span class="section-number">3.18.8. </span>Structural elements mapping<a class="headerlink" href="#structural-elements-mapping" title="Permalink to this headline">¶</a></h2>
+<p>The following mapping documents the structural (non-QoS) elements from the application configuration schema and how MAG processes them.</p>
+<div class="section" id="filter-and-content-filter-datareader-element">
+<h3><span class="section-number">3.18.8.1. </span><code class="docutils literal notranslate"><span class="pre">filter</span></code> and <code class="docutils literal notranslate"><span class="pre">content_filter</span></code> (DataReader element)<a class="headerlink" href="#filter-and-content-filter-datareader-element" title="Permalink to this headline">¶</a></h3>
+<p>These define content-based filtering for DataReader subscriptions.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Schema element</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">filter</span></code> (deprecated)</p></td>
+<td><p>Parsed and migrated to <code class="docutils literal notranslate"><span class="pre">content_filter</span></code> with warning</p></td>
+<td><p>If both <code class="docutils literal notranslate"><span class="pre">filter</span></code> and <code class="docutils literal notranslate"><span class="pre">content_filter</span></code> are present, MAG emits an error</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">content_filter.kind</span></code></p></td>
+<td><p>Parsed and validated; only <code class="docutils literal notranslate"><span class="pre">builtin.sql</span></code> is supported</p></td>
+<td><p>MAG error if kind is not <code class="docutils literal notranslate"><span class="pre">builtin.sql</span></code> or null</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">content_filter.expression</span></code></p></td>
+<td><p>Consumed (SQL filter expression string)</p></td>
+<td><p>Emitted into generated remote-endpoint discovery structs</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">content_filter.parameter_list</span></code> (deprecated)</p></td>
+<td><p>Parsed and migrated to <code class="docutils literal notranslate"><span class="pre">expression_parameters</span></code> with warning</p></td>
+<td><p>If both are present, MAG emits an error</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">content_filter.expression_parameters.element[]</span></code></p></td>
+<td><p>Consumed (parameter string array)</p></td>
+<td><p>Emitted alongside filter expression for runtime substitution</p></td>
+</tr>
+</tbody>
+</table>
+<p>Processing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ConverterUtils.checkContentFilter(...)</span></code> handles deprecation migration and validation</p></li>
+<li><p>Content filter metadata is emitted in <code class="docutils literal notranslate"><span class="pre">entities.h</span></code> remote data structures via <code class="docutils literal notranslate"><span class="pre">contentFilterProperty(...)</span></code> macro</p></li>
+<li><p>Content filter resource limits are configured via <code class="docutils literal notranslate"><span class="pre">DomainParticipantFactoryQos.filter_qos_policy</span></code> properties</p></li>
+<li><p>CFT constants: <code class="docutils literal notranslate"><span class="pre">CFT_DISABLE_WRITER_FILTERING</span></code>, <code class="docutils literal notranslate"><span class="pre">CFT_DISABLE_BUILTIN_SQL_FILTER</span></code>, <code class="docutils literal notranslate"><span class="pre">CFT_FILTER_CLASS_MAX_LENGTH</span></code>, <code class="docutils literal notranslate"><span class="pre">CFT_FILTER_EXPRESSION_MAX_LENGTH</span></code>, etc.</p></li>
+</ul>
+</div>
+<div class="section" id="register-type-domain-and-participant-element">
+<h3><span class="section-number">3.18.8.2. </span><code class="docutils literal notranslate"><span class="pre">register_type</span></code> (Domain and Participant element)<a class="headerlink" href="#register-type-domain-and-participant-element" title="Permalink to this headline">¶</a></h3>
+<p>Type registration defines how data types are bound to topics.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Schema element</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (required)</p></td>
+<td><p>Consumed as type identifier</p></td>
+<td><p>Stored in <code class="docutils literal notranslate"><span class="pre">RegisterTypeModel.name</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">registered_name</span></code></p></td>
+<td><p>Consumed; defines the type’s global name</p></td>
+<td><p>Stored in <code class="docutils literal notranslate"><span class="pre">RegisterTypeModel.registeredName</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type_ref</span></code> (required)</p></td>
+<td><p>Resolved against type definitions; used for type plugin lookup</p></td>
+<td><p>Stored in <code class="docutils literal notranslate"><span class="pre">RegisterTypeModel.typeRef</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Processing:</p>
+<ul class="simple">
+<li><p>All <code class="docutils literal notranslate"><span class="pre">register_type</span></code> elements are parsed into <code class="docutils literal notranslate"><span class="pre">RegisterTypeModel</span></code> objects and stored in <code class="docutils literal notranslate"><span class="pre">DomainParticipantModel.registerTypes</span></code></p></li>
+<li><p>Type reference resolution occurs in <code class="docutils literal notranslate"><span class="pre">SystemModelProducer.findRegisterTypeModel(...)</span></code> by matching <code class="docutils literal notranslate"><span class="pre">name</span></code> or <code class="docutils literal notranslate"><span class="pre">registered_name</span></code> against registered types in the domain</p></li>
+<li><p>Templates emit type plugin getters via <code class="docutils literal notranslate"><span class="pre">typePlugin()</span></code> and <code class="docutils literal notranslate"><span class="pre">typePluginCPP()</span></code> macros (utils.vm), which select between <code class="docutils literal notranslate"><span class="pre">registeredName</span></code> and <code class="docutils literal notranslate"><span class="pre">typeRef</span></code> for plugin resolution</p></li>
+<li><p>If a topic references a type that cannot be resolved, MAG emits an error</p></li>
+</ul>
+</div>
+<div class="section" id="multiplicity-publisher-subscriber-datawriter-datareader-attribute">
+<h3><span class="section-number">3.18.8.3. </span><code class="docutils literal notranslate"><span class="pre">multiplicity</span></code> (Publisher, Subscriber, DataWriter, DataReader attribute)<a class="headerlink" href="#multiplicity-publisher-subscriber-datawriter-datareader-attribute" title="Permalink to this headline">¶</a></h3>
+<p>The multiplicity attribute specifies how many instances of an entity to generate.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Schema attribute</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">multiplicity</span></code></p></td>
+<td><p>Consumed as positive integer; used for resource allocation calculations</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Processing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SystemModelProducer</span></code> reads <code class="docutils literal notranslate"><span class="pre">multiplicity</span></code> from Publisher (line 2715), Subscriber (line 2905), DataWriter (line 2805), and DataReader (line 3003)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ResourceLimitsUpdater</span></code> uses multiplicity to calculate cumulative resource allocations:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Publisher.multiplicity</span></code> * <code class="docutils literal notranslate"><span class="pre">DataWriter</span></code> count → total writer allocation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Subscriber.multiplicity</span></code> * <code class="docutils literal notranslate"><span class="pre">DataReader</span></code> count → total reader allocation</p></li>
+</ul>
+</li>
+<li><p>Each multiplied instance receives a unique name suffix in generated code</p></li>
+</ul>
+</div>
+<div class="section" id="base-name-and-base-names-qos-profile-inheritance">
+<h3><span class="section-number">3.18.8.4. </span>base_name and base_names (QoS profile inheritance)<a class="headerlink" href="#base-name-and-base-names-qos-profile-inheritance" title="Permalink to this headline">¶</a></h3>
+<p>These attributes enable profile inheritance and composition chains.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Schema element</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">base_name</span></code></p></td>
+<td><p>Parsed as QoS profile reference (single inheritance)</p></td>
+<td><p>Format: <code class="docutils literal notranslate"><span class="pre">LibraryName::ProfileName</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">base_names.element[]</span></code></p></td>
+<td><p>Parsed as QoS profile reference chain (composition inheritance)</p></td>
+<td><p>Multiple profiles resolved in order</p></td>
+</tr>
+</tbody>
+</table>
+<p>Processing:</p>
+<ul class="simple">
+<li><p>Both are handled by <code class="docutils literal notranslate"><span class="pre">QosUtils.getBaseName(...)</span></code> and <code class="docutils literal notranslate"><span class="pre">QosUtils.getBaseNames(...)</span></code> during QoS resolution</p></li>
+<li><p>Format validation: base names must follow <code class="docutils literal notranslate"><span class="pre">LibraryName::ProfileName</span></code> format (checked in <code class="docutils literal notranslate"><span class="pre">QosUtils.getBaseNamesList(...)</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QosUtils.resolveNonProfileQos(...)</span></code> performs recursive inheritance: merges base QoS values with current QoS, with current values overriding inherited ones</p></li>
+<li><p>Library prefix is automatically added by <code class="docutils literal notranslate"><span class="pre">QosUtils.addLibraryNameToBaseName(...)</span></code> for relative profile references</p></li>
+<li><p>Invalid or unresolved base names generate errors during QoS resolution</p></li>
+</ul>
+</div>
+<div class="section" id="topic-domain-element">
+<h3><span class="section-number">3.18.8.5. </span>topic (Domain element)<a class="headerlink" href="#topic-domain-element" title="Permalink to this headline">¶</a></h3>
+<p>Topic definitions bind a data type to a topic name with optional QoS.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Schema element</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (attribute)</p></td>
+<td><p>Consumed as topic identifier within domain</p></td>
+<td><p>Topic name used in <code class="docutils literal notranslate"><span class="pre">datawriter_qos</span></code>/<code class="docutils literal notranslate"><span class="pre">datareader_qos</span></code> topic references</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">registered_name</span></code> (child element)</p></td>
+<td><p>Alternative topic name if <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute not set</p></td>
+<td><p>Stored as topic’s display/registered name</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">register_type_ref</span></code> (attribute, required)</p></td>
+<td><p>Resolved against registered types to bind topic to data type</p></td>
+<td><p>Type plugin lookup</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">topic_qos</span></code> (child element)</p></td>
+<td><p>Parsed as optional QoS profile for topic-level defaults</p></td>
+<td><p>Base QoS for DataWriter/DataReader inheritance</p></td>
+</tr>
+</tbody>
+</table>
+<p>Processing:</p>
+<ul class="simple">
+<li><p>All topics are parsed into <code class="docutils literal notranslate"><span class="pre">TopicModel</span></code> objects and stored per domain</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SystemModelProducer.findTopicModel(...)</span></code> resolves topic references by name (matching against <code class="docutils literal notranslate"><span class="pre">name</span></code> or <code class="docutils literal notranslate"><span class="pre">registered_name</span></code>)</p></li>
+<li><p>Topics are primarily used for QoS composition: when a <code class="docutils literal notranslate"><span class="pre">datawriter_qos</span></code> or <code class="docutils literal notranslate"><span class="pre">datareader_qos</span></code> references a topic, inherited fields are merged via <code class="docutils literal notranslate"><span class="pre">QosUtils.inheritFromTopicQos(...)</span></code></p></li>
+<li><p>If a DataWriter/DataReader references a topic that cannot be resolved, MAG emits an error</p></li>
+<li><p>Topic QoS is not directly emitted as a C runtime structure; only the resulting merged QoS (after inheritance) is emitted</p></li>
+</ul>
+</div>
+<div class="section" id="data-writer-publisher-participant-element">
+<h3><span class="section-number">3.18.8.6. </span>data_writer (Publisher, Participant element)<a class="headerlink" href="#data-writer-publisher-participant-element" title="Permalink to this headline">¶</a></h3>
+<p>DataWriter entity configuration.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Schema element</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (attribute)</p></td>
+<td><p>Consumed as entity identifier</p></td>
+<td><p>Unique writer name within publisher</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">multiplicity</span></code> (attribute)</p></td>
+<td><p>Resource allocation multiplier (see multiplicity section above)</p></td>
+<td><p>Instance count for writer generation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">topic_ref</span></code> (attribute, required)</p></td>
+<td><p>Resolved against topic definitions in domain</p></td>
+<td><p>Topic bound to this writer</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">datawriter_qos</span></code> (child element)</p></td>
+<td><p>Parsed as writer-specific QoS profile</p></td>
+<td><p>Merged with topic QoS and emitted as <code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Processing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SystemModelProducer.createDataWriterModel(...)</span></code> resolves topic references and applies QoS inheritance</p></li>
+<li><p>Transport configuration (unicast/multicast) and publish-mode flow-controller validation occur during creation</p></li>
+<li><p>Multiplicity is used by <code class="docutils literal notranslate"><span class="pre">ResourceLimitsUpdater</span></code> to calculate writer allocation counts</p></li>
+</ul>
+</div>
+<div class="section" id="data-reader-subscriber-participant-element">
+<h3><span class="section-number">3.18.8.7. </span>data_reader (Subscriber, Participant element)<a class="headerlink" href="#data-reader-subscriber-participant-element" title="Permalink to this headline">¶</a></h3>
+<p>DataReader entity configuration, including optional content filtering.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Schema element</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (attribute)</p></td>
+<td><p>Consumed as entity identifier</p></td>
+<td><p>Unique reader name within subscriber</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">multiplicity</span></code> (attribute)</p></td>
+<td><p>Resource allocation multiplier (see multiplicity section above)</p></td>
+<td><p>Instance count for reader generation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">topic_ref</span></code> (attribute, required)</p></td>
+<td><p>Resolved against topic definitions in domain</p></td>
+<td><p>Topic subscribed by this reader</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">content_filter</span></code> or <code class="docutils literal notranslate"><span class="pre">filter</span></code> (child element)</p></td>
+<td><p>Parsed for content-filtering configuration (see filter section above)</p></td>
+<td><p>CFT metadata in remote endpoint data</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">datareader_qos</span></code> (child element)</p></td>
+<td><p>Parsed as reader-specific QoS profile</p></td>
+<td><p>Merged with topic QoS and emitted as <code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Processing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SystemModelProducer.createDataReaderModel(...)</span></code> resolves topic references, applies QoS inheritance, and validates content filters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConverterUtils.checkContentFilter(...)</span></code> is called to validate and migrate filter elements</p></li>
+<li><p>Multiplicity is used by <code class="docutils literal notranslate"><span class="pre">ResourceLimitsUpdater</span></code> to calculate reader allocation counts</p></li>
+<li><p>Content-filter configuration gates the DomainParticipantFactory’s CFT feature flag: if any reader has a content filter, <code class="docutils literal notranslate"><span class="pre">isContentFilter()</span></code> returns true</p></li>
+</ul>
+</div>
+<div class="section" id="publisher-participant-element">
+<h3><span class="section-number">3.18.8.8. </span>publisher (Participant element)<a class="headerlink" href="#publisher-participant-element" title="Permalink to this headline">¶</a></h3>
+<p>Publisher entity container for DataWriters.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Schema element</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (attribute)</p></td>
+<td><p>Consumed as entity identifier</p></td>
+<td><p>Unique publisher name within participant</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">multiplicity</span></code> (attribute)</p></td>
+<td><p>Resource allocation multiplier (see multiplicity section above)</p></td>
+<td><p>Instance count for publisher generation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">publisher_qos</span></code> (child element)</p></td>
+<td><p>Parsed as publisher-specific QoS profile</p></td>
+<td><p>Emitted as <code class="docutils literal notranslate"><span class="pre">DDS_PublisherQos</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data_writer</span></code> (child elements)</p></td>
+<td><p>Each DataWriter is processed independently</p></td>
+<td><p>Collection of writers created for this publisher</p></td>
+</tr>
+</tbody>
+</table>
+<p>Processing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SystemModelProducer.createPublisherModel(...)</span></code> creates a <code class="docutils literal notranslate"><span class="pre">PublisherModel</span></code> and processes child DataWriters</p></li>
+<li><p>Publisher multiplicity scales the total number of publishers generated; each multiplied instance receives a unique suffix</p></li>
+</ul>
+</div>
+<div class="section" id="subscriber-participant-element">
+<h3><span class="section-number">3.18.8.9. </span>subscriber (Participant element)<a class="headerlink" href="#subscriber-participant-element" title="Permalink to this headline">¶</a></h3>
+<p>Subscriber entity container for DataReaders.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Schema element</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (attribute)</p></td>
+<td><p>Consumed as entity identifier</p></td>
+<td><p>Unique subscriber name within participant</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">multiplicity</span></code> (attribute)</p></td>
+<td><p>Resource allocation multiplier (see multiplicity section above)</p></td>
+<td><p>Instance count for subscriber generation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">subscriber_qos</span></code> (child element)</p></td>
+<td><p>Parsed as subscriber-specific QoS profile</p></td>
+<td><p>Emitted as <code class="docutils literal notranslate"><span class="pre">DDS_SubscriberQos</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data_reader</span></code> (child elements)</p></td>
+<td><p>Each DataReader is processed independently</p></td>
+<td><p>Collection of readers created for this subscriber</p></td>
+</tr>
+</tbody>
+</table>
+<p>Processing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SystemModelProducer.createSubscriberModel(...)</span></code> creates a <code class="docutils literal notranslate"><span class="pre">SubscriberModel</span></code> and processes child DataReaders</p></li>
+<li><p>Subscriber multiplicity scales the total number of subscribers generated; each multiplied instance receives a unique suffix</p></li>
+</ul>
+</div>
+<div class="section" id="domain-participant-participantlibrary-element">
+<h3><span class="section-number">3.18.8.10. </span>domain_participant (ParticipantLibrary element)<a class="headerlink" href="#domain-participant-participantlibrary-element" title="Permalink to this headline">¶</a></h3>
+<p>Top-level DomainParticipant configuration.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Schema element</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (attribute)</p></td>
+<td><p>Consumed as entity identifier</p></td>
+<td><p>Participant name prefix for generated code</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">domain_ref</span></code> (attribute, optional)</p></td>
+<td><p>Resolved against domain library</p></td>
+<td><p>Binds participant to a specific domain</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">domain_id</span></code> (attribute, optional)</p></td>
+<td><p>Domain ID override (overrides domain_ref domain ID)</p></td>
+<td><p>Runtime participant domain ID</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">base_name</span></code> (attribute, optional)</p></td>
+<td><p>Participant profile inheritance (not directly used for structure)</p></td>
+<td><p>QoS inheritance base</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">domain_participant_qos</span></code> (child element)</p></td>
+<td><p>Parsed as participant-specific QoS profile</p></td>
+<td><p>Emitted as <code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantQos</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">register_type</span></code> (child elements)</p></td>
+<td><p>Type registrations local to this participant</p></td>
+<td><p>Stored in participant model; supersede domain registrations</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">topic</span></code> (child elements)</p></td>
+<td><p>Topics local to this participant</p></td>
+<td><p>Stored in participant model; supersede domain topics</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code> / <code class="docutils literal notranslate"><span class="pre">subscriber</span></code> (child elements)</p></td>
+<td><p>Publishers and subscribers for this participant</p></td>
+<td><p>Processed recursively</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">data_writer</span></code> / <code class="docutils literal notranslate"><span class="pre">data_reader</span></code> (child elements)</p></td>
+<td><p>Implicit publisher/subscriber writers and readers</p></td>
+<td><p>Processed with implicit entity creation</p></td>
+</tr>
+</tbody>
+</table>
+<p>Processing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SystemModelProducer.createParticipantModel(...)</span></code> recursively processes all child entities</p></li>
+<li><p>Resource limits are calculated and adjusted by <code class="docutils literal notranslate"><span class="pre">ResourceLimitsUpdater</span></code> based on entity multiplicities and nesting</p></li>
+<li><p>Discovery configuration (DPSE or built-in) determines which metadata types are emitted in generated code</p></li>
+</ul>
+</div>
+<div class="section" id="domain-domainlibrary-element">
+<h3><span class="section-number">3.18.8.11. </span>domain (DomainLibrary element)<a class="headerlink" href="#domain-domainlibrary-element" title="Permalink to this headline">¶</a></h3>
+<p>Domain definition containing topic and type registrations.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Schema element</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (attribute)</p></td>
+<td><p>Consumed as domain identifier within library</p></td>
+<td><p>Domain reference for participants</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">domain_id</span></code> (attribute, optional)</p></td>
+<td><p>Domain ID for this domain</p></td>
+<td><p>Runtime domain ID if not overridden</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">base_name</span></code> (attribute, optional)</p></td>
+<td><p>Domain profile inheritance</p></td>
+<td><p>QoS inheritance base</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">register_type</span></code> (child elements)</p></td>
+<td><p>Type registrations available to all participants in domain</p></td>
+<td><p>Global type registry</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">topic</span></code> (child elements)</p></td>
+<td><p>Topics available to all participants in domain</p></td>
+<td><p>Global topic registry</p></td>
+</tr>
+</tbody>
+</table>
+<p>Processing:</p>
+<ul class="simple">
+<li><p>Domains provide a namespace for types and topics</p></li>
+<li><p>Participant domain references resolve to this domain during initialization</p></li>
+<li><p>All register types and topics in a domain are merged into participant-local registries; participant-local definitions override domain definitions</p></li>
+</ul>
+</div>
+<div class="section" id="domain-library-and-participant-library-root-elements">
+<h3><span class="section-number">3.18.8.12. </span>domain_library and participant_library (Root elements)<a class="headerlink" href="#domain-library-and-participant-library-root-elements" title="Permalink to this headline">¶</a></h3>
+<p>Top-level containers for domains and participants.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Schema element</p></th>
+<th class="head"><p>MAG behavior</p></th>
+<th class="head"><p>Micro target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (attribute)</p></td>
+<td><p>Library namespace; used in base_name resolution</p></td>
+<td><p>Automatically prepended to profile references</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">domain</span></code> (child elements, in domain_library)</p></td>
+<td><p>Domain definitions</p></td>
+<td><p>Processed in order</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">domain_participant</span></code> (child elements, in participant_library)</p></td>
+<td><p>Participant configurations</p></td>
+<td><p>Processed in order; code generation targets all participants</p></td>
+</tr>
+</tbody>
+</table>
+<p>Processing:</p>
+<ul class="simple">
+<li><p>Multiple domain and participant libraries can be defined</p></li>
+<li><p>Library names are prepended to base_name references by <code class="docutils literal notranslate"><span class="pre">QosUtils.addLibraryNameToBaseName(...)</span></code></p></li>
+<li><p>All participants across all participant libraries are code-generated unless filtering is applied</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="face.html" class="btn btn-neutral float-right" title="3.19. Building Against FACE Conformance Libraries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="appgen.html" class="btn btn-neutral float-left" title="3.17. Application Generation Using XML" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

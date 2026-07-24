@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.23. Memory Management &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.24. Transport Priority" href="transport_priority.html" />
+    <link rel="prev" title="3.22. Lightweight Security Plugin" href="security_psk.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Programmer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">3.2. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">3.3. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">3.4. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">3.5. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">3.6. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html">3.7. User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html">3.8. Partitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html">3.9. Content Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">3.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">3.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">3.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">3.13. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html">3.14. Sending Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html">3.15. Zero Copy Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html">3.16. FlatData Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html">3.17. Application Generation Using XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qos_mapping_xml.html">3.18. QoS Mapping in XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">3.19. Building Against FACE Conformance Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">3.20. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.21. Example Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html">3.22. Lightweight Security Plugin</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.23. Memory Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#resource-limits">3.23.1. Resource limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-memory-allocation">3.23.2. Dynamic memory allocation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dds-resource-limits">3.23.3. DDS resource limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#discovery-plugin-resource-limits">3.23.4. Discovery plugin resource limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#type-support-resource-limits">3.23.5. Type support resource limits</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html">3.24. Transport Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html">3.25. Startup Time Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">3. </span>Programmer’s Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">3.23. </span>Memory Management</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="memory-management">
+<span id="section-memory-management"></span><h1><span class="section-number">3.23. </span>Memory Management<a class="headerlink" href="#memory-management" title="Permalink to this headline">¶</a></h1>
+<p><em>Connext Micro</em> is designed for use in real-time systems and uses a predictable,
+deterministic memory manager to ensure that memory growth is
+not unbounded, OS memory fragmentation is eliminated, and memory usage can be
+determined before runtime. This design ensures proper operation after all
+entities have been created, but requires the system designer to properly
+configure <em>Connext Micro</em>, as described in this section.</p>
+<div class="section" id="resource-limits">
+<h2><span class="section-number">3.23.1. </span>Resource limits<a class="headerlink" href="#resource-limits" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> uses resource limits to determine how much to allocate of a particular
+resource; e.g., the maximum number of samples that can be cached by a
+<em>DataReader</em>, or how many <em>DataWriters</em> can be created locally. These limits set
+the maximum amount of memory that can be dynamically allocated, and may incur
+additional overhead.</p>
+<p>This section provides guidance on how much overhead these resource limits incur.
+Simple resource limits, such as those that specify a number of bytes, are not
+discussed here.</p>
+<p>Please refer to  <a class="reference external" href="../../../doc/api_c/html/group__DDSUserManuals__ResourceModule.html">Resource Limits</a>
+for the full list of resource limits, and
+to <a class="reference external" href="https://community.rti.com/static/documentation/performance/benchmarks/index.html">RTI Connext Performance Benchmarks</a>
+on RTI Community for memory usage benchmarks.</p>
+</div>
+<div class="section" id="dynamic-memory-allocation">
+<h2><span class="section-number">3.23.2. </span>Dynamic memory allocation<a class="headerlink" href="#dynamic-memory-allocation" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> allocates heap memory to create internal data structures dynamically as
+DDS entities are created. Keep in mind that <em>Connext Micro</em> manages allocated memory using
+its own internal memory management, and <em>only</em> returns freed allocated memory
+when something is deleted. So, if an application never deletes anything, no
+memory is ever freed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Connext Micro</em> uses the term “heap” to refer to any memory that is allocated
+dynamically, typically using the <code class="docutils literal notranslate"><span class="pre">malloc</span></code> system call. However, the
+Platform Support Library (PSL) is responsible for implementing the memory
+allocation and freeing functions required by <em>Connext Micro</em>; the only requirement is
+that heap memory is valid from when it is allocated to when it is freed.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p><em>Connext Micro</em> does not support dynamically allocating resources beyond the initial
+configuration. Therefore, all resource limits must be finite.</p>
+</div>
+</div>
+<div class="section" id="dds-resource-limits">
+<h2><span class="section-number">3.23.3. </span>DDS resource limits<a class="headerlink" href="#dds-resource-limits" title="Permalink to this headline">¶</a></h2>
+<p>The following table shows which resource limits are applicable to DDS APIs
+that allocate memory:</p>
+<table class="colwidths-given longtable docutils align-default" id="id1">
+<caption><span class="caption-number">Table 3.14 </span><span class="caption-text">DDS APIs that allocates memory</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 27%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>API</p></th>
+<th class="head"><p>Creates</p></th>
+<th class="head"><p>Applicable Resource Limits</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>DDS_DomainParticipantFactory_get_instance</p></td>
+<td><p>DDS_DomainParticipantFactory</p></td>
+<td><p><a class="reference external" href="../../../doc/api_c/html/group__DDSUserManuals__ResourceModule__dpf.html">DDS_DomainParticipantFactoryQos</a> <br />
+<a class="reference external" href="../../../doc/api_c/html/group__DDSUserManuals__ResourceModule__osapi.html">OSAPI_LogProperty</a> <br />
+OSAPI_SystemProperty</p></td>
+</tr>
+<tr class="row-odd"><td><p>DDS_DomainParticipantFactory_create_participant</p></td>
+<td><p>DDS_DomainParticipant</p></td>
+<td><p><a class="reference external" href="../../../doc/api_c/html/group__DDSUserManuals__ResourceModule__dp.html">DDS_DomainParticipantQos</a></p></td>
+</tr>
+<tr class="row-even"><td><p>DDS_DomainParticipant_create_topic</p></td>
+<td><p>DDS_Topic</p></td>
+<td><p>Topic name length</p></td>
+</tr>
+<tr class="row-odd"><td><p>DDS_Publisher_create_datawriter</p></td>
+<td><p>DDS_DataWriter</p></td>
+<td><p><a class="reference external" href="../../../doc/api_c/html/group__DDSUserManuals__ResourceModule__dwqos.html">DDS_DataWriterQos</a></p></td>
+</tr>
+<tr class="row-even"><td><p>DDS_Subscriber_create_datareader</p></td>
+<td><p>DDS_DataReader</p></td>
+<td><p><a class="reference external" href="../../../doc/api_c/html/group__DDSUserManuals__ResourceModule__drqos.html">DDS_DataReaderQos</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>DDS_WaitSet_new</p></td>
+<td><p>DDS_WaitSet</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p>FooTypeSupport_register_type</p></td>
+<td><p>TypeSupport</p></td>
+<td><p>Type name length <br />
+<a class="reference internal" href="#section-memory-management-type-support"><span class="std std-ref">Discovery plugin resource limits</span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="discovery-plugin-resource-limits">
+<span id="section-memory-management-type-support"></span><h2><span class="section-number">3.23.4. </span>Discovery plugin resource limits<a class="headerlink" href="#discovery-plugin-resource-limits" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> preallocates memory to store discovery information. If these limits are
+exceeeded, <em>Connext Micro</em> discards the discovery information. <em>Connext Micro</em> includes two different
+discovery plugins:</p>
+<ol class="arabic simple">
+<li><p>Dynamic Participant Dynamic Endpoint (DPDE). Please refer
+to <a class="reference external" href="../../../doc/api_c/html/group__DDSUserManuals__ResourceModule__dpde.html">DPDE</a>
+for details. DPDE is the simplest discovery plugin to use; however, its
+lack of ability to ignore DDS entities may cause <em>Connext Micro</em> to run out of resources
+if running in a non-determinstic environment. For this reason, DPDE is
+recommended when running in a deterministic environment OR when resource
+limits are set sufficiently high to accomodate all possible scenarios.</p></li>
+<li><p>Dynamic Participant Static Endpoint (DPSE). Please refer
+to <a class="reference external" href="../../../doc/api_c/html/group__DDSUserManuals__ResourceModule__dpse.html">DPSE</a>
+for details. DPSE trades off ease of use, higher memory usage, and
+non-deterministic behavior with more upfront configuraton, lower memory
+usage, and deterministic behavior.</p></li>
+</ol>
+<p>The DDS discovery process does not only involve storing discovery information;
+it also involves matching local endpoints with discovered endpoints. This
+means that a single local <em>DataWriter</em> must allocate memory to track every
+<em>DataReader</em> discovered in the domain, regardless of whether the remote
+<em>DataReader</em> subscribes to the same <em>Topic</em>. If the domain contains hundreds or
+thousands of unrelated endpoints, the local <em>DataWriter</em> must still maintain
+memory for each one to determine if they are a match. As a result, local
+resource limits (such as the maximum number of tracked entities) can be
+exhausted by a single endpoint. This can prevent communication from functioning
+correctly, even in a simple system.</p>
+<p>The following resource limits are important to take into account:</p>
+<table class="colwidths-given longtable docutils align-default" id="id2">
+<caption><span class="caption-number">Table 3.15 </span><span class="caption-text">Resource Limits and Discovery</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 56%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Resource Limit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantQos.resource_limits.remote_participant_allocation</span></code></p></td>
+<td><p>The maximum number of <em>DomainParticipants</em> that can be discovered.
+The <em>DomainParticipant</em> itself is never discovered.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantQos.resource_limits.remote_reader_allocation</span></code></p></td>
+<td><p>The maximum number of remote <em>DataReaders</em> that can be discovered. Locally
+created <em>DataReaders</em> are not discovered via discovery plugin and should
+<em>not</em> count toward this limit.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantQos.resource_limits.remote_writer_allocation</span></code></p></td>
+<td><p>The maximum number of remote <em>DataWriters</em> that can be discovered. Locally
+created <em>DataWriters</em> are not discovered via discovery plugin and should
+<em>not</em> count toward this limit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantQos.resource_limits.matching_writer_reader_pair_allocation</span></code></p></td>
+<td><p>The maximum number of RTPS sessions that can be created. An RTPS session
+is created between a <em>DataReader</em> and a matched <em>DataWriter</em> <em>and</em>
+between a <em>DataWriter</em> and a matched <em>DataReader</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataWriterQos.writer_resource_limits.max_remote_readers</span></code></p></td>
+<td><p>The maximum number of <em>DataReaders</em> the <em>DataWriter</em> can match with. Note
+that both discovered <em>and</em> locally created <em>DataReaders</em> should count
+toward this resource limit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DDS_DataReaderQos.writer_resource_limits.max_remote_writers</span></code></p></td>
+<td><p>The maximum number of <em>DataWriters</em> the <em>DataReader</em> can match with. Note
+that both discovered <em>and</em> locally created <em>DataWriters</em> should count
+toward this resource limit.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="type-support-resource-limits">
+<h2><span class="section-number">3.23.5. </span>Type support resource limits<a class="headerlink" href="#type-support-resource-limits" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> supports two different types of code generation from IDL:</p>
+<ol class="arabic simple">
+<li><p><strong>Interpreted</strong>: The is the default and requires the use of the
+<code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code> library. However, it also allocates additional memory.
+You can enable interpreted type support by passing <code class="docutils literal notranslate"><span class="pre">interpreted</span> <span class="pre">1</span></code> to
+<em>rtiddsgen</em>.</p></li>
+<li><p><strong>Non-Interpreted</strong>: The non-intepreted type support does not support the
+<a class="reference internal" href="types.html#section-xtypes-compatibility"><span class="std std-ref">DDS XTypes</span></a> specification. However, it
+uses significantly less memory. This is also the only type support supported
+by the CERT profile. You can enable the non-interpreted type support by
+passing <code class="docutils literal notranslate"><span class="pre">interpreted</span> <span class="pre">0</span></code> to <em>rtiddsgen</em>.</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="transport_priority.html" class="btn btn-neutral float-right" title="3.24. Transport Priority" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="security_psk.html" class="btn btn-neutral float-left" title="3.22. Lightweight Security Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

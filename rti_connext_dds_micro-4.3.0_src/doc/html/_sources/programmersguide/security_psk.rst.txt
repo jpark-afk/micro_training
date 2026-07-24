@@ -1,0 +1,490 @@
+.. _section-psk:
+
+Lightweight Security Plugin
+===========================
+
+The *Lightweight Security Plugin* is an addon for |me| that offers an efficient
+solution for securing RTPS communication at the domain level. This plugin
+protects your domain from unauthorized participants and ensures the integrity
+and confidentiality of RTPS messages.
+
+Overview
+--------
+
+The *Lightweight Security Plugin* uses symmetric encryption, deriving keys from
+a combination of publicly-available data and a user-provided pre-shared key
+(PSK) seed. Pre-shared key protection offers metadata and data protection to
+RTPS messages and restricts communication only to *DomainParticipants* holding
+the correct PSK. This architecture offers a streamlined path to deploy security
+without the overhead of full public key infrastructure.
+
+The plugin also includes a *passphrase tracker*, a component that periodically
+checks for updates to the PSK passphrase. This feature allows you to rotate the
+passphrase without restarting your application.
+
+The *Lightweight Security Plugin* consists of a Platform Independent Library
+(PIL) and a Transform Platform Support Library (PSL). The Transform PSL is an
+abstraction layer that allows seamless integration with a cryptographic
+backend. The plugin includes a reference implementation that integrates with
+`OpenSSL 3.5 <https://github.com/openssl/openssl/tree/openssl-3.5.5>`__ [1]_
+and a file-based provider for the passphrase tracker.
+
+This modular design makes the *Lightweight Security Plugin* an ideal choice for
+applications that demand robust protection without compromising on portability
+or efficiency.
+
+.. [1] You can substitute in your own Transform PSL to meet performance,
+   certification, or compliance requirements. For details, please contact
+   RTI through `support.rti.com <https://support.rti.com/>`__.
+
+Downloading and Installing the Lightweight Security Plugin
+----------------------------------------------------------
+
+Once you have access to the *Lightweight Security Plugin*, you can download the
+following package files from `support.rti.com <https://support.rti.com/>`__:
+
+* ``rti_connext_dds_micro-<version>-lw-security-host.rtipkg``
+* ``rti_connext_dds_micro-<version>-lw-security-target-openssl-3.5-<architecture>.rtipkg``
+* ``openssl-3.5-micro-<version>-target-<architecture>.rtipkg`` (*Optional*)
+
+Download the host package with ``<version>`` |version|, and a target package
+with ``<version>`` |version| and ``<architecture>`` matching your CPU and
+compiler.
+
+To install the *Lightweight Security Plugins* packages, follow the same
+instructions for installing |me| packages in
+:ref:`section-installing-connext-micro`.
+
+Package contents
+................
+
+The host package contains the necessary header files for lightweight security
+development.
+
+The target package provides the Platform Independent Library (PIL) and Transform
+Platform Support Library (PSL) specific to your target architecture. The
+Transform PSL is dependent on OpenSSL; RTI builds and tests the PSL against
+`OpenSSL 3.5 <https://github.com/openssl/openssl/tree/openssl-3.5.4>`__.
+`OpenSSL 3.5 <https://github.com/openssl/openssl/tree/openssl-3.5.4>`__.
+
+The OpenSSL target package simply contains the OpenSSL 3.5 release. RTI provides
+this for convenience, but you may use any OpenSSL distribution ABI compatible
+with 3.5.4. The OpenSSL source can be found at https://openssl-library.org/source/.
+
+The package also includes a reference implementation of the passphrase tracker
+provider that reads the passphrase from a file.
+
+Getting Started
+---------------
+
+This section will walk you through the steps needed to enable the *Lightweight
+Security Plugin* in your application and run it in your domain. We will
+use the provided reference implementation of the Transform PSL with `OpenSSL 3.5
+<https://github.com/openssl/openssl/tree/openssl-3.5.4>`_ and the file-based provider
+for the passphrase tracker.
+
+.. note::
+
+  You can also generate an example application with *rtiddsgen* that uses
+  lightweight security. Refer to :ref:`example_generation` for more information.
+
+Include header files
+....................
+
+The following header files are required to use the *Lightweight Security Plugin*:
+
+* ``dds_psk/dds_psk.h``: provides the functions and types needed to register the
+  *Lightweight Security Plugin* with |me|.
+
+* ``rti_me_psk/pskpsl/psk_ossl_transform.h``: provides the function
+  ``PSK_OSSL_get_interface`` to retrieve the reference Transform PSL interface
+  implementation based on OpenSSL.
+
+* ``rti_me_psl/pskpsl/psk_file_pass_tracker.h``: provides the function
+  ``PSK_FilePassTracker_get_interface`` to retrieve the reference *file
+  passphrase tracker* provider interface.
+
+
+Link application and libraries
+..............................
+
+To link an application with the lightweight security feature, the following
+libraries are required in the listed order:
+
+* ``RTIMEHOME/lib/<arch>/``
+
+  1. ``rti_me_ddspsk`` (must be linked before ``rti_me``)
+
+* ``RTIMEHOME/lib/<arch>-<PSL>/``
+
+  2. ``rti_me_pskpsl_openssl3`` (must be linked before ``rti_me``)
+
+* ``RTIMEHOME/thirdparty/openssl-3.5.4-<arch>/<debug|release>-<shared|static>/lib``
+
+  3. ``libcrypto``
+
+Enable lightweight security in your application
+...............................................
+
+To use lightweight security, you must first register the *Lightweight Security Plugin*
+library with |me| via the :link_connextmicro_dds_api_c_up_one:`DDS_PskLibrary_register() <group__DDSPSKModule.html>` function, as shown
+below:
+
+.. code-block:: c
+
+   {
+        struct DDS_PskServiceFactoryProperty psk_svc_property =
+            DDS_PskServiceFactoryProperty_INITIALIZER;
+        psk_svc_property.psl_get_interface_func = PSK_OSSL_get_interface;
+        psk_svc_property.pass_tracker_get_interface_func = PSK_FilePassTracker_get_interface;
+        if(!DDS_PskLibrary_register(
+                              registry,
+                              &psk_svc_property))
+        {
+          printf("Lightweight Security Plugin registration error\n");
+        }
+   }
+
+.. note::
+
+  When using the C++ API, register the *Lightweight Security Plugin* using the
+  same method as the C API, shown above.
+
+This function takes a property structure with the following fields:
+
+* :link_connextmicro_dds_api_c_up_one:`service_name <structDDS__PskServiceFactoryProperty.html>`: a unique identifier for this registration within the
+  *DomainParticipantFactory*. The *DomainParticipant* QoS references this name
+  to select which library registration to use. If set to NULL, the default
+  name ``DDS_PSK_DEFAULT_SUITE_NAME`` will be used.
+* :link_connextmicro_dds_api_c_up_one:`psl_get_interface_func <structDDS__PskServiceFactoryProperty.html>`: a function pointer used to retrieve the Transform PSL
+  interface. When using the reference Transform PSL provided by RTI, set this to
+  ``PSK_OSSL_get_interface`` [2]_.
+* :link_connextmicro_dds_api_c_up_one:`psl_config <structDDS__PskServiceFactoryProperty.html>`: An opaque pointer passed to the Transform PSL creation
+  function. When using the RTI-provided Transform PSL, this field resolves to
+  :link_connextmicro_dds_api_c_up_one:`DDS_SecTransform_Configuration <structDDS__SecTransform__Configuration.html>`.
+  Its type is ``struct DDS_SecTransform_Configuration *``, as shown in the
+  example below:
+
+.. code-block:: c
+
+    struct DDS_SecTransform_Configuration config = *PSK_OSSL_get_default_configuration();
+
+.. [2] This function is provided by ``rti_me_psl/pskpsl/psk_ossl_transform.h``.
+
+* :link_connextmicro_dds_api_c_up_one:`pass_tracker_get_interface_func <structDDS__PskServiceFactoryProperty.html>`: a function pointer used to retrieve the passphrase tracker
+  provider interface. When using the reference *file passtracker* provided by RTI, set this to
+  ``PSK_FilePassTracker_get_interface`` [3]_.
+* :link_connextmicro_dds_api_c_up_one:`pass_tracker_config <structDDS__PskServiceFactoryProperty.html>`: An opaque pointer passed to the passphrase tracker creation
+  function. When using the RTI-provided *file passtracker*, this field resolves to
+  :link_connextmicro_dds_api_c_up_one:`PSK_PassTrackerConfiguration <structPSK__PassTrackerConfiguration.html>`.
+  Its type is ``struct PSK_PassTrackerConfiguration *``, as shown in the example below:
+
+.. code-block:: c
+
+    struct PSK_PassTrackerConfiguration pass_tracker_config =
+        PSK_FilePassTracker_get_default_configuration();
+
+.. [3] This function is provided by ``rti_me_psl/pskpsl/psk_file_pass_tracker.h``.
+
+Specify the plugin in the DomainParticipant QoS
+...............................................
+
+Assign the :link_connextmicro_dds_api_c_up_one:`service_name <structDDS__PskServiceFactoryProperty.html>`
+that you specified during registration to the
+``DomainParticipantQos.trust.suite`` field with the following function:
+
+.. code-block:: c
+
+  RT_ComponentFactoryId_set_name(&dp_qos.trust.suite, DDS_PSK_DEFAULT_SUITE_NAME)
+
+This function tells the *DomainParticipant* to enable the *Lightweight Security
+Plugin* and identifies which registered instance to use.
+
+Configure the plugin
+....................
+
+The *Lightweight Security Plugin* accepts the following properties (in the
+:link_connextmicro_dds_api_c_up_one:`PROPERTY QoS <group__DDSPropertyQosModule.html>`):
+
+* ``dds.sec.crypto.rtps_psk_secret_passphrase`` (*Required*)
+* ``dds.sec.access.rtps_psk_protection_kind`` (*Optional*)
+* ``dds.sec.crypto.rtps_psk_symmetric_cipher_algorithm`` (*Optional*)
+* ``com.rti.serv.secure.cryptography.max_blocks_per_session`` (*Optional*)
+* ``com.rti.serv.secure.pass_tracker.period_sec`` (*Optional*)
+* ``com.rti.serv.secure.pass_tracker.period_nsec`` (*Optional*)
+* ``com.rti.serv.secure.pass_tracker.provider_arg`` (*Optional*)
+
+For more information about these properties, refer to
+:ref:`section-configuring-psk`. For now, set these properties as shown in the
+example snippet below:
+
+.. code-block:: c
+
+  {
+    struct DDS_DomainParticipantQos dp_qos =
+    DDS_DomainParticipantQos_INITIALIZER;
+
+    /* Required property*/
+    DDS_PropertyQosPolicyHelper_add_property(
+        &dp_qos.property,
+        "dds.sec.crypto.rtps_psk_secret_passphrase",
+        "data:,404166165:castle super radar denial swing lunar kind swarm wet toilet output harbor basic begin margin huge year visit",
+        DDS_BOOLEAN_FALSE);
+
+    /* Optional Properties */
+    DDS_PropertyQosPolicyHelper_add_property(
+        &dp_qos.property,
+        "dds.sec.access.rtps_psk_protection_kind",
+        "ENCRYPT",
+        DDS_BOOLEAN_FALSE);
+
+    DDS_PropertyQosPolicyHelper_add_property(
+        &dp_qos.property,
+        "dds.sec.crypto.rtps_psk_symmetric_cipher_algorithm",
+        "AUTO",
+        DDS_BOOLEAN_FALSE);
+
+    DDS_PropertyQosPolicyHelper_add_property(
+        &dp_qos.property,
+        "com.rti.serv.secure.cryptography.max_blocks_per_session",
+        "256",
+        DDS_BOOLEAN_FALSE);
+
+    /* PassTracker properties */
+    DDS_PropertyQosPolicyHelper_add_property(
+        &dp_qos.property,
+        "com.rti.serv.secure.pass_tracker.provider_arg",
+        "file:./passphrase.txt",
+        DDS_BOOLEAN_FALSE);
+
+    DDS_PropertyQosPolicyHelper_add_property(
+        &dp_qos.property,
+        "com.rti.serv.secure.pass_tracker.period_sec",
+        "5",
+        DDS_BOOLEAN_FALSE);
+  }
+
+Create a protected DomainParticipant
+....................................
+
+Invoke the function :link_connextmicro_dds_api_c_up_one:`DDS_DomainParticipantFactory_create_participant <group__DDSDomainParticipantFactoryModule.html>`
+with the QoS ``dp_qos``.
+
+At this point, your application is protected by the *Lightweight Security
+Plugin* and ready to run!
+
+.. _section-configuring-psk:
+
+Configuring the Lightweight Security Plugin
+-------------------------------------------
+
+The following table lists the properties used to configure the *Lightweight
+Security Plugin* and detailed descriptions of their use. Refer to the OMD `DDS
+Security Specification 1.1 <https://www.omg.org/spec/DDS-SECURITY/1.1/PDF>`_ for
+additional information.
+
+All of the properties below have string values.
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   - * Property Name
+     * Property Description
+
+   - * ``dds.sec.crypto.rtps_psk_secret_passphrase``
+     * Passphrase used to derive the per-participant key used for encoding RTPS
+       messages (in combination with other publicly available data).
+
+       This property is mutable through the *DomainParticipant* ``set_qos`` API.
+       The *DomainParticipant* will use the updated passphrase to derive the new
+       local and remote pre-shared keys. From that point on, the
+       *DomainParticipant* will use the new keys to encrypt and decrypt RTPS
+       messages with PSK protection. You should expect warning messages (about
+       receiving messages encoded with a different pre-shared key identifier) as
+       you change the property value throughout your system. Once all your
+       *DomainParticipants* have the same passphrase, all PSK protected traffic
+       will be encoded and decoded with consistent keys. At that point, warning
+       messages will stop.
+
+       Updating the value of this property implies a change in the secret key
+       AND in the key identifier. Each secret key should be associated with a
+       unique key identifier. Updating the secret key without changing the key
+       identifier is not allowed and will result in set_qos returning
+       ``DDS_RETCODE_NOT_ALLOWED_BY_SECURITY``.
+
+       The pre-shared secret identifier should not be reused; you may
+       set a new secret key with an old key identifier, but doing so is not
+       advised. In that case, *Lightweight Security Plugin* may end up using
+       the old pre-shared key to try (unsuccessfully) to decode an RTPS message
+       that was encoded using the new key.
+
+       The passphrase must follow the format
+       ``data:,<passphrase_id>:<passphrase>``.
+
+       ``<passphrase_id>`` is a unique four-byte integer number that identifies
+       the key. It must be in the [0, 2^32 - 1] range, excluding the values that
+       have 0xFF as the least significant byte (e.g., 255, 1023, 2047, etc.).
+       ``<passphrase_id>`` must be provided to support proper handling of
+       different passphrase revisions, and it must be consistent across all the
+       *DomainParticipants* within a domain. This value must be different with
+       every passphrase change, otherwise the update will be rejected. RTI
+       recommends using incremental subsequent values for every new key
+       provided. Rolling back to a lower number (e.g., 0) after the indexes have
+       been exhausted is acceptable.
+
+       ``<passphrase>`` is the secret passphrase string that the *Lightweight
+       Security Plugin* will use to derive the per-participant pre-shared key.
+       ``<passphrase>`` must contain up to 512 ASCII printable
+       characters (character codes 32 to 126, both included). The first and last
+       characters of the ``<passphrase>`` shall not be the space character
+       (character code 32).
+
+       **Default**: not set
+
+       .. attention::
+
+         It is your responsibility to provide a key seed with good entropy
+         and length. Ideally, the pre-shared key seed should be a true random
+         256-bit seed. There are a few methods to obtain such a string. For
+         example, one could use a specialized dictionary (e.g., BIP39) to draw
+         words from, or a Base64-encoded sequence of random binary bits. Note
+         that actual entropy may be less than what the length of the string
+         suggests. For example, the ASCII character space does not use the whole
+         8-bit space: instead, only 5~6 bits are used. To obtain the desirable
+         entropy and strength, one would need at least 256/5.5 = 47 truly random
+         characters. A dictionary-based approach offers less entropy, and the
+         seed created this way would need to be longer.
+
+   - * ``dds.sec.crypto.rtps_psk_symmetric_cipher_algorithm``
+     * *Optional*.
+
+       Algorithm used to protect RTPS messages with pre-shared key (PSK)
+       protection. The available options are ``AES256+GCM`` and ``AES128+GCM``.
+       The number indicates the number of bits in the key in either the GMAC or
+       GCM variant of the algorithm. This property only sets the algorithm and
+       key length; see the note below for more information about setting the
+       algorithm's variant.
+
+       **Enum**: ``AUTO`` (equivalent to ``AES256+GCM``), ``AES128+GCM``,
+       ``AES256+GCM``
+
+       **Default**: ``AUTO``
+
+       .. note::
+
+          This property must be configured consistently throughout your system.
+          All *DomainParticipants* must have the same value in order to
+          communicate.
+
+   - * ``dds.sec.access.rtps_psk_protection_kind``
+     * *Optional*.
+
+       Specifies whether the *Lightweight Security Plugin* should only
+       protect message integrity OR both integrity and confidentiality.
+
+       **Enum**: ``NONE`` (do not protect), ``SIGN`` (protect integrity),
+       ``ENCRYPT`` (protect integrity and confidentiality).
+
+       **Default**: ``ENCRYPT``
+
+   - * ``com.rti.serv.secure.cryptography.max_blocks_per_session``
+     * *Optional*.
+
+       The number of message blocks that can be protected with the same
+       Session Key. Whenever the number of blocks exceeds this value, a new
+       Session Key is computed. The block size is always 128 bits (the AES block
+       size). You can specify this value in decimal, octal, or hex format. This
+
+       value is an unsigned 64-bit integer.
+
+       **Unsigned Integer**: ``[1, MAX_UINT64]``
+
+       **Default**: ``MAX_UINT64``
+
+   - * ``com.rti.serv.secure.pass_tracker.period_sec``
+     * *Optional*.
+
+       The number of seconds the passphrase tracker waits between checks for
+       passphrase updates.
+
+       **Unsigned Integer**: ``[0, MAX_UINT32]``
+
+       **Default**: ``1``
+
+   - * ``com.rti.serv.secure.pass_tracker.period_nsec``
+     * *Optional*.
+
+       The number of nanoseconds the passphrase tracker waits between checks
+       for passphrase updates.
+
+       **Unsigned Integer**: ``[0, 999999999]``
+
+       **Default**: ``0``
+
+   - * ``com.rti.serv.secure.pass_tracker.provider_arg``
+     * *Optional*.
+
+       Argument passed to the passphrase tracker provider. When using the
+       file-based provider, this property should contain the path to the
+       passphrase file. The file should contain the passphrase in the same
+       format as the ``dds.sec.crypto.rtps_psk_secret_passphrase`` property.
+
+       **String**
+
+       **Default**: ``NULL``
+
+Technical Considerations
+------------------------
+
+Consider the following when using the *Lightweight Security Plugin*:
+
+RTPS transport only
+...................
+
+The *Lightweight Security Plugin* only protects transports that use the RTPS
+protocol. That means that INTRA and Zero Copy V2 transports cannot be protected
+with the *Lightweight Security Plugin*.
+
+Maximum Transmission Unit (MTU)
+...............................
+
+RTI limits the maximum size of a single packet to 65535 bytes. If using a
+transport that can support an MTU greater than this, the size will be truncated
+to 65535 bytes.
+
+.. note::
+
+  Types that exceed this limit can still be fragmented and sent by |me|. This
+  only limits the size of individual packets.
+
+Interoperability
+----------------
+
+The *Lightweight Security Plugin* interoperates with the |core_pro|
+*Lightweight Builtin Security Plugins* security solution out of the box, with
+some considerations explained in the following sections.
+
+The *Lightweight Security Plugin* is also compatible with |core_pro|'s
+*Builtin Security Plugins* when the *Builtin Security Plugins* are configured
+for compatibility; refer to
+`Lightweight Builtin Security Plugins and Builtin Security Plugins Interoperability
+<https://community.rti.com/static/documentation/connext-dds/current/doc/manuals/connext_dds_secure/users_manual/p3_advanced/pre-shared_key.html#light-sp-builtin-heading-and-sp-builtin-heading-interoperability>`_
+for more information.
+
+Additional Authenticated Data (AAD)
+...................................
+
+The *Lightweight Security Plugin* always uses AAD, which adds a header extension
+to RTPS messages. |core_pro| allows you to disable this. For successful
+interoperability between |me| and |core_pro|, you must configure |core_pro| to
+always enable AAD by setting the :link_external_community_doc_security_plugins_um:`cryptography.enable_additional_authenticated_data <p2_core/cryptography.html#properties-for-configuring-cryptography>`
+property to ``TRUE``.
+
+Passphrase ID limitations
+.........................
+
+|me| supports a ``passphrase_id`` (which is part of the passphrase) up to
+``MAX_UINT64``. However, |core| 7.3.0 and above only supports a ``passphrase_id``
+up to 254. To ensure interoperability between |me| and |core_pro|, choose a
+``passphrase_id`` within the range of 0 to 254.

@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.3. Building Connext Micro with Compatibility for Connext Cert &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.4. GUID Generation" href="guid_generation.html" />
+    <link rel="prev" title="6.2. Building Connext Micro for Common Platforms" href="building.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Platforms Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">6.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">6.2. Building Connext Micro for Common Platforms</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.3. Building Connext Micro with Compatibility for Connext Cert</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-with-compatibility-for-me-cert-h">6.3.1. Compiling with compatibility for Connext Cert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-applications-with-compatibility-for-me-cert-h">6.3.2. Compiling applications with compatibility for Connext Cert</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guid_generation.html">6.4. GUID Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">6.5. FreeRTOS Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux.html">6.6. Linux Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microsar.html">6.7. MicroSAR Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="macos.html">6.8. macOS Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qnx.html">6.9. QNX Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">6.10. Windows Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">6. </span>Platforms Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">6.3. </span>Building Connext Micro with Compatibility for Connext Cert</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="building-me-h-with-compatibility-for-me-cert-h">
+<span id="section-cert-compatibility"></span><h1><span class="section-number">6.3. </span>Building Connext Micro with Compatibility for Connext Cert<a class="headerlink" href="#building-me-h-with-compatibility-for-me-cert-h" title="Permalink to this headline">¶</a></h1>
+<p><em>RTI</em> <em>Connext Micro</em> can be compiled to only include features that are available
+or planned for <em>RTI</em> <em>Connext Cert</em>. This is useful to enable the development
+of a safety-certified project using <em>Connext Micro</em> before certification evidence for
+<em>Connext Cert</em> is available. Once <em>Connext Cert</em> certification is available, the
+transition from <em>Connext Micro</em> to <em>Connext Cert</em> typically requires few changes in the
+application. The <em>Connext Micro</em> Cert-compatibility profile refers to the subset of
+<em>Connext Micro</em> that is feature-comparable to <em>Connext Cert</em>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please note that this does not mean that certification evidence is provided
+for <em>Connext Micro</em> for any of these features or that using the Cert-compatibility
+profile constitutes safety. Please contact RTI for further information about
+<em>Connext Cert</em> and certification evidence.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The Dynamic Participant, Dynamic Endpoint (DPDE) discovery plugin is
+available with the CERT profile for convenience during initial
+development. However, please note the following:</p>
+<ul class="simple">
+<li><p>The DPDE plugin is not part of the Connext Cert roadmap. RTI will not
+certify this library.</p></li>
+<li><p>The DPDE library does not support restarts as it depends on functionality
+not included in the CERT profile’s core library.</p></li>
+</ul>
+</div>
+<p>When compiling <em>Connext Micro</em> with compatibility for <em>Connext Cert</em>, please refer to the
+<a class="reference internal" href="introduction.html#section-platform-introdution"><span class="std std-ref">Platform Notes</span></a> for information on
+supported platforms, libraries, and features in CERT profiles. The
+following additional restrictions apply:</p>
+<ul class="simple">
+<li><p>The CERT profile <code class="docutils literal notranslate"><span class="pre">rti_me</span></code> library <strong>includes</strong> the following libraries:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code></p></li>
+</ul>
+</li>
+<li><p>Memory deallocation is not possible</p></li>
+<li><p>Any API that deallocates memory is not supported. In other words, any
+API whose name includes “finalize”, “free”, or “delete” is not
+supported (such as
+<code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantFactory_delete_participant()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">DDS_DomainParticipantQos_finalize()</span></code>, or <code class="docutils literal notranslate"><span class="pre">OSAPI_Heap_free()</span></code>)</p></li>
+<li><p>Code generated by the <em>Connext Micro</em> code generator is compatible with
+<em>Connext Cert</em>, but the code must be generated with the
+code generator using the <code class="docutils literal notranslate"><span class="pre">-interpreted</span> <span class="pre">0</span></code> option</p></li>
+<li><p>The Log module is only available in the debug build</p></li>
+<li><p>The UDP transport <em>must</em> be configured statically by using the API
+<code class="docutils literal notranslate"><span class="pre">UDP_InterfaceTable_add_entry()</span></code> and setting
+<code class="docutils literal notranslate"><span class="pre">UDP_InterfaceFactoryProperty.disable_auto_interface_config</span></code> equal
+to <code class="docutils literal notranslate"><span class="pre">RTI_TRUE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OSAPI_Thread_sleep()</span></code> is not available</p></li>
+<li><p>Batching reception is not supported</p></li>
+<li><p>UDP Transformations are not supported</p></li>
+<li><p>The Property, User Data, and Partition Qos APIs are available in the
+<em>Connext Micro</em> Cert-compatibility profile, but are not yet available in <em>Connext Cert</em></p></li>
+</ul>
+<div class="section" id="compiling-with-compatibility-for-me-cert-h">
+<h2><span class="section-number">6.3.1. </span>Compiling with compatibility for Connext Cert<a class="headerlink" href="#compiling-with-compatibility-for-me-cert-h" title="Permalink to this headline">¶</a></h2>
+<p>To compile <em>Connext Micro</em> with the Cert-compatibility profile, you must use one of the
+available CERT architectures. To get a list of available CERT architectures,
+please use the following command:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">&lt;</span><span class="n">rti_me</span> <span class="n">install</span> <span class="n">directory</span><span class="o">&gt;</span>
+<span class="n">resource</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span> <span class="o">--</span><span class="nb">list</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Architectures ending in CERT (e.g, x64Linux6gcc13.3.0CERT) are representative
+of Cert-compatibility profiles. To compile, use the following command:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">&lt;</span><span class="n">rti_me</span> <span class="n">install</span> <span class="n">directory</span><span class="o">&gt;</span>
+<span class="n">resource</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">rtime</span><span class="o">-</span><span class="n">make</span> <span class="o">--</span><span class="n">target</span> <span class="n">x64Linux6gcc13</span><span class="mf">.3.0</span><span class="n">CERT</span> <span class="o">&lt;</span><span class="n">other</span> <span class="n">options</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The library is generated in the directory <code class="docutils literal notranslate"><span class="pre">lib/x64Linux6gcc13.3.0CERT</span></code>.</p>
+</div>
+<div class="section" id="compiling-applications-with-compatibility-for-me-cert-h">
+<h2><span class="section-number">6.3.2. </span>Compiling applications with compatibility for Connext Cert<a class="headerlink" href="#compiling-applications-with-compatibility-for-me-cert-h" title="Permalink to this headline">¶</a></h2>
+<p>To compile an application with compatibility for Connext Cert, the application
+must be compiled with the <code class="docutils literal notranslate"><span class="pre">RTI_CERT=1</span></code> preprocessor flag. This can be
+achieved with one of the following methods:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If a CMakeLists.txt file generated with rtiddsgen is used,
+pass <code class="docutils literal notranslate"><span class="pre">-DRTIME_CERT=true</span></code> to either <code class="docutils literal notranslate"><span class="pre">rtime-make</span></code> or cmake.</p></li>
+<li><p>Pass <code class="docutils literal notranslate"><span class="pre">-DRTI_CERT=1</span></code> directly to the C preprocessor</p></li>
+</ul>
+</div></blockquote>
+<p>With <code class="docutils literal notranslate"><span class="pre">rtime-make</span></code> on Linux or macOS:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>resource/scripts/rtime-make -target x64Linux6gcc13.3.0CERT -DRTIME_CERT=true --src-dir .  &lt;other options&gt;
+</pre></div>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">rtime-make</span></code> On Windows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>resource/scripts/rtime-make --target x64Win64VS2015CERT -DRTIME_CERT_eq_true --src-dir .  &lt;other options&gt;
+</pre></div>
+</div>
+<p>Please refer to <a class="reference internal" href="../programmersguide/examples.html#example-generation"><span class="std std-ref">Example Applications</span></a> for more information about
+generating examples.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="guid_generation.html" class="btn btn-neutral float-right" title="6.4. GUID Generation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="building.html" class="btn btn-neutral float-left" title="6.2. Building Connext Micro for Common Platforms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

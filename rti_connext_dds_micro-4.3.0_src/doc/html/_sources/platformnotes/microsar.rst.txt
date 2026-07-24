@@ -1,0 +1,914 @@
+.. raw:: latex
+
+  \newpage
+  \begin{landscape}
+
+.. _section-microsar-platforms:
+
+MicroSAR Platforms
+==================
+
+The following table shows the currently supported MicroSAR platforms.
+
+.. list-table:: Supported MicroSAR Platforms
+   :widths: 10 10 10 10 10 25 25
+   :header-rows: 1
+   :class: longtable
+
+   * - OS
+     - Version
+     - CPU
+     - Network Stack
+     - Toolchain
+     - Architecture PIL
+     - Architecture PSL
+   * - MicroSAR
+     - 29.06.20 (AUTOSAR 4.2.2)
+     - TC397
+     - N/A
+     - Tasking 6.3r1p7
+     - tc39xtElfTasking6.3r1
+
+       tc39xtElfTasking6.3r1CERT
+     - tc39xtElfTasking6.3r1-MICROSAR4
+
+       tc39xtElfTasking6.3r1CERT-MICROSAR4
+
+Port overview
+-------------
+
+|me| includes support for AUTOSAR™ and enables |me| applications to run on
+AUTOSAR systems. The support has been tested on the Infineon™ AURIX™ Application
+Kit TC397 TFT development board with Vector™ AUTOSAR implementation version
+4.2.2 and compiler TASKING™ v6.3r1.
+
+This manual explains how to compile and configure |me| to run on AUTOSAR systems
+and the AUTOSAR configuration required by |me|.
+
+How to configure MicroSAR
+-------------------------
+
+.. _section-dds_cdd_configuration:
+
+DDS CDD configuration
+.....................
+
+.. note::
+
+  See :ref:`section-generating-autosar-applications` for instructions on how to
+  generate an AUTOSAR CDD with Micro Application Generator.
+
+|me| is integrated as an AUTOSAR Complex Device Driver (CDD) SW-Component with
+the short name ``DdsCddType``. The CDD does not support multiple instantiation.
+The following runnables are required in the CDD:
+
+.. list-table:: Required Runnables
+   :widths: 10 10 10 10 10 50
+   :header-rows: 1
+
+   * - Runnable
+     - Trigger Type
+     - Period/Condition
+     - Concurrent
+     - Required
+     - Purpose
+   * - Start
+     - INIT-EVENT
+     - Once at ECU startup
+     - No
+     - Always
+     - Initialization runnable. Called once when the RTE starts. This runnable
+       initializes the DDS CDD.
+   * - Run
+     - TIMING-EVENT
+     - Periodic
+     - No
+     - Always
+     - Periodic maintenance runnable. Maintains DDS QoS protocols (Discovery,
+       Liveliness, Reliability), and processes internal timers. This is the
+       main "heartbeat" of the DDS middleware on AUTOSAR.
+   * - RxIndication
+     - Called by TcpIp stack
+     - On UDP packet reception
+     - No
+     - Only if ``use_udp_thread`` is TRUE [1]_
+     - Called by the AUTOSAR TcpIp stack (via socket owner or PDU callout) when
+       a UDP packet is received. When ``use_udp_thread`` is TRUE, this runnable
+       copies the received data into an internal buffer and fires the Internal
+       Triggering Point (ITP_DdsCdd_RxIndication) to wake up the ProcessData
+       runnable.
+
+       The TcpIp stack calls one of the following |me| callbacks depending on
+       the socket owner configuration:
+
+       * ``NETIO_Autosar_TcpIp_udp_rx_indication()`` — when a socket owner is configured
+       * ``NETIO_Autosar_TcpIp_pdu_callout()`` — when no socket owner is configured
+   * - ProcessData
+     - INTERNAL-TRIGGER-OCCURRED-EVENT
+     - Triggered by ITP from RxIndication
+     - No
+     - Only if ``use_udp_thread`` is TRUE
+     - Processes buffered UDP packets that were stored by RxIndication. It
+       iterates through the internal receive buffer and dispatches each packet
+       to the appropriate DDS DataReader via ``NETIO_Autosar_udp_receive_callback()``.
+
+.. [1] When ``use_udp_thread`` is FALSE, incoming UDP packets are processed
+       directly in the TcpIp callback context (synchronously), and the
+       RxIndication/ProcessData runnables are not needed.
+
+BSW configuration
+.................
+
+OS configuration
+^^^^^^^^^^^^^^^^
+
+The DDS CDD requires the following OS resources:
+
+* STANDARD OS Resource: The DDS CDD requires one OS resource for internal
+  synchronization (mutexes/semaphores). The resource ID used is determined by
+  the ``mutex_resource_id`` field in ``OSAPI_PortProperty``.
+
+* Events: If semaphores are used (``semaphore_max_count > 0``), AUTOSAR events
+  must be configured. The events are defined by ``first_give_event`` and
+  ``first_timeout_event`` in ``OSAPI_PortProperty``. Each event ID must be a
+  power of 2.
+
+* Alarms: If semaphores are used, AUTOSAR alarms are required for timeout
+  support, starting from ``first_alarm``.
+
+* Task: At least one dedicated OS task should be configured
+  for DDS CDD runnables. The task priority should be higher than application SW-Cs
+  but lower than critical BSW tasks (Ethernet driver, TcpIp stack).
+
+  Stack size recommendations depend on which runnables are mapped to each task:
+
+  * **DdsCddRun runnable:** Allocate at least 2 KB of stack space for the task
+    where this runnable is mapped.
+
+  * **RxIndication and ProcessData runnables** (when ``use_udp_thread`` is TRUE):
+    Allocate at least 5 KB of stack space for that task. Both runnables should
+    be mapped to the same task.
+
+  * **Application-defined read/write runnables:** The integrator is responsible
+    for creating runnables that read from DDS *DataReaders* and write to DDS
+    *DataWriters* based on their application's topics. These runnables call
+    |me| APIs (e.g., ``DataReader_take()``, ``DataWriter_write()``). For the
+    task(s) where these runnables are mapped, allocate at least 8 KB of
+    additional stack space for DDS operations.
+  
+  .. note::
+      If all runnables are mapped to a single task, allocate at least 15 KB total.
+
+* Spinlocks (optional): If ``sync_type`` is set to
+  ``OSAPI_AUTOSAR_SYNCKIND_SPINLOCK``, a spinlock must be configured in the OS
+  and its ID set in ``spinlock_id``.
+
+TcpIp configuration
+^^^^^^^^^^^^^^^^^^^
+
+The DDS CDD interfaces with the AUTOSAR TcpIp BSW module for all network
+communication. The following configuration is required:
+
+* Socket Owner: Configure a socket owner for the DDS CDD so that |me| can
+  create and manage its own UDP sockets. Register the following callbacks:
+
+  * RxIndication: ``NETIO_Autosar_TcpIp_udp_rx_indication`` (called when UDP
+    data is received)
+  * LocalIpAddrAssignmentChg: In this callback, DDS CDD can begin its
+    initialization.
+
+* UDP Sockets: DDS requires at minimum 2 UDP sockets in unicast mode and 3 UDP
+  sockets if multicast is enabled (2 unicast + 1 multicast). Ensure the TcpIp
+  module is configured to support this number of sockets.
+
+* IP Address: A static or DHCP-assigned IP address must be available. The DDS
+  CDD waits for the IP address to be assigned before proceeding with full
+  initialization.
+
+BswM configuration
+^^^^^^^^^^^^^^^^^^
+
+DDS entities (in particular the *DomainParticipant*) must only be created once
+the TcpIp stack is up and running with an IP address assigned, because entity
+creation triggers discovery messages that are sent to other peers on the
+network.
+
+We recommend the following approach:
+
+1. The TcpIp stack initializes and assigns an IP address.
+2. The LocalIpAddrAssignmentChg callback for the socket owner fires, indicating
+   TcpIp is ready.
+3. Only after this callback has been received should the DDS CDD proceed with
+   creating DDS entities.
+
+.. note::
+
+  The exact mechanism to ensure TcpIp is ready before DDS entity creation is
+  configurable and may vary per project. The key requirement is that DDS
+  entities are not created until an IP address is available. One common
+  approach is to use the BswM to gate ``Rte_Start()`` until after
+  LocalIpAddrAssignmentChg has been received. Alternatively, the DDS CDD state
+  machine can handle this internally by deferring entity creation until the
+  callback sets a readiness flag.
+
+DomainParticipant configuration
+...............................
+
+When creating a *DomainParticipant*, the ``participant_id`` field in
+``DDS_DomainParticipantQos.protocol`` must be
+set to a unique value for each participant in the same domain on the same node. 
+This ID is used by the RTPS protocol to distinguish participants and must not 
+conflict with other participants on the network.
+
+.. code-block:: c
+
+   struct DDS_DomainParticipantQos dp_qos = DDS_DomainParticipantQos_INITIALIZER;
+
+   /* Set participant ID - must be unique per domain */
+   dp_qos.protocol.participant_id = 0;
+
+   participant = DDS_DomainParticipantFactory_create_participant(
+       dpf, domain_id, &dp_qos, NULL, DDS_STATUS_MASK_NONE);
+
+.. note::
+
+   If ``participant_id`` is not set explicitly, the default value depends on
+   the platform. On AUTOSAR platforms, always set this field explicitly to
+   ensure deterministic behavior and avoid conflicts with other participants.
+
+.. _section-osapi-portproperty-reference:
+
+OSAPI_PortProperty reference
+............................
+
+The ``OSAPI_PortProperty`` structure contains all platform-specific
+configuration for the |me| AUTOSAR port. It is set via
+``OSPSL_AutosarSystem_set_property()`` before ``OSAPI_System_initialize()``
+is called. The default initializer is ``OSAPI_PortProperty_INITIALIZER``. All
+fields default to ``0``, ``NULL``, or ``FALSE``, except
+``enable_thread_safe_heap`` which defaults to ``TRUE`` and ``sync_type`` which
+defaults to ``OSAPI_AUTOSAR_SYNCKIND_RESOURCES``.
+
+System configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: System configuration
+   :widths: 30 20 20 30
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``timer_resolution_ms``
+     - ``uint32``
+     - 0
+     - Timer resolution in milliseconds. Determines the granularity of the DDS
+       system clock. The DDS Run runnable period should match this value. A
+       typical value is 10 (matching the 10 ms Run period).
+
+Heap configuration
+^^^^^^^^^^^^^^^^^^
+
+|me| on AUTOSAR uses a static heap (no dynamic malloc/free). Memory must be
+pre-allocated as one or more heap areas and provided to the port via these
+properties.
+
+.. list-table:: Heap Configuration
+   :widths: 25 20 15 40
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``number_of_heap_areas``
+     - uint32
+     - 0
+     - Number of static memory areas provided for the DDS heap. Must be at
+       least 1.
+   * - ``heap_area_size``
+     - const uint32*
+     - NULL
+     - Pointer to an array of sizes (in bytes) for each heap area. The first
+       area must be large enough to hold at least the offset table for all
+       memory areas (``sizeof(uint32) * (number_of_heap_areas + 1)`` for
+       alignment).
+   * - ``heap_area``
+     - const char**
+     - NULL
+     - Pointer to an array of pointers to the pre-allocated memory buffers.
+       Each buffer must be non-NULL and its corresponding size must be non-zero.
+   * - ``enable_thread_safe_heap``
+     - boolean
+     - TRUE
+     - Set to TRUE to enable thread-safe heap operations using the configured
+       synchronization mechanism. Set to FALSE only in single-threaded
+       configurations.
+
+.. note::
+
+  The AUTOSAR heap implementation does not support freeing memory. Once memory
+  is allocated it cannot be returned to the heap. Plan your heap size
+  accordingly.
+
+Mutex configuration
+^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: Mutex Configuration
+   :widths: 25 30 20 25
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``sync_type``
+     - OSAPI_Autosar_SyncKind_T
+     - OSAPI_AUTOSAR_SYNCKIND_RESOURCES
+     - Synchronization mechanism. Use OSAPI_AUTOSAR_SYNCKIND_RESOURCES to use
+       AUTOSAR STANDARD resources (GetResource/ReleaseResource). Use
+       OSAPI_AUTOSAR_SYNCKIND_SPINLOCK to use spinlocks
+       (GetSpinlock/ReleaseSpinlock). Spinlock support is only available when
+       RTIME_AUTOSAR_SPINLOCK_ENABLED is 1.
+   * - ``mutex_resource_id``
+     - ResourceType
+     - 0
+     - The AUTOSAR resource ID allocated for DDS mutexes when sync_type is 
+       OSAPI_AUTOSAR_SYNCKIND_RESOURCES.
+   * - ``spinlock_id``
+     - uint16
+     - 0
+     - The AUTOSAR spinlock ID to use when sync_type is
+       OSAPI_AUTOSAR_SYNCKIND_SPINLOCK. Only available when
+       RTIME_AUTOSAR_SPINLOCK_ENABLED is 1.
+
+Semaphore configuration
+^^^^^^^^^^^^^^^^^^^^^^^
+
+AUTOSAR does not provide native semaphore support. |me| implements semaphores
+using AUTOSAR Events and Alarms. If your application uses DDS features that
+require semaphores (e.g., blocking reads), these fields must be configured.
+
+.. list-table:: Semaphore Configuration
+   :widths: 25 20 15 40
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``semaphore_max_count``
+     - uint32
+     - 0
+     - Maximum number of concurrent semaphores. Set to 0 to disable semaphore
+       support. If non-zero, the ``first_give_event``, ``first_timeout_event``, and
+       ``first_alarm`` fields must also be configured. The number of bits between
+       the bit indices of ``first_give_event`` and ``first_timeout_event`` must be ≥
+       ``semaphore_max_count``.
+   * - ``first_give_event``
+     - EventMaskType
+     - 0
+     - The first AUTOSAR event mask used for semaphore "give" signals. Must be
+       a power of 2 and non-zero when ``semaphore_max_count > 0``.
+   * - ``first_timeout_event``
+     - EventMaskType
+     - 0
+     - The first AUTOSAR event mask used for semaphore timeout signals. Must be
+       a power of 2, non-zero, and different from ``first_give_event`` when
+       ``semaphore_max_count > 0``.
+   * - ``first_alarm``
+     - AlarmType
+     - 0
+     - The first AUTOSAR alarm ID used for semaphore timeouts. Must be non-zero
+       when ``semaphore_max_count > 0``. The range [``first_alarm``, ``first_alarm +
+       semaphore_max_count``) must be valid alarm IDs.
+
+Socket configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: Socket Configuration
+   :widths: 25 30 15 30
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``use_socket_owner``
+     - boolean
+     - FALSE
+     - Set to TRUE to use the AUTOSAR TcpIp Socket Owner mechanism for socket
+       management. When TRUE, ``get_socket`` must point to a valid function.
+       When FALSE, ``send_data`` must point to a valid function. Note:
+       ``use_socket_owner = FALSE`` has not been fully tested (see Known Issues).
+   * - ``max_receive_sockets``
+     - uint8
+     - 0
+     - Maximum number of receive sockets that DDS will create. Must be at
+       least 1. A typical value for DDS with unicast is 4; with multicast
+       enabled, use 5.
+   * - ``get_socket``
+     - NETIO_Autosar_TcpIp_get_socket
+     - NULL_PTR
+     - Function pointer for obtaining a TcpIp socket. Required when
+       ``use_socket_owner`` is TRUE. The function signature is:
+       ``Std_ReturnType (*)(TcpIp_DomainType domain, TcpIp_ProtocolType protocol, TcpIp_SocketIdType *socket)``.
+   * - ``send_data``
+     - NETIO_Autosar_TcpIp_send_dyn_data
+     - NULL_PTR
+     - Function pointer for sending UDP data. Required when ``use_socket_owner``
+       is FALSE. The function signature is: ``Std_ReturnType (*)(const void *data_ptr, uint16 length, const TcpIp_SockAddrType *remote_addr_ptr)``.
+   * - ``max_local_addr_id``
+     - TcpIp_LocalAddrIdType
+     - 0
+     - Maximum configured IP address identifier. Represents the range top for
+       configured IP addresses [0..max_local_addr_id].
+   * - ``send_local_addr_id``
+     - TcpIp_LocalAddrIdType
+     - 0
+     - Local address ID to use for outgoing packets. Must be in the range [0..max_local_addr_id]. This is the local IP address that will be used as the source address for outgoing UDP packets.
+
+UDP thread configuration
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+These fields control how incoming UDP packets are processed. When
+``use_udp_thread`` is TRUE, received packets are buffered and processed
+asynchronously by the ProcessData runnable. When FALSE, packets are processed
+directly in the TcpIp callback context.
+
+.. list-table:: UDP Thread Configuration
+   :widths: 25 20 15 40
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``use_udp_thread``
+     - boolean
+     - FALSE
+     - Set to TRUE to enable asynchronous UDP packet processing via a dedicated
+       task/runnable. When TRUE, the RxIndication and ProcessData runnables
+       must be configured in the CDD. When FALSE, packets are processed
+       synchronously in the TcpIp callback.
+   * - ``udp_receive_task_id``
+     - TaskType
+     - 0
+     - DEPRECATED. TO BE REMOVED
+   * - ``udp_packet_received_event``
+     - EventMaskType
+     - 0
+     - DEPRECATED. TO BE REMOVED
+   * - ``number_of_rcv_buffers``
+     - uint8
+     - 0
+     - Number of internal receive buffers for storing incoming UDP packets.
+       Required when ``use_udp_thread`` is TRUE. Must be non-zero.
+   * - ``rcv_buffer_size``
+     - uint32
+     - 0
+     - Size in bytes of each receive buffer. Must accommodate the largest
+       expected UDP packet. A typical value is 1500 (standard Ethernet MTU).
+       Required when ``use_udp_thread`` is TRUE. Must be non-zero.
+
+Logging configuration
+^^^^^^^^^^^^^^^^^^^^^
+
+These fields are only available when ``OSAPI_ENABLE_LOG`` is set to 1 at
+compile time.
+
+.. list-table:: Logging Configuration
+   :widths: 25 20 15 40
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``log_dst_address``
+     - uint32
+     - 0
+     - Destination IP address for remote log output. Format is host-byte-order
+       (e.g., 0xCA00A8C0 = 192.168.0.202). Set to 0 to disable remote logging.
+   * - ``log_dst_port``
+     - uint16
+     - 0
+     - Destination UDP port for remote log output.
+
+Routing DDS errors to AUTOSAR DET
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default, |me| does not call ``Det_ReportError``. The AUTOSAR port ships a
+built-in display handler, ``OSAPI_AutosarLog_default_display``, that routes
+every DDS log entry to the AUTOSAR Default Error Tracer (DET) via
+``Det_ReportError``. This handler is only available when ``OSAPI_ENABLE_LOG``
+is set to 1 at compile time.
+
+**How the handler works**
+
+``OSAPI_AutosarLog_default_display`` performs the following steps for each log
+entry:
+
+1. Reads the current verbosity level via ``OSAPI_Log_get_verbosity()``.
+2. Checks the log entry kind (``OSAPI_LOGKIND_INFO``,
+   ``OSAPI_LOGKIND_WARNING``, ``OSAPI_LOGKIND_ERROR``,
+   ``OSAPI_LOGKIND_PRECONDITION``) against the current verbosity. Entries
+   below the configured verbosity threshold are silently dropped and do not
+   produce a DET report.
+3. Extracts the DDS ``module_id`` and ``error_id`` from the log entry's error
+   code.
+4. Packs both values into the two 8-bit DET fields (``ApiId`` and ``ErrorId``)
+   as follows, to fit within DET's field-width constraints:
+
+   * ``ApiId[7:4]`` = high nibble of ``error_id`` (bits [11:8])
+   * ``ApiId[3:0]`` = ``module_id[3:0]``
+   * ``ErrorId[7:0]`` = low byte of ``error_id`` (bits [7:0])
+
+5. Calls ``Det_ReportError`` with:
+
+   * ``ModuleId`` = ``RTIME_DDS_MODULE_ID`` (``0x010A``, the RTI OMG Vendor ID)
+   * ``InstanceId`` = ``RTIME_DDS_INSTANCE_ID`` (``0``)
+   * ``ApiId`` and ``ErrorId`` as packed above.
+
+**How to enable the handler**
+
+Call ``OSAPI_Log_set_display_handler`` during DDS initialization to
+replace the default display handler with the DET-reporting one:
+
+.. code-block:: c
+
+   #if OSAPI_ENABLE_LOG
+   OSAPI_Log_set_display_handler(
+       (OSAPI_LogDisplay_T)&OSAPI_AutosarLog_default_display,
+       NULL);
+   #endif
+
+The second argument (``param``) is not used by
+``OSAPI_AutosarLog_default_display`` and must be ``NULL``.
+
+.. note::
+
+   This handler respects the verbosity level configured via
+   ``OSAPI_Log_set_verbosity()``. Only log entries at or above the configured
+   verbosity level will trigger a DET report. Guard the call with
+   ``#if OSAPI_ENABLE_LOG`` to ensure it is only compiled when logging is
+   enabled.
+
+Binding receive sockets to a specific interface
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default, |me| binds receive sockets to ``INADDR_ANY``, which means that
+incoming UDP packets are accepted on any network interface. In some AUTOSAR
+deployments with multiple network interfaces, it may be necessary to restrict
+DDS receive sockets to a specific interface so that packets are only received
+on the intended network.
+
+To enable this behavior, set the ``enable_interface_bind`` field to ``RTI_TRUE``
+in the UDP transport property (``UDP_InterfaceFactoryProperty``) when
+registering the UDP transport. When this condition is met, receive
+sockets are bound to the specific local IP address of the selected interface
+rather than ``INADDR_ANY``.
+
+On AUTOSAR, this binding works as follows: when a receive socket is bound to a
+specific IP address (not ``INADDR_ANY``), the AUTOSAR socket wrapper
+(``NETIO_AutosarSocket_bind()``) calls ``NETIO_AutosarSocket_find_local_addr_id()``
+to iterate through the configured TcpIp local address IDs (from 0 to
+``max_local_addr_id``) using ``TcpIp_GetIpAddr()``. When a matching IP address is
+found, the corresponding ``TcpIp_LocalAddrIdType`` is passed to ``TcpIp_Bind()``
+instead of ``TCPIP_LOCALADDRID_ANY``.
+
+**Requirements:**
+
+* The ``max_local_addr_id`` field in ``OSAPI_PortProperty`` must be set to the
+  maximum configured IP address identifier in the TcpIp module, so that
+  the address lookup covers all configured addresses.
+
+* The ``enable_interface_bind`` field must be set to ``RTI_TRUE`` in the UDP
+  transport property (``UDP_InterfaceFactoryProperty``) when registering the UDP transport.
+
+* ``use_socket_owner`` must be ``TRUE`` in ``OSAPI_PortProperty``, since the
+  ``TcpIp_Bind()`` call with a specific local address ID is only performed
+  when the socket owner mechanism is used. This feature is not supported when
+  using SoAd PDU routing (``use_socket_owner = FALSE``).
+
+**Example:**
+
+.. code-block:: c
+
+   struct UDP_InterfaceFactoryProperty udp_property =
+       UDP_InterfaceFactoryProperty_INITIALIZER;
+
+   /* Enable interface bind */
+   udp_property.enable_interface_bind = RTI_TRUE;
+
+   /* Configure the allowed interface(s) */
+   DDS_StringSeq_set_maximum(&udp_property.allow_interface, 1);
+   DDS_StringSeq_set_length(&udp_property.allow_interface, 1);
+   *DDS_StringSeq_get_reference(&udp_property.allow_interface, 0) =
+       DDS_String_dup("eth0");
+
+   /* Register the UDP transport with the modified property */
+   if (!RT_Registry_register(registry, NETIO_DEFAULT_UDP_NAME,
+           UDP_InterfaceFactory_get_interface(),
+           (struct RT_ComponentFactoryProperty*)&udp_property, NULL))
+   {
+       /* ERROR */
+   }
+
+.. _section-socket-recovery:
+
+NoCom/FullCom socket recovery
+-----------------------------
+
+In some AUTOSAR deployments the communication stack can transition to a
+*NoCom* (no-communication) state — for example, when a network management
+event, a diagnostic session, or a bus-off condition causes the TcpIp stack to
+close all active UDP sockets and release the IP address.  When communication
+is later restored (*FullCom*), |me| must re-open and re-bind its receive
+sockets so that DDS traffic can resume without restarting the ECU.
+
+.. note::
+
+   This feature applies **only** when the Socket Owner mechanism is used
+   (``use_socket_owner = TRUE`` in ``OSAPI_PortProperty``).  When SoAd PDU
+   routing is used instead, socket lifecycle management is handled directly
+   by SoAd and this recovery path is not needed.
+
+This feature is not available in CERT builds (``RTI_CERT``).
+
+|me| tracks every active receive socket in an internal table (one entry per
+bound local port).  The recovery sequence has two stages:
+
+1. **Socket closed (NoCom)** — When the TcpIp stack closes a UDP socket it
+   calls the application-registered ``TcpIpEvent`` callback with the event
+   ``TCPIP_UDP_CLOSED``.  The application must forward this event to |me| by
+   calling ``NETIO_Autosar_on_socket_event()``.  |me| looks up the socket ID
+   in the internal receive-port table and marks the corresponding entry as
+   *closed* (``is_open = FALSE``), so it is eligible for recovery when
+   communication is restored.  Send sockets do not need explicit tracking
+   because they are re-bound unconditionally during recovery.
+
+2. **IP address re-assigned (FullCom)** — When the TcpIp stack re-assigns an
+   IP address it calls the application-registered
+   ``LocalIpAddrAssignmentChg`` callback with
+   ``TCPIP_IPADDR_STATE_ASSIGNED``.  The application must call
+   ``NETIO_Autosar_on_ip_assigned()`` for every such event (except the very
+   first one, which is the normal DDS startup path).  |me| then performs the
+   following steps for each registered UDP interface:
+
+   a. Re-binds all send sockets to the newly assigned local address ID.
+   b. Iterates the receive-port table.  For each entry that is marked
+      *closed* **and** whose bound IP address matches the newly assigned
+      local address ID:
+
+      i.   Deregisters the old socket ID from the TcpIp recvnotify callback
+           table.
+      ii.  Acquires a fresh socket ID from TcpIp via ``TcpIp_GetSocket()``.
+      iii. Binds the new socket to the same local port that was active before
+           the NoCom transition.
+      iv.  Re-registers the |me| receive callback (``UDP_Interface_receive_packet``)
+           with the new socket ID.
+      v.   Updates the port entry with the new socket ID and marks it
+           *open* again.
+
+   Both functions are serialised with the internal NETIO mutex and are
+   idempotent — calling them when no recovery is needed returns
+   ``RTI_TRUE`` immediately without modifying any state.
+
+API
+...
+
+``NETIO_Autosar_on_socket_event``
+   .. code-block:: c
+
+      Std_ReturnType NETIO_Autosar_on_socket_event(
+          TcpIp_SocketIdType socket_id,
+          TcpIp_EventType    socket_event);
+
+   Call this from the ``TcpIpEvent`` socket-owner callback whenever the
+   TcpIp stack reports a socket event.  Only ``TCPIP_UDP_CLOSED`` events
+   are acted upon; all other event types are ignored.
+
+``NETIO_Autosar_on_ip_assigned``
+   .. code-block:: c
+
+      Std_ReturnType NETIO_Autosar_on_ip_assigned(
+          TcpIp_LocalAddrIdType local_addr_id);
+
+   Call this from the ``LocalIpAddrAssignmentChg`` socket-owner callback
+   whenever an IP address transitions to ``TCPIP_IPADDR_STATE_ASSIGNED``
+   *after the initial DDS startup*.  Pass the ``LocalAddrId`` reported by
+   the TcpIp stack so that |me| can match it against the bound addresses of
+   the affected sockets.
+
+How the PIL was built for MicroSAR platforms
+--------------------------------------------
+
+This section describes how RTI built the Platform Independent Library (PIL)
+for MicroSAR platforms.
+
+.. note::
+
+  |me| requires the C-type "double" to be 64 bits. Any compiler option that
+  treats a "double" as a "float" must not be enabled.
+
+The following table shows the compiler flags RTI used to create
+the PIL for MicroSAR platforms:
+
+.. list-table:: PIL Compiler Flags for MicroSAR Platforms
+   :name: PilFlagsMicroSAR
+   :widths: 30 15 55
+   :header-rows: 1
+   :class: longtable
+
+   * - Architecture PIL
+     - Library Format
+     - Compiler Flags Used by RTI
+   * - tc39xtElfTasking6.3r1
+     - Static Release
+     - -Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ --core=tc1.6.2 --align=0 -Wc--no-warnings=504 -Wcp--no-warnings=550 --fp-model=c,F,L,N,R,S,T,Z --language=-gcc,-volatile,+strings,-kanji --iso=99 --switch=auto --compact-max-size=200 --error-limit=1 --source --integer-enumeration -t4 -Z0 -Y0 --default-near-size=0 -O2ROP -DNDEBUG
+   * -
+     - Static Debug
+     - -Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ --core=tc1.6.2 --align=0 -Wc--no-warnings=504 -Wcp--no-warnings=550 --fp-model=c,F,L,N,R,S,T,Z --language=-gcc,-volatile,+strings,-kanji --iso=99 --switch=auto --compact-max-size=200 --error-limit=1 --source --integer-enumeration -t4 -Z0 -Y0 --default-near-size=0 -O0 -g2
+   * - tc39xtElfTasking6.3r1CERT
+     - Static Release
+     - -Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ --core=tc1.6.2 --align=0 -Wc--no-warnings=504 -Wcp--no-warnings=550 --fp-model=c,F,L,N,R,S,T,Z --language=-gcc,-volatile,+strings,-kanji --iso=99 --switch=auto --compact-max-size=200 --error-limit=1 --source --integer-enumeration -t4 -Z0 -Y0 --default-near-size=0 -O2ROP -DNDEBUG
+   * -
+     - Static Debug
+     - -Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ --core=tc1.6.2 --align=0 -Wc--no-warnings=504 -Wcp--no-warnings=550 --fp-model=c,F,L,N,R,S,T,Z --language=-gcc,-volatile,+strings,-kanji --iso=99 --switch=auto --compact-max-size=200 --error-limit=1 --source --integer-enumeration -t4 -Z0 -Y0 --default-near-size=0 -O0 -g2
+
+.. list-table:: Compiler Flag Details
+   :widths: 35 65
+   :header-rows: 1
+
+   * - Flag
+     - Purpose
+   * - ``-Ctc39xb``
+     - Select the TC39xB CPU target
+   * - ``-D__CPU__=tc39xb``
+     - Define CPU type macro (required by MicroSAR headers)
+   * - ``-D__CPU_TC39XB__``
+     - Define CPU-specific macro
+   * - ``--core=tc1.6.2``
+     - Select TriCore architecture core version 1.6.2
+   * - ``--align=0``
+     - Default alignment (no forced alignment)
+   * - ``-Wc--no-warnings=504``
+     - Suppress warning 504: macro redefined (for __CPU__)
+   * - ``-Wcp--no-warnings=550``
+     - Suppress warning 550: variable set but never used
+   * - ``--fp-model=c,F,L,N,R,S,T,Z``
+     - Precise floating-point model ensuring 64-bit doubles
+   * - ``--language=-gcc,-volatile,+strings,-kanji``
+     - Language extensions configuration
+   * - ``--iso=99``
+     - ISO C99 standard
+   * - ``--switch=auto``
+     - Automatic switch statement code generation
+   * - ``--compact-max-size=200``
+     - Maximum size for code compaction (reverse inlining)
+   * - ``--error-limit=1``
+     - Stop after first error
+   * - ``--source``
+     - Merge C source as comments in assembly output
+   * - ``--integer-enumeration``
+     - Treat enums as int per ISO C99
+   * - ``-t4``
+     - Optimize for code size
+   * - ``-Z0``
+     - Disable __a0 (near addressing) allocation
+   * - ``-Y0``
+     - Disable __a1 (near addressing) allocation
+   * - ``--default-near-size=0``
+     - Disable near-code optimizations (simplifies MPU config)
+   * - ``-O2ROP`` (Release)
+     - Optimization level 2 with R, O, P optimizations
+   * - ``-DNDEBUG`` (Release)
+     - Disable debug assertions
+   * - ``-O0`` (Debug)
+     - No optimization
+   * - ``-g2`` (Debug)
+     - Full debug information
+
+Building the PSL from source for MicroSAR platforms
+---------------------------------------------------
+
+This section describes how to build your own Platform Support Library (PSL)
+for MicroSAR.
+
+.. note::
+
+  |me| requires the C-type "double" to be 64 bits. Any compiler option that
+  treats a "double" as a "float" must not be enabled.
+
+|me| includes support to compile Platform Support Libraries (PSL) for MicroSAR
+using CMake. Refer to :ref:`section-set-up-build-environment` before continuing
+with the following instructions.
+
+#. Make sure CMake is in the path.
+#. Define the following environment variables:
+
+   * ``OSEK_PATH``: Path to the Vector MicroSAR static code (SIP folder).
+   * ``RTIME_TASKING_PATH``: Path to the Tasking compiler.
+
+#. Enter the following command:
+
+   .. code-block:: bash
+
+     rtime-make.bat --target tc39xtElfTasking6.3r1-MICROSAR4 --name tc39xtElfTasking6.3r1-MICROSAR4 --config Release --delete -G "Ninja" --build
+
+   .. note::
+
+     ``rtime-make`` uses the architecture specified with ``--target`` to
+     determine a few settings needed by |me|. Please refer to :ref:`prepare-psl`
+     for details.
+
+#. The |me| PSL is available in:
+
+   .. code-block:: bash
+
+     RTIMEHOME/lib/tc39xtElfTasking6.3r1-MICROSAR4
+
+You must build applications with compatible flags to the PIL and PSL in
+order to operate with |me|; the PSL must also be binary compatible with
+the PIL. Applications must not specify the ``RTI_PSL`` or ``RTI_PIL``
+preprocessor definitions. When you build the PSL with ``rtime-make``, the
+``--target`` argument automatically adds all the necessary flags for the
+specified architecture.
+
+The following table shows the compiler flags and required options that RTI
+used to build the PSL for MicroSAR platforms.
+
+.. list-table:: PSL Compiler Flags for MicroSAR Platforms
+   :widths: 30 15 55
+   :header-rows: 1
+   :class: longtable
+
+   * - Architecture PSL
+     - Library Format
+     - Compiler Flags Used by RTI
+   * - tc39xtElfTasking6.3r1-MICROSAR4
+     - Static Release
+     - -D__autosar__=1 -DRTI_ENDIAN_LITTLE=1 -DRTIME_AUTOSAR_MICROSAR=1 -DRTI_AUTOSAR=1 -Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ --core=tc1.6.2 --align=0 -Wc--no-warnings=504 -Wcp--no-warnings=550 --fp-model=c,F,L,N,R,S,T,Z --language=-gcc,-volatile,+strings,-kanji --iso=99 --switch=auto --compact-max-size=200 --error-limit=1 --source --integer-enumeration -t4 -Z0 -Y0 --default-near-size=0 -O2ROP -DNDEBUG
+   * -
+     - Static Debug
+     - -D__autosar__=1 -DRTI_ENDIAN_LITTLE=1 -DRTIME_AUTOSAR_MICROSAR=1 -DRTI_AUTOSAR=1 -Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ --core=tc1.6.2 --align=0 -Wc--no-warnings=504 -Wcp--no-warnings=550 --fp-model=c,F,L,N,R,S,T,Z --language=-gcc,-volatile,+strings,-kanji --iso=99 --switch=auto --compact-max-size=200 --error-limit=1 --source --integer-enumeration -t4 -Z0 -Y0 --default-near-size=0 -O0 -g2
+   * - tc39xtElfTasking6.3r1CERT-MICROSAR4
+     - Static Release
+     - -D__autosar__=1 -DRTI_ENDIAN_LITTLE=1 -DRTIME_AUTOSAR_MICROSAR=1 -DRTI_AUTOSAR=1 -Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ --core=tc1.6.2 --align=0 -Wc--no-warnings=504 -Wcp--no-warnings=550 --fp-model=c,F,L,N,R,S,T,Z --language=-gcc,-volatile,+strings,-kanji --iso=99 --switch=auto --compact-max-size=200 --error-limit=1 --source --integer-enumeration -t4 -Z0 -Y0 --default-near-size=0 -O2ROP -DNDEBUG
+   * -
+     - Static Debug
+     - -D__autosar__=1 -DRTI_ENDIAN_LITTLE=1 -DRTIME_AUTOSAR_MICROSAR=1 -DRTI_AUTOSAR=1 -Ctc39xb -D__CPU__=tc39xb -D__CPU_TC39XB__ --core=tc1.6.2 --align=0 -Wc--no-warnings=504 -Wcp--no-warnings=550 --fp-model=c,F,L,N,R,S,T,Z --language=-gcc,-volatile,+strings,-kanji --iso=99 --switch=auto --compact-max-size=200 --error-limit=1 --source --integer-enumeration -t4 -Z0 -Y0 --default-near-size=0 -O0 -g2
+
+Known issues and limitations
+----------------------------
+
+.. list-table:: Known Issues and Limitations
+   :widths: 35 65
+   :header-rows: 1
+
+   * - Issue
+     - Details
+   * - ``enable_thread_safe_heap`` set to FALSE
+     - Disabling this property may raise errors since we do not prevent
+       multiple concurrent accesses to the heap. We recommend keeping this set
+       to ``TRUE``.
+   * - Spinlock synchronization not fully tested
+     - The port has not been tested with ``sync_type`` set to
+       ``OSAPI_AUTOSAR_SYNCKIND_SPINLOCK``. Use
+       ``OSAPI_AUTOSAR_SYNCKIND_RESOURCES`` (the default) for production deployments.
+   * - ``use_socket_owner = FALSE`` not fully tested
+     - The port has not been tested with ``use_socket_owner`` set to FALSE. When
+       ``use_socket_owner`` is FALSE, the ``send_data`` function pointer must be
+       provided instead.
+   * - No dynamic memory deallocation
+     - The AUTOSAR heap implementation does not support freeing memory
+       (``OSAPI_DONT_HAVE_REALLOC``). Once memory is allocated from the static
+       heap, it cannot be returned. Ensure sufficient heap area is provisioned.
+   * - Single instantiation only
+     - The DDS CDD does not support multiple instantiations.
+   * - C++ not supported
+     - C++ compilation is excluded (``RTIME_EXCLUDE_CPP``). The AUTOSAR port is
+       C-only.
+   * - Shared memory transport not supported
+     - Shared memory transport is excluded (``RTIME_EXCLUDE_SHMEM``) on AUTOSAR
+       platforms.
+   * - Threads not supported
+     - AUTOSAR does not provide a standard thread API. The macro
+       ``OSAPI_NO_THREADS`` is set to 1. All DDS processing is done within
+       AUTOSAR runnables/tasks.
+   * - Flow controller and fragmentation not supported
+     - The DDS flow controller and fragmentation features are not supported on AUTOSAR platforms.
+
+Example
+-------
+
+For an in-depth example of how to successfully integrate |me| with AUTOSAR and
+understand the resulting architecture, refer to
+:ref:`section-autosar-integration` and :ref:`section-autosar-architecture`.
+
+.. raw:: latex
+
+  \end{landscape}
+  \newpage

@@ -1,0 +1,20 @@
+Data Corruption
+===============
+
+.. Release Notes from this point.
+
+:minor:`[Minor]` Creating new DomainParticipant while receiving data could cause undefined behavior
+---------------------------------------------------------------------------------------------------
+Under rare conditions, creating a *DomainParticipant* while an existing
+*DomainParticipant* was processing an RTPS message could lead to undefined
+behavior.
+
+[RTI Issue ID MICRO-10575]
+
+:minor:`[Minor]` DDS_WstringSeq instance could be returned in an inconsistent state when set_maximum failed
+-----------------------------------------------------------------------------------------------------------
+If the function ``DDS_WstringSeq_set_maximum()`` failed and returned
+``RTI_FALSE``, the entire input sequence object could be returned in an
+inconsistent state.
+
+[RTI Issue ID MICRO-9999]

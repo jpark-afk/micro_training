@@ -1,0 +1,28 @@
+\doxysubsubsubsection{matching\+\_\+writer\+\_\+reader\+\_\+pair\+\_\+allocation}
+\hypertarget{group__DDSUserManuals__ResourceModule__dp__local__matching__matching__writer__reader__pair__allocation}{}\label{group__DDSUserManuals__ResourceModule__dp__local__matching__matching__writer__reader__pair__allocation}\index{matching\_writer\_reader\_pair\_allocation@{matching\_writer\_reader\_pair\_allocation}}
+\begin{DoxyParagraph}{NAME}
+\doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_a27bc21f81873b1a20a0ca073040b919a}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::matching\+\_\+writer\+\_\+reader\+\_\+pair\+\_\+allocation}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{DESCRIPTION}
+When RTI Connext DDS Micro discovers DDS entities using a DDS discovery protocol, such as DPSE (Dynamic Participant Static Endpoint) or DPDE (Dynamic Participant Dynamic Endpoint), it matches the discovered entities with the locally created Data\+Readers and Data\+Writers. For each match, either a local Data\+Writer matching a remote Data\+Reader or a local Data\+Reader matching a remote Data\+Writer, internal state must be managed.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+A match, in this context, is defined as being able to receive packets sent from a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} to a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}, or from a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} to a \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}\+: \begin{DoxyItemize}
+\item A data-\/writer needs one resource for each Data\+Reader it matches. \item A data-\/reader needs one resource for each Data\+Writer it matches.\end{DoxyItemize}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\doxylink{structDDS__DomainParticipantResourceLimitsQosPolicy_a27bc21f81873b1a20a0ca073040b919a}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::matching\+\_\+writer\+\_\+reader\+\_\+pair\+\_\+allocation} sets the limit for the maximum number of matches that can be managed. When this resource-\/limit is reached no further matching can occur, even if new \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}\textquotesingle{}s and \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}\textquotesingle{}s are discovered.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+A simple rule of thumb is to set this resource-\/limit to\+:
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+(local\+\_\+reader\+\_\+allocation + local\+\_\+writer\+\_\+allocation) \texorpdfstring{$\ast$}{*} max\+\_\+remote\+\_\+participants.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+This assumes that each Data\+Reader and Data\+Writer matches one Data\+Writer and Data\+Reader respectively for each discovered participant. However, this may over-\/allocate resources.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{NOTES}
+DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy\+::matching\+\_\+reader\+\_\+writer\+\_\+pair\+\_\+allocation is not used and will be deprecated in future versions. 
+\end{DoxyParagraph}

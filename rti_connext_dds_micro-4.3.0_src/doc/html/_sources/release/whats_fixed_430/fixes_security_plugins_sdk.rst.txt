@@ -1,0 +1,19 @@
+Security Plugins SDK
+====================
+
+.. Release Notes from this point.
+
+:minor:`[Minor]` Incorrect block count calculation for key rotation
+-------------------------------------------------------------------
+The block count calculation used to determine session key rotation in
+the PSK interceptor during message encoding was overcounted by 1 in most
+messages.
+
+[RTI Issue ID MICRO-13129]
+
+:minor:`[Minor]` OpenSSL PSK PSL implementation had NULL function pointers with no safeguards
+---------------------------------------------------------------------------------------------
+The OpenSSL PSK PSL implementation had no safeguards against NULL
+function pointers when accessing any concrete transform method.
+
+[RTI Issue ID MICRO-12721]

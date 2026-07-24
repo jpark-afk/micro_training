@@ -1,0 +1,66 @@
+Interoperability
+================
+
+.. Release Notes from this point.
+
+:critical:`[Critical]` Failure to ignore vendor-specific PIDS
+-------------------------------------------------------------
+|me| would not ignore vendor-specific parameter IDs (PIDs)
+when deserializing data from other DDS vendors.
+
+[RTI Issue ID MICRO-12271]
+
+:critical:`[Critical]` NULL pointer access in AUTOSAR Classic when a ping message received from |core_pro_h| 7.3.0 or higher
+----------------------------------------------------------------------------------------------------------------------------
+An AUTOSAR Classic application using |me| caused a NULL pointer access
+if a ping message was received from an application using |core_pro| 7.3.0 or
+higher.
+
+[RTI Issue ID MICRO-7860]
+
+
+:major:`[Major]` KeyFlag for fragmented data interpreted incorrectly
+--------------------------------------------------------------------
+The *KeyFlag* (or K-bit) for fragmented data was interpreted from the wrong
+position and was always ignored.
+
+[RTI Issue ID MICRO-11460]
+
+:major:`[Major]` Samples of mutable types may have been dropped when bit FLAG_MUST_UNDERSTAND was set on key members
+--------------------------------------------------------------------------------------------------------------------
+|me| may have failed to deliver samples to applications, and
+reported them as lost, when receiving data on a *Topic* whose type:
+
+- Had mutable extensibility;
+
+- Derived from another type;
+
+- Had at least one member marked as a key.
+
+The failure would be triggered if the sending node set the bit
+FLAG_MUST_UNDERSTAND of the parameter IDs preceding each key member
+value in the serialized payload, as prescribed by the `OMG ‘Extensible
+and Dynamic Topic Types for DDS’
+specification <https://www.omg.org/spec/DDS-XTypes/>`__.
+
+This error may have only manifested in a cross-vendor interoperability
+scenario where *Connext* received data from a different vendor’s DDS
+implementation. The error could also have been triggered if receiving
+data from a type with members marked as “must understand,” for which the
+specification also requires the bit FLAG_MUST_UNDERSTAND be set in their
+serialized parameter IDs. Support for “must understand” members is
+introduced in this release. See `Must-Understand
+Members <https://community.rti.com/static/documentation/connext-dds/7.7.0/doc/manuals/connext_dds_professional/extensible_types_guide/extensible_types/MustUnderstand.htm>`__
+in the *RTI Connext Core Libraries Extensible Types Guide* for more
+information.
+
+|me| will now correctly deliver all samples on *Topics* whose
+type may have triggered this error.
+
+**Note:** To maximize interoperability with previous releases, *Connext
+Micro* does not set FLAG_MUST_UNDERSTAND for key members of mutable
+types by default. You can change this default and force compliance with
+the specification by using the `Extensible Types Compliance
+Mask <https://community.rti.com/static/documentation/connext-dds/7.7.0/doc/manuals/connext_dds_professional/extensible_types_guide/extensible_types/Data_Representation.htm#4.5_Extensible_Types_Compliance_Mask>`__.
+
+[RTI Issue ID MICRO-12758]

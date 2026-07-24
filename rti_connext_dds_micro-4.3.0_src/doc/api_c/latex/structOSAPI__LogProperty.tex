@@ -1,0 +1,74 @@
+\doxysubsection{OSAPI\+\_\+\+Log\+Property Struct Reference}
+\hypertarget{structOSAPI__LogProperty}{}\label{structOSAPI__LogProperty}\index{OSAPI\_LogProperty@{OSAPI\_LogProperty}}
+
+
+Configuration of logging functionality.  
+
+
+
+
+{\ttfamily \#include $<$osapi\+\_\+log.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} \mbox{\hyperlink{structOSAPI__LogProperty_a38dee602d76f0376c09c0af9e09cffd5}{max\+\_\+buffer\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em The maximum number of bytes allocated to the log buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} \mbox{\hyperlink{structOSAPI__LogProperty_a5cfce24213c12e1062d0d2ea93f4bfe6}{log\+\_\+detail}}
+\begin{DoxyCompactList}\small\item\em Bitmap to control the fidelity of what is stored in the log entry. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__OSAPILogClass_gade576446ec18437473c2c63fd08a2d60}{OSAPI\+\_\+\+Log\+\_\+write\+\_\+buffer\+\_\+T}} \mbox{\hyperlink{structOSAPI__LogProperty_a4e59110aad8d0bb5e7e4c8c3e3be9e9e}{write\+\_\+buffer}}
+\begin{DoxyCompactList}\small\item\em Function pointer to output a log buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Configuration of logging functionality. 
+
+
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structOSAPI__LogProperty_a38dee602d76f0376c09c0af9e09cffd5}\index{OSAPI\_LogProperty@{OSAPI\_LogProperty}!max\_buffer\_size@{max\_buffer\_size}}
+\index{max\_buffer\_size@{max\_buffer\_size}!OSAPI\_LogProperty@{OSAPI\_LogProperty}}
+\doxyparagraph{\texorpdfstring{max\_buffer\_size}{max\_buffer\_size}}
+{\footnotesize\ttfamily \label{structOSAPI__LogProperty_a38dee602d76f0376c09c0af9e09cffd5} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gab7b83172c1604e57098fbc8dbd1a90e4}{RTI\+\_\+\+SIZE\+\_\+T}} OSAPI\+\_\+\+Log\+Property\+::max\+\_\+buffer\+\_\+size}
+
+
+
+The maximum number of bytes allocated to the log buffer. 
+
+Log entries are of variable length. When this limit has been reached, no more log entries can be stored unless the buffer is cleared. \Hypertarget{structOSAPI__LogProperty_a5cfce24213c12e1062d0d2ea93f4bfe6}\index{OSAPI\_LogProperty@{OSAPI\_LogProperty}!log\_detail@{log\_detail}}
+\index{log\_detail@{log\_detail}!OSAPI\_LogProperty@{OSAPI\_LogProperty}}
+\doxyparagraph{\texorpdfstring{log\_detail}{log\_detail}}
+{\footnotesize\ttfamily \label{structOSAPI__LogProperty_a5cfce24213c12e1062d0d2ea93f4bfe6} 
+\mbox{\hyperlink{group__OSAPI__TypeClass_gaddc2183f2148199d5e6fbdbcaa7b51ab}{RTI\+\_\+\+UINT32}} OSAPI\+\_\+\+Log\+Property\+::log\+\_\+detail}
+
+
+
+Bitmap to control the fidelity of what is stored in the log entry. 
+
+This is an OR-\/combination of \doxylink{group__OSAPILogClass_gaa74109f92b2676734c78a16be4adf010}{OSAPI\+\_\+\+LOG\+\_\+\+DETAIL\+\_\+\+MODULENAME} and related constants into a 32-\/bit bitmap (RTI\+\_\+\+UINT32). Each flag controls whether a specific field is recorded in each \doxylink{structOSAPI__LogEntry}{OSAPI\+\_\+\+Log\+Entry}\+: 
+
+\doxylink{group__OSAPILogClass_gaa74109f92b2676734c78a16be4adf010}{OSAPI\+\_\+\+LOG\+\_\+\+DETAIL\+\_\+\+MODULENAME} — records the module name of the code that logged the entry. 
+
+\doxylink{group__OSAPILogClass_gac7a19385903287ff4b89d39d5e0b5dd5}{OSAPI\+\_\+\+LOG\+\_\+\+DETAIL\+\_\+\+SOURCEFILE} — records the source file name of the logging call site. 
+
+\doxylink{group__OSAPILogClass_ga09586cee64078b195745519344d0e59e}{OSAPI\+\_\+\+LOG\+\_\+\+DETAIL\+\_\+\+LINENUMBER} — records the source line number of the logging call site. 
+
+\doxylink{group__OSAPILogClass_gab7807a88a0c27cb954fa27cca6e4e0f3}{OSAPI\+\_\+\+LOG\+\_\+\+DETAIL\+\_\+\+FUNCTIONAME} — records the function name of the logging call site. 
+
+\doxylink{group__OSAPILogClass_ga89d433d72038d5637a7681f542aa9ae2}{OSAPI\+\_\+\+LOG\+\_\+\+DETAIL\+\_\+\+DATA\+\_\+\+ONLY} — records only the log data and argument fields; no call-\/site location information is stored. 
+
+\doxylink{group__OSAPILogClass_ga4829a7f9961f8feac8ef683cb8748a74}{OSAPI\+\_\+\+LOG\+\_\+\+DETAIL\+\_\+\+ALL} — enables all of the above fields combined (the default). 
+
+\doxylink{group__OSAPILogClass_ga53234312d27d4cb291729649156e13ae}{OSAPI\+\_\+\+LOG\+\_\+\+DETAIL\+\_\+\+NO\+\_\+\+DATA} — enables all call-\/site location fields (module, file, line, function) but excludes the data-\/only fields. 
+
+Enabling more flags increases memory consumed per log entry. The default value is \doxylink{group__OSAPILogClass_ga4829a7f9961f8feac8ef683cb8748a74}{OSAPI\+\_\+\+LOG\+\_\+\+DETAIL\+\_\+\+ALL}, as set by \doxylink{group__OSAPILogClass_ga1273d2747b32acce2b9807218e528a2f}{OSAPI\+\_\+\+Log\+Property\+\_\+\+INITIALIZER}. \Hypertarget{structOSAPI__LogProperty_a4e59110aad8d0bb5e7e4c8c3e3be9e9e}\index{OSAPI\_LogProperty@{OSAPI\_LogProperty}!write\_buffer@{write\_buffer}}
+\index{write\_buffer@{write\_buffer}!OSAPI\_LogProperty@{OSAPI\_LogProperty}}
+\doxyparagraph{\texorpdfstring{write\_buffer}{write\_buffer}}
+{\footnotesize\ttfamily \label{structOSAPI__LogProperty_a4e59110aad8d0bb5e7e4c8c3e3be9e9e} 
+\mbox{\hyperlink{group__OSAPILogClass_gade576446ec18437473c2c63fd08a2d60}{OSAPI\+\_\+\+Log\+\_\+write\+\_\+buffer\+\_\+T}} OSAPI\+\_\+\+Log\+Property\+::write\+\_\+buffer}
+
+
+
+Function pointer to output a log buffer. 
+

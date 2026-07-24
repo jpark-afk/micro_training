@@ -1,0 +1,28 @@
+Discovery
+=========
+
+.. Release Notes from this point.
+
+:major:`[Major]` DomainParticipants did not use initial announcement configuration correctly
+--------------------------------------------------------------------------------------------
+When a new a remote *DomainParticipant* was discovered, the
+*DomainParticipant* did not use the initial announcement count and period
+to send new data(p).
+
+[RTI Issue ID MICRO-11874]
+
+:minor:`[Minor]` Periodic participant announcements not sent at expected rate
+-----------------------------------------------------------------------------
+Due to clock drift, periodic participant announcements were not sent at
+the expected rate on POSIX and Windows systems.
+
+[RTI Issue ID MICRO-11805]
+
+:trivial:`[Trivial]` Possible error when DPSE and participant_discovery_by_name are enabled
+-------------------------------------------------------------------------------------------
+When DPSE and ``participant_discovery_by_name`` were enabled, the
+following benign error may have been logged:
+
+``ERROR: ModuleID=10 Errcode=48 X=1 E=0 T=1``
+
+[RTI Issue ID MICRO-13318]

@@ -1,0 +1,837 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>14.2. Appendix B: AUTOSAR Architecture Example &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="14.3. Appendix C: Package Contents" href="package_contents.html" />
+    <link rel="prev" title="14.1. Appendix A: AUTOSAR Integration Example" href="autosar_integration.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">14. Appendices</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="autosar_integration.html">14.1. Appendix A: AUTOSAR Integration Example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">14.2. Appendix B: AUTOSAR Architecture Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#system-architecture">14.2.1. System architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rte-template-layer">14.2.2. RTE template layer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#layer-2-adapter-layer">14.2.2.1. Layer 2: Adapter layer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#layer-3-dds-implementation-layer">14.2.2.2. Layer 3: DDS implementation layer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#initialization-sequence">14.2.3. Initialization sequence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ordering-constraint">14.2.3.1. Ordering constraint</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#resource-management">14.2.4. Resource management</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#memory-architecture">14.2.4.1. Memory architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autosar-resource-synchronization">14.2.4.2. AUTOSAR resource synchronization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tcpip-socket-management">14.2.4.3. TcpIp socket management</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#timing-architecture">14.2.5. Timing architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#runnable-timing-configuration">14.2.5.1. Runnable timing configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#error-handling-strategy">14.2.6. Error handling strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scalability-considerations">14.2.7. Scalability considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="package_contents.html">14.3. Appendix C: Package Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_contents.html#appendix-d-directory-structure">14.4. Appendix D: Directory Structure</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">14. </span>Appendices</a> &raquo;</li>
+        
+      <li><span class="section-number">14.2. </span>Appendix B: AUTOSAR Architecture Example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="appendix-b-autosar-architecture-example">
+<span id="section-autosar-architecture"></span><h1><span class="section-number">14.2. </span>Appendix B: AUTOSAR Architecture Example<a class="headerlink" href="#appendix-b-autosar-architecture-example" title="Permalink to this headline">¶</a></h1>
+<p>This section will help you understand the design of <em>Connext Micro</em>-AUTOSAR compatibility
+in depth, allowing you to modify the implementation for advanced use cases or
+explain the system in detail. It can also help with debugging complex
+integration issues.</p>
+<p>We recommend reading this section after successfully
+integrating <em>Connext Micro</em> with AUTOSAR. You can optionally read this before
+integration to better understand the design, evaluate the approach, and
+assess compatibility.</p>
+<p>At a minimum, read <a class="reference internal" href="autosar_integration.html#section-understanding-the-architecture"><span class="std std-ref">Understanding the architecture</span></a> first
+for a high-level overview, then come here for more information.</p>
+<p>The HKMC-Leaf-ECUs reference implementation provides a layered architecture for
+integrating <em>Connext Micro</em> into AUTOSAR Classic Platform systems. This guide describes
+the architectural patterns, component interactions, and design decisions.</p>
+<div class="section" id="system-architecture">
+<h2><span class="section-number">14.2.1. </span>System architecture<a class="headerlink" href="#system-architecture" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────────────────────────────────────┐
+│                   Application SW-C Layer                    │
+│                  (MCU_EXAMPLE_ASR_APP)                      │
+└────────────────────────┬────────────────────────────────────┘
+                         │ RTE Ports
+┌────────────────────────▼────────────────────────────────────┐
+│                    AUTOSAR RTE Layer                        │
+└────────────────────────┬────────────────────────────────────┘
+                         │ RTE Ports
+┌────────────────────────▼────────────────────────────────────┐
+│                   DDS CDD SW-C Layer                        │
+│                    (MCU_DDS_CDD)                            │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  Layer 1: AUTOSAR Template (DdsCdd.c)                │   │
+│  │  - Runnables mapped to OS tasks                      │   │
+│  │  - Thin wrapper calling adapter functions            │   │
+│  └──────────────────────┬───────────────────────────────┘   │
+│  ┌──────────────────────▼───────────────────────────────┐   │
+│  │  Layer 2: Adapter (dds_cdd_adapter.c/h)              │   │
+│  │  - RTE to DDS type conversion                        │   │
+│  │  - TcpIp integration                                 │   │
+│  │  - Initialization state machine                      │   │
+│  │  - AUTOSAR system property configuration             │   │
+│  └──────────────────────┬───────────────────────────────┘   │
+│  ┌──────────────────────▼───────────────────────────────┐   │
+│  │  Layer 3: DDS Implementation (dds_impl.c/h)          │   │
+│  │  - DDS entity creation and management                │   │
+│  │  - DataWriter/DataReader operations                  │   │
+│  │  - QoS configuration                                 │   │
+│  └──────────────────────┬───────────────────────────────┘   │
+└─────────────────────────┼───────────────────────────────────┘
+                          │ DDS API
+┌─────────────────────────▼───────────────────────────────────┐
+│              RTI Connext DDS Micro Layer                    │
+│  - Domain Participant                                       │
+│  - Topics, Publishers, Subscribers                          │
+│  - DataWriters, DataReaders                                 │
+└─────────────────────────┬───────────────────────────────────┘
+                          │ Network I/O
+┌─────────────────────────▼───────────────────────────────────┐
+│              AUTOSAR TcpIp (Eth Stack)                      │
+└─────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</div>
+<div class="section" id="rte-template-layer">
+<h2><span class="section-number">14.2.2. </span>RTE template layer<a class="headerlink" href="#rte-template-layer" title="Permalink to this headline">¶</a></h2>
+<p>The RTE template layer is implemented in <code class="docutils literal notranslate"><span class="pre">MCU_DDS_CDD/dds_cdd/DdsCdd.c</span></code>. This
+file contains a partially-generated AUTOSAR SW-C implementation that serves as
+the interface between the RTE and the DDS functionality. The RTE generator
+creates the function signatures and header structure, while you (the integrator)
+provide the runnable implementations as stub templates that you must fill in.</p>
+<p>Your primary responsibilities in this layer are to implement runnables with
+trigger conditions (configured in ARXML), call corresponding adapter layer
+functions, and provide a thin wrapper with minimal logic. The RTE generator
+creates runnable stubs that you implement by calling the appropriate adapter
+layer functions, as shown below:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Initialization runnable (triggered by InitEvent trigger condition)</span>
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddStart</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">DdsCdd_Adapter_Init</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Timer runnable for DDS QoS maintenance (10ms periodic trigger condition)</span>
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddRun</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">DdsCdd_Adapter_Run</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Inter-runnable trigger for processing received data</span>
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddRxIndication</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Rte_IrTrigger_DdsCdd_RxIndication_ITP_DdsCdd_RxIndication</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Runnable to process received data (triggered by Inter-runnable trigger)</span>
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddProcessData</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">NETIO_Autosar_udp_receive_callback</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Data reception runnable (100ms periodic trigger condition)</span>
+<span class="c1">// Pattern: One runnable per DDS topic you subscribe to</span>
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddRead_</span><span class="o">&lt;</span><span class="n">DDS_topic</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">DdsCdd_Adapter_Read_</span><span class="o">&lt;</span><span class="n">DDS_topic</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Example: For PCtoMCU topic</span>
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddRead_PCtoMCU</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">DdsCdd_Adapter_Read_PCtoMCU</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Data transmission runnable (DataReceivedEvent trigger condition)</span>
+<span class="c1">// Pattern: One runnable per DDS topic you publish to</span>
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddWrite_</span><span class="o">&lt;</span><span class="n">DDS_topic</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">DdsCdd_Adapter_Write_</span><span class="o">&lt;</span><span class="n">DDS_topic</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Example: For MCUtoPC topic</span>
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddWrite_MCUtoPC</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">DdsCdd_Adapter_Write_MCUtoPC</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="layer-2-adapter-layer">
+<h3><span class="section-number">14.2.2.1. </span>Layer 2: Adapter layer<a class="headerlink" href="#layer-2-adapter-layer" title="Permalink to this headline">¶</a></h3>
+<p>The adapter layer implementation resides in
+<code class="docutils literal notranslate"><span class="pre">MCU_DDS_CDD/adaptation/dds_cdd_adapter.c</span></code> and <code class="docutils literal notranslate"><span class="pre">dds_cdd_adapter.h</span></code>. This
+layer acts as a bridge between AUTOSAR-specific concerns (RTE types, TcpIp,
+resources) and the DDS implementation.</p>
+<p>The adapter layer handles five key responsibilities:</p>
+<ul class="simple">
+<li><p>It performs type conversion by mapping between RTE types and DDS types;</p></li>
+<li><p>It integrates with TcpIp by handling socket owner initialization and IP
+address management;</p></li>
+<li><p>It manages the initialization sequence through a state machine;</p></li>
+<li><p>It configures AUTOSAR-specific DDS system properties;</p></li>
+<li><p>It manages AUTOSAR resource allocation.</p></li>
+</ul>
+<p>The adapter layer implements an initialization state machine that guides the
+system through several states:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>TcpIpNotReady
+    │
+    │ IP address assigned
+    ▼
+TcpIpReady
+    │
+    │ Set AUTOSAR system properties
+    ▼
+SystemPropertiesSet
+    │
+    │ Create DDS entities (disabled)
+    ▼
+EntitiesCreated
+    │
+    │ Enable entities
+    ▼
+EntitiesEnabled
+    │
+    │ Normal operation
+    ▼
+(Running State)
+</pre></div>
+</div>
+<p>The state machine implementation defines several states that the adapter
+transitions through. The state begins as <code class="docutils literal notranslate"><span class="pre">DDSCDD_STATE_TCPIP_NOT_READY</span></code> and
+progresses through <code class="docutils literal notranslate"><span class="pre">DDSCDD_STATE_TCPIP_READY</span></code>,
+<code class="docutils literal notranslate"><span class="pre">DDSCDD_STATE_SYSTEM_PROPERTIES_SET</span></code>, <code class="docutils literal notranslate"><span class="pre">DDSCDD_STATE_ENTITIES_CREATED</span></code>, and
+finally <code class="docutils literal notranslate"><span class="pre">DDSCDD_STATE_ENTITIES_ENABLED</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DDSCDD_STATE_TCPIP_NOT_READY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DDSCDD_STATE_TCPIP_READY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DDSCDD_STATE_SYSTEM_PROPERTIES_SET</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DDSCDD_STATE_ENTITIES_CREATED</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DDSCDD_STATE_ENTITIES_ENABLED</span>
+<span class="p">}</span><span class="w"> </span><span class="n">DdsCdd_StateType</span><span class="p">;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">DdsCdd_StateType</span><span class="w"> </span><span class="n">DdsCdd_State</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDSCDD_STATE_TCPIP_NOT_READY</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The generated runnable sequence is only part of the startup behavior. The
+adapter code implements explicit state guards to ensure initialization remains
+safe under timing variation, such as delayed IP assignment or repeated runnable
+execution. The adapter layer splits initialization responsibility between two
+functions: <code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Init()</span></code> and <code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Run()</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Init()</span></code> performs one-time setup phases such as
+setting system properties and creating DDS entities, and it transitions state
+only on success. <code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Run()</span></code> owns periodic work and enables
+entities when the system reaches <code class="docutils literal notranslate"><span class="pre">EntitiesCreated</span></code> state. The
+<code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Run()</span></code> function can also invoke <code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Init()</span></code>
+when state is <code class="docutils literal notranslate"><span class="pre">TcpIpReady</span></code>, providing a safe retry path from the periodic
+context. Any failure transitions the state to <code class="docutils literal notranslate"><span class="pre">Error</span></code> to avoid partial startup
+continuation.</p>
+<p>The following code example shows how the adapter implements state guards and
+transitions:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">DdsCdd_Adapter_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DdsCdd_InitState_TcpIpNotReady</span><span class="w"> </span><span class="o">||</span>
+<span class="w">        </span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DdsCdd_InitState_Error</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DdsCdd_InitState_TcpIpReady</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SetSystemProperties</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span>
+<span class="w">            </span><span class="n">OSAPI_System_initialize</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">RTI_TRUE</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DdsCdd_InitState_Error</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DdsCdd_InitState_SystemPropertiesSet</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DdsCdd_InitState_SystemPropertiesSet</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">DdsImpl_CreateEntities</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DdsCdd_InitState_Error</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DdsCdd_InitState_EntitiesCreated</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">DdsCdd_Adapter_Run</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">OSAPI_SystemAutosar_timer_callback</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DdsCdd_InitState_TcpIpReady</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">DdsCdd_Adapter_Init</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DdsCdd_InitState_EntitiesCreated</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">DdsImpl_EnableEntities</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DdsCdd_InitState_EntitiesEnabled</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DdsCdd_InitState_Error</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The separation of initialization into these two functions provides several
+benefits. <code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Init()</span></code> performs one-time setup phases including
+system properties configuration and DDS entity creation, and it transitions
+state only on success. <code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Run()</span></code> owns the periodic work and
+enables entities when the system reaches the <code class="docutils literal notranslate"><span class="pre">EntitiesCreated</span></code> state.
+<code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Run()</span></code> can invoke <code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Init()</span></code> when state is
+<code class="docutils literal notranslate"><span class="pre">TcpIpReady</span></code>, providing a safe retry path from the periodic context. Any
+failure transitions to <code class="docutils literal notranslate"><span class="pre">Error</span></code> state to avoid partial startup continuation.</p>
+<div class="section" id="tcpip-configuration">
+<span id="section-tcpip-configuration"></span><h4><span class="section-number">14.2.2.1.1. </span>TcpIp Configuration<a class="headerlink" href="#tcpip-configuration" title="Permalink to this headline">¶</a></h4>
+<p>This architecture expects a static TcpIp configuration where the local IP
+address is assigned as soon as TcpIp starts. In the documented reference
+approach, <code class="docutils literal notranslate"><span class="pre">Rte_Start()</span></code> is triggered from
+<code class="docutils literal notranslate"><span class="pre">DDS_CDD_LocalIpAddrAssignmentChg()</span></code> after IP assignment and link-up, and
+DDS initialization is then performed in <code class="docutils literal notranslate"><span class="pre">DdsCddStart</span></code>.</p>
+<ul class="simple">
+<li><p>Static IP systems (most integrations): The IP address is immediately assigned
+when TcpIp initializes, allowing <code class="docutils literal notranslate"><span class="pre">Rte_Start()</span></code> and <code class="docutils literal notranslate"><span class="pre">DdsCddStart</span></code> to
+execute quickly after network readiness is reached.</p></li>
+<li><p>Dynamic IP systems (DHCP): If the IP address assignment occurs later in the
+sequence, startup may be delayed until the callback reports assigned state.
+<em>Connext Micro</em> requires the local IP to be assigned prior to fully initializing.</p></li>
+</ul>
+<p>Note the following key functions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Init()</span></code>: Initialize adapter and start state machine.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Run()</span></code>: Advance state machine and maintain DDS QoS
+protocols.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Read_PCtoMCU()</span></code>: Poll for incoming DDS data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Write_MCUtoPC()</span></code>: Publish DDS data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DDS_CDD_LocalIpAddrAssignmentChg()</span></code>: TcpIp callback for IP address changes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DDS_CDD_RxIndication()</span></code>: TcpIp callback for received data.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="layer-3-dds-implementation-layer">
+<h3><span class="section-number">14.2.2.2. </span>Layer 3: DDS implementation layer<a class="headerlink" href="#layer-3-dds-implementation-layer" title="Permalink to this headline">¶</a></h3>
+<p>The DDS implementation layer is contained in <code class="docutils literal notranslate"><span class="pre">MCU_DDS_CDD/dds_impl/dds_impl.c</span></code>
+and <code class="docutils literal notranslate"><span class="pre">dds_impl.h</span></code>. This layer handles DDS logic isolated from AUTOSAR concerns
+and is responsible for several key functions.</p>
+<p>The responsibilities of this layer include entity creation to set up
+<em>DomainParticipants</em>, <em>Topics</em>, <em>Publishers</em>, <em>Subscribers</em>, <em>DataWriters</em>, and
+<em>DataReaders</em>. It also handles data operations for writing and reading DDS
+samples. The layer applies QoS policies from XML configuration and makes use of
+generated DDS type and application support code from <code class="docutils literal notranslate"><span class="pre">dds_gen/</span></code>.</p>
+<p>The key functions implemented by this layer are as follows:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create DDS entities from XML (participant in disabled state)</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">DdsImpl_CreateEntities</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="c1">// Enable all DDS entities (call after CreateEntities)</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">DdsImpl_EnableEntities</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="c1">// Publish outbound data to DDS</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">DdsImpl_Write_MCUtoPC</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ExampleType_t</span><span class="w"> </span><span class="o">*</span><span class="n">sample</span><span class="p">);</span>
+
+<span class="c1">// Read inbound data from DDS</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">DdsImpl_Read_PCtoMCU</span><span class="p">(</span><span class="n">ExampleType_t</span><span class="w"> </span><span class="o">*</span><span class="n">sample</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">is_valid</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The DDS entity hierarchy is organized as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>DomainParticipant  (&quot;AppLibrary::MCU_DDS_CDD&quot; — from dds_system.xml)
+├── Publisher
+│   └── DataWriter (MCUtoPC — outbound)
+└── Subscriber
+    └── DataReader (PCtoMCU — inbound)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="initialization-sequence">
+<h2><span class="section-number">14.2.3. </span>Initialization sequence<a class="headerlink" href="#initialization-sequence" title="Permalink to this headline">¶</a></h2>
+<p>Initialization follows the detailed sequence below:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. TcpIp Stack Initialization
+   └─&gt; IP address assigned (static configuration)
+
+2. DDS_CDD_LocalIpAddrAssignmentChg() callback
+   └─&gt; Called when local IP becomes assigned
+
+3. Rte_Start() [Called from DDS_CDD_LocalIpAddrAssignmentChg()]
+   ├─&gt; Initialize all SW-Cs
+   └─&gt; Trigger InitEvent condition → DdsCddStart()
+        └─&gt; Call DdsCdd_Adapter_Init()
+
+4. First DdsCddRun() Execution (State: TCPIP_READY)
+   ├─&gt; State machine starts/continues in adapter
+   ├─&gt; Set AUTOSAR system properties:
+   │   ├─&gt; Memory heap allocation
+   │   ├─&gt; Resource management hooks
+   │   └─&gt; Timer hooks
+   └─&gt; State → SYSTEM_PROPERTIES_SET
+
+5. Second DdsCddRun() Execution (State: SYSTEM_PROPERTIES_SET)
+   ├─&gt; Call DdsImpl_CreateEntities()
+   │   ├─&gt; Register APPGEN plugin (loads dds_system.xml into factory)
+   │   └─&gt; DDS_DomainParticipantFactory_create_participant_from_config()
+   │       (creates participant + all topics, writers, readers — all disabled)
+   └─&gt; State → ENTITIES_CREATED
+
+6. Third DdsCddRun() Execution (State: ENTITIES_CREATED)
+   ├─&gt; Call DdsImpl_EnableEntities()
+   │   └─&gt; DDS_Entity_enable() on participant (cascades to all children)
+   └─&gt; State → ENTITIES_ENABLED
+
+7. Normal Operation (State: ENTITIES_ENABLED)
+   ├─&gt; DdsCddRun() maintains DDS system (10ms)
+   ├─&gt; DdsCddRead_PCtoMCU() polls for data (100ms)
+   └─&gt; DdsCddWrite_MCUtoPC() publishes on trigger
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This document describes one valid initialization strategy. Another valid
+strategy is to start RTE in the normal BswM sequence and defer DDS
+initialization to a periodic runnable that checks network readiness.</p>
+</div>
+<div class="section" id="ordering-constraint">
+<h3><span class="section-number">14.2.3.1. </span>Ordering constraint<a class="headerlink" href="#ordering-constraint" title="Permalink to this headline">¶</a></h3>
+<p>The startup ordering must ensure DDS initialization begins only after network
+readiness (IP address assigned and link is up):</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TcpIp_Init()</span></code>: Network stack initializes first.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DDS_CDD_LocalIpAddrAssignmentChg()</span></code> callback indicates local IP assigned and link is up.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rte_Start()</span></code> is called from the callback, which triggers <code class="docutils literal notranslate"><span class="pre">DdsCddStart()</span></code>.</p></li>
+</ol>
+<p>This ordering is necessary for several reasons. DDS requires an IP
+address to be available before full initialization can proceed. Starting the
+RTE only after network readiness helps prevent DDS startup failures.
+Additionally, callback-driven startup avoids race conditions between network
+readiness and DDS entity creation.</p>
+<p>To implement this correctly, ensure the TcpIp local-address-assignment callback
+invokes <code class="docutils literal notranslate"><span class="pre">Rte_Start()</span></code> only when the target unicast IP is in assigned state
+(see <a class="reference internal" href="autosar_integration.html#section-autosar-integration"><span class="std std-ref">Appendix A: AUTOSAR Integration Example</span></a> for details).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For systems using DHCP, callback timing may be later. Keep the same
+network-readiness gate and avoid starting DDS initialization before assigned
+state.</p>
+</div>
+</div>
+</div>
+<div class="section" id="resource-management">
+<h2><span class="section-number">14.2.4. </span>Resource management<a class="headerlink" href="#resource-management" title="Permalink to this headline">¶</a></h2>
+<p>This section details how the DDS CDD manages memory and coordinates with
+AUTOSAR services to ensure thread-safe operations and predictable resource
+utilization.</p>
+<div class="section" id="memory-architecture">
+<h3><span class="section-number">14.2.4.1. </span>Memory architecture<a class="headerlink" href="#memory-architecture" title="Permalink to this headline">¶</a></h3>
+<p>Memory requirements depend on number of topics, sample sizes,
+history depth, discovery requirements, and resource limits. See
+<a class="reference internal" href="autosar_integration.html#section-customizing-for-your-application"><span class="std std-ref">Customizing for your application</span></a> and
+<a class="reference internal" href="autosar_integration.html#section-memory-sizing-guidelines"><span class="std std-ref">Memory sizing</span></a> for detailed sizing guidelines.</p>
+</div>
+<div class="section" id="autosar-resource-synchronization">
+<h3><span class="section-number">14.2.4.2. </span>AUTOSAR resource synchronization<a class="headerlink" href="#autosar-resource-synchronization" title="Permalink to this headline">¶</a></h3>
+<p>The DDS CDD uses a single OS resource for internal synchronization (mutex protection).
+All DDS operations that access shared data structures are guarded by this one resource.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Actual implementation: single resource for mutex synchronization */</span>
+<span class="n">system_property</span><span class="p">.</span><span class="n">psl_property</span><span class="p">.</span><span class="n">sync_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OSAPI_AUTOSAR_SYNCKIND_RESOURCES</span><span class="p">;</span>
+<span class="n">system_property</span><span class="p">.</span><span class="n">psl_property</span><span class="p">.</span><span class="n">mutex_resource_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OsResource_000</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>1 STANDARD Resource (typically named <code class="docutils literal notranslate"><span class="pre">OsResource_000</span></code>) must be
+configured in the OS. All DDS entity creation and data read/write operations are
+protected by this single resource. See <a class="reference internal" href="autosar_integration.html#section-os-configuration"><span class="std std-ref">OS configuration</span></a> for
+configuration details.</p>
+<p>When any DDS API is called (participant creation, entity operations,
+data write/read), the system automatically acquires <code class="docutils literal notranslate"><span class="pre">OsResource_000</span></code>, performs
+the operation, and releases the resource. This ensures thread-safe access from
+multiple AUTOSAR tasks and the background DDS housekeeping task.</p>
+</div>
+<div class="section" id="tcpip-socket-management">
+<h3><span class="section-number">14.2.4.3. </span>TcpIp socket management<a class="headerlink" href="#tcpip-socket-management" title="Permalink to this headline">¶</a></h3>
+<p>The socket owner is configured with the following macro definition:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define DDSCDD_SOCKET_OWNER_NAME &quot;DdsSocketOwner&quot;</span>
+</pre></div>
+</div>
+<p>The DDS CDD requires a total of 4 UDP sockets when operating in unicast mode,
+or 5 UDP sockets when operating in multicast mode. These sockets use dynamic
+port allocation and must register Rx indication callbacks to handle incoming
+data.</p>
+</div>
+</div>
+<div class="section" id="timing-architecture">
+<h2><span class="section-number">14.2.5. </span>Timing architecture<a class="headerlink" href="#timing-architecture" title="Permalink to this headline">¶</a></h2>
+<p>This section covers runnable scheduling,
+period requirements, task priority guidelines, and timing considerations to
+ensure proper DDS protocol maintenance and predictable end-to-end latency
+within the AUTOSAR environment.</p>
+<div class="section" id="runnable-timing-configuration">
+<h3><span class="section-number">14.2.5.1. </span>Runnable timing configuration<a class="headerlink" href="#runnable-timing-configuration" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>DdsCddStart
+├─&gt; Trigger Condition: InitEvent
+└─&gt; Execution: Once at startup
+
+DdsCddRun
+├─&gt; Trigger Condition: TimingEvent (10ms periodic)
+├─&gt; Purpose: DDS QoS maintenance
+└─&gt; Tasks: Discovery, liveliness, reliability protocol
+
+DdsCddRead_PCtoMCU
+├─&gt; Trigger Condition: TimingEvent (100ms periodic)
+├─&gt; Purpose: Poll for incoming data
+└─&gt; Tasks: Check DataReader, write to RTE
+
+DdsCddWrite_MCUtoPC
+├─&gt; Trigger Condition: DataReceivedEvent on input port
+├─&gt; Purpose: Publish data to network
+└─&gt; Tasks: Read from RTE, publish via DataWriter
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These trigger conditions are configured in DdsCdd ARXML during RTE
+configuration (see <a class="reference internal" href="autosar_integration.html#section-configuring-rte"><span class="std std-ref">Configuring RTE</span></a>). The
+RTE generator automatically creates the corresponding OS alarms and events
+from these trigger condition specifications.</p>
+</div>
+<p>Note the following timing considerations:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If DDS initialization is executed inside a periodic runnable, the first
+activation can exceed the nominal runnable period (for example, a 10 ms
+runnable can run longer during initialization). Include this in watchdog,
+deadline monitoring, and task load budget analysis.</p>
+</div>
+<ol class="arabic simple">
+<li><p>10ms DdsCddRun Period:</p>
+<ul class="simple">
+<li><p>Must be fast enough for DDS protocol maintenance.</p></li>
+<li><p>Affects discovery time and reliability protocol.</p></li>
+<li><p>Too slow: Increased latency, potential data loss.</p></li>
+<li><p>Too fast: Unnecessary CPU overhead.</p></li>
+</ul>
+</li>
+<li><p>100ms DdsCddRead Period:</p>
+<ul class="simple">
+<li><p>Determines maximum data reception rate.</p></li>
+<li><p>Should match application requirements.</p></li>
+<li><p>Consider jitter and worst-case execution time.</p></li>
+</ul>
+</li>
+<li><p>DataReceivedEvent Trigger Condition:</p>
+<ul class="simple">
+<li><p>Runnable triggered immediately when app writes data to RTE port.</p></li>
+<li><p>Minimizes end-to-end latency.</p></li>
+<li><p>No polling overhead.</p></li>
+</ul>
+</li>
+</ol>
+<p>DDS CDD runnables should have higher priority than application SW-Cs, but lower
+priority than critical BSW tasks (Ethernet driver, TcpIp stack). This ensures
+timely network communication without blocking critical system functions.</p>
+</div>
+</div>
+<div class="section" id="error-handling-strategy">
+<h2><span class="section-number">14.2.6. </span>Error handling strategy<a class="headerlink" href="#error-handling-strategy" title="Permalink to this headline">¶</a></h2>
+<p>During initialization, if
+<code class="docutils literal notranslate"><span class="pre">DdsImpl_Init()</span></code> encounters errors, the system logs the error, remains in the
+current state, and retries on the next <code class="docutils literal notranslate"><span class="pre">DdsCddRun()</span></code> cycle. This strategy
+avoids catastrophic failures during startup:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">DdsImpl_Init</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DDS_RETCODE_OK</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Log error</span>
+<span class="w">    </span><span class="c1">// Remain in current state</span>
+<span class="w">    </span><span class="c1">// Retry on next DdsCddRun() cycle</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>At runtime, the system handles write operations by checking the return code from
+<code class="docutils literal notranslate"><span class="pre">DdsImpl_Write_MCUtoPC()</span></code>. If the write operation fails with a return code
+other than <code class="docutils literal notranslate"><span class="pre">DDS_RETCODE_OK</span></code>, the data is lost and the application must
+implement retry logic if data transmission is critical. The error is logged for
+diagnostics to help identify patterns or persistent issues:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">DDS_ReturnCode_t</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DdsImpl_Write_MCUtoPC</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DDS_RETCODE_OK</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Data lost, application should implement retry logic</span>
+<span class="w">    </span><span class="c1">// Log error for diagnostics</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Read operations similarly check the return code from <code class="docutils literal notranslate"><span class="pre">DdsImpl_Read_PCtoMCU()</span></code>.
+If the result is <code class="docutils literal notranslate"><span class="pre">DDS_RETCODE_NO_DATA</span></code>, this is a normal condition indicating
+that no new data is currently available. However, if the result indicates any
+other error, the system logs it for diagnostics to aid in troubleshooting. In
+all cases, errors propagate through return codes, allowing the application to
+decide its own retry strategy based on system requirements:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">DDS_ReturnCode_t</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DdsImpl_Read_PCtoMCU</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DDS_RETCODE_NO_DATA</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// No new data available (normal condition)</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DDS_RETCODE_OK</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Error reading data, log for diagnostics</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scalability-considerations">
+<h2><span class="section-number">14.2.7. </span>Scalability considerations<a class="headerlink" href="#scalability-considerations" title="Permalink to this headline">¶</a></h2>
+<p>Keep the following in mind when scaling your system architecture.</p>
+<p>When adding topics to your system, update <code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code>
+with new topic definitions, then regenerate DDS type and application support
+code (both generated from DDS-XML). Add new port interfaces to ARXML, create
+new adapter functions in Layer 2 and Layer 3, add new runnables to Layer 1,
+and increase memory allocation if needed.</p>
+<p>For a multi-topic architecture, ensure the system is organized across the
+three layers, as shown below:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Layer 3: Support multiple topics</span>
+<span class="n">DDS_ReturnCode_t</span><span class="w"> </span><span class="nf">DdsImpl_Write_Topic1</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Type1</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+<span class="n">DDS_ReturnCode_t</span><span class="w"> </span><span class="nf">DdsImpl_Write_Topic2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Type2</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+<span class="n">DDS_ReturnCode_t</span><span class="w"> </span><span class="nf">DdsImpl_Read_Topic1</span><span class="p">(</span><span class="n">Type1</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+<span class="n">DDS_ReturnCode_t</span><span class="w"> </span><span class="nf">DdsImpl_Read_Topic2</span><span class="p">(</span><span class="n">Type2</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+
+<span class="c1">// Layer 2: Multiple adapter functions</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">DdsCdd_Adapter_Write_Topic1</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">DdsCdd_Adapter_Write_Topic2</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">DdsCdd_Adapter_Read_Topic1</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">DdsCdd_Adapter_Read_Topic2</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="c1">// Layer 1: Multiple runnables</span>
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddWrite_Topic1</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddWrite_Topic2</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddRead_Topic1</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddRead_Topic2</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="package_contents.html" class="btn btn-neutral float-right" title="14.3. Appendix C: Package Contents" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="autosar_integration.html" class="btn btn-neutral float-left" title="14.1. Appendix A: AUTOSAR Integration Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

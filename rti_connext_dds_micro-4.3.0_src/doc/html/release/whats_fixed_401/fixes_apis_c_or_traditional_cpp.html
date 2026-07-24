@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>10.5.6.3. APIs (C or Traditional C++) &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/custom.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="10.5.6.4. Generated Code (C, Traditional C++, and Modern C++)" href="fixes_generated_code_c_cpp_modern_cpp.html" />
+    <link rel="prev" title="10.5.6.2. Usability" href="fixes_usability.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">10. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../compatibility.html">10.1. Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported_platforms.html">10.2. Supported Platforms and Programming Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whats_new_430.html">10.3. What’s New in 4.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whats_fixed_430/whats_fixed_430_index.html">10.4. What’s Fixed in 4.3.0</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../previous_release.html">10.5. Previous Releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../whats_new_420.html">10.5.1. What’s New in 4.2.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_fixed_420/whats_fixed_420_index.html">10.5.2. What’s Fixed in 4.2.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_new_410.html">10.5.3. What’s New in 4.1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_fixed_410/whats_fixed_410_index.html">10.5.4. What’s Fixed in 4.1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_new_401.html">10.5.5. What’s New in 4.0.1</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="whats_fixed_401_index.html">10.5.6. What’s Fixed in 4.0.1</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="fixes_discovery.html">10.5.6.1. Discovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_usability.html">10.5.6.2. Usability</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">10.5.6.3. APIs (C or Traditional C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_generated_code_c_cpp_modern_cpp.html">10.5.6.4. Generated Code (C, Traditional C++, and Modern C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_crashes.html">10.5.6.5. Crashes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_data_corruption.html">10.5.6.6. Data Corruption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_interoperability.html">10.5.6.7. Interoperability</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_new_400.html">10.5.7. What’s New in 4.0.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_fixed_400/whats_fixed_400_index.html">10.5.8. What’s Fixed in 4.0.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../known_issues.html">10.6. Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../experimental_features.html">10.7. Experimental Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html"><span class="section-number">10. </span>Release Notes</a> &raquo;</li>
+        
+          <li><a href="../previous_release.html"><span class="section-number">10.5. </span>Previous Releases</a> &raquo;</li>
+        
+          <li><a href="whats_fixed_401_index.html"><span class="section-number">10.5.6. </span>What’s Fixed in 4.0.1</a> &raquo;</li>
+        
+      <li><span class="section-number">10.5.6.3. </span>APIs (C or Traditional C++)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="apis-c-or-traditional-c">
+<h1><span class="section-number">10.5.6.3. </span>APIs (C or Traditional C++)<a class="headerlink" href="#apis-c-or-traditional-c" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="minor-unexpected-behavior-when-copying-a-dds-unsignedshortseq-with-0-length">
+<h2><span class="section-number">10.5.6.3.1. </span><span class="minor">[Minor]</span> Unexpected behavior when copying a DDS_UnsignedShortSeq with 0 length<a class="headerlink" href="#minor-unexpected-behavior-when-copying-a-dds-unsignedshortseq-with-0-length" title="Permalink to this headline">¶</a></h2>
+<p>When copying a <code class="docutils literal notranslate"><span class="pre">DDS_UnsignedShortSeq</span></code> with 0 length, the destination
+sequence length was not set to 0.</p>
+<p>[RTI Issue ID MICRO-2756]</p>
+</div>
+<div class="section" id="minor-missing-c-apis-for-discovery-operations">
+<h2><span class="section-number">10.5.6.3.2. </span><span class="minor">[Minor]</span> Missing C++ APIs for discovery operations<a class="headerlink" href="#minor-missing-c-apis-for-discovery-operations" title="Permalink to this headline">¶</a></h2>
+<p>The following functions were missing from the C++ API:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../../doc/api_cpp/html/classDDSDomainParticipant.html">get_discovered_participants</a></p></li>
+<li><p><a class="reference external" href="../../../../doc/api_cpp/html/classDDSDomainParticipant.html">get_discovered_participant_data</a></p></li>
+<li><p><a class="reference external" href="../../../../doc/api_cpp/html/classDDSDataWriter.html">get_matched_subscriptions</a></p></li>
+<li><p><a class="reference external" href="../../../../doc/api_cpp/html/classDDSDataWriter.html">get_matched_subscription_data</a></p></li>
+<li><p><a class="reference external" href="../../../../doc/api_cpp/html/classDDSDataReader.html">get_matched_publications</a></p></li>
+<li><p><a class="reference external" href="../../../../doc/api_cpp/html/classDDSDataReader.html">get_matched_publication_data</a></p></li>
+</ul>
+<p>For more information on these functions, please refer to the
+<a class="reference external" href="../../../../doc/api_cpp/html/index.html">C++ API Reference</a>.</p>
+<p>[RTI Issue ID MICRO-6462]</p>
+</div>
+<div class="section" id="trivial-c-examples-used-the-undocumented-get-reference-api">
+<h2><span class="section-number">10.5.6.3.3. </span><span class="trivial">[Trivial]</span> C++ examples used the undocumented get_reference API<a class="headerlink" href="#trivial-c-examples-used-the-undocumented-get-reference-api" title="Permalink to this headline">¶</a></h2>
+<p>The C++ examples used the undocumented <code class="docutils literal notranslate"><span class="pre">get_reference</span></code> API. C++ examples
+now use the <code class="docutils literal notranslate"><span class="pre">[]</span></code> operator.</p>
+<p>[RTI Issue ID MICRO-3104]</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fixes_generated_code_c_cpp_modern_cpp.html" class="btn btn-neutral float-right" title="10.5.6.4. Generated Code (C, Traditional C++, and Modern C++)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fixes_usability.html" class="btn btn-neutral float-left" title="10.5.6.2. Usability" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

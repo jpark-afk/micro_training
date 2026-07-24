@@ -1,0 +1,167 @@
+\doxysubsection{DDS\+\_\+\+Content\+FilterI Struct Reference}
+\hypertarget{structDDS__ContentFilterI}{}\label{structDDS__ContentFilterI}\index{DDS\_ContentFilterI@{DDS\_ContentFilterI}}
+
+
+Interface for implementing custom content filters.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+filter\+\_\+content\+\_\+filter.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSContentFilterInterfaceModule_ga21d5bf2bea8e8e9817f476e55f783198}{DDS\+\_\+\+Content\+Filter\+\_\+create\+\_\+instance\+Func}} \mbox{\hyperlink{structDDS__ContentFilterI_ae4cb2bc2c68230c985cd7bd38542aed9}{create\+\_\+instance}}
+\begin{DoxyCompactList}\small\item\em Create a new instance of the content filter. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSContentFilterInterfaceModule_ga9b11442de28b095ec14ab969c7df3c12}{DDS\+\_\+\+Content\+Filter\+\_\+delete\+\_\+instance\+Func}} \mbox{\hyperlink{structDDS__ContentFilterI_a2fdb200d140ffa8a61c86de0d265f3c5}{delete\+\_\+instance}}
+\begin{DoxyCompactList}\small\item\em Delete an instance of the content filter. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSContentFilterInterfaceModule_gafa7012fd27ef1166c1192ab645192c40}{DDS\+\_\+\+Content\+Filter\+\_\+compile\+Func}} \mbox{\hyperlink{structDDS__ContentFilterI_a2b3c2dbda4869343775531f3dd7e393e}{compile}}
+\begin{DoxyCompactList}\small\item\em Compile a filter expression. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSContentFilterInterfaceModule_ga1b38a9dcfbca2c7c425618f61385b90f}{DDS\+\_\+\+Content\+Filter\+\_\+evaluate\+Func}} \mbox{\hyperlink{structDDS__ContentFilterI_ad1eb1b85dbf9bb6267fe2b70608a4c01}{evaluate}}
+\begin{DoxyCompactList}\small\item\em Evaluate a sample against a compiled filter. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSContentFilterInterfaceModule_ga1ccb18cb3206a6aa8a0288fe628d32a6}{DDS\+\_\+\+Content\+Filter\+\_\+finalize\+Func}} \mbox{\hyperlink{structDDS__ContentFilterI_a363f6f0d75fe8e67980399d4323ebc5d}{finalize}}
+\begin{DoxyCompactList}\small\item\em Finalize a compiled filter instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Interface for implementing custom content filters. 
+
+This structure defines the interface that must be implemented by a custom content filter class. All function pointers in the struct must be non-\/\+NULL and point to valid implementations. 
+
+The content filter interface is used by RTI Connext DDS Micro to manage the lifecycle of filter instances and to compile and evaluate filter expressions. 
+
+\begin{DoxySeeAlso}{See also}
+\+::\+DDSDomain\+Participant\+::register\+\_\+contentfilter 
+
+\doxylink{group__DDSFILTERModule_gae2a43d9f9c5eb207ee2519895d7dd4fd}{DDS\+\_\+\+SQL\+\_\+\+CONTENT\+\_\+\+FILTER\+\_\+\+CLASS} 
+\end{DoxySeeAlso}
+All callbacks in this interface are invoked while the middleware holds an internal lock on the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. This means\+: 
+
+\begin{DoxyItemize}
+\item Callbacks for a given filter instance are serialized by the middleware. A filter implementation does not need to provide its own synchronization for access to a single filter instance. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item If the same filter class is registered on multiple \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} "{}Domain\+Participants"{}, each receives its own filter instance. Callbacks for different instances (from different participants) may execute concurrently. \end{DoxyItemize}
+\begin{DoxyItemize}
+\item Callbacks should complete quickly. Long-\/running operations in any callback will delay data reception and transmission for other entities on the same \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. \end{DoxyItemize}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__ContentFilterI_ae4cb2bc2c68230c985cd7bd38542aed9}\index{DDS\_ContentFilterI@{DDS\_ContentFilterI}!create\_instance@{create\_instance}}
+\index{create\_instance@{create\_instance}!DDS\_ContentFilterI@{DDS\_ContentFilterI}}
+\doxyparagraph{\texorpdfstring{create\_instance}{create\_instance}}
+{\footnotesize\ttfamily \label{structDDS__ContentFilterI_ae4cb2bc2c68230c985cd7bd38542aed9} 
+\mbox{\hyperlink{group__DDSContentFilterInterfaceModule_ga21d5bf2bea8e8e9817f476e55f783198}{DDS\+\_\+\+Content\+Filter\+\_\+create\+\_\+instance\+Func}} DDS\+\_\+\+Content\+Filter\+I\+::create\+\_\+instance}
+
+
+
+Create a new instance of the content filter. 
+
+This callback is invoked when a new instance of the content filter class needs to be created. The filter implementation should allocate and initialize any resources needed for the filter instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em resource\+\_\+limits} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Resource limits that the filter instance should respect. Cannot be NULL. \\
+\hline
+{\em property} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Filter-\/specific property provided during registration. May be NULL if no property was provided. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created filter instance on success, or NULL on failure. 
+\end{DoxyReturn}
+\Hypertarget{structDDS__ContentFilterI_a2fdb200d140ffa8a61c86de0d265f3c5}\index{DDS\_ContentFilterI@{DDS\_ContentFilterI}!delete\_instance@{delete\_instance}}
+\index{delete\_instance@{delete\_instance}!DDS\_ContentFilterI@{DDS\_ContentFilterI}}
+\doxyparagraph{\texorpdfstring{delete\_instance}{delete\_instance}}
+{\footnotesize\ttfamily \label{structDDS__ContentFilterI_a2fdb200d140ffa8a61c86de0d265f3c5} 
+\mbox{\hyperlink{group__DDSContentFilterInterfaceModule_ga9b11442de28b095ec14ab969c7df3c12}{DDS\+\_\+\+Content\+Filter\+\_\+delete\+\_\+instance\+Func}} DDS\+\_\+\+Content\+Filter\+I\+::delete\+\_\+instance}
+
+
+
+Delete an instance of the content filter. 
+
+This callback is invoked when a filter instance is no longer needed and should be deleted. The filter implementation should free all resources associated with the filter instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+instance} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The filter instance to delete, as previously returned by {\ttfamily create\+\_\+instance}. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structDDS__ContentFilterI_a2b3c2dbda4869343775531f3dd7e393e}\index{DDS\_ContentFilterI@{DDS\_ContentFilterI}!compile@{compile}}
+\index{compile@{compile}!DDS\_ContentFilterI@{DDS\_ContentFilterI}}
+\doxyparagraph{\texorpdfstring{compile}{compile}}
+{\footnotesize\ttfamily \label{structDDS__ContentFilterI_a2b3c2dbda4869343775531f3dd7e393e} 
+\mbox{\hyperlink{group__DDSContentFilterInterfaceModule_gafa7012fd27ef1166c1192ab645192c40}{DDS\+\_\+\+Content\+Filter\+\_\+compile\+Func}} DDS\+\_\+\+Content\+Filter\+I\+::compile}
+
+
+
+Compile a filter expression. 
+
+This callback is invoked when a filter expression needs to be compiled for a specific data type. The filter implementation should parse the expression and parameters, validate them against the type code, and create a compiled filter instance that can be used for efficient evaluation. 
+
+The filter expression string is passed as-\/is from the \doxylink{structDDS__ContentFilterQosPolicy_ad701fc2883ab62f3d6b08c7dd880b8de}{DDS\+\_\+\+Content\+Filter\+Qos\+Policy\+::filter\+\_\+expression} to this callback. The middleware does not interpret or validate the expression, so custom filter implementations can define any expression syntax. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+instance} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The filter instance. Cannot be NULL. \\
+\hline
+{\em compiled\+\_\+expression\+\_\+out} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Location to store the newly compiled filter expression. Cannot be NULL. \\
+\hline
+{\em expression} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The filter expression string to compile. Cannot be NULL. \\
+\hline
+{\em parameters} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The filter expression parameters. Cannot be NULL. \\
+\hline
+{\em type\+\_\+code} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The type code of the data that the filter will be applied to. May be NULL if XTypes is not enabled. \\
+\hline
+{\em type\+\_\+class\+\_\+name} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The registered type name of the data type that the filter will be applied to. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if the expression was successfully compiled, \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} on failure. 
+\end{DoxyReturn}
+\Hypertarget{structDDS__ContentFilterI_ad1eb1b85dbf9bb6267fe2b70608a4c01}\index{DDS\_ContentFilterI@{DDS\_ContentFilterI}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!DDS\_ContentFilterI@{DDS\_ContentFilterI}}
+\doxyparagraph{\texorpdfstring{evaluate}{evaluate}}
+{\footnotesize\ttfamily \label{structDDS__ContentFilterI_ad1eb1b85dbf9bb6267fe2b70608a4c01} 
+\mbox{\hyperlink{group__DDSContentFilterInterfaceModule_ga1b38a9dcfbca2c7c425618f61385b90f}{DDS\+\_\+\+Content\+Filter\+\_\+evaluate\+Func}} DDS\+\_\+\+Content\+Filter\+I\+::evaluate}
+
+
+
+Evaluate a sample against a compiled filter. 
+
+This callback is invoked to determine whether a sample passes a compiled filter. The filter implementation should evaluate the sample against the compiled filter expression. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+instance} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The filter instance. Cannot be NULL. \\
+\hline
+{\em compiled\+\_\+expression} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The compiled filter expression, as previously returned by {\ttfamily compile}. Cannot be NULL. \\
+\hline
+{\em sample} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The sample to evaluate. Cannot be NULL. \\
+\hline
+{\em result\+\_\+out} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_out}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}out\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Location to store the evaluation result. \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if the sample passes the filter, \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} if it does not. Cannot be NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} if the evaluation was successful, \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} on failure. 
+\end{DoxyReturn}
+On the reader side, if this callback returns \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE}, the sample is dropped (treated as not passing the filter). On the writer side, the sample is sent to the reader without a filter result indication; the reader will then apply its own reader-\/side filter to the sample. 
+
+Implementations should return \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} only for unexpected errors. For samples that do not match the filter expression, set {\ttfamily \texorpdfstring{$\ast$}{*}result\+\_\+out} to \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} and return \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}. \Hypertarget{structDDS__ContentFilterI_a363f6f0d75fe8e67980399d4323ebc5d}\index{DDS\_ContentFilterI@{DDS\_ContentFilterI}!finalize@{finalize}}
+\index{finalize@{finalize}!DDS\_ContentFilterI@{DDS\_ContentFilterI}}
+\doxyparagraph{\texorpdfstring{finalize}{finalize}}
+{\footnotesize\ttfamily \label{structDDS__ContentFilterI_a363f6f0d75fe8e67980399d4323ebc5d} 
+\mbox{\hyperlink{group__DDSContentFilterInterfaceModule_ga1ccb18cb3206a6aa8a0288fe628d32a6}{DDS\+\_\+\+Content\+Filter\+\_\+finalize\+Func}} DDS\+\_\+\+Content\+Filter\+I\+::finalize}
+
+
+
+Finalize a compiled filter instance. 
+
+This callback is invoked when a compiled filter instance is no longer needed. The filter implementation should free all resources associated with the compiled filter instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+instance} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The filter instance. Cannot be NULL. \\
+\hline
+{\em compiled\+\_\+expression} & {\itshape \doxylink{group__DDSDocGuideModule_a_st_in}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}in\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} The compiled filter expression to finalize, as previously returned by {\ttfamily compile}. Cannot be NULL. \\
+\hline
+\end{DoxyParams}

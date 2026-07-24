@@ -1,0 +1,444 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.4. Receiving Data &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.5. DDS Domains" href="domains.html" />
+    <link rel="prev" title="3.3. Sending Data" href="sending.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Programmer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">3.2. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">3.3. Sending Data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.4. Receiving Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preview-steps-to-receiving-data">3.4.1. Preview: Steps to Receiving Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#subscribers">3.4.2. Subscribers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#datareaders">3.4.3. DataReaders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-datareaders-to-access-data-read-take">3.4.4. Using DataReaders to Access Data (Read &amp; Take)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#supported-qos-policies">3.4.5. Supported QoS policies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">3.5. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">3.6. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html">3.7. User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html">3.8. Partitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html">3.9. Content Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">3.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">3.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">3.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">3.13. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html">3.14. Sending Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html">3.15. Zero Copy Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html">3.16. FlatData Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html">3.17. Application Generation Using XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qos_mapping_xml.html">3.18. QoS Mapping in XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">3.19. Building Against FACE Conformance Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">3.20. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.21. Example Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html">3.22. Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">3.23. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html">3.24. Transport Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html">3.25. Startup Time Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">3. </span>Programmer’s Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">3.4. </span>Receiving Data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="receiving-data">
+<h1><span class="section-number">3.4. </span>Receiving Data<a class="headerlink" href="#receiving-data" title="Permalink to this headline">¶</a></h1>
+<p>This section discusses how to create, configure, and use <em>Subscribers</em> and <em>DataReaders</em> to
+receive data. It describes how these objects interact, as well as the types of operations
+that are available for them.</p>
+<p>The goal of this section is to help you become familiar with the <em>Entities</em> you need for
+receiving data. For up-to-date details such as formal parameters and return codes on any
+mentioned operations, please see the <a class="reference external" href="../../../doc/api_cpp/html/index.html">C API Reference</a>
+and <a class="reference external" href="../../../doc/api_cpp/html/index.html">C++ API Reference</a> documentation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>Connext Micro</em> <em>DataReaders</em> cannot match with or receive data from <em>Connext</em> <em>DataWriters</em> that
+are configured to send compressed data. See <a class="reference internal" href="discovery.html#section-discovery-interoperability"><span class="std std-ref">Interoperating with Connext Professional Discovery</span></a>
+for more information.</p>
+</div>
+<div class="section" id="preview-steps-to-receiving-data">
+<h2><span class="section-number">3.4.1. </span>Preview: Steps to Receiving Data<a class="headerlink" href="#preview-steps-to-receiving-data" title="Permalink to this headline">¶</a></h2>
+<p>There are three ways to receive data:</p>
+<ul class="simple">
+<li><p>Your application can explicitly check for new data by calling a <em>DataReader’s</em> <code class="docutils literal notranslate"><span class="pre">read()</span></code>
+or <code class="docutils literal notranslate"><span class="pre">take()</span></code> operation. This method is also known as <em>polling for data</em>.</p></li>
+<li><p>Your application can be notified whenever new DDS data samples arrive—this
+is done with a <em>Listener</em> on either the <em>Subscriber</em> or the <em>DataReader</em>. <em>RTI</em> <em>Connext Micro</em>
+will invoke the <em>Listener’s</em> callback routine when there is new data. Within the
+callback routine, user code can access the data by calling <code class="docutils literal notranslate"><span class="pre">read()</span></code> or <code class="docutils literal notranslate"><span class="pre">take()</span></code> on
+the <em>DataReader</em>. This method is the way for your application to receive data with the
+least amount of latency.</p></li>
+<li><p>Your application can wait for new data by using <em>Conditions</em> and a <em>WaitSet</em>, then calling
+<code class="docutils literal notranslate"><span class="pre">wait()</span></code>. <em>Connext Micro</em> will block your application’s thread until the criteria (such as the
+arrival of DDS samples, or a specific status) set in the <em>Condition</em> becomes true. Then
+your application resumes and can access the data with <code class="docutils literal notranslate"><span class="pre">read()</span></code> or <code class="docutils literal notranslate"><span class="pre">take()</span></code>.</p></li>
+</ul>
+<p>The <em>DataReader</em>’s <code class="docutils literal notranslate"><span class="pre">read()</span></code> and <code class="docutils literal notranslate"><span class="pre">take()</span></code> operations will both return the
+data to your application, but they treat the returned data differently. The
+<code class="docutils literal notranslate"><span class="pre">take()</span></code> operation removes the data from the <em>DataReader</em>’s receive queue, so
+it is no longer stored by <em>Connext Micro</em> and cannot be read again. The <code class="docutils literal notranslate"><span class="pre">read()</span></code>
+operation continues to store the data in the <em>DataReader</em>’s receive queue, where
+it <em>can</em> be read again.</p>
+<p>To prepare to receive data, create and configure the required Entities:</p>
+<ol class="arabic simple">
+<li><p>Create a <em>DomainParticipant</em>.</p></li>
+<li><p>Register user data types with the <em>DomainParticipant</em>. For example, the <code class="docutils literal notranslate"><span class="pre">FooDataType</span></code>.</p></li>
+<li><p>Use the <em>DomainParticipant</em> to create a <em>Topic</em> with the registered data type.</p></li>
+<li><p>Use the <em>DomainParticipant</em> to create a <em>Subscriber</em>.</p></li>
+<li><p>Use the <em>Subscriber</em> or <em>DomainParticipant</em> to create a <em>DataReader</em> for the <em>Topic</em>.</p></li>
+<li><p>Use a type-safe method to cast the generic <em>DataReader</em> created by the <em>Subscriber</em> to
+a type-specific <em>DataReader</em>. For example, <code class="docutils literal notranslate"><span class="pre">FooDataReader</span></code>.</p></li>
+</ol>
+<p>Then use one of the following mechanisms to receive data.</p>
+<ul>
+<li><p>To receive DDS data samples by polling for new data:</p>
+<p>Using a <code class="docutils literal notranslate"><span class="pre">FooDataReader</span></code>, use the <code class="docutils literal notranslate"><span class="pre">read()</span></code> or <code class="docutils literal notranslate"><span class="pre">take()</span></code> operations to access the
+DDS data samples that have been received and stored for the <em>DataReader</em>. These operations
+can be invoked at any time, even if the receive queue is empty.</p>
+</li>
+<li><p>To receive DDS data samples when new samples arrive:</p>
+<p>Install a <em>Listener</em> on the <em>DataReader</em> or <em>Subscriber</em> that will be called back by an
+internal <em>Connext Micro</em> thread when new DDS data samples arrive for the <em>DataReader</em>.</p>
+<ol class="arabic">
+<li><p>Create a <em>DDSDataReaderListener</em> for the <em>FooDataReader</em> or a <em>DDSSubscriberListener</em>
+for <em>Subscriber</em>. In C++ you must derive your own <em>Listener</em> class
+from those base classes. In C, you must create the individual functions and store them
+in a structure.</p>
+<p>If you created a <em>DDSDataReaderListener</em> with the <code class="docutils literal notranslate"><span class="pre">on_data_available()</span></code> callback enabled:
+<code class="docutils literal notranslate"><span class="pre">on_data_available()</span></code> will be called when new data arrives for that <code class="docutils literal notranslate"><span class="pre">DataReader</span></code>.</p>
+<p>If you created a <em>DDSSubscriberListener</em> with the <code class="docutils literal notranslate"><span class="pre">on_data_on_readers()</span></code> callback enabled:
+<code class="docutils literal notranslate"><span class="pre">on_data_on_readers()</span></code> will be called when data arrives for any <em>DataReader</em> created by the
+<em>Subscriber</em>.</p>
+</li>
+<li><p>Install the <em>Listener</em> on either the <em>FooDataReader</em> or <em>Subscriber</em>.</p>
+<p>For the <em>DataReader</em>, the <em>Listener</em> should be installed to handle changes in the
+<code class="docutils literal notranslate"><span class="pre">DATA_AVAILABLE</span></code> status.</p>
+<p>For the <em>Subscriber</em>, the <em>Listener</em> should be installed to handle changes in the
+<code class="docutils literal notranslate"><span class="pre">DATA_ON_READERS</span></code> status.</p>
+</li>
+<li><p>Only 1 <em>Listener</em> will be called back when new data arrives for a <em>DataReader</em>.</p>
+<p><em>Connext Micro</em> will call the <em>Subscriber’s</em> <em>Listener</em> if it is installed. Otherwise, the
+<em>DataReader’s</em> <em>Listener</em> is called if it is installed. That is, the
+<code class="docutils literal notranslate"><span class="pre">on_data_on_readers()</span></code> operation takes precedence over the <code class="docutils literal notranslate"><span class="pre">on_data_available()</span></code>
+operation.</p>
+<p>If neither <em>Listeners</em> are installed or neither <em>Listeners</em> are enabled to handle their
+respective statuses, then <em>Connext Micro</em> will not call any user functions when new data arrives
+for the <em>DataReader</em>.</p>
+</li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">on_data_available()</span></code> method of the <em>DDSDataReaderListener</em>, invoke <code class="docutils literal notranslate"><span class="pre">read()</span></code>
+or <code class="docutils literal notranslate"><span class="pre">take()</span></code> on the <em>FooDataReader</em> to access the data.</p></li>
+</ol>
+<blockquote>
+<div><p>If the <code class="docutils literal notranslate"><span class="pre">on_data_on_readers()</span></code> method of the <em>DDSSubscriberListener</em> is called, the
+code can invoke <code class="docutils literal notranslate"><span class="pre">read()</span></code> or <code class="docutils literal notranslate"><span class="pre">take()</span></code> directly on the <em>Subscriber’s DataReaders</em> that have
+received new data. Alternatively, the code can invoke the <em>Subscriber’s</em>
+<code class="docutils literal notranslate"><span class="pre">notify_datareaders()</span></code> operation. This will in turn call the <code class="docutils literal notranslate"><span class="pre">on_data_available()</span></code>
+methods of the <em>DataReaderListeners</em> (if installed and enabled) for each of the <em>DataReaders</em>
+that have received new DDS data samples.</p>
+</div></blockquote>
+</li>
+<li><p>To wait (block) until DDS data samples arrive:</p>
+<ol class="arabic simple">
+<li><p>Use the <em>DataReader</em> to create a <em>StatusCondition</em> that describes the DDS samples for which
+you want to wait. For example, you can specify that you want to wait for never-before-seen
+DDS samples from <em>DataReaders</em> that are still considered to be ‘alive.’</p></li>
+<li><p>Create a <em>WaitSet</em>.</p></li>
+<li><p>Attach the <em>StatusCondition</em> to the <em>WaitSet</em>.</p></li>
+<li><p>Call the <em>WaitSet’s</em> <code class="docutils literal notranslate"><span class="pre">wait()</span></code> operation, specifying how long you are willing to wait
+for the desired DDS samples. When <code class="docutils literal notranslate"><span class="pre">wait()</span></code> returns, it will indicate that it timed out,
+or that the attached Condition become true (and therefore the desired DDS samples are
+available).</p></li>
+<li><p>Using a <code class="docutils literal notranslate"><span class="pre">FooDataReader</span></code>, use the <code class="docutils literal notranslate"><span class="pre">read()</span></code> or <code class="docutils literal notranslate"><span class="pre">take()</span></code> operations to access the
+DDS data samples that have been received and stored for the <em>DataReader</em>.</p></li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section" id="subscribers">
+<h2><span class="section-number">3.4.2. </span>Subscribers<a class="headerlink" href="#subscribers" title="Permalink to this headline">¶</a></h2>
+<p>An application that intends to subscribe to information needs the following <em>Entities</em>:
+<em>DomainParticipant</em>, <em>Topic</em>, <em>Subscriber</em>, and <em>DataReader</em>. All <em>Entities</em> have a
+corresponding specialized <em>Listener</em> and a set of QoS policies. The <em>Listener</em> is how
+<em>RTI</em> <em>Connext Micro</em> notifies your application of status changes relevant to the <em>Entity</em>. The
+QoS policies allow your application to configure the behavior and resources of the <em>Entity</em>.</p>
+<ul class="simple">
+<li><p>The <em>DomainParticipant</em> defines the DDS domain on which the information will be available.</p></li>
+<li><p>The <em>Topic</em> defines the name of the data to be subscribed, as well as the type (format)
+of the data itself.</p></li>
+<li><p>The <em>DataReader</em> is the <em>Entity</em> used by the application to subscribe to updated values
+of the data. The <em>DataReader</em> is bound at creation time to a <em>Topic</em>, thus specifying the
+named and typed data stream to which it is subscribed. The application uses the
+<em>DataWriter</em>’s <code class="docutils literal notranslate"><span class="pre">read()</span></code> or <code class="docutils literal notranslate"><span class="pre">take()</span></code> operation to access DDS data samples received for
+the <em>Topic</em>.</p></li>
+<li><p>The <em>Subscriber</em> manages the activities of several <em>DataReader</em> entities. The application
+receives data using a <em>DataReader</em> that belongs to a <em>Subscriber</em>. However, the <em>Subscriber</em>
+will determine when the data received from applications is actually available for access
+through the <em>DataReader</em>. Depending on the settings of various QoS policies of the <em>Subscriber</em>
+and <em>DataReader</em>, data may be buffered until DDS data samples for associated <em>DataReaders</em>
+are also received. By default, the data is available to the application as soon as it is
+received.</p></li>
+</ul>
+<p>For more information on creating and deleting <em>Subscribers</em>, as well as setting QoS policies, see
+<a class="reference external" href="https://community.rti.com/static/documentation/connext-dds/7.3.1/doc/manuals/connext_dds_professional/users_manual/index.htm#users_manual/Subscribers.htm">the Subscribers section</a>
+in the <a class="reference external" href="https://community.rti.com/static/documentation/connext-dds/7.3.1/doc/manuals/connext_dds_professional/users_manual/index.htm">RTI Connext DDS Core Libraries User’s Manual</a>.</p>
+</div>
+<div class="section" id="datareaders">
+<h2><span class="section-number">3.4.3. </span>DataReaders<a class="headerlink" href="#datareaders" title="Permalink to this headline">¶</a></h2>
+<p>To create a <em>DataReader</em>, you need a <em>DomainParticipant</em>, a <em>Topic</em>, and
+a <em>Subscriber</em>. You need at least one <em>DataReader</em> for each <em>Topic</em> whose DDS data
+samples you want to receive.</p>
+<p>For more details on all operations, see the <a class="reference external" href="../../../doc/api_cpp/html/index.html">C API Reference</a>
+and <a class="reference external" href="../../../doc/api_cpp/html/index.html">C++ API Reference</a>.</p>
+</div>
+<div class="section" id="using-datareaders-to-access-data-read-take">
+<h2><span class="section-number">3.4.4. </span>Using DataReaders to Access Data (Read &amp; Take)<a class="headerlink" href="#using-datareaders-to-access-data-read-take" title="Permalink to this headline">¶</a></h2>
+<p>For user applications to access the data received for a <em>DataReader</em>, they must use the
+type-specific derived class or set of functions in the <a class="reference external" href="../../../doc/api_cpp/html/index.html">C API Reference</a>.
+Thus, for a user data type <code class="docutils literal notranslate"><span class="pre">Foo</span></code>, you must use methods of the <code class="docutils literal notranslate"><span class="pre">FooDataReader</span></code>
+class. The type-specific class or functions are automatically generated if you
+use <em>RTI Code Generator</em>.</p>
+</div>
+<div class="section" id="supported-qos-policies">
+<h2><span class="section-number">3.4.5. </span>Supported QoS policies<a class="headerlink" href="#supported-qos-policies" title="Permalink to this headline">¶</a></h2>
+<p>Please refer to the <a class="reference external" href="../../../doc/api_cpp/html/index.html">C API Reference</a>
+and <a class="reference external" href="../../../doc/api_cpp/html/index.html">C++ API Reference</a> for
+details on supported Qos Policies for <em>Subscribers</em> and <em>DataReaders</em>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="domains.html" class="btn btn-neutral float-right" title="3.5. DDS Domains" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sending.html" class="btn btn-neutral float-left" title="3.3. Sending Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

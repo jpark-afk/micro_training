@@ -1,0 +1,960 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.1. Introduction &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.2. Building Connext Micro for Common Platforms" href="building.html" />
+    <link rel="prev" title="6. Platforms Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Platforms Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.1. Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#library-types">6.1.1. Library types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#integrated-libraries">6.1.1.1. Integrated libraries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#split-libraries">6.1.1.2. Split libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#library-descriptions">6.1.2. Library descriptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-profiles">6.1.3. Build profiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#supported-libraries-by-platform">6.1.4. Supported libraries by platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#supported-transports-by-platform">6.1.5. Supported transports by platform</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">6.2. Building Connext Micro for Common Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cert_compatibility.html">6.3. Building Connext Micro with Compatibility for Connext Cert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guid_generation.html">6.4. GUID Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">6.5. FreeRTOS Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux.html">6.6. Linux Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microsar.html">6.7. MicroSAR Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="macos.html">6.8. macOS Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qnx.html">6.9. QNX Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">6.10. Windows Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">6. </span>Platforms Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">6.1. </span>Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<span id="section-platform-introdution"></span><h1><span class="section-number">6.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>This section provides platform-specific instructions that you will need to
+build and run <em>RTI</em> <em>Connext Micro</em> applications.</p>
+<p>For each supported operating system (OS), this section describes:</p>
+<ul class="simple">
+<li><p>Supported combinations of OS versions, CPUs, and compilers</p></li>
+<li><p>How to build your application, including:</p>
+<ul>
+<li><p>Required <em>Connext Micro</em> and system libraries</p></li>
+<li><p>Required compiler and linker flags</p></li>
+<li><p>Details on how the <em>Connext Micro</em> libraries were built</p></li>
+</ul>
+</li>
+</ul>
+<p>To see a list of all supported platforms, refer to <a class="reference internal" href="../release/supported_platforms.html#rl-supported"><span class="std std-ref">Supported Platforms and Programming Languages</span></a>.</p>
+<div class="section" id="library-types">
+<h2><span class="section-number">6.1.1. </span>Library types<a class="headerlink" href="#library-types" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> provides precompiled binaries for supported architectures. This section
+explains the different library types and gives a general description of the
+binaries shipped by RTI.</p>
+<p>In this section, the following terms are used:</p>
+<ul class="simple">
+<li><p><em>toolchain</em> refers to the compiler, linker, and archiver for a specific CPU
+architecture, excluding dependencies in standard header files and libraries.</p></li>
+<li><p><em>platform</em> refers to the hardware, BSPs,  OS kernel, and C/C++ libraries
+that are not included in the toolchain (such as <code class="docutils literal notranslate"><span class="pre">libc</span></code>, <code class="docutils literal notranslate"><span class="pre">libc++</span></code>, and the
+network stack).</p></li>
+</ul>
+<p>RTI builds two types of binaries for <em>Connext Micro</em>: integrated libraries and split libraries.
+RTI may include either or both types of binaries for a given target architecture.</p>
+<div class="section" id="integrated-libraries">
+<h3><span class="section-number">6.1.1.1. </span>Integrated libraries<a class="headerlink" href="#integrated-libraries" title="Permalink to this headline">¶</a></h3>
+<p>All <em>Connext Micro</em> target packages include a core library called <code class="docutils literal notranslate"><span class="pre">rti_me</span></code>. The <code class="docutils literal notranslate"><span class="pre">rti_me</span></code>
+library includes all the required basic functionality for <em>Connext Micro</em>.</p>
+<p>The term “integrated library” refers to an <code class="docutils literal notranslate"><span class="pre">rti_me</span></code> library where all the OS
+integration and network stack integration is compiled directly into <code class="docutils literal notranslate"><span class="pre">rti_me</span></code>.
+This means that it is not possible to change how the OS and network integration
+has been written without recompiling the entire library. This is illustrated below:</p>
+<div class="figure align-center" id="id13">
+<a class="reference internal image-reference" href="../_images/IntegratedLibrary_Overview.png"><img alt="../_images/IntegratedLibrary_Overview.png" src="../_images/IntegratedLibrary_Overview.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-number">Figure 6.1 </span><span class="caption-text">An overview of rti_me as an integrated library</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All binaries provided for <em>Connext Micro</em> version 4.0.1 and below are integrated
+libraries.</p>
+</div>
+</div>
+<div class="section" id="split-libraries">
+<h3><span class="section-number">6.1.1.2. </span>Split libraries<a class="headerlink" href="#split-libraries" title="Permalink to this headline">¶</a></h3>
+<p>In contrast to an integrated library, split libraries consist of a
+Platform Independent Library (PIL) and a Platform Support Library (PSL).</p>
+<p>The PIL is an <code class="docutils literal notranslate"><span class="pre">rti_me</span></code> library that includes all functionality for
+<em>Connext Micro</em> except for platform integration code.</p>
+<p>The PSL consists of two libraries that support OS integration
+and network stack integration:</p>
+<ul class="simple">
+<li><p>The OS Platform Support Library (<code class="docutils literal notranslate"><span class="pre">ospsl</span></code>): Contains the required OS support,
+such as mutex and semaphore support. This library is very limited in functionality.</p></li>
+<li><p>The Network Support Library (<code class="docutils literal notranslate"><span class="pre">netiopsl</span></code>): Includes support for transports,
+such as UDPv4.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">ospsl</span></code> and <code class="docutils literal notranslate"><span class="pre">netiopsl</span></code> libraries are collectively referred to as the
+PSL (even though it is more than one library).</p>
+<p>This is illustrated below:</p>
+<div class="figure align-center" id="id14">
+<a class="reference internal image-reference" href="../_images/PIL_Overview.png"><img alt="../_images/PIL_Overview.png" src="../_images/PIL_Overview.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-number">Figure 6.2 </span><span class="caption-text">An overview of split libraries</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
+<p>The main benefit of split libraries is that different PSLs can be written for
+the same PIL without having to recompile the platform-independent code.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The PIL is compiled without standard C header files and is only
+dependent on the toolchain. This is different from the integrated
+libraries, which are compiled with standard C header files.</p>
+<p>The PSL is always compiled against the standard C
+header files, as well as other platform-dependent header files.</p>
+</div>
+</div>
+</div>
+<div class="section" id="library-descriptions">
+<span id="section-libraries"></span><h2><span class="section-number">6.1.2. </span>Library descriptions<a class="headerlink" href="#library-descriptions" title="Permalink to this headline">¶</a></h2>
+<p>The following libraries are included in the target bundle. Note that the
+names listed below do not include platform-specific prefixes or suffixes.</p>
+<p>Depending on the target architecture, the library name is prefixed with lib
+and the library suffix also varies between target architectures, such as .so
+and .dylib.</p>
+<p>The following naming conventions are also used:</p>
+<ul class="simple">
+<li><p>Static libraries have a z suffix.</p></li>
+<li><p>Shared libraries do not have an additional suffix.</p></li>
+<li><p>Debug libraries have a d suffix.</p></li>
+<li><p>Release libraries do not have an additional suffix.</p></li>
+</ul>
+<p>For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_mezd</span></code> indicates a static debug library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code> indicates a dynamically linked release library.</p></li>
+</ul>
+<table class="colwidths-given docutils align-default" id="id15">
+<caption><span class="caption-number">Table 6.1 </span><span class="caption-text">Target Bundle Libraries</span><a class="headerlink" href="#id15" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Library Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p></td>
+<td><p>The core library, including the DDS C API.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code></p></td>
+<td><p>The Dynamic Participant Static Endpoint (DPSE) plugin.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code></p></td>
+<td><p>The Dynamic Participant Dynamic Endpoint (DPDE) plugin.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code></p></td>
+<td><p>The Reader History plugin.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code></p></td>
+<td><p>The Writer History plugin.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_netiosdm</span></code></p></td>
+<td><p>The Zero Copy v1 over shared memory transport library plugin.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_netioshmem</span></code></p></td>
+<td><p>The Shared Memory Transport plugin.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_appgen</span></code></p></td>
+<td><p>The Application Generation plugin.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_cpp</span></code></p></td>
+<td><p>The C++ API.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_ospsl</span></code></p></td>
+<td><p>The OS PSL.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_netiopsl</span></code></p></td>
+<td><p>The C NETIO PSL.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_netiopsl_cpp</span></code></p></td>
+<td><p>The C++ NETIO PSL library.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code></p></td>
+<td><p>The Zero Copy v2 transport library plugin (not supported on all platforms).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p></td>
+<td><p>The content filtering library.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code></p></td>
+<td><p>The XTypes library.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p></td>
+<td><p>The Lightweight Security Plugin PIL (installed separately, not supported
+on all platforms).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rti_me_pskpsl_openssl3</span></code></p></td>
+<td><p>The Lightweight Security Plugin Transform PSL (installed separately, not
+supported on all platforms).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="build-profiles">
+<h2><span class="section-number">6.1.3. </span>Build profiles<a class="headerlink" href="#build-profiles" title="Permalink to this headline">¶</a></h2>
+<p>You can optionally build <em>Connext Micro</em> with a CERT profile. This restricts
+<em>Connext Micro</em> to only include features that are available or planned for
+<em>Connext Cert</em>; for more information, see <a class="reference internal" href="cert_compatibility.html#section-cert-compatibility"><span class="std std-ref">Building Connext Micro with Compatibility for Connext Cert</span></a>.</p>
+<p>Any architecture ending with CERT is built with the CERT profile enabled.</p>
+<p>Some features are only available on specific platforms; see the
+footnotes in the table below.</p>
+<table class="colwidths-given docutils align-default" id="id16">
+<caption><span class="caption-number">Table 6.2 </span><span class="caption-text">Features by Profile</span><a class="headerlink" href="#id16" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature/Capability</p></th>
+<th class="head"><p>Non-CERT Profile</p></th>
+<th class="head"><p>CERT Profile</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Dynamic Participant Discovery</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Static Endpoint Discovery</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Dynamic Endpoint Discovery</p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>C++ API</p></td>
+<td><p><strong>✓</strong> <a class="footnote-reference brackets" href="#id9" id="id1">1</a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Shared Memory Transport (SHMEM)</p></td>
+<td><p><strong>✓</strong> <a class="footnote-reference brackets" href="#id9" id="id2">1</a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Zero Copy v1</p></td>
+<td><p><strong>✓</strong> <a class="footnote-reference brackets" href="#id9" id="id3">1</a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Zero Copy v2</p></td>
+<td><p><strong>✓</strong> <a class="footnote-reference brackets" href="#id10" id="id4">2</a></p></td>
+<td><p><strong>✓</strong> <a class="footnote-reference brackets" href="#id10" id="id5">2</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Micro Application Generator (MAG)</p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Content Filtering</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong> <a class="footnote-reference brackets" href="#id11" id="id6">3</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Lightweight Security Plugin</p></td>
+<td><p><strong>✓</strong> <a class="footnote-reference brackets" href="#id12" id="id7">4</a></p></td>
+<td><p><strong>✓</strong> <a class="footnote-reference brackets" href="#id12" id="id8">4</a></p></td>
+</tr>
+<tr class="row-even"><td><p>XTypes</p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="footnote brackets">
+<dt class="label" id="id9"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>)</span></dt>
+<dd><p>Not supported on FreeRTOS or MicroSAR platforms.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets">2</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id5">2</a>)</span></dt>
+<dd><p>Not supported on FreeRTOS, macOS, MicroSAR, or Windows platforms.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id6">3</a></span></dt>
+<dd><p>The built-in SQL filter is not supported with the CERT profile. Only custom content filters are supported.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets">4</span><span class="fn-backref">(<a href="#id7">1</a>,<a href="#id8">2</a>)</span></dt>
+<dd><p>Not supported on FreeRTOS, macOS, or MicroSAR platforms.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="supported-libraries-by-platform">
+<h2><span class="section-number">6.1.4. </span>Supported libraries by platform<a class="headerlink" href="#supported-libraries-by-platform" title="Permalink to this headline">¶</a></h2>
+<p>The following table shows which <em>Connext Micro</em> libraries are supported on each
+platform (RTI architecture).</p>
+<table class="colwidths-given longtable docutils align-default" id="id17">
+<caption><span class="caption-number">Table 6.3 </span><span class="caption-text">Supported Libraries by Platform</span><a class="headerlink" href="#id17" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Platform</p></th>
+<th class="head"><p>RTI Architecture</p></th>
+<th class="head"><p>Supported Libraries</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Windows 10 x64</p></td>
+<td><p>x86_64lePEvs2017</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiosdm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netioshmem</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_appgen</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_cpp</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>x86_64lePEvs2017CERT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p>macOS 14 arm64</p></td>
+<td><p>armv8leMachOclang15.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiosdm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netioshmem</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_appgen</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_cpp</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv8leMachOclang15.0CERT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p>Ubuntu 24.04 x64</p></td>
+<td><p>x86_64leElfgcc13.3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiosdm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netioshmem</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_appgen</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_cpp</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>x86_64leElfgcc13.3.0CERT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p>Ubuntu 24.04 ARMv8</p></td>
+<td><p>armv8leElfgcc13.3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiosdm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netioshmem</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_appgen</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_cpp</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv8leElfgcc13.3.0CERT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p>Yocto 5.15.96</p></td>
+<td><p>armv8aleElfgcc11.3.1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiosdm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netioshmem</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_appgen</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_cpp</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv8aleElfgcc11.3.1CERT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p>QNX 7.1 ARMv8</p></td>
+<td><p>armv8leElfqnx_qcc8.3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiosdm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netioshmem</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_appgen</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_cpp</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv8leElfqnx_qcc8.3.0CERT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p>QNX 8.0 ARMv8</p></td>
+<td><p>armv8leElfqnx_qcc12.2.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiosdm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netioshmem</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_appgen</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_cpp</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv8leElfqnx_qcc12.2.0CERT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p>QOS 2.2.1 (QNX OS for Safety)</p></td>
+<td><p>armv8leElfqcc8.3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiosdm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netioshmem</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_appgen</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_cpp</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv8leElfqcc8.3.0CERT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_netiozcopy</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddspsk</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p>FreeRTOS 10.0.0 ARMv7E-M</p></td>
+<td><p>armv7emleElfgcc10.3.1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_appgen</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_cpp</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv7emleElfgcc10.3.1CERT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p>MicroSAR 4.2.2</p></td>
+<td><p>tc39xtElfTasking6.3r1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_whsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_rhsm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpse</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_discdpde</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_appgen</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>tc39xtElfTasking6.3r1CERT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rti_me</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">rti_me_ddsfilter</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="supported-transports-by-platform">
+<h2><span class="section-number">6.1.5. </span>Supported transports by platform<a class="headerlink" href="#supported-transports-by-platform" title="Permalink to this headline">¶</a></h2>
+<p>The following table shows which transports are supported on each architecture.</p>
+<table class="colwidths-given docutils align-default" id="id18">
+<caption><span class="caption-number">Table 6.4 </span><span class="caption-text">Supported Transports by Platform</span><a class="headerlink" href="#id18" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 35%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Platform</p></th>
+<th class="head"><p>RTI Architecture</p></th>
+<th class="head"><p>Intra</p></th>
+<th class="head"><p>UDPv4</p></th>
+<th class="head"><p>SHMEM</p></th>
+<th class="head"><p>Zero Copy v1</p></th>
+<th class="head"><p>Zero Copy v2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Windows 10 x64</p></td>
+<td><p>x86_64lePEvs2017</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>x86_64lePEvs2017CERT</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>macOS 14 arm64</p></td>
+<td><p>armv8leMachOclang15.0</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv8leMachOclang15.0CERT</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Ubuntu 24.04 x64</p></td>
+<td><p>x86_64leElfgcc13.3.0</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>x86_64leElfgcc13.3.0CERT</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Ubuntu 24.04 ARMv8</p></td>
+<td><p>armv8leElfgcc13.3.0</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv8leElfgcc13.3.0CERT</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Auto Yocto Linux BSP 37.0</p></td>
+<td><p>armv8aleElfgcc11.3.1</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv8aleElfgcc11.3.1CERT</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>QNX 7.1 ARMv8</p></td>
+<td><p>armv8leElfqnx_qcc8.3.0</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv8leElfqnx_qcc8.3.0CERT</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>QNX 8.0 ARMv8</p></td>
+<td><p>armv8leElfqnx_qcc12.2.0</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv8leElfqnx_qcc12.2.0CERT</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>QOS 2.2.1 (QNX OS for Safety)</p></td>
+<td><p>armv8leElfqcc8.3.0</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv8leElfqcc8.3.0CERT</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+<td><p><strong>✓</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>FreeRTOS 10.4.6 ARMv7E-M</p></td>
+<td><p>armv7emleElfgcc10.3.1</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>armv7emleElfgcc10.3.1CERT</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>MicroSAR 4.2.2</p></td>
+<td><p>tc39xtElfTasking6.3r1</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>tc39xtElfTasking6.3r1CERT</p></td>
+<td><p><strong>✓</strong></p></td>
+<td><p><strong>✓</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="building.html" class="btn btn-neutral float-right" title="6.2. Building Connext Micro for Common Platforms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="6. Platforms Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

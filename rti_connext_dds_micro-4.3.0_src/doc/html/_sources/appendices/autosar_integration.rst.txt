@@ -1,0 +1,1076 @@
+.. _section-autosar-integration:
+
+Appendix A: AUTOSAR Integration Example
+=======================================
+
+This guide walks you through an example of integrating |me| into your
+AUTOSAR Classic Platform workspace as a Complex Device Driver (CDD). It is
+written for platform integrators with experience in AUTOSAR software, network
+configuration, and basic DDS concepts.
+
+We'll cover how to get DDS communication working in your AUTOSAR basic
+software (BSW), understanding the architecture and design, and customizing
+DDS for your application needs. When finished, you should be able to the
+following:
+
+- Electronic Control Unit (ECU) boots and acquires IP address;
+- DDS CDD initializes successfully;
+- *Admin Console* discovers the ECU *DomainParticipant*;
+- Bidirectional data exchange verified.
+
+This guide does NOT cover production deployment (beyond AUTOSAR integration),
+application-specific requirements, or platform-specific optimizations.
+
+How DDS integrates with AUTOSAR
+-------------------------------
+
+Before diving into configuration, let's understand how DDS integrates
+into the AUTOSAR Classic Platform.
+
+DDS is integrated as a CDD Software Component (SW-C)
+that acts as a proxy between Application SW-Cs and the network. DDS *Topics*
+map to RTE port interfaces, enabling Application SW-Cs to publish and
+subscribe to DDS data through standard RTE API calls.
+
+The following diagram outlines the data flow through a DDS-integrated system:
+
+.. code-block:: none
+
+              ┌──────────────────┐
+              │ Application SW-C │
+              │    (Your App)    │
+              └────────┬─▲───────┘
+                       │ │
+                       │ │ RTE Ports
+                       │ │
+       ┌───────────────▼─┴─────────────────────────┐
+       │                AUTOSAR RTE                │
+       │          (Runtime Environment)            │
+       └──────────────────────────────────┬─▲──────┘
+                                          │ │
+                                          │ │ RTE Ports
+                                          │ │
+       ┌──────────────────────────────────│-│─────────┐
+       │                BSW Layer         │ │         │
+       │                                  │ │         │
+       │  ┌──────────┐            ┌───────▼─┴──────┐  │
+       │  │  TcpIp   │◄───────────│  DDS CDD SW-C  │  │
+       │  │   BSW    │───────────►│                │  │
+       │  └────┬─▲───┘            └────────────────┘  │
+       |       | |                                    |
+       │       ▼ ▲  (EthIf, Eth, EthTrcv)             │
+       └───────┼─|────────────────────────────────────┘
+               │ |                                                                        
+               ▼ |                                    
+         MAC/PHY Hardware
+
+We can summarize the data flow as follows: 
+
+**Publishing:** When publishing data, the application SW-C
+writes to an RTE port, which triggers the DDS CDD runnable. The DDS CDD then
+publishes the data via the TcpIp stack to the network.
+
+**Subscribing:** When subscribing to data, the TcpIp stack
+receives data from the network, and the DDS Middleware (|me|) processes it by
+storing samples, applying QoS policies, and managing reliability. The DDS CDD
+periodically polls the *DataReader* to check for new data, converts it, and
+writes it to the RTE port. Finally, the application SW-C reads the data from
+the RTE port.
+
+From the perspective of the application SW-C, DDS communication
+looks like standard AUTOSAR inter-SW-C communication through RTE ports.
+
+.. note::
+   
+  DDS data processing can alternatively be triggered by
+  event-driven callbacks using WaitSets or other |me| mechanisms. This
+  reference implementation uses periodic polling via cyclic tasks for
+  simplicity.
+
+Integration steps
+-----------------
+
+Before starting, you must have the following hardware and software:
+  
+- A Target ECU with Ethernet MAC (Media Access Control) and
+  PHY (Physical Layer Transceiver)
+- Ethernet cable and network switch
+- Windows or Linux PC for *Admin Console*
+- AUTOSAR BSW with operational TcpIp stack
+- Run Time Environment (RTE) generator and configuration tools
+- Build toolchain for target platform
+- RTI *Admin Console* installed
+
+Reference implementation
+........................
+
+RTI provides a complete reference implementation of AUTOSAR integration,
+consisting of:
+
+- A reference DDS-XML configuration (``dds_system.xml``);
+- A complete DDS CDD: SW-C template (reference ARXML), adapter, and DDS 
+  implementation;
+- An example application SW-C (reference ARXML).
+
+.. attention::
+
+  The ``dds_system.xml`` file is the "source of truth"
+  for DDS configuration. Network settings (such as IP addresses and domain IDs)
+  and QoS profiles defined here *must* match your AUTOSAR BSW configuration.
+
+The following will be used as-is:
+
+- DDS CDD source code and SW-C ARXML
+- Example application SW-C ARXML
+- State machine initialization sequence
+- Example data types (initially)
+
+You must configure the following for your specific platform:
+
+- Network settings (IP address)
+- BSW integration (TcpIp, OS, BswM)
+- Reference SW-C integration (import reference ARXML files, no
+  modification needed)
+- Build system integration
+
+Configuring the AUTOSAR BSW
+...........................
+
+Your AUTOSAR BSW is configured in ``MCU_DDS_CDD/config/dds_system.xml``.
+Before configuring, review ``dds_system.xml`` to
+understand some key parts of the reference configuration:
+
+- Network settings: IP address (e.g., 192.168.1.100), netmask, and multicast
+  addresses.
+- Domain ID: Found in ``<domain name="myDomain" domain_id="0">``.
+- QoS profiles: ``DefaultProfile``, ``CddProfile``, and ``PcProfile``.
+- Topics: ``MCUtoPC`` and ``PCtoMCU``.
+
+Your AUTOSAR BSW configuration must match these DDS-XML settings.
+
+This section contains ALL required BSW configuration. The integration
+will not work without these settings.
+
+TcpIp BSW Configuration
+'''''''''''''''''''''''
+
+#. Ensure the socket owner ``GetSocket`` function matches
+   the one configured by ``DDSCDD_SOCKET_OWNER_GET_SOCKET`` macro:
+
+   .. code-block:: xml
+
+     <SOCKET-CONNECTION-BUNDLE>
+         <SHORT-NAME>DdsSocketOwner</SHORT-NAME>
+         <SOCKET-PROTOCOL>UDP</SOCKET-PROTOCOL>
+     </SOCKET-CONNECTION-BUNDLE>
+
+#. Register these callbacks in TcpIp using the vendor tool to update the ARXML
+   configuration:
+
+   .. code:: xml
+
+      <SOCKET-OWNER>
+         <SHORT-NAME>DdsSocketOwner</SHORT-NAME>
+         <RX-INDICATION-FUNCTION>DDS_CDD_RxIndication</RX-INDICATION-FUNCTION>
+         <LOCAL-IP-ADDR-ASSIGNMENT-CHG-FUNCTION>DDS_CDD_LocalIpAddrAssignmentChg</LOCAL-IP-ADDR-ASSIGNMENT-CHG-FUNCTION>
+      </SOCKET-OWNER>
+
+   - ``DDS_CDD_RxIndication``: called when UDP data received.
+   - ``DDS_CDD_LocalIpAddrAssignmentChg``: called when IP address assigned.
+   - ``DDS_CDD_TcpIpEvent``: called when a TcpIp event occurs.
+
+#. Use callback prototypes that match the AUTOSAR TcpIp API types:
+
+   .. code-block:: c
+
+      void DDS_CDD_LocalIpAddrAssignmentChg(
+         TcpIp_LocalAddrIdType LocalAddrId,
+         TcpIp_IpAddrStateType State);
+
+      void DDS_CDD_RxIndication(
+         TcpIp_SocketIdType SocketId,
+         P2CONST(TcpIp_SockAddrType, AUTOMATIC, TCPIP_APPL_DATA) RemoteAddrPtr,
+         P2VAR(uint8, AUTOMATIC, TCPIP_APPL_DATA) BufPtr,
+         uint16 Length);
+
+      void DDS_CDD_TcpIpEvent(
+         TcpIp_SocketIdType SocketId,
+         TcpIp_EventType Event);
+
+   The callbacks must produce the following behavior:
+
+   - ``DDS_CDD_LocalIpAddrAssignmentChg`` gates startup and should trigger
+     ``Rte_Start()`` only when the target unicast address is assigned.
+   - ``DDS_CDD_RxIndication`` forwards received UDP payloads to the DDS NETIO
+     receive path.
+   - ``DDS_CDD_TcpIpEvent`` handles socket lifecycle events (or can log and
+     ignore unused events).
+
+   .. note::
+
+      The callback names configured in ARXML must exactly match the compiled
+      function symbols in your integration code.
+
+#. Ensure TcpIp stack configuration allocates sufficient sockets beyond any
+   existing usage. DDS requires at least 3 additional UDP sockets (2 for
+   unicast, 1 for multicast, as configured in ``dds_system.xml``).
+
+#. Check ``MCU_DDS_CDD/config/dds_system.xml`` for
+   the reference IP configuration. Look in the ``CddProfile`` QoS profile
+   under ``<transport_builtin><udpv4><interface_table>`` for the default
+   reference configuration (``192.168.1.100`` with netmask ``255.255.255.0``).
+
+#. Configure the TcpIp BSW to match ``dds_system.xml``:
+
+   **Unicast IP Configuration:**
+
+   .. code-block:: xml
+
+      <LOCAL-ADDRESS-CONFIG>
+         <SHORT-NAME>LocalAddress_ECU</SHORT-NAME>
+         <LOCAL-ADDRESS-ID>0</LOCAL-ADDRESS-ID>  <!-- MUST be 0 for unicast -->
+         <IP-ADDRESS-ASSIGNMENT-METHOD>STATIC</IP-ADDRESS-ASSIGNMENT-METHOD>
+         <IP-ADDRESS>192.168.1.100</IP-ADDRESS>  <!-- MUST MATCH dds_system.xml CddProfile -->
+         <NETWORK-MASK>255.255.255.0</NETWORK-MASK>
+         <DEFAULT-GATEWAY>192.168.1.1</DEFAULT-GATEWAY>
+      </LOCAL-ADDRESS-CONFIG>
+
+   .. note::
+
+      The IP address, netmask, and interface settings *must match* what's
+      configured in ``dds_system.xml`` under the ``CddProfile``.
+
+   **Multicast IP Configuration:**
+
+   Check ``dds_system.xml`` for multicast settings. Look in
+   ``<discovery><initial_peers>``, which includes ``239.255.0.1``.
+   Look in ``<multicast_receive_addresses>``, which defines
+   ``udpv4://239.255.0.1``
+
+   .. code-block:: xml
+
+      <LOCAL-ADDRESS-CONFIG>
+         <SHORT-NAME>MulticastAddress_DDS</SHORT-NAME>
+         <LOCAL-ADDRESS-ID>1</LOCAL-ADDRESS-ID>
+         <IP-ADDRESS-ASSIGNMENT-METHOD>STATIC</IP-ADDRESS-ASSIGNMENT-METHOD>
+         <IP-ADDRESS>239.255.0.1</IP-ADDRESS>  <!-- MUST MATCH dds_system.xml -->
+      </LOCAL-ADDRESS-CONFIG>
+
+.. _section-os-configuration:
+
+OS configuration
+''''''''''''''''
+
+The DDS CDD requires a single OS resource for internal synchronization and state
+management. This resource is used for protecting critical sections in the
+adapter layer and ensuring thread safety.
+
+.. code-block:: xml
+
+   <!-- Example: Resource 001 -->
+   <RESOURCE>
+       <SHORT-NAME>DDS_Resource001</SHORT-NAME>
+       <RESOURCE-PROPERTY>STANDARD</RESOURCE-PROPERTY>
+   </RESOURCE>
+
+The DDS CDD also requires a task, configured as follows:
+
+.. code-block:: xml
+
+   <TASK>
+       <SHORT-NAME>Task_DdsCdd</SHORT-NAME>
+       <PRIORITY>8</PRIORITY>  <!-- Adjust based on your system -->
+       <SCHEDULE>FULL</SCHEDULE>
+       <ACTIVATION>1</ACTIVATION>
+       <AUTOSTART>true</AUTOSTART>
+       <STACK-SIZE>13312</STACK-SIZE>  <!-- See note below -->
+       <EVENT-REF DEST="EVENT">Event_DdsCddRun</EVENT-REF>
+       <EVENT-REF DEST="EVENT">Event_DdsCddRead</EVENT-REF>
+       <EVENT-REF DEST="EVENT">Event_DdsCddWrite</EVENT-REF>
+   </TASK>
+
+- Stack size: Allocate an additional 10 KB of stack space for DDS CDD
+  runnables. If reusing an existing task, increase its stack size by 10
+  KB. If creating a new task, ensure at least 10 KB is available. This is
+  an estimate, and actual requirements may vary based on your application 
+  and DDS configuration.
+
+- Task priority: DDS CDD runnables should have higher priority than
+  application SW-Cs but lower priority than critical BSW tasks
+  (such as the ethernet driver or TcpIp stack). This ensures timely network
+  communication without blocking critical system functions.
+
+- Runnable mapping: DdsCdd runnables (e.g., ``DdsCddStart``, ``DdsCddRun``,
+  ``DdsCddRxIndication``, ``DdsCddProcessData``, ``DdsCddRead_PCtoMCU``, or 
+  ``DdsCddWrite_MCUtoPC``) must be mapped to ``Task_DdsCdd`` in your RTE
+  configuration. You will configure trigger conditions for these runnables in
+  :ref:`section-configuring-rte`.
+
+Basic Software Mode Manager (BswM) configuration
+''''''''''''''''''''''''''''''''''''''''''''''''
+
+.. attention::
+
+  ``Rte_Start()`` must *not* be called from a BswM action list. It
+  must be called from the ``DDS_CDD_LocalIpAddrAssignmentChg`` callback,
+  only after the IP address has been assigned and the Ethernet link is up.
+
+DDS initialization sends discovery ping messages to other participants.
+If ``Rte_Start()`` is called before the TcpIp stack has assigned an IP
+address and the link is up, DDS initialization will fail.
+
+The correct startup sequence is:
+
+1. BswM invokes ``TcpIp_Init()`` as normal.
+2. TcpIp calls ``DDS_CDD_LocalIpAddrAssignmentChg`` when the IP address
+   is assigned.
+3. The callback calls ``Rte_Start()``, which triggers ``DdsCddStart``
+   (InitEvent), where all DDS initialization takes place.
+
+.. code-block:: c
+
+   void DDS_CDD_LocalIpAddrAssignmentChg(
+       TcpIp_LocalAddrIdType LocalAddrId,
+       TcpIp_IpAddrStateType State)
+   {
+       if (LocalAddrId == TCPIP_LOCALADDRID_UNICAST &&
+           State == TCPIP_IPADDR_STATE_ASSIGNED)
+       {
+           Rte_Start();
+       }
+   }
+
+.. note::
+
+  This guide documents one valid initialization strategy: starting RTE
+  after IP assignment, then performing DDS initialization in
+  ``DdsCddStart``.
+  Other strategies are possible. For example, RTE can be started in the
+  standard BswM sequence, and DDS initialization can be deferred to a
+  periodic runnable that monitors network readiness.
+
+Ethernet driver configuration
+'''''''''''''''''''''''''''''
+
+The DDS CDD interfaces with TcpIp stack. Ethernet driver configuration
+is the BSW integrator's responsibility according to their hardware requirements.
+
+.. note::
+   
+  Ensure Ethernet MAC duplex mode matches PHY duplex mode to
+  avoid packet loss.
+
+.. _section-configuring-rte:
+
+Configuring RTE
+...............
+
+#. Import the provided ARXML files containing:
+
+   - DdsCdd ARXML: DDS CDD SW-C definition, port interfaces, port
+     prototypes, and runnable definitions.
+
+   - ExampleAsrApp ARXML: Example application SW-C and example
+     sender-receiver interfaces.
+
+#. Connect DDS CDD ports to application SW-C, as shown in the following diagram:
+
+   code-block:: none
+
+      Application SW-C                DDS CDD SW-C
+      ┌──────────────┐              ┌──────────────┐
+      │              │              │              │
+      │  P_DataOut ──┼──────────────┼→ R_MCUtoPC   │  (Publishing)
+      │              │              │              │
+      │  R_DataIn  ←─┼──────────────┼─ S_PCtoMCU   │  (Subscribing)
+      │              │              │              │
+      └──────────────┘              └──────────────┘
+
+#. Before generating RTE code, map the DDS CDD runnables to the task you
+   configured in OS section (``Task_DdsCdd``):
+
+#. Run your RTE generator to create the following:
+
+   - ``Rte.c`` / ``Rte.h``
+   - ``Rte_DdsCdd.h``
+   - ``Rte_ExampleAsrApp.h``
+
+#. In DdsCdd ARXML, configure trigger conditions for the following
+   runnables:
+
+   .. list-table::
+      :header-rows: 1
+      :widths: 25 35 40
+
+      * - Runnable
+        - Trigger Condition
+        - Purpose
+      * - ``DdsCddStart()``
+        - InitEvent
+        - Initialize DDS CDD at startup
+      * - ``DdsCddRun()``
+        - TimingEvent (10ms)
+        - DDS QoS maintenance (discovery, liveliness, etc.)
+      * - ``DdsCddProcessData()``
+        - Inter-runnable Trigger (called by DdsCddRxIndication)
+        - Process the DDS data.
+      * - ``DdsCddRxIndication()``
+        - No trigger defined (called by connext library)
+        - Triggers the Inter-runnable trigger for processing received data.
+      * - ``DdsCddRead_PCtoMCU()``
+        - TimingEvent (100ms)
+        - Poll for incoming DDS data
+      * - ``DdsCddWrite_MCUtoPC()``
+        - DataReceivedEvent
+        - Publish data when app writes to RTE port
+
+   .. warning::
+
+      If DDS initialization is executed inside a periodic runnable, the
+      first activation can exceed the nominal runnable period (for example,
+      a 10 ms runnable may run longer during initialization).
+      Account for this during OS scheduling and timing analysis (watchdog,
+      deadline monitoring, and task load budget).
+
+   .. note::
+
+      The RTE automatically generates the required OS alarms and
+      events based on these trigger condition configurations. You do not
+      manually configure alarms or events; the RTE generator creates them
+      from the trigger conditions and task mapping you specify.
+
+#. After RTE code generation, implement the generated DdsCdd runnable bodies as
+   thin wrappers to Layer 2 adapter functions.
+
+   Use this pattern:
+
+   .. code-block:: c
+
+      FUNC(void, DdsCdd_CODE) DdsCddStart(void)
+      {
+         DdsCdd_Adapter_Init();
+      }
+
+      FUNC(void, DdsCdd_CODE) DdsCddRun(void)
+      {
+         DdsCdd_Adapter_Run();
+      }
+
+      FUNC(void, DdsCdd_CODE) DdsCddProcessData(void)
+      {
+         NETIO_Autosar_udp_receive_callback();
+      }
+
+      FUNC(void, DdsCdd_CODE) DdsCddRead_PCtoMCU(void)
+      {
+         DdsCdd_Adapter_Read_PCtoMCU();
+      }
+
+      FUNC(void, DdsCdd_CODE) DdsCddWrite_MCUtoPC(void)
+      {
+         DdsCdd_Adapter_Write_MCUtoPC();
+      }
+
+   Implementation checklist:
+
+   - Keep runnable bodies minimal; put DDS logic in adapter/implementation
+     layers.
+   - Modify only the user-editable sections in generated template files.
+   - Keep trigger-condition semantics unchanged (InitEvent, TimingEvent,
+     DataReceivedEvent, internal trigger).
+   - Re-run RTE generation after ARXML changes and re-apply user code in the
+     generated implementation blocks.
+
+   For the architectural rationale behind this split,
+   see :ref:`section-autosar-architecture`.
+
+Integrating source code
+.......................
+
+#. Add the following source files to your build:
+
+   - |me|:
+
+     - All source files from ``$(RTI_DDS_MICRO)/src/``
+
+   - DDS generated code:
+
+     - ``MCU_DDS_CDD/dds_gen/exampleType.c``
+     - ``MCU_DDS_CDD/dds_gen/exampleTypePlugin.c``
+     - ``MCU_DDS_CDD/dds_gen/exampleTypeSupport.c``
+
+   - DDS CDD implementation:
+
+     - ``MCU_DDS_CDD/adaptation/dds_cdd_adapter.c``
+     - ``MCU_DDS_CDD/dds_impl/dds_impl.c``
+     - ``MCU_DDS_CDD/dds_cdd/DdsCdd.c``
+
+   - Example application:
+   
+     - ``MCU_EXAMPLE_ASR_APP/ExampleAsrApp.c``
+
+#. Configure the necessary include paths:
+
+   .. code-block:: none
+
+      -I$(RTI_DDS_MICRO)/include
+      -I$(RTI_DDS_MICRO)/include/autosar
+      -I$(PROJECT)/MCU_DDS_CDD/config
+      -I$(PROJECT)/MCU_DDS_CDD/dds_gen
+      -I$(PROJECT)/MCU_DDS_CDD/adaptation
+      -I$(PROJECT)/MCU_DDS_CDD/dds_impl
+      -I$(PROJECT)/MCU_EXAMPLE_ASR_APP
+
+   Do not include ``MCU_DDS_CDD/dds_cdd/DdsCdd``; these are the Contract
+   Phase Headers and are already included via RTE generated code.
+
+#. Configure the following preprocessor definitions:
+
+   .. code-block:: c
+
+      #define __autosar__                      // AUTOSAR platform
+      #define RTI_ENDIAN_LITTLE               // Or RTI_ENDIAN_BIG (based on target)
+      #define NETIO_CONFIG_ENABLE_MULTICAST 1  // Multicast configured in dds_system.xml
+      #define OSAPI_ENABLE_LOG 0              // Disable logging
+      #define OSAPI_ENABLE_TRACE 0            // Disable logging
+
+#. Configure memory. The DDS CDD requires static memory allocation; the default
+   heap size is 240KB (the baseline for 2 topics with small samples).
+
+   .. code-block:: c
+
+      #define DDSCDD_HEAP_AREA_1_SIZE (240 * 1024)  // 240KB
+
+   Memory is used for DDS entities (participant, topics, readers,
+   writers), discovery protocol data, send/receive buffers, QoS policy
+   storage.
+
+   .. note::
+
+      The default 240KB is for a baseline system (2 topics with small
+      samples). See :ref:`section-customizing-for-your-application` for
+      sizing guidelines.
+
+#. Configure DDS entities using APPGEN. DDS entities (*DomainParticipants*,
+   *Topics*, *DataWriters*, and *DataReaders*)
+   are defined in ``dds_system.xml`` and loaded at runtime by Layer 3
+   (``dds_impl.c``) using the Application Generation (APPGEN) plugin. APPGEN is
+   the standard |me| mechanism for XML-driven entity creation.
+
+   During ``DdsImpl_CreateEntities()``, the APPGEN plugin is registered with the
+   DDS factory and the participant is created from the XML profile:
+
+   .. code-block:: c
+
+      /* Register the APPGEN plugin to enable XML-based entity creation */
+      struct APPGEN_FactoryProperty model_xml = APPGEN_FactoryProperty_INITIALIZER;
+      model_xml._model = APPGEN_get_library_seq();
+      if (!APPGEN_Factory_register(registry, &model_xml)) {
+         /* handle error */
+      }
+
+      /* Create participant from the profile defined in dds_system.xml */
+      application->participant =
+         DDS_DomainParticipantFactory_create_participant_from_config(
+                  factory,
+                  "AppLibrary::MCU_DDS_CDD");
+
+   The participant name (``"AppLibrary::MCU_DDS_CDD"``) must match the
+   ``<domain_participant_library name="AppLibrary">`` and
+   ``<domain_participant name="MCU_DDS_CDD">`` entries in your
+   ``dds_system.xml``. All child entities (publishers, subscribers, writers,
+   readers) are created automatically from the XML.
+
+   The participant is created in **disabled** state. It is enabled separately in
+   ``DdsImpl_EnableEntities()`` once the initialization state machine reaches
+   ``EntitiesCreated``.
+
+   .. note::
+
+      APPGEN requires the following additional includes in ``dds_impl.c``:
+
+      .. code-block:: c
+
+         #include "app_gen/app_gen.h"
+         #include "app_gen/app_gen_plugin.h"
+
+      These headers are provided by |me| and should not be modified.
+
+Building and flashing
+.....................
+
+We recommend a full rebuild for your first integration; the build should
+complete without errors. Verify that no linker errors occur related to
+memory size.
+
+Use your standard flashing procedure and verify that sufficient flash
+space is available.
+
+Validating integration
+......................
+
+Check the following:
+
+- The ECU boots without errors; 
+- The TcpIp stack initializes and assigns IP; 
+- The DDS CDD state machine reaches ENTITIES_ENABLED;
+- There are no hardfaults or exceptions.
+
+For debugging, we recommend the following:
+
+- Check the DDS CDD state via the debugger with the ``DdsCdd_State``
+  variable.
+- Verify the IP assignment with the ``DdsCdd_IpAddressAssigned`` flag.
+- Monitor initialization sequence timing.
+
+To test network connectivity, run the following from the command line:
+
+.. code-block:: bash
+
+   ping 192.168.1.100  # ECU IP address
+
+The ping response should succeed.
+
+To validate DDS discovery, set up *Admin Console*:
+
+#. Launch *Admin Console* on your PC.
+#. Set the PC IP address to 192.168.1.10 (same subnet as the ECU).
+#. Load the QoS profile ``admin_console_qos.xml``.
+#. Set the Domain ID to ``0`` (configured in ``dds_system.xml`` under
+   ``<domain name="myDomain" domain_id="0">``).
+
+For detailed instructions on how to set up *Admin Console*, see the
+`Admin Console User's Manual <https://community.rti.com/static/documentation/connext-dds/current/doc/manuals/connext_dds_professional/tools/admin_console/index.html>`__.
+
+Verify that discovery has succeeded by confirming the following:
+
+- The ECU *DomainParticipant* appears in *Participants* view;
+- The *DataWriter* "MCUtoPC" is visible; 
+- The *DataReader* "PCtoMCU" is visible.
+
+To test PC-to-ECU communication:
+
+#. In *Admin Console*, publish a sample to the "PCtoMCU" topic;
+#. Verify that the ECU receives data (e.g., check via the debugger or
+   application behavior).
+
+Test ECU-to-PC communication:
+
+#. Trigger a sample publication from the ECU to the application;
+#. In *Admin Console*, subscribe to the "MCUtoPC" topic;
+#. Verify that samples appear with the correct data values.
+
+At this point, you should have verified that:
+
+- The ECU boots and initializes DDS successfully; 
+- Network connectivity functions; 
+- DDS discovery succeeded; 
+- PC-to-ECU communication succeeded;
+- ECU-to-PC communication succeeded;
+- Data integrity was confirmed.
+
+Congratulations! You have successfully integrated DDS into your
+AUTOSAR workspace.
+
+.. _section-understanding-the-architecture:
+
+Understanding the architecture
+------------------------------
+
+Now that you have DDS working, let's review what you've integrated.
+
+The DDS CDD uses a three-layer design that separates AUTOSAR concerns
+from DDS logic:
+
+.. code-block:: none
+
+   ┌─────────────────────────────────────────────────────────┐
+   │  Layer 1: RTE Template (DdsCdd.c)                       │
+   │  • AUTOSAR runnables called by RTE                      │
+   │  • Generated from ARXML                                 │
+   │  • Minimal logic - delegates to adapter                 │
+   └───────────────────────┬─────────────────────────────────┘
+                           │
+   ┌───────────────────────▼─────────────────────────────────┐
+   │  Layer 2: Adapter (dds_cdd_adapter.c/h)                 │
+   │  • Type conversion (AUTOSAR ↔ DDS)                      │
+   │  • TcpIp integration and callbacks                      │
+   │  • Initialization state machine                         │
+   │  • AUTOSAR resource management                          │
+   └───────────────────────┬─────────────────────────────────┘
+                           │
+   ┌───────────────────────▼─────────────────────────────────┐
+   │  Layer 3: DDS Implementation (dds_impl.c/h)             │
+   │  • Pure DDS operations                                  │
+   │  • Entity creation and management                       │
+   │  • Read/write operations                                │
+   │  • No AUTOSAR dependencies                              │
+   └─────────────────────────────────────────────────────────┘
+
+This approach ensures that Layer 1 changes only when ARXML changes, Layer 2
+bridges AUTOSAR and DDS, and Layer 3 is portable and independently
+testable.
+
+DDS initialization proceeds through the following states to ensure correct
+sequencing:
+
+.. code-block:: none
+
+   TcpIpNotReady → TcpIpReady → SystemPropertiesSet → EntitiesCreated → EntitiesEnabled
+
+When publishing, the application writes to the RTE, which triggers a runnable
+in the DDS CDD. The adapter then converts the data types and the DDS layer
+writes the data to the network.
+
+When subscribing, network data is first received by the TcpIp stack. The DDS
+middleware stores the data in a queue and a periodic runnable polls the
+*DataReader* for new data. The adapter converts the data types and the RTE
+delivers the data to the application SW-C.
+
+For more detailed architecture information, see
+:ref:`section-autosar-architecture`. We recommend reading the Architecture
+section now, or returning to it after finishing with this guide.
+
+.. _section-customizing-for-your-application:
+
+Customizing for your application
+--------------------------------
+
+Add a new data type and Topic
+.............................
+
+#. Define a type in DDS-XML:
+
+   Edit ``dds_system.xml`` as shown below:
+
+   .. code:: xml
+
+      <types>
+          <struct name="VehicleSpeed">
+              <member name="timestamp" type="ulonglong"/>
+              <member name="speed_kph" type="float"/>
+              <member name="vehicle_id" type="long"/>
+          </struct>
+      </types>
+
+#. Generate type support code. See :ref:`section-appgen` for more information.
+
+#. Add a topic and endpoints to DDS-XML, as shown below:
+
+   .. code:: xml
+
+      <topic name="VehicleSpeedTopic" register_type_ref="VehicleSpeed">
+          <topic_qos base_name="QosLibrary::DefaultProfile"/>
+      </topic>
+      ...
+      <data_writer name="VehicleSpeedWriter" topic_ref="VehicleSpeedTopic"/>
+
+#. Update ARXML.
+
+   Manually create (or use arcgen/MAG generated arxml) the ARXML elements to integrate the new DDS topic into
+   your application, as follows:
+
+   - Create a data type compatible with the DDS type (e.g., ``VehicleSpeed_t``).
+
+   - Create a sender-receiver port interface using the new data type.
+
+   - Create port prototypes in DdsCdd SW-C. For publishing topics, create a
+     receive port (``R_VehicleSpeed``). For subscribing topics, create a send
+     port (``S_VehicleSpeed``).
+
+   - Create one runnable per new port prototype (e.g., ``Write_VehicleSpeed()``
+     for publishing).
+
+   - Map each runnable to its corresponding port prototype.
+
+   - Set trigger conditions for runnables. Publishing runnables should be
+     triggered by ``DataReceivedEvent`` on input port. Subscribing runnables
+     should be triggered by ``TimingEvent`` (periodic polling).
+
+   - Repeat the steps above for your application SW-C. Create send port
+     prototypes for topics your application publishes, create receive port
+     prototypes for topics your application subscribes to, and create runnables
+     to handle data exchange.
+
+   - Wire your application's SW-C output ports to DdsCdd input ports
+     (publishing path). Wire DdsCdd output ports to your application's SW-C
+     input ports (subscribing path).
+
+   - Assign all new runnables to the appropriate OS task (e.g., Task_DdsCdd).
+
+#. Adjust static heap memory.
+
+   Memory per topic depends on the sample size (user data payload),
+   :link_connextmicro_dds_api_c_up_one:`History <group__DDSHistoryQosModule.html>`
+   depth (``KEEP_LAST`` depth, ``KEEP_ALL`` not recommended), the number of
+   remote *DomainParticipants*/*DataReaders*/*DataWriters*, etc. For more
+   details, refer to :ref:`section-memory-management`.
+
+   For example:
+
+   .. code-block:: c
+
+      #define DDSCDD_HEAP_AREA_1_SIZE  (400 * 1024)  // 400KB
+
+#. Add adapter functions. In ``dds_cdd_adapter.c``:
+
+   .. code:: c
+
+      void DdsCdd_Adapter_Write_VehicleSpeed(void)
+      {
+          VehicleSpeed_t rteData;
+          VehicleSpeed ddsData;
+       
+          Rte_Read_R_VehicleSpeed(&rteData);
+       
+          // Type conversion
+          ddsData.timestamp = rteData.timestamp;
+          ddsData.speed_kph = rteData.speed_kph;
+          ddsData.vehicle_id = rteData.vehicle_id;
+          
+          DdsImpl_Write_VehicleSpeed(&ddsData);
+      }
+
+#. Add implementation functions. In ``dds_impl.c``:
+
+   .. code:: c
+
+      DDS_ReturnCode_t DdsImpl_Write_VehicleSpeed(const VehicleSpeed* data)
+      {
+          return VehicleSpeed_DataWriter_write(g_VehicleSpeedWriter, data, &DDS_HANDLE_NIL);
+      }
+
+#. Generate OS code from your OS ARXML configuration.
+
+#. Generate RTE code from your RTE/SWC ARXML configuration.
+
+#. Generate SWC template code for DdsCdd SW-C and all application SW-Cs.
+
+#. Implement DdsCdd template runnables. Fill in the generated DdsCdd runnable
+   stubs and call the corresponding adapter functions (e.g.,
+   ``DdsCdd_Adapter_Write_VehicleSpeed()``). For example:
+
+   .. code:: c
+
+      void DdsCdd_Write_VehicleSpeed(void)
+      {
+            DdsCdd_Adapter_Write_VehicleSpeed();
+      }
+
+#. Compile all generated code and implementation files. Verify there are no
+   compilation or linker errors.
+
+#. Validate the following:
+
+   - Check |me| static heap usage;
+   - Use *Admin Console* to verify the new topic;
+   - Test bidirectional communication;
+   - Verify data integrity.
+
+Change QoS from Reliable to Best-Effort
+.......................................
+
+This is a possible use case for high-frequency sensor data where
+occasional loss is acceptable.
+
+Edit ``dds_system.xml`` as follows:
+
+.. code:: xml
+
+   <qos_profile name="BestEffortProfile">
+       <datawriter_qos>
+           <reliability>
+               <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+           </reliability>
+           <history>
+               <kind>KEEP_LAST_HISTORY_QOS</kind>
+               <depth>1</depth>
+           </history>
+       </datawriter_qos>
+       <datareader_qos>
+           <reliability>
+               <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+           </reliability>
+           <history>
+               <kind>KEEP_LAST_HISTORY_QOS</kind>
+               <depth>1</depth>
+           </history>
+       </datareader_qos>
+   </qos_profile>
+
+   <topic name="SensorData" register_type_ref="SensorType">
+       <topic_qos base_name="QosLibrary::BestEffortProfile"/>
+   </topic>
+
+This configuration benefits from lower latency, reduced network overhead, and no
+reliability protocol overhead. However, packets may be lost and delivery
+is not guaranteed.
+
+.. note::
+   
+  QoS changes in ``dds_system.xml`` only require regenerating
+  DDS type support code. No changes are needed in the adapter layer
+  (``dds_cdd_adapter.c/h``), AUTOSAR template layer (``DdsCdd.c``), or
+  the application SW-Cs.
+
+Tune timing for your application
+................................
+
+To adjust runnable periods, use the following guidelines:
+
+DdsCddRun (DDS maintenance):
+
+- Default: 10ms
+- Faster (5ms): Lower discovery time, higher CPU usage.
+- Slower (20ms): Higher latency for QoS protocols.
+
+DdsCddRead (polling for data):
+
+- Default: 100ms
+  
+  Adjust based on expected data rate, such as 50ms for higher update rate.
+
+.. note::
+   
+  Timing adjustments only require runnable configuration
+  changes in DdsCdd ARXML. No modifications are needed in the adapter layer
+  (``dds_cdd_adapter.c/h``) or DDS implementation layer (``dds_impl.c/h``).
+
+
+.. _section-troubleshooting-guide:
+
+Troubleshooting
+---------------
+
+This section describes how to troubleshoot some common integration issues.
+
+DDS entities not created
+........................
+
+Check the following:
+
+- The IP address is assigned (was the TcpIp callback triggered?);
+- The heap size is sufficient;
+- 1 OS resource is configured as a STANDARD resource;
+- The socket owner name matches the configuration;
+- ``Rte_Start()`` is called from ``DDS_CDD_LocalIpAddrAssignmentChg`` only after
+  the IP address is assigned (not from a BswM action list).
+
+Debug:
+
+.. code-block:: c
+
+   // Check state machine
+   printf("DdsCdd_State: %d\n", DdsCdd_State);
+   printf("IP assigned: %d\n", DdsCdd_IpAddressAssigned);
+
+No DDS discovery
+................
+
+Check the following:
+
+- Network connectivity (does the ping test pass?);
+- The domain ID matches between the ECU and PC;
+- The firewall is not blocking UDP ports;
+- Communicating on the same subnet (or routing configured).
+
+Debug:
+
+- Use *Wireshark* to capture RTPS packets
+- Use *Admin Console* to check for discovery issues, QoS policy mismatch, etc.
+
+Data not received
+.................
+
+Check the following:
+
+- Is the ``DdsCddRead`` runnable executing?
+- QoS policies are compatible between the *DataWriter* and *DataReader*;
+- Topic names match exactly;
+- RTE ports are connected.
+
+Debug:
+
+- Use *Wireshark* to capture RTPS packets.
+- Use *Admin Console* to check for topic data.
+
+High CPU usage
+..............
+
+Check the following:
+
+- Is the ``DdsCddRun`` period too fast?
+- Is network congestion causing retransmissions?
+- Is the task priority too high?
+
+Possible solutions:
+
+- Increase ``DdsCddRun`` period to 20ms.
+- Use ``BEST_EFFORT`` Reliability where appropriate.
+- Reduce unnecessary data traffic.
+
+Out of memory
+.............
+
+Checkthe following:
+
+- Is the heap size sufficient for your configuration?
+- Are there too many topics?
+- Is the :link_connextmicro_dds_api_c_up_one:`History <group__DDSHistoryQosModule.html>`
+  QoS policy depth too large?
+
+Possible solutions:
+
+- Increase ``DDSCDD_HEAP_AREA_1_SIZE``.
+- Reduce :link_connextmicro_dds_api_c_up_one:`History <group__DDSHistoryQosModule.html>`
+  depth.
+- Use ``KEEP_LAST`` :link_connextmicro_dds_api_c_up_one:`History <group__DDSHistoryQosModule.html>`.
+
+API quick reference
+-------------------
+
+AUTOSAR Layer (``Rte_DdsCdd_Type.h)``:
+
+- ``Rte_Write_P_<DDS_topic>_<Type>()``: Write data to RTE port.
+- ``Rte_Read_R_<DDS_topic>_<Type>()``: Read data from RTE port.
+
+Adapter Layer (``dds_cdd_adapter.h``):
+
+- ``DdsCdd_Adapter_Init()``: Initialize adapter.
+- ``DdsCdd_Adapter_Run()``: Cyclic execution (10ms).
+- ``DdsCdd_Adapter_Read_<DDS_topic>()``: Read from DDS.
+- ``DdsCdd_Adapter_Write_<DDS_topic>()``: Write to DDS.
+
+DDS Implementation Layer (``dds_impl.h``):
+
+- ``DdsImpl_Init()``: Create DDS entities.
+- ``DdsImpl_Enable()``: Enable entities.
+- ``DdsImpl_Write_<DDS_topic>()``: Publish data.
+- ``DdsImpl_Read_<DDS_topic>()``: Read data.
+- ``DdsImpl_Run()``: Maintain DDS system.
+
+.. _section-memory-sizing-guidelines:
+
+Memory sizing
+-------------
+
+The baseline memory sizing comprises 240KB, which includes 2 topics, small
+samples (<100 bytes), ``KEEP_LAST``
+:link_connextmicro_dds_api_c_up_one:`History <group__DDSHistoryQosModule.html>`
+(depth 10), and 1 *DomainParticipant*.
+
+When adjusting from this baseline, use the following rules of thumb:
+
+- For each additional topic, add 40-60KB;
+- For large samples (>1KB), add ``sample_size * history_depth``;
+- For discovery, add 10KB per remote *DomainParticipant*;
+
+For a more conservative approach, start with the default 240KB, profile your
+actual memory usage on the target platform, add a 20-30% margin, and test
+the worst-case scenarios.
+
+Related documentation
+---------------------
+
+Refer to :ref:`section-autosar-architecture` for a comprehensive technical
+architecture of |me| and AUTOSAR.

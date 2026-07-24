@@ -1,0 +1,622 @@
+.. _section-autosar-architecture:
+
+Appendix B: AUTOSAR Architecture Example
+========================================
+
+This section will help you understand the design of |me|-AUTOSAR compatibility
+in depth, allowing you to modify the implementation for advanced use cases or
+explain the system in detail. It can also help with debugging complex
+integration issues.
+
+We recommend reading this section after successfully
+integrating |me| with AUTOSAR. You can optionally read this before
+integration to better understand the design, evaluate the approach, and
+assess compatibility.
+
+At a minimum, read :ref:`section-understanding-the-architecture` first
+for a high-level overview, then come here for more information.
+
+The HKMC-Leaf-ECUs reference implementation provides a layered architecture for
+integrating |me| into AUTOSAR Classic Platform systems. This guide describes
+the architectural patterns, component interactions, and design decisions.
+
+System architecture
+-------------------
+
+.. code-block:: none
+
+    ┌─────────────────────────────────────────────────────────────┐
+    │                   Application SW-C Layer                    │
+    │                  (MCU_EXAMPLE_ASR_APP)                      │
+    └────────────────────────┬────────────────────────────────────┘
+                             │ RTE Ports
+    ┌────────────────────────▼────────────────────────────────────┐
+    │                    AUTOSAR RTE Layer                        │
+    └────────────────────────┬────────────────────────────────────┘
+                             │ RTE Ports
+    ┌────────────────────────▼────────────────────────────────────┐
+    │                   DDS CDD SW-C Layer                        │
+    │                    (MCU_DDS_CDD)                            │
+    │  ┌──────────────────────────────────────────────────────┐   │
+    │  │  Layer 1: AUTOSAR Template (DdsCdd.c)                │   │
+    │  │  - Runnables mapped to OS tasks                      │   │
+    │  │  - Thin wrapper calling adapter functions            │   │
+    │  └──────────────────────┬───────────────────────────────┘   │
+    │  ┌──────────────────────▼───────────────────────────────┐   │
+    │  │  Layer 2: Adapter (dds_cdd_adapter.c/h)              │   │
+    │  │  - RTE to DDS type conversion                        │   │
+    │  │  - TcpIp integration                                 │   │
+    │  │  - Initialization state machine                      │   │
+    │  │  - AUTOSAR system property configuration             │   │
+    │  └──────────────────────┬───────────────────────────────┘   │
+    │  ┌──────────────────────▼───────────────────────────────┐   │
+    │  │  Layer 3: DDS Implementation (dds_impl.c/h)          │   │
+    │  │  - DDS entity creation and management                │   │
+    │  │  - DataWriter/DataReader operations                  │   │
+    │  │  - QoS configuration                                 │   │
+    │  └──────────────────────┬───────────────────────────────┘   │
+    └─────────────────────────┼───────────────────────────────────┘
+                              │ DDS API
+    ┌─────────────────────────▼───────────────────────────────────┐
+    │              RTI Connext DDS Micro Layer                    │
+    │  - Domain Participant                                       │
+    │  - Topics, Publishers, Subscribers                          │
+    │  - DataWriters, DataReaders                                 │
+    └─────────────────────────┬───────────────────────────────────┘
+                              │ Network I/O
+    ┌─────────────────────────▼───────────────────────────────────┐
+    │              AUTOSAR TcpIp (Eth Stack)                      │
+    └─────────────────────────────────────────────────────────────┘
+
+RTE template layer
+------------------
+
+The RTE template layer is implemented in ``MCU_DDS_CDD/dds_cdd/DdsCdd.c``. This
+file contains a partially-generated AUTOSAR SW-C implementation that serves as
+the interface between the RTE and the DDS functionality. The RTE generator
+creates the function signatures and header structure, while you (the integrator)
+provide the runnable implementations as stub templates that you must fill in.
+
+Your primary responsibilities in this layer are to implement runnables with
+trigger conditions (configured in ARXML), call corresponding adapter layer
+functions, and provide a thin wrapper with minimal logic. The RTE generator
+creates runnable stubs that you implement by calling the appropriate adapter
+layer functions, as shown below:
+
+.. code-block:: c
+
+    // Initialization runnable (triggered by InitEvent trigger condition)
+    FUNC(void, DdsCdd_CODE) DdsCddStart(void)
+    {
+        DdsCdd_Adapter_Init();
+    }
+
+    // Timer runnable for DDS QoS maintenance (10ms periodic trigger condition)
+    FUNC(void, DdsCdd_CODE) DdsCddRun(void)
+    {
+        DdsCdd_Adapter_Run();
+    }
+
+    // Inter-runnable trigger for processing received data
+    FUNC(void, DdsCdd_CODE) DdsCddRxIndication(void)
+    {
+        Rte_IrTrigger_DdsCdd_RxIndication_ITP_DdsCdd_RxIndication();
+    }
+
+    // Runnable to process received data (triggered by Inter-runnable trigger)
+    FUNC(void, DdsCdd_CODE) DdsCddProcessData(void)
+    {
+        NETIO_Autosar_udp_receive_callback();
+    }
+
+    // Data reception runnable (100ms periodic trigger condition)
+    // Pattern: One runnable per DDS topic you subscribe to
+    FUNC(void, DdsCdd_CODE) DdsCddRead_<DDS_topic>(void)
+    {
+        DdsCdd_Adapter_Read_<DDS_topic>();
+    }
+
+    // Example: For PCtoMCU topic
+    FUNC(void, DdsCdd_CODE) DdsCddRead_PCtoMCU(void)
+    {
+        DdsCdd_Adapter_Read_PCtoMCU();
+    }
+
+    // Data transmission runnable (DataReceivedEvent trigger condition)
+    // Pattern: One runnable per DDS topic you publish to
+    FUNC(void, DdsCdd_CODE) DdsCddWrite_<DDS_topic>(void)
+    {
+        DdsCdd_Adapter_Write_<DDS_topic>();
+    }
+
+    // Example: For MCUtoPC topic
+    FUNC(void, DdsCdd_CODE) DdsCddWrite_MCUtoPC(void)
+    {
+        DdsCdd_Adapter_Write_MCUtoPC();
+    }
+
+Layer 2: Adapter layer
+......................
+
+The adapter layer implementation resides in
+``MCU_DDS_CDD/adaptation/dds_cdd_adapter.c`` and ``dds_cdd_adapter.h``. This
+layer acts as a bridge between AUTOSAR-specific concerns (RTE types, TcpIp,
+resources) and the DDS implementation.
+
+The adapter layer handles five key responsibilities:
+
+- It performs type conversion by mapping between RTE types and DDS types;
+- It integrates with TcpIp by handling socket owner initialization and IP
+  address management;
+- It manages the initialization sequence through a state machine;
+- It configures AUTOSAR-specific DDS system properties;
+- It manages AUTOSAR resource allocation.
+
+The adapter layer implements an initialization state machine that guides the
+system through several states:
+
+.. code-block:: none
+
+    TcpIpNotReady
+        │
+        │ IP address assigned
+        ▼
+    TcpIpReady
+        │
+        │ Set AUTOSAR system properties
+        ▼
+    SystemPropertiesSet
+        │
+        │ Create DDS entities (disabled)
+        ▼
+    EntitiesCreated
+        │
+        │ Enable entities
+        ▼
+    EntitiesEnabled
+        │
+        │ Normal operation
+        ▼
+    (Running State)
+
+The state machine implementation defines several states that the adapter
+transitions through. The state begins as ``DDSCDD_STATE_TCPIP_NOT_READY`` and
+progresses through ``DDSCDD_STATE_TCPIP_READY``,
+``DDSCDD_STATE_SYSTEM_PROPERTIES_SET``, ``DDSCDD_STATE_ENTITIES_CREATED``, and
+finally ``DDSCDD_STATE_ENTITIES_ENABLED``:
+
+.. code-block:: c
+
+    typedef enum {
+        DDSCDD_STATE_TCPIP_NOT_READY,
+        DDSCDD_STATE_TCPIP_READY,
+        DDSCDD_STATE_SYSTEM_PROPERTIES_SET,
+        DDSCDD_STATE_ENTITIES_CREATED,
+        DDSCDD_STATE_ENTITIES_ENABLED
+    } DdsCdd_StateType;
+
+    static DdsCdd_StateType DdsCdd_State = DDSCDD_STATE_TCPIP_NOT_READY;
+
+The generated runnable sequence is only part of the startup behavior. The
+adapter code implements explicit state guards to ensure initialization remains
+safe under timing variation, such as delayed IP assignment or repeated runnable
+execution. The adapter layer splits initialization responsibility between two
+functions: ``DdsCdd_Adapter_Init()`` and ``DdsCdd_Adapter_Run()``.
+
+``DdsCdd_Adapter_Init()`` performs one-time setup phases such as
+setting system properties and creating DDS entities, and it transitions state
+only on success. ``DdsCdd_Adapter_Run()`` owns periodic work and enables
+entities when the system reaches ``EntitiesCreated`` state. The
+``DdsCdd_Adapter_Run()`` function can also invoke ``DdsCdd_Adapter_Init()``
+when state is ``TcpIpReady``, providing a safe retry path from the periodic
+context. Any failure transitions the state to ``Error`` to avoid partial startup
+continuation.
+
+The following code example shows how the adapter implements state guards and
+transitions:
+
+.. code-block:: c
+
+    void DdsCdd_Adapter_Init(void)
+    {
+        if (state == DdsCdd_InitState_TcpIpNotReady ||
+            state == DdsCdd_InitState_Error)
+        {
+            return;
+        }
+
+        if (state == DdsCdd_InitState_TcpIpReady)
+        {
+            if (SetSystemProperties() != 0 ||
+                OSAPI_System_initialize() != RTI_TRUE)
+            {
+                state = DdsCdd_InitState_Error;
+                return;
+            }
+            state = DdsCdd_InitState_SystemPropertiesSet;
+        }
+
+        if (state == DdsCdd_InitState_SystemPropertiesSet)
+        {
+            if (DdsImpl_CreateEntities() != 0)
+            {
+                state = DdsCdd_InitState_Error;
+                return;
+            }
+            state = DdsCdd_InitState_EntitiesCreated;
+        }
+    }
+
+    void DdsCdd_Adapter_Run(void)
+    {
+        OSAPI_SystemAutosar_timer_callback();
+
+        if (state == DdsCdd_InitState_TcpIpReady)
+        {
+            DdsCdd_Adapter_Init();
+        }
+        else if (state == DdsCdd_InitState_EntitiesCreated)
+        {
+            if (DdsImpl_EnableEntities() == 0)
+            {
+                state = DdsCdd_InitState_EntitiesEnabled;
+            }
+            else
+            {
+                state = DdsCdd_InitState_Error;
+            }
+        }
+    }
+
+The separation of initialization into these two functions provides several
+benefits. ``DdsCdd_Adapter_Init()`` performs one-time setup phases including
+system properties configuration and DDS entity creation, and it transitions
+state only on success. ``DdsCdd_Adapter_Run()`` owns the periodic work and
+enables entities when the system reaches the ``EntitiesCreated`` state.
+``DdsCdd_Adapter_Run()`` can invoke ``DdsCdd_Adapter_Init()`` when state is
+``TcpIpReady``, providing a safe retry path from the periodic context. Any
+failure transitions to ``Error`` state to avoid partial startup continuation.
+
+.. _section-tcpip-configuration:
+
+TcpIp Configuration
+'''''''''''''''''''
+
+This architecture expects a static TcpIp configuration where the local IP
+address is assigned as soon as TcpIp starts. In the documented reference
+approach, ``Rte_Start()`` is triggered from
+``DDS_CDD_LocalIpAddrAssignmentChg()`` after IP assignment and link-up, and
+DDS initialization is then performed in ``DdsCddStart``.
+
+- Static IP systems (most integrations): The IP address is immediately assigned
+  when TcpIp initializes, allowing ``Rte_Start()`` and ``DdsCddStart`` to
+  execute quickly after network readiness is reached.
+- Dynamic IP systems (DHCP): If the IP address assignment occurs later in the
+  sequence, startup may be delayed until the callback reports assigned state.
+  |me| requires the local IP to be assigned prior to fully initializing.
+
+Note the following key functions:
+
+- ``DdsCdd_Adapter_Init()``: Initialize adapter and start state machine.
+- ``DdsCdd_Adapter_Run()``: Advance state machine and maintain DDS QoS
+  protocols.
+- ``DdsCdd_Adapter_Read_PCtoMCU()``: Poll for incoming DDS data.
+- ``DdsCdd_Adapter_Write_MCUtoPC()``: Publish DDS data.
+- ``DDS_CDD_LocalIpAddrAssignmentChg()``: TcpIp callback for IP address changes.
+- ``DDS_CDD_RxIndication()``: TcpIp callback for received data.
+
+Layer 3: DDS implementation layer
+..................................
+
+The DDS implementation layer is contained in ``MCU_DDS_CDD/dds_impl/dds_impl.c``
+and ``dds_impl.h``. This layer handles DDS logic isolated from AUTOSAR concerns
+and is responsible for several key functions.
+
+The responsibilities of this layer include entity creation to set up
+*DomainParticipants*, *Topics*, *Publishers*, *Subscribers*, *DataWriters*, and
+*DataReaders*. It also handles data operations for writing and reading DDS
+samples. The layer applies QoS policies from XML configuration and makes use of
+generated DDS type and application support code from ``dds_gen/``.
+
+The key functions implemented by this layer are as follows:
+
+.. code-block:: c
+
+    // Create DDS entities from XML (participant in disabled state)
+    int DdsImpl_CreateEntities(void);
+
+    // Enable all DDS entities (call after CreateEntities)
+    int DdsImpl_EnableEntities(void);
+
+    // Publish outbound data to DDS
+    int DdsImpl_Write_MCUtoPC(const ExampleType_t *sample);
+
+    // Read inbound data from DDS
+    int DdsImpl_Read_PCtoMCU(ExampleType_t *sample, int *is_valid);
+
+The DDS entity hierarchy is organized as follows:
+
+.. code-block:: none
+
+    DomainParticipant  ("AppLibrary::MCU_DDS_CDD" — from dds_system.xml)
+    ├── Publisher
+    │   └── DataWriter (MCUtoPC — outbound)
+    └── Subscriber
+        └── DataReader (PCtoMCU — inbound)
+
+Initialization sequence
+-----------------------
+
+Initialization follows the detailed sequence below:
+
+.. code-block:: none
+
+    1. TcpIp Stack Initialization
+       └─> IP address assigned (static configuration)
+
+    2. DDS_CDD_LocalIpAddrAssignmentChg() callback
+       └─> Called when local IP becomes assigned
+
+    3. Rte_Start() [Called from DDS_CDD_LocalIpAddrAssignmentChg()]
+       ├─> Initialize all SW-Cs
+       └─> Trigger InitEvent condition → DdsCddStart()
+            └─> Call DdsCdd_Adapter_Init()
+
+    4. First DdsCddRun() Execution (State: TCPIP_READY)
+       ├─> State machine starts/continues in adapter
+       ├─> Set AUTOSAR system properties:
+       │   ├─> Memory heap allocation
+       │   ├─> Resource management hooks
+       │   └─> Timer hooks
+       └─> State → SYSTEM_PROPERTIES_SET
+
+    5. Second DdsCddRun() Execution (State: SYSTEM_PROPERTIES_SET)
+       ├─> Call DdsImpl_CreateEntities()
+       │   ├─> Register APPGEN plugin (loads dds_system.xml into factory)
+       │   └─> DDS_DomainParticipantFactory_create_participant_from_config()
+       │       (creates participant + all topics, writers, readers — all disabled)
+       └─> State → ENTITIES_CREATED
+
+    6. Third DdsCddRun() Execution (State: ENTITIES_CREATED)
+       ├─> Call DdsImpl_EnableEntities()
+       │   └─> DDS_Entity_enable() on participant (cascades to all children)
+       └─> State → ENTITIES_ENABLED
+
+    7. Normal Operation (State: ENTITIES_ENABLED)
+       ├─> DdsCddRun() maintains DDS system (10ms)
+       ├─> DdsCddRead_PCtoMCU() polls for data (100ms)
+       └─> DdsCddWrite_MCUtoPC() publishes on trigger
+
+.. note::
+
+  This document describes one valid initialization strategy. Another valid
+  strategy is to start RTE in the normal BswM sequence and defer DDS
+  initialization to a periodic runnable that checks network readiness.
+
+Ordering constraint
+...................
+
+The startup ordering must ensure DDS initialization begins only after network
+readiness (IP address assigned and link is up):
+
+1. ``TcpIp_Init()``: Network stack initializes first.
+2. ``DDS_CDD_LocalIpAddrAssignmentChg()`` callback indicates local IP assigned and link is up.
+3. ``Rte_Start()`` is called from the callback, which triggers ``DdsCddStart()``.
+
+This ordering is necessary for several reasons. DDS requires an IP
+address to be available before full initialization can proceed. Starting the
+RTE only after network readiness helps prevent DDS startup failures.
+Additionally, callback-driven startup avoids race conditions between network
+readiness and DDS entity creation.
+
+To implement this correctly, ensure the TcpIp local-address-assignment callback
+invokes ``Rte_Start()`` only when the target unicast IP is in assigned state
+(see :ref:`section-autosar-integration` for details).
+
+.. note:: 
+    
+  For systems using DHCP, callback timing may be later. Keep the same
+  network-readiness gate and avoid starting DDS initialization before assigned
+  state.
+
+Resource management
+-------------------
+
+This section details how the DDS CDD manages memory and coordinates with
+AUTOSAR services to ensure thread-safe operations and predictable resource
+utilization.
+
+Memory architecture
+...................
+
+Memory requirements depend on number of topics, sample sizes,
+history depth, discovery requirements, and resource limits. See
+:ref:`section-customizing-for-your-application` and
+:ref:`section-memory-sizing-guidelines` for detailed sizing guidelines.
+
+AUTOSAR resource synchronization
+................................
+
+The DDS CDD uses a single OS resource for internal synchronization (mutex protection).
+All DDS operations that access shared data structures are guarded by this one resource.
+
+.. code-block:: c
+
+    /* Actual implementation: single resource for mutex synchronization */
+    system_property.psl_property.sync_type = OSAPI_AUTOSAR_SYNCKIND_RESOURCES;
+    system_property.psl_property.mutex_resource_id = OsResource_000;
+
+1 STANDARD Resource (typically named ``OsResource_000``) must be
+configured in the OS. All DDS entity creation and data read/write operations are
+protected by this single resource. See :ref:`section-os-configuration` for
+configuration details.
+
+When any DDS API is called (participant creation, entity operations,
+data write/read), the system automatically acquires ``OsResource_000``, performs
+the operation, and releases the resource. This ensures thread-safe access from
+multiple AUTOSAR tasks and the background DDS housekeeping task.
+
+TcpIp socket management
+.......................
+
+The socket owner is configured with the following macro definition:
+
+.. code-block:: c
+
+    #define DDSCDD_SOCKET_OWNER_NAME "DdsSocketOwner"
+
+The DDS CDD requires a total of 4 UDP sockets when operating in unicast mode,
+or 5 UDP sockets when operating in multicast mode. These sockets use dynamic
+port allocation and must register Rx indication callbacks to handle incoming
+data.
+
+Timing architecture
+-------------------
+
+This section covers runnable scheduling,
+period requirements, task priority guidelines, and timing considerations to
+ensure proper DDS protocol maintenance and predictable end-to-end latency
+within the AUTOSAR environment.
+
+Runnable timing configuration
+.............................
+
+.. code-block:: none
+
+    DdsCddStart
+    ├─> Trigger Condition: InitEvent
+    └─> Execution: Once at startup
+
+    DdsCddRun
+    ├─> Trigger Condition: TimingEvent (10ms periodic)
+    ├─> Purpose: DDS QoS maintenance
+    └─> Tasks: Discovery, liveliness, reliability protocol
+
+    DdsCddRead_PCtoMCU
+    ├─> Trigger Condition: TimingEvent (100ms periodic)
+    ├─> Purpose: Poll for incoming data
+    └─> Tasks: Check DataReader, write to RTE
+
+    DdsCddWrite_MCUtoPC
+    ├─> Trigger Condition: DataReceivedEvent on input port
+    ├─> Purpose: Publish data to network
+    └─> Tasks: Read from RTE, publish via DataWriter
+
+.. note::
+
+  These trigger conditions are configured in DdsCdd ARXML during RTE
+  configuration (see :ref:`section-configuring-rte`). The
+  RTE generator automatically creates the corresponding OS alarms and events
+  from these trigger condition specifications.
+
+Note the following timing considerations:
+
+.. warning::
+
+    If DDS initialization is executed inside a periodic runnable, the first
+    activation can exceed the nominal runnable period (for example, a 10 ms
+    runnable can run longer during initialization). Include this in watchdog,
+    deadline monitoring, and task load budget analysis.
+
+1. 10ms DdsCddRun Period:
+
+   - Must be fast enough for DDS protocol maintenance.
+   - Affects discovery time and reliability protocol.
+   - Too slow: Increased latency, potential data loss.
+   - Too fast: Unnecessary CPU overhead.
+
+2. 100ms DdsCddRead Period:
+
+   - Determines maximum data reception rate.
+   - Should match application requirements.
+   - Consider jitter and worst-case execution time.
+
+3. DataReceivedEvent Trigger Condition:
+
+   - Runnable triggered immediately when app writes data to RTE port.
+   - Minimizes end-to-end latency.
+   - No polling overhead.
+
+DDS CDD runnables should have higher priority than application SW-Cs, but lower
+priority than critical BSW tasks (Ethernet driver, TcpIp stack). This ensures
+timely network communication without blocking critical system functions.
+
+Error handling strategy
+-----------------------
+
+During initialization, if
+``DdsImpl_Init()`` encounters errors, the system logs the error, remains in the
+current state, and retries on the next ``DdsCddRun()`` cycle. This strategy
+avoids catastrophic failures during startup:
+
+.. code-block:: c
+
+    if (DdsImpl_Init() != DDS_RETCODE_OK) {
+        // Log error
+        // Remain in current state
+        // Retry on next DdsCddRun() cycle
+    }
+
+At runtime, the system handles write operations by checking the return code from
+``DdsImpl_Write_MCUtoPC()``. If the write operation fails with a return code
+other than ``DDS_RETCODE_OK``, the data is lost and the application must
+implement retry logic if data transmission is critical. The error is logged for
+diagnostics to help identify patterns or persistent issues:
+
+.. code-block:: c
+
+    DDS_ReturnCode_t result = DdsImpl_Write_MCUtoPC(&data);
+    if (result != DDS_RETCODE_OK) {
+        // Data lost, application should implement retry logic
+        // Log error for diagnostics
+    }
+
+Read operations similarly check the return code from ``DdsImpl_Read_PCtoMCU()``.
+If the result is ``DDS_RETCODE_NO_DATA``, this is a normal condition indicating
+that no new data is currently available. However, if the result indicates any
+other error, the system logs it for diagnostics to aid in troubleshooting. In
+all cases, errors propagate through return codes, allowing the application to
+decide its own retry strategy based on system requirements:
+
+.. code-block:: c
+
+    DDS_ReturnCode_t result = DdsImpl_Read_PCtoMCU(&data);
+    if (result == DDS_RETCODE_NO_DATA) {
+        // No new data available (normal condition)
+    } else if (result != DDS_RETCODE_OK) {
+        // Error reading data, log for diagnostics
+    }
+
+Scalability considerations
+--------------------------
+
+Keep the following in mind when scaling your system architecture.
+
+When adding topics to your system, update ``dds_system.xml`` 
+with new topic definitions, then regenerate DDS type and application support
+code (both generated from DDS-XML). Add new port interfaces to ARXML, create
+new adapter functions in Layer 2 and Layer 3, add new runnables to Layer 1,
+and increase memory allocation if needed.
+
+For a multi-topic architecture, ensure the system is organized across the
+three layers, as shown below:
+
+.. code-block:: c
+
+    // Layer 3: Support multiple topics
+    DDS_ReturnCode_t DdsImpl_Write_Topic1(const Type1* data);
+    DDS_ReturnCode_t DdsImpl_Write_Topic2(const Type2* data);
+    DDS_ReturnCode_t DdsImpl_Read_Topic1(Type1* data);
+    DDS_ReturnCode_t DdsImpl_Read_Topic2(Type2* data);
+
+    // Layer 2: Multiple adapter functions
+    void DdsCdd_Adapter_Write_Topic1(void);
+    void DdsCdd_Adapter_Write_Topic2(void);
+    void DdsCdd_Adapter_Read_Topic1(void);
+    void DdsCdd_Adapter_Read_Topic2(void);
+
+    // Layer 1: Multiple runnables
+    FUNC(void, DdsCdd_CODE) DdsCddWrite_Topic1(void);
+    FUNC(void, DdsCdd_CODE) DdsCddWrite_Topic2(void);
+    FUNC(void, DdsCdd_CODE) DdsCddRead_Topic1(void);
+    FUNC(void, DdsCdd_CODE) DdsCddRead_Topic2(void);

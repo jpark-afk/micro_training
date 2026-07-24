@@ -1,0 +1,30 @@
+Transports
+==========
+
+.. Release Notes from this point.
+
+:major:`[Major]` Zero Copy v1  limited the total number of shared memory segments to 500
+----------------------------------------------------------------------------------------
+When using the Zero Copy v1 transport, the total number of shared memory
+segments per *DomainParticipant* was incorrectly limited to 500.
+
+[RTI Issue ID MICRO-3489]
+
+:trivial:`[Trivial]` UDP registration documented incorrectly
+------------------------------------------------------------
+The |me| documentation stated incorrectly that the UDP transport was
+automatically registered.
+
+[RTI Issue ID MICRO-11445]
+
+
+:trivial:`[Trivial]` Internal UDP pings failed to send
+------------------------------------------------------
+Internal UDP pings failed to send, which would cause |me| to log the following
+warning on startup:
+
+.. code-block:: bash
+
+  WARNING: ModuleID=4 Errcode=235
+
+[RTI Issue ID MICRO-8929]

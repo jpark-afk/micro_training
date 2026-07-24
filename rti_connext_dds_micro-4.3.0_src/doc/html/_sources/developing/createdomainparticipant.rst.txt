@@ -1,0 +1,156 @@
+Create DomainParticipant, Topic, and Type
+=========================================
+
+.. highlight:: c
+
+A :link_connextmicro_dds_api_c_up_one:`DomainParticipantFactory <group__DDSDomainParticipantFactoryModule.html>` creates *DomainParticipants*, and a
+*DomainParticipant* itself is the factory for creating *Publishers*, *Subscribers*,
+and *Topics*.
+
+When creating a *DomainParticipant*, you may need to customize
+:link_connextmicro_dds_api_c_up_one:`DomainParticipantQos <structDDS__DomainParticipantQos.html>`, notably for:
+
+- **Resource limits**.  Default resource limits are set at
+  minimum values.
+- **Initial peers**.
+- **Discovery**. The name of the registered discovery component ("dpde"
+  or "dpse") must be assigned to
+  :link_connextmicro_dds_api_c_up_one:`DiscoveryQosPolicy
+  <structDDS__DiscoveryQosPolicy.html>`'s name. Please note that in
+  |me_cert|, only the DPSE discovery plugin is supported.
+- **Participant Name**. Every *DomainParticipant* is given the same default
+  name.  Must be unique when using DPSE discovery.
+
+Example code:
+
+- Create a *DomainParticipant* with configured :link_connextmicro_dds_api_c_up_one:`DomainParticipantQos <structDDS__DomainParticipantQos.html>`:
+
+  ::
+
+    DDS_DomainParticipant *participant = NULL;
+    struct DDS_DomainParticipantQos dp_qos =
+                              DDS_DomainParticipantQos_INITIALIZER;
+
+    /* DDS domain of DomainParticipant */
+    DDS_Long domain_id = 0;
+
+    /* Name of your registered Discovery component. The name must match the
+     * name the discovery plugin was registered with.
+     */
+    if (!RT_ComponentFactoryId_set_name(&dp_qos.discovery.discovery.name,
+                                        "dpde"))
+    {
+         /* failure */
+    }
+
+    /* Initial peers: use only default multicast peer
+     */
+    DDS_StringSeq_set_maximum(&dp_qos.discovery.initial_peers,1);
+    DDS_StringSeq_set_length(&dp_qos.discovery.initial_peers,1);
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.initial_peers,0) =
+        DDS_String_dup("_udp://239.255.0.1");
+
+    /* Configure discovery to use the UDP transport and listen on all allowed
+     * interfaces and the multicast address 239.255.0.1
+     */
+    DDS_StringSeq_set_maximum(&dp_qos.discovery.enabled_transports,2);
+    DDS_StringSeq_set_length(&dp_qos.discovery.enabled_transports,2);
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.enabled_transports,0) =
+            DDS_String_dup("_udp://");
+    *DDS_StringSeq_get_reference(&dp_qos.discovery.enabled_transports,1) =
+            DDS_String_dup("_udp://239.255.0.1");
+
+    /* Configure user-data to use UDP transport and receive on all allowed
+     * interfaces
+     */
+    DDS_StringSeq_set_maximum(&dp_qos.user_traffic.enabled_transports,1);
+    DDS_StringSeq_set_length(&dp_qos.user_traffic.enabled_transports,1);
+    *DDS_StringSeq_get_reference(&dp_qos.user_traffic.enabled_transports,0) =
+            DDS_String_dup("_udp://");
+
+    /* Resource limits to discover up to 4 remote participants */
+    dp_qos.resource_limits.local_topic_allocation = 1;
+    dp_qos.resource_limits.local_type_allocation = 1;
+    dp_qos.resource_limits.local_reader_allocation = 1;
+    dp_qos.resource_limits.local_writer_allocation = 1;
+    dp_qos.resource_limits.remote_participant_allocation = 4;
+    dp_qos.resource_limits.remote_reader_allocation = 4;
+    dp_qos.resource_limits.remote_writer_allocation = 4;
+
+    /* Participant name */
+    strcpy(dp_qos.participant_name.name, "Participant_1");
+
+    participant =
+         DDS_DomainParticipantFactory_create_participant(factory,
+                                                         domain_id,
+                                                         &dp_qos,
+                                                         NULL,
+                                                         DDS_STATUS_MASK_NONE);
+     if (participant == NULL)
+     {
+         /* failure */
+     }
+
+Register Type
+-------------
+
+Your data types that have been generated from IDL need to be registered
+with the *DomainParticipants* that will be using them. Each registered type
+must have a unique name.
+
+::
+
+  DDS_ReturnCode_t retcode;
+
+  retcode = DDS_DomainParticipant_register_type(participant,
+                                                "HelloWorld",
+                                                HelloWorldTypePlugin_get());
+  if (retcode != DDS_RETCODE_OK)
+  {
+      /* failure */
+  }
+
+Create Topic of Registered Type
+-------------------------------
+
+DDS *Topics* encapsulate the types being communicated, and you can create
+*Topics* for your type once your type is registered.
+
+A topic is given a name at creation (e.g. "Example HelloWorld").  The type
+associated with the *Topic* is specified with its registered name.
+
+::
+
+  DDS_Topic *topic = NULL;
+
+  topic = DDS_DomainParticipant_create_topic(participant,
+                                             "Example HelloWorld",
+                                             "HelloWorld",
+                                             &DDS_TOPIC_QOS_DEFAULT,
+                                             NULL,
+                                             DDS_STATUS_MASK_NONE);
+
+  if (topic == NULL)
+  {
+      /* failure */
+  }
+
+DPSE Discovery: Assert Remote Participant
+-----------------------------------------
+
+DPSE Discovery relies on the application to specify the remote
+*DomainParticipants* that its local *DomainParticipants* are allowed to
+discover. Your application must call a :link_connextmicro_dds_api_c_up_one:`DPSE <group__DPSEModule.html>` API for each remote participant
+to be discovered. The API takes as input the name of the remote
+participant.
+
+::
+
+  /* Allow discovery of remote participant with name Participant_2 */
+  retcode = DPSE_RemoteParticipant_assert(participant, "Participant_2");
+  if (retcode != DDS_RETCODE_OK)
+  {
+      /* failure */
+  }
+
+For more information, see :doc:`../programmersguide/domains`.

@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>10.5.1. What’s New in 4.2.0 &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.5.2. What’s Fixed in 4.2.0" href="whats_fixed_420/whats_fixed_420_index.html" />
+    <link rel="prev" title="10.5. Previous Releases" href="previous_release.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">10. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="compatibility.html">10.1. Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported_platforms.html">10.2. Supported Platforms and Programming Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whats_new_430.html">10.3. What’s New in 4.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whats_fixed_430/whats_fixed_430_index.html">10.4. What’s Fixed in 4.3.0</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="previous_release.html">10.5. Previous Releases</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">10.5.1. What’s New in 4.2.0</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reduced-core-library-size">10.5.1.1. Reduced core library size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#secure-rtps-communication-with-the-lightweight-security-plugin">10.5.1.2. Secure RTPS communication with the Lightweight Security Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimize-network-bandwidth-usage-with-content-filtering">10.5.1.3. Optimize network bandwidth usage with content filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#improve-system-robustness-with-domainparticipant-rediscovery">10.5.1.4. Improve system robustness with DomainParticipant rediscovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#develop-secure-applications-in-xml-with-mag">10.5.1.5. Develop secure applications in XML with MAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#develop-applications-with-content-filtering-in-xml-with-mag">10.5.1.6. Develop applications with content filtering in XML with MAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enable-domainparticipant-rediscovery-in-xml-with-mag">10.5.1.7. Enable DomainParticipant rediscovery in XML with MAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enable-endpoint-discovery-message-queueing-in-xml-with-mag">10.5.1.8. Enable endpoint discovery message queueing in XML with MAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#third-party-and-open-source-software-changes">10.5.1.9. Third-party and open source software changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="whats_fixed_420/whats_fixed_420_index.html">10.5.2. What’s Fixed in 4.2.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="whats_new_410.html">10.5.3. What’s New in 4.1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="whats_fixed_410/whats_fixed_410_index.html">10.5.4. What’s Fixed in 4.1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="whats_new_401.html">10.5.5. What’s New in 4.0.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="whats_fixed_401/whats_fixed_401_index.html">10.5.6. What’s Fixed in 4.0.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="whats_new_400.html">10.5.7. What’s New in 4.0.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="whats_fixed_400/whats_fixed_400_index.html">10.5.8. What’s Fixed in 4.0.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="known_issues.html">10.6. Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental_features.html">10.7. Experimental Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">10. </span>Release Notes</a> &raquo;</li>
+        
+          <li><a href="previous_release.html"><span class="section-number">10.5. </span>Previous Releases</a> &raquo;</li>
+        
+      <li><span class="section-number">10.5.1. </span>What’s New in 4.2.0</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="what-s-new-in-4-2-0">
+<span id="whats-new-420"></span><h1><span class="section-number">10.5.1. </span>What’s New in 4.2.0<a class="headerlink" href="#what-s-new-in-4-2-0" title="Permalink to this headline">¶</a></h1>
+<p><em>RTI</em> <em>Connext Micro</em> 4.2.0 is a feature release. See the
+<a class="reference external" href="https://www.rti.com/products/connext-releases">Connext Releases</a>
+page on the RTI website for more information on RTI’s software release model.</p>
+<p>The following features are new since <em>Connext Micro</em> 4.1.0.</p>
+<div class="section" id="reduced-core-library-size">
+<h2><span class="section-number">10.5.1.1. </span>Reduced core library size<a class="headerlink" href="#reduced-core-library-size" title="Permalink to this headline">¶</a></h2>
+<p>This release separates the Extensible Types (XTypes) module from the
+core library, <code class="docutils literal notranslate"><span class="pre">rti_me</span></code>, into a separate library, <code class="docutils literal notranslate"><span class="pre">rti_me_ddsxtypes</span></code>. This
+change reduces the size of <code class="docutils literal notranslate"><span class="pre">rti_me</span></code>. The XTypes module is now
+optional and can be omitted if your application does not use its functionality.</p>
+<p>Refer to the <a class="reference external" href="https://community.rti.com/static/documentation/connext-micro/current/doc/mg/html/index.html">Migration Guide</a>
+(if you have internet access) for more information on how this change affects
+existing <em>Connext Micro</em> applications.</p>
+</div>
+<div class="section" id="secure-rtps-communication-with-the-lightweight-security-plugin">
+<h2><span class="section-number">10.5.1.2. </span>Secure RTPS communication with the Lightweight Security Plugin<a class="headerlink" href="#secure-rtps-communication-with-the-lightweight-security-plugin" title="Permalink to this headline">¶</a></h2>
+<p>This release introduces the <em>Lightweight Security Plugin</em> for <em>Connext Micro</em>, a module
+that enables you to secure your application’s RTPS messages with pre-shared key
+(PSK) encryption. The <em>Lightweight Security Plugin</em> includes a Platform
+Independent Library (PIL) and a Transform Platform Support Library (PSL) for
+interfacing with <a class="reference external" href="https://github.com/openssl/openssl/tree/openssl-3.5.0">OpenSSL 3.5</a>.</p>
+<p>For more information on this feature, refer to the <a class="reference internal" href="../programmersguide/security_psk.html#section-psk"><span class="std std-ref">Lightweight Security Plugin</span></a> section.</p>
+</div>
+<div class="section" id="optimize-network-bandwidth-usage-with-content-filtering">
+<h2><span class="section-number">10.5.1.3. </span>Optimize network bandwidth usage with content filtering<a class="headerlink" href="#optimize-network-bandwidth-usage-with-content-filtering" title="Permalink to this headline">¶</a></h2>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>This is an experimental feature in <em>Connext Micro</em> 4.2.0. It is not guaranteed to be
+consistent or supported and should not be used in production.</p>
+<p>Refer to <a class="reference internal" href="experimental_features.html#section-experimental-features"><span class="std std-ref">Experimental Features</span></a> for more information.</p>
+</div>
+<p>This release introduces content filtering to <em>Connext Micro</em>, enabling <em>DataReaders</em>
+to filter incoming sample data. This can reduce the network bandwidth usage in
+your application, since matching <em>DataWriters</em> can be configured to only send
+samples that pass the <em>DataReader</em>’s filter.</p>
+<p>For more information on this feature, consult the
+<a class="reference internal" href="../programmersguide/content_filtering.html#section-content-filtering"><span class="std std-ref">Content Filtering</span></a> section.</p>
+</div>
+<div class="section" id="improve-system-robustness-with-domainparticipant-rediscovery">
+<h2><span class="section-number">10.5.1.4. </span>Improve system robustness with DomainParticipant rediscovery<a class="headerlink" href="#improve-system-robustness-with-domainparticipant-rediscovery" title="Permalink to this headline">¶</a></h2>
+<p>This release adds the ability for a <em>DomainParticipant</em> with its
+<code class="docutils literal notranslate"><span class="pre">DomainParticipantQos.participant_name.name</span></code> set to a non-empty value to be
+rediscovered if it is restarted before its <code class="docutils literal notranslate"><span class="pre">lease_duration</span></code> expires. You can
+enable this feature by setting the
+<code class="docutils literal notranslate"><span class="pre">DomainParticipantQos.discovery.enable_participant_discovery_by_name</span></code> property
+to <code class="docutils literal notranslate"><span class="pre">DDS_BOOLEAN_TRUE</span></code>.</p>
+<p>For more information on this feature, refer to the
+<a class="reference internal" href="../programmersguide/discovery.html#section-domainparticipant-rediscovery"><span class="std std-ref">DomainParticipant Discovery by Name</span></a> section.</p>
+</div>
+<div class="section" id="develop-secure-applications-in-xml-with-mag">
+<h2><span class="section-number">10.5.1.5. </span>Develop secure applications in XML with MAG<a class="headerlink" href="#develop-secure-applications-in-xml-with-mag" title="Permalink to this headline">¶</a></h2>
+<p>This release allows you to enable and configure the <em>Lightweight Security
+Plugin</em> while defining an application in XML format. Micro Application Generator
+(MAG) will then create the necessary code for <em>Connext Micro</em>.</p>
+<p>For more details, refer to the <a class="reference internal" href="../programmersguide/appgen.html#section-appgen-psk"><span class="std std-ref">Lightweight Security Plugin</span></a> section of
+<a class="reference internal" href="../programmersguide/appgen.html#section-appgen"><span class="std std-ref">Application Generation Using XML</span></a>.</p>
+</div>
+<div class="section" id="develop-applications-with-content-filtering-in-xml-with-mag">
+<h2><span class="section-number">10.5.1.6. </span>Develop applications with content filtering in XML with MAG<a class="headerlink" href="#develop-applications-with-content-filtering-in-xml-with-mag" title="Permalink to this headline">¶</a></h2>
+<p>This release allows you to enable and configure content filtering while defining
+an application in XML format. Micro Application Generator (MAG) will then create
+the necessary code for <em>Connext Micro</em>.</p>
+<p>For more details, refer to the <a class="reference internal" href="../programmersguide/appgen.html#section-appgen-content-filtering"><span class="std std-ref">Content filtering</span></a> section
+of <a class="reference internal" href="../programmersguide/appgen.html#section-appgen"><span class="std std-ref">Application Generation Using XML</span></a>.</p>
+</div>
+<div class="section" id="enable-domainparticipant-rediscovery-in-xml-with-mag">
+<h2><span class="section-number">10.5.1.7. </span>Enable DomainParticipant rediscovery in XML with MAG<a class="headerlink" href="#enable-domainparticipant-rediscovery-in-xml-with-mag" title="Permalink to this headline">¶</a></h2>
+<p>This release allows you to enable <em>DomainParticipant</em> rediscovery while defining
+an application in XML format. Micro Application Generator (MAG) will then create
+the necessary code for <em>Connext Micro</em>.</p>
+<p>For more information on this feature, see
+<a class="reference internal" href="../programmersguide/discovery.html#section-domainparticipant-rediscovery"><span class="std std-ref">DomainParticipant Discovery by Name</span></a>. You can enable <em>DomainParticipant</em>
+rediscovery via the <code class="docutils literal notranslate"><span class="pre">enable_participant_discovery_by_name</span></code> field in the
+<a class="reference external" href="../../../doc/api_c/html/structDDS__PropertyQosPolicy.html">PROPERTY</a>
+QoS policy, as described in <a class="reference internal" href="../programmersguide/appgen.html#section-appgen-discovery-config"><span class="std std-ref">Discovery Configuration</span></a>.</p>
+</div>
+<div class="section" id="enable-endpoint-discovery-message-queueing-in-xml-with-mag">
+<h2><span class="section-number">10.5.1.8. </span>Enable endpoint discovery message queueing in XML with MAG<a class="headerlink" href="#enable-endpoint-discovery-message-queueing-in-xml-with-mag" title="Permalink to this headline">¶</a></h2>
+<p>This release allows you to enable endpoint discovery message queueing while
+defining an application in XML format. Micro Application Generator (MAG) will
+then create the necessary code for <em>Connext Micro</em>.</p>
+<p>This feature is included as a fix for a potential discovery issue; see
+<a class="reference internal" href="whats_fixed_420/fixes_discovery.html#micro-10044"><span class="std std-ref">[Major] Possible mismatched endpoint messages during discovery</span></a> for more information. You can enable discovery message
+queueing via the <code class="docutils literal notranslate"><span class="pre">enable_endpoint_discovery_queue</span></code> field in the
+<a class="reference external" href="../../../doc/api_c/html/structDDS__PropertyQosPolicy.html">PROPERTY</a>
+QoS policy, as described in <a class="reference internal" href="../programmersguide/appgen.html#section-appgen-discovery-config"><span class="std std-ref">Discovery Configuration</span></a>.</p>
+</div>
+<div class="section" id="third-party-and-open-source-software-changes">
+<h2><span class="section-number">10.5.1.9. </span>Third-party and open source software changes<a class="headerlink" href="#third-party-and-open-source-software-changes" title="Permalink to this headline">¶</a></h2>
+<p>This release adds the following open source software as part of the
+<a class="reference internal" href="../programmersguide/security_psk.html#section-psk"><span class="std std-ref">Lightweight Security Plugin</span></a>:</p>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-number">Table 10.5 </span><span class="caption-text">Open Source Software Additions</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Software</p></th>
+<th class="head"><p>Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>OpenSSL</p></td>
+<td><p>3.5.0</p></td>
+</tr>
+</tbody>
+</table>
+<p>For more information, see the <a class="reference internal" href="../3rdparty/index.html#section-3rd-party"><span class="std std-ref">Third-Party and Open Source Software</span></a> section.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="whats_fixed_420/whats_fixed_420_index.html" class="btn btn-neutral float-right" title="10.5.2. What’s Fixed in 4.2.0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="previous_release.html" class="btn btn-neutral float-left" title="10.5. Previous Releases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

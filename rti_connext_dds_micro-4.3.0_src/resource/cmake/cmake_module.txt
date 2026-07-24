@@ -1,0 +1,1631 @@
+###############################################################################
+# Copyright (c) 2016-2026 Real-Time Innovations, Inc. All rights reserved.
+#
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may2016 tk Written
+################################################################################
+################################################################################
+#
+# Build a module
+#
+# A module is a self-contained unit of code. Its public interface is
+# defined in the <module>/include/<module> directory. Other modules shall never
+# include header files from a submodule.
+#
+# A normal module:
+# - Builds a shared and static library consisting of the source for
+#   from each submodule
+# - Build a module tester with test source from each submodule
+# - Does not build each individual submodule as its own library
+# - Makes all the object-files from the module available to be linked to a
+#   different module (a meta-module)
+#
+# A module is the smallest unit of compilation. A module produces one or more
+# of the following:
+# - A module library - A module library contains source from all the submodules
+# - A library        - A library is built from source in the same directory
+# - An executable    - An executable is built from source in the directory
+#
+#
+# The following global variables can be set:
+#
+# RTI_BUILD_UNITTESTS - Only build the unit-tests if true
+#
+# The following variables can be set at the module level:
+#
+# RTI_MODULE_DEPENDS  - A list of modules that this module depends on. For each
+#                      module listed:
+#                        - The module's DLL_VARIABLE is defined
+#                        - The module's public header directory is added to the
+#                          include path (_build_ directory)
+#
+# RTI_LIBRARY_DEPENDS  - A list of libraries this module will link against.
+#                       A module may create multiple libraries, or libraries
+#                       with a different name. Thus, it is necessary to list
+#                       all of them. These are linked from the _build_
+#                       directory
+#
+# RTI_OBJECT_DEPENDS   - A list of object libraries to add to the module
+#
+# RTI_MODULE_IMPORTS   - RTI_MODULE_DEPEND + RTI_LIBRARY_DEPEND
+#
+# RTI_MODULE_TEST_IMPORT   - Does the same as RTI_MODULE_IMPORT, but also:
+#                           - Automatically adds that modules library as a
+#                             dependency. The same can be achieved with
+#                             a RTI_MODULE_IMPORT and RTI_LIBRARY_IMPORT
+#
+# PLATFORM_TEST_LIBS  - Libraries added to unit-tests in addition to
+#                       PLATFORM_LIBS
+#
+# RTI_MODULE_EXPORT   - Export this module with the given library name
+#
+# RTI_SUBMODULES      - List of submodules as part of this module. Submodules
+#                       can only depend on a submodule before it, not after.
+#                       A submodule only contributes code to the module library,
+#                       it does not produce any artifacts on its own.
+#
+################################################################################
+if (RTI_CMAKE_SOURCE OR TEST_BUNDLE)
+    return()
+endif()
+
+# CURRENT_MODULE_DIR is set by the caller
+SET(RTI_MODULE_SRCROOT ${CMAKE_CURRENT_SOURCE_DIR}/${CURRENT_MODULE_DIR})
+SET(RTI_MODULE_TESTROOT ${CMAKE_CURRENT_SOURCE_DIR}/${CURRENT_MODULE_TEST_DIR})
+SET(RTI_MODULE_EXPORT_INCLUDE ${RTI_MODULE_EXPORT_ROOT}/include/${RTI_EXPORT_MODULE_NAME}/${RTI_MODULE_NAME})
+SET(${RTI_MODULE_NAME}_MODULE_DIR ${RTI_MODULE_SRCROOT})
+SET(${RTI_MODULE_NAME}_MODULE_DIR ${RTI_MODULE_SRCROOT} PARENT_SCOPE)
+SET(RTI_MODULE_OUTPUT_LIB ${RTIME_BUILD_ROOT}/${CURRENT_MODULE_DIR}/lib/${RTIME_TARGET_NAME})
+SET(RTI_MODULE_OUTPUT_BIN ${RTIME_BUILD_ROOT}/${CURRENT_MODULE_DIR}/lib/${RTIME_TARGET_NAME})
+SET(RTI_MODULE_OUTPUT_PDB ${RTIME_BUILD_ROOT}/${CURRENT_MODULE_DIR}/lib/${RTIME_TARGET_NAME})
+SET(RTI_MODULE_OUTPUT_SRC ${RTIME_BUILD_ROOT}/${CURRENT_MODULE_DIR})
+SET(RTI_MODULE_OUTPUT_INCLUDE ${RTIME_BUILD_ROOT}/${CURRENT_MODULE_DIR}/include)
+SET(RTI_BUILD_DYNAMIC_UNITTESTS 0)
+
+# Variables used to build a module
+IF (RTI_MODULE_EXPORT_HEADER OR RTI_MODULE_EXPORT)
+    SET(RTI_EXPORT_MODULE_OUTPUT_INCLUDE ${RTIME_MODULE_EXPORT_INCLUDE_ROOT}/${CURRENT_MODULE_DIR}/include)
+ENDIF()
+
+IF (DEFINED RTI_MODULE_EXPORT)
+    SET(RTI_EXPORT_MODULE_OUTPUT_LIB ${RTIME_MODULE_EXPORT_ROOT}/lib/${RTIME_TARGET_NAME})
+    SET(RTI_EXPORT_MODULE_OUTPUT_BIN ${RTIME_MODULE_EXPORT_ROOT}/lib/${RTIME_TARGET_NAME})
+    SET(RTI_EXPORT_MODULE_OUTPUT_PDB ${RTIME_MODULE_EXPORT_ROOT}/lib/${RTIME_TARGET_NAME})
+    SET(RTI_EXPORT_MODULE_OUTPUT_SRC ${RTIME_MODULE_EXPORT_ROOT})
+    SET(${RTI_MODULE_NAME}_EXPORT_NAME ${RTI_MODULE_EXPORT})
+    SET(${RTI_MODULE_NAME}_EXPORT_NAME ${RTI_MODULE_EXPORT} PARENT_SCOPE)
+    IF (${RTI_MODULE_EXPORT} MATCHES "lib.*")
+        STRING(REGEX REPLACE "lib(.*)" "\\1" exlib ${RTI_MODULE_EXPORT})
+        SET(RTI_MODULE_LIBNAME_SHARED ${exlib}${RTI_LIB_SUFFIX_DYNAMIC})
+        SET(RTI_MODULE_LIBNAME_STATIC ${exlib}${RTI_LIB_SUFFIX_STATIC})
+        SET(${RTI_MODULE_NAME}_EXPORT_NAME ${exlib} PARENT_SCOPE)
+    ELSE()
+        SET(RTI_MODULE_LIBNAME_SHARED ${RTI_LIB_PREFIX}_${RTI_MODULE_EXPORT}${RTI_LIB_SUFFIX_DYNAMIC})
+        SET(RTI_MODULE_LIBNAME_STATIC ${RTI_LIB_PREFIX}_${RTI_MODULE_EXPORT}${RTI_LIB_SUFFIX_STATIC})
+        SET(${RTI_MODULE_NAME}_EXPORT_NAME ${RTI_LIB_PREFIX}_${RTI_MODULE_EXPORT} PARENT_SCOPE)
+    ENDIF()
+ELSE()
+    SET(RTI_MODULE_LIBNAME_SHARED ${RTI_LIB_PREFIX}_${RTI_MODULE_NAME}${RTI_LIB_SUFFIX_DYNAMIC})
+    SET(RTI_MODULE_LIBNAME_STATIC ${RTI_LIB_PREFIX}_${RTI_MODULE_NAME}${RTI_LIB_SUFFIX_STATIC})
+ENDIF()
+
+IF (NOT RTIME_PIL)
+    SET(RTI_MODULE_TESTER_STATIC ${RTI_MODULE_NAME}Tester${RTI_TESTER_SUFFIX})
+    SET(RTI_MODULE_TESTER_SHARED ${RTI_MODULE_NAME}Tester${RTI_TESTER_SUFFIX})
+ELSE()
+    SET(RTI_MODULE_TESTER_STATIC ${RTI_MODULE_NAME}Tester${RTI_LIB_SUFFIX_STATIC})
+    SET(RTI_MODULE_TESTER_SHARED ${RTI_MODULE_NAME}Tester${RTI_LIB_SUFFIX_DYNAMIC})
+ENDIF()
+
+LIST(FIND RTI_LIBRARY_DEPENDS test el)
+IF (${el} EQUAL -1)
+    SET(RTI_MODULE_TESTLIB_SHARED ${RTI_LIB_PREFIX}_test${RTI_LIB_SUFFIX_DYNAMIC})
+    SET(RTI_MODULE_TESTLIB_STATIC ${RTI_LIB_PREFIX}_test${RTI_LIB_SUFFIX_STATIC})
+ENDIF()
+
+SET(RTI_MODULE_TESTER_BUNDLE ${RTI_MODULE_NAME}Tester)
+
+if (RTI_LINK_TESTS)
+    return()
+endif()
+
+SET(RTI_MODULE_INCLUDE_DIRS  ${CMAKE_CURRENT_SOURCE_DIR}/${CURRENT_MODULE_DIR}/include)
+
+IF (DEFINED RTI_SHARED_MODULE)
+    IF (${RTIME_DEVTREE})
+        IF ((NOT DEFINED RTI_SHARED_NO_COPY) OR
+            ((DEFINED  RTI_SHARED_NO_COPY) AND (NOT RTI_SHARED_NO_COPY)))
+            # Get the branch name
+	        IF (NOT DEFINED RTI_SHARED_HOME)
+	                MESSAGE(FATAL_ERROR "RTI_SHARED_HOME not set. Set RTI_SHARED_HOME to the root of the shared DDS tree")
+	        ENDIF()
+	    ENDIF()
+	ENDIF()
+
+    GET_MODULE_NAME(${RTI_SHARED_MODULE} shared_module)
+
+    FOREACH (sd ${shared_module} ${RTI_MODULE_SHARED_EXTRA_INCLUDES})
+        SET(RTI_MODULE_SHARED_HDR)
+        SET(RTI_MODULE_SHARED_HDR_DIR include/share)
+        SET(RTI_SHARED_MODULE_EXPORT_DIR)
+        IF (${RTIME_DEVTREE})
+            IF (EXISTS ${RTI_MODULE_SRCROOT}/include/${sd}/CMakeLists.txt
+                OR IS_SYMLINK ${RTI_MODULE_SRCROOT}/include/${sd}/CMakeLists.txt)
+                INCLUDE(${RTI_MODULE_SRCROOT}/include/${sd}/CMakeLists.txt)
+            ENDIF()
+        ELSE()
+            IF (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/include/${RTI_MODULE_NAME}/${sd}/CMakeLists.txt
+                OR IS_SYMLINK ${CMAKE_CURRENT_SOURCE_DIR}/include/${RTI_MODULE_NAME}/${sd}/CMakeLists.txt)
+                INCLUDE(${CMAKE_CURRENT_SOURCE_DIR}/include/${RTI_MODULE_NAME}/${sd}/CMakeLists.txt)
+            ENDIF()
+        ENDIF()
+
+        IF (DEFINED RTI_MODULE_SHARED_HDR OR DEFINED RTI_MODULE_SHARED_HDR_PATCHED)
+            FOREACH(f ${RTI_MODULE_SHARED_HDR})
+                IF (${RTIME_DEVTREE} AND NOT ${RTI_SHARED_NO_COPY})
+	                RESOLVE_SHARED_COPY_COMMAND(SHARED_COPY_CMD
+                            ${RTI_SHARED_HOME}/${RTI_SHARED_MODULE}/${RTI_MODULE_SHARED_HDR_DIR}/${sd}/${f}
+                            ${RTI_MODULE_SRCROOT}/include/${sd}/${f}
+                    )
+
+                    ADD_CUSTOM_COMMAND(OUTPUT ${RTI_MODULE_SRCROOT}/include/${sd}/${f}
+                                       COMMAND ${SHARED_COPY_CMD}
+                                       DEPENDS rtiddspro
+                    )
+                ENDIF()
+                IF (${RTIME_DEVTREE})
+                    LIST(APPEND ${RTI_MODULE_NAME}_PUBLIC_HDR
+                                ${RTI_MODULE_SRCROOT}/include/${sd}/${f})
+                    IF (DEFINED RTI_SHARED_MODULE_EXPORT_DIR)
+                        LIST(APPEND ${RTI_MODULE_NAME}_EXPORT ${RTI_SHARED_MODULE_EXPORT_DIR}${sd}/${f})
+                    ELSE()
+                        LIST(APPEND ${RTI_MODULE_NAME}_EXPORT ${RTI_MODULE_NAME}/${f})
+                    ENDIF()
+                    SET_PROPERTY(SOURCE ${RTI_MODULE_SRCROOT}/include/${sd}/${f}
+                                 APPEND PROPERTY RTI_GENERATED true)
+                ELSE()
+                    LIST(APPEND ${RTI_MODULE_NAME}_PUBLIC_HDR
+                                ${CMAKE_CURRENT_SOURCE_DIR}/include/${RTI_MODULE_NAME}/${shared_module}/${f})
+                    SET_PROPERTY(SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/include/${RTI_MODULE_NAME}/${shared_module}/${f}
+                                 APPEND PROPERTY RTI_GENERATED true)
+                    LIST(APPEND ${RTI_MODULE_NAME}_EXPORT ${RTI_MODULE_NAME}/${f})
+                ENDIF()
+            ENDFOREACH()
+            FOREACH(f ${RTI_MODULE_SHARED_HDR_PATCHED})
+                IF (${RTIME_DEVTREE})
+                    LIST(APPEND ${RTI_MODULE_NAME}_PUBLIC_HDR
+                                ${RTI_MODULE_SRCROOT}/include/${sd}/${f})
+                    IF (DEFINED RTI_SHARED_MODULE_EXPORT_DIR)
+                        LIST(APPEND ${RTI_MODULE_NAME}_EXPORT ${RTI_SHARED_MODULE_EXPORT_DIR}${sd}/${f})
+                    ELSE()
+                        LIST(APPEND ${RTI_MODULE_NAME}_EXPORT ${RTI_MODULE_NAME}/${f})
+                    ENDIF()
+                ELSE()
+                    LIST(APPEND ${RTI_MODULE_NAME}_PUBLIC_HDR
+                                ${CMAKE_CURRENT_SOURCE_DIR}/include/${RTI_MODULE_NAME}/${shared_module}/${f})
+                    LIST(APPEND ${RTI_MODULE_NAME}_EXPORT ${RTI_MODULE_NAME}/${f})
+                ENDIF()
+            ENDFOREACH()
+        ENDIF()
+    ENDFOREACH()
+
+    FOREACH(f ${RTI_MODULE_PUBLIC_HDR})
+        IF (${RTIME_DEVTREE})
+            LIST(APPEND ${RTI_MODULE_NAME}_PUBLIC_HDR
+                        ${RTI_MODULE_SRCROOT}/include/${shared_module}/${f})
+            LIST(APPEND ${RTI_MODULE_NAME}_EXPORT ${RTI_MODULE_NAME}/${f})
+        ELSE()
+            LIST(APPEND ${RTI_MODULE_NAME}_PUBLIC_HDR
+                        ${CMAKE_CURRENT_SOURCE_DIR}/include/${RTI_MODULE_NAME}/${shared_module}/${f})
+            LIST(APPEND ${RTI_MODULE_NAME}_EXPORT ${RTI_MODULE_NAME}/${f})
+        ENDIF()
+    ENDFOREACH()
+ENDIF()
+
+# Build against the local public headers. This is so IDE works properly
+# when doing a "goto declaration"
+IF (${RTIME_DEVTREE})
+    IF ((${RTI_MODULE_NAME} MATCHES "dds_c")
+        OR (${RTI_MODULE_NAME} MATCHES "dds_cpp")
+        OR (${RTI_MODULE_NAME} MATCHES "rti_me_psl"))
+        LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME})
+    ENDIF()
+
+    LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${RTIME_BUILD_ROOT}/${CURRENT_MODULE_DIR}/include)
+    IF (RTIME_INCLUDE_DIR_ONLY)
+        IF (EXISTS ${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME}/CMakeLists.txt)
+            INCLUDE(${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME}/CMakeLists.txt)
+            IF (RTI_MODULE_PUBLIC_HDR_FOLDER)
+                LIST(APPEND RTI_MODULE_INCLUDE_DIRS
+                     ${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME})
+            ENDIF()
+        ENDIF()
+        LIST(REMOVE_DUPLICATES RTI_MODULE_INCLUDE_DIRS)
+    ENDIF()
+
+    IF (NOT RTIME_INCLUDE_API_ONLY)
+        FOREACH(mdin ${RTI_MODULE_DEPENDS} ${RTI_MODULE_IMPORTS}
+                ${RTI_OBJECT_DEPENDS} ${RTI_MODULE_EXPORTS})
+            IF (${mdin} MATCHES "(.*)::(.*)")
+                SET(mdin "${CMAKE_MATCH_1}")
+                SET(mdinsub "/${CMAKE_MATCH_2}")
+            ELSE()
+                SET(mdinsub "")
+            ENDIF()
+            LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${${mdin}_MODULE_DIR}/include)
+            IF ((${mdin} MATCHES "dds_c") OR (${mdin} MATCHES "dds_cpp"))
+                LIST(APPEND RTI_MODULE_INCLUDE_DIRS
+                        ${${mdin}_MODULE_DIR}/include
+                        ${${mdin}_MODULE_DIR}/include/${mdin}
+                )
+            ENDIF()
+            # Needed to stub quack
+            IF ((${mdin} MATCHES "test") OR (${mdin} MATCHES "rti_me_psl"))
+                LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${${mdin}_MODULE_DIR}/include/${mdin})
+            ENDIF()
+#            message("get path for ${mdin}=${${mdin}_MODULE_DIR} ")
+            GET_FILENAME_COMPONENT(mbase ${${mdin}_MODULE_DIR} NAME)
+            LIST(APPEND RTI_MODULE_INCLUDE_DIRS
+                ${RTIME_BUILD_ROOT}/${mbase}/include
+            )
+            IF (DEFINED ${mdin}_OBJECT_DEPENDS)
+                FOREACH(mdin2 ${${mdin}_OBJECT_DEPENDS})
+                    IF (${mdin2} MATCHES "(.*)::(.*)")
+                        SET(mdin2 "${CMAKE_MATCH_1}")
+                        SET(mdinsub2 "/${CMAKE_MATCH_2}")
+                    ELSE()
+                        SET(mdinsub2 "")
+                    ENDIF()
+                    LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${${mdin2}_MODULE_DIR}/include)
+                    IF ((${mdin2} MATCHES "dds_c")  OR (${mdin2} MATCHES "rti_me_psl"))
+                        LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${${mdin2}_MODULE_DIR}/include/${mdin2})
+                    ENDIF()
+                    GET_FILENAME_COMPONENT(mbase2 ${${mdin2}_MODULE_DIR} NAME)
+                    LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${RTIME_BUILD_ROOT}/${mbase2}/include)
+                ENDFOREACH()
+            ENDIF()
+        ENDFOREACH()
+    ENDIF()
+
+    FOREACH(mdin ${RTI_BUILD_INCLUDE})
+        LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${RTIME_BUILD_ROOT}/${mdin})
+    ENDFOREACH()
+
+    IF (DEFINED RTI_SOURCE_INCLUDE)
+        FOREACH(mdin ${RTI_SOURCE_INCLUDE})
+            LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/${mdin})
+        ENDFOREACH()
+    ENDIF()
+ELSE()
+    LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${RTIME_BUILD_ROOT}/${CURRENT_MODULE_DIR}/include)
+
+    IF (NOT RTIME_INCLUDE_API_ONLY)
+        FOREACH(mdin ${RTI_MODULE_DEPENDS} ${RTI_MODULE_IMPORTS}
+        ${RTI_OBJECT_DEPENDS} ${RTI_MODULE_EXPORTS})
+            IF (${mdin} MATCHES "(.*)::(.*)")
+                SET(mdin "${CMAKE_MATCH_1}")
+                SET(mdinsub "/${CMAKE_MATCH_2}")
+            ELSE()
+                SET(mdinsub "")
+            ENDIF()
+            GET_FILENAME_COMPONENT(mbase ${${mdin}_MODULE_DIR} NAME)
+            LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${RTIME_BUILD_ROOT}/src/${mbase}/include)
+        ENDFOREACH()
+    ENDIF()
+ENDIF()
+
+IF (RTI_EXTERNAL_HEADER)
+    IF (${RTIME_DEVTREE})
+        INCLUDE_DIRECTORIES(${RTI_MODULE_SRCROOT}/include)
+        INCLUDE_DIRECTORIES(${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME})
+    ELSE()
+        INCLUDE_DIRECTORIES(${RTIME_SOURCE_ROOT}/include/rti_me/${RTI_MODULE_NAME})
+    ENDIF()
+ENDIF()
+
+if (RTI_LIBRARY_DEPENDS)
+    LIST(APPEND RTI_MODULE_INCLUDE_DIRS
+        ${RTIME_MODULE_EXPORT_INCLUDE_ROOT}
+        ${RTIME_MODULE_EXPORT_INCLUDE_ROOT}/rti_me_psl
+    )
+endif()
+
+LIST(REMOVE_DUPLICATES RTI_MODULE_INCLUDE_DIRS)
+
+IF (RTIME_INCLUDE_DIR_ONLY)
+    INCLUDE_DIRECTORIES(${RTI_MODULE_INCLUDE_DIRS})
+    RETURN()
+ENDIF()
+
+IF (RTIME_INCLUDE_API_ONLY)
+    RETURN()
+ENDIF()
+
+################################################################################
+# Documentation
+################################################################################
+IF (${RTIME_DEVTREE})
+    IF (EXISTS ${RTI_MODULE_SRCROOT}/srcIfdoc/interface/CMakeLists.txt)
+        INCLUDE(${RTI_MODULE_SRCROOT}/srcIfdoc/interface/CMakeLists.txt)
+        IF (RTI_MODULE_IFDOC)
+            rtime_add_ifdoc(IFDOC_SRC ${RTI_MODULE_IFDOC}
+                            IFDOC_SRCDIR interface
+                            IFDOC_DSTDIR interface
+                            IFDOC_LANG ${RTI_IFDOC_LANG}
+            )
+        ENDIF()
+        IF (RTI_MODULE_IFDIR)
+            rtime_add_ifdoc_dir(IFDOC_DIR ${RTI_MODULE_IFDIR}
+                                IFDOC_SRCDIR interface
+                                IFDOC_DSTDIR interface
+                                IFDOC_LANG ${RTI_IFDOC_LANG}
+            )
+        ENDIF()
+        IF (RTI_IFDOC_DEPENDS)
+            rtime_add_ifdoc_dependency(IFDOC_DEPENDS ${RTI_IFDOC_DEPENDS})
+        ENDIF()
+    ENDIF()
+ENDIF()
+
+################################################################################
+# Proocess public header files
+#
+# Include the public header-files
+# - Add the fully qualified path for the header source
+# - Add a variable with all the public header variable to to the parent scope
+################################################################################
+IF (${RTIME_DEVTREE})
+    IF (EXISTS ${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME}/CMakeLists.txt)
+        INCLUDE(${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME}/CMakeLists.txt)
+        FOREACH(f ${RTI_MODULE_PUBLIC_HDR})
+            LIST(APPEND ${RTI_MODULE_NAME}_PUBLIC_HDR
+                        ${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME}/${f})
+            LIST(APPEND ${RTI_MODULE_NAME}_EXPORT ${RTI_MODULE_NAME}/${f})
+        ENDFOREACH()
+        IF (RTI_MODULE_PUBLIC_HDR_FOLDER)
+            LIST(APPEND RTI_MODULE_INCLUDE_DIRS
+                 ${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME})
+        ENDIF()
+        FOREACH(f ${RTI_MODULE_PUBLIC_HDR_FOLDER})
+            IF (EXISTS ${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME}/${f}/CMakeLists.txt)
+                SET(RTI_MODULE_PUBLIC_HDR_TMP ${RTI_MODULE_PUBLIC_HDR})
+                INCLUDE(${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME}/${f}/CMakeLists.txt)
+                FOREACH(h ${RTI_MODULE_PUBLIC_HDR})
+                    LIST(APPEND RTI_MODULE_PUBLIC_HDR_TMP ${f}/${h})
+                    LIST(APPEND ${RTI_MODULE_NAME}_PUBLIC_HDR
+                                ${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME}/${f}/${h})
+                    LIST(APPEND ${RTI_MODULE_NAME}_EXPORT ${RTI_MODULE_NAME}/${f}/${h})
+                ENDFOREACH()
+                SET(RTI_MODULE_PUBLIC_HDR ${RTI_MODULE_PUBLIC_HDR_TMP})
+            ENDIF()
+        ENDFOREACH()
+    ENDIF()
+
+    # Add fully qualified path sources for public headers
+    FOREACH(f ${RTI_MODULE_PUBLIC_HDR})
+        LIST(APPEND ${RTI_MODULE_NAME}_PUBLIC_HDR
+                    ${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME}/${f})
+        LIST(APPEND ${RTI_MODULE_NAME}_EXPORT ${RTI_MODULE_NAME}/${f})
+    ENDFOREACH()
+    SET(${RTI_MODULE_NAME}_EXPORT_HDR ${${RTI_MODULE_NAME}_EXPORT} PARENT_SCOPE)
+ELSE()
+    SET(RTIME_SHIP_SOURCE TRUE)
+    IF (EXISTS ${RTIME_SOURCE_ROOT}/include/rti_me/${RTI_MODULE_NAME}/CMakeLists.txt
+        OR IS_SYMLINK ${RTIME_SOURCE_ROOT}/include/rti_me/${RTI_MODULE_NAME}/CMakeLists.txt)
+        INCLUDE(${RTIME_SOURCE_ROOT}/include/rti_me/${RTI_MODULE_NAME}/CMakeLists.txt)
+    ENDIF()
+
+    # Add fully qualified path sources for public headers
+    FOREACH(f ${RTI_MODULE_PUBLIC_HDR})
+        IF (NOT ${f} MATCHES "rti_me")
+            LIST(APPEND ${RTI_MODULE_NAME}_PUBLIC_HDR
+                        ${RTIME_SOURCE_ROOT}/include/rti_me/${RTI_MODULE_NAME}/${f})
+            LIST(APPEND ${RTI_MODULE_NAME}_EXPORT ${RTI_MODULE_NAME}/${f})
+        ENDIF()
+    ENDFOREACH()
+
+    IF (RTIME_FULL_SOURCE AND NOT RTIME_DEVTREE)
+        FOREACH(f ${RTI_MODULE_PUBLIC_HDR} ${RTI_MODULE_SHARED_HDR}
+        ${RTI_MODULE_SHARED_HDR_PATCHED})
+            IF (${f} MATCHES "rti_me_psl.h")
+                INSTALL(FILES
+                           "${RTIME_SOURCE_ROOT}/include/rti_me/${f}"
+                        DESTINATION
+                            "include/rti_me"
+                )
+            ELSEIF(${f} MATCHES "rti_me_psl_dll.h")
+                INSTALL(FILES
+                           "${RTIME_SOURCE_ROOT}/include/rti_me/${RTI_MODULE_NAME}/${f}"
+                        DESTINATION
+                            "include/rti_me/${RTI_MODULE_NAME}"
+                )
+            ELSEIF(${f} MATCHES "rti_me")
+                INSTALL(FILES
+                            "${RTIME_SOURCE_ROOT}/include/rti_me/${f}"
+                        DESTINATION
+                            "include/rti_me"
+                )
+            ELSE()
+                INSTALL(FILES
+                            "${RTIME_SOURCE_ROOT}/include/rti_me/${RTI_MODULE_NAME}/${f}"
+                        DESTINATION
+                            "include/rti_me/${RTI_MODULE_NAME}"
+                )
+            ENDIF()
+        ENDFOREACH()
+    ENDIF()
+
+    FOREACH(f ${RTI_MODULE_PUBLIC_HDR_FOLDER})
+        IF (EXISTS ${RTIME_SOURCE_ROOT}/include/rti_me/${RTI_MODULE_NAME}/${f}/CMakeLists.txt
+        OR IS_SYMLINK ${RTIME_SOURCE_ROOT}/include/rti_me/${RTI_MODULE_NAME}/${f}/CMakeLists.txt)
+            SET(RTI_MODULE_PUBLIC_HDR_TMP ${RTI_MODULE_PUBLIC_HDR})
+            INCLUDE(${RTIME_SOURCE_ROOT}/include/rti_me/${RTI_MODULE_NAME}/${f}/CMakeLists.txt)
+            FOREACH(h ${RTI_MODULE_PUBLIC_HDR})
+                LIST(APPEND RTI_MODULE_PUBLIC_HDR_TMP ${f}/${h})
+                LIST(APPEND ${RTI_MODULE_NAME}_PUBLIC_HDR
+                            ${RTIME_SOURCE_ROOT}/include/rti_me/${RTI_MODULE_NAME}/${f}/${h})
+                LIST(APPEND ${RTI_MODULE_NAME}_EXPORT
+                ${RTI_MODULE_NAME}/${f}/${h})
+                IF (RTIME_FULL_SOURCE AND NOT RTIME_DEVTREE)
+                    INSTALL(FILES
+                                "${RTIME_SOURCE_ROOT}/include/rti_me/${RTI_MODULE_NAME}/${f}/${h}"
+                            DESTINATION
+                                "include/rti_me/${RTI_MODULE_NAME}/${f}"
+                    )
+                ENDIF()
+            ENDFOREACH()
+            SET(RTI_MODULE_PUBLIC_HDR ${RTI_MODULE_PUBLIC_HDR_TMP})
+        ENDIF()
+    ENDFOREACH()
+    SET(RTIME_SHIP_SOURCE FALSE)
+
+    FOREACH(d ${RTI_MODULE_SHARED_EXTRA_INCLUDES})
+        IF (EXISTS ${RTIME_SOURCE_ROOT}/include/rti_me/${d}/CMakeLists.txt
+            OR IS_SYMLINK ${RTIME_SOURCE_ROOT}/include/rti_me/${d}/CMakeLists.txt)
+            INCLUDE(${RTIME_SOURCE_ROOT}/include/rti_me/${d}/CMakeLists.txt)
+            IF (RTIME_FULL_SOURCE AND NOT RTIME_DEVTREE)
+                FOREACH(f ${RTI_MODULE_SHARED_HDR} ${RTI_MODULE_SHARED_HDR_PATCHED})
+                    INSTALL(FILES
+                        "${RTIME_SOURCE_ROOT}/include/rti_me/${d}/${f}"
+                    DESTINATION
+                        "include/rti_me/${d}"
+                    )
+                ENDFOREACH()
+            ENDIF()
+        ENDIF()
+    ENDFOREACH()
+ENDIF()
+
+# Add the local public header files to the source-tree, not the exported headers
+LIST(APPEND ${RTI_MODULE_NAME}_SRC_H ${${RTI_MODULE_NAME}_PUBLIC_HDR})
+
+################################################################################
+# Process submodules
+# Add each submodule. Note that it is not required that each submodule
+# contributes to the "module" library. This is because a submoule may be
+# its own execuable or its own library. This is determined by the included
+# CMakeLists.txt file
+################################################################################
+
+# For each submodule, potential source and headers to the module library
+SET(SUBMODULE_GENERATE)
+SET(SUBMODULE_HAS_GENERATE false)
+SET(SUBMODULE_TEST_DEPENDS)
+
+FOREACH(srcdir "" /srcC /srcCxx)
+    FOREACH(m ${RTI_SUBMODULES})
+        UNSET(RTI_SUBMODULE_TEST_QUACK_TS)
+        UNSET(RTI_SUBMODULE_TEST_QUACK_TI)
+        UNSET(RTI_SUBMODULE_TEST_QUACK_TS_GEN)
+        UNSET(RTI_SUBMODULE_TEST_SRC)
+        UNSET(RTI_SUBMODULE_TEST_SRC_CC)
+        UNSET(RTI_SUBMODULE_TEST_HDR)
+        UNSET(IDL_SOURCE)
+        UNSET(IDL_SOURCE_CXX)
+        UNSET(RTI_SUBMODULE_SRC)
+        UNSET(RTI_SUBMODULE_SRC_CC)
+        UNSET(RTI_SUBMODULE_HDR)
+        UNSET(RTI_SUBMODULE_IDL)
+        UNSET(RTI_SUBMODULE_TEST_IDL)
+        UNSET(RTI_SHARED_SRC)
+        UNSET(RTI_SHARED_HDR)
+        UNSET(RTI_SUBMODULE_XML_APPGEN)
+        UNSET(RTI_SHARED_SUBMODULE)
+        SET(RTI_SUBMODULE_NAME ${m})
+        UNSET(RTI_SUBMODULE_QUACK_TS)
+        UNSET(RTI_SUBMODULE_QUACK_TI)
+        UNSET(RTI_SUBMODULE_QUACK_TS_GEN)
+
+        # Add C source
+        IF (EXISTS ${RTI_MODULE_SRCROOT}${srcdir}/${m}/CMakeLists.txt)
+            IF (RTI_ADD_SUBMOUDLE_INCLUDE)
+                INCLUDE_DIRECTORIES(${RTI_MODULE_SRCROOT}${srcdir}/${m})
+            ELSE()
+                LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${RTI_MODULE_SRCROOT}${srcdir}/${m})
+            ENDIF()
+            INCLUDE (${RTI_MODULE_SRCROOT}${srcdir}/${m}/CMakeLists.txt)
+        ENDIF()
+
+        # Add the submodule test directory if it exists
+        IF (EXISTS ${RTI_MODULE_SRCROOT}${srcdir}/${m}/test/CMakeLists.txt)
+            LIST(APPEND RTI_MODULE_INCLUDE_TEST_DIRS
+                        ${RTI_MODULE_SRCROOT}${srcdir}/${m}/test)
+            INCLUDE (${RTI_MODULE_SRCROOT}${srcdir}/${m}/test/CMakeLists.txt)
+        ENDIF()
+
+        GET_PROPERTY(sm_generate GLOBAL
+                     PROPERTY ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_HAS_GENERATE
+                     SET)
+
+        IF (sm_generate AND ${sm_generate})
+            SET(SUBMODULE_HAS_GENERATE true)
+            SET(SUBMODULE_GENERATE ${SUBMODULE_GENERATE} ${RTI_MODULE_NAME}_${RTI_SUBMODULE_NAME}_GENERATE)
+        ENDIF()
+
+    ENDFOREACH()
+
+    # Add the main test directory if it exists
+    IF (EXISTS ${RTI_MODULE_SRCROOT}${srcdir}/test/CMakeLists.txt)
+        LIST(APPEND RTI_MODULE_INCLUDE_TEST_DIRS
+                    ${RTI_MODULE_SRCROOT}${srcdir}/test)
+    ENDIF()
+
+ENDFOREACH()
+
+IF (DEFINED RTI_MODULE_INCLUDE_DIRS)
+    LIST(REMOVE_DUPLICATES RTI_MODULE_INCLUDE_DIRS)
+ENDIF()
+
+IF (DEFINED ${RTI_MODULE_NAME}_SRC_H)
+    LIST(REMOVE_DUPLICATES ${RTI_MODULE_NAME}_SRC_H)
+ENDIF()
+
+IF (DEFINED ${RTI_MODULE_NAME}_PUBLIC_HDR)
+    LIST(REMOVE_DUPLICATES ${RTI_MODULE_NAME}_PUBLIC_HDR)
+ENDIF()
+
+IF (DEFINED ${RTI_MODULE_NAME}_EXPORT)
+    LIST(REMOVE_DUPLICATES ${RTI_MODULE_NAME}_EXPORT)
+ENDIF()
+
+SET(${RTI_MODULE_NAME}_INTERFACE ${${RTI_MODULE_NAME}_PUBLIC_HDR} PARENT_SCOPE)
+SET(${RTI_MODULE_NAME}_SOURCE    ${${RTI_MODULE_NAME}_SRC_C} PARENT_SCOPE)
+SET(${RTI_MODULE_NAME}_HEADER    ${${RTI_MODULE_NAME}_SRC_H} PARENT_SCOPE)
+
+LIST(LENGTH ${RTI_MODULE_NAME}_SRC_C el)
+IF (${el} GREATER 0)
+    SET(RTI_BUILD_MODULE_HAS_SOURCE TRUE)
+ELSE()
+    SET(RTI_BUILD_MODULE_HAS_SOURCE FALSE)
+ENDIF()
+
+# Add the depend libraries
+SET(RTI_MODULE_DEPEND_SHARED_LIBS)
+SET(RTI_MODULE_DEPEND_STATIC_LIBS)
+
+FOREACH(md ${RTI_MODULE_IMPORTS} ${RTI_LIBRARY_DEPENDS})
+    SET(IMPORT_STATIC_PREFIX ${CMAKE_STATIC_LIBRARY_PREFIX})
+    SET(IMPORT_DYNAMIC_PREFIX ${CMAKE_SHARED_LIBRARY_PREFIX})
+
+    IF (${md} MATCHES "(.*)::(.*)")
+        set(md "${CMAKE_MATCH_2}")
+    ENDIF()
+
+    IF ((${md} MATCHES "lib.*") OR (${${md}_EXPORT_NAME} MATCHES "lib.*"))
+        SET(IMPORT_STATIC_PREFIX "")
+        SET(IMPORT_DYNAMIC_PREFIX "")
+    ENDIF()
+
+    IF (DEFINED ${md}_EXPORT_NAME)
+        SET(RTI_MODULE_DEPEND_SHARED_LIB ${${md}_EXPORT_NAME}${RTI_LIB_SUFFIX_DYNAMIC})
+        SET(RTI_MODULE_DEPEND_STATIC_LIB ${${md}_EXPORT_NAME}${RTI_LIB_SUFFIX_STATIC})
+
+    ELSE()
+        IF(${md} MATCHES "rti_me.*")
+            SET(RTI_MODULE_DEPEND_SHARED_LIB ${md}${RTI_LIB_SUFFIX_DYNAMIC})
+            SET(RTI_MODULE_DEPEND_STATIC_LIB ${md}${RTI_LIB_SUFFIX_STATIC})
+        ELSE()
+            SET(RTI_MODULE_DEPEND_SHARED_LIB ${RTI_LIB_PREFIX}_${md}${RTI_LIB_SUFFIX_DYNAMIC})
+            SET(RTI_MODULE_DEPEND_STATIC_LIB ${RTI_LIB_PREFIX}_${md}${RTI_LIB_SUFFIX_STATIC})
+        ENDIF()
+    ENDIF()
+    LIST(FIND RTI_PIL_DEPENDS ${md} found)
+    IF (NOT ${found} EQUAL -1)
+        if (NOT ${RTI_MODULE_DEPEND_STATIC_LIB}_IMPORTED)
+            add_library(${RTI_MODULE_DEPEND_STATIC_LIB} STATIC IMPORTED)
+            IF (NOT RTIME_PIL_PATH)
+                SET(RTIME_PIL_PATH "${RTIME_MODULE_EXPORT_ROOT}/lib/${RTIME_PIL_ARCH}")
+            ENDIF()
+            set_property(TARGET ${RTI_MODULE_DEPEND_STATIC_LIB} PROPERTY
+                         IMPORTED_LOCATION
+                        ${RTIME_PIL_PATH}/${IMPORT_STATIC_PREFIX}${RTI_MODULE_DEPEND_STATIC_LIB}${CMAKE_STATIC_LIBRARY_SUFFIX}
+            )
+            add_library(${RTI_MODULE_DEPEND_SHARED_LIB} SHARED IMPORTED)
+
+            set(location_property IMPORTED_LOCATION)
+            set(extension ${CMAKE_SHARED_LIBRARY_SUFFIX})
+            IF(WIN32)
+                set(location_property IMPORTED_IMPLIB)
+                set(extension ".lib")
+            ENDIF()
+            set_property(TARGET ${RTI_MODULE_DEPEND_SHARED_LIB} PROPERTY
+                        ${location_property}
+                        ${RTIME_PIL_PATH}/${IMPORT_DYNAMIC_PREFIX}${RTI_MODULE_DEPEND_SHARED_LIB}${extension}
+            )
+            SET(${RTI_MODULE_DEPEND_STATIC_LIB}_IMPORTED TRUE)
+            SET(${RTI_MODULE_DEPEND_STATIC_LIB}_IMPORTED TRUE PARENT_SCOPE)
+        ENDIF()
+     ENDIF()
+    LIST(APPEND RTI_MODULE_DEPEND_SHARED_LIBS ${RTI_MODULE_DEPEND_SHARED_LIB})
+    LIST(APPEND RTI_MODULE_DEPEND_STATIC_LIBS ${RTI_MODULE_DEPEND_STATIC_LIB})
+ENDFOREACH()
+
+IF (NOT DEFINED RTI_OBJECT_MODULE)
+    SET(RTI_OBJECT_MODULE FALSE)
+ENDIF()
+
+IF (${RTI_BUILD_MODULE_HAS_SOURCE} AND ${RTI_OBJECT_MODULE})
+    SOURCE_GROUP(\\include\\${RTI_MODULE_NAME}
+                 FILES ${${RTI_MODULE_NAME}_PUBLIC_HDR})
+ENDIF()
+
+################################################################################
+#
+# Create module libraries using the object libraries
+#
+################################################################################
+
+IF (${RTI_BUILD_MODULE_HAS_SOURCE} AND
+    ((NOT ${RTI_OBJECT_MODULE}) OR (${RTI_BUILD_UNITTESTS} AND (NOT RTIME_BUILD_SINGLE_LIB))))
+
+    SET(RTI_SHARED_OBJLIB ${${RTI_MODULE_NAME}_PUBLIC_HDR}
+        ${${RTI_MODULE_NAME}_SRC_C} ${${RTI_MODULE_NAME}_SRC_H})
+
+    SET(RTI_STATIC_OBJLIB ${${RTI_MODULE_NAME}_PUBLIC_HDR}
+        ${${RTI_MODULE_NAME}_SRC_C} ${${RTI_MODULE_NAME}_SRC_H})
+
+    IF (RTI_BUILDID_MASTER AND (NOT RTIME_DISABLE_BUILDID))
+        SET(BUILD_ID_FILE "${RTI_MODULE_OUTPUT_INCLUDE}/${RTI_MODULE_NAME}_buildid.h")
+
+        IF (DEFINED RTIME_BUILD_ID)
+            SET(RTI_BUILDID_DEFINE "-DRTIME_BUILD_ID=${RTIME_BUILD_ID}")
+        ELSE()
+            SET(RTI_BUILDID_DEFINE "")
+        ENDIF()
+
+        #LIST(APPEND RTI_SHARED_OBJLIB ${BUILD_ID_FILE})
+        LIST(APPEND RTI_STATIC_OBJLIB ${BUILD_ID_FILE})
+
+        # When there are multiple output files, CMake generated a dependency
+        # between them based on the order in which they appear. So the below
+        # creates a rule where BUILD_ID_FILE depends on PHONY_BUILDID.
+        # However, PHONY_BUILDID generates BUILD_ID_FILE so it is always
+        # out of date.
+        ADD_CUSTOM_COMMAND(OUTPUT  ${RTI_MODULE_OUTPUT_INCLUDE}
+                           COMMAND ${CMAKE_COMMAND} -E make_directory ${RTI_MODULE_OUTPUT_INCLUDE}
+                           COMMENT "Generate ${RTI_MODULE_OUTPUT_INCLUDE}"
+        )
+
+        IF (RTI_MANUAL_BUILDID)
+            ADD_CUSTOM_COMMAND(OUTPUT  ${BUILD_ID_FILE} ${RTI_MODULE_OUTPUT_INCLUDE}
+                               COMMAND ${CMAKE_COMMAND} -DBUILD_ID_FILE=${BUILD_ID_FILE}
+                                        -DHAS_STRING_TIMESTAMP=${HAS_STRING_TIMESTAMP}
+                                        ${RTI_BUILDID_DEFINE}
+                                        -P ${RTIME_RESOURCE_ROOT}/cmake/cmake_buildid.txt
+                               COMMENT "Generate ${BUILD_ID_FILE}"
+            )
+            ADD_CUSTOM_TARGET(BUILDID
+                              DEPENDS ${BUILD_ID_FILE}
+            )
+        ELSE()
+            ADD_CUSTOM_COMMAND(OUTPUT  PHONY_BUILDID ${BUILD_ID_FILE} ${RTI_MODULE_OUTPUT_INCLUDE}
+                               COMMAND ${CMAKE_COMMAND} -DBUILD_ID_FILE=${BUILD_ID_FILE}
+                                        -DHAS_STRING_TIMESTAMP=${HAS_STRING_TIMESTAMP}
+                                        ${RTI_BUILDID_DEFINE}
+                                        -P ${RTIME_RESOURCE_ROOT}/cmake/cmake_buildid.txt
+                               COMMENT "Generate ${BUILD_ID_FILE}"
+            )
+            ADD_CUSTOM_TARGET(BUILDID
+                              DEPENDS PHONY_BUILDID
+            )
+        ENDIF()
+
+        SET_SOURCE_FILES_PROPERTIES( PHONY_BUILDID PROPERTIES SYMBOLIC 1)
+    ELSEIF((DEFINED RTI_BUILDID_MASTER) AND RTIME_DISABLE_BUILDID)
+        ADD_CUSTOM_TARGET(BUILDID  )
+    ENDIF()
+
+    SET_SOURCE_FILES_PROPERTIES(${${RTI_MODULE_NAME}_PUBLIC_HDR}
+                                 ${${RTI_MODULE_NAME}_SRC_C}
+                                 ${${RTI_MODULE_NAME}_SRC_H}
+                                 PROPERTIES
+                                 COMPILE_DEFINITIONS RTI_MODULE_NAME=\"${RTI_MODULE_NAME}\")
+
+    FOREACH (m ${RTI_OBJECT_DEPENDS})
+        IF (${m} MATCHES "(.*)::(.*)")
+            set(m "${CMAKE_MATCH_1}_${CMAKE_MATCH_2}")
+        ENDIF()
+        LIST(APPEND RTI_STATIC_OBJLIB
+             ${${m}_INTERFACE} ${${m}_SOURCE} ${${m}_HEADER})
+        LIST(APPEND RTI_SHARED_OBJLIB
+             ${${m}_INTERFACE} ${${m}_SOURCE} ${${m}_HEADER})
+        SET_SOURCE_FILES_PROPERTIES(${${m}_INTERFACE} ${${m}_SOURCE} ${${m}_HEADER}
+             PROPERTIES
+             COMPILE_DEFINITIONS RTI_MODULE_NAME=\"${m}\")
+    ENDFOREACH()
+
+    SET(${RTI_MODULE_NAME}_OBJECT_DEPENDS ${RTI_OBJECT_DEPENDS} PARENT_SCOPE)
+
+    ADD_LIBRARY(${RTI_MODULE_LIBNAME_STATIC} STATIC  ${RTI_STATIC_OBJLIB})
+
+    IF (NOT RTI_NO_SHARED_LIB)
+        ADD_LIBRARY(${RTI_MODULE_LIBNAME_SHARED} SHARED ${RTI_SHARED_OBJLIB})
+        IF (DEFINED RTI_BUILDID_MASTER)
+            ADD_DEPENDENCIES(${RTI_MODULE_LIBNAME_SHARED}
+                             ${RTI_MODULE_LIBNAME_STATIC})
+        ENDIF()
+
+        SET_TARGET_PROPERTIES(${RTI_MODULE_LIBNAME_SHARED}
+                              PROPERTIES FOLDER ${CURRENT_MODULE_DIR})
+        SET_TARGET_PROPERTIES(${RTI_MODULE_LIBNAME_SHARED}
+                              PROPERTIES CMAKE_SKIP_RPATH TRUE)
+    ENDIF()
+
+    IF (RTI_MODULE_EXPORT AND RTIME_FULL_SOURCE AND NOT RTIME_DEVTREE)
+        IF (NOT RTIME_INSTALL_DIR)
+            SET(RTI_INSTALL_DIR "lib")
+        ENDIF()
+        INSTALL(TARGETS
+                    ${RTI_MODULE_LIBNAME_STATIC}
+                ARCHIVE
+                    DESTINATION "${RTI_INSTALL_DIR}"
+        )
+        IF (NOT RTI_NO_SHARED_LIB)
+            INSTALL(TARGETS
+                       ${RTI_MODULE_LIBNAME_SHARED}
+                    RUNTIME
+                        DESTINATION "${RTI_INSTALL_DIR}"
+                    LIBRARY
+                        DESTINATION "${RTI_INSTALL_DIR}"
+                    ARCHIVE
+                        DESTINATION "${RTI_INSTALL_DIR}"
+            )
+        ENDIF()
+    ENDIF()
+
+    SET_TARGET_PROPERTIES(${RTI_MODULE_LIBNAME_STATIC}
+                          PROPERTIES FOLDER ${CURRENT_MODULE_DIR})
+
+    SOURCE_GROUP(\\include\\${RTI_MODULE_NAME}
+                 FILES ${${RTI_MODULE_NAME}_PUBLIC_HDR})
+
+    IF (DEFINED RTI_COMPILE_DEFINITIONS)
+        IF (NOT RTI_NO_SHARED_LIB)
+            TARGET_COMPILE_DEFINITIONS(${RTI_MODULE_LIBNAME_SHARED}
+                                       PRIVATE ${RTI_COMPILE_DEFINITIONS})
+        ENDIF()
+        TARGET_COMPILE_DEFINITIONS(${RTI_MODULE_LIBNAME_STATIC}
+                                   PRIVATE ${RTI_COMPILE_DEFINITIONS})
+    ENDIF()
+
+    IF (${HAS_TARGET_INCLUDE_DIR})
+        IF (NOT RTI_NO_SHARED_LIB)
+            TARGET_INCLUDE_DIRECTORIES(${RTI_MODULE_LIBNAME_SHARED}
+                                       PRIVATE ${RTI_MODULE_INCLUDE_DIRS})
+        ENDIF()
+        TARGET_INCLUDE_DIRECTORIES(${RTI_MODULE_LIBNAME_STATIC}
+                                   PRIVATE ${RTI_MODULE_INCLUDE_DIRS})
+    ELSE()
+        INCLUDE_DIRECTORIES(${RTI_MODULE_INCLUDE_DIRS})
+    ENDIF()
+
+    LIST(LENGTH RTI_MODULE_DEPEND_STATIC_LIBS x)
+    IF (${x} GREATER 0)
+        ADD_DEPENDENCIES(${RTI_MODULE_LIBNAME_STATIC}
+                         ${RTI_MODULE_DEPEND_STATIC_LIBS})
+    ENDIF()
+
+    # Two targets cannot depend on the same generated files for
+    # parallel builds. Thus, if a module has IDL files, serialize
+    # the build
+    IF (NOT RTI_NO_SHARED_LIB)
+        LIST(LENGTH ${RTI_MODULE_NAME}_SRC_IDL x)
+        IF (${x} GREATER 0)
+            ADD_DEPENDENCIES(${RTI_MODULE_LIBNAME_SHARED}
+                             ${RTI_MODULE_LIBNAME_STATIC})
+        ENDIF()
+    ENDIF()
+
+    foreach(md ${RTI_MODULE_IMPORTS} ${RTI_LIBRARY_DEPENDS})
+        add_exported_header_dependency(DEPEDENCY
+                                            ${md}
+                                       DEPENDENTS
+                                            ${RTI_MODULE_LIBNAME_STATIC}
+        )
+        if (NOT RTI_NO_SHARED_LIB)
+            add_exported_header_dependency(DEPEDENCY
+                                                ${md}
+                                           DEPENDENTS
+                                                ${RTI_MODULE_LIBNAME_SHARED}
+            )
+        endif()
+    endforeach()
+
+    IF (NOT RTI_NO_SHARED_LIB)
+        LIST(LENGTH RTI_MODULE_DEPEND_SHARED_LIBS x)
+        IF (${x} GREATER 0)
+            ADD_DEPENDENCIES(${RTI_MODULE_LIBNAME_SHARED}
+                             ${RTI_MODULE_DEPEND_SHARED_LIBS})
+        ENDIF()
+    ENDIF()
+
+    IF (NOT RTI_NO_SHARED_LIB)
+        # Do not import object dependencies
+        FOREACH(mdin ${RTI_MODULE_IMPORTS} ${RTI_MODULE_DEPENDS}
+        ${RTI_LIBRARY_DEPENDS} ${RTI_DLL_LIBRARY})
+            STRING(REGEX REPLACE "lib(.*)" "\\1" md ${mdin})
+            IF (${md} MATCHES "(.*)::(.*)")
+                SET(md "${CMAKE_MATCH_1}")
+                SET_PROPERTY(TARGET ${RTI_MODULE_LIBNAME_SHARED} APPEND
+                PROPERTY COMPILE_DEFINITIONS RTI_${CMAKE_MATCH_2}_DLL_VARIABLE)
+            ENDIF()
+            IF (RTIME_PIL AND ("${md}" STREQUAL "osapi"))
+                SET_PROPERTY(TARGET ${RTI_MODULE_LIBNAME_SHARED} APPEND
+                PROPERTY COMPILE_DEFINITIONS RTI_ospsl_DLL_VARIABLE)
+            ENDIF()
+            SET_PROPERTY(TARGET ${RTI_MODULE_LIBNAME_SHARED} APPEND
+            PROPERTY COMPILE_DEFINITIONS RTI_${md}_DLL_VARIABLE)
+            IF (DEFINED ${mdin}_OBJECT_DEPENDS)
+                FOREACH(mdin2 ${${mdin}_OBJECT_DEPENDS})
+                    IF (${mdin2} MATCHES "(.*)::(.*)")
+                        SET(mdin2 "${CMAKE_MATCH_1}")
+                        SET_PROPERTY(TARGET ${RTI_MODULE_LIBNAME_SHARED} APPEND
+                        PROPERTY COMPILE_DEFINITIONS RTI_${CMAKE_MATCH_2}_DLL_VARIABLE)
+                    ENDIF()
+                    IF (RTIME_PIL AND ("${mdin2}" STREQUAL "osapi"))
+                        SET_PROPERTY(TARGET ${RTI_MODULE_LIBNAME_SHARED} APPEND
+                        PROPERTY COMPILE_DEFINITIONS RTI_ospsl_DLL_VARIABLE)
+                    ENDIF()
+                    SET_PROPERTY(TARGET ${RTI_MODULE_LIBNAME_SHARED} APPEND
+                        PROPERTY COMPILE_DEFINITIONS RTI_${mdin2}_DLL_VARIABLE)
+                ENDFOREACH()
+            ENDIF()
+        ENDFOREACH()
+
+        FOREACH(mdin ${RTI_MODULE_EXPORTS})
+            STRING(REGEX REPLACE "lib(.*)" "\\1" md ${mdin})
+            IF (${md} MATCHES "(.*)::(.*)")
+                SET(md "${CMAKE_MATCH_1}")
+            ENDIF()
+            SET_PROPERTY(TARGET
+                            ${RTI_MODULE_LIBNAME_SHARED}
+                        APPEND PROPERTY COMPILE_DEFINITIONS
+                            RTI_${md}_DLL_EXPORT
+                            RTI_${md}_DLL_VARIABLE
+            )
+        ENDFOREACH()
+    ENDIF()
+
+    # For shared libraries the module must export its public functions.
+    IF (NOT RTI_NO_SHARED_LIB)
+        SET_PROPERTY(TARGET ${RTI_MODULE_LIBNAME_SHARED}  APPEND
+                     PROPERTY
+                     COMPILE_DEFINITIONS RTI_${RTI_MODULE_NAME}_DLL_EXPORT
+                                         RTI_${RTI_MODULE_NAME}_DLL_VARIABLE)
+
+        FOREACH (m ${RTI_OBJECT_DEPENDS})
+            IF (${m} MATCHES "(.*)::(.*)")
+                IF (RTI_${CMAKE_MATCH_2}_EXPORTS)
+                    FOREACH (e ${RTI_${CMAKE_MATCH_2}_EXPORTS})
+                        SET_PROPERTY(TARGET ${RTI_MODULE_LIBNAME_SHARED}  APPEND
+                                     PROPERTY
+                                     COMPILE_DEFINITIONS
+                                        RTI_${e}_DLL_EXPORT
+                                        RTI_${e}_DLL_VARIABLE
+                        )
+                    ENDFOREACH()
+                ENDIF()
+            ELSE()
+                SET_PROPERTY(TARGET ${RTI_MODULE_LIBNAME_SHARED}  APPEND
+                             PROPERTY
+                             COMPILE_DEFINITIONS RTI_${m}_DLL_EXPORT
+                                                 RTI_${m}_DLL_VARIABLE
+                )
+            ENDIF()
+        ENDFOREACH()
+
+        SET_PROPERTY(TARGET ${RTI_MODULE_LIBNAME_SHARED} APPEND
+                            PROPERTY MACOSX_RPATH TRUE)
+    ENDIF()
+
+    TARGET_LINK_LIBRARIES(${RTI_MODULE_LIBNAME_STATIC})
+
+    # Add dependencies for the shared libraries, including DLL variables
+    IF (RTI_NO_SHARED_LIB)
+        #MESSAGE("not linking ${RTI_MODULE_LIBNAME_SHARED}")
+    ELSE()
+        TARGET_LINK_LIBRARIES(${RTI_MODULE_LIBNAME_SHARED}
+                              ${RTI_MODULE_DEPEND_SHARED_LIBS} ${PLATFORM_LIBS})
+
+        SET_PROPERTY(TARGET ${RTI_MODULE_LIBNAME_SHARED}  APPEND
+                     PROPERTY COMPILE_DEFINITIONS
+                     RTIME_TARGET_NAME=\"${RTIME_TARGET_NAME}\"
+        )
+    ENDIF()
+
+    SET_PROPERTY(TARGET ${RTI_MODULE_LIBNAME_STATIC}  APPEND
+                 PROPERTY COMPILE_DEFINITIONS
+                 RTIME_TARGET_NAME=\"${RTIME_TARGET_NAME}\"
+    )
+
+    IF (NOT ${RTIME_OUTPUT_LIBDIR_PREFIX} MATCHES ".*/$")
+        SET(RTIME_OUTPUT_LIBDIR_PREFIX "${RTIME_OUTPUT_LIBDIR_PREFIX}/")
+    ENDIF()
+    # Export libraries
+
+    IF (DEFINED RTI_MODULE_EXPORT OR RTI_MODULE_EXPORT_HEADER)
+        IF (NOT RTI_NO_SHARED_LIB AND RTI_MODULE_EXPORT)
+            # For windows we need to copy .exp,*.lib., *.pdb and *.dll
+            IF (${CMAKE_SHARED_LIBRARY_SUFFIX} STREQUAL ".dll")
+                SET(libsuffix "dll" "lib" "exp")
+                IF (${RTI_DEBUG_BUILD})
+                    LIST(APPEND libsuffix "pdb")
+                ENDIF()
+                FOREACH(f ${libsuffix})
+                   ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_LIBNAME_SHARED} POST_BUILD
+                               COMMAND ${CMAKE_COMMAND} -E copy
+                               $<TARGET_LINKER_FILE_DIR:${RTI_MODULE_LIBNAME_SHARED}>/${CMAKE_SHARED_LIBRARY_PREFIX}${RTI_MODULE_LIBNAME_SHARED}.${f}
+                               ${RTI_EXPORT_MODULE_OUTPUT_LIB}/${RTIME_OUTPUT_LIBDIR_PREFIX}${CMAKE_SHARED_LIBRARY_PREFIX}${RTI_MODULE_LIBNAME_SHARED}.${f})
+                ENDFOREACH()
+            ELSE()
+                ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_LIBNAME_SHARED} POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy
+                           $<TARGET_LINKER_FILE:${RTI_MODULE_LIBNAME_SHARED}>
+                           ${RTI_EXPORT_MODULE_OUTPUT_LIB}/${RTIME_OUTPUT_LIBDIR_PREFIX}${CMAKE_SHARED_LIBRARY_PREFIX}${RTI_MODULE_LIBNAME_SHARED}${CMAKE_SHARED_LIBRARY_SUFFIX})
+            ENDIF()
+            IF (RTIME_HAS_DLL_MANIFEST_INPUT)
+                SET(RTIME_HAS_DLL_MANIFEST_DEPEND_LIST "")
+                STRING(REPLACE "PRODUCT" ${RTIME_PRODUCT_NAME} config_output_file ${RTIME_HAS_DLL_MANIFEST_OUTPUT})
+                STRING(REPLACE "LIBRARY" ${RTI_MODULE_LIBNAME_SHARED} config_output_file  ${config_output_file})
+                FOREACH(d ${RTI_MODULE_DEPEND_SHARED_LIBS})
+                    STRING(REPLACE "PRODUCT" ${RTIME_PRODUCT_NAME} depend_line ${RTIME_HAS_DLL_MANIFEST_DEPEND_PATTERN})
+                    STRING(REPLACE "LIBRARY" ${d} depend_line ${depend_line})
+                    SET(RTIME_HAS_DLL_MANIFEST_DEPEND_LIST "${RTIME_HAS_DLL_MANIFEST_DEPEND_LIST}\n${depend_line}")
+                ENDFOREACH()
+                configure_file(${RTIME_HAS_DLL_MANIFEST_INPUT} ${RTI_EXPORT_MODULE_OUTPUT_LIB}/${config_output_file})
+                UNSET(RTIME_HAS_DLL_MANIFEST_DEPEND_LIST)
+            ENDIF()
+        ENDIF()
+
+        IF (NOT RTIME_EXCLUDE_STATIC_LIB_COPY AND RTI_MODULE_EXPORT)
+            IF ((${RTI_MODULE_LIBNAME_STATIC} MATCHES "test") AND (NOT ${RTIME_DEVTREE}))
+                ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_LIBNAME_STATIC} POST_BUILD
+                            COMMAND ${CMAKE_COMMAND} -E make_directory
+                                    ${RTIME_MODULE_TEST_EXPORT}/bin/${RTIME_TARGET_NAME}
+                            COMMAND ${CMAKE_COMMAND} -E copy
+                                    $<TARGET_LINKER_FILE:${RTI_MODULE_LIBNAME_STATIC}>
+                                    ${RTIME_MODULE_TEST_EXPORT}/bin/${RTIME_TARGET_NAME}/${RTIME_OUTPUT_LIBDIR_PREFIX}${CMAKE_STATIC_LIBRARY_PREFIX}${RTI_MODULE_LIBNAME_STATIC}${CMAKE_STATIC_LIBRARY_SUFFIX})
+            ELSE()
+                # This is just to test if this is a windows build, not if
+                # this is a shared library.
+                IF (${CMAKE_SHARED_LIBRARY_SUFFIX} STREQUAL ".dll")
+                    SET(libsuffix "lib")
+                    IF (${RTI_DEBUG_BUILD})
+                        LIST(APPEND libsuffix "pdb")
+                    ENDIF()
+                    FOREACH(f ${libsuffix})
+                       ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_LIBNAME_STATIC} POST_BUILD
+                                   COMMAND ${CMAKE_COMMAND} -E copy
+                                   $<TARGET_LINKER_FILE_DIR:${RTI_MODULE_LIBNAME_STATIC}>/${CMAKE_STATIC_LIBRARY_PREFIX}${RTI_MODULE_LIBNAME_STATIC}.${f}
+                                   ${RTI_EXPORT_MODULE_OUTPUT_LIB}/${RTIME_OUTPUT_LIBDIR_PREFIX}${CMAKE_STATIC_LIBRARY_PREFIX}${RTI_MODULE_LIBNAME_STATIC}.${f})
+                    ENDFOREACH()
+                ELSE()
+                    ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_LIBNAME_STATIC} POST_BUILD
+                               COMMAND ${CMAKE_COMMAND} -E copy
+                               $<TARGET_LINKER_FILE:${RTI_MODULE_LIBNAME_STATIC}>
+                               ${RTI_EXPORT_MODULE_OUTPUT_LIB}/${RTIME_OUTPUT_LIBDIR_PREFIX}${CMAKE_STATIC_LIBRARY_PREFIX}${RTI_MODULE_LIBNAME_STATIC}${CMAKE_STATIC_LIBRARY_SUFFIX})
+                ENDIF()
+            ENDIF()
+        ENDIF()
+
+        SET(${RTI_MODULE_NAME}_EXPORT_GENERATED)
+        IF (${RTIME_DEVTREE})
+            # Export public header-files to the product directory
+            FOREACH(file_name ${RTI_MODULE_PUBLIC_HDR} ${RTI_MODULE_SHARED_HDR_PATCHED})
+                # include files prefixed with rti_me goes into the root include directory
+                if ((${file_name} MATCHES "rti_me") AND (NOT (${file_name} MATCHES "rti_me_psl_dll.h")))
+                    SET(output_dir ${RTIME_MODULE_EXPORT_INCLUDE_ROOT})
+                else()
+                    set(output_dir ${RTIME_MODULE_EXPORT_INCLUDE_ROOT}/${RTI_MODULE_NAME})
+                endif()
+                add_header_export(
+                    MODULE_NAME ${RTI_MODULE_NAME}
+                    TARGET_LIB ${RTI_MODULE_LIBNAME_STATIC}
+                    INPUT_FILE ${RTI_MODULE_SRCROOT}/include/${RTI_MODULE_NAME}/${file_name}
+                    OUTPUT_FILE ${output_dir}/${file_name}
+                )
+                list(APPEND ${RTI_MODULE_NAME}_EXPORT_GENERATED ${output_dir}/${file_name})
+            ENDFOREACH()
+
+            IF ((DEFINED RTI_SHARED_MODULE) AND (DEFINED RTI_MODULE_SHARED_HDR))
+                FOREACH (sd ${shared_module} ${RTI_MODULE_SHARED_EXTRA_INCLUDES})
+                    SET(RTI_MODULE_SHARED_HDR)
+                    SET(RTI_MODULE_SHARED_HDR_DIR include/share)
+                    SET(RTI_SHARED_MODULE_EXPORT_DIR)
+
+                    IF (EXISTS ${RTI_MODULE_SRCROOT}/include/${sd}/CMakeLists.txt)
+                        INCLUDE(${RTI_MODULE_SRCROOT}/include/${sd}/CMakeLists.txt)
+                    ENDIF()
+
+                    IF (DEFINED RTI_MODULE_SHARED_HDR)
+                        FOREACH(f ${RTI_MODULE_SHARED_HDR} ${RTI_MODULE_SHARED_HDR_PATCHED})
+                            IF (DEFINED RTI_SHARED_MODULE_EXPORT_DIR)
+                                set(output_dir ${RTIME_MODULE_EXPORT_INCLUDE_ROOT}/${RTI_SHARED_MODULE_EXPORT_DIR}${sd})
+                            else()
+                                set(output_dir ${RTIME_MODULE_EXPORT_INCLUDE_ROOT}/${sd})
+                            endif()
+                            add_header_export(
+                                    MODULE_NAME ${RTI_MODULE_NAME}
+                                    TARGET_LIB ${RTI_MODULE_LIBNAME_STATIC}
+                                    INPUT_FILE ${RTI_MODULE_SRCROOT}/include/${sd}/${f}
+                                    OUTPUT_FILE ${output_dir}/${f}
+                            )
+                            list(APPEND ${RTI_MODULE_NAME}_EXPORT_GENERATED ${output_dir}/${f})
+                        ENDFOREACH()
+                    ENDIF()
+                ENDFOREACH()
+            ENDIF()
+
+            FOREACH(idl ${${RTI_MODULE_NAME}_IDL_EXPORT})
+                    GET_FILENAME_COMPONENT(idl_file ${idl} NAME)
+                    add_header_export(
+                        MODULE_NAME ${RTI_MODULE_NAME}
+                        TARGET_LIB ${RTI_MODULE_LIBNAME_STATIC}
+                        INPUT_FILE ${idl}
+                        OUTPUT_FILE ${RTIME_MODULE_EXPORT_ROOT}/include/${RTI_MODULE_NAME}/${idl_file}
+                    )
+                    list(APPEND ${RTI_MODULE_NAME}_EXPORT_GENERATED ${RTIME_MODULE_EXPORT_ROOT}/include/${RTI_MODULE_NAME}/${idl_file})
+            ENDFOREACH()
+
+            set(obj_hdr)
+            FOREACH(od ${RTI_OBJECT_DEPENDS})
+                IF (${od} MATCHES "(.*)::(.*)")
+                    SET(od "${CMAKE_MATCH_1}")
+                ENDIF()
+                FOREACH(file_name ${${od}_EXPORT_HDR})
+                    list(FIND obj_hdr ${file_name} i)
+                    if (${i} EQUAL -1)
+                        list(APPEND obj_hdr "${od}::${file_name}")
+                    endif()
+                ENDFOREACH()
+            ENDFOREACH()
+            if (obj_hdr)
+                list(REMOVE_DUPLICATES obj_hdr)
+            endif()
+
+            FOREACH(file_name ${obj_hdr})
+                    IF (${file_name} MATCHES "(.*)::(.*)")
+                        SET(od "${CMAKE_MATCH_1}")
+                        SET(file_name "${CMAKE_MATCH_2}")
+                    ENDIF()
+                    # include files with rti_me goes into the root include directory
+                    ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_LIBNAME_STATIC} POST_BUILD
+                                       COMMAND ${CMAKE_COMMAND} -E make_directory
+                                               ${RTIME_MODULE_EXPORT_INCLUDE_ROOT}
+                                       COMMAND ${CMAKE_COMMAND} -E make_directory
+                                               ${RTIME_MODULE_EXPORT_ROOT}/include/${RTIME_EXPORT_MODULE_NAME}/${od})
+
+                    IF ((${file_name} MATCHES "rti_me_psl\.h") OR ((NOT ${file_name} MATCHES "rti_me_psl") AND (${file_name} MATCHES "rti_me")))
+                        STRING(REGEX REPLACE ".*/" "" file_name_only ${file_name})
+
+                        add_header_export(
+                            MODULE_NAME ${RTI_MODULE_NAME}
+                            TARGET_LIB ${RTI_MODULE_LIBNAME_STATIC}
+                            INPUT_FILE ${${od}_MODULE_DIR}/include/${file_name}
+                            OUTPUT_FILE ${RTIME_MODULE_EXPORT_INCLUDE_ROOT}/${file_name_only}
+                        )
+                        list(APPEND ${RTI_MODULE_NAME}_EXPORT_GENERATED "${RTIME_MODULE_EXPORT_INCLUDE_ROOT}/${file_name_only}")
+                    ELSE()
+                        add_header_export(
+                            MODULE_NAME ${RTI_MODULE_NAME}
+                            TARGET_LIB ${RTI_MODULE_LIBNAME_STATIC}
+                            INPUT_FILE ${${od}_MODULE_DIR}/include/${file_name}
+                            OUTPUT_FILE ${RTIME_MODULE_EXPORT_ROOT}/include/${RTIME_EXPORT_MODULE_NAME}/${file_name}
+                        )
+                        list(APPEND ${RTI_MODULE_NAME}_EXPORT_GENERATED ${RTIME_MODULE_EXPORT_ROOT}/include/${RTIME_EXPORT_MODULE_NAME}/${file_name})
+                    ENDIF()
+            ENDFOREACH()
+            IF (DEFINED RTI_MODULE_EXPORT)
+                SET_PROPERTY(GLOBAL
+                             APPEND
+                             PROPERTY ${RTI_MODULE_EXPORT}_EXPORTED_HEADER_TARGET
+                                      ${RTI_MODULE_EXPORT}_EXPORTED_HEADER_TARGET)
+                ADD_CUSTOM_TARGET(${RTI_MODULE_EXPORT}_EXPORTED_HEADER_TARGET
+                                  DEPENDS
+                                    ${${RTI_MODULE_NAME}_EXPORT_GENERATED})
+            ENDIF()
+        ENDIF()
+    ENDIF()
+ELSEIF ((DEFINED RTI_BUILDID_MASTER) AND (NOT RTIME_DISABLE_BUILDID))
+        SET(BUILD_ID_FILE "${RTI_MODULE_OUTPUT_INCLUDE}/${RTI_MODULE_NAME}_buildid.h")
+        #LIST(APPEND RTI_SHARED_OBJLIB ${BUILD_ID_FILE})
+        LIST(APPEND RTI_STATIC_OBJLIB ${BUILD_ID_FILE})
+
+        # When there are multiple output files, CMake generated a dependency
+        # between them based on the order in which they appear. So the below
+        # creates a rule where BUILD_ID_FILE depends on PHONY_BUILDID.
+        # However, PHONY_BUILDID generates BUILD_ID_FILE so it is always
+        # out of date.
+        ADD_CUSTOM_COMMAND(OUTPUT  ${RTI_MODULE_OUTPUT_INCLUDE}
+                           COMMAND ${CMAKE_COMMAND} -E make_directory ${RTI_MODULE_OUTPUT_INCLUDE}
+                           COMMENT "Generate ${RTI_MODULE_OUTPUT_INCLUDE}"
+        )
+
+        IF (RTI_MANUAL_BUILDID)
+            ADD_CUSTOM_COMMAND(OUTPUT  ${BUILD_ID_FILE} ${RTI_MODULE_OUTPUT_INCLUDE}
+                               COMMAND ${CMAKE_COMMAND} -DBUILD_ID_FILE=${BUILD_ID_FILE} -DHAS_STRING_TIMESTAMP=${HAS_STRING_TIMESTAMP} -P ${RTIME_RESOURCE_ROOT}/cmake/cmake_buildid.txt
+                               COMMENT "Generate ${BUILD_ID_FILE}"
+            )
+            ADD_CUSTOM_TARGET(BUILDID
+                              DEPENDS ${BUILD_ID_FILE}
+            )
+        ELSE()
+            ADD_CUSTOM_COMMAND(OUTPUT  PHONY_BUILDID ${BUILD_ID_FILE} ${RTI_MODULE_OUTPUT_INCLUDE}
+                               COMMAND ${CMAKE_COMMAND} -DBUILD_ID_FILE=${BUILD_ID_FILE} -DHAS_STRING_TIMESTAMP=${HAS_STRING_TIMESTAMP} -P ${RTIME_RESOURCE_ROOT}/cmake/cmake_buildid.txt
+                               COMMENT "Generate ${BUILD_ID_FILE}"
+            )
+            ADD_CUSTOM_TARGET(BUILDID
+                              DEPENDS PHONY_BUILDID
+            )
+        ENDIF()
+
+        SET_SOURCE_FILES_PROPERTIES( PHONY_BUILDID PROPERTIES SYMBOLIC 1)
+ELSEIF ((DEFINED RTI_BUILDID_MASTER) AND (DEFINED RTIME_DISABLE_BUILDID))
+        ADD_CUSTOM_TARGET(BUILDID  )
+ENDIF()
+
+SET(HAS_GENERATED_FILES FALSE)
+
+SET(iter_list
+    ${${RTI_MODULE_NAME}_SRC_C}
+    ${${RTI_MODULE_NAME}_SRC_H}
+    ${${RTI_MODULE_NAME}_TEST_SRC_C}
+    ${${RTI_MODULE_NAME}_TEST_SRC_H}
+    ${${RTI_MODULE_NAME}_PUBLIC_HDR}
+    ${${RTI_MODULE_NAME}_EXPORT_GENERATED}
+)
+
+IF (RTIME_UTEST_QUACK_ENABLE)
+    LIST(APPEND iter_list
+        ${${RTI_MODULE_NAME}_TEST_QUACK_TS}
+        ${${RTI_MODULE_NAME}_TEST_QUACK_TI}
+    )
+ENDIF()
+
+FOREACH(f ${iter_list})
+    GET_PROPERTY(rti_generated
+                 SOURCE ${f}
+                 PROPERTY RTI_GENERATED
+                 SET)
+    IF (rti_generated)
+        SET(HAS_GENERATED_FILES TRUE)
+        LIST(APPEND ${RTI_MODULE_NAME}_GENERATED ${f})
+    ENDIF()
+ENDFOREACH()
+
+IF(${HAS_GENERATED_FILES} OR ${SUBMODULE_HAS_GENERATE})
+    SET(GENERATE_TARGETS)
+    IF (${HAS_GENERATED_FILES})
+        SET(GENERATE_TARGETS ${${RTI_MODULE_NAME}_GENERATED})
+    ENDIF()
+    IF (${SUBMODULE_HAS_GENERATE})
+        SET(GENERATE_TARGETS ${GENERATE_TARGETS} ${SUBMODULE_GENERATE})
+    ENDIF()
+    SET_PROPERTY(GLOBAL APPEND PROPERTY ${RTI_MODULE_NAME}_HAS_GENERATE true)
+    ADD_CUSTOM_TARGET(${RTI_MODULE_NAME}_GENERATE
+                      DEPENDS ${GENERATE_TARGETS})
+ENDIF()
+
+################################################################################
+#
+# Unit-test part
+#
+# NOTE: We don't build unit-tests linked against the dynamic libraries
+#       The reason for this is that unit-tests call internal methods that is
+#       only internal (onlyo extern). Linking dynamically would require these
+#       methods to also be exported as part of library.
+################################################################################
+
+# Check early if this module should build forge tests
+SET(build_forge FALSE)
+IF (RTI_BUILD_FORGE_UNITTESTS)
+    FORGE_TESTS_ENABLED_FOR_MODULE(build_forge)
+ENDIF()
+
+# For Forge architectures, only create testers if module is in Forge list.
+# For non-Forge architectures, always create testers.
+IF (RTI_BUILD_FORGE_UNITTESTS AND NOT build_forge)
+    # Forge architecture, but this module is not in Forge list - skip entirely
+ELSEIF (${RTI_BUILD_UNITTESTS})
+    IF (RTIME_UTEST_QUACK_ENABLE AND (NOT ${RTI_MODULE_NAME} MATCHES "rti_me_psl"))
+        process_resource_bundle_module(${RTIME_SOURCE_ROOT}/${CURRENT_MODULE_DIR}
+                                       ${RTI_TARGET_BUNDLE_ROOT}
+                                       "static/${RTI_MODULE_TESTER_BUNDLE}"
+                                       ${RTI_MODULE_NAME}
+        )
+
+        ADD_CUSTOM_TARGET(${RTI_MODULE_NAME}_resources
+                          DEPENDS ${return_value}
+        )
+    ENDIF()
+
+    FOREACH(srcdir "" /srcC /srcCxx)
+        IF (EXISTS ${RTI_MODULE_TESTROOT}${srcdir}/test/CMakeLists.txt)
+            INCLUDE(${RTI_MODULE_TESTROOT}${srcdir}/test/CMakeLists.txt)
+
+            FOREACH(f ${RTI_SUBMODULE_TEST_SRC})
+                LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_C ${RTI_MODULE_TESTROOT}${srcdir}/test/${f})
+                LIST(APPEND ${RTI_MODULE_NAME}_test_SRC ${RTI_MODULE_TESTROOT}${srcdir}/test/${f})
+            ENDFOREACH()
+
+            FOREACH(f ${RTI_SUBMODULE_TEST_HDR})
+                LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_H ${RTI_MODULE_TESTROOT}${srcdir}/test/${f})
+                LIST(APPEND ${RTI_MODULE_NAME}_test_HDR ${RTI_MODULE_TESTROOT}${srcdir}/test/${f})
+            ENDFOREACH()
+
+            SET(IDL_OUTPUT_DIR ${RTI_MODULE_OUTPUT_SRC}${srcdir}/test)
+
+            MICRO_ADD_IDL(IDL_GEN_C IDL_GEN_H RTI_SUBMODULE_IDL SRC_ROOT "microC" ${IDL_OUTPUT_DIR})
+
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_C  ${IDL_GEN_C})
+            LIST(APPEND ${RTI_MODULE_NAME}_TEST_SRC_H  ${IDL_GEN_H})
+
+            STRING(TOUPPER ${RTI_MODULE_NAME} uc_modulename)
+
+            IF ((NOT RTI_NO_SHARED_LIB) OR ${RTIME_DEVTREE} AND (NOT RTI_BUILD_UNITTESTS_AS_LIBS))
+                IF (NOT RTIME_BUILD_SINGLE_LIB)
+                    IF (NOT RTIME_PIL)
+                        ADD_EXECUTABLE(${RTI_MODULE_TESTER_STATIC} ${EXE_APP_TYPE}
+                                       ${${RTI_MODULE_NAME}_TEST_SRC_C}
+                                       ${${RTI_MODULE_NAME}_TEST_SRC_H})
+                    ELSE()
+                        ADD_LIBRARY(${RTI_MODULE_TESTER_STATIC} STATIC
+                                       ${${RTI_MODULE_NAME}_TEST_SRC_C}
+                                       ${${RTI_MODULE_NAME}_TEST_SRC_H})
+                    ENDIF()
+                ELSE()
+                    IF (NOT RTIME_PIL)
+                        ADD_EXECUTABLE(${RTI_MODULE_TESTER_STATIC} ${EXE_APP_TYPE} EXCLUDE_FROM_ALL
+                                       ${${RTI_MODULE_NAME}_TEST_SRC_C}
+                                       ${${RTI_MODULE_NAME}_TEST_SRC_H})
+                        SET(RTI_TEST_TARGETS ${RTI_TEST_TARGETS} ${RTI_MODULE_TESTER_STATIC} PARENT_SCOPE)
+                    ELSE()
+                        ADD_LIBRARY(${RTI_MODULE_TESTER_STATIC} STATIC
+                                       ${${RTI_MODULE_NAME}_TEST_SRC_C}
+                                       ${${RTI_MODULE_NAME}_TEST_SRC_H})
+                    ENDIF()
+                ENDIF()
+                LIST(APPEND ${RTI_TEST_EXES_LIST} ${RTI_MODULE_TESTER_STATIC})
+            ELSE()
+                ADD_LIBRARY(${RTI_MODULE_TESTER_STATIC} STATIC
+                            ${${RTI_MODULE_NAME}_TEST_SRC_C}
+                            ${${RTI_MODULE_NAME}_TEST_SRC_H})
+            ENDIF()
+
+            LIST(LENGTH SUBMODULE_TEST_DEPENDS el_count)
+            IF(${el_count} GREATER 0)
+                ADD_DEPENDENCIES(${RTI_MODULE_TESTER_STATIC}
+                                 ${SUBMODULE_TEST_DEPENDS}
+                )
+            ENDIF()
+
+            IF (RTIME_UTEST_QUACK_ENABLE AND NOT RTIME_PIL)
+                ADD_DEPENDENCIES(${RTI_MODULE_TESTER_STATIC}
+                                 bundle_common
+                                 ${RTI_MODULE_NAME}_resources
+                )
+
+                IF (DEFINED ${RTI_MODULE_NAME}_QUACK_TS)
+                    ADD_CUSTOM_TARGET(${RTI_MODULE_NAME}_QUACK_TS_TARGET
+                                    DEPENDS ${${RTI_MODULE_NAME}_QUACK_TS}
+                    )
+
+                    ADD_DEPENDENCIES(${RTI_MODULE_TESTER_STATIC}
+                                    ${RTI_MODULE_NAME}_QUACK_TS_TARGET
+                    )
+                ENDIF()
+
+                IF (DEFINED ${RTI_MODULE_NAME}_QUACK_TI)
+                    ADD_CUSTOM_TARGET(${RTI_MODULE_NAME}_QUACK_TI_TARGET
+                                      DEPENDS ${${RTI_MODULE_NAME}_QUACK_TI}
+                    )
+
+                    ADD_DEPENDENCIES(${RTI_MODULE_TESTER_STATIC}
+                                     ${RTI_MODULE_NAME}_QUACK_TI_TARGET
+                    )
+                ENDIF()
+
+                IF (DEFINED ${RTI_MODULE_NAME}_TEST_QUACK_TS)
+                    ADD_CUSTOM_TARGET(${RTI_MODULE_NAME}_TEST_QUACK_TS_TARGET
+                                    DEPENDS ${${RTI_MODULE_NAME}_TEST_QUACK_TS}
+                    )
+
+                    ADD_DEPENDENCIES(${RTI_MODULE_TESTER_STATIC}
+                                    ${RTI_MODULE_NAME}_TEST_QUACK_TS_TARGET
+                    )
+                ENDIF()
+
+                IF (DEFINED ${RTI_MODULE_NAME}_TEST_QUACK_TI)
+                    ADD_CUSTOM_TARGET(${RTI_MODULE_NAME}_TEST_QUACK_TI_TARGET
+                                      DEPENDS ${${RTI_MODULE_NAME}_TEST_QUACK_TI}
+                    )
+
+                    ADD_DEPENDENCIES(${RTI_MODULE_TESTER_STATIC}
+                                     ${RTI_MODULE_NAME}_TEST_QUACK_TI_TARGET
+                    )
+                ENDIF()
+            ENDIF()
+
+            SET_TARGET_PROPERTIES(${RTI_MODULE_TESTER_STATIC}
+                                  PROPERTIES FOLDER ${CURRENT_MODULE_DIR})
+
+            IF (NOT ("${srcdir}" STREQUAL ""))
+                STRING(REPLACE "/" "" srcdirg ${srcdir})
+            ENDIF()
+
+            SOURCE_GROUP(\\${RTI_MODULE_NAME}\\${srcdirg}\\test
+                         FILES ${${RTI_MODULE_NAME}_test_SRC})
+
+            SOURCE_GROUP(\\${RTI_MODULE_NAME}\\${srcdirg}\\test
+                         FILES ${${RTI_MODULE_NAME}_test_HDR})
+
+            FOREACH(md ${RTI_MODULE_TEST_IMPORT})
+                LIST(APPEND RTI_MODULE_INCLUDE_TEST_DIRS ${${md}_MODULE_DIR}/include)
+            ENDFOREACH()
+
+            IF (DEFINED RTI_MODULE_TEST_SOURCE_IMPORT)
+                FOREACH(mdin ${RTI_MODULE_TEST_SOURCE_IMPORT})
+                    LIST(APPEND RTI_MODULE_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/${mdin})
+                ENDFOREACH()
+            ENDIF()
+
+            IF (${HAS_TARGET_INCLUDE_DIR})
+                TARGET_INCLUDE_DIRECTORIES(${RTI_MODULE_TESTER_STATIC} PRIVATE
+                                           ${test_MODULE_DIR}/include ${RTI_MODULE_INCLUDE_DIRS}
+                                           ${RTI_MODULE_INCLUDE_TEST_DIRS})
+            ELSE()
+                INCLUDE_DIRECTORIES(${RTI_MODULE_INCLUDE_TEST_DIRS})
+            ENDIF()
+
+            # Add the dependent libraries
+            IF (DEFINED RTI_MODULE_TEST_LIBRARY)
+                SET(RTI_MODULE_DEPEND_SHARED_LIBS)
+                SET(RTI_MODULE_DEPEND_STATIC_LIBS)
+            ENDIF()
+
+            IF (NOT RTIME_BUILD_SINGLE_LIB)
+                FOREACH(md ${RTI_MODULE_TEST_IMPORT} ${RTI_MODULE_TEST_LIBRARY})
+                    IF (DEFINED ${md}_EXPORT_NAME)
+                        LIST(APPEND RTI_MODULE_DEPEND_SHARED_LIBS ${${md}_EXPORT_NAME}${RTI_LIB_SUFFIX_DYNAMIC})
+                        LIST(APPEND RTI_MODULE_DEPEND_STATIC_LIBS ${${md}_EXPORT_NAME}${RTI_LIB_SUFFIX_STATIC})
+                    ELSE()
+                        LIST(APPEND RTI_MODULE_DEPEND_SHARED_LIBS ${RTI_LIB_PREFIX}_${md}${RTI_LIB_SUFFIX_DYNAMIC})
+                        LIST(APPEND RTI_MODULE_DEPEND_STATIC_LIBS ${RTI_LIB_PREFIX}_${md}${RTI_LIB_SUFFIX_STATIC})
+                    ENDIF()
+                ENDFOREACH()
+            ELSE()
+                FOREACH(md ${RTI_MODULE_TEST_IMPORT} ${RTI_MODULE_TEST_LIBRARY})
+                    IF (DEFINED ${md}_EXPORT_NAME)
+                        LIST(APPEND RTI_MODULE_DEPEND_SHARED_LIBS ${${md}_EXPORT_NAME}${RTI_LIB_SUFFIX_DYNAMIC})
+                        LIST(APPEND RTI_MODULE_DEPEND_STATIC_LIBS ${${md}_EXPORT_NAME}${RTI_LIB_SUFFIX_STATIC})
+                    ELSE()
+                        LIST(APPEND RTI_MODULE_DEPEND_SHARED_LIBS ${RTI_LIB_PREFIX}_${md}${RTI_LIB_SUFFIX_DYNAMIC})
+                        LIST(APPEND RTI_MODULE_DEPEND_STATIC_LIBS ${RTI_LIB_PREFIX}_${md}${RTI_LIB_SUFFIX_STATIC})
+                    ENDIF()
+                ENDFOREACH()
+            ENDIF()
+
+            set(reslvd_platform_libs)
+            # platform libs are already a dependcy for these modules
+            IF ((NOT RTIME_PSL) AND (NOT ${RTI_MODULE_NAME} STREQUAL "testsuite"))
+                LIST(APPEND reslvd_platform_libs
+                    ${PLATFORM_LIBS}
+                )
+            ENDIF()
+
+            IF (${RTI_BUILD_MODULE_HAS_SOURCE})
+                IF ((NOT RTIME_BUILD_SINGLE_LIB) OR
+                    (${RTI_MODULE_NAME} MATCHES "testsuite") OR
+                    (${RTI_MODULE_NAME} MATCHES "dt"))
+                    TARGET_LINK_LIBRARIES(${RTI_MODULE_TESTER_STATIC}
+                                          ${RTI_MODULE_LIBNAME_STATIC}
+                                          ${RTI_MODULE_DEPEND_STATIC_LIBS}
+                                          ${RTI_MODULE_TESTLIB_STATIC}
+                                          ${PLATFORM_TEST_LIBS}
+                                          ${reslvd_platform_libs}
+                    )
+                ELSE()
+                    TARGET_LINK_LIBRARIES(${RTI_MODULE_TESTER_STATIC}
+                                          rti_me${RTI_LIB_SUFFIX_STATIC}
+                                          ${RTI_MODULE_TESTLIB_STATIC}
+                                          ${PLATFORM_TEST_LIBS}
+                                          ${PLATFORM_TEST_LIBS}
+                                          ${reslvd_platform_libs}
+                    )
+                ENDIF()
+
+                ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC} POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E make_directory
+                                   ${RTI_MODULE_OUTPUT_SRC}/lib/${RTIME_TARGET_NAME}
+                           COMMAND ${CMAKE_COMMAND} -E copy
+                                   $<TARGET_FILE:${RTI_MODULE_TESTER_STATIC}>
+                                   ${RTI_MODULE_OUTPUT_SRC}/lib/${RTIME_TARGET_NAME}/$<TARGET_FILE_NAME:${RTI_MODULE_TESTER_STATIC}>)
+
+                IF (RTIME_UTEST_QUACK_ENABLE AND NOT RTIME_PIL)
+                    string(TIMESTAMP RTIME_BUNDLE_CREATION_TIMESTAMP)
+                    ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC} POST_BUILD
+                       COMMAND ${CMAKE_COMMAND}
+                                -DRTIME_SOURCE_ROOT=${RTIME_SOURCE_ROOT}
+                                -DBUILD_ID_FILE="${RTIME_BUILD_ROOT}/dds_c.2.0/include/dds_c_buildid.h"
+                                -DBUILD_ID=${RTIME_BUNDLE_ID}
+                                -DCOMMIT_ID=${RTI_COMMIT_ID}
+                                -DARCHITECTURE=${RTIME_TARGET_NAME}
+                                -DCREATE_TIMESTAMP=${RTIME_BUNDLE_CREATION_TIMESTAMP}
+                                -DRTI_BUNDLE_TYPE=${RTI_BUNDLE_TYPE}
+                                -DFULL_TEST_NAME="${RTI_MODULE_BUNDLE_PREFIX}::${RTI_MODULE_NAME}::${RTI_MODULE_TESTER_BUNDLE}"
+                                -DTEST_EXECUTABLE=$<TARGET_FILE_NAME:${RTI_MODULE_TESTER_STATIC}>
+                                -DENTRY_POINT=main
+                                -DINPUT_FILE=${RTIME_RESOURCE_ROOT}/cmake/cmake_test_manifest.cmake
+                                -DOUTPUT_FILE=${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}/MANIFEST
+                                -P ${RTIME_RESOURCE_ROOT}/cmake/cmake_generate_test_bundle.cmake
+                       COMMAND ${CMAKE_COMMAND} -E copy
+                               $<TARGET_FILE:${RTI_MODULE_TESTER_STATIC}>
+                               ${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}/lib/${RTIME_TARGET_NAME}/$<TARGET_FILE_NAME:${RTI_MODULE_TESTER_STATIC}>
+                    )
+
+                    ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC} POST_BUILD
+                            COMMAND ${CMAKE_COMMAND} -E copy_directory
+                                ${RTI_TARGET_BUNDLE_ROOT}/static/resource
+                                ${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}/resource
+
+                            COMMAND ${CMAKE_COMMAND} -E tar cz
+                                ${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}.tgz -- .
+
+                            WORKING_DIRECTORY ${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}
+                    )
+
+                    if (HAS_RM)
+                        ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC} POST_BUILD
+                                COMMAND ${CMAKE_COMMAND} -E rm -r -- ${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}
+                        )
+                    else()
+                        ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC} POST_BUILD
+                                COMMAND ${CMAKE_COMMAND} -E remove_directory ${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}
+                        )
+                    endif()
+
+                ENDIF()
+
+                IF (${RTI_BUILD_DYNAMIC_UNITTESTS})
+                    IF ((NOT RTIME_BUILD_SINGLE_LIB) OR
+                        (${RTI_MODULE_NAME} MATCHES "testsuite") OR
+                        (${RTI_MODULE_NAME} MATCHES "dt"))
+                        TARGET_LINK_LIBRARIES(${RTI_MODULE_TESTER_SHARED}
+                                              ${RTI_MODULE_LIBNAME_SHARED}
+                                              ${PLATFORM_TEST_LIBS}
+                                              ${reslvd_platform_libs}
+                        )
+                    ELSE()
+                        TARGET_LINK_LIBRARIES(${RTI_MODULE_TESTER_SHARED}
+                                              ${RTI_MODULE_TESTLIB_SHARED}
+                                              rti_me${RTI_LIB_SUFFIX_SHARED}
+                                              ${PLATFORM_TEST_LIBS}
+                                              ${reslvd_platform_libs}
+                        )
+                    ENDIF()
+                ENDIF()
+            ELSE()
+                IF ((NOT RTIME_BUILD_SINGLE_LIB) OR
+                    (${RTI_MODULE_NAME} MATCHES "testsuite") OR
+                    (${RTI_MODULE_NAME} MATCHES "dt"))
+                    TARGET_LINK_LIBRARIES(${RTI_MODULE_TESTER_STATIC}
+                                          ${RTI_MODULE_DEPEND_STATIC_LIBS}
+                                          ${PLATFORM_TEST_LIBS}
+                                          ${reslvd_platform_libs}
+                    )
+                ELSE()
+                    TARGET_LINK_LIBRARIES(${RTI_MODULE_TESTER_STATIC}
+                                          rti_me${RTI_LIB_SUFFIX_STATIC}
+                                          ${PLATFORM_TEST_LIBS}
+                                          ${reslvd_platform_libs}
+                    )
+                ENDIF()
+
+                ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC} POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E make_directory
+                                   ${RTI_MODULE_OUTPUT_SRC}/lib/${RTIME_TARGET_NAME}
+                           COMMAND ${CMAKE_COMMAND} -E copy
+                                   $<TARGET_FILE:${RTI_MODULE_TESTER_STATIC}>
+                                   ${RTI_MODULE_OUTPUT_SRC}/lib/${RTIME_TARGET_NAME}/$<TARGET_FILE_NAME:${RTI_MODULE_TESTER_STATIC}>)
+
+                IF (RTIME_UTEST_QUACK_ENABLE AND NOT RTIME_PIL)
+                    string(TIMESTAMP RTIME_BUNDLE_CREATION_TIMESTAMP)
+                    ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC} POST_BUILD
+                       COMMAND ${CMAKE_COMMAND}
+                                -DRTIME_SOURCE_ROOT=${RTIME_SOURCE_ROOT}
+                                -DBUILD_ID_FILE="${RTIME_BUILD_ROOT}/dds_c.2.0/include/dds_c_buildid.h"
+                                -DBUILD_ID=${RTIME_BUNDLE_ID}
+                                -DCOMMIT_ID=${RTI_COMMIT_ID}
+                                -DARCHITECTURE=${RTIME_TARGET_NAME}
+                                -DCREATE_TIMESTAMP=${RTIME_BUNDLE_CREATION_TIMESTAMP}
+                                -DRTI_BUNDLE_TYPE=${RTI_BUNDLE_TYPE}
+                                -DFULL_TEST_NAME="${RTI_MODULE_BUNDLE_PREFIX}::${RTI_MODULE_NAME}::${RTI_MODULE_TESTER_BUNDLE}"
+                                -DTEST_EXECUTABLE=$<TARGET_FILE_NAME:${RTI_MODULE_TESTER_STATIC}>
+                                -DENTRY_POINT=main
+                                -DINPUT_FILE=${RTIME_RESOURCE_ROOT}/cmake/cmake_test_manifest.cmake
+                                -DOUTPUT_FILE=${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}/MANIFEST
+                                -P ${RTIME_RESOURCE_ROOT}/cmake/cmake_generate_test_bundle.cmake
+                       COMMAND ${CMAKE_COMMAND} -E copy
+                               $<TARGET_FILE:${RTI_MODULE_TESTER_STATIC}>
+                               ${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}/lib/${RTIME_TARGET_NAME}/$<TARGET_FILE_NAME:${RTI_MODULE_TESTER_STATIC}>
+                    )
+
+                    ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC} POST_BUILD
+                            COMMAND ${CMAKE_COMMAND} -E copy_directory
+                                ${RTI_TARGET_BUNDLE_ROOT}/static/resource
+                                ${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}/resource
+
+                            COMMAND ${CMAKE_COMMAND} -E tar cz
+                                ${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}.tgz -- .
+
+                            WORKING_DIRECTORY ${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}
+                    )
+
+                    if (HAS_RM)
+                        ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC} POST_BUILD
+                                COMMAND ${CMAKE_COMMAND} -E rm -r -- ${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}
+                        )
+                    else()
+                        ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC} POST_BUILD
+                                COMMAND ${CMAKE_COMMAND} -E remove_directory ${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}
+                        )
+                    endif()
+
+                ENDIF()
+
+                IF (${RTI_BUILD_DYNAMIC_UNITTESTS})
+                    IF ((NOT RTIME_BUILD_SINGLE_LIB) OR
+                        (${RTI_MODULE_NAME} MATCHES "testsuite") OR
+                        (${RTI_MODULE_NAME} MATCHES "dt"))
+                            TARGET_LINK_LIBRARIES(${RTI_MODULE_TESTER_SHARED}
+                                                  rti_me${RTI_LIB_SUFFIX_SHARED}
+                                                  ${RTI_MODULE_DEPEND_SHARED_LIBS}
+                                                  ${RTI_MODULE_TESTLIB_SHARED}
+                                                  ${PLATFORM_TEST_LIBS}
+                                                  ${reslvd_platform_libs}
+                            )
+                    ELSE()
+                            TARGET_LINK_LIBRARIES(${RTI_MODULE_TESTER_SHARED}
+                                                  rti_me${RTI_LIB_SUFFIX_STATIC}
+                                                  ${PLATFORM_TEST_LIBS}
+                                                  ${reslvd_platform_libs}
+                            )
+                    ENDIF()
+                ENDIF()
+            ENDIF()
+
+
+
+        ENDIF()
+    ENDFOREACH()
+ENDIF()

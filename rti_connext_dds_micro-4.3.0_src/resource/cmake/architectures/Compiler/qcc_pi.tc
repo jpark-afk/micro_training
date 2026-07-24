@@ -1,0 +1,152 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2016-2026
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Top level CMakeLists.txt for building Micro
+#
+# Modification History
+# --------------------
+# 03may2016 tk Written
+################################################################################
+SET(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
+
+MACRO(INCLUDE_QCC_COMPILER_PIL version cflags_release cflags_debug cxxflags_release cxxflags_debug)
+    SET(CMAKE_C_FLAGS
+            "-nostdinc -fsigned-char -Vgcc/${version},gcc_ntoaarch64le \
+            -Winit-self -Wmissing-declarations -Wall -Wextra \
+            -Wpedantic -Wshadow -Wcast-align -Wunused -Wconversion \
+            -Wsign-conversion -Wlogical-op -Wdouble-promotion \
+            -Wstrict-prototypes"
+        CACHE INTERNAL "CMAKE_C_FLAGS" FORCE
+    )
+    SET(CMAKE_C_FLAGS_RELEASE "${cflags_release} -O2"
+        CACHE INTERNAL "CMAKE_C_FLAGS_RELEASE" FORCE
+    )
+    SET(CMAKE_C_FLAGS_DEBUG "-g ${cflags_debug}"
+        CACHE INTERNAL "CMAKE_C_FLAGS_DEBUG" FORCE
+    )
+
+    SET(CMAKE_CXX_FLAGS
+            "-nostdinc -fsigned-char -Vgcc/${version},gcc_ntoaarch64le \
+            -Winit-self -Wmissing-declarations -Wall -Wextra -Wpedantic \
+            -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused \
+            -Woverloaded-virtual -Wconversion -Wsign-conversion \
+            -Wlogical-op  -Wdouble-promotion"
+        CACHE INTERNAL "CMAKE_CXX_FLAGS" FORCE
+    )
+    SET(CMAKE_CXX_FLAGS_RELEASE "${cxxflags_release} -O2"
+        CACHE INTERNAL "CMAKE_CXX_FLAGS_RELEASE" FORCE
+    )
+    SET(CMAKE_CXX_FLAGS_DEBUG "-g ${cxxflags_debug}"
+        CACHE INTERNAL "CMAKE_CXX_FLAGS_DEBUG" FORCE
+    )
+
+    SET(CMAKE_C_COMPILER "$ENV{QNX_HOST}/usr/bin/qcc")
+    SET(CMAKE_CXX_COMPILER "$ENV{QNX_HOST}/usr/bin/q++")
+
+    FOREACH(language C CXX)
+        SET(CMAKE_${language}_COMPILER_WORKS 1)
+        SET(CMAKE_${language}_ABI_COMPILED 1)
+        set(CMAKE_${language}_COMPILE_OPTIONS_PIC "-fPIC"
+            CACHE INTERNAL "CMAKE_${language}_COMPILE_OPTIONS_PIC" FORCE
+        )
+        SET(CMAKE_${language}_COMPILE_OBJECT
+            "<CMAKE_${language}_COMPILER> <DEFINES> <INCLUDES> \
+            <FLAGS> -o <OBJECT> -c <SOURCE>"
+        )
+        SET(CMAKE_${language}_CREATE_SHARED_LIBRARY
+            "<CMAKE_${language}_COMPILER> -shared \
+            -Vgcc/${version},gcc_ntoaarch64le \
+            ${WEAK_SYMBOL_LINKER_FLAGS} <LINK_FLAGS> \
+            -o <TARGET> <OBJECTS> <LINK_LIBRARIES> "
+        )
+        SET(CMAKE_${language}_CREATE_STATIC_LIBRARY
+            "${CMAKE_AR} rc <TARGET> <OBJECTS>"
+        )
+    ENDFOREACH()
+    SET(RTIME_PIL TRUE)
+    ADD_DEFINITIONS(-DRTI_PIL=1)
+ENDMACRO()
+
+MACRO(INCLUDE_QCC_COMPILER_PSL version cflags_release cflags_debug cxxflags_release cxxflags_debug)
+    IF(CMAKE_SYSTEM_VERSION EQUAL 8.0)
+        SET(QNX_CPP_LIBRARY "")
+    ELSE()
+        SET(QNX_CPP_LIBRARY "-Y_gpp")
+    ENDIF()
+    SET(CMAKE_C_FLAGS
+            "-Vgcc/${version},gcc_ntoaarch64le \
+            -fsigned-char \
+            ${QNX_CPP_LIBRARY} -Winit-self -Wmissing-declarations -Wall \
+            -Wextra -Wpedantic -Wshadow -Wcast-align -Wunused \
+            -Wconversion -Wsign-conversion -Wlogical-op \
+            -Wdouble-promotion -Wstrict-prototypes"
+        CACHE INTERNAL "CMAKE_C_FLAGS" FORCE
+    )
+    SET(CMAKE_C_FLAGS_RELEASE "${cflags_release} -O2"
+        CACHE INTERNAL "CMAKE_C_FLAGS_RELEASE" FORCE
+    )
+    SET(CMAKE_C_FLAGS_DEBUG "-g ${cflags_debug}"
+        CACHE INTERNAL "CMAKE_C_FLAGS_DEBUG" FORCE
+    )
+
+    SET(CMAKE_CXX_FLAGS
+            "-Vgcc/${version},gcc_ntoaarch64le ${QNX_CPP_LIBRARY} \
+            -fsigned-char \
+            -Winit-self -Wmissing-declarations -Wall -Wextra \
+            -Wpedantic -Wshadow -Wnon-virtual-dtor -Wcast-align \
+            -Wunused -Woverloaded-virtual -Wconversion \
+            -Wsign-conversion -Wlogical-op  -Wdouble-promotion"
+        CACHE INTERNAL "CMAKE_CXX_FLAGS" FORCE
+    )
+
+    SET(CMAKE_CXX_FLAGS_RELEASE "${cxxflags_release} -O2"
+        CACHE INTERNAL "CMAKE_CXX_FLAGS_RELEASE" FORCE
+    )
+    SET(CMAKE_CXX_FLAGS_DEBUG "-g ${cxxflags_debug}"
+        CACHE INTERNAL "CMAKE_CXX_FLAGS_DEBUG" FORCE
+    )
+    SET(CMAKE_CXX_COMPILER $ENV{QNX_HOST}/usr/bin/q++)
+    SET(CMAKE_C_COMPILER $ENV{QNX_HOST}/usr/bin/qcc)
+
+    get_filename_component(tc ${CMAKE_CURRENT_LIST_FILE} NAME)
+    STRING(REGEX MATCH "(.*)-(.*)" pil_match ${tc})
+    IF(pil_match)
+        SET(RTIME_PIL_ARCH ${CMAKE_MATCH_1})
+    ELSE()
+        MESSAGE(FATAL_ERROR "No PIL found")
+    ENDIF()
+    SET(RTIME_PSL TRUE)
+    ADD_DEFINITIONS(-DRTI_PSL=1)
+ENDMACRO()
+
+SET(CMAKE_AR "$ENV{QNX_HOST}/usr/bin/ntoaarch64-ar"
+    CACHE INTERNAL "CMAKE_AR" FORCE
+)
+SET(CMAKE_RANLIB "$ENV{QNX_HOST}/usr/bin/ntoaarch64-ranlib"
+    CACHE INTERNAL "CMAKE_RANLIB" FORCE
+)
+
+SET(RTIME_OSAPI_COMPILER osapi_cc_qcc.h)
+ADD_DEFINITIONS(-DOSAPI_CC_DEF_H=osapi/${RTIME_OSAPI_COMPILER})
+SET(OSAPI_CC_DEF_H_SET TRUE)
+
+ADD_DEFINITIONS(-DRTI_QCC)
+
+SET(CMAKE_INSTALL_RPATH "")
+SET(RTIME_OBJDUMP $ENV{QNX_HOST}/usr/bin/ntoaarch64-objdump)
+SET(RTIME_OBJDUMP_OPT --disassemble-all)
+SET(RTIME_OBJDUMPCHKSUM $ENV{QNX_HOST}/usr/bin/ntoaarch64-objdump)
+SET(RTIME_OBJDUMPCHKSUM_OPT
+    --section=.text --section=.data --section=.rodata --disassemble-all
+)
+SET(RTIME_OBJ_SUFFIX o)
+SET(RTIME_AR_EXRACT -x)
+SET(RTIME_AR $ENV{QNX_HOST}/usr/bin/ntoaarch64-ar)

@@ -1,0 +1,104 @@
+Other
+=====
+
+.. Release Notes from this point.
+
+:critical:`[Critical]` No communication on AUTOSAR systems with multiple IP addresses
+-------------------------------------------------------------------------------------
+|me| would not receive any communication traffic in an AUTOSAR system when the
+following conditions were met:
+
+* More than one IP address was configured for use in the AUTOSAR system.
+* DDS communication used an IP address with an index greater than 0 (i.e., 1).
+* |me| used the default UDP interface factory properties, which set
+  ``enable_interface_bind`` to ``false``.
+
+[RTI Issue ID MICRO-7783]
+
+:major:`[Major]` Corrected ARXML reference generation for basic types
+---------------------------------------------------------------------
+Basic data types (defined as ``SW-BASE-TYPE``) were incorrectly
+referenced as implementation data types when generating an ARXML from an
+XML file using *rtiarcgen*. References to the basic data types are now
+generated correctly.
+
+[RTI Issue ID APIT-477]
+
+:major:`[Major]` DataReader could stop receiving samples due to resource miscount
+---------------------------------------------------------------------------------
+A *DataReader* could incorrectly free a sample twice in specific conditions
+(e.g., when a
+:link_connextmicro_dds_api_c_up_two:`RELIABLE <group__DDSReliabilityQosModule.html#gaf09e82d431c2328186c7fb4b3fa9ad91>`
+sample was recommitted to a *DataReader*'s cache because the *DataReader* was
+unable to remove an older sample, e.g, due to a ``KEEP_ALL``
+:link_connextmicro_dds_api_c_up_two:`HISTORY <group__DDSHistoryQosModule.html>`
+QoS policy). This could prevent the *DataReader* from receiving samples from a
+matched *DataWriter*.
+
+[RTI Issue ID MICRO-13068]
+
+:minor:`[Minor]` Participant GUIDs generated on big-endian platforms may have reduced entropy
+---------------------------------------------------------------------------------------------
+The GUID generation of the reference PSL for big-endian platforms may
+have reduced entropy and increased the likelihood of participants
+generating the same GUID.
+
+[RTI Issue ID MICRO-13243]
+
+:minor:`[Minor]` Errors in checksum documentation
+-------------------------------------------------
+The custom CRC example in the checksum documentation contained some
+incorrect structure names and type names.
+
+[RTI Issue ID MICRO-13127]
+
+:minor:`[Minor]` Incorrect max size calculation for primitive array with CDR_LONG_DOUBLE_TYPE
+---------------------------------------------------------------------------------------------
+The padding associated with the maximum size was incorrectly calculated for
+primitive arrays with ``CDR_LONG_DOUBLE_TYPE``.
+
+[RTI Issue ID MICRO-13056]
+
+:minor:`[Minor]` DataWriter silently stopped sending data when flow controller token budget was smaller thanfragment size
+-------------------------------------------------------------------------------------------------------------------------
+When a flow controller was configured such that
+``max_tokens * bytes_per_token`` was less than ``message_size_max``, the
+*DataWriter* could never accumulate enough tokens to send a single
+``DATA_FRAG`` message and would silently stop sending data. When
+``bytes_per_token`` is not unlimited, the fragment size used for
+fragmented messages is now the minimum of ``bytes_per_token`` and
+``message_size_max``, ensuring a single token is always sufficient to
+send one fragment.
+
+[RTI Issue ID MICRO-2854]
+
+:trivial:`[Trivial]` Possible warning during DomainParticipant shutdown
+-----------------------------------------------------------------------
+|me| may have printed the following benign warning during
+*DomainParticipant* shutdown:
+
+.. code-block:: bash
+
+   WARNING: ModuleID=6 Errcode=39 X=1 E=0 T=1
+   "rtps"/RTPSInterface.c:5625/RTPS_Interface_unbind:
+
+[RTI Issue ID MICRO-11135]
+
+:trivial:`[Trivial]` rtime-make and rtiddsgen script errors when running from a directory with a space in its name
+------------------------------------------------------------------------------------------------------------------
+If the path where the ``rtime-make`` or *rtiddsgen* script resides included a
+space, invoking it would cause a scripting error that included the following:
+
+.. code-block:: bash
+
+  line 25: cd: too many arguments.
+
+[RTI Issue ID MICRO-11099]
+
+
+:trivial:`[Trivial]` Formatting errors in help printout for rtime-make.bat
+--------------------------------------------------------------------------
+The ``--help`` printout for the batch file ``rtime-make.bat`` had incorrect
+syntax for ``<name>`` and ``<target>`` in the output.
+
+[RTI Issue ID MICRO-2751]

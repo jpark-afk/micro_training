@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>13.2. RTI Code Generator (rtiddsgen) &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.3. Micro Application Generator (rtiddsmag)" href="rtiddsmag.html" />
+    <link rel="prev" title="13.1. Connext Micro Libraries" href="libraries.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">13. Third-Party and Open Source Software</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">13.1. Connext Micro Libraries</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">13.2. RTI Code Generator (rtiddsgen)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#antlr">13.2.1. ANTLR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#antlr-runtime-api">13.2.2. ANTLR Runtime API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apache-commons-cli">13.2.3. Apache Commons CLI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apache-commons-lang">13.2.4. Apache Commons Lang</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apache-commons-lang-3">13.2.5. Apache Commons Lang 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apache-log4j-2">13.2.6. Apache Log4j 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apache-velocity">13.2.7. Apache Velocity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-logging-facade-for-java-slf4j">13.2.8. Simple Logging Facade for Java (SLF4J)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gson">13.2.9. Gson</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsmag.html">13.3. Micro Application Generator (rtiddsmag)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="psk.html">13.4. Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licenses.html">13.5. Licenses</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">13. </span>Third-Party and Open Source Software</a> &raquo;</li>
+        
+      <li><span class="section-number">13.2. </span>RTI Code Generator (rtiddsgen)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rti-code-generator-rtiddsgen">
+<h1><span class="section-number">13.2. </span>RTI Code Generator (rtiddsgen)<a class="headerlink" href="#rti-code-generator-rtiddsgen" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="antlr">
+<h2><span class="section-number">13.2.1. </span>ANTLR<a class="headerlink" href="#antlr" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>This software is distributed with rtiddsgen (RTI Code Generator) as a
+jar file. The source code is not modified or shipped. In addition,
+the output produced by this software from a grammar file is part of
+the rtiddsgen JAR file.</p></li>
+<li><p>Version: Release 3.5.2</p></li>
+<li><p>Open Source Software License: ANTLR 3 License (full text
+found in the <a class="reference internal" href="licenses.html#section-3rdparty-licenses"><span class="std std-ref">Licenses</span></a>).</p></li>
+</ul>
+</div>
+<div class="section" id="antlr-runtime-api">
+<h2><span class="section-number">13.2.2. </span>ANTLR Runtime API<a class="headerlink" href="#antlr-runtime-api" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Used in rtiddsgen.</p></li>
+<li><p>Version: Release 3.5.2</p></li>
+<li><p>Open Source Software License: ANTLR 3 License (full text
+found in the <a class="reference internal" href="licenses.html#section-3rdparty-licenses"><span class="std std-ref">Licenses</span></a>).</p></li>
+</ul>
+</div>
+<div class="section" id="apache-commons-cli">
+<h2><span class="section-number">13.2.3. </span>Apache Commons CLI<a class="headerlink" href="#apache-commons-cli" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Used in rtiddsgen.</p></li>
+<li><p>Version: 1.5.0</p></li>
+<li><p>Open Source Software License: Apache License Version 2.0 (full text found in
+the <a class="reference internal" href="licenses.html#section-3rdparty-licenses"><span class="std std-ref">Licenses</span></a>).</p></li>
+</ul>
+</div>
+<div class="section" id="apache-commons-lang">
+<h2><span class="section-number">13.2.4. </span>Apache Commons Lang<a class="headerlink" href="#apache-commons-lang" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Used in rtiddsgen. We only use the class StringUtils.</p></li>
+<li><p>Version 2.6</p></li>
+<li><p>Open Source Software License: Apache License Version 2.0 (full text found in
+<a class="reference internal" href="licenses.html#section-3rdparty-licenses"><span class="std std-ref">Licenses</span></a>).</p></li>
+</ul>
+</div>
+<div class="section" id="apache-commons-lang-3">
+<h2><span class="section-number">13.2.5. </span>Apache Commons Lang 3<a class="headerlink" href="#apache-commons-lang-3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Used in rtiddsgen.</p></li>
+<li><p>Version 3.11</p></li>
+<li><p>Open Source Software License: Apache License Version 2.0 (full text found in
+the <a class="reference internal" href="licenses.html#section-3rdparty-licenses"><span class="std std-ref">Licenses</span></a>).</p></li>
+</ul>
+</div>
+<div class="section" id="apache-log4j-2">
+<span id="apache-log4j-2-1"></span><h2><span class="section-number">13.2.6. </span>Apache Log4j 2<a class="headerlink" href="#apache-log4j-2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>This software is distributed with rtiddsgen (RTI Code Generator) as a
+jar file. The source code is not modified or shipped.</p></li>
+<li><p>Source: <a class="reference external" href="https://logging.apache.org/">https://logging.apache.org/</a></p></li>
+<li><p>Version: 2.25.3</p></li>
+<li><p>Open Source Software License: Apache License Version 2.0 (full text found in
+<a class="reference internal" href="licenses.html#section-3rdparty-licenses"><span class="std std-ref">Licenses</span></a>).</p></li>
+</ul>
+</div>
+<div class="section" id="apache-velocity">
+<h2><span class="section-number">13.2.7. </span>Apache Velocity<a class="headerlink" href="#apache-velocity" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>This software is included in rtiddsgen. The
+source code is not modified or shipped.</p></li>
+<li><p>Source: <a class="reference external" href="http://velocity.apache.org/">http://velocity.apache.org/</a></p></li>
+<li><p>Version: 2.3</p></li>
+<li><p>Open Source Software License: Apache License Version 2.0 (full text found in
+<a class="reference internal" href="licenses.html#section-3rdparty-licenses"><span class="std std-ref">Licenses</span></a>).</p></li>
+</ul>
+</div>
+<div class="section" id="simple-logging-facade-for-java-slf4j">
+<h2><span class="section-number">13.2.8. </span>Simple Logging Facade for Java (SLF4J)<a class="headerlink" href="#simple-logging-facade-for-java-slf4j" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>This software is included in rtiddsgen.</p></li>
+<li><p>Version 1.7.35</p></li>
+<li><p>Open Source Software License: <a class="reference external" href="https://www.slf4j.org/license.html">https://www.slf4j.org/license.html</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Copyright (c) 2004-2025 QOS.ch
+ All rights reserved.
+
+ Permission is hereby granted, free  of charge, to any person obtaining
+ a  copy  of this  software  and  associated  documentation files  (the
+ &quot;Software&quot;), to  deal in  the Software without  restriction, including
+ without limitation  the rights to  use, copy, modify,  merge, publish,
+ distribute,  sublicense, and/or sell  copies of  the Software,  and to
+ permit persons to whom the Software  is furnished to do so, subject to
+ the following conditions:
+ 
+ The  above  copyright  notice  and  this permission  notice  shall  be
+ included in all copies or substantial portions of the Software.
+ 
+ THE  SOFTWARE IS  PROVIDED  &quot;AS  IS&quot;, WITHOUT  WARRANTY  OF ANY  KIND,
+ EXPRESS OR  IMPLIED, INCLUDING  BUT NOT LIMITED  TO THE  WARRANTIES OF
+ MERCHANTABILITY,    FITNESS    FOR    A   PARTICULAR    PURPOSE    AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ OF CONTRACT, TORT OR OTHERWISE,  ARISING FROM, OUT OF OR IN CONNECTION
+ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre></div>
+</div>
+</div>
+<div class="section" id="gson">
+<h2><span class="section-number">13.2.9. </span>Gson<a class="headerlink" href="#gson" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Portions of rtiddsgen are built using Gson.</p></li>
+<li><p>Version 2.9.1</p></li>
+<li><p>Open Source Software License: Apache License Version 2.0 (full text found in
+<a class="reference internal" href="licenses.html#section-3rdparty-licenses"><span class="std std-ref">Licenses</span></a>).</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rtiddsmag.html" class="btn btn-neutral float-right" title="13.3. Micro Application Generator (rtiddsmag)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="libraries.html" class="btn btn-neutral float-left" title="13.1. Connext Micro Libraries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

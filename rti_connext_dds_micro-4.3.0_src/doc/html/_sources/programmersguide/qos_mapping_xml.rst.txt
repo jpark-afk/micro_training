@@ -1,0 +1,945 @@
+QoS Mapping in XML
+==================
+
+QOS definitions in XML are based on the "standard" mapping of QOS policy
+names and members as found in the |me| documentation, plus the following
+additional members that are parsed by RTI MAG:
+
+Domain Participant Qos QoS Mapping
+----------------------------------
+
+The following mapping documents the currently implemented MAG behavior for
+``domain_participant_qos`` conversion that are additional to what Micro supported.
+
+General behavior:
+
+- Tags present in Pro XML but not supported by Micro are ignored by MAG.
+- MAG emits a warning when unsupported fields are encountered.
+- Some fields are accepted by parser/validation, but only a subset is emitted
+  into generated Micro configuration.
+
+discovery_config
+................
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Pro XML tag
+     - MAG behavior
+     - Micro target
+   * - ``builtin_discovery_plugins``
+     - Selects discovery kind (``DPDE`` or ``DPSE``)
+     - Discovery component type
+   * - ``participant_liveliness_lease_duration``
+     - Consumed
+     - DPDE/DPSE discovery property
+   * - ``participant_liveliness_assert_period``
+     - Consumed
+     - DPDE/DPSE discovery property
+   * - ``initial_participant_announcements``
+     - Consumed
+     - DPDE/DPSE discovery property
+   * - ``max_initial_participant_announcement_period`` or ``min_initial_participant_announcement_period``
+     - Consumed (one announcement period value is selected)
+     - DPDE/DPSE discovery property
+   * - ``participant_message_reader_reliability_kind``
+     - Consumed
+     - DPDE/DPSE discovery property
+   * - ``max_participant_locators``
+     - Consumed
+     - DPDE/DPSE discovery property
+   * - ``max_locators_per_discovered_participant``
+     - Consumed
+     - DPDE/DPSE discovery property
+   * - ``cache_serialized_samples``
+     - Consumed for DPDE
+     - DPDE discovery property
+   * - ``subscription_reader_resource_limits.max_samples``
+     - Consumed for DPDE
+     - ``max_samples_per_builtin_endpoint_reader``
+   * - ``subscription_reader_resource_limits.max_samples_per_remote_writer`` or
+       ``publication_reader_resource_limits.max_samples_per_remote_writer`` or
+       ``participant_reader_resource_limits.max_samples_per_remote_writer``
+     - Consolidated to one Micro value (maximum, with unlimited handling)
+     - ``max_samples_per_remote_builtin_endpoint_writer``
+   * - ``publication_writer.heartbeat_period``
+     - Consumed for DPDE
+     - ``builtin_writer_heartbeat_period``
+   * - ``publication_writer.max_heartbeat_retries``
+     - Consumed for DPDE
+     - ``builtin_writer_max_heartbeat_retries``
+   * - ``publication_writer.heartbeats_per_max_samples``
+     - Consumed for DPDE
+     - ``builtin_writer_heartbeats_per_max_samples``
+   * - ``subscription_reader.nack_period``
+     - Consumed for DPDE
+     - ``builtin_endpoint_reader_nack_period``
+
+default_unicast
+...............
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Pro XML tag
+     - MAG behavior
+     - Micro target
+   * - ``default_unicast.value[].transports`` (+ optional ``receive_port``)
+     - Converted into participant user-traffic transport/address entries
+     - ``user_traffic.enabled_transports``
+
+.. note::
+
+  - Transport names are normalized to internal/default names.
+  - If no explicit user traffic is configured, MAG may populate Micro defaults
+    (for example, UDPv4 and INTRA when available).
+
+resource_limits
+...............
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Pro XML tag
+     - MAG behavior
+     - Micro target
+   * - ``*_allocation.max_count`` (for participant resource allocations)
+     - Consumed
+     - Corresponding Micro participant resource limits field
+   * - ``*_allocation.initial_count``
+     - Ignored for Micro
+     - None
+   * - ``*_allocation.incremental_count``
+     - Ignored for Micro
+     - None
+
+.. note::
+
+  For ``allocation_settings``, ``max_count`` is the only value used by Micro.
+
+Domain Participant Factory Qos QoS Mapping
+------------------------------------------
+
+The following mapping documents the currently implemented MAG behavior for
+``domain_participant_factory_qos`` conversion.
+
+Top-level fields
+................
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Pro XML tag
+     - MAG behavior
+     - Micro target
+   * - ``entity_factory.autoenable_created_entities``
+     - Consumed
+     - Factory entity factory QoS
+   * - ``resource_limits.max_participants``
+     - Consumed (and auto-raised if needed)
+     - ``system_resource_limits.max_participants``
+   * - ``resource_limits.max_components``
+     - Consumed (and auto-raised if needed)
+     - ``system_resource_limits.max_components``
+   * - ``base_name`` / ``base_names``
+     - Used for QoS inheritance/profile resolution
+     - Not emitted as a Micro runtime QoS field
+   * - ``logging``
+     - Ignored for Micro
+     - None
+   * - ``monitoring``
+     - Ignored for Micro
+     - None
+
+Nested resource_limits (systemResourceLimitsQosPolicy)
+......................................................
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Pro XML tag
+     - MAG behavior
+     - Micro target
+   * - ``resource_limits.max_participants``
+     - Consumed
+     - ``system_resource_limits.max_participants``
+   * - ``resource_limits.max_components``
+     - Consumed
+     - ``system_resource_limits.max_components``
+
+.. note::
+
+  - Unsupported factory QoS fields are warned and ignored by MAG.
+  - For this nested policy, MAG uses the two fields listed above.
+
+Publisher QoS mapping
+---------------------
+
+The following mapping documents the currently implemented MAG behavior for
+``publisher_qos`` conversion.
+
+Top-level fields
+................
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Pro XML tag
+     - MAG behavior
+     - Micro target
+   * - ``base_name`` / ``base_names``
+     - Used for QoS inheritance/profile resolution
+     - Not emitted as a Micro runtime QoS field
+   * - ``entity_factory.autoenable_created_entities``
+     - Consumed
+     - ``DDS_PublisherQos::entity_factory.autoenable_created_entities``
+   * - ``presentation``
+     - Ignored for Micro — MAG emits a warning
+     - None
+   * - ``partition.name``
+     - Consumed — partition strings emitted as a ``const char*`` array
+     - ``DDS_PublisherQos::partition.name``
+   * - ``group_data.value``
+     - Consumed — octet bytes emitted as a ``DDS_Octet`` array
+     - ``DDS_PublisherQos::group_data.value``
+   * - ``publisher_name.name``
+     - Consumed
+     - ``DDS_PublisherQos::publisher_name.name``
+   * - ``asynchronous_publisher``
+     - Ignored for Micro — MAG emits a warning
+     - None
+
+.. note::
+
+  - Fields not in the supported set cause MAG to emit a warning and reset the field to its default value.
+  - ``partition.name`` and ``group_data.value`` are also referenced in generated remote-publication-data structs (``entities.h``) for DPDE discovery matching.
+  - ``publisher_name.name`` is used both in the generated QoS initializer macro and as part of
+    remote publication data struct naming.
+
+Subscriber QoS mapping
+-----------------------
+
+The following mapping documents the currently implemented MAG behavior for
+``subscriber_qos`` conversion.
+
+Top-level fields
+................
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Pro XML tag
+     - MAG behavior
+     - Micro target
+   * - ``base_name`` / ``base_names``
+     - Used for QoS inheritance/profile resolution
+     - Not emitted as a Micro runtime QoS field
+   * - ``entity_factory.autoenable_created_entities``
+     - Consumed
+     - ``DDS_SubscriberQos::entity_factory.autoenable_created_entities``
+   * - ``presentation.access_scope``
+     - Consumed
+     - ``DDS_SubscriptionBuiltinTopicData::presentation.access_scope``
+   * - ``presentation.coherent_access``
+     - Consumed
+     - ``DDS_SubscriptionBuiltinTopicData::presentation.coherent_access``
+   * - ``presentation.ordered_access``
+     - Consumed
+     - ``DDS_SubscriptionBuiltinTopicData::presentation.ordered_access``
+   * - ``partition.name``
+     - Consumed
+     - ``DDS_SubscriberQos::partition.name``
+   * - ``group_data.value``
+     - Consumed
+     - ``DDS_SubscriberQos::group_data.value``
+   * - ``subscriber_name.name``
+     - Consumed
+     - ``DDS_SubscriberQos::subscriber_name.name``
+
+.. note::
+
+  - Fields not in the supported set cause MAG to emit a warning and reset the field to its default value.
+  - ``presentation.*`` is consumed when generating remote subscription data (``entities.h``) and is not part of the local ``DDS_SubscriberQos`` initializer macro.
+  - ``partition.name`` and ``group_data.value`` are used in both the local subscriber QoS initializer macro and generated remote subscription data.
+
+Topic QoS mapping
+-----------------
+
+The following mapping documents the currently implemented MAG behavior for
+``topic_qos`` conversion.
+
+Top-level fields
+................
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Pro XML tag
+     - MAG behavior
+     - Micro target
+   * - ``base_name`` / ``base_names``
+     - Used for QoS inheritance/profile resolution
+     - Not emitted as a Micro runtime QoS field
+   * - ``topic_data.value``
+     - Consumed
+     - ``DDS_TopicQos::topic_data.value`` and built-in topic-data payload in generated remote endpoint data
+   * - ``durability.*``
+     - Consumed only when ``topic_qos`` is used as a base for ``datawriter_qos`` / ``datareader_qos``
+     - Inherited into ``DDS_DataWriterQos::durability`` / ``DDS_DataReaderQos::durability``
+   * - ``deadline.period.*``
+     - Consumed only through Topic->Writer/Reader QoS inheritance
+     - Inherited into ``DDS_DataWriterQos::deadline`` / ``DDS_DataReaderQos::deadline``
+   * - ``latency_budget.duration.*``
+     - Consumed only through Topic->Writer/Reader QoS inheritance
+     - Inherited into ``DDS_DataWriterQos::latency_budget`` / ``DDS_DataReaderQos::latency_budget``
+   * - ``liveliness.*``
+     - Consumed only through Topic->Writer/Reader QoS inheritance
+     - Inherited into ``DDS_DataWriterQos::liveliness`` / ``DDS_DataReaderQos::liveliness``
+   * - ``reliability.*``
+     - Consumed only through Topic->Writer/Reader QoS inheritance
+     - Inherited into ``DDS_DataWriterQos::reliability`` / ``DDS_DataReaderQos::reliability``
+   * - ``destination_order.*``
+     - Consumed only through Topic->Writer/Reader QoS inheritance
+     - Inherited into ``DDS_DataWriterQos::destination_order`` / ``DDS_DataReaderQos::destination_order``
+   * - ``history.*``
+     - Consumed only through Topic->Writer/Reader QoS inheritance
+     - Inherited into ``DDS_DataWriterQos::history`` / ``DDS_DataReaderQos::history``
+   * - ``resource_limits.*``
+     - Consumed only through Topic->Writer/Reader QoS inheritance
+     - Inherited into ``DDS_DataWriterQos::resource_limits`` / ``DDS_DataReaderQos::resource_limits``
+   * - ``ownership.kind``
+     - Consumed only through Topic->Writer/Reader QoS inheritance
+     - Inherited into ``DDS_DataWriterQos::ownership`` / ``DDS_DataReaderQos::ownership``
+   * - ``representation.value`` and ``representation.compression_settings.*``
+     - Consumed only through Topic->Writer/Reader QoS inheritance
+     - Inherited into ``DDS_DataWriterQos::representation`` / ``DDS_DataReaderQos::representation``
+   * - ``transport_priority.value``
+     - Consumed only through Topic->Writer/Reader QoS inheritance
+     - Inherited into ``DDS_DataWriterQos::transport_priority`` / ``DDS_DataReaderQos::transport_priority``
+   * - ``durability_service.*``
+     - Not consumed by MAG for Topic QoS conversion
+     - None
+   * - ``lifespan.duration.*``
+     - Not consumed by MAG for Topic QoS conversion
+     - None
+
+.. note::
+
+  - Unlike participant/publisher/subscriber QoS conversion, Topic QoS does not use a dedicated unsupported-field warning set in ``ConverterUtils``; unsupported Topic members that are not mapped above remain effectively unused.
+  - Topic QoS local macro generation (``topicQos`` in ``qos.h.vm``) emits only management data and ``topic_data``.
+  - Additional Topic fields become effective only when a DataWriter/DataReader inherits from a Topic QoS profile, via ``QosUtils.inheritFromTopicQos(...)``.
+
+
+DataReader QoS mapping
+----------------------
+
+The following mapping documents the currently implemented MAG behavior for
+``datareader_qos`` conversion.
+
+Top-level fields
+................
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Pro XML tag
+     - MAG behavior
+     - Micro target
+   * - ``base_name`` / ``base_names``
+     - Used for QoS inheritance/profile resolution
+     - Not emitted as a Micro runtime QoS field
+   * - ``durability.kind``
+     - Consumed
+     - ``DDS_DataReaderQos::durability.kind``
+   * - ``durability.direct_communication``, ``durability.storage_settings.*``
+     - Ignored for Micro - MAG emits warnings
+     - None
+   * - ``deadline.period.sec/nanosec``
+     - Consumed
+     - ``DDS_DataReaderQos::deadline.period``
+   * - ``liveliness.kind``, ``liveliness.lease_duration.*``
+     - Consumed
+     - ``DDS_DataReaderQos::liveliness``
+   * - ``reliability.kind``, ``reliability.max_blocking_time.*``
+     - Consumed
+     - ``DDS_DataReaderQos::reliability``
+   * - ``reliability.acknowledgment_kind``, ``reliability.instance_state_consistency_kind``, ``reliability.exact_reliability_kind_match``
+     - Ignored for Micro - MAG emits warnings
+     - None
+   * - ``destination_order.kind``, ``destination_order.source_timestamp_tolerance.*``
+     - Consumed
+     - ``DDS_DataReaderQos::destination_order``
+   * - ``history.kind``, ``history.depth``
+     - Consumed
+     - ``DDS_DataReaderQos::history``
+   * - ``resource_limits.max_samples``, ``resource_limits.max_instances``, ``resource_limits.max_samples_per_instance``
+     - Consumed
+     - ``DDS_DataReaderQos::resource_limits``
+   * - ``resource_limits.*`` (other members)
+     - Ignored for Micro - MAG emits warnings
+     - None
+   * - ``ownership.kind``
+     - Consumed
+     - ``DDS_DataReaderQos::ownership.kind``
+   * - ``representation.value.element[]``
+     - Consumed
+     - ``DDS_DataReaderQos::representation.value``
+   * - ``representation.compression_settings.*``
+     - Ignored for Micro - MAG emits warnings
+     - None
+   * - ``latency_budget.duration.sec/nanosec``
+     - Consumed
+     - ``DDS_DataReaderQos::latency_budget.duration``
+   * - ``user_data.value``
+     - Consumed
+     - ``DDS_DataReaderQos::user_data.value``
+   * - ``transport_priority.value``
+     - Consumed
+     - ``DDS_DataReaderQos::transport_priority.value``
+   * - ``reader_resource_limits.max_remote_writers``, ``max_remote_writers_per_instance``, ``max_samples_per_remote_writer``, ``max_outstanding_reads``, ``max_routes_per_writer``, ``max_fragmented_samples``, ``max_fragmented_samples_per_remote_writer``, ``shmem_ref_transfer_mode_attached_segment_allocation.max_count``
+     - Consumed
+     - ``DDS_DataReaderQos::reader_resource_limits`` corresponding fields
+   * - ``reader_resource_limits.instance_replacement.alive_instance_removal``, ``disposed_instance_removal``, ``no_writers_instance_removal``
+     - Consumed
+     - ``DDS_DataReaderQos::reader_resource_limits.instance_replacement``
+   * - ``reader_resource_limits.*`` (other members)
+     - Ignored for Micro - MAG emits warnings
+     - None
+   * - ``protocol.rtps_object_id``, ``protocol.rtps_reliable_reader.nack_period.*``, ``protocol.propagate_dispose_of_unregistered_instances``
+     - Consumed
+     - ``DDS_DataReaderQos::protocol`` corresponding fields
+   * - ``protocol.*`` (other members)
+     - Ignored for Micro - MAG emits warnings
+     - None
+   * - ``subscription_name.name``
+     - Consumed
+     - ``DDS_DataReaderQos::subscription_name.name``
+   * - ``unicast.value[].transports[]`` + optional ``receive_port``
+     - Converted and consumed
+     - ``DDS_DataReaderQos::transport.enabled_transports`` (internal micro transport list)
+   * - ``multicast.value[].transports[]`` + optional ``receive_address``/``receive_port``
+     - Converted and consumed
+     - ``DDS_DataReaderQos::transport.enabled_transports`` (internal micro transport list)
+   * - ``time_based_filter``, ``reader_data_lifecycle``, ``type_consistency``, ``data_tags``, ``transport_selection``, ``property``, ``availability``, ``service``, ``type_support``
+     - Ignored for Micro - MAG emits warnings
+     - None
+   * - ``topic_filter`` (attribute)
+     - Parsed for profile/topic matching behavior only
+     - Not emitted as a runtime QoS struct field
+
+.. note::
+
+  - Unsupported fields are detected by ``ConverterUtils`` against ``VALID_DATA_READER_POLICIES``; MAG warns and ignores unsupported values.
+  - ``unicast`` and ``multicast`` are normalized into ``microTransports.enabledTransports`` by ``SystemModelProducer.addEnabledTransports(...)``; the template emits the resulting transport list.
+  - ``content_filter`` is configured from the ``data_reader`` entity-level filter (not a direct ``datareader_qos`` XML member) and is emitted through ``contentFilterQosPolicy``.
+  - ``property`` is intentionally not emitted for DataReader QoS in current templates (``propertiesQosPolicy( $null, ...)``).
+
+
+DataWriter QoS mapping
+----------------------
+
+The following mapping documents the currently implemented MAG behavior for
+``datawriter_qos`` conversion.
+
+Top-level fields
+................
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Pro XML tag
+     - MAG behavior
+     - Micro target
+   * - ``base_name`` / ``base_names``
+     - Used for QoS inheritance/profile resolution
+     - Not emitted as a Micro runtime QoS field
+   * - ``durability.kind``
+     - Consumed
+     - ``DDS_DataWriterQos::durability.kind``
+   * - ``durability.direct_communication``, ``durability.storage_settings.*``
+     - Ignored for Micro - MAG emits warnings
+     - None
+   * - ``deadline.period.sec/nanosec``
+     - Consumed
+     - ``DDS_DataWriterQos::deadline.period``
+   * - ``liveliness.kind``, ``liveliness.lease_duration.*``
+     - Consumed
+     - ``DDS_DataWriterQos::liveliness``
+   * - ``reliability.kind``, ``reliability.max_blocking_time.*``
+     - Consumed
+     - ``DDS_DataWriterQos::reliability``
+   * - ``reliability.acknowledgment_kind``, ``reliability.instance_state_consistency_kind``, ``reliability.exact_reliability_kind_match``
+     - Ignored for Micro - MAG emits warnings
+     - None
+   * - ``destination_order.kind``, ``destination_order.source_timestamp_tolerance.*``
+     - Consumed
+     - ``DDS_DataWriterQos::destination_order``
+   * - ``history.kind``, ``history.depth``
+     - Consumed
+     - ``DDS_DataWriterQos::history``
+   * - ``resource_limits.max_samples``, ``resource_limits.max_instances``, ``resource_limits.max_samples_per_instance``
+     - Consumed
+     - ``DDS_DataWriterQos::resource_limits``
+   * - ``resource_limits.*`` (other members)
+     - Ignored for Micro - MAG emits warnings
+     - None
+   * - ``ownership.kind``
+     - Consumed
+     - ``DDS_DataWriterQos::ownership.kind``
+   * - ``ownership_strength.value``
+     - Consumed
+     - ``DDS_DataWriterQos::ownership_strength.value``
+   * - ``representation.value.element[]``
+     - Consumed
+     - ``DDS_DataWriterQos::representation.value``
+   * - ``representation.compression_settings.*``
+     - Ignored for Micro - MAG emits warnings
+     - None
+   * - ``latency_budget.duration.sec/nanosec``
+     - Consumed
+     - ``DDS_DataWriterQos::latency_budget.duration``
+   * - ``user_data.value``
+     - Consumed
+     - ``DDS_DataWriterQos::user_data.value``
+   * - ``transport_priority.value``
+     - Consumed
+     - ``DDS_DataWriterQos::transport_priority.value``
+   * - ``writer_resource_limits.max_remote_readers``, ``max_routes_per_reader``, ``writer_loaned_sample_allocation.max_count``, ``initialize_writer_loaned_sample``, ``max_remote_reader_filters``
+     - Consumed
+     - ``DDS_DataWriterQos::writer_resource_limits`` corresponding fields
+   * - ``writer_resource_limits.*`` (other members)
+     - Ignored for Micro - MAG emits warnings
+     - None
+   * - ``protocol.rtps_object_id``, ``protocol.rtps_reliable_writer.heartbeat_period.*``, ``protocol.rtps_reliable_writer.heartbeats_per_max_samples``, ``protocol.rtps_reliable_writer.max_send_window_size``, ``protocol.rtps_reliable_writer.max_heartbeat_retries``
+     - Consumed
+     - ``DDS_DataWriterQos::protocol`` corresponding fields
+   * - ``protocol.serialize_on_write``
+     - Not configurable from XML for MAG writer path
+     - Always emitted as ``true`` by template
+   * - ``publication_name.name``
+     - Consumed
+     - ``DDS_DataWriterQos::publication_name.name``
+   * - ``unicast.value[].transports[]`` + optional ``receive_port``
+     - Converted and consumed
+     - ``DDS_DataWriterQos::transport.enabled_transports`` (internal micro transport list)
+   * - ``publish_mode.kind``, ``publish_mode.flow_controller_name``, ``publish_mode.priority``
+     - Consumed (with flow-controller name validation/normalization)
+     - ``DDS_DataWriterQos::publish_mode``
+   * - ``transfer_mode.shmem_ref_settings.enable_data_consistency_check``
+     - Consumed
+     - ``DDS_DataWriterQos::transfer_mode.shmem_ref_settings.enable_data_consistency_check``
+   * - ``property.value[]``
+     - Partially consumed
+     - ``DDS_DataWriterQos::property.value`` for Micro-supported property names only
+   * - ``transport_selection``, ``type_support``, ``durability_service``, ``lifespan``, ``writer_data_lifecycle``, ``data_tags``, ``batch``, ``service``, ``multi_channel``, ``availability``, ``topic_query_dispatch``
+     - Ignored for Micro - MAG emits warnings
+     - None
+   * - ``topic_filter`` (attribute)
+     - Parsed for profile/topic matching behavior only
+     - Not emitted as a runtime QoS struct field
+
+.. note::
+
+  - Unsupported fields are detected by ``ConverterUtils`` against ``VALID_DATA_WRITER_POLICIES``; MAG warns and ignores unsupported values.
+  - ``unicast`` is normalized into ``microTransports.enabledTransports`` by ``SystemModelProducer.addEnabledTransports(...)``; the template emits the resulting transport list.
+  - ``publish_mode.flow_controller_name`` is validated by ``checkFlowController(...)``; built-in names are accepted directly, and custom names must use the expected prefix and be backed by participant properties.
+  - ``property`` is emitted only for names in ``VALID_PROPERTIES_TO_GENERATE`` (via ``QosUtils.microProperties(...)``); other property entries are not emitted into generated C QoS structures.
+
+Structural elements mapping
+---------------------------
+
+The following mapping documents the structural (non-QoS) elements from the application configuration schema and how MAG processes them.
+
+``filter`` and ``content_filter`` (DataReader element)
+......................................................
+
+These define content-based filtering for DataReader subscriptions.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Schema element
+     - MAG behavior
+     - Notes
+   * - ``filter`` (deprecated)
+     - Parsed and migrated to ``content_filter`` with warning
+     - If both ``filter`` and ``content_filter`` are present, MAG emits an error
+   * - ``content_filter.kind``
+     - Parsed and validated; only ``builtin.sql`` is supported
+     - MAG error if kind is not ``builtin.sql`` or null
+   * - ``content_filter.expression``
+     - Consumed (SQL filter expression string)
+     - Emitted into generated remote-endpoint discovery structs
+   * - ``content_filter.parameter_list`` (deprecated)
+     - Parsed and migrated to ``expression_parameters`` with warning
+     - If both are present, MAG emits an error
+   * - ``content_filter.expression_parameters.element[]``
+     - Consumed (parameter string array)
+     - Emitted alongside filter expression for runtime substitution
+
+Processing:
+
+- ``ConverterUtils.checkContentFilter(...)`` handles deprecation migration and validation
+- Content filter metadata is emitted in ``entities.h`` remote data structures via ``contentFilterProperty(...)`` macro
+- Content filter resource limits are configured via ``DomainParticipantFactoryQos.filter_qos_policy`` properties
+- CFT constants: ``CFT_DISABLE_WRITER_FILTERING``, ``CFT_DISABLE_BUILTIN_SQL_FILTER``, ``CFT_FILTER_CLASS_MAX_LENGTH``, ``CFT_FILTER_EXPRESSION_MAX_LENGTH``, etc.
+
+``register_type`` (Domain and Participant element)
+..................................................
+
+Type registration defines how data types are bound to topics.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Schema element
+     - MAG behavior
+     - Micro target
+   * - ``name`` (required)
+     - Consumed as type identifier
+     - Stored in ``RegisterTypeModel.name``
+   * - ``registered_name``
+     - Consumed; defines the type's global name
+     - Stored in ``RegisterTypeModel.registeredName``
+   * - ``type_ref`` (required)
+     - Resolved against type definitions; used for type plugin lookup
+     - Stored in ``RegisterTypeModel.typeRef``
+
+Processing:
+
+- All ``register_type`` elements are parsed into ``RegisterTypeModel`` objects and stored in ``DomainParticipantModel.registerTypes``
+- Type reference resolution occurs in ``SystemModelProducer.findRegisterTypeModel(...)`` by matching ``name`` or ``registered_name`` against registered types in the domain
+- Templates emit type plugin getters via ``typePlugin()`` and ``typePluginCPP()`` macros (utils.vm), which select between ``registeredName`` and ``typeRef`` for plugin resolution
+- If a topic references a type that cannot be resolved, MAG emits an error
+
+``multiplicity`` (Publisher, Subscriber, DataWriter, DataReader attribute)
+..........................................................................
+
+The multiplicity attribute specifies how many instances of an entity to generate.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Schema attribute
+     - MAG behavior
+     - Default value
+   * - ``multiplicity``
+     - Consumed as positive integer; used for resource allocation calculations
+     - ``1``
+
+Processing:
+
+- ``SystemModelProducer`` reads ``multiplicity`` from Publisher (line 2715), Subscriber (line 2905), DataWriter (line 2805), and DataReader (line 3003)
+- ``ResourceLimitsUpdater`` uses multiplicity to calculate cumulative resource allocations:
+
+  - ``Publisher.multiplicity`` * ``DataWriter`` count → total writer allocation
+  - ``Subscriber.multiplicity`` * ``DataReader`` count → total reader allocation
+
+- Each multiplied instance receives a unique name suffix in generated code
+
+base_name and base_names (QoS profile inheritance)
+..................................................
+
+These attributes enable profile inheritance and composition chains.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Schema element
+     - MAG behavior
+     - Notes
+   * - ``base_name``
+     - Parsed as QoS profile reference (single inheritance)
+     - Format: ``LibraryName::ProfileName``
+   * - ``base_names.element[]``
+     - Parsed as QoS profile reference chain (composition inheritance)
+     - Multiple profiles resolved in order
+
+Processing:
+
+- Both are handled by ``QosUtils.getBaseName(...)`` and ``QosUtils.getBaseNames(...)`` during QoS resolution
+- Format validation: base names must follow ``LibraryName::ProfileName`` format (checked in ``QosUtils.getBaseNamesList(...)``)
+- ``QosUtils.resolveNonProfileQos(...)`` performs recursive inheritance: merges base QoS values with current QoS, with current values overriding inherited ones
+- Library prefix is automatically added by ``QosUtils.addLibraryNameToBaseName(...)`` for relative profile references
+- Invalid or unresolved base names generate errors during QoS resolution
+
+topic (Domain element)
+......................
+
+Topic definitions bind a data type to a topic name with optional QoS.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Schema element
+     - MAG behavior
+     - Micro target
+   * - ``name`` (attribute)
+     - Consumed as topic identifier within domain
+     - Topic name used in ``datawriter_qos``/``datareader_qos`` topic references
+   * - ``registered_name`` (child element)
+     - Alternative topic name if ``name`` attribute not set
+     - Stored as topic's display/registered name
+   * - ``register_type_ref`` (attribute, required)
+     - Resolved against registered types to bind topic to data type
+     - Type plugin lookup
+   * - ``topic_qos`` (child element)
+     - Parsed as optional QoS profile for topic-level defaults
+     - Base QoS for DataWriter/DataReader inheritance
+
+Processing:
+
+- All topics are parsed into ``TopicModel`` objects and stored per domain
+- ``SystemModelProducer.findTopicModel(...)`` resolves topic references by name (matching against ``name`` or ``registered_name``)
+- Topics are primarily used for QoS composition: when a ``datawriter_qos`` or ``datareader_qos`` references a topic, inherited fields are merged via ``QosUtils.inheritFromTopicQos(...)``
+- If a DataWriter/DataReader references a topic that cannot be resolved, MAG emits an error
+- Topic QoS is not directly emitted as a C runtime structure; only the resulting merged QoS (after inheritance) is emitted
+
+data_writer (Publisher, Participant element)
+............................................
+
+DataWriter entity configuration.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Schema element
+     - MAG behavior
+     - Micro target
+   * - ``name`` (attribute)
+     - Consumed as entity identifier
+     - Unique writer name within publisher
+   * - ``multiplicity`` (attribute)
+     - Resource allocation multiplier (see multiplicity section above)
+     - Instance count for writer generation
+   * - ``topic_ref`` (attribute, required)
+     - Resolved against topic definitions in domain
+     - Topic bound to this writer
+   * - ``datawriter_qos`` (child element)
+     - Parsed as writer-specific QoS profile
+     - Merged with topic QoS and emitted as ``DDS_DataWriterQos``
+
+Processing:
+
+- ``SystemModelProducer.createDataWriterModel(...)`` resolves topic references and applies QoS inheritance
+- Transport configuration (unicast/multicast) and publish-mode flow-controller validation occur during creation
+- Multiplicity is used by ``ResourceLimitsUpdater`` to calculate writer allocation counts
+
+data_reader (Subscriber, Participant element)
+.............................................
+
+DataReader entity configuration, including optional content filtering.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Schema element
+     - MAG behavior
+     - Micro target
+   * - ``name`` (attribute)
+     - Consumed as entity identifier
+     - Unique reader name within subscriber
+   * - ``multiplicity`` (attribute)
+     - Resource allocation multiplier (see multiplicity section above)
+     - Instance count for reader generation
+   * - ``topic_ref`` (attribute, required)
+     - Resolved against topic definitions in domain
+     - Topic subscribed by this reader
+   * - ``content_filter`` or ``filter`` (child element)
+     - Parsed for content-filtering configuration (see filter section above)
+     - CFT metadata in remote endpoint data
+   * - ``datareader_qos`` (child element)
+     - Parsed as reader-specific QoS profile
+     - Merged with topic QoS and emitted as ``DDS_DataReaderQos``
+
+Processing:
+
+- ``SystemModelProducer.createDataReaderModel(...)`` resolves topic references, applies QoS inheritance, and validates content filters
+- ``ConverterUtils.checkContentFilter(...)`` is called to validate and migrate filter elements
+- Multiplicity is used by ``ResourceLimitsUpdater`` to calculate reader allocation counts
+- Content-filter configuration gates the DomainParticipantFactory's CFT feature flag: if any reader has a content filter, ``isContentFilter()`` returns true
+
+publisher (Participant element)
+...............................
+
+Publisher entity container for DataWriters.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Schema element
+     - MAG behavior
+     - Micro target
+   * - ``name`` (attribute)
+     - Consumed as entity identifier
+     - Unique publisher name within participant
+   * - ``multiplicity`` (attribute)
+     - Resource allocation multiplier (see multiplicity section above)
+     - Instance count for publisher generation
+   * - ``publisher_qos`` (child element)
+     - Parsed as publisher-specific QoS profile
+     - Emitted as ``DDS_PublisherQos``
+   * - ``data_writer`` (child elements)
+     - Each DataWriter is processed independently
+     - Collection of writers created for this publisher
+
+Processing:
+
+- ``SystemModelProducer.createPublisherModel(...)`` creates a ``PublisherModel`` and processes child DataWriters
+- Publisher multiplicity scales the total number of publishers generated; each multiplied instance receives a unique suffix
+
+subscriber (Participant element)
+................................
+
+Subscriber entity container for DataReaders.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Schema element
+     - MAG behavior
+     - Micro target
+   * - ``name`` (attribute)
+     - Consumed as entity identifier
+     - Unique subscriber name within participant
+   * - ``multiplicity`` (attribute)
+     - Resource allocation multiplier (see multiplicity section above)
+     - Instance count for subscriber generation
+   * - ``subscriber_qos`` (child element)
+     - Parsed as subscriber-specific QoS profile
+     - Emitted as ``DDS_SubscriberQos``
+   * - ``data_reader`` (child elements)
+     - Each DataReader is processed independently
+     - Collection of readers created for this subscriber
+
+Processing:
+
+- ``SystemModelProducer.createSubscriberModel(...)`` creates a ``SubscriberModel`` and processes child DataReaders
+- Subscriber multiplicity scales the total number of subscribers generated; each multiplied instance receives a unique suffix
+
+domain_participant (ParticipantLibrary element)
+...............................................
+
+Top-level DomainParticipant configuration.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Schema element
+     - MAG behavior
+     - Micro target
+   * - ``name`` (attribute)
+     - Consumed as entity identifier
+     - Participant name prefix for generated code
+   * - ``domain_ref`` (attribute, optional)
+     - Resolved against domain library
+     - Binds participant to a specific domain
+   * - ``domain_id`` (attribute, optional)
+     - Domain ID override (overrides domain_ref domain ID)
+     - Runtime participant domain ID
+   * - ``base_name`` (attribute, optional)
+     - Participant profile inheritance (not directly used for structure)
+     - QoS inheritance base
+   * - ``domain_participant_qos`` (child element)
+     - Parsed as participant-specific QoS profile
+     - Emitted as ``DDS_DomainParticipantQos``
+   * - ``register_type`` (child elements)
+     - Type registrations local to this participant
+     - Stored in participant model; supersede domain registrations
+   * - ``topic`` (child elements)
+     - Topics local to this participant
+     - Stored in participant model; supersede domain topics
+   * - ``publisher`` / ``subscriber`` (child elements)
+     - Publishers and subscribers for this participant
+     - Processed recursively
+   * - ``data_writer`` / ``data_reader`` (child elements)
+     - Implicit publisher/subscriber writers and readers
+     - Processed with implicit entity creation
+
+Processing:
+
+- ``SystemModelProducer.createParticipantModel(...)`` recursively processes all child entities
+- Resource limits are calculated and adjusted by ``ResourceLimitsUpdater`` based on entity multiplicities and nesting
+- Discovery configuration (DPSE or built-in) determines which metadata types are emitted in generated code
+
+domain (DomainLibrary element)
+..............................
+
+Domain definition containing topic and type registrations.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Schema element
+     - MAG behavior
+     - Micro target
+   * - ``name`` (attribute)
+     - Consumed as domain identifier within library
+     - Domain reference for participants
+   * - ``domain_id`` (attribute, optional)
+     - Domain ID for this domain
+     - Runtime domain ID if not overridden
+   * - ``base_name`` (attribute, optional)
+     - Domain profile inheritance
+     - QoS inheritance base
+   * - ``register_type`` (child elements)
+     - Type registrations available to all participants in domain
+     - Global type registry
+   * - ``topic`` (child elements)
+     - Topics available to all participants in domain
+     - Global topic registry
+
+Processing:
+
+- Domains provide a namespace for types and topics
+- Participant domain references resolve to this domain during initialization
+- All register types and topics in a domain are merged into participant-local registries; participant-local definitions override domain definitions
+
+domain_library and participant_library (Root elements)
+......................................................
+
+Top-level containers for domains and participants.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Schema element
+     - MAG behavior
+     - Micro target
+   * - ``name`` (attribute)
+     - Library namespace; used in base_name resolution
+     - Automatically prepended to profile references
+   * - ``domain`` (child elements, in domain_library)
+     - Domain definitions
+     - Processed in order
+   * - ``domain_participant`` (child elements, in participant_library)
+     - Participant configurations
+     - Processed in order; code generation targets all participants
+
+Processing:
+
+- Multiple domain and participant libraries can be defined
+- Library names are prepended to base_name references by ``QosUtils.addLibraryNameToBaseName(...)``
+- All participants across all participant libraries are code-generated unless filtering is applied

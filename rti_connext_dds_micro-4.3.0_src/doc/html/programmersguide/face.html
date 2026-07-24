@@ -1,0 +1,445 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.19. Building Against FACE Conformance Libraries &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.20. Working With Sequences" href="sequences.html" />
+    <link rel="prev" title="3.18. QoS Mapping in XML" href="qos_mapping_xml.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Programmer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">3.2. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">3.3. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">3.4. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">3.5. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">3.6. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html">3.7. User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html">3.8. Partitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html">3.9. Content Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">3.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">3.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">3.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">3.13. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html">3.14. Sending Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html">3.15. Zero Copy Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html">3.16. FlatData Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html">3.17. Application Generation Using XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qos_mapping_xml.html">3.18. QoS Mapping in XML</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.19. Building Against FACE Conformance Libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">3.19.1. Requirements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#me-h-source-code">3.19.1.1. Connext Micro source code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#face-conformance-tools">3.19.1.2. FACE Conformance Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cmake">3.19.1.3. CMake</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#face-golden-libraries">3.19.2. FACE golden libraries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#building-the-face-golden-libraries">3.19.2.1. Building the FACE golden libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#building-instructions">3.19.3. Building instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">3.20. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.21. Example Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html">3.22. Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">3.23. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html">3.24. Transport Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html">3.25. Startup Time Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">3. </span>Programmer’s Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">3.19. </span>Building Against FACE Conformance Libraries</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="building-against-face-conformance-libraries">
+<h1><span class="section-number">3.19. </span>Building Against FACE Conformance Libraries<a class="headerlink" href="#building-against-face-conformance-libraries" title="Permalink to this headline">¶</a></h1>
+<p>This section describes how to build <em>Connext Micro</em> using the FACE™ conformance
+test tools.</p>
+<div class="section" id="requirements">
+<h2><span class="section-number">3.19.1. </span>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>The following items are required for building <em>Connext Micro</em> against FACE conformance
+libraries.</p>
+<div class="section" id="me-h-source-code">
+<h3><span class="section-number">3.19.1.1. </span>Connext Micro source code<a class="headerlink" href="#me-h-source-code" title="Permalink to this headline">¶</a></h3>
+<p>RTI distributes the <em>Connext Micro</em> source code. Please contact your sales
+representative(s) for more information.</p>
+</div>
+<div class="section" id="face-conformance-tools">
+<h3><span class="section-number">3.19.1.2. </span>FACE Conformance Tools<a class="headerlink" href="#face-conformance-tools" title="Permalink to this headline">¶</a></h3>
+<p>RTI does not distribute the FACE conformance tools. Visit
+<a class="reference external" href="https://www.opengroup.org/">https://www.opengroup.org/</a> for more information.</p>
+</div>
+<div class="section" id="cmake">
+<h3><span class="section-number">3.19.1.3. </span>CMake<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h3>
+<p>RTI distributes the <em>Connext Micro</em> source with a <code class="docutils literal notranslate"><span class="pre">CMakeList.txt</span></code> project file. CMake
+is an easy-to-use tool that generates makefiles or project files for various
+build-tools, such has Linux/macOS makefiles, Microsoft® Visual Studio® project
+files, and Xcode.</p>
+<p>You can download CMake from <a class="reference external" href="https://www.cmake.org">https://www.cmake.org</a>.</p>
+</div>
+</div>
+<div class="section" id="face-golden-libraries">
+<h2><span class="section-number">3.19.2. </span>FACE golden libraries<a class="headerlink" href="#face-golden-libraries" title="Permalink to this headline">¶</a></h2>
+<p>The FACE conformance tools use a set of golden libraries. There are different
+golden libraries for different FACE services, languages and profiles.
+<em>Connext Micro</em> <em>only</em> conforms to the <code class="docutils literal notranslate"><span class="pre">safetyExt</span></code> and <code class="docutils literal notranslate"><span class="pre">safety</span></code> profile of the
+Operating System Segment (OSS) using the C language.</p>
+<div class="section" id="building-the-face-golden-libraries">
+<h3><span class="section-number">3.19.2.1. </span>Building the FACE golden libraries<a class="headerlink" href="#building-the-face-golden-libraries" title="Permalink to this headline">¶</a></h3>
+<p>The FACE conformance tools ship with their own set of tools to build the
+golden libraries. Please follow the instructions provided by FACE. In order
+to build the FACE golden libraries, you must port them to the required
+platform.</p>
+</div>
+</div>
+<div class="section" id="building-instructions">
+<h2><span class="section-number">3.19.3. </span>Building instructions<a class="headerlink" href="#building-instructions" title="Permalink to this headline">¶</a></h2>
+<p>The following instructions describe how to build the <em>Connext Micro</em> source against FACE
+libraries:</p>
+<ul>
+<li><p>Extract the source code. Please note that the remaining instructions assume
+that only a single platform is built from the source.</p></li>
+<li><p>In the top-level source directory, enter the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake-gui<span class="w"> </span>.
+</pre></div>
+</div>
+<p>This will start the CMake GUI where all build configuration takes place.</p>
+</li>
+<li><p>Click the <strong>Configure</strong> button.</p></li>
+<li><p>Select <strong>Unix Makefiles</strong> from the drop-down list.</p></li>
+<li><p>Select <strong>Use default compilers</strong> or <strong>Specify native compilers</strong> as required.
+Then select <strong>Done</strong>.</p></li>
+<li><p>Click the <strong>Configure</strong> button again. You should not see any red lines in the
+output. If you do, click <strong>Configure</strong> again.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A red line means that a variable has not been configured. Some options could
+add new variables. Thus, if you change an option, new red lines may appear.
+In this case configure the variable and press <strong>Configure</strong>.</p>
+</div>
+</li>
+<li><p>Expand the <strong>CMAKE</strong> and <strong>RTIMICRO</strong> options and configure how to build <em>Connext Micro</em>:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Configuration</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CMAKE_BUILD_TYPE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Debug</span></code> or blank.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">Debug</span></code> is used, the <em>Connext Micro</em> debug libraries are built.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RTIMICRO_BUILD_API</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">C</span></code> or <code class="docutils literal notranslate"><span class="pre">C++</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">C</span></code>: Include the C API. <strong>For FACE, only C is supported</strong>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">C++</span></code>: Include the C++ API.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RTIMICRO_BUILD_API</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">C</span></code> or <code class="docutils literal notranslate"><span class="pre">C++</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">C</span></code>: Include the C API. <strong>For FACE, only C is supported</strong>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">C++</span></code>: Include the C++ API.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RTIMICRO_BUILD_DISCOVERY_MODULE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Dynamic</span></code>, <code class="docutils literal notranslate"><span class="pre">Static</span></code>, or <code class="docutils literal notranslate"><span class="pre">Both</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Dynamic</span></code>: Include the dynamic discovery module.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Static</span></code>: Include the static discovery module.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Both</span></code>: Include both discovery modules.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RTIMICRO_BUILD_LIBRARY_BUILD</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Single</span></code> or <code class="docutils literal notranslate"><span class="pre">RTI</span> <span class="pre">style</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Single</span></code>: Build a single library.</p>
+<p><code class="docutils literal notranslate"><span class="pre">RTI</span> <span class="pre">style</span></code>: Build the same libraries RTI normally ships. This is
+useful if RTI libraries are already being used and you want to use the
+libraries built from source.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RTIMICRO_BUILD_LIBRARY_TYPE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Static</span></code> or <code class="docutils literal notranslate"><span class="pre">Shared</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Static</span></code>: Build static libraries.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Shared</span></code>: Build shared libraries.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RTIMICRO_BUILD_LIBRARY_PLATFORM_MODULE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">POSIX</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RTIMICRO_BUILD_LIBRARY_TARGET_NAME</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;target</span> <span class="pre">name&gt;</span></code></p>
+<p>Enter a string as the name of the target. This is also used as the
+name of the directory where the built libraries are placed.
+If you are building libraries to replace the libraries shipped by RTI,
+you can use the RTI target name here. It is then possible to set
+<code class="docutils literal notranslate"><span class="pre">RTIMEHOME</span></code> to the source tree (if RTI style is selected for
+<code class="docutils literal notranslate"><span class="pre">RTIMICRO_BUILD_LIBRARY_BUILD</span></code>).</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RTIMICRO_BUILD_ENABLE_FACE_COMPLIANCE</span></code></p></td>
+<td><p>Select level of FACE compliance:</p>
+<p><code class="docutils literal notranslate"><span class="pre">None</span></code>: No compliance required.</p>
+<p><code class="docutils literal notranslate"><span class="pre">General</span></code>: Build for compliance with the FACE general profile.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Safety</span> <span class="pre">Extended</span></code>: Build for compliance with the FACE safety extended
+profile.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Safety</span></code>: Build for compliance with the FACE safety profile.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RTIMICRO_BUILD_LINK_FACE_GOLDEBLIBS</span></code></p></td>
+<td><p>Check if linking against the static FACE conformance test libraries.</p>
+<p><strong>NOTE:</strong> This check-box is only available if FACE compliance is
+different from <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RTIMICRO_BUILD_LINK_FACE_GOLDEBLIBS</span></code></p></td>
+<td><p>If the <code class="docutils literal notranslate"><span class="pre">RTIMICRO_BUILD_LINK_FACE_GOLDEBLIBS</span></code> is checked, the path to
+the top-level FACE root must be specified here.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>Click <strong>Configure</strong>.</p></li>
+<li><p>Click <strong>Generate</strong>.</p></li>
+<li><p>Build the generated project.</p></li>
+<li><p>Libraries are placed in <code class="docutils literal notranslate"><span class="pre">lib/&lt;RTIMICRO_BUILD_LIBRARY_TARGET_NAME&gt;</span></code>.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sequences.html" class="btn btn-neutral float-right" title="3.20. Working With Sequences" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="qos_mapping_xml.html" class="btn btn-neutral float-left" title="3.18. QoS Mapping in XML" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

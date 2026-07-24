@@ -1,0 +1,308 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2025-2026
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+# Description:
+# ------------
+# Forge Tests Configuration and Helper Functions
+#
+# This file contains all Forge test related configuration and functions.
+# It handles:
+#   - Defining which modules should build Forge tests for specific architectures
+#   - Checking if Forge tests should be enabled for a module/architecture pair
+#   - Building Forge test artifacts (profiles, etc.)
+#
+################################################################################
+
+#===============================================================================
+#                     Forge Tests Configuration
+#===============================================================================
+# Include the Forge integration module
+INCLUDE("${CMAKE_CURRENT_LIST_DIR}/cmake_forge.cmake")
+
+# Architecture-based Forge Tests Configuration
+#
+# Define which modules should build Forge tests for specific architectures.
+# This allows different architectures to enable different sets of modules.
+#
+# Usage:
+#   SET("x86leElfgcc7.3.0-Linux4" osapi netio_udp dds_c)
+#   SET("armv7-Linux4" osapi)
+#
+# The function FORGE_TESTS_ENABLED_FOR_MODULE will check if the current module
+# is in the list for the current architecture.
+
+# Define module lists for each architecture using the architecture name directly as variable name
+SET("armv7emleElfgcc10.3.1-FreeRTOS10.0"
+    "osapi"
+    "reda"
+    "cdr"
+    "db"
+    "rt"
+    "netio"
+    "rtps"
+    "dds_c"
+    "rh_sm"
+    "wh_sm"
+    "disc_dpse"
+    "disc_dpde"
+)
+SET("armv7emleElfgcc10.3.1-FreeRTOS10.0_primary_artifact" "bin")
+
+SET("tc39xtElfTasking6.3r1-MICROSAR4"
+    "osapi"
+    # "reda"    # build fails
+    # "cdr"
+    # "db"
+    # "rt"
+    "netio"
+    # "rtps"    # Fails with out of memory
+    # "dds_c"   # Test too large, triggers sram overflow
+    # "rh_sm"
+    # "wh_sm"
+    # "disc_dpse"
+    # "disc_dpde"
+)
+SET("tc39xtElfTasking6.3r1-MICROSAR4_primary_artifact" "elf")
+
+# Substrate version used when building Forge unit tests.
+#
+# Production: "0.1.1"                    - pinned release downloaded from Artifactory
+# Latest:     "latest"                   - resolves newest tagged release from Artifactory
+# Dev:        "branch:feature/FOUNDRY-151" - clones that branch from the substrate repo
+#
+# Change this to a branch: value when your Micro branch requires matching substrate
+# changes. Do NOT commit a branch: value to main.
+SET(RTI_FORGE_SUBSTRATE_VERSION "0.1.3")
+
+#===============================================================================
+# FUNCTION ..: FORGE_TESTS_ENABLED_FOR_MODULE
+# SYNOPSIS ..: Check if Forge tests should be built for current module/arch
+# USAGE .....: FORGE_TESTS_ENABLED_FOR_MODULE(result_var)
+#
+# This function:
+# 1. Uses variable composition to look up the module list for the architecture
+# 2. Checks if the current module is in the list
+#===============================================================================
+FUNCTION(FORGE_TESTS_ENABLED_FOR_MODULE result_var)
+    SET(should_build FALSE)
+
+    # Use variable composition: look up variable named after the architecture
+    # If RTIME_TARGET_NAME is "x86leElfgcc7.3.0-Linux4", this evaluates ${x86leElfgcc7.3.0-Linux4}
+    SET(modules_list ${${RTIME_TARGET_NAME}})
+
+    # Check if current module is in the list for this architecture
+    IF ("${RTI_MODULE_NAME}" IN_LIST modules_list)
+        SET(should_build TRUE)
+    ENDIF()
+
+    SET(${result_var} ${should_build} PARENT_SCOPE)
+ENDFUNCTION(FORGE_TESTS_ENABLED_FOR_MODULE)
+
+#===============================================================================
+# FUNCTION ..: PACKAGE_FORGE_TESTS
+# SYNOPSIS ..: Package Forge test artifacts in output directory and create tgz
+# USAGE .....: PACKAGE_FORGE_TESTS()
+#
+# This function:
+# 1. Renames firmware files in the forge output directory to test naming convention
+# 2. Copies build_plan.json and forge_ctx.json to the forge output directory
+# 3. Generates MANIFEST in the forge output directory (using common function)
+# 4. Packs the entire forge output directory into tgz
+#===============================================================================
+FUNCTION(PACKAGE_FORGE_TESTS)
+    # Forge output directory (e.g., osapi.2.0/test/armv7emleElfgcc10.3.1-FreeRTOS10.0_forge)
+    SET(FORGE_TEST_OUTPUT_DIR "${RTI_FORGE_TEST_DIR}")
+    SET(FORGE_WORKSPACE_BUILD "${RTI_FORGE_WORKSPACE_DIR}/build")
+
+    # Test executable base name (e.g., osapiTester)
+    SET(TEST_EXECUTABLE_BASE "${RTI_MODULE_TESTER_BUNDLE}")
+
+    # Look up the primary artifact extension declared for this architecture.
+    # Each architecture explicitly sets "<arch>_primary_artifact" to "bin" or "elf"
+    # alongside its module list above. Defaults to "bin" if not set.
+    SET(FORGE_PRIMARY_EXT "${${RTIME_TARGET_NAME}_primary_artifact}")
+    IF(NOT FORGE_PRIMARY_EXT)
+        SET(FORGE_PRIMARY_EXT "bin")
+    ENDIF()
+
+    # Rename firmware files in the forge output directory to match test naming.
+    # firmware.bin is optional: some platforms (e.g. MICROSAR4/ELF-only toolchains) do not
+    # produce a .bin file. Use the helpers script so the rename is skipped when absent.
+    ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC}_forge POST_BUILD
+        COMMAND ${CMAKE_COMMAND}
+            -DSOURCE_FILE=${FORGE_TEST_OUTPUT_DIR}/firmware.bin
+            -DDEST_FILE=${FORGE_TEST_OUTPUT_DIR}/${TEST_EXECUTABLE_BASE}.bin
+            -P ${FORGE_HELPERS}
+
+        COMMENT "Renaming firmware files to ${TEST_EXECUTABLE_BASE}.*"
+    )
+
+    # Rename optional firmware files if they exist (elf, map, hex)
+    ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC}_forge POST_BUILD
+        COMMAND ${CMAKE_COMMAND}
+            -DSOURCE_FILE=${FORGE_TEST_OUTPUT_DIR}/firmware.elf
+            -DDEST_FILE=${FORGE_TEST_OUTPUT_DIR}/${TEST_EXECUTABLE_BASE}.elf
+            -P ${FORGE_HELPERS}
+
+        COMMAND ${CMAKE_COMMAND}
+            -DSOURCE_FILE=${FORGE_TEST_OUTPUT_DIR}/firmware.map
+            -DDEST_FILE=${FORGE_TEST_OUTPUT_DIR}/${TEST_EXECUTABLE_BASE}.map
+            -P ${FORGE_HELPERS}
+
+        COMMAND ${CMAKE_COMMAND}
+            -DSOURCE_FILE=${FORGE_TEST_OUTPUT_DIR}/firmware.hex
+            -DDEST_FILE=${FORGE_TEST_OUTPUT_DIR}/${TEST_EXECUTABLE_BASE}.hex
+            -P ${FORGE_HELPERS}
+
+        COMMENT "Renaming optional firmware files if present"
+    )
+
+    # Copy build artifacts from workspace to forge output directory
+    ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC}_forge POST_BUILD
+        COMMAND ${CMAKE_COMMAND}
+            -DSOURCE_FILE=${FORGE_WORKSPACE_BUILD}/build_plan.json
+            -DDEST_FILE=${FORGE_TEST_OUTPUT_DIR}/build_plan.json
+            -DCOPY_MODE=1
+            -P ${FORGE_HELPERS}
+
+        COMMAND ${CMAKE_COMMAND}
+            -DSOURCE_FILE=${FORGE_WORKSPACE_BUILD}/forge_ctx.json
+            -DDEST_FILE=${FORGE_TEST_OUTPUT_DIR}/forge_ctx.json
+            -DCOPY_MODE=1
+            -P ${FORGE_HELPERS}
+
+        COMMENT "Copying forge build artifacts to test directory"
+    )
+
+    # Generate MANIFEST using common function.
+    # The primary executable extension comes from the per-architecture
+    # "<arch>_primary_artifact" variable declared at the top of this file.
+    GENERATE_TEST_MANIFEST(
+        TARGET ${RTI_MODULE_TESTER_STATIC}_forge
+        OUTPUT_DIR ${FORGE_TEST_OUTPUT_DIR}
+        TEST_EXECUTABLE ${TEST_EXECUTABLE_BASE}.${FORGE_PRIMARY_EXT}
+        ENTRY_POINT Reset_Handler
+    )
+    # Copy only .a files from module lib directory to forge output directory
+    ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC}_forge POST_BUILD
+        COMMAND ${CMAKE_COMMAND}
+            -DSOURCE_DIR=${RTI_MODULE_OUTPUT_SRC}/lib/${RTIME_TARGET_NAME}
+            -DDEST_DIR=${FORGE_TEST_OUTPUT_DIR}/lib/${RTIME_TARGET_NAME}
+            -P ${FORGE_HELPERS}
+
+        COMMENT "Copying .a files from module lib directory to forge test directory"
+    )
+
+    # Create tgz archive from the forge output directory
+    SET(FORGE_BUNDLE_TGZ "${RTI_TARGET_BUNDLE_ROOT}/static/${RTI_MODULE_TESTER_BUNDLE}.tgz")
+
+    ADD_CUSTOM_COMMAND(TARGET ${RTI_MODULE_TESTER_STATIC}_forge POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E echo "Create Forge bundle ${FORGE_BUNDLE_TGZ}"
+
+        # Ensure the target directory exists
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${RTI_TARGET_BUNDLE_ROOT}/static
+
+        COMMAND ${CMAKE_COMMAND} -E tar cz
+            ${FORGE_BUNDLE_TGZ} -- .
+
+        WORKING_DIRECTORY ${FORGE_TEST_OUTPUT_DIR}
+
+        COMMENT "Packaging forge test directory into tgz"
+    )
+
+ENDFUNCTION(PACKAGE_FORGE_TESTS)
+
+#===============================================================================
+# FUNCTION ..: MODULE_BUILD_TESTS_WITH_FORGE
+# SYNOPSIS ..: Build Forge test artifacts for a module
+# USAGE .....: MODULE_BUILD_TESTS_WITH_FORGE()
+#
+# This function creates CMake custom commands and targets to:
+# 1. Capture Micro artifacts using Anvil
+# 2. Generate a Forge profile for the module
+# 3. Create a custom target for the Forge test
+#
+#===============================================================================
+FUNCTION(MODULE_BUILD_TESTS_WITH_FORGE)
+
+    SET(RTI_FORGE_TEST_DIR "${RTI_MODULE_OUTPUT_SRC}/test/${RTIME_TARGET_NAME}_forge")
+
+    # Determine the profile name based on build type/config, matching Anvil's logic
+    STRING(TOLOWER "${CMAKE_BUILD_TYPE}" CMAKE_BUILD_TYPE_LOWER)
+
+    IF(CMAKE_BUILD_TYPE_LOWER MATCHES "debug")
+        SET(FORGE_BUILD_TYPE "debug")
+    ELSE()
+        SET(FORGE_BUILD_TYPE "release")
+    ENDIF()
+
+    # We assume static linking for these tests
+    SET(FORGE_LIB_TYPE "static")
+
+    # Construct the profile name as Anvil does: micro_profile_{arch}_{lib}_{build}
+    SET(RTI_MICRO_PROFILE "${RTI_FORGE_TEST_DIR}/micro_profile_${RTIME_TARGET_NAME}_${FORGE_LIB_TYPE}_${FORGE_BUILD_TYPE}.yaml")
+
+    SET(RTI_FORGE_DEPEND_LIBS ${RTI_MODULE_TESTER_STATIC}.a ${module_name}Tester${RTI_LIB_SUFFIX_STATIC}.a)
+    SET(RTI_FORGE_DEPEND_LIBDIRS  ${RTI_MODULE_OUTPUT_SRC}/lib/${RTIME_TARGET_NAME} ${RTI_MODULE_OUTPUT_SRC}/lib/${RTIME_PIL_ARCH})
+
+    # Shared workspace configuration
+    SET(RTI_FORGE_SHARED_DIR "${RTIME_BUILD_ROOT}/forge_shared/${RTIME_TARGET_NAME}")
+    SET(RTI_FORGE_WORKSPACE_DIR "${RTI_FORGE_SHARED_DIR}/workspace")
+
+    SET(RTI_FORGE_DEPEND_LIBS ${RTI_FORGE_DEPEND_LIBS} "rti_me_test${RTI_LIB_SUFFIX_STATIC}.a")
+
+    IF (("${RTI_MODULE_NAME}" STREQUAL "disc_dpde") OR ("${RTI_MODULE_NAME}" STREQUAL "disc_dpse"))
+        SET(RTI_FORGE_DEPEND_LIBS ${RTI_FORGE_DEPEND_LIBS} "rti_me_netiotintf${RTI_LIB_SUFFIX_STATIC}.a")
+    ENDIF()
+
+    IF (("${RTI_MODULE_NAME}" STREQUAL "dds_c"))
+        SET(RTI_FORGE_DEPEND_LIBS ${RTI_FORGE_DEPEND_LIBS} "rti_me_ddsxtypesz.a" "rti_me_netiotintfz.a")
+    ENDIF()
+
+    # Capture Micro Artifacts
+    # Note: We pass the directory to --output because forge generates the filename automatically
+    ADD_CUSTOM_COMMAND(OUTPUT ${RTI_MICRO_PROFILE}
+        COMMAND forge profile capture-micro
+            --rtime-home ${RTIME_BUILD_ROOT}/rti_me.2.0
+            --arch ${RTIME_TARGET_NAME}
+            --output ${RTI_FORGE_TEST_DIR}
+        COMMENT "Creating Micro profile with Forge"
+    )
+
+    # Use ADD_FORGE to generate profile and run forge
+    SET(FORGE_ARGS
+        PROGRAM utest
+        ARCH ${RTIME_TARGET_NAME}
+        SUBSTRATE ${RTI_FORGE_WORKSPACE_DIR}
+        OUTPUT_DIR ${RTI_FORGE_TEST_DIR}
+        EXTENDS ${RTI_MICRO_PROFILE}
+        LIBS ${RTI_FORGE_DEPEND_LIBS}
+        LIB_DIRS ${RTI_FORGE_DEPEND_LIBDIRS}
+        DEPENDS ${RTI_MICRO_PROFILE}
+        TARGET_DEPENDS ${RTI_MODULE_TESTER_STATIC}
+    )
+
+    # RTI_FORGE_SUBSTRATE_VERSION is always set above — pass it unconditionally
+    LIST(APPEND FORGE_ARGS SUBSTRATE_VERSION ${RTI_FORGE_SUBSTRATE_VERSION})
+
+    IF(FORGE_BUILD_TYPE STREQUAL "debug")
+        LIST(APPEND FORGE_ARGS DEBUG)
+    ENDIF()
+
+    ADD_FORGE(${RTI_MODULE_TESTER_STATIC}_forge ${FORGE_ARGS})
+
+    # Track this forge test target globally using GLOBAL PROPERTY for workspace bundling
+    GET_PROPERTY(EXISTING_TARGETS GLOBAL PROPERTY RTI_FORGE_TEST_TARGETS_GLOBAL)
+    LIST(APPEND EXISTING_TARGETS ${RTI_MODULE_TESTER_STATIC}_forge)
+    SET_PROPERTY(GLOBAL PROPERTY RTI_FORGE_TEST_TARGETS_GLOBAL "${EXISTING_TARGETS}")
+
+    # Package the Forge test (rename files, copy artifacts, generate manifest, create tgz)
+    PACKAGE_FORGE_TESTS()
+
+ENDFUNCTION(MODULE_BUILD_TESTS_WITH_FORGE)

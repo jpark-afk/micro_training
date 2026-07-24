@@ -1,0 +1,531 @@
+\doxysubsection{dds\+\_\+c\+\_\+infrastructure.\+h File Reference}
+\hypertarget{dds__c__infrastructure_8h}{}\label{dds__c__infrastructure_8h}\index{dds\_c\_infrastructure.h@{dds\_c\_infrastructure.h}}
+
+
+DDS Domain Module definitions.  
+
+
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+dll.\+h"{}}\newline
+{\ttfamily \#include "{}cdr/cdr\+\_\+cdr\+\_\+type.\+h"{}}\newline
+{\ttfamily \#include "{}netio/netio\+\_\+rtps.\+h"{}}\newline
+{\ttfamily \#include "{}rtps/rtps\+\_\+rtps.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+common.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+string.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+sequence.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+user\+\_\+data\+\_\+manager.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+string\+\_\+manager.\+h"{}}\newline
+{\ttfamily \#include "{}rtps/rtps\+\_\+trust\+\_\+plugin.\+h"{}}\newline
+{\ttfamily \#include $<$reda/reda\+\_\+sequence\+\_\+decl.\+h$>$}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+transport\+\_\+priority\+\_\+qos.\+h"{}}\newline
+{\ttfamily \#include "{}dds\+\_\+c/dds\+\_\+c\+\_\+property\+\_\+qos.\+h"{}}\newline
+\doxysubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type for {\itshape time} representation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type for {\itshape duration} representation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__InstanceHandleSeq}{DDS\+\_\+\+Instance\+Handle\+Seq}}
+\begin{DoxyCompactList}\small\item\em Instantiates {\ttfamily \doxylink{structFooSeq}{Foo\+Seq}} \texorpdfstring{$<$}{<} \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} \texorpdfstring{$>$}{>} . \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__GUID__t}{DDS\+\_\+\+GUID\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type for {\itshape GUID} (Global Unique Identifier) representation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__SequenceNumber__t}{DDS\+\_\+\+Sequence\+Number\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type for {\itshape sequence} number representation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__QosPolicyCount}{DDS\+\_\+\+Qos\+Policy\+Count}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Type to hold a counter for a \doxylink{group__DDSQosTypesModule_ga4b2c4d85475a58758fba7601082a40f8}{DDS\+\_\+\+Qos\+Policy\+Id\+\_\+t} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DeadlineQosPolicy}{DDS\+\_\+\+Deadline\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Expresses the maximum duration or deadline within which an instance is expected to be updated. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LatencyBudgetQosPolicy}{DDS\+\_\+\+Latency\+Budget\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em Provides a hint as to the maximum acceptable delay from the time the data is written to the time it is received by the subscribing applications. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__OwnershipQosPolicy}{DDS\+\_\+\+Ownership\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Specifies whether it is allowed for multiple \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer(s)} to write the same instance of the data and if so, how these modifications should be arbitrated. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__OwnershipStrengthQosPolicy}{DDS\+\_\+\+Ownership\+Strength\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Specifies the value of the strength used to arbitrate among multiple \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} objects that attempt to modify the same instance of a data type (identified by \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic} + key). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LivelinessQosPolicy}{DDS\+\_\+\+Liveliness\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Determines the mechanism and parameters used by the application to determine whether a \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} is alive. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__ReliabilityQosPolicy}{DDS\+\_\+\+Reliability\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Indicates the level of reliability offered or requested by RTI Connext DDS Micro. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__HistoryQosPolicy}{DDS\+\_\+\+History\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Specifies the behavior of RTI Connext DDS Micro when a sample value changes one or more times before it can be successfully communicated to existing subscribers. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DurabilityQosPolicy}{DDS\+\_\+\+Durability\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Durability properties that affect the life-\/cycle of published data. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__EncapsulationIdSeq}{DDS\+\_\+\+Encapsulation\+Id\+Seq}}
+\begin{DoxyCompactList}\small\item\em Declares IDL {\ttfamily sequence} \texorpdfstring{$<$}{<} \doxylink{group__DDSDataEncapsulationQosModule_ga0711c9a44c16f0e38f4ce112ae83e18a}{DDS\+\_\+\+Encapsulation\+Id\+\_\+t} \texorpdfstring{$>$}{>}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__TransportEncapsulationSettings__t}{DDS\+\_\+\+Transport\+Encapsulation\+Settings\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Associates a set of \doxylink{group__DDSDataEncapsulationQosModule_ga0711c9a44c16f0e38f4ce112ae83e18a}{DDS\+\_\+\+Encapsulation\+Id\+\_\+t} with this entity. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__TransportEncapsulationSettingsSeq}{DDS\+\_\+\+Transport\+Encapsulation\+Settings\+Seq}}
+\begin{DoxyCompactList}\small\item\em Declares IDL {\ttfamily sequence} \texorpdfstring{$<$}{<} \doxylink{structDDS__TransportEncapsulationSettings__t}{DDS\+\_\+\+Transport\+Encapsulation\+Settings\+\_\+t} \texorpdfstring{$>$}{>}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__TransportEncapsulationQosPolicy}{DDS\+\_\+\+Transport\+Encapsulation\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em Specifies the wire encapsulation(s) to use on each transport for a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DataRepresentationIdSeq}{DDS\+\_\+\+Data\+Representation\+Id\+Seq}}
+\begin{DoxyCompactList}\small\item\em Declares IDL {\ttfamily sequence} \texorpdfstring{$<$}{<} \doxylink{group__DDSDataRepresentationQosModule_ga1f9f23529f5b33d00ab4b4a456bb6aeb}{DDS\+\_\+\+Data\+Representation\+Id\+\_\+t} \texorpdfstring{$>$}{>} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DataRepresentationQosPolicy}{DDS\+\_\+\+Data\+Representation\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em This QoS policy contains a list of representation identifiers used by \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} and \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities to negotiate which data representation to use. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__ResourceLimitsQosPolicy}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Specifies the resources that RTI Connext DDS Micro can consume in order to meet the requested QoS. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PresentationQosPolicy}{DDS\+\_\+\+Presentation\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em Specifies how the samples representing changes to data instances are presented to a subscribing application. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DestinationOrderQosPolicy}{DDS\+\_\+\+Destination\+Order\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em Destination order policies that affect the ordering of subscribed data. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DataReaderResourceLimitsQosPolicy}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Resource limits that apply only to \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} instances. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DataWriterResourceLimitsQosPolicy}{DDS\+\_\+\+Data\+Writer\+Resource\+Limits\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Resource limits that apply only to \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} instances. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__EntityFactoryQosPolicy}{DDS\+\_\+\+Entity\+Factory\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A QoS policy for all \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} types that can act as factories for one or more other \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} types. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DataWriterShmemRefTransferModeSettings}{DDS\+\_\+\+Data\+Writer\+Shmem\+Ref\+Transfer\+Mode\+Settings}}
+\begin{DoxyCompactList}\small\item\em Settings related to transferring data using shared memory references. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DataWriterTransferModeQosPolicy}{DDS\+\_\+\+Data\+Writer\+Transfer\+Mode\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} QoS related to transferring data \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__SystemResourceLimitsQosPolicy}{DDS\+\_\+\+System\+Resource\+Limits\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Resource limits that apply only to \doxylink{group__DDSDomainParticipantFactoryModule_ga206e77e6b4c2b0db6cefa6ed8d85128d}{DDS\+\_\+\+Domain\+Participant\+Factory} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__RtpsWellKnownPorts__t}{DDS\+\_\+\+Rtps\+Well\+Known\+Ports\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em RTPS well-\/known port mapping configuration. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__WireProtocolQosPolicy}{DDS\+\_\+\+Wire\+Protocol\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Specifies the wire-\/protocol-\/related attributes for the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__ChecksumProperty__t}{DDS\+\_\+\+Checksum\+Property\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Type to define the checksum properties of the participant RTI Connext DDS Micro. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__Locator__t}{DDS\+\_\+\+Locator\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Type used to represent the addressing information needed to send a message to an RTPS Endpoint using one of the supported transports. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LocatorSeq}{DDS\+\_\+\+Locator\+Seq}}
+\begin{DoxyCompactList}\small\item\em Declares IDL {\ttfamily sequence} \texorpdfstring{$<$}{<} \doxylink{structDDS__Locator__t}{DDS\+\_\+\+Locator\+\_\+t} \texorpdfstring{$>$}{>} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__LocatorEx}{DDS\+\_\+\+Locator\+Ex}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Type used to represent the addressing information needed to send a message to an RTPS Endpoint using one of the supported transports. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__ProtocolVersion__t}{DDS\+\_\+\+Protocol\+Version\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Type used to represent the version of the RTPS protocol. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__VendorId__t}{DDS\+\_\+\+Vendor\+Id\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Type used to represent the vendor of the service implementing the RTPS protocol. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__ProductVersion__t}{DDS\+\_\+\+Product\+Version\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Type used to represent the current version of RTI Connext DDS Micro. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__RtpsReliableReaderProtocol__t}{DDS\+\_\+\+Rtps\+Reliable\+Reader\+Protocol\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  QoS related to reliable reader protocol defined in RTPS. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DataReaderProtocolQosPolicy}{DDS\+\_\+\+Data\+Reader\+Protocol\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Protocol that applies only to \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} instances. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__RtpsReliableWriterProtocol__t}{DDS\+\_\+\+Rtps\+Reliable\+Writer\+Protocol\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  QoS related to the reliable writer protocol defined in RTPS. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DataWriterProtocolQosPolicy}{DDS\+\_\+\+Data\+Writer\+Protocol\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Protocol that applies only to \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} instances. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__TransportQosPolicy}{DDS\+\_\+\+Transport\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Settings for available transports \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DomainParticipantResourceLimitsQosPolicy}{DDS\+\_\+\+Domain\+Participant\+Resource\+Limits\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Resource limits that apply only to \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} instances. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em The key type of the built-\/in topic types. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__ConditionSeq}{DDS\+\_\+\+Condition\+Seq}}
+\begin{DoxyCompactList}\small\item\em A sequence object containing references to one or more \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} objects. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__Listener}{DDS\+\_\+\+Listener}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Abstract base class for all Listener interfaces. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__EntityNameQosPolicy}{DDS\+\_\+\+Entity\+Name\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Policy used to name an entity. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__SampleIdentity__t}{DDS\+\_\+\+Sample\+Identity\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Data structure used to provide explicit identity information about a published data sample. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__WriteParams__t}{DDS\+\_\+\+Write\+Params\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Data structure used to provide custom parameters to a \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}\textquotesingle{}s write operation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__PublishModeQosPolicy}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy}}
+\begin{DoxyCompactList}\small\item\em Specifies how RTI Connext DDS Micro sends application data on the network. This QoS policy can be used to tell RTI Connext DDS Micro to use its {\itshape own} thread to send data, instead of the user thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DDSTimeSupportModule_gac99dcc849b77a82c132b902492fa7b03}{DDS\+\_\+\+TIME\+\_\+\+ZERO}}
+\begin{DoxyCompactList}\small\item\em The default instant in time\+: zero seconds and zero nanoseconds. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSTimeSupportModule_gacc8c4088686414b4b06f314ae70d9469}{DDS\+\_\+\+TIME\+\_\+\+INVALID\+\_\+\+SEC}}
+\begin{DoxyCompactList}\small\item\em A sentinel indicating an invalid second of time. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSTimeSupportModule_gaeb8245aef5ccb00e8f8f819d4b45e6a5}{DDS\+\_\+\+TIME\+\_\+\+INVALID\+\_\+\+NSEC}}
+\begin{DoxyCompactList}\small\item\em A sentinel indicating an invalid nanosecond of time. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSTimeSupportModule_gae63330e4f912274fbf7e9a3d55c6a36d}{DDS\+\_\+\+TIME\+\_\+\+INVALID}}
+\begin{DoxyCompactList}\small\item\em A sentinel indicating an invalid time. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSTimeSupportModule_ga2fe31e8ad626c6abec1d5057a00ab95d}{DDS\+\_\+\+Time\+\_\+is\+\_\+invalid}}(time\+Ptr)
+\item 
+\#define \mbox{\hyperlink{group__DDSStatusTypesModule_ga125113479c894d4d62b9c27ceac4e03c}{DDS\+\_\+\+STATUS\+\_\+\+MASK\+\_\+\+NONE}}
+\begin{DoxyCompactList}\small\item\em No bits are set. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSStatusTypesModule_gaa755e98b5e8484e8be881287b4b0165c}{DDS\+\_\+\+STATUS\+\_\+\+MASK\+\_\+\+ALL}}
+\begin{DoxyCompactList}\small\item\em All bits are set. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSDataEncapsulationQosModule_ga83d59ea6e5be1c628f0ae6ddce9e2e16}{DDS\+\_\+\+ENCAPSULATION\+\_\+\+ID\+\_\+\+SHMEM\+\_\+\+V2}}~((\mbox{\hyperlink{group__OSAPI__TypeClass_ga08718fc28794c7c86c3dda24bf3cad45}{RTI\+\_\+\+UINT16}})0x\+C003)
+\begin{DoxyCompactList}\small\item\em Zero Copy v2 encapsulation. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSDataRepresentationQosModule_ga5c620e2796edac5ec51a3cb78831f046}{DDS\+\_\+\+XCDR\+\_\+\+DATA\+\_\+\+REPRESENTATION}}~((\mbox{\hyperlink{group__DDSDataRepresentationQosModule_ga1f9f23529f5b33d00ab4b4a456bb6aeb}{DDS\+\_\+\+Data\+Representation\+Id\+\_\+t}})0)
+\begin{DoxyCompactList}\small\item\em Corresponds to the Extended Common Data Representation encoding version 1. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSDataRepresentationQosModule_ga473cc17164d51dc8ef5bcb9cfb3c8007}{DDS\+\_\+\+XML\+\_\+\+DATA\+\_\+\+REPRESENTATION}}~((\mbox{\hyperlink{group__DDSDataRepresentationQosModule_ga1f9f23529f5b33d00ab4b4a456bb6aeb}{DDS\+\_\+\+Data\+Representation\+Id\+\_\+t}})1)
+\begin{DoxyCompactList}\small\item\em Corresponds to the XML Data Representation (unsupported). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSDataRepresentationQosModule_gabf7a5e2c74bd93df8a6610179ca3de5c}{DDS\+\_\+\+XCDR2\+\_\+\+DATA\+\_\+\+REPRESENTATION}}~((\mbox{\hyperlink{group__DDSDataRepresentationQosModule_ga1f9f23529f5b33d00ab4b4a456bb6aeb}{DDS\+\_\+\+Data\+Representation\+Id\+\_\+t}})2)
+\begin{DoxyCompactList}\small\item\em Corresponds to the Extended Common Data Representation encoding version 2. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSDataRepresentationQosModule_gaee990eb6602d375230a0921b1213b890}{DDS\+\_\+\+AUTO\+\_\+\+DATA\+\_\+\+REPRESENTATION}}~((\mbox{\hyperlink{group__DDSDataRepresentationQosModule_ga1f9f23529f5b33d00ab4b4a456bb6aeb}{DDS\+\_\+\+Data\+Representation\+Id\+\_\+t}})-\/1)
+\begin{DoxyCompactList}\small\item\em Representation is automatically chosen based on the type. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSWireProtocolQosModule_ga68ea4372117c0c6c8905b67ed91464d4}{DDS\+\_\+\+CHECKSUM\+\_\+\+NONE}}~(0)
+\begin{DoxyCompactList}\small\item\em Bitmap indicating no checksum selection. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSWireProtocolQosModule_gacdab95a183ac532959d9b0179e1b77a1}{DDS\+\_\+\+CHECKSUM\+\_\+\+AUTO}}~(0xffffU)
+\begin{DoxyCompactList}\small\item\em Bitmap indicating automatic checksum selection. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSWireProtocolQosModule_ga757dc1f6908471d78de47c7845da6392}{DDS\+\_\+\+CHECKSUM\+\_\+\+BUILTIN32}}~(0x1U)
+\begin{DoxyCompactList}\small\item\em Bitmap for selecting the builtin 32-\/bit checksum. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSWireProtocolQosModule_ga16c1c88655cb062c6c4a9883c32f8f22}{DDS\+\_\+\+CHECKSUM\+\_\+\+BUILTIN64}}~(0x2U)
+\begin{DoxyCompactList}\small\item\em Bitmap for selecting the builtin 64-\/bit checksum. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSWireProtocolQosModule_ga91ae3c9cbea44353c9ded8eaeac3ee43}{DDS\+\_\+\+CHECKSUM\+\_\+\+BUILTIN128}}~(0x4U)
+\begin{DoxyCompactList}\small\item\em Bitmap for selecting the builtin 128-\/bit checksum. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSDiscoveryModule_gad0091b6861c67e30da7ed27dc997faed}{DDS\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+LENGTH\+\_\+\+MAX}}~2
+\begin{DoxyCompactList}\small\item\em Length of vendor id. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSDiscoveryModule_ga45ab780bea5de2b264ac5a53a43cff21}{DDS\+\_\+\+PRODUCTVERSION\+\_\+\+UNKNOWN}}~\{ 0, 0, \textquotesingle{}0\textquotesingle{}, 0 \}
+\begin{DoxyCompactList}\small\item\em The value used when the product version is unknown. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSEntityModule_ga0bdd4b3e8bc6992fa826639ca6aee7fc}{DDS\+\_\+\+Listener\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{structDDS__Listener_a7bc1575f71cc162d98719ffbe8642478}{DDS\+\_\+\+Listener\+::listener\+\_\+data} pointer to NULL. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSEntityNameQosModule_gaa321af44af31b7ddb81c7d7b18bc842f}{DDS\+\_\+\+ENTITYNAME\+\_\+\+QOS\+\_\+\+NAME\+\_\+\+MAX}}~255
+\begin{DoxyCompactList}\small\item\em The maximum length of the name string in an \doxylink{structDDS__EntityNameQosPolicy}{DDS\+\_\+\+Entity\+Name\+Qos\+Policy} instance. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSInfrastructureModule_gabcb97cfbe1ea6d80ab1d772b6241c0b7}{DDS\+\_\+\+WRITEPARAMS\+\_\+\+DEFAULT}}
+\begin{DoxyCompactList}\small\item\em Default values used to initialize instances of \doxylink{structDDS__WriteParams__t}{DDS\+\_\+\+Write\+Params\+\_\+t}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSPublishModeQosModule_ga7f54323acc81cece560738a363ba1d8a}{DDS\+\_\+\+PUBLICATION\+\_\+\+PRIORITY\+\_\+\+UNDEFINED}}
+\begin{DoxyCompactList}\small\item\em Initializer value for \doxylink{structDDS__PublishModeQosPolicy_ad1e7c5d383bb088b62034f698e37a4e3}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::priority}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSPublishModeQosModule_ga0a64ad713b96e67908a0abe008cd938a}{DDS\+\_\+\+PUBLICATION\+\_\+\+PRIORITY\+\_\+\+AUTOMATIC}}
+\begin{DoxyCompactList}\small\item\em Constant value for \doxylink{structDDS__PublishModeQosPolicy_ad1e7c5d383bb088b62034f698e37a4e3}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+::priority}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef DDS\+\_\+\+HANDLE\+\_\+\+TYPE\+\_\+\+NATIVE \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type definition for an instance handle. \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+GUID\+\_\+t \mbox{\hyperlink{group__DDSGUIDSupportModule_ga82169ddcb164941a1fa4d679a4854f32}{DDS\+\_\+\+GUID\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type for {\itshape GUID} (Global Unique Identifier) representation. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}}
+\begin{DoxyCompactList}\small\item\em A bit-\/mask (list) of concrete status types, i.\+e. \doxylink{group__DDSStatusTypesModule_gaa99b5585ecdf8c5f93ac3108439ad26f}{DDS\+\_\+\+Status\+Kind}\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__DDSCdrTypesModule_gabb80252227f4cbd0043e9ece26007e1d}{DDS\+\_\+\+Unsigned\+Short}} \mbox{\hyperlink{group__DDSDataEncapsulationQosModule_ga0711c9a44c16f0e38f4ce112ae83e18a}{DDS\+\_\+\+Encapsulation\+Id\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em An unsigned 16-\/bit integer that identifies a wire encapsulation format. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__DDSCdrTypesModule_ga7ab964cd8d9bfd374c78d84aaaec9cfc}{DDS\+\_\+\+Short}} \mbox{\hyperlink{group__DDSDataRepresentationQosModule_ga1f9f23529f5b33d00ab4b4a456bb6aeb}{DDS\+\_\+\+Data\+Representation\+Id\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em A two-\/byte signed integer that identifies a data representation. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__DDSCdrTypesModule_gabb80252227f4cbd0043e9ece26007e1d}{DDS\+\_\+\+Unsigned\+Short}} \mbox{\hyperlink{group__DDSWireProtocolQosModule_ga2414613242de5545c5a505044fcb2382}{DDS\+\_\+\+Checksum\+Kind\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Datatype for checksum kind. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__DDSCdrTypesModule_gabb80252227f4cbd0043e9ece26007e1d}{DDS\+\_\+\+Unsigned\+Short}} \mbox{\hyperlink{group__DDSWireProtocolQosModule_gae5eb87fd8fb945bcce59a6c477ac76cc}{DDS\+\_\+\+Checksum\+Kind\+Mask\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Datatype for an OR\textquotesingle{}ing for \doxylink{group__DDSWireProtocolQosModule_ga2414613242de5545c5a505044fcb2382}{DDS\+\_\+\+Checksum\+Kind\+\_\+t} . \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t \mbox{\hyperlink{group__DDSDiscoveryModule_gadaf5d1d88549633cae038f316bb18d7a}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em The key type of the built-\/in topic types. \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+Entity\+Impl \mbox{\hyperlink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Abstract base class for all the DDS objects that support QoS policies, and a listener. \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+Condition\+Impl \mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Root class for all the conditions that may be attached to a \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+Guard\+Condition\+Impl \mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A specific \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} whose {\ttfamily trigger\+\_\+value} is completely under the control of the application. \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+Status\+Condition\+Impl \mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  A specific \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} that is associated with each \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}. \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+Wait\+Set\+Impl \mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application to wait until one or more of the attached \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} objects has a {\ttfamily trigger\+\_\+value} of \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} or else until the timeout expires. \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+Domain\+Entity\+Impl \mbox{\hyperlink{group__DDSEntityModule_ga0cd8d7d61066e2a434918419e1514bfc}{DDS\+\_\+\+Domain\+Entity}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}} Abstract base class for all DDS entities except for the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}. \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+Domain\+Participant\+Impl \mbox{\hyperlink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Container for all \doxylink{group__DDSEntityModule_ga0cd8d7d61066e2a434918419e1514bfc}{DDS\+\_\+\+Domain\+Entity} objects. \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+Data\+Reader\+Impl \mbox{\hyperlink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows the application to\+: (1) declare the data it wishes to receive (i.\+e. make a subscription) and (2) access the data received by the attached \doxylink{group__DDSSubscriberModule_ga2755712602505786a23baef5a42d6782}{DDS\+\_\+\+Subscriber}. \end{DoxyCompactList}\item 
+typedef struct DDS\+\_\+\+Data\+Writer\+Impl \mbox{\hyperlink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_interface}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}interface\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application to set the value of the data to be published under a given \doxylink{group__DDSTopicEntityModule_ga28953551fd86b6b47bc7a845c3206a86}{DDS\+\_\+\+Topic}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a4f3bc70d86031a38bba356c4b534979f}{DDS\+\_\+\+RETCODE\+\_\+\+OK}}
+, \mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ac47a8e813f6e5d652f67dbc551b9f62e}{DDS\+\_\+\+RETCODE\+\_\+\+ERROR}}
+, \mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9d40db847e4603f57ce3ff0abbd662e7}{DDS\+\_\+\+RETCODE\+\_\+\+UNSUPPORTED}}
+, \mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ad8661c51c31806806aaf10dca3c80f6c}{DDS\+\_\+\+RETCODE\+\_\+\+BAD\+\_\+\+PARAMETER}}
+, \newline
+\mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET}}
+, \mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a35b4c98bf40ced0114572156c7f41893}{DDS\+\_\+\+RETCODE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RESOURCES}}
+, \mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a2e310a02f1ef7b8a7e5b5f5029b154f9}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ENABLED}}
+, \mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a6e50f4433cf3e47737f4d317d0a4a707}{DDS\+\_\+\+RETCODE\+\_\+\+IMMUTABLE\+\_\+\+POLICY}}
+, \newline
+\mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a5128152d6418ba270e44c5de487ce4c0}{DDS\+\_\+\+RETCODE\+\_\+\+INCONSISTENT\+\_\+\+POLICY}}
+, \mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91adaf7aa0f849422d3e4345bf1c0d98e59}{DDS\+\_\+\+RETCODE\+\_\+\+ALREADY\+\_\+\+DELETED}}
+, \mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9e9b16cc5337664c6c6bbd4a9ed01bcb}{DDS\+\_\+\+RETCODE\+\_\+\+TIMEOUT}}
+, \mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91aa8e69444ae8a8efa65bde05556818669}{DDS\+\_\+\+RETCODE\+\_\+\+NO\+\_\+\+DATA}}
+, \newline
+\mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a9abc2fecf5d7348c77744f0b16bdfcf2}{DDS\+\_\+\+RETCODE\+\_\+\+ILLEGAL\+\_\+\+OPERATION}}
+, \mbox{\hyperlink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91ab9f4750414a6c22654de7ffb138f9ada}{DDS\+\_\+\+RETCODE\+\_\+\+NOT\+\_\+\+ALLOWED\+\_\+\+BY\+\_\+\+SEC}}
+ \}
+\begin{DoxyCompactList}\small\item\em Type for return codes.  \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__DDSStatusTypesModule_gaa99b5585ecdf8c5f93ac3108439ad26f}{DDS\+\_\+\+Status\+Kind}} \{ \newline
+\mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1cdc1326d8bc09a1be3a8045f080fa88}{DDS\+\_\+\+INCONSISTENT\+\_\+\+TOPIC\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa84f12530ffc8d6e68906054b06972342}{DDS\+\_\+\+OFFERED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fab4c627eaeae35f65790cc564208ca2e6}{DDS\+\_\+\+REQUESTED\+\_\+\+DEADLINE\+\_\+\+MISSED\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa1eb2a68f0c66c314784737a7728922b8}{DDS\+\_\+\+OFFERED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}}
+, \newline
+\mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa126ff1b38cdfc905353cb2dac57b6796}{DDS\+\_\+\+REQUESTED\+\_\+\+INCOMPATIBLE\+\_\+\+QOS\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa0114c506e39a7fef5a42587556fc812f}{DDS\+\_\+\+SAMPLE\+\_\+\+LOST\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa9e9d4b8dec6fa48c37aa32aa51ad2dd0}{DDS\+\_\+\+SAMPLE\+\_\+\+REJECTED\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa7962fc85687ca40e2674e4f66811f670}{DDS\+\_\+\+DATA\+\_\+\+ON\+\_\+\+READERS\+\_\+\+STATUS}}
+, \newline
+\mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa9d2d926d515abd0ddd0b537efd42f03e}{DDS\+\_\+\+DATA\+\_\+\+AVAILABLE\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa267a5ad100a1e87c372752b6900a9965}{DDS\+\_\+\+LIVELINESS\+\_\+\+CHANGED\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa3052f04c67620660f92aa3b5da2455d2}{DDS\+\_\+\+PUBLICATION\+\_\+\+MATCHED\+\_\+\+STATUS}}
+, \newline
+\mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26faceedf0fda6d695b4fabd8ac0af807bb1}{DDS\+\_\+\+SUBSCRIPTION\+\_\+\+MATCHED\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26faed26723fdb41d795e19992939b893de3}{DDS\+\_\+\+INSTANCE\+\_\+\+REPLACED\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fac97ef6e40fddefdbc516978e5681436c}{DDS\+\_\+\+RELIABLE\+\_\+\+READER\+\_\+\+ACTIVITY\+\_\+\+CHANGED\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fa197d8afa77d90335d47a331d6c37b7db}{DDS\+\_\+\+DATA\+\_\+\+WRITER\+\_\+\+SAMPLE\+\_\+\+REMOVED\+\_\+\+STATUS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Type for {\itshape status} kinds. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__DDSQosTypesModule_ga4b2c4d85475a58758fba7601082a40f8}{DDS\+\_\+\+Qos\+Policy\+Id\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__DDSQosTypesModule_gga4b2c4d85475a58758fba7601082a40f8a3b381d1bfefadadd7bdc4a6df94066ba}{DDS\+\_\+\+INVALID\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID}}
+, {\bfseries DDS\+\_\+\+USERDATA\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 1
+, {\bfseries DDS\+\_\+\+DURABILITY\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 2
+, {\bfseries DDS\+\_\+\+PRESENTATION\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 3
+, \newline
+\mbox{\hyperlink{group__DDSQosTypesModule_gga4b2c4d85475a58758fba7601082a40f8abd77e173b457d7c9a4455c00f5a72d32}{DDS\+\_\+\+DEADLINE\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID}}
+, {\bfseries DDS\+\_\+\+LATENCYBUDGET\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 5
+, \mbox{\hyperlink{group__DDSQosTypesModule_gga4b2c4d85475a58758fba7601082a40f8afd0f507c4cc38a933f5817d0ea873d03}{DDS\+\_\+\+OWNERSHIP\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID}}
+, \mbox{\hyperlink{group__DDSQosTypesModule_gga4b2c4d85475a58758fba7601082a40f8a766d1409fe6aa9ee6264f4efe69731c5}{DDS\+\_\+\+OWNERSHIPSTRENGTH\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID}}
+, \newline
+\mbox{\hyperlink{group__DDSQosTypesModule_gga4b2c4d85475a58758fba7601082a40f8ad155c60f378087fa8fdbb0f3eddca268}{DDS\+\_\+\+LIVELINESS\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID}}
+, {\bfseries DDS\+\_\+\+TIMEBASEDFILTER\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 9
+, {\bfseries DDS\+\_\+\+PARTITION\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 10
+, \mbox{\hyperlink{group__DDSQosTypesModule_gga4b2c4d85475a58758fba7601082a40f8a33cceb8ac73aa06ef39485b3d887c815}{DDS\+\_\+\+RELIABILITY\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID}}
+, \newline
+{\bfseries DDS\+\_\+\+DESTINATIONORDER\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 12
+, \mbox{\hyperlink{group__DDSQosTypesModule_gga4b2c4d85475a58758fba7601082a40f8ae84e1113bab59340942bfd52193ea428}{DDS\+\_\+\+HISTORY\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID}}
+, {\bfseries DDS\+\_\+\+RESOURCELIMITS\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 14
+, \mbox{\hyperlink{group__DDSQosTypesModule_gga4b2c4d85475a58758fba7601082a40f8a02e9e33058e0cdbce813165a59c53438}{DDS\+\_\+\+ENTITYFACTORY\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID}}
+, \newline
+{\bfseries DDS\+\_\+\+WRITERDATALIFECYCLE\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 16
+, {\bfseries DDS\+\_\+\+READERDATALIFECYCLE\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 17
+, {\bfseries DDS\+\_\+\+TOPICDATA\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 18
+, {\bfseries DDS\+\_\+\+GROUPDATA\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 19
+, \newline
+{\bfseries DDS\+\_\+\+TRANSPORTPRIORITY\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 20
+, {\bfseries DDS\+\_\+\+LIFESPAN\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 21
+, {\bfseries DDS\+\_\+\+DURABILITYSERVICE\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 22
+, {\bfseries DDS\+\_\+\+DATA\+\_\+\+REPRESENTATION\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 23
+, \newline
+{\bfseries DDS\+\_\+\+PROPERTY\+\_\+\+QOS\+\_\+\+POLICY\+\_\+\+ID} = 24
+ \}
+\begin{DoxyCompactList}\small\item\em Type to identify {\ttfamily Qos\+Policies}. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__DDSEntityModule_ga942a5ab2fd1acc2b36190e45802ba0ea}{DDS\+\_\+\+Entity\+Kind\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa9eb11ff6e9fce5f42166c9f720cb341c}{DDS\+\_\+\+UNKNOWN\+\_\+\+ENTITY\+\_\+\+KIND}} = 0
+, \mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaaa84bdcc14a4b25f2bdea8d664e48300f}{DDS\+\_\+\+PARTICIPANT\+\_\+\+ENTITY\+\_\+\+KIND}} = 1
+, \mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa56e7e496b7d6526ef67d8278048ad552}{DDS\+\_\+\+PUBLISHER\+\_\+\+ENTITY\+\_\+\+KIND}} = 2
+, \mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa59fda38ef539f6ebb6a38e4d1d39018a}{DDS\+\_\+\+SUBSCRIBER\+\_\+\+ENTITY\+\_\+\+KIND}} = 3
+, \newline
+\mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa22d3153b25e710a02de0d9ada56d4374}{DDS\+\_\+\+TOPIC\+\_\+\+ENTITY\+\_\+\+KIND}} = 4
+, \mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaab28db5847b5458ddd988d20a0fa8283e}{DDS\+\_\+\+DATAREADER\+\_\+\+ENTITY\+\_\+\+KIND}} = 5
+, \mbox{\hyperlink{group__DDSEntityModule_gga942a5ab2fd1acc2b36190e45802ba0eaa542003fa6737b0bbb76a290e3c9e9b47}{DDS\+\_\+\+DATAWRITER\+\_\+\+ENTITY\+\_\+\+KIND}} = 6
+ \}
+\begin{DoxyCompactList}\small\item\em Type of a DDS entity. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__DDSOwnershipQosModule_gaa88100c64a26cc036cb2eb2d631c3f43}{DDS\+\_\+\+Ownership\+Qos\+Policy\+Kind}} \{ \mbox{\hyperlink{group__DDSOwnershipQosModule_ggaa88100c64a26cc036cb2eb2d631c3f43a262c9859d5c214495c02cd39366a335f}{DDS\+\_\+\+SHARED\+\_\+\+OWNERSHIP\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSOwnershipQosModule_ggaa88100c64a26cc036cb2eb2d631c3f43a6f223289a81f87d7929408a84a27f316}{DDS\+\_\+\+EXCLUSIVE\+\_\+\+OWNERSHIP\+\_\+\+QOS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of ownership. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__DDSLivelinessQosModule_ga3ea638553fd66356c38071040de062e5}{DDS\+\_\+\+Liveliness\+Qos\+Policy\+Kind}} \{ \mbox{\hyperlink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5ad9cee7b01dd754152a13b6999b57911b}{DDS\+\_\+\+AUTOMATIC\+\_\+\+LIVELINESS\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a5519eb00b713987173ff0858e7e3c1f0}{DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+PARTICIPANT\+\_\+\+LIVELINESS\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSLivelinessQosModule_gga3ea638553fd66356c38071040de062e5a6ea670a089709fe482e1c92f5ad1c255}{DDS\+\_\+\+MANUAL\+\_\+\+BY\+\_\+\+TOPIC\+\_\+\+LIVELINESS\+\_\+\+QOS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of liveliness. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__DDSReliabilityQosModule_gaf09e82d431c2328186c7fb4b3fa9ad91}{DDS\+\_\+\+Reliability\+Qos\+Policy\+Kind}} \{ \mbox{\hyperlink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91aae82431f2015239328733f3cb41d780d}{DDS\+\_\+\+BEST\+\_\+\+EFFORT\+\_\+\+RELIABILITY\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSReliabilityQosModule_ggaf09e82d431c2328186c7fb4b3fa9ad91ae5d04022c6405f9db6406489956d1923}{DDS\+\_\+\+RELIABLE\+\_\+\+RELIABILITY\+\_\+\+QOS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of reliability. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__DDSHistoryQosModule_ga96c54dadb2beb87b23776e766e282185}{DDS\+\_\+\+History\+Qos\+Policy\+Kind}} \{ \mbox{\hyperlink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a993d3120b7bbb347ce11e0e6f68b29ff}{DDS\+\_\+\+KEEP\+\_\+\+LAST\+\_\+\+HISTORY\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSHistoryQosModule_gga96c54dadb2beb87b23776e766e282185a9e526d876dae232aa083125c72135f5b}{DDS\+\_\+\+KEEP\+\_\+\+ALL\+\_\+\+HISTORY\+\_\+\+QOS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of history. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__DurabilityQosPolicyModule_ga4bc6b72c72928cb9ed6432e3e6a83e2e}{DDS\+\_\+\+Durability\+Qos\+Policy\+Kind}} \{ \mbox{\hyperlink{group__DurabilityQosPolicyModule_gga4bc6b72c72928cb9ed6432e3e6a83e2eab81cc94a7a319b48b17e177d217a09d4}{DDS\+\_\+\+VOLATILE\+\_\+\+DURABILITY\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DurabilityQosPolicyModule_gga4bc6b72c72928cb9ed6432e3e6a83e2ea82f8bcc308fa4721d8d8525c383e7d25}{DDS\+\_\+\+TRANSIENT\+\_\+\+LOCAL\+\_\+\+DURABILITY\+\_\+\+QOS}}
+, {\bfseries DDS\+\_\+\+TRANSIENT\+\_\+\+DURABILITY\+\_\+\+QOS}
+, {\bfseries DDS\+\_\+\+PERSISTENT\+\_\+\+DURABILITY\+\_\+\+QOS}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerated values used to describe the durability of published data. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__DDSPresentationQosModule_ga123d979f855f637f32eb525b778175b2}{DDS\+\_\+\+Presentation\+Qos\+Policy\+Access\+Scope\+Kind}} \{ \mbox{\hyperlink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ab7e8c01f13b9c46013094fdee7d6af36}{DDS\+\_\+\+INSTANCE\+\_\+\+PRESENTATION\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2a6d21a371adc6e10a62c2739171f5c22f}{DDS\+\_\+\+TOPIC\+\_\+\+PRESENTATION\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSPresentationQosModule_gga123d979f855f637f32eb525b778175b2ae0591a04e045da1d86f25fa8bec39937}{DDS\+\_\+\+GROUP\+\_\+\+PRESENTATION\+\_\+\+QOS}}
+, {\bfseries DDS\+\_\+\+HIGHEST\+\_\+\+OFFERED\+\_\+\+PRESENTATION\+\_\+\+QOS}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of presentation "{}access scope"{}. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__DestinationOrderQosPolicyModule_ga8f1c0c2b179c6281aa9e92d5ea88cbfe}{DDS\+\_\+\+Destination\+Order\+Qos\+Policy\+Kind}} \{ \mbox{\hyperlink{group__DestinationOrderQosPolicyModule_gga8f1c0c2b179c6281aa9e92d5ea88cbfeaa718dc1f974fc792af552d293986bb26}{DDS\+\_\+\+BY\+\_\+\+RECEPTION\+\_\+\+TIMESTAMP\+\_\+\+DESTINATIONORDER\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DestinationOrderQosPolicyModule_gga8f1c0c2b179c6281aa9e92d5ea88cbfeac7a65745504a7d4ccbc41299154fe67b}{DDS\+\_\+\+BY\+\_\+\+SOURCE\+\_\+\+TIMESTAMP\+\_\+\+DESTINATIONORDER\+\_\+\+QOS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerated values used to describe the destination order of published data. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__DDSDataReaderResourceLimitsQosModule_gaf9e17bc2037d1bcb2f100526364afe14}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Instance\+Replacement\+Kind}} \{ \mbox{\hyperlink{group__DDSDataReaderResourceLimitsQosModule_ggaf9e17bc2037d1bcb2f100526364afe14af42e7e5d79b7262cf0466820995075a0}{DDS\+\_\+\+NO\+\_\+\+INSTANCE\+\_\+\+REPLACEMENT\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSDataReaderResourceLimitsQosModule_ggaf9e17bc2037d1bcb2f100526364afe14a53d930a5bacfc51b0708c1f47a291165}{DDS\+\_\+\+REPLACE\+\_\+\+OLDEST\+\_\+\+INSTANCE\+\_\+\+REPLACEMENT\+\_\+\+QOS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of instance replacement. \end{DoxyCompactList}\item 
+enum \{ \mbox{\hyperlink{group__DDSWireProtocolQosModule_ga5dec5b80bd3efbf65ab1b5b2640b2ec1a74c5028e0747356f719a0660c3089bec}{DDS\+\_\+\+RTPS\+\_\+\+AUTO\+\_\+\+ID}} = 0
+ \}
+\item 
+enum \mbox{\hyperlink{group__DDSPublishModeQosModule_ga7c71d1e8aba7e852f23c9fcce4b80b42}{DDS\+\_\+\+Publish\+Mode\+Qos\+Policy\+Kind}} \{ \mbox{\hyperlink{group__DDSPublishModeQosModule_gga7c71d1e8aba7e852f23c9fcce4b80b42ac767f78a22d81ac1988d6b94d2908a3b}{DDS\+\_\+\+SYNCHRONOUS\+\_\+\+PUBLISH\+\_\+\+MODE\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSPublishModeQosModule_gga7c71d1e8aba7e852f23c9fcce4b80b42a4ca8021581a2541bb90d19d64fb0ac1e}{DDS\+\_\+\+ASYNCHRONOUS\+\_\+\+PUBLISH\+\_\+\+MODE\+\_\+\+QOS}}
+, \mbox{\hyperlink{group__DDSPublishModeQosModule_gga7c71d1e8aba7e852f23c9fcce4b80b42a5b0884720161587db93dd009a96130cd}{DDS\+\_\+\+AUTOMATIC\+\_\+\+PUBLISH\+\_\+\+MODE\+\_\+\+QOS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of publishing mode. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__DDSExceptionTypesModule_ga0a1b5bd9425158c7123ed123ff3e3a96}{DDS\+\_\+\+Exception\+Code\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__DDSExceptionTypesModule_gga0a1b5bd9425158c7123ed123ff3e3a96a61935931545b83b9a2d5aedee1554ae5}{DDS\+\_\+\+NO\+\_\+\+EXCEPTION\+\_\+\+CODE}}
+, \mbox{\hyperlink{group__DDSExceptionTypesModule_gga0a1b5bd9425158c7123ed123ff3e3a96a84fd5eb8de1b0a9428ca015c2d288cd7}{DDS\+\_\+\+USER\+\_\+\+EXCEPTION\+\_\+\+CODE}}
+, \mbox{\hyperlink{group__DDSExceptionTypesModule_gga0a1b5bd9425158c7123ed123ff3e3a96a1797a0585b872d96d4d3f7ffda32e2b1}{DDS\+\_\+\+SYSTEM\+\_\+\+EXCEPTION\+\_\+\+CODE}}
+, \mbox{\hyperlink{group__DDSExceptionTypesModule_gga0a1b5bd9425158c7123ed123ff3e3a96a36579fdcccec8e6c81b25393144a35df}{DDS\+\_\+\+BAD\+\_\+\+PARAM\+\_\+\+SYSTEM\+\_\+\+EXCEPTION\+\_\+\+CODE}}
+, \newline
+\mbox{\hyperlink{group__DDSExceptionTypesModule_gga0a1b5bd9425158c7123ed123ff3e3a96ab8872c85c411c82fc1aa8736d4d1614a}{DDS\+\_\+\+NO\+\_\+\+MEMORY\+\_\+\+SYSTEM\+\_\+\+EXCEPTION\+\_\+\+CODE}}
+, \mbox{\hyperlink{group__DDSExceptionTypesModule_gga0a1b5bd9425158c7123ed123ff3e3a96a927a55acf9506dc69ba852420748686a}{DDS\+\_\+\+BAD\+\_\+\+TYPECODE\+\_\+\+SYSTEM\+\_\+\+EXCEPTION\+\_\+\+CODE}}
+, \mbox{\hyperlink{group__DDSExceptionTypesModule_gga0a1b5bd9425158c7123ed123ff3e3a96ae2768ea8e37f0d25ab59ddb7bd9a07be}{DDS\+\_\+\+BADKIND\+\_\+\+USER\+\_\+\+EXCEPTION\+\_\+\+CODE}}
+, \mbox{\hyperlink{group__DDSExceptionTypesModule_gga0a1b5bd9425158c7123ed123ff3e3a96af1ed0ea4b5591716c35ee25fd30a7f2d}{DDS\+\_\+\+BOUNDS\+\_\+\+USER\+\_\+\+EXCEPTION\+\_\+\+CODE}}
+, \newline
+\mbox{\hyperlink{group__DDSExceptionTypesModule_gga0a1b5bd9425158c7123ed123ff3e3a96a909badb423c846bd4d2f97fc98c5cae8}{DDS\+\_\+\+IMMUTABLE\+\_\+\+TYPECODE\+\_\+\+SYSTEM\+\_\+\+EXCEPTION\+\_\+\+CODE}}
+, \mbox{\hyperlink{group__DDSExceptionTypesModule_gga0a1b5bd9425158c7123ed123ff3e3a96a8e83e8b20cd2e3926e807ca1761aacf8}{DDS\+\_\+\+BAD\+\_\+\+MEMBER\+\_\+\+NAME\+\_\+\+USER\+\_\+\+EXCEPTION\+\_\+\+CODE}}
+, \mbox{\hyperlink{group__DDSExceptionTypesModule_gga0a1b5bd9425158c7123ed123ff3e3a96ae8e222e5983e391ff655fd89a0420bb3}{DDS\+\_\+\+BAD\+\_\+\+MEMBER\+\_\+\+ID\+\_\+\+USER\+\_\+\+EXCEPTION\+\_\+\+CODE}}
+ \}
+\begin{DoxyCompactList}\small\item\em Exception codes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSTimeSupportModule_gaaa55eb5d6329d461e1fb84f4b8701c42}{DDS\+\_\+\+Time\+\_\+is\+\_\+zero}} (const struct \mbox{\hyperlink{structDDS__Time__t}{DDS\+\_\+\+Time\+\_\+t}} \texorpdfstring{$\ast$}{*}time)
+\begin{DoxyCompactList}\small\item\em Check if time is zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSTimeSupportModule_ga3b6a068ffcee1ecfbef4c6d9156eda3d}{DDS\+\_\+\+Duration\+\_\+is\+\_\+infinite}} (const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}duration)
+\item 
+int \mbox{\hyperlink{group__DDSTimeSupportModule_gae2e9903190597943cc3763e57a6f7b2a}{DDS\+\_\+\+Duration\+\_\+compare}} (const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}left, const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}right)
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSTimeSupportModule_ga9445480f77fea91780e3a70eb2e7ba7f}{DDS\+\_\+\+Duration\+\_\+equal}} (const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}self, const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}other)
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSTimeSupportModule_ga935ca8764d0160bff60c1305ff32c415}{DDS\+\_\+\+Duration\+\_\+is\+\_\+zero}} (const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}duration)
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSUserDataModule_gab70b6b7536555f269633de15de81420e}{DDS\+\_\+\+Instance\+Handle\+\_\+equals}} (const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \texorpdfstring{$\ast$}{*}self, const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \texorpdfstring{$\ast$}{*}other)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Compares this instance handle with another handle for equality. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSUserDataModule_ga9a73360264c8f15c5ac2ba22376c415f}{DDS\+\_\+\+Instance\+Handle\+\_\+is\+\_\+nil}} (const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Compare this handle to \doxylink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL} \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__DDSSequenceNumberSupportModule_gab595533e452b57270f2ae65322b0e351}{DDS\+\_\+\+Sequence\+Number\+\_\+compare}} (const struct \mbox{\hyperlink{structDDS__SequenceNumber__t}{DDS\+\_\+\+Sequence\+Number\+\_\+t}} \texorpdfstring{$\ast$}{*}sn1, const struct \mbox{\hyperlink{structDDS__SequenceNumber__t}{DDS\+\_\+\+Sequence\+Number\+\_\+t}} \texorpdfstring{$\ast$}{*}sn2)
+\begin{DoxyCompactList}\small\item\em Compares two sequence numbers. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSDomainParticipantModule_ga7a7948db7f830ec6f960a7d4c097881b}{DDSC\+\_\+\+Library\+\_\+get\+\_\+version}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the version string for the DDS C library. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSConditionsModule_ga6009c136455cccd248f76517c914c71f}{DDS\+\_\+\+Condition\+\_\+get\+\_\+trigger\+\_\+value}} (\mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieve the {\ttfamily trigger\+\_\+value}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSConditionsModule_gac1f9650dba78ac680a29645b231abbd6}{DDS\+\_\+\+Guard\+Condition\+\_\+as\+\_\+condition}} (\mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}} \texorpdfstring{$\ast$}{*}guard\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Access a \doxylink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}\textquotesingle{}s supertype instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSConditionsModule_ga7846bd8fafb8d508a151c0c2ba6f998a}{DDS\+\_\+\+Guard\+Condition\+\_\+new}} (void)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  No argument constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_ga06bf93bc3887f0f5b92ddcfa4f5bfa18}{DDS\+\_\+\+Guard\+Condition\+\_\+delete}} (\mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_ga30d0856ec0b6695a386ef5e04cd3800a}{DDS\+\_\+\+Guard\+Condition\+\_\+set\+\_\+trigger\+\_\+value}} (\mbox{\hyperlink{group__DDSConditionsModule_gaf554f2c5553ffb66e26cee169e409cb3}{DDS\+\_\+\+Guard\+Condition}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} value)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Set the guard condition trigger value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSConditionsModule_gac92bd05b3e338202feffd1606322db23}{DDS\+\_\+\+Status\+Condition\+\_\+as\+\_\+condition}} (\mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}} \texorpdfstring{$\ast$}{*}status\+Condition)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Access a \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}\textquotesingle{}s supertype instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} \mbox{\hyperlink{group__DDSConditionsModule_ga6822bc88ab1314fd27325ab26cc5a547}{DDS\+\_\+\+Status\+Condition\+\_\+get\+\_\+enabled\+\_\+statuses}} (\mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Get the list of statuses enabled on an \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_ga27a961e2a0e97d5968dd1ce8f20d4010}{DDS\+\_\+\+Status\+Condition\+\_\+set\+\_\+enabled\+\_\+statuses}} (\mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} mask)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  This operation defines the list of communication statuses that determine the {\ttfamily trigger\+\_\+value} of the \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSConditionsModule_ga19274ae2eba02d39c2638825b1769169}{DDS\+\_\+\+Status\+Condition\+\_\+get\+\_\+entity}} (\mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Get the \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} associated with the \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSConditionsModule_gaa729f66cb7a453c23e396796fee79d25}{DDS\+\_\+\+Wait\+Set\+\_\+new}} (void)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Create a new, empty waitset. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_ga42860967e1dc1c5c7ee3ffd03d7eb54e}{DDS\+\_\+\+Wait\+Set\+\_\+wait}} (\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structDDS__ConditionSeq}{DDS\+\_\+\+Condition\+Seq}} \texorpdfstring{$\ast$}{*}active\+\_\+conditions, const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \texorpdfstring{$\ast$}{*}timeout)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows an application thread to wait for the occurrence of certain conditions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_ga8b0227e23a0d795cbaf0aee9d20ce0d0}{DDS\+\_\+\+Wait\+Set\+\_\+attach\+\_\+condition}} (\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*}cond)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Attaches a \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} to the \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_ga3e6d5bcfc06936eecb589749391383f3}{DDS\+\_\+\+Wait\+Set\+\_\+delete}} (\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_gab6888a6fdcc8ff13f5618d4b835a1dab}{DDS\+\_\+\+Wait\+Set\+\_\+detach\+\_\+condition}} (\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition}} \texorpdfstring{$\ast$}{*}cond)
+\begin{DoxyCompactList}\small\item\em Detaches a \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} from the \doxylink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSConditionsModule_ga4138069fa07abe2ce1a4a00b134dbdb3}{DDS\+\_\+\+Wait\+Set\+\_\+get\+\_\+conditions}} (\mbox{\hyperlink{group__DDSConditionsModule_gaffdc85b9ca97eb432a2c17c52bc00f82}{DDS\+\_\+\+Wait\+Set}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structDDS__ConditionSeq}{DDS\+\_\+\+Condition\+Seq}} \texorpdfstring{$\ast$}{*}attached\+\_\+conditions)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieves the list of attached \doxylink{group__DDSConditionsModule_ga1c45ab3d5584bb3332e98266dc3f7d3d}{DDS\+\_\+\+Condition} (s). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSReturnTypesModule_ga73f148aaf96b5f6f9fc630b7cfeb0c91}{DDS\+\_\+\+Return\+Code\+\_\+t}} \mbox{\hyperlink{group__DDSEntityModule_ga892fed8d9375b7c3c5f1f610f87e18da}{DDS\+\_\+\+Entity\+\_\+enable}} (\mbox{\hyperlink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Enables the \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSEntityModule_gabac9f8a2c3728041f4adcd0c489d23a6}{DDS\+\_\+\+Entity\+\_\+is\+\_\+enabled}} (\mbox{\hyperlink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Checks whether an \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} is enabled or not. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{group__DDSEntityModule_gae13fc73dbd88ff0c6aa11e1a73706bb9}{DDS\+\_\+\+Entity\+\_\+get\+\_\+instance\+\_\+handle}} (\mbox{\hyperlink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Allows access to the \doxylink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t} associated with the \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSEntityModule_gaee16ffc8bddf582515679ad0c3366e2a}{DDS\+\_\+\+Entity\+\_\+get\+\_\+statuscondition}} (\mbox{\hyperlink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Returns the \doxylink{group__DDSConditionsModule_gab365a205f11e5da37e380ef825c74ecd}{DDS\+\_\+\+Status\+Condition} associated with a particular \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSStatusTypesModule_ga4d99a5cbe5e3451400717c8358be6377}{DDS\+\_\+\+Status\+Mask}} \mbox{\hyperlink{group__DDSEntityModule_ga5fc8d3d98ea83e405673e1797521ccca}{DDS\+\_\+\+Entity\+\_\+get\+\_\+status\+\_\+changes}} (\mbox{\hyperlink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Retrieves the list of communication statuses in the \doxylink{group__DDSEntityModule_ga928b59d917d674720975f0581149b905}{DDS\+\_\+\+Entity} that are triggered. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{group__DDSEntityNameQosModule_gafec4749875deb5dd0b0c6c94a36acc41}{DDS\+\_\+\+Entity\+Name\+Qos\+Policy\+\_\+set\+\_\+name}} (struct \mbox{\hyperlink{structDDS__EntityNameQosPolicy}{DDS\+\_\+\+Entity\+Name\+Qos\+Policy}} \texorpdfstring{$\ast$}{*}const self, const char \texorpdfstring{$\ast$}{*}const name)
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Set the Entity\+Name policy \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSTimeSupportModule_ga9f7e73d8db27d58e44f1735580e29578}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE\+\_\+\+SEC}}
+\begin{DoxyCompactList}\small\item\em An infinite second period of time. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} \mbox{\hyperlink{group__DDSTimeSupportModule_ga8dc60e63a62ac0232e8d830e84e9220a}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE\+\_\+\+NSEC}}
+\begin{DoxyCompactList}\small\item\em An infinite nanosecond period of time. \end{DoxyCompactList}\item 
+const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \mbox{\hyperlink{group__DDSTimeSupportModule_ga2b315f7f0887aa9dd6bfc2008eda0780}{DDS\+\_\+\+DURATION\+\_\+\+INFINITE}}
+\begin{DoxyCompactList}\small\item\em An infinite period of time. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSTimeSupportModule_gac54dc87af159815b9dd2d334e41eb9ef}{DDS\+\_\+\+DURATION\+\_\+\+ZERO\+\_\+\+SEC}}
+\begin{DoxyCompactList}\small\item\em A zero-\/length second period of time. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} \mbox{\hyperlink{group__DDSTimeSupportModule_ga7f451f0b256690500901ac66246f48e9}{DDS\+\_\+\+DURATION\+\_\+\+ZERO\+\_\+\+NSEC}}
+\begin{DoxyCompactList}\small\item\em A zero-\/length nanosecond period of time. \end{DoxyCompactList}\item 
+const struct \mbox{\hyperlink{structDDS__Duration__t}{DDS\+\_\+\+Duration\+\_\+t}} \mbox{\hyperlink{group__DDSTimeSupportModule_gaa4d4019603072e0d4d47dde06b2d4470}{DDS\+\_\+\+DURATION\+\_\+\+ZERO}}
+\begin{DoxyCompactList}\small\item\em A zero-\/length period of time. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSUserDataModule_ga2cd7a0bbf330870ab93f94e05c92318b}{DDS\+\_\+\+Instance\+Handle\+\_\+t}} \mbox{\hyperlink{group__DDSUserDataModule_ga7974338d80c6817f16f77899d908a60e}{DDS\+\_\+\+HANDLE\+\_\+\+NIL}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  The NIL instance handle. \end{DoxyCompactList}\item 
+const struct \mbox{\hyperlink{structDDS__GUID__t}{DDS\+\_\+\+GUID\+\_\+t}} \mbox{\hyperlink{group__DDSGUIDSupportModule_ga1f88ffe4ad94590bfb9eade0ab978d0b}{DDS\+\_\+\+GUID\+\_\+\+UNKNOWN}}
+\begin{DoxyCompactList}\small\item\em Unknown GUID. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSResourceLimitsQosModule_ga58912505c0b73a5f1d3677eaf9ce9e6d}{DDS\+\_\+\+LENGTH\+\_\+\+UNLIMITED}}
+\begin{DoxyCompactList}\small\item\em A special value indicating an unlimited quantity. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSResourceLimitsQosModule_ga6933fba9f01758e62c667ddde633fdd1}{DDS\+\_\+\+LENGTH\+\_\+\+AUTO}}
+\begin{DoxyCompactList}\small\item\em A special value indicating the resource limit is determined based on other settings. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSResourceLimitsQosModule_ga68388afc84c27d4163486d2a81801f69}{DDS\+\_\+\+SIZE\+\_\+\+AUTO}}
+\begin{DoxyCompactList}\small\item\em A special value indicating the resource limit is determined based on other settings. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__RtpsWellKnownPorts__t}{DDS\+\_\+\+Rtps\+Well\+Known\+Ports\+\_\+t}} \mbox{\hyperlink{group__DDSWireProtocolQosModule_ga5502ae29160f5e3387097e02e4f034d4}{DDS\+\_\+\+RTI\+\_\+\+BACKWARDS\+\_\+\+COMPATIBLE\+\_\+\+RTPS\+\_\+\+WELL\+\_\+\+KNOWN\+\_\+\+PORTS}}
+\begin{DoxyCompactList}\small\item\em Assign to use well-\/known port mappings which are compatible with previous versions of the RTI Connext DDS Micro middleware. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__RtpsWellKnownPorts__t}{DDS\+\_\+\+Rtps\+Well\+Known\+Ports\+\_\+t}} \mbox{\hyperlink{group__DDSWireProtocolQosModule_ga8e1c02e92ccc930c8b89cafeeaf95045}{DDS\+\_\+\+INTEROPERABLE\+\_\+\+RTPS\+\_\+\+WELL\+\_\+\+KNOWN\+\_\+\+PORTS}}
+\begin{DoxyCompactList}\small\item\em Assign to use well-\/known port mappings which are compliant with OMG\textquotesingle{}s DDS Interoperability Wire Protocol. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSDiscoveryModule_ga8164c2cec1808030997ad286ecb95112}{DDS\+\_\+\+LOCATOR\+\_\+\+ADDRESS\+\_\+\+LENGTH\+\_\+\+MAX}}
+\begin{DoxyCompactList}\small\item\em Declares length of address field in locator. \end{DoxyCompactList}\item 
+const struct \mbox{\hyperlink{structDDS__Locator__t}{DDS\+\_\+\+Locator\+\_\+t}} \mbox{\hyperlink{group__DDSDiscoveryModule_ga843d5b022ee10c41257cb659d2e59a88}{DDS\+\_\+\+LOCATOR\+\_\+\+INVALID}}
+\begin{DoxyCompactList}\small\item\em An invalid locator. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSDiscoveryModule_ga2a6c499c97f7aa1d7567d446f7596a1e}{DDS\+\_\+\+LOCATOR\+\_\+\+KIND\+\_\+\+UDPv4}}
+\begin{DoxyCompactList}\small\item\em A locator for a UDPv4 address. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSDiscoveryModule_ga8f51f1b06735c2b8115494dbe8a49b21}{DDS\+\_\+\+LOCATOR\+\_\+\+KIND\+\_\+\+UDPv6}}
+\begin{DoxyCompactList}\small\item\em A locator for a UDPv6 address. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSDiscoveryModule_ga2c22eb72466e1a706df0cf3bfc97b729}{DDS\+\_\+\+LOCATOR\+\_\+\+KIND\+\_\+\+RESERVED}}
+\begin{DoxyCompactList}\small\item\em Locator of this kind is reserved. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{group__DDSDiscoveryModule_ga4895d4dd996be1201becf62aa4dc48e5}{DDS\+\_\+\+LOCATOR\+\_\+\+KIND\+\_\+\+SHMEM}}
+\begin{DoxyCompactList}\small\item\em A locator for an address accessed via shared memory. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structDDS__ProtocolVersion__t}{DDS\+\_\+\+Protocol\+Version\+\_\+t}} \mbox{\hyperlink{group__DDSDiscoveryModule_gaf8ac1f28f68aebe2601a147ebdb04c1d}{DDS\+\_\+\+PROTOCOLVERSION\+\_\+1\+\_\+0}}
+\begin{DoxyCompactList}\small\item\em The protocol version 1.\+0. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structDDS__ProtocolVersion__t}{DDS\+\_\+\+Protocol\+Version\+\_\+t}} \mbox{\hyperlink{group__DDSDiscoveryModule_gab0e38433ee8ccc9c1ba3e9040f3c2ed3}{DDS\+\_\+\+PROTOCOLVERSION\+\_\+1\+\_\+1}}
+\begin{DoxyCompactList}\small\item\em The protocol version 1.\+1. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structDDS__ProtocolVersion__t}{DDS\+\_\+\+Protocol\+Version\+\_\+t}} \mbox{\hyperlink{group__DDSDiscoveryModule_gaa2c845198dcce0d5889c1686b86a1814}{DDS\+\_\+\+PROTOCOLVERSION\+\_\+1\+\_\+2}}
+\begin{DoxyCompactList}\small\item\em The protocol version 1.\+2. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structDDS__ProtocolVersion__t}{DDS\+\_\+\+Protocol\+Version\+\_\+t}} \mbox{\hyperlink{group__DDSDiscoveryModule_gae2beaf576a04d94ac81dcb29c7386f9b}{DDS\+\_\+\+PROTOCOLVERSION\+\_\+2\+\_\+0}}
+\begin{DoxyCompactList}\small\item\em The protocol version 2.\+0. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structDDS__ProtocolVersion__t}{DDS\+\_\+\+Protocol\+Version\+\_\+t}} \mbox{\hyperlink{group__DDSDiscoveryModule_ga083f1c9cef7b6d76300574f8b7ef0cb1}{DDS\+\_\+\+PROTOCOLVERSION\+\_\+2\+\_\+1}}
+\begin{DoxyCompactList}\small\item\em The protocol version 2.\+1. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structDDS__ProtocolVersion__t}{DDS\+\_\+\+Protocol\+Version\+\_\+t}} \mbox{\hyperlink{group__DDSDiscoveryModule_gad4d4f420c8652efbc98afe866ef4158b}{DDS\+\_\+\+PROTOCOLVERSION}}
+\begin{DoxyCompactList}\small\item\em The most recent protocol version. Currently 2.\+5. \end{DoxyCompactList}\item 
+const struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} \mbox{\hyperlink{dds__c__infrastructure_8h_a12b253ed69d32360882ead252df370f0}{DDS\+\_\+\+BUILTINTOPICKEY\+\_\+\+AUTO}}
+\begin{DoxyCompactList}\small\item\em Constant indicating an automatically generated keyed instance in one of the built-\/in topics. \end{DoxyCompactList}\item 
+const struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} \mbox{\hyperlink{dds__c__infrastructure_8h_ad99a9f594e9cf1a386819ed43df6a3fc}{DDS\+\_\+\+BUILTINTOPICKEY\+\_\+\+UNKNOWN}}
+\begin{DoxyCompactList}\small\item\em Constant indicating an unknown keyed instance detected on one of the built-\/in topics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+DDS Domain Module definitions. 
+
+
+
+\doxysubsubsection{Enumeration Type Documentation}
+\Hypertarget{dds__c__infrastructure_8h_a5dec5b80bd3efbf65ab1b5b2640b2ec1}\doxyparagraph{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{dds__c__infrastructure_8h_a5dec5b80bd3efbf65ab1b5b2640b2ec1} 
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DDS\_RTPS\_AUTO\_ID@{DDS\_RTPS\_AUTO\_ID}!dds\_c\_infrastructure.h@{dds\_c\_infrastructure.h}}\index{dds\_c\_infrastructure.h@{dds\_c\_infrastructure.h}!DDS\_RTPS\_AUTO\_ID@{DDS\_RTPS\_AUTO\_ID}}}\Hypertarget{dds__c__infrastructure_8h_ga5dec5b80bd3efbf65ab1b5b2640b2ec1a74c5028e0747356f719a0660c3089bec}\label{dds__c__infrastructure_8h_ga5dec5b80bd3efbf65ab1b5b2640b2ec1a74c5028e0747356f719a0660c3089bec} 
+DDS\+\_\+\+RTPS\+\_\+\+AUTO\+\_\+\+ID&Indicates that RTI Connext DDS Micro should choose an appropriate host, app, instance or object ID automatically. If this special value is assigned to \doxylink{structDDS__WireProtocolQosPolicy_a1ec4d6bea721b98a18f77a6f427071a0}{DDS\+\_\+\+Wire\+Protocol\+Qos\+Policy\+::rtps\+\_\+host\+\_\+id}, \doxylink{structDDS__WireProtocolQosPolicy_aef56b6377850104aa6d3bd6accb6021d}{DDS\+\_\+\+Wire\+Protocol\+Qos\+Policy\+::rtps\+\_\+app\+\_\+id}, \doxylink{structDDS__WireProtocolQosPolicy_a59b4f2ecc0b6f73803797c8126945926}{DDS\+\_\+\+Wire\+Protocol\+Qos\+Policy\+::rtps\+\_\+instance\+\_\+id}, \doxylink{structDDS__DataWriterProtocolQosPolicy_a7cf2b8d79c78ecd65f8a98921dcf1f15}{DDS\+\_\+\+Data\+Writer\+Protocol\+Qos\+Policy\+::rtps\+\_\+object\+\_\+id} or \doxylink{structDDS__DataReaderProtocolQosPolicy_a5e88dab82a659401efbfed7ae2dd7ce2}{DDS\+\_\+\+Data\+Reader\+Protocol\+Qos\+Policy\+::rtps\+\_\+object\+\_\+id} RTI Connext DDS Micro will assign the ID automatically. 
+
+\begin{DoxyParagraph}{QoS\+:}
+\doxylink{structDDS__WireProtocolQosPolicy_a1ec4d6bea721b98a18f77a6f427071a0}{DDS\+\_\+\+Wire\+Protocol\+Qos\+Policy\+::rtps\+\_\+host\+\_\+id} \doxylink{structDDS__WireProtocolQosPolicy_aef56b6377850104aa6d3bd6accb6021d}{DDS\+\_\+\+Wire\+Protocol\+Qos\+Policy\+::rtps\+\_\+app\+\_\+id} \doxylink{structDDS__WireProtocolQosPolicy_a59b4f2ecc0b6f73803797c8126945926}{DDS\+\_\+\+Wire\+Protocol\+Qos\+Policy\+::rtps\+\_\+instance\+\_\+id} 
+\end{DoxyParagraph}
+\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsubsection{Variable Documentation}
+\Hypertarget{dds__c__infrastructure_8h_a12b253ed69d32360882ead252df370f0}\index{dds\_c\_infrastructure.h@{dds\_c\_infrastructure.h}!DDS\_BUILTINTOPICKEY\_AUTO@{DDS\_BUILTINTOPICKEY\_AUTO}}
+\index{DDS\_BUILTINTOPICKEY\_AUTO@{DDS\_BUILTINTOPICKEY\_AUTO}!dds\_c\_infrastructure.h@{dds\_c\_infrastructure.h}}
+\doxyparagraph{\texorpdfstring{DDS\_BUILTINTOPICKEY\_AUTO}{DDS\_BUILTINTOPICKEY\_AUTO}}
+{\footnotesize\ttfamily \label{dds__c__infrastructure_8h_a12b253ed69d32360882ead252df370f0} 
+const struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} DDS\+\_\+\+BUILTINTOPICKEY\+\_\+\+AUTO\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Constant indicating an automatically generated keyed instance in one of the built-\/in topics. 
+
+\Hypertarget{dds__c__infrastructure_8h_ad99a9f594e9cf1a386819ed43df6a3fc}\index{dds\_c\_infrastructure.h@{dds\_c\_infrastructure.h}!DDS\_BUILTINTOPICKEY\_UNKNOWN@{DDS\_BUILTINTOPICKEY\_UNKNOWN}}
+\index{DDS\_BUILTINTOPICKEY\_UNKNOWN@{DDS\_BUILTINTOPICKEY\_UNKNOWN}!dds\_c\_infrastructure.h@{dds\_c\_infrastructure.h}}
+\doxyparagraph{\texorpdfstring{DDS\_BUILTINTOPICKEY\_UNKNOWN}{DDS\_BUILTINTOPICKEY\_UNKNOWN}}
+{\footnotesize\ttfamily \label{dds__c__infrastructure_8h_ad99a9f594e9cf1a386819ed43df6a3fc} 
+const struct \mbox{\hyperlink{structDDS__BuiltinTopicKey__t}{DDS\+\_\+\+Builtin\+Topic\+Key\+\_\+t}} DDS\+\_\+\+BUILTINTOPICKEY\+\_\+\+UNKNOWN\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Constant indicating an unknown keyed instance detected on one of the built-\/in topics. 
+

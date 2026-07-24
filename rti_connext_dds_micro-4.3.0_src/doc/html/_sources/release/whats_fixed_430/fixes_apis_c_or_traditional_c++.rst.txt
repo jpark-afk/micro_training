@@ -1,0 +1,95 @@
+APIs (C or Traditional C++)
+===========================
+
+.. Release Notes from this point.
+
+:major:`[Major]` Possible stack buffer overflow due to DGRAM interface name length
+----------------------------------------------------------------------------------
+When the DGRAM interface was registered with a name longer than six
+characters (excluding the null terminator), |me| produced a stack
+buffer overflow.
+
+[RTI Issue ID MICRO-13176]
+
+:major:`[Major]` Setting large max sequence size would produce integer overflow
+-------------------------------------------------------------------------------
+Calling ``seq_set_maximum`` with a very large value would overflow and
+result in a smaller-than-expected memory allocation.
+
+[RTI Issue ID MICRO-12766]
+
+:major:`[Major]` DataWriter's _w_timestamp operations did not detect non-normalized timestamp inputs
+----------------------------------------------------------------------------------------------------
+*This issue was fixed in version 4.2.0, but not documented at that
+time.*
+
+The ``_w_timestamp`` operations of a *DataWriter* did not detect
+non-normalized timestamp user inputs and they could cause undefined
+behavior. Providing a non-normalized timestamp value to these operations now
+results in the ``BAD_PARAMETER`` return code.
+
+[RTI Issue ID MICRO-10626]
+
+:major:`[Major]` Undefined DDS_TIME_INVALID variables
+-----------------------------------------------------
+``DDS_TIME_INVALID`` and related variables were declared and documented, but
+not defined; when used, they caused linking errors.
+
+[RTI Issue ID MICRO-6222]
+
+:minor:`[Minor]` Misspelled OSAPI_LogProperty_INIITALIZER
+---------------------------------------------------------
+The initializer for the ``OSAPI_LogProperty_INIITALIZER`` was misspelled
+and has been corrected to ``OSAPI_LogProperty_INITIALIZER``. The
+misspelled macro is still available for backwards compatibility.
+
+[RTI Issue ID MICRO-13453]
+
+:minor:`[Minor]` DDS_Time_is_zero was not performing the correct evaluation
+---------------------------------------------------------------------------
+The public function DDS_Time_is_zero was not evaluating the DDS_Time in
+the correct way.
+
+[RTI Issue ID MICRO-12798]
+
+:minor:`[Minor]` Low resolution timestamps could cause Zero Copy samples to remain visible longer than expected
+---------------------------------------------------------------------------------------------------------------
+While using the Zero Copy v2 transport, if a sample was pushed out of a
+*DataWriter*'s history at the same time (with the same timestamp) as a
+*DataReader* was created, the *DataReader* would still be able to
+observe it. Additionally, Zero Copy samples with timestamps using a
+different clock than the *DataReader* could be missed.
+
+[RTI Issue ID MICRO-10926]
+
+:minor:`[Minor]` Initializing discovery property with NULL value incorrectly returned PRECONDITION_NOT_MET
+----------------------------------------------------------------------------------------------------------
+
+Initializing the DPSE or DPDE discovery property with a ``NULL`` value
+incorrectly returned ``PRECONDITION_NOT_MET`` instead of ``BAD_PARAMETER``.
+
+[RTI Issue ID MICRO-10140]
+
+:minor:`[Minor]` DDS_Entity_get_entity_kind was declared and documented but not defined
+---------------------------------------------------------------------------------------
+The function of the public API ``DDS_Entity_get_entity_kind`` was
+declared and documented but not defined. It could cause linking errors
+when used.
+
+[RTI Issue ID MICRO-9226]
+
+:trivial:`[Trivial]` LatencyBudget was missing from the API documentation
+-------------------------------------------------------------------------
+:link_connextmicro_dds_api_c_up_two:`LATENCY_BUDGET <group__DDSLatencyBudgetQosModule.html>`
+was missing from ``DataReaderQos`` or ``DataWriterQos`` in the C and C++ API
+reference.
+
+[RTI Issue ID MICRO-6649]
+
+:trivial:`[Trivial]` False positive error messages when reattaching a condition to a WaitSet
+--------------------------------------------------------------------------------------------
+If an error condition was attached to the same
+:link_connextmicro_dds_api_c_up_two:`WaitSet <group__DDSConditionsModule.html>`
+more than once, |me| would log a false-positive error message.
+
+[RTI Issue ID MICRO-2857]

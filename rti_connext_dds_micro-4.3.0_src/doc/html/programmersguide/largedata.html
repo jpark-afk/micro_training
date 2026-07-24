@@ -1,0 +1,554 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.14. Sending Large Data &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.15. Zero Copy Transfer" href="zerocopy.html" />
+    <link rel="prev" title="3.13. Message Integrity Checking" href="msgintegrity.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Programmer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">3.2. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">3.3. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">3.4. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">3.5. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">3.6. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html">3.7. User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html">3.8. Partitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html">3.9. Content Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">3.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">3.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">3.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">3.13. Message Integrity Checking</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.14. Sending Large Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-sending-large-data-works">3.14.1. How Sending Large Data Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#key-properties-of-fragmentation">3.14.2. Key Properties of Fragmentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#differences-between-fragmentation-and-transport-limits">3.14.3. Differences Between Fragmentation and Transport Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#components-involved-in-sending-large-data">3.14.4. Components Involved in Sending Large Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-large-data-support">3.14.5. Configuring Large Data Support</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#task-scheduler-configuration">3.14.5.1. Task scheduler configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flow-controller-configuration">3.14.5.2. Flow controller configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#writer-resource-limits">3.14.5.3. Writer resource limits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reader-fragment-reassembly-limits">3.14.5.4. Reader fragment reassembly limits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#when-to-choose-synchronous-vs-asynchronous-publishing">3.14.6. When to Choose Synchronous vs Asynchronous Publishing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complete-example">3.14.7. Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limitations">3.14.8. Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html">3.15. Zero Copy Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html">3.16. FlatData Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html">3.17. Application Generation Using XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qos_mapping_xml.html">3.18. QoS Mapping in XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">3.19. Building Against FACE Conformance Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">3.20. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.21. Example Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html">3.22. Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">3.23. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html">3.24. Transport Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html">3.25. Startup Time Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">3. </span>Programmer’s Guide</a> &raquo;</li>
+        
+      <li><span class="section-number">3.14. </span>Sending Large Data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sending-large-data">
+<h1><span class="section-number">3.14. </span>Sending Large Data<a class="headerlink" href="#sending-large-data" title="Permalink to this headline">¶</a></h1>
+<p><em>Connext Micro</em> supports transmission and reception of data types that exceed the
+maximum message size of a transport. This section describes the behavior and the
+configuration options.</p>
+<p>This section includes:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#how-sending-large-data-works" id="id1">How Sending Large Data Works</a></p></li>
+<li><p><a class="reference internal" href="#key-properties-of-fragmentation" id="id2">Key Properties of Fragmentation</a></p></li>
+<li><p><a class="reference internal" href="#differences-between-fragmentation-and-transport-limits" id="id3">Differences Between Fragmentation and Transport Limits</a></p></li>
+<li><p><a class="reference internal" href="#components-involved-in-sending-large-data" id="id4">Components Involved in Sending Large Data</a></p></li>
+<li><p><a class="reference internal" href="#configuring-large-data-support" id="id5">Configuring Large Data Support</a></p></li>
+<li><p><a class="reference internal" href="#when-to-choose-synchronous-vs-asynchronous-publishing" id="id6">When to Choose Synchronous vs Asynchronous Publishing</a></p></li>
+<li><p><a class="reference internal" href="#complete-example" id="id7">Complete Example</a></p></li>
+<li><p><a class="reference internal" href="#limitations" id="id8">Limitations</a></p></li>
+</ul>
+</div>
+<div class="section" id="how-sending-large-data-works">
+<h2><a class="toc-backref" href="#id1"><span class="section-number">3.14.1. </span>How Sending Large Data Works</a><a class="headerlink" href="#how-sending-large-data-works" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> supports transmission and reception of data samples that exceed the
+maximum message size of a transport. For example, UDP supports a maximum user payload
+of 65507 bytes. In order to send samples larger than 65507 bytes, <em>Connext Micro</em> must
+split the sample into multiple UDP payloads.</p>
+<p><em>Connext Micro</em> supports transmission and reception of data samples that exceed the
+maximum message size of a transport. When a write request produces a sample that
+cannot fit in a single transport payload, the <em>DataWriter</em> splits the sample into
+fragments sized for that transport. Those fragments are placed under the control
+of the task scheduler and the flow controller, which determine when tokens are
+available to send data. The scheduler wakes up at the configured rate, the flow
+controller grants tokens based on the configured policy, and the fragments are
+sent as bandwidth becomes available. On the receiving side, the <em>DataReader</em>
+collects incoming fragments, reassembles them into a complete serialized sample,
+deserializes the payload, and provides regular data to the application once the
+reconstruction succeeds.</p>
+</div>
+<div class="section" id="key-properties-of-fragmentation">
+<h2><a class="toc-backref" href="#id2"><span class="section-number">3.14.2. </span>Key Properties of Fragmentation</a><a class="headerlink" href="#key-properties-of-fragmentation" title="Permalink to this headline">¶</a></h2>
+<p>When working with large data, the following properties govern runtime behavior:</p>
+<ul class="simple">
+<li><p>Fragmentation is always compiled in but can be influenced through
+configuration.</p></li>
+<li><p>Fragmentation and flow control are tracked per <em>DataWriter</em>; <em>RTI Connext</em> <em>Professional</em>
+differs by sharing flow controllers across a publisher.</p></li>
+<li><p>Fragmentation is evaluated per sample. Two samples of the same type may
+fragment differently, and the application never manipulates fragments directly.</p></li>
+<li><p>The <em>DataWriter</em> chooses the fragment size, so writers of the same type may use
+different fragment boundaries.</p></li>
+<li><p>All fragments must arrive before a sample can be reconstructed. Under
+best-effort reliability, the loss of any fragment implies the loss of the
+sample. Under reliability, missing fragments may be resent; if they cannot be
+recovered, the sample is dropped.</p></li>
+<li><p>Rapid calls to DDS <code class="docutils literal notranslate"><span class="pre">write()</span></code> can exhaust <em>DataWriter</em> resources while a large
+sample is still being sent, because buffers are only released after the full
+sample has been transmitted.</p></li>
+</ul>
+</div>
+<div class="section" id="differences-between-fragmentation-and-transport-limits">
+<h2><a class="toc-backref" href="#id3"><span class="section-number">3.14.3. </span>Differences Between Fragmentation and Transport Limits</a><a class="headerlink" href="#differences-between-fragmentation-and-transport-limits" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> fragmentation is distinct from lower-level limits such as transport
+payloads or operating system buffers. However, fragmentation interacts with
+these limits as follows:</p>
+<ul class="simple">
+<li><p><em>Connext Micro</em> fragmentation controls how a single logical sample is split across
+transport payloads.</p></li>
+<li><p>Transports or the IP layer may fragment datagrams again (for example, IP
+fragmentation when UDP messages exceed roughly 1488 bytes).</p></li>
+<li><p>The sender’s maximum transmit message size defines the largest payload that
+can be placed on the wire per transport message.</p></li>
+<li><p>The sender’s transport transmit buffer limit governs how many bytes the
+transport can queue internally.</p></li>
+<li><p>The receiver’s maximum message size specifies the largest single payload it
+can accept from the transport.</p></li>
+<li><p>The receiver’s transport buffer limit controls how much data can be buffered
+while fragments arrive.</p></li>
+</ul>
+<p>Understanding each layer’s constraint helps diagnose whether fragmentation
+settings or transport limits are responsible for throttling throughput.</p>
+</div>
+<div class="section" id="components-involved-in-sending-large-data">
+<h2><a class="toc-backref" href="#id4"><span class="section-number">3.14.4. </span>Components Involved in Sending Large Data</a><a class="headerlink" href="#components-involved-in-sending-large-data" title="Permalink to this headline">¶</a></h2>
+<p>Large data delivery relies on four cooperating subsystems:</p>
+<ul class="simple">
+<li><p><strong>DataWriter fragmenter</strong>: Detects when a sample exceeds the configured
+transport payload size and produces fragments aligned with the writer’s
+fragmentation policy.</p></li>
+<li><p><strong>Task scheduler</strong>: Runs in its own thread, wakes up at the configured clock
+rate, and drives periodic tasks such as large-data transmissions.</p></li>
+<li><p><strong>Flow controller</strong>: Applies the selected scheduling policy and token bucket
+settings to determine when queued fragments are eligible to leave the writer.</p></li>
+<li><p><strong>DataReader reassembly buffer</strong>: Tracks incoming fragments per remote writer,
+reconstructs samples when all fragments arrive, and manages reassembly
+resources.</p></li>
+</ul>
+<p>These roles are fixed; configuration determines how they operate but not how
+they cooperate.</p>
+</div>
+<div class="section" id="configuring-large-data-support">
+<h2><a class="toc-backref" href="#id5"><span class="section-number">3.14.5. </span>Configuring Large Data Support</a><a class="headerlink" href="#configuring-large-data-support" title="Permalink to this headline">¶</a></h2>
+<p>All configuration must be applied before the relevant entities are created.</p>
+<div class="section" id="task-scheduler-configuration">
+<h3><span class="section-number">3.14.5.1. </span>Task scheduler configuration<a class="headerlink" href="#task-scheduler-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The task scheduler properties must be configured before creating the
+<em>DomainParticipantFactory</em>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Configure task scheduler thread properties */</span>
+<span class="n">sys_property</span><span class="p">.</span><span class="n">task_scheduler</span><span class="p">.</span><span class="kr">thread</span><span class="p">.</span><span class="n">stack_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32768</span><span class="p">;</span>
+<span class="n">sys_property</span><span class="p">.</span><span class="n">task_scheduler</span><span class="p">.</span><span class="kr">thread</span><span class="p">.</span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OSAPI_THREAD_DEFAULT_OPTIONS</span><span class="p">;</span>
+<span class="n">sys_property</span><span class="p">.</span><span class="n">task_scheduler</span><span class="p">.</span><span class="kr">thread</span><span class="p">.</span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OSAPI_THREAD_PRIORITY_DEFAULT</span><span class="p">;</span>
+
+<span class="cm">/* Set the rate at which periodic tasks run (in nanoseconds) */</span>
+<span class="cm">/* This affects how frequently fragments are sent */</span>
+<span class="n">sys_property</span><span class="p">.</span><span class="n">task_scheduler</span><span class="p">.</span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000000</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 10 milliseconds */</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">OSAPI_System_set_property</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sys_property</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* error */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="flow-controller-configuration">
+<h3><span class="section-number">3.14.5.2. </span>Flow controller configuration<a class="headerlink" href="#flow-controller-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Flow controllers shape the rate at which fragments leave the writer. Each
+configuration selects a scheduling policy (round robin, earliest deadline
+first, or highest priority first) and defines a token bucket that meters the
+available bandwidth. The built-in controllers cover common patterns, while
+custom controllers allow precise tuning for large data workloads.</p>
+<div class="section" id="creating-custom-flow-controllers">
+<h4><span class="section-number">3.14.5.2.1. </span>Creating custom flow controllers<a class="headerlink" href="#creating-custom-flow-controllers" title="Permalink to this headline">¶</a></h4>
+<p>Applications can create custom flow controllers for both synchronous and
+asynchronous publishing modes:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">DDS_FlowControllerProperty_t</span><span class="w"> </span><span class="n">fc_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_FlowControllerProperty_t_INITIALIZER</span><span class="p">;</span>
+
+<span class="cm">/* Configure token bucket parameters */</span>
+<span class="n">fc_property</span><span class="p">.</span><span class="n">token_bucket</span><span class="p">.</span><span class="n">period</span><span class="p">.</span><span class="n">sec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">fc_property</span><span class="p">.</span><span class="n">token_bucket</span><span class="p">.</span><span class="n">period</span><span class="p">.</span><span class="n">nanosec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100000000</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 100 ms */</span>
+<span class="n">fc_property</span><span class="p">.</span><span class="n">token_bucket</span><span class="p">.</span><span class="n">bytes_per_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1024</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 1 KB per token */</span>
+<span class="n">fc_property</span><span class="p">.</span><span class="n">token_bucket</span><span class="p">.</span><span class="n">tokens_added_per_period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 10 KB per period */</span>
+<span class="n">fc_property</span><span class="p">.</span><span class="n">token_bucket</span><span class="p">.</span><span class="n">tokens_leaked_per_period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">fc_property</span><span class="p">.</span><span class="n">token_bucket</span><span class="p">.</span><span class="n">max_tokens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Max 100 KB burst */</span>
+
+<span class="cm">/* Use Earliest Deadline First scheduling */</span>
+<span class="n">fc_property</span><span class="p">.</span><span class="n">scheduling_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_EDF_FLOW_CONTROLLER_SCHED_POLICY</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The custom flow controller can then be associated with a <em>DataWriter</em> as
+seen in the examples section below.</p>
+<p>For additional background on built-in flow controller policies, see
+<a class="reference external" href="https://community.rti.com/static/documentation/connext-dds/7.3.1/doc/manuals/connext_dds_professional/users_manual/index.htm#users_manual/FlowControllers__DDS_Extension_.htm">the FlowControllers section</a> and
+<a class="reference external" href="https://community.rti.com/static/documentation/connext-dds/7.3.1/doc/manuals/connext_dds_professional/users_manual/index.htm#users_manual/ASYNCHRONOUS_PUBL_Qos.htm">the ASYNCHRONOUS_PUBLISHER QoSPolicy section</a> in the
+<em>RTI Connext</em> <em>Professional</em> User’s Manual.</p>
+</div>
+</div>
+<div class="section" id="writer-resource-limits">
+<h3><span class="section-number">3.14.5.3. </span>Writer resource limits<a class="headerlink" href="#writer-resource-limits" title="Permalink to this headline">¶</a></h3>
+<p>Fragments occupy the same resource pools as regular samples. Increase
+<code class="docutils literal notranslate"><span class="pre">resource_limits.max_samples</span></code> to cover fragments waiting to be sent, adjust
+<code class="docutils literal notranslate"><span class="pre">max_instances</span></code> if multiple keyed instances are active, and make sure
+<code class="docutils literal notranslate"><span class="pre">max_samples_per_instance</span></code> reflects the maximum number of enqueued samples
+per key while large data is in-flight.</p>
+</div>
+<div class="section" id="reader-fragment-reassembly-limits">
+<h3><span class="section-number">3.14.5.4. </span>Reader fragment reassembly limits<a class="headerlink" href="#reader-fragment-reassembly-limits" title="Permalink to this headline">¶</a></h3>
+<p>Large samples require the reader to buffer fragments until reconstruction is
+complete. Tune <code class="docutils literal notranslate"><span class="pre">reader_resource_limits.max_fragmented_samples</span></code> for the
+aggregate workload and <code class="docutils literal notranslate"><span class="pre">max_fragmented_samples_per_remote_writer</span></code> to cap
+per-writer usage. Align the regular <code class="docutils literal notranslate"><span class="pre">resource_limits</span></code> fields with the
+expected steady-state data set so reconstructed samples can be stored once
+the fragments converge.</p>
+<p>Maintain the relationship:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">max_fragmented_samples</span> <span class="o">&gt;=</span>
+    <span class="n">number_of_remote_writers</span> <span class="o">*</span> <span class="n">max_fragmented_samples_per_remote_writer</span>
+</pre></div>
+</div>
+<p>If reassembly resources are exhausted, incoming fragments are dropped until
+capacity is available.</p>
+</div>
+</div>
+<div class="section" id="when-to-choose-synchronous-vs-asynchronous-publishing">
+<h2><a class="toc-backref" href="#id6"><span class="section-number">3.14.6. </span>When to Choose Synchronous vs Asynchronous Publishing</a><a class="headerlink" href="#when-to-choose-synchronous-vs-asynchronous-publishing" title="Permalink to this headline">¶</a></h2>
+<p>Use <strong>synchronous publishing</strong> when:</p>
+<ul class="simple">
+<li><p>You need to know immediately if the write succeeded.</p></li>
+<li><p>Your application can tolerate blocking during <code class="docutils literal notranslate"><span class="pre">write()</span></code> calls.</p></li>
+<li><p>You prefer simpler resource management.</p></li>
+<li><p>You primarily send small or medium-sized samples.</p></li>
+</ul>
+<p>Use <strong>asynchronous publishing</strong> when:</p>
+<ul class="simple">
+<li><p>You send large fragmented samples that benefit from batching.</p></li>
+<li><p>You need <code class="docutils literal notranslate"><span class="pre">write()</span></code> to return quickly.</p></li>
+<li><p>You require precise control over bandwidth consumption over time.</p></li>
+<li><p>You can provision additional resources for queuing pending samples.</p></li>
+</ul>
+</div>
+<div class="section" id="complete-example">
+<h2><a class="toc-backref" href="#id7"><span class="section-number">3.14.7. </span>Complete Example</a><a class="headerlink" href="#complete-example" title="Permalink to this headline">¶</a></h2>
+<p>The following code fragment shows a complete example of configured large data
+support:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* 1. Configure task scheduler before creating factory */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">OSAPI_SystemProperty</span><span class="w"> </span><span class="n">sys_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OSAPI_SystemProperty_INITIALIZER</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">OSAPI_System_get_property</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sys_property</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* error */</span>
+<span class="p">}</span>
+
+<span class="n">sys_property</span><span class="p">.</span><span class="n">task_scheduler</span><span class="p">.</span><span class="kr">thread</span><span class="p">.</span><span class="n">stack_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32768</span><span class="p">;</span>
+<span class="n">sys_property</span><span class="p">.</span><span class="n">task_scheduler</span><span class="p">.</span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000000</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 10 ms */</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">OSAPI_System_set_property</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sys_property</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* error */</span>
+<span class="p">}</span>
+
+<span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipantFactory_get_instance</span><span class="p">();</span>
+<span class="n">participant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipantFactory_create_participant</span><span class="p">(</span>
+<span class="w">    </span><span class="n">factory</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DDS_PARTICIPANT_QOS_DEFAULT</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="cm">/* 2. Create custom flow controller */</span>
+<span class="n">DDS_FlowControllerProperty_t</span><span class="w"> </span><span class="n">fc_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_FlowControllerProperty_t_INITIALIZER</span><span class="p">;</span>
+<span class="n">fc_property</span><span class="p">.</span><span class="n">token_bucket</span><span class="p">.</span><span class="n">period</span><span class="p">.</span><span class="n">sec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">fc_property</span><span class="p">.</span><span class="n">token_bucket</span><span class="p">.</span><span class="n">period</span><span class="p">.</span><span class="n">nanosec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100000000</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 100 ms */</span>
+<span class="n">fc_property</span><span class="p">.</span><span class="n">token_bucket</span><span class="p">.</span><span class="n">bytes_per_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1024</span><span class="p">;</span>
+<span class="n">fc_property</span><span class="p">.</span><span class="n">token_bucket</span><span class="p">.</span><span class="n">tokens_added_per_period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">fc_property</span><span class="p">.</span><span class="n">token_bucket</span><span class="p">.</span><span class="n">max_tokens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="n">fc_property</span><span class="p">.</span><span class="n">scheduling_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_EDF_FLOW_CONTROLLER_SCHED_POLICY</span><span class="p">;</span>
+
+<span class="n">DDS_FlowController</span><span class="w"> </span><span class="o">*</span><span class="n">fc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DomainParticipant_create_flowcontroller</span><span class="p">(</span>
+<span class="w">    </span><span class="n">participant</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MyFlowController&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">fc_property</span><span class="p">);</span>
+
+<span class="cm">/* 3. Configure writer to use flow controller */</span>
+<span class="n">DDS_DataWriterQos</span><span class="w"> </span><span class="n">dw_qos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DataWriterQos_INITIALIZER</span><span class="p">;</span>
+<span class="n">dw_qos</span><span class="p">.</span><span class="n">publish_mode</span><span class="p">.</span><span class="n">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_ASYNCHRONOUS_PUBLISH_MODE_QOS</span><span class="p">;</span>
+<span class="n">dw_qos</span><span class="p">.</span><span class="n">publish_mode</span><span class="p">.</span><span class="n">flow_controller_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_String_dup</span><span class="p">(</span><span class="s">&quot;MyFlowController&quot;</span><span class="p">);</span>
+<span class="n">dw_qos</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">max_samples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="p">;</span>
+
+<span class="cm">/* 4. Configure reader for fragment reassembly */</span>
+<span class="n">DDS_DataReaderQos</span><span class="w"> </span><span class="n">dr_qos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DDS_DataReaderQos_INITIALIZER</span><span class="p">;</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">reader_resource_limits</span><span class="p">.</span><span class="n">max_fragmented_samples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">64</span><span class="p">;</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">reader_resource_limits</span><span class="p">.</span><span class="n">max_fragmented_samples_per_remote_writer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="n">dr_qos</span><span class="p">.</span><span class="n">resource_limits</span><span class="p">.</span><span class="n">max_samples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="limitations">
+<h2><a class="toc-backref" href="#id8"><span class="section-number">3.14.8. </span>Limitations</a><a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<p>The following known limitations apply to large data support:</p>
+<ul class="simple">
+<li><p>Fragmentation support is compiled in by default. While it cannot be completely
+disabled at runtime, its behavior can be shaped through QoS and flow controller
+configuration.</p></li>
+<li><p>Scheduler accuracy depends on the operating system. Actual wake-up rates may
+vary with load.</p></li>
+<li><p>Reader-side reassembly requires preallocated resources. If limits are exceeded,
+fragments are dropped.</p></li>
+<li><p>With best-effort reliability, losing any fragment loses the entire sample. With
+reliability, missing fragments may be resent, but irrecoverable fragments cause
+the sample to be dropped.</p></li>
+<li><p>Maintain the relationship between <code class="docutils literal notranslate"><span class="pre">max_fragmented_samples</span></code> and
+<code class="docutils literal notranslate"><span class="pre">max_fragmented_samples_per_remote_writer</span></code> to ensure operation with multiple
+writers.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="zerocopy.html" class="btn btn-neutral float-right" title="3.15. Zero Copy Transfer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="msgintegrity.html" class="btn btn-neutral float-left" title="3.13. Message Integrity Checking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

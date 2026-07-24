@@ -1,0 +1,38 @@
+Platform and Build Changes
+==========================
+
+.. Release Notes from this point.
+
+:major:`[Major]` Possible transmission failure when SocketOwner was configured
+------------------------------------------------------------------------------
+When |me| was configured to use SocketOwner, the send socket was not bound to
+a local address before calling ``TcpIp_UdpTransmit()``, which could cause the
+transmission to fail. The send socket is now bound to the configured
+``send_local_addr_id`` with an OS-assigned ephemeral port (using
+``TCPIP_PORT_ANY``) before the first UDP transmission.
+
+[RTI Issue ID MICRO-7848]
+
+:trivial:`[Trivial]` Not possible to disable thread semaphores
+--------------------------------------------------------------
+It was not possible to disable thread semaphores when building the full
+|me| source code. Thread semaphores are used to suspend
+threads when using the ``KEEP_ALL`` :link_connextmicro_dds_api_c_up_two:`HISTORY <group__DDSHistoryQosModule.html>`
+QoS policy, or when there are no available samples.
+
+[RTI Issue ID MICRO-12557]
+
+:trivial:`[Trivial]` rtime-make would not compile Lightweight Security Plugin outside of source directory
+---------------------------------------------------------------------------------------------------------
+If you called ``rtime-make`` outside of the |me| source
+directory, the *Lightweight Security Plugin* source would not compile.
+
+[RTI Issue ID MICRO-11192]
+
+:trivial:`[Trivial]` Excluing DDS flow control and fragmentation resulted in compile time error
+-----------------------------------------------------------------------------------------------
+The cmake option ``RTIME_DDS_ENABLE_FLOW_CONRTOL`` did not completely
+remote DDS flow control and fragmentation support from the core
+libraries and resulted in a compile time error.
+
+[RTI Issue ID MICRO-2694]

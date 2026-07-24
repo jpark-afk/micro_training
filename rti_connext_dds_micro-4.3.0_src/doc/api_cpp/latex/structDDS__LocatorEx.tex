@@ -1,0 +1,60 @@
+\doxysubsection{DDS\+\_\+\+Locator\+Ex Struct Reference}
+\hypertarget{structDDS__LocatorEx}{}\label{structDDS__LocatorEx}\index{DDS\_LocatorEx@{DDS\_LocatorEx}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Type used to represent the addressing information needed to send a message to an RTPS Endpoint using one of the supported transports.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__LocatorEx_ada693b650c6b6fc893d56bb1931ffba7}{kind}}
+\begin{DoxyCompactList}\small\item\em The kind of locator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} \mbox{\hyperlink{structDDS__LocatorEx_aaede7e4f974a131f0c9c65263825cd11}{port}}
+\begin{DoxyCompactList}\small\item\em the port number \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga6c539d95bf6b7e859aab1a5fc85fee1e}{DDS\+\_\+\+Octet}} \mbox{\hyperlink{structDDS__LocatorEx_a5d222a2219de27a12839b37c438f59b6}{address}} \mbox{[}RTPS\+\_\+\+LOCATOR\+\_\+\+ADDRESS\+\_\+\+LENGTH\+\_\+\+MAX\mbox{]}
+\begin{DoxyCompactList}\small\item\em An array of octets with maximum length of \doxylink{group__DDSDiscoveryModule_ga8164c2cec1808030997ad286ecb95112}{DDS\+\_\+\+LOCATOR\+\_\+\+ADDRESS\+\_\+\+LENGTH\+\_\+\+MAX} to hold the address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_ext}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}e\+Xtension\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  Type used to represent the addressing information needed to send a message to an RTPS Endpoint using one of the supported transports. 
+
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__LocatorEx_ada693b650c6b6fc893d56bb1931ffba7}\index{DDS\_LocatorEx@{DDS\_LocatorEx}!kind@{kind}}
+\index{kind@{kind}!DDS\_LocatorEx@{DDS\_LocatorEx}}
+\doxyparagraph{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily \label{structDDS__LocatorEx_ada693b650c6b6fc893d56bb1931ffba7} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Locator\+Ex\+::kind}
+
+
+
+The kind of locator. 
+
+If the Locator\+\_\+t kind is \doxylink{group__DDSDiscoveryModule_ga2a6c499c97f7aa1d7567d446f7596a1e}{DDS\+\_\+\+LOCATOR\+\_\+\+KIND\+\_\+\+UDPv4}, the address contains an IPv4 address. In this case, the leading 12 octets of the \+::\+DDS\+\_\+\+Locator\+\_\+t\+::address must be zero. The last 4 octets of \+::\+DDS\+\_\+\+Locator\+\_\+t\+::address are used to store the IPv4 address in big-\/endian order. 
+
+If the Locator\+\_\+t kind is not \doxylink{group__DDSDiscoveryModule_ga2a6c499c97f7aa1d7567d446f7596a1e}{DDS\+\_\+\+LOCATOR\+\_\+\+KIND\+\_\+\+UDPv4}, the address is not interpreted and is treated as an array of 16 octets. \Hypertarget{structDDS__LocatorEx_aaede7e4f974a131f0c9c65263825cd11}\index{DDS\_LocatorEx@{DDS\_LocatorEx}!port@{port}}
+\index{port@{port}!DDS\_LocatorEx@{DDS\_LocatorEx}}
+\doxyparagraph{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily \label{structDDS__LocatorEx_aaede7e4f974a131f0c9c65263825cd11} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gad21ff4ee730cfa0ebc01ef731124338e}{DDS\+\_\+\+Unsigned\+Long}} DDS\+\_\+\+Locator\+Ex\+::port}
+
+
+
+the port number 
+
+\Hypertarget{structDDS__LocatorEx_a5d222a2219de27a12839b37c438f59b6}\index{DDS\_LocatorEx@{DDS\_LocatorEx}!address@{address}}
+\index{address@{address}!DDS\_LocatorEx@{DDS\_LocatorEx}}
+\doxyparagraph{\texorpdfstring{address}{address}}
+{\footnotesize\ttfamily \label{structDDS__LocatorEx_a5d222a2219de27a12839b37c438f59b6} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga6c539d95bf6b7e859aab1a5fc85fee1e}{DDS\+\_\+\+Octet}} DDS\+\_\+\+Locator\+Ex\+::address\mbox{[}RTPS\+\_\+\+LOCATOR\+\_\+\+ADDRESS\+\_\+\+LENGTH\+\_\+\+MAX\mbox{]}}
+
+
+
+An array of octets with maximum length of \doxylink{group__DDSDiscoveryModule_ga8164c2cec1808030997ad286ecb95112}{DDS\+\_\+\+LOCATOR\+\_\+\+ADDRESS\+\_\+\+LENGTH\+\_\+\+MAX} to hold the address. 
+

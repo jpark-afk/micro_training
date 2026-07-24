@@ -1,0 +1,49 @@
+\doxysubsubsubsection{Property Reference}
+\hypertarget{group__NDDSGlobalPropertyModule}{}\label{group__NDDSGlobalPropertyModule}\index{Property Reference@{Property Reference}}
+
+
+This is the property reference for RTI Connext DDS Micro.  
+
+
+\doxysubsubsubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__NDDSGlobalPropertyModule_ga5a99b731949ea4d585f0caca79906803}{DDS\+\_\+\+XTYPES\+\_\+\+COMPLIANCE\+\_\+\+MASK\+\_\+\+PROPERTY}}
+\begin{DoxyCompactList}\small\item\em Set the \+::\+NDDS\+\_\+\+Config\+\_\+\+XTypes\+Compliance\+Mask. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__NDDSGlobalPropertyModule_ga6f2d81eb881a83a14e6e9c7bc981c48d}{DDS\+\_\+\+DATAWRITER\+\_\+\+PROTOCOL\+\_\+\+ZCV2\+\_\+\+VERSION\+\_\+\+PROPERTY}}
+\begin{DoxyCompactList}\small\item\em Set the protocol version used for Data\+Writers that have Zero Copy v2 enabled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+This is the property reference for RTI Connext DDS Micro. 
+
+The goal of this Property Reference Guide is to gather all RTI Connext DDS Micro properties in one place and provide the main characteristics of each. 
+
+All the properties that RTI Connext DDS Micro provides (which begin with dds., com.\+rti., or rti.) are validated when the applicable entity is created. Please refer to \doxylink{group__DDSPropertyQosModule}{PROPERTY} for information about properties and the Property API. 
+
+\doxysubsubsubsubsection{Variable Documentation}
+\Hypertarget{group__NDDSGlobalPropertyModule_ga5a99b731949ea4d585f0caca79906803}\index{Property Reference@{Property Reference}!DDS\_XTYPES\_COMPLIANCE\_MASK\_PROPERTY@{DDS\_XTYPES\_COMPLIANCE\_MASK\_PROPERTY}}
+\index{DDS\_XTYPES\_COMPLIANCE\_MASK\_PROPERTY@{DDS\_XTYPES\_COMPLIANCE\_MASK\_PROPERTY}!Property Reference@{Property Reference}}
+\doxyparagraph{\texorpdfstring{DDS\_XTYPES\_COMPLIANCE\_MASK\_PROPERTY}{DDS\_XTYPES\_COMPLIANCE\_MASK\_PROPERTY}}
+{\footnotesize\ttfamily \label{group__NDDSGlobalPropertyModule_ga5a99b731949ea4d585f0caca79906803} 
+const char\texorpdfstring{$\ast$}{*} DDS\+\_\+\+XTYPES\+\_\+\+COMPLIANCE\+\_\+\+MASK\+\_\+\+PROPERTY\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Set the \+::\+NDDS\+\_\+\+Config\+\_\+\+XTypes\+Compliance\+Mask. 
+
+This property sets the \+::\+NDDS\+\_\+\+Config\+\_\+\+XTypes\+Compliance\+Mask on a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} or \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. If it is set on the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} and \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}, the value set on the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} takes precedence. \Hypertarget{group__NDDSGlobalPropertyModule_ga6f2d81eb881a83a14e6e9c7bc981c48d}\index{Property Reference@{Property Reference}!DDS\_DATAWRITER\_PROTOCOL\_ZCV2\_VERSION\_PROPERTY@{DDS\_DATAWRITER\_PROTOCOL\_ZCV2\_VERSION\_PROPERTY}}
+\index{DDS\_DATAWRITER\_PROTOCOL\_ZCV2\_VERSION\_PROPERTY@{DDS\_DATAWRITER\_PROTOCOL\_ZCV2\_VERSION\_PROPERTY}!Property Reference@{Property Reference}}
+\doxyparagraph{\texorpdfstring{DDS\_DATAWRITER\_PROTOCOL\_ZCV2\_VERSION\_PROPERTY}{DDS\_DATAWRITER\_PROTOCOL\_ZCV2\_VERSION\_PROPERTY}}
+{\footnotesize\ttfamily \label{group__NDDSGlobalPropertyModule_ga6f2d81eb881a83a14e6e9c7bc981c48d} 
+const char\texorpdfstring{$\ast$}{*} DDS\+\_\+\+DATAWRITER\+\_\+\+PROTOCOL\+\_\+\+ZCV2\+\_\+\+VERSION\+\_\+\+PROPERTY\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Set the protocol version used for Data\+Writers that have Zero Copy v2 enabled. 
+
+This property sets the protocol version used for Data\+Writers that have Zero Copy v2 enabled, with the purpose to allow Data\+Readers that support only the older protocol version to communicate with Data\+Writers that use newer protocol versions by default. This way, backward compatibility between different product versions can be achieved. 
+
+The value of this property is a non-\/negative integer value smaller than 0x\+FFFF that specifies the protocol version to use. For details concerning protocol version numbers, please refer to the Migration Guide. 
+
+This property can be set on a \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} or \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}. If it is set on the \doxylink{group__DDSDomainParticipantModule_ga1964274885335d5bcea6855f66b0bfe1}{DDS\+\_\+\+Domain\+Participant} and \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer}, the value set on the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} takes precedence. 

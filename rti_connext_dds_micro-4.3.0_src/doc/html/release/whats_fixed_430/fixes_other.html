@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>10.4.22. Other &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/custom.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="10.5. Previous Releases" href="../previous_release.html" />
+    <link rel="prev" title="10.4.21. Vulnerabilities" href="fixes_vulnerabilities.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">10. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../compatibility.html">10.1. Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported_platforms.html">10.2. Supported Platforms and Programming Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whats_new_430.html">10.3. What’s New in 4.3.0</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="whats_fixed_430_index.html">10.4. What’s Fixed in 4.3.0</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="fixes_discovery.html">10.4.1. Discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_usability.html">10.4.2. Usability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_transports.html">10.4.3. Transports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_reliability_protocol_and_wire_representation.html">10.4.4. Reliability Protocol and Wire Representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_callbacks_and_waitsets.html">10.4.5. Callbacks and Waitsets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_security_plugins_sdk.html">10.4.6. Security Plugins SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_content_filters_and_query_conditions.html">10.4.7. Content Filters and Query Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_logging.html">10.4.8. Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_apis_c_or_traditional_c%2B%2B.html">10.4.9. APIs (C or Traditional C++)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_generated_code_c_traditional_c%2B%2B_and_modern_c%2B%2B.html">10.4.10. Generated Code (C, Traditional C++, and Modern C++)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_generated_code_multiple_languages.html">10.4.11. Generated Code (Multiple Languages)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_omg_specification_compliance.html">10.4.12. OMG Specification Compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_instances.html">10.4.13. Instances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_crashes.html">10.4.14. Crashes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_hangs.html">10.4.15. Hangs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_memory_leaks_growth.html">10.4.16. Memory Leaks/Growth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_data_corruption.html">10.4.17. Data Corruption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_platform_and_build_changes.html">10.4.18. Platform and Build Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_shipped_examples.html">10.4.19. Shipped Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_interoperability.html">10.4.20. Interoperability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixes_vulnerabilities.html">10.4.21. Vulnerabilities</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">10.4.22. Other</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#critical-no-communication-on-autosar-systems-with-multiple-ip-addresses">10.4.22.1. <span class="critical">[Critical]</span> No communication on AUTOSAR systems with multiple IP addresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#major-corrected-arxml-reference-generation-for-basic-types">10.4.22.2. <span class="major">[Major]</span> Corrected ARXML reference generation for basic types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#major-datareader-could-stop-receiving-samples-due-to-resource-miscount">10.4.22.3. <span class="major">[Major]</span> DataReader could stop receiving samples due to resource miscount</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#minor-participant-guids-generated-on-big-endian-platforms-may-have-reduced-entropy">10.4.22.4. <span class="minor">[Minor]</span> Participant GUIDs generated on big-endian platforms may have reduced entropy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#minor-errors-in-checksum-documentation">10.4.22.5. <span class="minor">[Minor]</span> Errors in checksum documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#minor-incorrect-max-size-calculation-for-primitive-array-with-cdr-long-double-type">10.4.22.6. <span class="minor">[Minor]</span> Incorrect max size calculation for primitive array with CDR_LONG_DOUBLE_TYPE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#minor-datawriter-silently-stopped-sending-data-when-flow-controller-token-budget-was-smaller-thanfragment-size">10.4.22.7. <span class="minor">[Minor]</span> DataWriter silently stopped sending data when flow controller token budget was smaller thanfragment size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trivial-possible-warning-during-domainparticipant-shutdown">10.4.22.8. <span class="trivial">[Trivial]</span> Possible warning during DomainParticipant shutdown</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trivial-rtime-make-and-rtiddsgen-script-errors-when-running-from-a-directory-with-a-space-in-its-name">10.4.22.9. <span class="trivial">[Trivial]</span> rtime-make and rtiddsgen script errors when running from a directory with a space in its name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trivial-formatting-errors-in-help-printout-for-rtime-make-bat">10.4.22.10. <span class="trivial">[Trivial]</span> Formatting errors in help printout for rtime-make.bat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../previous_release.html">10.5. Previous Releases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../known_issues.html">10.6. Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../experimental_features.html">10.7. Experimental Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html"><span class="section-number">10. </span>Release Notes</a> &raquo;</li>
+        
+          <li><a href="whats_fixed_430_index.html"><span class="section-number">10.4. </span>What’s Fixed in 4.3.0</a> &raquo;</li>
+        
+      <li><span class="section-number">10.4.22. </span>Other</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="other">
+<h1><span class="section-number">10.4.22. </span>Other<a class="headerlink" href="#other" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="critical-no-communication-on-autosar-systems-with-multiple-ip-addresses">
+<h2><span class="section-number">10.4.22.1. </span><span class="critical">[Critical]</span> No communication on AUTOSAR systems with multiple IP addresses<a class="headerlink" href="#critical-no-communication-on-autosar-systems-with-multiple-ip-addresses" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> would not receive any communication traffic in an AUTOSAR system when the
+following conditions were met:</p>
+<ul class="simple">
+<li><p>More than one IP address was configured for use in the AUTOSAR system.</p></li>
+<li><p>DDS communication used an IP address with an index greater than 0 (i.e., 1).</p></li>
+<li><p><em>Connext Micro</em> used the default UDP interface factory properties, which set
+<code class="docutils literal notranslate"><span class="pre">enable_interface_bind</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
+</ul>
+<p>[RTI Issue ID MICRO-7783]</p>
+</div>
+<div class="section" id="major-corrected-arxml-reference-generation-for-basic-types">
+<h2><span class="section-number">10.4.22.2. </span><span class="major">[Major]</span> Corrected ARXML reference generation for basic types<a class="headerlink" href="#major-corrected-arxml-reference-generation-for-basic-types" title="Permalink to this headline">¶</a></h2>
+<p>Basic data types (defined as <code class="docutils literal notranslate"><span class="pre">SW-BASE-TYPE</span></code>) were incorrectly
+referenced as implementation data types when generating an ARXML from an
+XML file using <em>rtiarcgen</em>. References to the basic data types are now
+generated correctly.</p>
+<p>[RTI Issue ID APIT-477]</p>
+</div>
+<div class="section" id="major-datareader-could-stop-receiving-samples-due-to-resource-miscount">
+<h2><span class="section-number">10.4.22.3. </span><span class="major">[Major]</span> DataReader could stop receiving samples due to resource miscount<a class="headerlink" href="#major-datareader-could-stop-receiving-samples-due-to-resource-miscount" title="Permalink to this headline">¶</a></h2>
+<p>A <em>DataReader</em> could incorrectly free a sample twice in specific conditions
+(e.g., when a
+<a class="reference external" href="../../../../doc/api_c/html/group__DDSReliabilityQosModule.html#gaf09e82d431c2328186c7fb4b3fa9ad91">RELIABLE</a>
+sample was recommitted to a <em>DataReader</em>’s cache because the <em>DataReader</em> was
+unable to remove an older sample, e.g, due to a <code class="docutils literal notranslate"><span class="pre">KEEP_ALL</span></code>
+<a class="reference external" href="../../../../doc/api_c/html/group__DDSHistoryQosModule.html">HISTORY</a>
+QoS policy). This could prevent the <em>DataReader</em> from receiving samples from a
+matched <em>DataWriter</em>.</p>
+<p>[RTI Issue ID MICRO-13068]</p>
+</div>
+<div class="section" id="minor-participant-guids-generated-on-big-endian-platforms-may-have-reduced-entropy">
+<h2><span class="section-number">10.4.22.4. </span><span class="minor">[Minor]</span> Participant GUIDs generated on big-endian platforms may have reduced entropy<a class="headerlink" href="#minor-participant-guids-generated-on-big-endian-platforms-may-have-reduced-entropy" title="Permalink to this headline">¶</a></h2>
+<p>The GUID generation of the reference PSL for big-endian platforms may
+have reduced entropy and increased the likelihood of participants
+generating the same GUID.</p>
+<p>[RTI Issue ID MICRO-13243]</p>
+</div>
+<div class="section" id="minor-errors-in-checksum-documentation">
+<h2><span class="section-number">10.4.22.5. </span><span class="minor">[Minor]</span> Errors in checksum documentation<a class="headerlink" href="#minor-errors-in-checksum-documentation" title="Permalink to this headline">¶</a></h2>
+<p>The custom CRC example in the checksum documentation contained some
+incorrect structure names and type names.</p>
+<p>[RTI Issue ID MICRO-13127]</p>
+</div>
+<div class="section" id="minor-incorrect-max-size-calculation-for-primitive-array-with-cdr-long-double-type">
+<h2><span class="section-number">10.4.22.6. </span><span class="minor">[Minor]</span> Incorrect max size calculation for primitive array with CDR_LONG_DOUBLE_TYPE<a class="headerlink" href="#minor-incorrect-max-size-calculation-for-primitive-array-with-cdr-long-double-type" title="Permalink to this headline">¶</a></h2>
+<p>The padding associated with the maximum size was incorrectly calculated for
+primitive arrays with <code class="docutils literal notranslate"><span class="pre">CDR_LONG_DOUBLE_TYPE</span></code>.</p>
+<p>[RTI Issue ID MICRO-13056]</p>
+</div>
+<div class="section" id="minor-datawriter-silently-stopped-sending-data-when-flow-controller-token-budget-was-smaller-thanfragment-size">
+<h2><span class="section-number">10.4.22.7. </span><span class="minor">[Minor]</span> DataWriter silently stopped sending data when flow controller token budget was smaller thanfragment size<a class="headerlink" href="#minor-datawriter-silently-stopped-sending-data-when-flow-controller-token-budget-was-smaller-thanfragment-size" title="Permalink to this headline">¶</a></h2>
+<p>When a flow controller was configured such that
+<code class="docutils literal notranslate"><span class="pre">max_tokens</span> <span class="pre">*</span> <span class="pre">bytes_per_token</span></code> was less than <code class="docutils literal notranslate"><span class="pre">message_size_max</span></code>, the
+<em>DataWriter</em> could never accumulate enough tokens to send a single
+<code class="docutils literal notranslate"><span class="pre">DATA_FRAG</span></code> message and would silently stop sending data. When
+<code class="docutils literal notranslate"><span class="pre">bytes_per_token</span></code> is not unlimited, the fragment size used for
+fragmented messages is now the minimum of <code class="docutils literal notranslate"><span class="pre">bytes_per_token</span></code> and
+<code class="docutils literal notranslate"><span class="pre">message_size_max</span></code>, ensuring a single token is always sufficient to
+send one fragment.</p>
+<p>[RTI Issue ID MICRO-2854]</p>
+</div>
+<div class="section" id="trivial-possible-warning-during-domainparticipant-shutdown">
+<h2><span class="section-number">10.4.22.8. </span><span class="trivial">[Trivial]</span> Possible warning during DomainParticipant shutdown<a class="headerlink" href="#trivial-possible-warning-during-domainparticipant-shutdown" title="Permalink to this headline">¶</a></h2>
+<p><em>Connext Micro</em> may have printed the following benign warning during
+<em>DomainParticipant</em> shutdown:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>WARNING:<span class="w"> </span><span class="nv">ModuleID</span><span class="o">=</span><span class="m">6</span><span class="w"> </span><span class="nv">Errcode</span><span class="o">=</span><span class="m">39</span><span class="w"> </span><span class="nv">X</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">E</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="nv">T</span><span class="o">=</span><span class="m">1</span>
+<span class="s2">&quot;rtps&quot;</span>/RTPSInterface.c:5625/RTPS_Interface_unbind:
+</pre></div>
+</div>
+<p>[RTI Issue ID MICRO-11135]</p>
+</div>
+<div class="section" id="trivial-rtime-make-and-rtiddsgen-script-errors-when-running-from-a-directory-with-a-space-in-its-name">
+<h2><span class="section-number">10.4.22.9. </span><span class="trivial">[Trivial]</span> rtime-make and rtiddsgen script errors when running from a directory with a space in its name<a class="headerlink" href="#trivial-rtime-make-and-rtiddsgen-script-errors-when-running-from-a-directory-with-a-space-in-its-name" title="Permalink to this headline">¶</a></h2>
+<p>If the path where the <code class="docutils literal notranslate"><span class="pre">rtime-make</span></code> or <em>rtiddsgen</em> script resides included a
+space, invoking it would cause a scripting error that included the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>line<span class="w"> </span><span class="m">25</span>:<span class="w"> </span>cd:<span class="w"> </span>too<span class="w"> </span>many<span class="w"> </span>arguments.
+</pre></div>
+</div>
+<p>[RTI Issue ID MICRO-11099]</p>
+</div>
+<div class="section" id="trivial-formatting-errors-in-help-printout-for-rtime-make-bat">
+<h2><span class="section-number">10.4.22.10. </span><span class="trivial">[Trivial]</span> Formatting errors in help printout for rtime-make.bat<a class="headerlink" href="#trivial-formatting-errors-in-help-printout-for-rtime-make-bat" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">--help</span></code> printout for the batch file <code class="docutils literal notranslate"><span class="pre">rtime-make.bat</span></code> had incorrect
+syntax for <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;target&gt;</span></code> in the output.</p>
+<p>[RTI Issue ID MICRO-2751]</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../previous_release.html" class="btn btn-neutral float-right" title="10.5. Previous Releases" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fixes_vulnerabilities.html" class="btn btn-neutral float-left" title="10.4.21. Vulnerabilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

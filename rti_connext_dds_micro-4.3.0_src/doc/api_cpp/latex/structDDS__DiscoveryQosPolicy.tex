@@ -1,0 +1,159 @@
+\doxysubsection{DDS\+\_\+\+Discovery\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__DiscoveryQosPolicy}{}\label{structDDS__DiscoveryQosPolicy}\index{DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}}
+
+
+Specifies the attributes required to discover participants in the domain.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+domain.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct DDS\+\_\+\+String\+Seq \mbox{\hyperlink{structDDS__DiscoveryQosPolicy_a7f767e8bb620e6ae873479d9975accbf}{initial\+\_\+peers}}
+\begin{DoxyCompactList}\small\item\em Determines the initial list of peers that will be contacted by the Discovery mechanism to send announcements about the presence of this participant. \end{DoxyCompactList}\item 
+struct DDS\+\_\+\+String\+Seq \mbox{\hyperlink{structDDS__DiscoveryQosPolicy_a9ee4ed308f6ef12bbc2299fe242f5f36}{enabled\+\_\+transports}}
+\begin{DoxyCompactList}\small\item\em The transports available for use by the Discovery mechanism. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDDS__DiscoveryComponent}{DDS\+\_\+\+Discovery\+Component}} \mbox{\hyperlink{structDDS__DiscoveryQosPolicy_a74d4b6f27bdbc9dd1bd27bcc9fc78e80}{discovery}}
+\begin{DoxyCompactList}\small\item\em The name of the discovery plugin that will be used to create a discovery plugin for this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{structDDS__DiscoveryQosPolicy_a0b53178426ae877ea27b90c70cedaec7}{accept\+\_\+unknown\+\_\+peers}}
+\begin{DoxyCompactList}\small\item\em Whether to accept a new participant that is not in the initial peer list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{structDDS__DiscoveryQosPolicy_a7b6f75ce68deab50ce790e3747c567b5}{enable\+\_\+participant\+\_\+discovery\+\_\+by\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em Enable Participant discovery by name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \mbox{\hyperlink{structDDS__DiscoveryQosPolicy_ad3785b8cf36c6780ebd3759acc31edce}{enable\+\_\+endpoint\+\_\+discovery\+\_\+queue}}
+\begin{DoxyCompactList}\small\item\em Enable the endpoint discovery queue and queue endpoint discovery messages if there are no resources to assert the endpoint at the time of discovery. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DiscoveryQosPolicy_ab9e5fcdee48bc5f6955e56d386e776d5}{metatraffic\+\_\+transport\+\_\+priority}}
+\begin{DoxyCompactList}\small\item\em Transport priority for builtin endpoint Data\+Writers and Data\+Readers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Specifies the attributes required to discover participants in the domain. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = N/A ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO}~\newline
+ 
+\end{DoxyParagraph}
+\hypertarget{structDDS__DiscoveryQosPolicy_DDSDiscoveryQosModule_usage}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{structDDS__DiscoveryQosPolicy_DDSDiscoveryQosModule_usage}
+This extended QoS is used to define how participants find each other on a network. 
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__DiscoveryQosPolicy_a7f767e8bb620e6ae873479d9975accbf}\index{DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}!initial\_peers@{initial\_peers}}
+\index{initial\_peers@{initial\_peers}!DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}}
+\doxyparagraph{\texorpdfstring{initial\_peers}{initial\_peers}}
+{\footnotesize\ttfamily \label{structDDS__DiscoveryQosPolicy_a7f767e8bb620e6ae873479d9975accbf} 
+struct DDS\+\_\+\+String\+Seq DDS\+\_\+\+Discovery\+Qos\+Policy\+::initial\+\_\+peers}
+
+
+
+Determines the initial list of peers that will be contacted by the Discovery mechanism to send announcements about the presence of this participant. 
+
+If there is a remote peer \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} such as is described in this list, it will become aware of this participant and will engage in the Discovery protocol to exchange meta-\/data with this participant. 
+
+Each element of this list must be a {\ttfamily peer} descriptor in the proper format. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} Empty sequence 
+
+{\bfseries{\mbox{[}range\mbox{]}}} Sequence of arbitrary length. \Hypertarget{structDDS__DiscoveryQosPolicy_a9ee4ed308f6ef12bbc2299fe242f5f36}\index{DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}!enabled\_transports@{enabled\_transports}}
+\index{enabled\_transports@{enabled\_transports}!DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}}
+\doxyparagraph{\texorpdfstring{enabled\_transports}{enabled\_transports}}
+{\footnotesize\ttfamily \label{structDDS__DiscoveryQosPolicy_a9ee4ed308f6ef12bbc2299fe242f5f36} 
+struct DDS\+\_\+\+String\+Seq DDS\+\_\+\+Discovery\+Qos\+Policy\+::enabled\+\_\+transports}
+
+
+
+The transports available for use by the Discovery mechanism. 
+
+Only these transports can be used by the discovery mechanism to send meta-\/traffic via the builtin endpoints (built-\/in \doxylink{classDDSDataReader}{DDSData\+Reader} and \doxylink{classDDSDataWriter}{DDSData\+Writer}). 
+
+Also determines the locators on which the Discovery mechanism will listen for meta-\/traffic. These along with the {\ttfamily domain\+\_\+id} and {\ttfamily participant\+\_\+id} determine the locators on which the Discovery mechanism can receive meta-\/data. 
+
+The memory for the strings in this sequence is managed according to the conventions described in \doxylink{group__DDSStringClass}{String Support}. In particular, be careful to avoid a situation in which RTI Connext DDS Micro allocates a string on your behalf and you then reuse that string in such a way that RTI Connext DDS Micro believes it to have more memory allocated to it than it actually does. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} Empty sequence. 
+
+When an empty sequence is passed to \doxylink{classDDSDomainParticipantFactory_aee3ef7fed7bf832765b608a2ec879295}{DDSDomain\+Participant\+Factory\+::create\+\_\+participant} in the \doxylink{structDDS__DomainParticipantQos}{DDS\+\_\+\+Domain\+Participant\+Qos} and the UDP transport has been registered, the domain participant will automatically add the following locators to listen for discovery traffic on "{}\+\_\+udp\+://"{} and "{}\+\_\+udp\+://127.0.\+0.\+1"{}. 
+
+{\bfseries{\mbox{[}range\mbox{]}}} Sequence of non-\/null,non-\/empty strings. \Hypertarget{structDDS__DiscoveryQosPolicy_a74d4b6f27bdbc9dd1bd27bcc9fc78e80}\index{DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}!discovery@{discovery}}
+\index{discovery@{discovery}!DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}}
+\doxyparagraph{\texorpdfstring{discovery}{discovery}}
+{\footnotesize\ttfamily \label{structDDS__DiscoveryQosPolicy_a74d4b6f27bdbc9dd1bd27bcc9fc78e80} 
+struct \mbox{\hyperlink{structDDS__DiscoveryComponent}{DDS\+\_\+\+Discovery\+Component}} DDS\+\_\+\+Discovery\+Qos\+Policy\+::discovery}
+
+
+
+The name of the discovery plugin that will be used to create a discovery plugin for this \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. 
+
+The \doxylink{classDDSDomainParticipantFactory}{DDSDomain\+Participant\+Factory} will search through a list of registered discovery plugins. If it finds a registered discovery factory with a name matching this factory name, it will use that discovery plugin to create a new instance of the discovery plugin and register the plugin with the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant}. 
+
+If it does not find a registered discovery factory with this name, it will return \doxylink{group__DDSReturnTypesModule_gga73f148aaf96b5f6f9fc630b7cfeb0c91a3a638871d5b4174c32c8d2880f1f6770}{DDS\+\_\+\+RETCODE\+\_\+\+PRECONDITION\+\_\+\+NOT\+\_\+\+MET} 
+
+\begin{DoxyPrecond}{Precondition}
+One or more discovery plugins must have been previously registered with the \doxylink{classDDSDomainParticipantFactory}{DDSDomain\+Participant\+Factory}, each with an associated name. 
+\end{DoxyPrecond}
+\Hypertarget{structDDS__DiscoveryQosPolicy_a0b53178426ae877ea27b90c70cedaec7}\index{DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}!accept\_unknown\_peers@{accept\_unknown\_peers}}
+\index{accept\_unknown\_peers@{accept\_unknown\_peers}!DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}}
+\doxyparagraph{\texorpdfstring{accept\_unknown\_peers}{accept\_unknown\_peers}}
+{\footnotesize\ttfamily \label{structDDS__DiscoveryQosPolicy_a0b53178426ae877ea27b90c70cedaec7} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Discovery\+Qos\+Policy\+::accept\+\_\+unknown\+\_\+peers}
+
+
+
+Whether to accept a new participant that is not in the initial peer list. 
+
+If \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE}, the participant will only communicate with those in the initial peer list 
+
+If \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}, the participant will also communicate with all discovered remote participants. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE} \Hypertarget{structDDS__DiscoveryQosPolicy_a7b6f75ce68deab50ce790e3747c567b5}\index{DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}!enable\_participant\_discovery\_by\_name@{enable\_participant\_discovery\_by\_name}}
+\index{enable\_participant\_discovery\_by\_name@{enable\_participant\_discovery\_by\_name}!DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}}
+\doxyparagraph{\texorpdfstring{enable\_participant\_discovery\_by\_name}{enable\_participant\_discovery\_by\_name}}
+{\footnotesize\ttfamily \label{structDDS__DiscoveryQosPolicy_a7b6f75ce68deab50ce790e3747c567b5} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Discovery\+Qos\+Policy\+::enable\+\_\+participant\+\_\+discovery\+\_\+by\+\_\+name}
+
+
+
+Enable Participant discovery by name. 
+
+If \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE}, a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} is only identified by its GUID. 
+
+If \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}, a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} is identified by its \doxylink{structDDS__DomainParticipantQos_a8ebae4aadc6caa1958ad599606b329a1}{DDS\+\_\+\+Domain\+Participant\+Qos\+::participant\+\_\+name}. Thus, each \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} in a domain must be uniquely named in the DDS domain. Failure to uniquely name each \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} may result in undefined behavior. 
+
+Note that \doxylink{structDDS__DomainParticipantQos_a8ebae4aadc6caa1958ad599606b329a1}{DDS\+\_\+\+Domain\+Participant\+Qos\+::participant\+\_\+name} cannot be empty when set to \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} \Hypertarget{structDDS__DiscoveryQosPolicy_ad3785b8cf36c6780ebd3759acc31edce}\index{DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}!enable\_endpoint\_discovery\_queue@{enable\_endpoint\_discovery\_queue}}
+\index{enable\_endpoint\_discovery\_queue@{enable\_endpoint\_discovery\_queue}!DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}}
+\doxyparagraph{\texorpdfstring{enable\_endpoint\_discovery\_queue}{enable\_endpoint\_discovery\_queue}}
+{\footnotesize\ttfamily \label{structDDS__DiscoveryQosPolicy_ad3785b8cf36c6780ebd3759acc31edce} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} DDS\+\_\+\+Discovery\+Qos\+Policy\+::enable\+\_\+endpoint\+\_\+discovery\+\_\+queue}
+
+
+
+Enable the endpoint discovery queue and queue endpoint discovery messages if there are no resources to assert the endpoint at the time of discovery. 
+
+When a remote \doxylink{classDDSDataReader}{DDSData\+Reader} or \doxylink{classDDSDataWriter}{DDSData\+Writer} is discovered, the discovery information is saved, and the discovered entity is matched with local endpoints. 
+
+However, if there are insufficient resources to save the information or perform the matching, the discovery message is discarded by default. That is, all information about the discovered endpoint is lost, even if resources are later freed up. 
+
+This behavior can be changed by setting this value to \doxylink{group__DDSCdrTypesModule_ga02f257a405ea7ff6774cdf4330a7eeb7}{DDS\+\_\+\+BOOLEAN\+\_\+\+TRUE}. If there are insufficient resources to store the discovery information, the message is queued and processed when resources becomes available. 
+
+Discovery messages that are queued are queued until the \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} that published the discovery messages is no longer available. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSCdrTypesModule_ga727fba6a96485884ccd9438b560689f7}{DDS\+\_\+\+BOOLEAN\+\_\+\+FALSE} \Hypertarget{structDDS__DiscoveryQosPolicy_ab9e5fcdee48bc5f6955e56d386e776d5}\index{DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}!metatraffic\_transport\_priority@{metatraffic\_transport\_priority}}
+\index{metatraffic\_transport\_priority@{metatraffic\_transport\_priority}!DDS\_DiscoveryQosPolicy@{DDS\_DiscoveryQosPolicy}}
+\doxyparagraph{\texorpdfstring{metatraffic\_transport\_priority}{metatraffic\_transport\_priority}}
+{\footnotesize\ttfamily \label{structDDS__DiscoveryQosPolicy_ab9e5fcdee48bc5f6955e56d386e776d5} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Discovery\+Qos\+Policy\+::metatraffic\+\_\+transport\+\_\+priority}
+
+
+
+Transport priority for builtin endpoint Data\+Writers and Data\+Readers. 
+
+This value is used to set the transport priority for all builtin endpoint Data\+Writers and Data\+Readers created by the discovery plugins. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 0 

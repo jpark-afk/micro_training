@@ -1,0 +1,175 @@
+\doxysubsection{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy Struct Reference}
+\hypertarget{structDDS__DataReaderResourceLimitsQosPolicy}{}\label{structDDS__DataReaderResourceLimitsQosPolicy}\index{DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}}
+
+
+Resource limits that apply only to \doxylink{classDDSDataReader}{DDSData\+Reader} instances.  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+infrastructure.\+h$>$}
+
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataReaderResourceLimitsQosPolicy_ae89be540f623745dab6b0d6379037da1}{max\+\_\+remote\+\_\+writers}}
+\begin{DoxyCompactList}\small\item\em The maximum number of remote writers for which the reader will maintain state and communication. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataReaderResourceLimitsQosPolicy_a79ab710ce28f1718df9a42cd10a46b5d}{max\+\_\+remote\+\_\+writers\+\_\+per\+\_\+instance}}
+\begin{DoxyCompactList}\small\item\em The maximum number of remote writers for a unique instance for which the reader will maintain state and communication. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataReaderResourceLimitsQosPolicy_a7210d8354ee1db9a55fc18ed56105d6a}{max\+\_\+samples\+\_\+per\+\_\+remote\+\_\+writer}}
+\begin{DoxyCompactList}\small\item\em The maximum number of untaken samples from a given remote \doxylink{classDDSDataWriter}{DDSData\+Writer} that a \doxylink{classDDSDataReader}{DDSData\+Reader} may store. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataReaderResourceLimitsQosPolicy_a82873fd35e4159bce6c23cc0de5fcca9}{max\+\_\+outstanding\+\_\+reads}}
+\begin{DoxyCompactList}\small\item\em The maximum number of outstanding read or take calls, or one of their variants, on the same \doxylink{classDDSDataReader}{DDSData\+Reader} for which the memory has not been returned by calling \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSDataReaderResourceLimitsQosModule_gaf9e17bc2037d1bcb2f100526364afe14}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Instance\+Replacement\+Kind}} \mbox{\hyperlink{structDDS__DataReaderResourceLimitsQosPolicy_ac29b5e108cb7850f99662b74cdb36d58}{instance\+\_\+replacement}}
+\begin{DoxyCompactList}\small\item\em The instance replacement policy when the \doxylink{structDDS__ResourceLimitsQosPolicy_ab7339605f314f50c7cb658426ff64cdb}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+instances} limit has been reached and a new instance is detected. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataReaderResourceLimitsQosPolicy_a598e4610e4a78199d9e2ad5c37043980}{max\+\_\+routes\+\_\+per\+\_\+writer}}
+\begin{DoxyCompactList}\small\item\em The maximum number of routes the reader will send to per matched writer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataReaderResourceLimitsQosPolicy_ab829f0f900a4eb50dd796040f70afb26}{max\+\_\+fragmented\+\_\+samples}}
+\begin{DoxyCompactList}\small\item\em The maximum number of samples for which the built-\/in topic \doxylink{classDDSDataReader}{DDSData\+Reader} may store fragments at a given point in time. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataReaderResourceLimitsQosPolicy_a1f4afc77231d262ce0e1a320b5e6f964}{max\+\_\+fragmented\+\_\+samples\+\_\+per\+\_\+remote\+\_\+writer}}
+\begin{DoxyCompactList}\small\item\em The maximum number of samples per remote writer for which a \doxylink{classDDSDataReader}{DDSData\+Reader} may store fragments. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__DataReaderResourceLimitsQosPolicy_ac1fd6a45e4766ce1e1a2488fbff41b23}{shmem\+\_\+ref\+\_\+transfer\+\_\+mode\+\_\+attached\+\_\+segment\+\_\+allocation}}
+\begin{DoxyCompactList}\small\item\em Number of shared memory segments a Zero Copy transfer over shared memory \doxylink{classDDSDataReader}{DDSData\+Reader} can attach to at any given time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Resource limits that apply only to \doxylink{classDDSDataReader}{DDSData\+Reader} instances. 
+
+This QoS policy is an extension to the DDS standard. 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{classDDSDataReader}{DDSData\+Reader} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties\+:}
+\doxylink{group__DDSQosTypesModule_a_prop_rxo}{RxO} = N/A ~\newline
+ \doxylink{group__DDSQosTypesModule_a_prop_changeable}{Changeable} = \doxylink{group__DDSQosTypesModule_a_prop_changeable_no}{NO} ~\newline
+ 
+\end{DoxyParagraph}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structDDS__DataReaderResourceLimitsQosPolicy_ae89be540f623745dab6b0d6379037da1}\index{DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}!max\_remote\_writers@{max\_remote\_writers}}
+\index{max\_remote\_writers@{max\_remote\_writers}!DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{max\_remote\_writers}{max\_remote\_writers}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderResourceLimitsQosPolicy_ae89be540f623745dab6b0d6379037da1} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+remote\+\_\+writers}
+
+
+
+The maximum number of remote writers for which the reader will maintain state and communication. 
+
+The \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_ae89be540f623745dab6b0d6379037da1}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+remote\+\_\+writers} resource-\/limit limits the maximum number of remote \doxylink{classDDSDataWriter}{DDSData\+Writer} entities that the \doxylink{classDDSDataReader}{DDSData\+Reader} can receive data from regardless of which instance it is. 
+
+Resources controlled by this limit can only be reused when a remote \doxylink{classDDSDataWriter}{DDSData\+Writer} is either deleted or loses liveliness. {\bfseries{\mbox{[}default\mbox{]}}} 1 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, 1000000\mbox{]}, \texorpdfstring{$>$}{>}= max\+\_\+remote\+\_\+writers\+\_\+per\+\_\+instance \Hypertarget{structDDS__DataReaderResourceLimitsQosPolicy_a79ab710ce28f1718df9a42cd10a46b5d}\index{DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}!max\_remote\_writers\_per\_instance@{max\_remote\_writers\_per\_instance}}
+\index{max\_remote\_writers\_per\_instance@{max\_remote\_writers\_per\_instance}!DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{max\_remote\_writers\_per\_instance}{max\_remote\_writers\_per\_instance}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderResourceLimitsQosPolicy_a79ab710ce28f1718df9a42cd10a46b5d} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+remote\+\_\+writers\+\_\+per\+\_\+instance}
+
+
+
+The maximum number of remote writers for a unique instance for which the reader will maintain state and communication. 
+
+The \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_a79ab710ce28f1718df9a42cd10a46b5d}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+remote\+\_\+writers\+\_\+per\+\_\+instance} limits the maximum number of remote \doxylink{classDDSDataWriter}{DDSData\+Writer} entities a \doxylink{classDDSDataReader}{DDSData\+Reader} maintains state for per instance. If this resource-\/limit is lower than the actual number of remote \doxylink{classDDSDataWriter}{DDSData\+Writer} entities updating an instance, only state for up to \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_a79ab710ce28f1718df9a42cd10a46b5d}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+remote\+\_\+writers\+\_\+per\+\_\+instance} is maintained. It is not guaranteed to be the last \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_a79ab710ce28f1718df9a42cd10a46b5d}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+remote\+\_\+writers\+\_\+per\+\_\+instance} though. However, the last remote \doxylink{classDDSDataWriter}{DDSData\+Writer} to update an instance is {\itshape always} saved. When an instance is no longer updated by a \doxylink{classDDSDataWriter}{DDSData\+Writer} known to the \doxylink{classDDSDataReader}{DDSData\+Reader}, \doxylink{group__DDSInstanceStateModule_ggaf2264cae1aa8cd66490debfdc5e0c360a72ebdc6f53c9a7588458b48e3ea66507}{DDS\+\_\+\+NOT\+\_\+\+ALIVE\+\_\+\+NO\+\_\+\+WRITERS\+\_\+\+INSTANCE\+\_\+\+STATE} state is signaled on the \doxylink{classDDSDataReader}{DDSData\+Reader}. Thus, if this resource-\/limit is lower than the actual number of remote \doxylink{classDDSDataWriter}{DDSData\+Writer} entities updating an instance, \doxylink{group__DDSInstanceStateModule_ggaf2264cae1aa8cd66490debfdc5e0c360a72ebdc6f53c9a7588458b48e3ea66507}{DDS\+\_\+\+NOT\+\_\+\+ALIVE\+\_\+\+NO\+\_\+\+WRITERS\+\_\+\+INSTANCE\+\_\+\+STATE} may be signaled even though there may be one or more \doxylink{classDDSDataWriter}{DDSData\+Writer} entities still updating an instance. In this case the instance will go back to the \doxylink{group__DDSInstanceStateModule_ggaf2264cae1aa8cd66490debfdc5e0c360a093477a56893c9f6e94fb620a52e06c3}{DDS\+\_\+\+ALIVE\+\_\+\+INSTANCE\+\_\+\+STATE}. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 1 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, 2147483647\mbox{]}, \texorpdfstring{$<$}{<}= max\+\_\+remote\+\_\+writers \Hypertarget{structDDS__DataReaderResourceLimitsQosPolicy_a7210d8354ee1db9a55fc18ed56105d6a}\index{DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}!max\_samples\_per\_remote\_writer@{max\_samples\_per\_remote\_writer}}
+\index{max\_samples\_per\_remote\_writer@{max\_samples\_per\_remote\_writer}!DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{max\_samples\_per\_remote\_writer}{max\_samples\_per\_remote\_writer}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderResourceLimitsQosPolicy_a7210d8354ee1db9a55fc18ed56105d6a} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+samples\+\_\+per\+\_\+remote\+\_\+writer}
+
+
+
+The maximum number of untaken samples from a given remote \doxylink{classDDSDataWriter}{DDSData\+Writer} that a \doxylink{classDDSDataReader}{DDSData\+Reader} may store. 
+
+This resource-\/limit limits the maximum number of samples that can be cached for each remote \doxylink{classDDSDataWriter}{DDSData\+Writer} that the \doxylink{classDDSDataReader}{DDSData\+Reader} is receiving data from. This resource-\/limit is useful in preventing one \doxylink{classDDSDataWriter}{DDSData\+Writer} from starving another \doxylink{classDDSDataWriter}{DDSData\+Writer}. NOTE\+: The samples cached from a \doxylink{classDDSDataWriter}{DDSData\+Writer} are allocated from the same sample pool controlled by \doxylink{structDDS__ResourceLimitsQosPolicy_a90db906a3958146c5e22557db648e7ff}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+samples}. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 1 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, 100000000\mbox{]}, \texorpdfstring{$<$}{<}= \doxylink{structDDS__ResourceLimitsQosPolicy_a90db906a3958146c5e22557db648e7ff}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+samples} \Hypertarget{structDDS__DataReaderResourceLimitsQosPolicy_a82873fd35e4159bce6c23cc0de5fcca9}\index{DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}!max\_outstanding\_reads@{max\_outstanding\_reads}}
+\index{max\_outstanding\_reads@{max\_outstanding\_reads}!DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{max\_outstanding\_reads}{max\_outstanding\_reads}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderResourceLimitsQosPolicy_a82873fd35e4159bce6c23cc0de5fcca9} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+outstanding\+\_\+reads}
+
+
+
+The maximum number of outstanding read or take calls, or one of their variants, on the same \doxylink{classDDSDataReader}{DDSData\+Reader} for which the memory has not been returned by calling \doxylink{structFooDataReader_ad9ef915c38563e3a06e1ec8f8287730a}{Foo\+Data\+Reader\+::return\+\_\+loan}. 
+
+The \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_a82873fd35e4159bce6c23cc0de5fcca9}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+outstanding\+\_\+reads} resource-\/limit limits the maximum number of simultaneous loans an application can make at any given time using the \doxylink{structFooDataReader_a609495a4932f84f968291878df6fea01}{Foo\+Data\+Reader\+::read()} and \doxylink{structFooDataReader_a683dd6f8d92d8eb73ea32e42dc7ffe99}{Foo\+Data\+Reader\+::take()} APIs. 
+
+Typically a value of 1 is sufficient. It is only necessary to increase this value if an application thread will access the same cache before another thread has returned the loan. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 1 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, 2147483647\mbox{]} \Hypertarget{structDDS__DataReaderResourceLimitsQosPolicy_ac29b5e108cb7850f99662b74cdb36d58}\index{DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}!instance\_replacement@{instance\_replacement}}
+\index{instance\_replacement@{instance\_replacement}!DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{instance\_replacement}{instance\_replacement}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderResourceLimitsQosPolicy_ac29b5e108cb7850f99662b74cdb36d58} 
+\mbox{\hyperlink{group__DDSDataReaderResourceLimitsQosModule_gaf9e17bc2037d1bcb2f100526364afe14}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Instance\+Replacement\+Kind}} DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::instance\+\_\+replacement}
+
+
+
+The instance replacement policy when the \doxylink{structDDS__ResourceLimitsQosPolicy_ab7339605f314f50c7cb658426ff64cdb}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+instances} limit has been reached and a new instance is detected. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{group__DDSDataReaderResourceLimitsQosModule_ggaf9e17bc2037d1bcb2f100526364afe14af42e7e5d79b7262cf0466820995075a0}{DDS\+\_\+\+NO\+\_\+\+INSTANCE\+\_\+\+REPLACEMENT\+\_\+\+QOS} \Hypertarget{structDDS__DataReaderResourceLimitsQosPolicy_a598e4610e4a78199d9e2ad5c37043980}\index{DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}!max\_routes\_per\_writer@{max\_routes\_per\_writer}}
+\index{max\_routes\_per\_writer@{max\_routes\_per\_writer}!DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{max\_routes\_per\_writer}{max\_routes\_per\_writer}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderResourceLimitsQosPolicy_a598e4610e4a78199d9e2ad5c37043980} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+routes\+\_\+per\+\_\+writer}
+
+
+
+The maximum number of routes the reader will send to per matched writer. 
+
+Each \doxylink{classDDSDataReader}{DDSData\+Reader} maintains information about the state of its peer \doxylink{classDDSDataWriter}{DDSData\+Writer}, those it has matched with. Part of this state is which locators, or destination addresses, it should use to send data to a particular \doxylink{classDDSDataWriter}{DDSData\+Writer}. The \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_a598e4610e4a78199d9e2ad5c37043980}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+routes\+\_\+per\+\_\+writer} resource-\/limit limits the maximum number of routes that can be saved per \doxylink{classDDSDataWriter}{DDSData\+Writer}. 
+
+This resource-\/limit is shared across all matched \doxylink{classDDSDataWriter}{DDSData\+Writer} entities per \doxylink{classDDSDataReader}{DDSData\+Reader}. Thus, if \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_ae89be540f623745dab6b0d6379037da1}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+remote\+\_\+writers} is 2 and \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_a598e4610e4a78199d9e2ad5c37043980}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+routes\+\_\+per\+\_\+writer} is 4, a total of 8 routes can be saved for both \doxylink{classDDSDataWriter}{DDSData\+Writer} entities. One \doxylink{classDDSDataWriter}{DDSData\+Writer} entity may have 6 routes and the other 2. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 4 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, 2000\mbox{]} \Hypertarget{structDDS__DataReaderResourceLimitsQosPolicy_ab829f0f900a4eb50dd796040f70afb26}\index{DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}!max\_fragmented\_samples@{max\_fragmented\_samples}}
+\index{max\_fragmented\_samples@{max\_fragmented\_samples}!DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{max\_fragmented\_samples}{max\_fragmented\_samples}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderResourceLimitsQosPolicy_ab829f0f900a4eb50dd796040f70afb26} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+fragmented\+\_\+samples}
+
+
+
+The maximum number of samples for which the built-\/in topic \doxylink{classDDSDataReader}{DDSData\+Reader} may store fragments at a given point in time. 
+
+At any given time, a built-\/in topic \doxylink{classDDSDataReader}{DDSData\+Reader} may store fragments for up to {\ttfamily max\+\_\+fragmented\+\_\+samples} samples while waiting for the remaining fragments. These samples need not have consecutive sequence numbers and may have been sent by different built-\/in topic \doxylink{classDDSDataWriter}{DDSData\+Writer} instances. 
+
+Once all fragments of a sample have been received, the sample is treated as a regular sample and becomes subject to standard QoS settings such as \doxylink{structDDS__ResourceLimitsQosPolicy_a90db906a3958146c5e22557db648e7ff}{DDS\+\_\+\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+samples}. 
+
+The middleware will drop fragments if the {\ttfamily max\+\_\+fragmented\+\_\+samples} limit has been reached. For best-\/effort communication, the middleware will accept a fragment for a new sample, but drop the oldest fragmented sample from the same remote writer. For reliable communication, the middleware will not drop fragments for any new samples until all fragments have been received. \Hypertarget{structDDS__DataReaderResourceLimitsQosPolicy_a1f4afc77231d262ce0e1a320b5e6f964}\index{DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}!max\_fragmented\_samples\_per\_remote\_writer@{max\_fragmented\_samples\_per\_remote\_writer}}
+\index{max\_fragmented\_samples\_per\_remote\_writer@{max\_fragmented\_samples\_per\_remote\_writer}!DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{max\_fragmented\_samples\_per\_remote\_writer}{max\_fragmented\_samples\_per\_remote\_writer}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderResourceLimitsQosPolicy_a1f4afc77231d262ce0e1a320b5e6f964} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+fragmented\+\_\+samples\+\_\+per\+\_\+remote\+\_\+writer}
+
+
+
+The maximum number of samples per remote writer for which a \doxylink{classDDSDataReader}{DDSData\+Reader} may store fragments. 
+
+Logical limit so a single remote writer cannot consume all available resources. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} 256 
+
+{\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}1, 1 million\mbox{]}, \texorpdfstring{$<$}{<}= max\+\_\+fragmented\+\_\+samples \Hypertarget{structDDS__DataReaderResourceLimitsQosPolicy_ac1fd6a45e4766ce1e1a2488fbff41b23}\index{DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}!shmem\_ref\_transfer\_mode\_attached\_segment\_allocation@{shmem\_ref\_transfer\_mode\_attached\_segment\_allocation}}
+\index{shmem\_ref\_transfer\_mode\_attached\_segment\_allocation@{shmem\_ref\_transfer\_mode\_attached\_segment\_allocation}!DDS\_DataReaderResourceLimitsQosPolicy@{DDS\_DataReaderResourceLimitsQosPolicy}}
+\doxyparagraph{\texorpdfstring{shmem\_ref\_transfer\_mode\_attached\_segment\_allocation}{shmem\_ref\_transfer\_mode\_attached\_segment\_allocation}}
+{\footnotesize\ttfamily \label{structDDS__DataReaderResourceLimitsQosPolicy_ac1fd6a45e4766ce1e1a2488fbff41b23} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::shmem\+\_\+ref\+\_\+transfer\+\_\+mode\+\_\+attached\+\_\+segment\+\_\+allocation}
+
+
+
+Number of shared memory segments a Zero Copy transfer over shared memory \doxylink{classDDSDataReader}{DDSData\+Reader} can attach to at any given time. 
+
+The max\+\_\+count does not limit the total number of shared memory segments used by the \doxylink{classDDSDataReader}{DDSData\+Reader}. When this limit is hit, the \doxylink{classDDSDataReader}{DDSData\+Reader} will try to detach from a segment that doesn\textquotesingle{}t contain any loaned samples and attach to a new segment. If samples are loaned from all attached segments, then the \doxylink{classDDSDataReader}{DDSData\+Reader} will fail to attach to the new segment. This scenario will result in the sample being rejected. 
+
+{\bfseries{\mbox{[}default\mbox{]}}} \doxylink{structDDS__DataReaderResourceLimitsQosPolicy_ae89be540f623745dab6b0d6379037da1}{DDS\+\_\+\+Data\+Reader\+Resource\+Limits\+Qos\+Policy\+::max\+\_\+remote\+\_\+writers} {\bfseries{\mbox{[}range\mbox{]}}} \mbox{[}0, 1000000\mbox{]} 

@@ -1,0 +1,331 @@
+Debugging
+=========
+
+Overview
+--------
+
+|me| maintains a log of events occurring in a |me| application.
+Information on each event is formatted into a log entry. Each
+entry can be stored in a buffer, stringified into a displayable log message,
+and/or redirected to a user-defined log handler.
+
+For a list of error codes, please refer
+to :link_connextmicro_dds_api_c:`Logging Reference <group__LoggingModule.html>`.
+
+Configuring Logging
+-------------------
+
+By default, |me| sets the log verbosity to *Error*. It can be changed at
+any time by calling :link_connextmicro_dds_api_c:`OSAPI_Log_set_verbosity <group__OSAPILogClass.html>`
+using the desired verbosity as a parameter.
+
+.. note::
+
+  Logging is not available in |me_cert|.
+
+|me| stores new log entries in a log buffer.
+
+By default, the Debug libraries are configured with a larger log buffer size
+than the Release libraries. A custom buffer size can be configured
+using the :link_connextmicro_dds_api_c:`OSAPI_Log_set_property <group__OSAPILogClass.html>`
+function. For example, to set a buffer size of 128 bytes:
+
+.. code-block:: c
+
+  struct OSAPI_LogProperty prop = OSAPI_LogProperty_INITIALIZER;
+
+  OSAPI_Log_get_property(&prop);
+  prop.max_buffer_size = 128;
+  OSAPI_Log_set_property(&prop);
+
+Note that if the buffer size is too small, log entries will be truncated.
+
+The function used to output the log information can be set by using the function
+:link_connextmicro_dds_api_c:`OSAPI_Log_set_property <group__OSAPILogClass.html>`:
+
+.. code-block:: c
+
+  struct OSAPI_LogProperty prop = OSAPI_LogProperty_INITIALIZER;
+
+  OSAPI_Log_get_property(&prop);
+  prop.write_buffer = <pointer to user defined write function>;
+  OSAPI_Log_set_property(&prop);
+
+The function must have the prototype :link_connextmicro_dds_api_c:`OSAPI_Log_write_buffer_T <group__OSAPILogClass.html>`
+and will receive a buffer with the log information formatted as a NUL terminated
+string.
+
+Log Message Kinds
+-----------------
+
+Each log entry is classified as one of the following kinds:
+
+- *Error*. An unexpected event with negative functional impact.
+- *Warning*. An event that may not have negative functional
+  impact but could indicate an unexpected situation.
+- *Information*. An event logged for informative purposes.
+
+By default, the log verbosity is set to *Error*, so only
+error logs will be visible. To change the log verbosity, simply call
+the function :link_connextmicro_dds_api_c:`OSAPI_Log_set_verbosity <group__OSAPILogClass.html>`
+with the desired verbosity level.
+
+Interpreting Log Messages and Error Codes
+-----------------------------------------
+
+A log entry in |me| has a defined format.
+
+Each entry contains a header with (at minimum) the following information:
+
+- *Module ID*. A numerical ID of the module from which the message was logged.
+- *Error Code*. A numerical ID for the log message. It is unique within a
+  module.
+
+  .. note::
+
+    Though referred to as an "error" code, this ID exists for all log kinds
+    (error, warning, info). The module ID and error code together uniquely
+    identify a log message within |me|.
+
+By default, |me| also provides additional details per log message:
+
+- *Module Name*. The name of the module from which the message is
+  logged.
+- *File Name*. The name of the file from which the message is
+  logged.
+- *Line Number*. The line number of the source file from which the
+  message is logged.
+- *Function Name*. The name of the function from which the message is
+  logged.
+
+If desired, you can reduce or disable these details in your log messages with
+the :link_connextmicro_dds_api_c:`OSAPI_Log_set_verbosity <group__OSAPILogClass.html>`
+QoS policy.
+
+.. note::
+
+  When the log buffer for error messages fills up, further messages will
+  continue to be logged, but they will only include the *Module ID* and
+  *Error Code*; any additional details will be lost. You can increase the size
+  of your log buffer with the :link_connextmicro_dds_api_c:`OSAPI_Log_set_property <group__OSAPILogClass.html>`
+  QoS policy.
+
+When an event is logged, by default it is printed as a message to standard
+output. An example error entry looks like this:
+
+.. code-block:: bash
+
+    [943921909.645099999]ERROR: ModuleID=7 Errcode=200 X=1 E=0 T=1
+    dds_c/DomainFactory.c:163/DDS_DomainParticipantFactory_get_instance: kind=19
+
+Take note of the following error parameters:
+
+- ``X`` indicates extended debug information is present, such as file and line
+  number.
+- ``E`` indicates an exception; the log message has been truncated.
+- ``T`` indicates the log message has a valid timestamp (e.g., a successful call
+  to ``OSAPI_System_get_time()``).
+
+You must interpret the log message when an error or warning occurs and
+its cause needs to be determined, or if you have set a log handler that
+processes each log message based on its contents. You can find the description
+of an error code by following these steps:
+
+#. Go to the :link_connextmicro_dds_api_c:`Log Codes <group__LoggingModule.html>`
+   section of the API Reference.
+
+#. Open the module section corresponding to the *Module Name* in the second
+   line of your error message. If you don't have the *Module Name*, search for
+   the *Module ID* instead. In the example above, ``ModuleID=7`` corresponds to
+   the :link_connextmicro_dds_api_c:`DDS C <group__DDSCLogCodesClass.html>`
+   module.
+
+#. Search the module section for the *Error Code*. In the example above, with
+   ``Errcode=200``, search for ``200``; you will find the log message with the
+   value ``DDSC_LOG_BASE + 200``, which is "Out of resources to initialize
+   object of the specified kind."
+
+A description of an error code printed in a log message can be determined
+by following these steps:
+
+- Navigate to the module that corresponds to the Module ID, or the printed
+  module name in the second line.  In the above example, "ModuleID=7"
+  corresponds to DDS.
+- Search for the error code to find it in the list of the module's error codes.
+  In the example above, with "Errcode=200," search for "200" to find the
+  log message that has the value "(DDSC_LOG_BASE + 200)".
+
+
+Writing a Custom Log Handler
+----------------------------
+
+|me| provides two APIs to override how log events are handled:
+
+- A *display handler*, which displays the log event when called. Install it with
+  :link_connextmicro_dds_api_c:`OSAPI_Log_set_display_handler <group__OSAPILogClass.html#ga3cc0ad196b8cf232b50659406309df48>`.
+  You can use the display handler to show the log information in a suitable
+  format.
+
+- A *log handler*, which processes the log event when called. Install it with
+  :link_connextmicro_dds_api_c:`OSAPI_Log_set_log_handler <group__OSAPILogClass.html#ga8f6489e1a9c02a1190b7c7fcc7a78672>`.
+  You can use the log handler to store the log event, regardless of how it
+  is displayed.
+
+See the following code snippet for a complete implemenation of a log or
+display handler:
+
+.. note::
+
+  This function uses APIs that are not documented. These APIs may change in
+  future releases.
+
+.. code-block:: c
+
+        void
+        my_log_entry_handler(void *param, OSAPI_LogEntry_T *log_entry)
+        {
+            RTI_INT32 kind;
+            RTI_UINT32 eh;
+            RTI_UINT32 status = 0;
+            const char *module = "<not found>";
+            const char *file = "<not found>";
+            const char *func = "<not found>";
+            RTI_INT32 lineno = -1;
+            RTI_UINT32 sec;
+            RTI_UINT32 nsec;
+            char *data_ptr;
+            OSAPI_LogType_T type;
+            RTI_BOOL is_final = RTI_FALSE;
+            const char *name;
+            const void *value;
+
+            UNUSED_ARG(param);
+
+            /* kind is one of the following:
+             * OSAPI_LOGKIND_INFO
+             * OSAPI_LOGKIND_WARNING
+             * OSAPI_LOGKIND_ERROR
+             * OSAPI_LOGKIND_PRECONDITION
+             */
+            kind = OSAPI_LOG_HEADER_GET_TYPE(log_entry->error_code);
+
+            /* Extract detailed information from the event header. If the
+             * X-bit is set, it means extended information is available.
+             */
+            eh = log_entry->error_code;
+            if (OSAPI_LOG_HEADER_GET_X(log_entry->error_code))
+            {
+                data_ptr = (char*)(log_entry + 1);
+                status = *OSAPI_Compiler_reinterpret_cast(RTI_UINT32*,data_ptr);
+                data_ptr += sizeof(RTI_INT32);
+                if (status & OSAPI_LOG_STATUS_LN)
+                {
+                    lineno = *OSAPI_Compiler_reinterpret_cast(RTI_INT32*,data_ptr);
+                    data_ptr += (RTI_INT32)sizeof(RTI_INT32);
+                }
+                if (status & OSAPI_LOG_STATUS_MN)
+                {
+                    module = data_ptr;
+                    data_ptr += OSAPI_String_length(data_ptr) + 1;
+                }
+                if (status & OSAPI_LOG_STATUS_SF)
+                {
+                    file = data_ptr;
+                    data_ptr += OSAPI_String_length(data_ptr) + 1;
+                }
+                if (status & OSAPI_LOG_STATUS_FN)
+                {
+                    func = data_ptr;
+                    data_ptr += OSAPI_String_length(data_ptr) + 1;
+                }
+                if (status & OSAPI_LOG_STATUS_F)
+                {
+                    data_ptr += OSAPI_String_length(data_ptr) + 1;
+                }
+            }
+
+            sec = (RTI_UINT32)log_entry->timestamp.sec;
+            nsec = log_entry->timestamp.nanosec;
+
+            /* At this point the followig information is available:
+             *  module - The module the event occured in
+             *  file - The file the event occured in
+             *  func - The function the event occured in
+             *  lineno - The line number in file the event occured in
+             *  sec - The seconds the event occurred
+             *  nsec - The nanoseconds the event occurred
+             */
+
+            /* There may be additional information available, extract each
+             * individual field.
+             */
+            data_ptr = NULL;
+            is_final = RTI_FALSE;
+            while (OSAPI_Log_entry_get_data(log_entry,&data_ptr,&type,
+                                            &name,&value,&is_final))
+            {
+                /* On successful return, value points to a value of the specified
+                 * type
+                 */
+                switch (type)
+                {
+                    case OSAPI_LOGTYPE_HEX:
+                        /* value points to a 32-bit integer that is expected to
+                         * be displayed in hex format.
+                         */
+                        break;
+                    case OSAPI_LOGTYPE_INTEGER:
+                        /* value points to a 32-bit integer that is expected to
+                         * be displayed in decimal format.
+                         */
+                        break;
+                    case OSAPI_LOGTYPE_UINTEGER:
+                        /* value points to a 32-bit unsigned integer that is
+                         * expected to be displayed in decimal format.
+                         */
+                        break;
+                    case OSAPI_LOGTYPE_POINTER:
+                        /* value points to a pointer.
+                         */
+                        break;
+                    case OSAPI_LOGTYPE_STRING:
+                        /* value points to a NULL terminated string.
+                         */
+                        break;
+                    default:
+                        break;
+                }
+
+                if (is_final)
+                {
+                    /* there are no more values to display, exit loop */
+                    break;
+                }
+            }
+        }
+
+Contact Support
+---------------
+
+We welcome your input on how to improve |rti_me| to suit your needs. If you have
+questions or comments about this release, please visit the RTI Customer
+Portal, https://support.rti.com. The RTI Customer Portal provides access to
+RTI software, documentation, and support. It also allows you to log support
+cases.
+
+To access the software, documentation or log support cases,
+the RTI Customer Portal requires a username and password. You will receive
+this in the email confirming your purchase. If you do not have this email,
+please contact license@rti.com. Resetting your login password can be done
+directly at the RTI Customer Portal.
+
+Join the Community
+------------------
+
+|rti_community|_ provides a free public knowledge base containing
+how-to guides, detailed solutions, and example source code for many use cases.
+Search it whenever you need help using and developing with RTI products.
+
+|rti_community|_ also provides forums for all RTI users to connect and
+interact.
+

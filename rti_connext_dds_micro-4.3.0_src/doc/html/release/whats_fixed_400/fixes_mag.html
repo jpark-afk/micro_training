@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>10.5.8.10. Micro Application Generator &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/custom.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="10.5.8.11. OMG Specification Compliance" href="fixes_omg_specification_compliance.html" />
+    <link rel="prev" title="10.5.8.9. Generated Code (C, Traditional C++, and Modern C++)" href="fixes_generated_code_c_cpp_modern_cpp.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">10. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../compatibility.html">10.1. Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported_platforms.html">10.2. Supported Platforms and Programming Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whats_new_430.html">10.3. What’s New in 4.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whats_fixed_430/whats_fixed_430_index.html">10.4. What’s Fixed in 4.3.0</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../previous_release.html">10.5. Previous Releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../whats_new_420.html">10.5.1. What’s New in 4.2.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_fixed_420/whats_fixed_420_index.html">10.5.2. What’s Fixed in 4.2.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_new_410.html">10.5.3. What’s New in 4.1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_fixed_410/whats_fixed_410_index.html">10.5.4. What’s Fixed in 4.1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_new_401.html">10.5.5. What’s New in 4.0.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_fixed_401/whats_fixed_401_index.html">10.5.6. What’s Fixed in 4.0.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../whats_new_400.html">10.5.7. What’s New in 4.0.0</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="whats_fixed_400_index.html">10.5.8. What’s Fixed in 4.0.0</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="fixes_discovery.html">10.5.8.1. Discovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_serialization_and_deserialization.html">10.5.8.2. Serialization and Deserialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_usability.html">10.5.8.3. Usability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_transports.html">10.5.8.4. Transports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_reliability_protocol_and_wire_representation.html">10.5.8.5. Reliability Protocol and Wire Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_logging.html">10.5.8.6. Logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_performance_and_scalability.html">10.5.8.7. Performance and Scalability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_apis_c_or_traditional_cpp.html">10.5.8.8. APIs (C or Traditional C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_generated_code_c_cpp_modern_cpp.html">10.5.8.9. Generated Code (C, Traditional C++, and Modern C++)</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">10.5.8.10. Micro Application Generator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_omg_specification_compliance.html">10.5.8.11. OMG Specification Compliance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_interoperability.html">10.5.8.12. Interoperability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_vulnerabilities.html">10.5.8.13. Vulnerabilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixes_other.html">10.5.8.14. Other</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../known_issues.html">10.6. Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../experimental_features.html">10.7. Experimental Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html"><span class="section-number">10. </span>Release Notes</a> &raquo;</li>
+        
+          <li><a href="../previous_release.html"><span class="section-number">10.5. </span>Previous Releases</a> &raquo;</li>
+        
+          <li><a href="whats_fixed_400_index.html"><span class="section-number">10.5.8. </span>What’s Fixed in 4.0.0</a> &raquo;</li>
+        
+      <li><span class="section-number">10.5.8.10. </span>Micro Application Generator</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="micro-application-generator">
+<h1><span class="section-number">10.5.8.10. </span>Micro Application Generator<a class="headerlink" href="#micro-application-generator" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="major-nullpointerexception-when-using-outputfinalqos-if-qos-profile-did-not-define-each-internal-qos">
+<h2><span class="section-number">10.5.8.10.1. </span><span class="major">[Major]</span> NullPointerException when using -outputFinalQoS if QoS Profile did not define each internal QoS<a class="headerlink" href="#major-nullpointerexception-when-using-outputfinalqos-if-qos-profile-did-not-define-each-internal-qos" title="Permalink to this headline">¶</a></h2>
+<p>When using MAG with the <code class="docutils literal notranslate"><span class="pre">-outputFinalQoS</span></code> option, if the QoS Profile to check did not contain
+a definition of each internal QoS (participant_qos, publisher_qos, etc.) directly or by inheriting
+from another QoS Profile, MAG reported this error:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Exception in thread &quot;main&quot; java.lang.NullPointerException</span>
+<span class="go">   at com.rti.micro.appgen.utils.QosUtils.removeNullElementsFromList(QosUtils.java:2332)</span>
+<span class="go">   at com.rti.micro.appgen.utils.QosUtils.removeNullElements(QosUtils.java:2256)</span>
+<span class="go">   at com.rti.micro.appgen.MicroAppGen.main(MicroAppGen.java:328)</span>
+</pre></div>
+</div>
+<p>[RTI Issue ID MAG-121]</p>
+</div>
+<div class="section" id="minor-mag-failed-to-generate-code-when-qos-profile-inherited-from-individual-qos-policies">
+<h2><span class="section-number">10.5.8.10.2. </span><span class="minor">[Minor]</span> MAG failed to generate code when qos_profile inherited from individual QoS policies<a class="headerlink" href="#minor-mag-failed-to-generate-code-when-qos-profile-inherited-from-individual-qos-policies" title="Permalink to this headline">¶</a></h2>
+<p>MAG failed to generate code when a <code class="docutils literal notranslate"><span class="pre">&lt;qos_profile&gt;</span></code> inherited from individual
+QoS policies. For example, running MAG with the following input file caused an
+error:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;qos_library</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;QosLibrary&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;qos_profile</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;QosProfile1&quot;</span><span class="w"> </span><span class="na">is_default_qos=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;participant_qos</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;QosParticipant&quot;</span><span class="nt">&gt;</span>
+<span class="w">         </span>...
+<span class="w">      </span><span class="nt">&lt;/participant_qos&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/qos_profile&gt;</span>
+<span class="w">   </span><span class="nt">&lt;qos_profile</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;QosProfile2&quot;</span><span class="w"> </span><span class="na">base_name=</span><span class="s">&quot;QosProfile1::QosParticipant&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/qos_profile&gt;</span>
+<span class="nt">&lt;/qos_library&gt;</span>
+</pre></div>
+</div>
+<p>The error was:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">...</span>
+<span class="go">11:31:40.548 [main] ERROR com.rti.micro.appgen.MicroAppGen - Failed to calculate the system model.</span>
+<span class="go">java.lang.Exception: Unable to find QoS library/profile &#39;QosProfile1::QosParticipant&#39;.</span>
+<span class="go">...</span>
+<span class="go">11:31:40.552 [main] INFO com.rti.micro.appgen.MicroAppGen - Exiting.</span>
+</pre></div>
+</div>
+<p>Now MAG properly handles this case.</p>
+<p>[RTI Issue ID MAG-105]</p>
+</div>
+<div class="section" id="minor-mag-always-used-default-value-for-disable-auto-interface-config">
+<h2><span class="section-number">10.5.8.10.3. </span><span class="minor">[Minor]</span> MAG always used default value for disable_auto_interface_config<a class="headerlink" href="#minor-mag-always-used-default-value-for-disable-auto-interface-config" title="Permalink to this headline">¶</a></h2>
+<p>MAG always used the default value for <code class="docutils literal notranslate"><span class="pre">disable_auto_interface_config</span></code> in
+the generated code, regardless of the value specified in the XML.</p>
+<p>[RTI Issue ID MAG-110]</p>
+</div>
+<div class="section" id="minor-mag-failed-if-arguments-contained-whitespace-on-linux-systems">
+<h2><span class="section-number">10.5.8.10.4. </span><span class="minor">[Minor]</span> MAG failed if arguments contained whitespace on Linux systems<a class="headerlink" href="#minor-mag-failed-if-arguments-contained-whitespace-on-linux-systems" title="Permalink to this headline">¶</a></h2>
+<p>On Linux systems, MAG failed to run if any arguments contained whitespace.
+It logged an error similar to the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">12:04:55.205 [main] ERROR com.rti.micro.appgen.MicroAppGen - Only 1 input file</span>
+<span class="go">can be processed.</span>
+<span class="go">12:04:55.208 [main] INFO  com.rti.micro.appgen.MicroAppGen - Exiting.</span>
+</pre></div>
+</div>
+<p>[RTI Issue ID MAG-118]</p>
+</div>
+<div class="section" id="trivial-xsd-validation-failed-if-flags-used-a-combination-of-values">
+<h2><span class="section-number">10.5.8.10.5. </span><span class="trivial">[Trivial]</span> XSD validation failed if flags used a combination of values<a class="headerlink" href="#trivial-xsd-validation-failed-if-flags-used-a-combination-of-values" title="Permalink to this headline">¶</a></h2>
+<p>The XSD validation of an XML application file failed if there was
+a UDPv4 configuration using a combination of values for the <code class="docutils literal notranslate"><span class="pre">flags</span></code>
+element. For example, this snippet caused an error:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;transport_builtin&gt;</span>
+<span class="w">   </span><span class="nt">&lt;udpv4&gt;</span>
+<span class="w">         </span><span class="nt">&lt;interface_table&gt;</span>
+<span class="w">            </span><span class="nt">&lt;element&gt;</span>
+<span class="w">               </span><span class="nt">&lt;flags&gt;</span>
+<span class="w">                     </span>UDP_INTERFACE_INTERFACE_UP_FLAG|UDP_INTERFACE_INTERFACE_MULTICAST_FLAG
+<span class="w">               </span><span class="nt">&lt;/flags&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">         </span><span class="nt">&lt;/interface_table&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/udpv4&gt;</span>
+<span class="nt">&lt;/transport_builtin&gt;</span>
+</pre></div>
+</div>
+<p>The error was:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ERROR com.rti.micro.appgen.MicroAppGen - cvc-pattern-valid:</span>
+<span class="go">Value &#39;UDP_INTERFACE_INTERFACE_UP_FLAG|UDP_INTERFACE_INTERFACE_MULTICAST_FLAG&#39;</span>
+<span class="go">is not facet-valid with respect to pattern</span>
+<span class="go">&#39;(UDP_INTERFACE_INTERFACE_UP_FLAG|UDP_INTERFACE_INTERFACE_MULTICAST_FLAG)&#39;</span>
+<span class="go">for type &#39;udpInterfaceFlagMask&#39;.</span>
+</pre></div>
+</div>
+<p>Now combinations are allowed.</p>
+<p>[RTI Issue ID MAG-114]</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fixes_omg_specification_compliance.html" class="btn btn-neutral float-right" title="10.5.8.11. OMG Specification Compliance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fixes_generated_code_c_cpp_modern_cpp.html" class="btn btn-neutral float-left" title="10.5.8.9. Generated Code (C, Traditional C++, and Modern C++)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

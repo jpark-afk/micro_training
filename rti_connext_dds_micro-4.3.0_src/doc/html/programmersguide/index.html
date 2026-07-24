@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Programmer’s Guide &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/tabs.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.1. Data Types" href="types.html" />
+    <link rel="prev" title="2.10. Create DataReader" href="../developing/createdatareader.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Programmer’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">3.2. DDS Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html">3.3. Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html">3.4. Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html">3.5. DDS Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html">3.6. Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html">3.7. User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html">3.8. Partitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html">3.9. Content Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html">3.10. Generating Type Support with rtiddsgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">3.11. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html">3.12. Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html">3.13. Message Integrity Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html">3.14. Sending Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html">3.15. Zero Copy Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html">3.16. FlatData Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html">3.17. Application Generation Using XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qos_mapping_xml.html">3.18. QoS Mapping in XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html">3.19. Building Against FACE Conformance Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">3.20. Working With Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.21. Example Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html">3.22. Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">3.23. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html">3.24. Transport Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html">3.25. Startup Time Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">14. Appendices</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">3. </span>Programmer’s Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="programmer-s-guide">
+<span id="section-users-manual"></span><h1><span class="section-number">3. </span>Programmer’s Guide<a class="headerlink" href="#programmer-s-guide" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="types.html">3.1. Data Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#introduction-to-the-type-system">3.1.1. Introduction to the Type System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#creating-user-data-types-with-idl">3.1.2. Creating User Data Types with IDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#working-with-dds-data-samples">3.1.3. Working with DDS Data Samples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="entities.html">3.2. DDS Entities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sending.html">3.3. Sending Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sending.html#preview-steps-to-sending-data">3.3.1. Preview: Steps to Sending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html#publishers">3.3.2. Publishers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html#datawriters">3.3.3. DataWriters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sending.html#supported-qos-policies">3.3.4. Supported QoS policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="receiving.html">3.4. Receiving Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html#preview-steps-to-receiving-data">3.4.1. Preview: Steps to Receiving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html#subscribers">3.4.2. Subscribers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html#datareaders">3.4.3. DataReaders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html#using-datareaders-to-access-data-read-take">3.4.4. Using DataReaders to Access Data (Read &amp; Take)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiving.html#supported-qos-policies">3.4.5. Supported QoS policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="domains.html">3.5. DDS Domains</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="domains.html#fundamentals-of-dds-domains-and-domainparticipants">3.5.1. Fundamentals of DDS Domains and DomainParticipants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html#discovery-announcements">3.5.2. Discovery Announcements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="discovery.html">3.6. Discovery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html#what-is-discovery">3.6.1. What is Discovery?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html#configuring-participant-discovery-peers">3.6.2. Configuring Participant Discovery Peers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html#configuring-initial-peers-and-adding-peers">3.6.3. Configuring Initial Peers and Adding Peers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html#configuring-discovery-data-reception">3.6.4. Configuring Discovery Data Reception</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html#configuring-user-data-reception">3.6.5. Configuring User Data Reception</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html#configuring-user-data-reception-per-datareader-or-datawriter">3.6.6. Configuring User Data Reception per DataReader or DataWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html#discovery-plugins">3.6.7. Discovery Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html#asymmetric-matching-and-lost-samples">3.6.8. Asymmetric Matching and Lost Samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html#domainparticipant-discovery-by-name">3.6.9. DomainParticipant Discovery by Name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html#queueing-discovery-messages">3.6.10. Queueing Discovery Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html#restarting-discovery">3.6.11. Restarting Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery.html#interoperating-with-core-pro-h-discovery">3.6.12. Interoperating with Connext Professional Discovery</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="userdiscoverydata.html">3.7. User Discovery Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html#introduction">3.7.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html#resource-limits">3.7.2. Resource Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html#propagating-user-discovery-data">3.7.3. Propagating User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html#accessing-user-discovery-data">3.7.4. Accessing User Discovery Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userdiscoverydata.html#qos-policies">3.7.5. QoS Policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html">3.8. Partitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html#introduction">3.8.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html#rules-for-partition-matching">3.8.2. Rules for partition matching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html#pattern-matching-for-partition-names">3.8.3. Pattern matching for partition names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html#example">3.8.4. Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html#properties">3.8.5. Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="partitions.html#resource-limits">3.8.6. Resource limits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content_filtering.html">3.9. Content Filtering</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html#creating-a-content-filter">3.9.1. Creating a content filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html#where-filtering-is-applied">3.9.2. Where filtering is applied</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html#interoperability">3.9.3. Interoperability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html#sql-filter-expression-notation">3.9.4. SQL filter expression notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_filtering.html#custom-filters">3.9.5. Custom filters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rtiddsgen.html">3.10. Generating Type Support with rtiddsgen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html#why-use-rtiddsgen">3.10.1. Why Use rtiddsgen?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html#idl-type-definition">3.10.2. IDL Type Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html#generating-type-support">3.10.3. Generating Type Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html#using-custom-types-in-me-h-applications">3.10.4. Using Custom Types in Connext Micro Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html#customizing-generated-code">3.10.5. Customizing Generated Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtiddsgen.html#unsupported-features-of-rtiddsgen-with-me-h">3.10.6. Unsupported Features of rtiddsgen with Connext Micro</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="threads.html">3.11. Threading Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#introduction">3.11.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#architectural-overview">3.11.2. Architectural Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#thread-model">3.11.3. Threading Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#thread-safety">3.11.4. Thread Safety</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#critical-sections">3.11.5. Critical Sections</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="batching.html">3.12. Batching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="batching.html#overview">3.12.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html#interoperability">3.12.2. Interoperability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html#performance">3.12.3. Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching.html#example-configuration">3.12.4. Example Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="msgintegrity.html">3.13. Message Integrity Checking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html#rtps-checksum">3.13.1. RTPS checksum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html#configurations">3.13.2. Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html#participant-discovery-and-compatibility">3.13.3. Participant discovery and compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msgintegrity.html#interoperability-with-core-pro-h">3.13.4. Interoperability with Connext Professional</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="largedata.html">3.14. Sending Large Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html#how-sending-large-data-works">3.14.1. How Sending Large Data Works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html#key-properties-of-fragmentation">3.14.2. Key Properties of Fragmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html#differences-between-fragmentation-and-transport-limits">3.14.3. Differences Between Fragmentation and Transport Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html#components-involved-in-sending-large-data">3.14.4. Components Involved in Sending Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html#configuring-large-data-support">3.14.5. Configuring Large Data Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html#when-to-choose-synchronous-vs-asynchronous-publishing">3.14.6. When to Choose Synchronous vs Asynchronous Publishing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html#complete-example">3.14.7. Complete Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="largedata.html#limitations">3.14.8. Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="zerocopy.html">3.15. Zero Copy Transfer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html#compatibility">3.15.1. Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html#overview">3.15.2. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html#getting-started">3.15.3. Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html#synchronizing-samples">3.15.4. Synchronizing samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerocopy.html#caveats">3.15.5. Caveats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flatdata.html">3.16. FlatData Language Binding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html#overview">3.16.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html#getting-started">3.16.2. Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatdata.html#further-information">3.16.3. Further Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="appgen.html">3.17. Application Generation Using XML</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html#defining-an-application-in-xml">3.17.1. Defining an Application in XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html#generating-the-application-from-xml">3.17.2. Generating the Application from XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html#creating-the-application">3.17.3. Creating the Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html#examine-example-xml-configuration-files">3.17.4. Examine example XML configuration files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html#generating-autosar-applications">3.17.5. Generating AUTOSAR Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html#generating-native-dds-applications-with-deployment-aware-code-generation">3.17.6. Generating native DDS applications with deployment-aware code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appgen.html#errors-caused-by-invalid-configurations">3.17.7. Errors caused by invalid configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="qos_mapping_xml.html">3.18. QoS Mapping in XML</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="qos_mapping_xml.html#domain-participant-qos-qos-mapping">3.18.1. Domain Participant Qos QoS Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qos_mapping_xml.html#domain-participant-factory-qos-qos-mapping">3.18.2. Domain Participant Factory Qos QoS Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qos_mapping_xml.html#publisher-qos-mapping">3.18.3. Publisher QoS mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qos_mapping_xml.html#subscriber-qos-mapping">3.18.4. Subscriber QoS mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qos_mapping_xml.html#topic-qos-mapping">3.18.5. Topic QoS mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qos_mapping_xml.html#datareader-qos-mapping">3.18.6. DataReader QoS mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qos_mapping_xml.html#datawriter-qos-mapping">3.18.7. DataWriter QoS mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qos_mapping_xml.html#structural-elements-mapping">3.18.8. Structural elements mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="face.html">3.19. Building Against FACE Conformance Libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="face.html#requirements">3.19.1. Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html#face-golden-libraries">3.19.2. FACE golden libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face.html#building-instructions">3.19.3. Building instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sequences.html">3.20. Working With Sequences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html#introduction">3.20.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html#id1">3.20.2. Working with Sequences</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">3.21. Example Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#generating-examples">3.21.1. Generating examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#provided-examples">3.21.2. Provided examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security_psk.html">3.22. Lightweight Security Plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html#overview">3.22.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html#downloading-and-installing-the-lightweight-security-plugin">3.22.2. Downloading and Installing the Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html#getting-started">3.22.3. Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html#configuring-the-lightweight-security-plugin">3.22.4. Configuring the Lightweight Security Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html#technical-considerations">3.22.5. Technical Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_psk.html#interoperability">3.22.6. Interoperability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">3.23. Memory Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#resource-limits">3.23.1. Resource limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#dynamic-memory-allocation">3.23.2. Dynamic memory allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#dds-resource-limits">3.23.3. DDS resource limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#discovery-plugin-resource-limits">3.23.4. Discovery plugin resource limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#type-support-resource-limits">3.23.5. Type support resource limits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="transport_priority.html">3.24. Transport Priority</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html#using-transport-priority-with-udp">3.24.1. Using transport priority with UDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html#configuring-transport-priority">3.24.2. Configuring transport priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html#examples">3.24.3. Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html#enforcing-priority-selection">3.24.4. Enforcing priority selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_priority.html#system-resource-and-performance-considerations">3.24.5. System resource and performance considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="startup_time.html">3.25. Startup Time Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html#understanding-the-startup-process">3.25.1. Understanding the startup process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html#minimizing-startup-time">3.25.2. Minimizing startup time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html#measuring-startup-time">3.25.3. Measuring startup time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup_time.html#validating-startup-time-improvements">3.25.4. Validating startup time improvements</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="types.html" class="btn btn-neutral float-right" title="3.1. Data Types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../developing/createdatareader.html" class="btn btn-neutral float-left" title="2.10. Create DataReader" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

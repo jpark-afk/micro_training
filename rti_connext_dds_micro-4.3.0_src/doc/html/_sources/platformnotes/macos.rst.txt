@@ -1,0 +1,133 @@
+.. raw:: latex
+
+  \newpage
+  \begin{landscape}
+
+macOS Platforms
+===============
+
+The following table shows the currently supported macOS platforms.
+
+.. list-table:: Supported macOS Platforms
+   :widths: 10 10 10 10 10 25 25
+   :header-rows: 1
+   :class: longtable
+
+   * - OS
+     - Version
+     - CPU
+     - Network Stack
+     - Toolchain
+     - Architecture PIL
+     - Architecture PSL
+   * - macOS
+     - 14
+     - arm64
+     - OS Default
+     - clang 15.0
+     - armv8leMachOclang15.0
+
+       armv8leMachOclang15.0CERT
+     - armv8leMachOclang15.0-Darwin23
+
+       armv8leMachOclang15.0CERT-Darwin23
+
+How the PIL was built for macOS platforms
+-----------------------------------------
+
+This section describes how RTI built the Platform Independent Library (PIL)
+for macOS.
+
+The following table shows the compiler flags RTI used to create
+the PIL for macOS platforms:
+
+.. list-table:: PIL Compiler Flags for macOS Platforms
+   :name: MacosRequiredFlags
+   :widths: 30 20 50
+   :header-rows: 1
+   :class: longtable
+
+   * - Architecture PIL
+     - Library Format
+     - Compiler Flags Used by RTI
+   * - armv8leMachOclang15.0
+     - Static Release
+     - **C Flags:** -std=c99 -nostdinc -O2  -fstrict-aliasing -fsigned-char -fPIC -DNDEBUG |br|
+       **C++ Flags:** -fstrict-aliasing -fsigned-char -O2 -fPIC -DNDEBUG
+   * -
+     - Shared Release
+     - **C Flags:** -std=c99 -nostdinc -O2  -fstrict-aliasing -fsigned-char -fPIC -DNDEBUG |br|
+       **C++ Flags:** -fstrict-aliasing -fsigned-char -O2 -fPIC -DNDEBUG
+   * -
+     - Static Debug
+     - **C Flags:** -std=c99 -fsigned-char -nostdinc  -fstrict-aliasing -g -fPIC |br|
+       **C++ Flags:** -fsigned-char -fstrict-aliasing -g -fPIC
+   * -
+     - Shared Debug
+     - **C Flags:** -std=c99 -fsigned-char -nostdinc  -fstrict-aliasing -g -fPIC |br|
+       **C++ Flags:** -fsigned-char -fstrict-aliasing -g -fPIC
+   * - armv8leMachOclang15.0CERT
+     - Static Release
+     - **C Flags:** -std=c99 -O2 -fsigned-char -nostdinc -fstrict-aliasing -fPIC -DNDEBUG
+   * -
+     - Static Debug
+     - **C Flags:** -std=c99 -fsigned-char -nostdinc  -fstrict-aliasing -g -fPIC
+
+.. warning::
+
+  The |rti_me| platform independent libraries are built without the standard C
+  header-files. However, |me| makes one direct call to
+  the C library API ``qsort``. In addition, CLANG may insert direct calls
+  to GLIBC functions and other required functions, such as default C++
+  constructors and destructors. For this reason, it is necessary to use a
+  CLANG version that is compatible with the CLANG version used to build the
+  platform independent libraries, or provide a C library with an implementation
+  of the required functions. Future versions of |rti_me| will remove these
+  dependencies.
+
+Building the PSL from source for macOS platforms
+------------------------------------------------
+
+Refer to :ref:`psl_compiling` for instructions on how to build your own
+Platform Support Library (PSL) for macOS platforms.
+
+The following table shows the compiler flags and required options that RTI
+used to build the PSL for macOS platforms. When you build the PSL with
+``rtime-make``, the ``--target`` argument automatically adds all the necessary
+flags for the specified architecture.
+
+.. list-table:: PSL Compiler Flags for macOS Platforms
+   :widths: 30 20 50
+   :header-rows: 1
+   :class: longtable
+
+   * - Architecture PSL
+     - Library Format
+     - Compiler Flags Used by RTI
+   * - armv8leMachOclang15.0-Darwin23
+     - Static Release
+     - **C Flags:** -std=c99  -fsigned-char -O2 -fstrict-aliasing -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=11 -fPIC -DNDEBUG |br|
+       **C++ Flags:** -fstrict-aliasing -fsigned-char -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=11 -fPIC -DNDEBUG
+   * -
+     - Shared Release
+     - **C Flags:** -std=c99  -fsigned-char -O2 -fstrict-aliasing -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=11 -fPIC -DNDEBUG |br|
+       **C++ Flags:** -fstrict-aliasing -fsigned-char -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=11 -fPIC -DNDEBUG
+   * -
+     - Static Debug
+     - **C Flags:** -std=c99  -fsigned-char -fstrict-aliasing -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=11 -fPIC |br|
+       **C++ Flags:** -fsigned-char -fstrict-aliasing -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=11 -fPIC
+   * -
+     - Shared Debug
+     - **C Flags:** -std=c99  -fsigned-char -fstrict-aliasing -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=11 -fPIC |br|
+       **C++ Flags:** -fsigned-char -fstrict-aliasing -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=11 -fPIC
+   * - armv8leMachOclang15.0CERT-Darwin23
+     - Static Release
+     - **C Flags:** -std=c99 -fsigned-char -O2 -fstrict-aliasing -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=11 -fPIC -DNDEBUG
+   * -
+     - Static Debug
+     - **C Flags:** -std=c99  -fsigned-char -fstrict-aliasing -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=11 -fPIC
+
+.. raw:: latex
+
+  \end{landscape}
+  \newpage

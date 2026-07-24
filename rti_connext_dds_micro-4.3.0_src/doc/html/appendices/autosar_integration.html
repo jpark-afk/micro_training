@@ -1,0 +1,1268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>14.1. Appendix A: AUTOSAR Integration Example &mdash; RTI Connext Micro User&#39;s Manual 4.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="14.2. Appendix B: AUTOSAR Architecture Example" href="autosar_architecture.html" />
+    <link rel="prev" title="14. Appendices" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RTI Connext Micro User's Manual
+          
+
+          
+            
+            <img src="../_static/rti-logo-FINALv2-White-OrangeDot.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing/index.html">2. Developing Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programmersguide/index.html">3. Programmer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transports/index.html">4. Transports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">5. Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platformnotes/index.html">6. Platforms Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">7. Connext Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">8. Migrating from Connext Professional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">9. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">10. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark/index.html">11. Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../copyrights.html">12. Copyrights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3rdparty/index.html">13. Third-Party and Open Source Software</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">14. Appendices</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">14.1. Appendix A: AUTOSAR Integration Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-dds-integrates-with-autosar">14.1.1. How DDS integrates with AUTOSAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integration-steps">14.1.2. Integration steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reference-implementation">14.1.2.1. Reference implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-the-autosar-bsw">14.1.2.2. Configuring the AUTOSAR BSW</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-rte">14.1.2.3. Configuring RTE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integrating-source-code">14.1.2.4. Integrating source code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-and-flashing">14.1.2.5. Building and flashing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#validating-integration">14.1.2.6. Validating integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#understanding-the-architecture">14.1.3. Understanding the architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#customizing-for-your-application">14.1.4. Customizing for your application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#add-a-new-data-type-and-topic">14.1.4.1. Add a new data type and Topic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#change-qos-from-reliable-to-best-effort">14.1.4.2. Change QoS from Reliable to Best-Effort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tune-timing-for-your-application">14.1.4.3. Tune timing for your application</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">14.1.5. Troubleshooting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dds-entities-not-created">14.1.5.1. DDS entities not created</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#no-dds-discovery">14.1.5.2. No DDS discovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-not-received">14.1.5.3. Data not received</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#high-cpu-usage">14.1.5.4. High CPU usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#out-of-memory">14.1.5.5. Out of memory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#api-quick-reference">14.1.6. API quick reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memory-sizing">14.1.7. Memory sizing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#related-documentation">14.1.8. Related documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autosar_architecture.html">14.2. Appendix B: AUTOSAR Architecture Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_contents.html">14.3. Appendix C: Package Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_contents.html#appendix-d-directory-structure">14.4. Appendix D: Directory Structure</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RTI Connext Micro User's Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">14. </span>Appendices</a> &raquo;</li>
+        
+      <li><span class="section-number">14.1. </span>Appendix A: AUTOSAR Integration Example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="appendix-a-autosar-integration-example">
+<span id="section-autosar-integration"></span><h1><span class="section-number">14.1. </span>Appendix A: AUTOSAR Integration Example<a class="headerlink" href="#appendix-a-autosar-integration-example" title="Permalink to this headline">¶</a></h1>
+<p>This guide walks you through an example of integrating <em>Connext Micro</em> into your
+AUTOSAR Classic Platform workspace as a Complex Device Driver (CDD). It is
+written for platform integrators with experience in AUTOSAR software, network
+configuration, and basic DDS concepts.</p>
+<p>We’ll cover how to get DDS communication working in your AUTOSAR basic
+software (BSW), understanding the architecture and design, and customizing
+DDS for your application needs. When finished, you should be able to the
+following:</p>
+<ul class="simple">
+<li><p>Electronic Control Unit (ECU) boots and acquires IP address;</p></li>
+<li><p>DDS CDD initializes successfully;</p></li>
+<li><p><em>Admin Console</em> discovers the ECU <em>DomainParticipant</em>;</p></li>
+<li><p>Bidirectional data exchange verified.</p></li>
+</ul>
+<p>This guide does NOT cover production deployment (beyond AUTOSAR integration),
+application-specific requirements, or platform-specific optimizations.</p>
+<div class="section" id="how-dds-integrates-with-autosar">
+<h2><span class="section-number">14.1.1. </span>How DDS integrates with AUTOSAR<a class="headerlink" href="#how-dds-integrates-with-autosar" title="Permalink to this headline">¶</a></h2>
+<p>Before diving into configuration, let’s understand how DDS integrates
+into the AUTOSAR Classic Platform.</p>
+<p>DDS is integrated as a CDD Software Component (SW-C)
+that acts as a proxy between Application SW-Cs and the network. DDS <em>Topics</em>
+map to RTE port interfaces, enabling Application SW-Cs to publish and
+subscribe to DDS data through standard RTE API calls.</p>
+<p>The following diagram outlines the data flow through a DDS-integrated system:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>       ┌──────────────────┐
+       │ Application SW-C │
+       │    (Your App)    │
+       └────────┬─▲───────┘
+                │ │
+                │ │ RTE Ports
+                │ │
+┌───────────────▼─┴─────────────────────────┐
+│                AUTOSAR RTE                │
+│          (Runtime Environment)            │
+└──────────────────────────────────┬─▲──────┘
+                                   │ │
+                                   │ │ RTE Ports
+                                   │ │
+┌──────────────────────────────────│-│─────────┐
+│                BSW Layer         │ │         │
+│                                  │ │         │
+│  ┌──────────┐            ┌───────▼─┴──────┐  │
+│  │  TcpIp   │◄───────────│  DDS CDD SW-C  │  │
+│  │   BSW    │───────────►│                │  │
+│  └────┬─▲───┘            └────────────────┘  │
+|       | |                                    |
+│       ▼ ▲  (EthIf, Eth, EthTrcv)             │
+└───────┼─|────────────────────────────────────┘
+        │ |
+        ▼ |
+  MAC/PHY Hardware
+</pre></div>
+</div>
+<p>We can summarize the data flow as follows:</p>
+<p><strong>Publishing:</strong> When publishing data, the application SW-C
+writes to an RTE port, which triggers the DDS CDD runnable. The DDS CDD then
+publishes the data via the TcpIp stack to the network.</p>
+<p><strong>Subscribing:</strong> When subscribing to data, the TcpIp stack
+receives data from the network, and the DDS Middleware (<em>Connext Micro</em>) processes it by
+storing samples, applying QoS policies, and managing reliability. The DDS CDD
+periodically polls the <em>DataReader</em> to check for new data, converts it, and
+writes it to the RTE port. Finally, the application SW-C reads the data from
+the RTE port.</p>
+<p>From the perspective of the application SW-C, DDS communication
+looks like standard AUTOSAR inter-SW-C communication through RTE ports.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>DDS data processing can alternatively be triggered by
+event-driven callbacks using WaitSets or other <em>Connext Micro</em> mechanisms. This
+reference implementation uses periodic polling via cyclic tasks for
+simplicity.</p>
+</div>
+</div>
+<div class="section" id="integration-steps">
+<h2><span class="section-number">14.1.2. </span>Integration steps<a class="headerlink" href="#integration-steps" title="Permalink to this headline">¶</a></h2>
+<p>Before starting, you must have the following hardware and software:</p>
+<ul class="simple">
+<li><p>A Target ECU with Ethernet MAC (Media Access Control) and
+PHY (Physical Layer Transceiver)</p></li>
+<li><p>Ethernet cable and network switch</p></li>
+<li><p>Windows or Linux PC for <em>Admin Console</em></p></li>
+<li><p>AUTOSAR BSW with operational TcpIp stack</p></li>
+<li><p>Run Time Environment (RTE) generator and configuration tools</p></li>
+<li><p>Build toolchain for target platform</p></li>
+<li><p>RTI <em>Admin Console</em> installed</p></li>
+</ul>
+<div class="section" id="reference-implementation">
+<h3><span class="section-number">14.1.2.1. </span>Reference implementation<a class="headerlink" href="#reference-implementation" title="Permalink to this headline">¶</a></h3>
+<p>RTI provides a complete reference implementation of AUTOSAR integration,
+consisting of:</p>
+<ul class="simple">
+<li><p>A reference DDS-XML configuration (<code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code>);</p></li>
+<li><p>A complete DDS CDD: SW-C template (reference ARXML), adapter, and DDS
+implementation;</p></li>
+<li><p>An example application SW-C (reference ARXML).</p></li>
+</ul>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code> file is the “source of truth”
+for DDS configuration. Network settings (such as IP addresses and domain IDs)
+and QoS profiles defined here <em>must</em> match your AUTOSAR BSW configuration.</p>
+</div>
+<p>The following will be used as-is:</p>
+<ul class="simple">
+<li><p>DDS CDD source code and SW-C ARXML</p></li>
+<li><p>Example application SW-C ARXML</p></li>
+<li><p>State machine initialization sequence</p></li>
+<li><p>Example data types (initially)</p></li>
+</ul>
+<p>You must configure the following for your specific platform:</p>
+<ul class="simple">
+<li><p>Network settings (IP address)</p></li>
+<li><p>BSW integration (TcpIp, OS, BswM)</p></li>
+<li><p>Reference SW-C integration (import reference ARXML files, no
+modification needed)</p></li>
+<li><p>Build system integration</p></li>
+</ul>
+</div>
+<div class="section" id="configuring-the-autosar-bsw">
+<h3><span class="section-number">14.1.2.2. </span>Configuring the AUTOSAR BSW<a class="headerlink" href="#configuring-the-autosar-bsw" title="Permalink to this headline">¶</a></h3>
+<p>Your AUTOSAR BSW is configured in <code class="docutils literal notranslate"><span class="pre">MCU_DDS_CDD/config/dds_system.xml</span></code>.
+Before configuring, review <code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code> to
+understand some key parts of the reference configuration:</p>
+<ul class="simple">
+<li><p>Network settings: IP address (e.g., 192.168.1.100), netmask, and multicast
+addresses.</p></li>
+<li><p>Domain ID: Found in <code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name=&quot;myDomain&quot;</span> <span class="pre">domain_id=&quot;0&quot;&gt;</span></code>.</p></li>
+<li><p>QoS profiles: <code class="docutils literal notranslate"><span class="pre">DefaultProfile</span></code>, <code class="docutils literal notranslate"><span class="pre">CddProfile</span></code>, and <code class="docutils literal notranslate"><span class="pre">PcProfile</span></code>.</p></li>
+<li><p>Topics: <code class="docutils literal notranslate"><span class="pre">MCUtoPC</span></code> and <code class="docutils literal notranslate"><span class="pre">PCtoMCU</span></code>.</p></li>
+</ul>
+<p>Your AUTOSAR BSW configuration must match these DDS-XML settings.</p>
+<p>This section contains ALL required BSW configuration. The integration
+will not work without these settings.</p>
+<div class="section" id="tcpip-bsw-configuration">
+<h4><span class="section-number">14.1.2.2.1. </span>TcpIp BSW Configuration<a class="headerlink" href="#tcpip-bsw-configuration" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic">
+<li><p>Ensure the socket owner <code class="docutils literal notranslate"><span class="pre">GetSocket</span></code> function matches
+the one configured by <code class="docutils literal notranslate"><span class="pre">DDSCDD_SOCKET_OWNER_GET_SOCKET</span></code> macro:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;SOCKET-CONNECTION-BUNDLE&gt;</span>
+<span class="w">    </span><span class="nt">&lt;SHORT-NAME&gt;</span>DdsSocketOwner<span class="nt">&lt;/SHORT-NAME&gt;</span>
+<span class="w">    </span><span class="nt">&lt;SOCKET-PROTOCOL&gt;</span>UDP<span class="nt">&lt;/SOCKET-PROTOCOL&gt;</span>
+<span class="nt">&lt;/SOCKET-CONNECTION-BUNDLE&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Register these callbacks in TcpIp using the vendor tool to update the ARXML
+configuration:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;SOCKET-OWNER&gt;</span>
+<span class="w">   </span><span class="nt">&lt;SHORT-NAME&gt;</span>DdsSocketOwner<span class="nt">&lt;/SHORT-NAME&gt;</span>
+<span class="w">   </span><span class="nt">&lt;RX-INDICATION-FUNCTION&gt;</span>DDS_CDD_RxIndication<span class="nt">&lt;/RX-INDICATION-FUNCTION&gt;</span>
+<span class="w">   </span><span class="nt">&lt;LOCAL-IP-ADDR-ASSIGNMENT-CHG-FUNCTION&gt;</span>DDS_CDD_LocalIpAddrAssignmentChg<span class="nt">&lt;/LOCAL-IP-ADDR-ASSIGNMENT-CHG-FUNCTION&gt;</span>
+<span class="nt">&lt;/SOCKET-OWNER&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DDS_CDD_RxIndication</span></code>: called when UDP data received.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DDS_CDD_LocalIpAddrAssignmentChg</span></code>: called when IP address assigned.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DDS_CDD_TcpIpEvent</span></code>: called when a TcpIp event occurs.</p></li>
+</ul>
+</li>
+<li><p>Use callback prototypes that match the AUTOSAR TcpIp API types:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">DDS_CDD_LocalIpAddrAssignmentChg</span><span class="p">(</span>
+<span class="w">   </span><span class="n">TcpIp_LocalAddrIdType</span><span class="w"> </span><span class="n">LocalAddrId</span><span class="p">,</span>
+<span class="w">   </span><span class="n">TcpIp_IpAddrStateType</span><span class="w"> </span><span class="n">State</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">DDS_CDD_RxIndication</span><span class="p">(</span>
+<span class="w">   </span><span class="n">TcpIp_SocketIdType</span><span class="w"> </span><span class="n">SocketId</span><span class="p">,</span>
+<span class="w">   </span><span class="n">P2CONST</span><span class="p">(</span><span class="n">TcpIp_SockAddrType</span><span class="p">,</span><span class="w"> </span><span class="n">AUTOMATIC</span><span class="p">,</span><span class="w"> </span><span class="n">TCPIP_APPL_DATA</span><span class="p">)</span><span class="w"> </span><span class="n">RemoteAddrPtr</span><span class="p">,</span>
+<span class="w">   </span><span class="n">P2VAR</span><span class="p">(</span><span class="n">uint8</span><span class="p">,</span><span class="w"> </span><span class="n">AUTOMATIC</span><span class="p">,</span><span class="w"> </span><span class="n">TCPIP_APPL_DATA</span><span class="p">)</span><span class="w"> </span><span class="n">BufPtr</span><span class="p">,</span>
+<span class="w">   </span><span class="n">uint16</span><span class="w"> </span><span class="n">Length</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">DDS_CDD_TcpIpEvent</span><span class="p">(</span>
+<span class="w">   </span><span class="n">TcpIp_SocketIdType</span><span class="w"> </span><span class="n">SocketId</span><span class="p">,</span>
+<span class="w">   </span><span class="n">TcpIp_EventType</span><span class="w"> </span><span class="n">Event</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The callbacks must produce the following behavior:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DDS_CDD_LocalIpAddrAssignmentChg</span></code> gates startup and should trigger
+<code class="docutils literal notranslate"><span class="pre">Rte_Start()</span></code> only when the target unicast address is assigned.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DDS_CDD_RxIndication</span></code> forwards received UDP payloads to the DDS NETIO
+receive path.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DDS_CDD_TcpIpEvent</span></code> handles socket lifecycle events (or can log and
+ignore unused events).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The callback names configured in ARXML must exactly match the compiled
+function symbols in your integration code.</p>
+</div>
+</li>
+<li><p>Ensure TcpIp stack configuration allocates sufficient sockets beyond any
+existing usage. DDS requires at least 3 additional UDP sockets (2 for
+unicast, 1 for multicast, as configured in <code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code>).</p></li>
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">MCU_DDS_CDD/config/dds_system.xml</span></code> for
+the reference IP configuration. Look in the <code class="docutils literal notranslate"><span class="pre">CddProfile</span></code> QoS profile
+under <code class="docutils literal notranslate"><span class="pre">&lt;transport_builtin&gt;&lt;udpv4&gt;&lt;interface_table&gt;</span></code> for the default
+reference configuration (<code class="docutils literal notranslate"><span class="pre">192.168.1.100</span></code> with netmask <code class="docutils literal notranslate"><span class="pre">255.255.255.0</span></code>).</p></li>
+<li><p>Configure the TcpIp BSW to match <code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code>:</p>
+<p><strong>Unicast IP Configuration:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;LOCAL-ADDRESS-CONFIG&gt;</span>
+<span class="w">   </span><span class="nt">&lt;SHORT-NAME&gt;</span>LocalAddress_ECU<span class="nt">&lt;/SHORT-NAME&gt;</span>
+<span class="w">   </span><span class="nt">&lt;LOCAL-ADDRESS-ID&gt;</span>0<span class="nt">&lt;/LOCAL-ADDRESS-ID&gt;</span><span class="w">  </span><span class="cm">&lt;!-- MUST be 0 for unicast --&gt;</span>
+<span class="w">   </span><span class="nt">&lt;IP-ADDRESS-ASSIGNMENT-METHOD&gt;</span>STATIC<span class="nt">&lt;/IP-ADDRESS-ASSIGNMENT-METHOD&gt;</span>
+<span class="w">   </span><span class="nt">&lt;IP-ADDRESS&gt;</span>192.168.1.100<span class="nt">&lt;/IP-ADDRESS&gt;</span><span class="w">  </span><span class="cm">&lt;!-- MUST MATCH dds_system.xml CddProfile --&gt;</span>
+<span class="w">   </span><span class="nt">&lt;NETWORK-MASK&gt;</span>255.255.255.0<span class="nt">&lt;/NETWORK-MASK&gt;</span>
+<span class="w">   </span><span class="nt">&lt;DEFAULT-GATEWAY&gt;</span>192.168.1.1<span class="nt">&lt;/DEFAULT-GATEWAY&gt;</span>
+<span class="nt">&lt;/LOCAL-ADDRESS-CONFIG&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The IP address, netmask, and interface settings <em>must match</em> what’s
+configured in <code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code> under the <code class="docutils literal notranslate"><span class="pre">CddProfile</span></code>.</p>
+</div>
+<p><strong>Multicast IP Configuration:</strong></p>
+<p>Check <code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code> for multicast settings. Look in
+<code class="docutils literal notranslate"><span class="pre">&lt;discovery&gt;&lt;initial_peers&gt;</span></code>, which includes <code class="docutils literal notranslate"><span class="pre">239.255.0.1</span></code>.
+Look in <code class="docutils literal notranslate"><span class="pre">&lt;multicast_receive_addresses&gt;</span></code>, which defines
+<code class="docutils literal notranslate"><span class="pre">udpv4://239.255.0.1</span></code></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;LOCAL-ADDRESS-CONFIG&gt;</span>
+<span class="w">   </span><span class="nt">&lt;SHORT-NAME&gt;</span>MulticastAddress_DDS<span class="nt">&lt;/SHORT-NAME&gt;</span>
+<span class="w">   </span><span class="nt">&lt;LOCAL-ADDRESS-ID&gt;</span>1<span class="nt">&lt;/LOCAL-ADDRESS-ID&gt;</span>
+<span class="w">   </span><span class="nt">&lt;IP-ADDRESS-ASSIGNMENT-METHOD&gt;</span>STATIC<span class="nt">&lt;/IP-ADDRESS-ASSIGNMENT-METHOD&gt;</span>
+<span class="w">   </span><span class="nt">&lt;IP-ADDRESS&gt;</span>239.255.0.1<span class="nt">&lt;/IP-ADDRESS&gt;</span><span class="w">  </span><span class="cm">&lt;!-- MUST MATCH dds_system.xml --&gt;</span>
+<span class="nt">&lt;/LOCAL-ADDRESS-CONFIG&gt;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="os-configuration">
+<span id="section-os-configuration"></span><h4><span class="section-number">14.1.2.2.2. </span>OS configuration<a class="headerlink" href="#os-configuration" title="Permalink to this headline">¶</a></h4>
+<p>The DDS CDD requires a single OS resource for internal synchronization and state
+management. This resource is used for protecting critical sections in the
+adapter layer and ensuring thread safety.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- Example: Resource 001 --&gt;</span>
+<span class="nt">&lt;RESOURCE&gt;</span>
+<span class="w">    </span><span class="nt">&lt;SHORT-NAME&gt;</span>DDS_Resource001<span class="nt">&lt;/SHORT-NAME&gt;</span>
+<span class="w">    </span><span class="nt">&lt;RESOURCE-PROPERTY&gt;</span>STANDARD<span class="nt">&lt;/RESOURCE-PROPERTY&gt;</span>
+<span class="nt">&lt;/RESOURCE&gt;</span>
+</pre></div>
+</div>
+<p>The DDS CDD also requires a task, configured as follows:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;TASK&gt;</span>
+<span class="w">    </span><span class="nt">&lt;SHORT-NAME&gt;</span>Task_DdsCdd<span class="nt">&lt;/SHORT-NAME&gt;</span>
+<span class="w">    </span><span class="nt">&lt;PRIORITY&gt;</span>8<span class="nt">&lt;/PRIORITY&gt;</span><span class="w">  </span><span class="cm">&lt;!-- Adjust based on your system --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;SCHEDULE&gt;</span>FULL<span class="nt">&lt;/SCHEDULE&gt;</span>
+<span class="w">    </span><span class="nt">&lt;ACTIVATION&gt;</span>1<span class="nt">&lt;/ACTIVATION&gt;</span>
+<span class="w">    </span><span class="nt">&lt;AUTOSTART&gt;</span>true<span class="nt">&lt;/AUTOSTART&gt;</span>
+<span class="w">    </span><span class="nt">&lt;STACK-SIZE&gt;</span>13312<span class="nt">&lt;/STACK-SIZE&gt;</span><span class="w">  </span><span class="cm">&lt;!-- See note below --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;EVENT-REF</span><span class="w"> </span><span class="na">DEST=</span><span class="s">&quot;EVENT&quot;</span><span class="nt">&gt;</span>Event_DdsCddRun<span class="nt">&lt;/EVENT-REF&gt;</span>
+<span class="w">    </span><span class="nt">&lt;EVENT-REF</span><span class="w"> </span><span class="na">DEST=</span><span class="s">&quot;EVENT&quot;</span><span class="nt">&gt;</span>Event_DdsCddRead<span class="nt">&lt;/EVENT-REF&gt;</span>
+<span class="w">    </span><span class="nt">&lt;EVENT-REF</span><span class="w"> </span><span class="na">DEST=</span><span class="s">&quot;EVENT&quot;</span><span class="nt">&gt;</span>Event_DdsCddWrite<span class="nt">&lt;/EVENT-REF&gt;</span>
+<span class="nt">&lt;/TASK&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Stack size: Allocate an additional 10 KB of stack space for DDS CDD
+runnables. If reusing an existing task, increase its stack size by 10
+KB. If creating a new task, ensure at least 10 KB is available. This is
+an estimate, and actual requirements may vary based on your application
+and DDS configuration.</p></li>
+<li><p>Task priority: DDS CDD runnables should have higher priority than
+application SW-Cs but lower priority than critical BSW tasks
+(such as the ethernet driver or TcpIp stack). This ensures timely network
+communication without blocking critical system functions.</p></li>
+<li><p>Runnable mapping: DdsCdd runnables (e.g., <code class="docutils literal notranslate"><span class="pre">DdsCddStart</span></code>, <code class="docutils literal notranslate"><span class="pre">DdsCddRun</span></code>,
+<code class="docutils literal notranslate"><span class="pre">DdsCddRxIndication</span></code>, <code class="docutils literal notranslate"><span class="pre">DdsCddProcessData</span></code>, <code class="docutils literal notranslate"><span class="pre">DdsCddRead_PCtoMCU</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">DdsCddWrite_MCUtoPC</span></code>) must be mapped to <code class="docutils literal notranslate"><span class="pre">Task_DdsCdd</span></code> in your RTE
+configuration. You will configure trigger conditions for these runnables in
+<a class="reference internal" href="#section-configuring-rte"><span class="std std-ref">Configuring RTE</span></a>.</p></li>
+</ul>
+</div>
+<div class="section" id="basic-software-mode-manager-bswm-configuration">
+<h4><span class="section-number">14.1.2.2.3. </span>Basic Software Mode Manager (BswM) configuration<a class="headerlink" href="#basic-software-mode-manager-bswm-configuration" title="Permalink to this headline">¶</a></h4>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p><code class="docutils literal notranslate"><span class="pre">Rte_Start()</span></code> must <em>not</em> be called from a BswM action list. It
+must be called from the <code class="docutils literal notranslate"><span class="pre">DDS_CDD_LocalIpAddrAssignmentChg</span></code> callback,
+only after the IP address has been assigned and the Ethernet link is up.</p>
+</div>
+<p>DDS initialization sends discovery ping messages to other participants.
+If <code class="docutils literal notranslate"><span class="pre">Rte_Start()</span></code> is called before the TcpIp stack has assigned an IP
+address and the link is up, DDS initialization will fail.</p>
+<p>The correct startup sequence is:</p>
+<ol class="arabic simple">
+<li><p>BswM invokes <code class="docutils literal notranslate"><span class="pre">TcpIp_Init()</span></code> as normal.</p></li>
+<li><p>TcpIp calls <code class="docutils literal notranslate"><span class="pre">DDS_CDD_LocalIpAddrAssignmentChg</span></code> when the IP address
+is assigned.</p></li>
+<li><p>The callback calls <code class="docutils literal notranslate"><span class="pre">Rte_Start()</span></code>, which triggers <code class="docutils literal notranslate"><span class="pre">DdsCddStart</span></code>
+(InitEvent), where all DDS initialization takes place.</p></li>
+</ol>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">DDS_CDD_LocalIpAddrAssignmentChg</span><span class="p">(</span>
+<span class="w">    </span><span class="n">TcpIp_LocalAddrIdType</span><span class="w"> </span><span class="n">LocalAddrId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">TcpIp_IpAddrStateType</span><span class="w"> </span><span class="n">State</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">LocalAddrId</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TCPIP_LOCALADDRID_UNICAST</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">        </span><span class="n">State</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TCPIP_IPADDR_STATE_ASSIGNED</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Rte_Start</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide documents one valid initialization strategy: starting RTE
+after IP assignment, then performing DDS initialization in
+<code class="docutils literal notranslate"><span class="pre">DdsCddStart</span></code>.
+Other strategies are possible. For example, RTE can be started in the
+standard BswM sequence, and DDS initialization can be deferred to a
+periodic runnable that monitors network readiness.</p>
+</div>
+</div>
+<div class="section" id="ethernet-driver-configuration">
+<h4><span class="section-number">14.1.2.2.4. </span>Ethernet driver configuration<a class="headerlink" href="#ethernet-driver-configuration" title="Permalink to this headline">¶</a></h4>
+<p>The DDS CDD interfaces with TcpIp stack. Ethernet driver configuration
+is the BSW integrator’s responsibility according to their hardware requirements.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ensure Ethernet MAC duplex mode matches PHY duplex mode to
+avoid packet loss.</p>
+</div>
+</div>
+</div>
+<div class="section" id="configuring-rte">
+<span id="section-configuring-rte"></span><h3><span class="section-number">14.1.2.3. </span>Configuring RTE<a class="headerlink" href="#configuring-rte" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>Import the provided ARXML files containing:</p>
+<ul class="simple">
+<li><p>DdsCdd ARXML: DDS CDD SW-C definition, port interfaces, port
+prototypes, and runnable definitions.</p></li>
+<li><p>ExampleAsrApp ARXML: Example application SW-C and example
+sender-receiver interfaces.</p></li>
+</ul>
+</li>
+<li><p>Connect DDS CDD ports to application SW-C, as shown in the following diagram:</p>
+<p>code-block:: none</p>
+<blockquote>
+<div><p>Application SW-C                DDS CDD SW-C
+┌──────────────┐              ┌──────────────┐
+│              │              │              │
+│  P_DataOut ──┼──────────────┼→ R_MCUtoPC   │  (Publishing)
+│              │              │              │
+│  R_DataIn  ←─┼──────────────┼─ S_PCtoMCU   │  (Subscribing)
+│              │              │              │
+└──────────────┘              └──────────────┘</p>
+</div></blockquote>
+</li>
+<li><p>Before generating RTE code, map the DDS CDD runnables to the task you
+configured in OS section (<code class="docutils literal notranslate"><span class="pre">Task_DdsCdd</span></code>):</p></li>
+<li><p>Run your RTE generator to create the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Rte.c</span></code> / <code class="docutils literal notranslate"><span class="pre">Rte.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rte_DdsCdd.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rte_ExampleAsrApp.h</span></code></p></li>
+</ul>
+</li>
+<li><p>In DdsCdd ARXML, configure trigger conditions for the following
+runnables:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 35%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Runnable</p></th>
+<th class="head"><p>Trigger Condition</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DdsCddStart()</span></code></p></td>
+<td><p>InitEvent</p></td>
+<td><p>Initialize DDS CDD at startup</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DdsCddRun()</span></code></p></td>
+<td><p>TimingEvent (10ms)</p></td>
+<td><p>DDS QoS maintenance (discovery, liveliness, etc.)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DdsCddProcessData()</span></code></p></td>
+<td><p>Inter-runnable Trigger (called by DdsCddRxIndication)</p></td>
+<td><p>Process the DDS data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DdsCddRxIndication()</span></code></p></td>
+<td><p>No trigger defined (called by connext library)</p></td>
+<td><p>Triggers the Inter-runnable trigger for processing received data.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DdsCddRead_PCtoMCU()</span></code></p></td>
+<td><p>TimingEvent (100ms)</p></td>
+<td><p>Poll for incoming DDS data</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DdsCddWrite_MCUtoPC()</span></code></p></td>
+<td><p>DataReceivedEvent</p></td>
+<td><p>Publish data when app writes to RTE port</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If DDS initialization is executed inside a periodic runnable, the
+first activation can exceed the nominal runnable period (for example,
+a 10 ms runnable may run longer during initialization).
+Account for this during OS scheduling and timing analysis (watchdog,
+deadline monitoring, and task load budget).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The RTE automatically generates the required OS alarms and
+events based on these trigger condition configurations. You do not
+manually configure alarms or events; the RTE generator creates them
+from the trigger conditions and task mapping you specify.</p>
+</div>
+</li>
+<li><p>After RTE code generation, implement the generated DdsCdd runnable bodies as
+thin wrappers to Layer 2 adapter functions.</p>
+<p>Use this pattern:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddStart</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">DdsCdd_Adapter_Init</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddRun</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">DdsCdd_Adapter_Run</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddProcessData</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">NETIO_Autosar_udp_receive_callback</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddRead_PCtoMCU</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">DdsCdd_Adapter_Read_PCtoMCU</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">FUNC</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_CODE</span><span class="p">)</span><span class="w"> </span><span class="n">DdsCddWrite_MCUtoPC</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">DdsCdd_Adapter_Write_MCUtoPC</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Implementation checklist:</p>
+<ul class="simple">
+<li><p>Keep runnable bodies minimal; put DDS logic in adapter/implementation
+layers.</p></li>
+<li><p>Modify only the user-editable sections in generated template files.</p></li>
+<li><p>Keep trigger-condition semantics unchanged (InitEvent, TimingEvent,
+DataReceivedEvent, internal trigger).</p></li>
+<li><p>Re-run RTE generation after ARXML changes and re-apply user code in the
+generated implementation blocks.</p></li>
+</ul>
+<p>For the architectural rationale behind this split,
+see <a class="reference internal" href="autosar_architecture.html#section-autosar-architecture"><span class="std std-ref">Appendix B: AUTOSAR Architecture Example</span></a>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="integrating-source-code">
+<h3><span class="section-number">14.1.2.4. </span>Integrating source code<a class="headerlink" href="#integrating-source-code" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>Add the following source files to your build:</p>
+<ul class="simple">
+<li><p><em>Connext Micro</em>:</p>
+<ul>
+<li><p>All source files from <code class="docutils literal notranslate"><span class="pre">$(RTI_DDS_MICRO)/src/</span></code></p></li>
+</ul>
+</li>
+<li><p>DDS generated code:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MCU_DDS_CDD/dds_gen/exampleType.c</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MCU_DDS_CDD/dds_gen/exampleTypePlugin.c</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MCU_DDS_CDD/dds_gen/exampleTypeSupport.c</span></code></p></li>
+</ul>
+</li>
+<li><p>DDS CDD implementation:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MCU_DDS_CDD/adaptation/dds_cdd_adapter.c</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MCU_DDS_CDD/dds_impl/dds_impl.c</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MCU_DDS_CDD/dds_cdd/DdsCdd.c</span></code></p></li>
+</ul>
+</li>
+<li><p>Example application:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MCU_EXAMPLE_ASR_APP/ExampleAsrApp.c</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Configure the necessary include paths:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-I$(RTI_DDS_MICRO)/include
+-I$(RTI_DDS_MICRO)/include/autosar
+-I$(PROJECT)/MCU_DDS_CDD/config
+-I$(PROJECT)/MCU_DDS_CDD/dds_gen
+-I$(PROJECT)/MCU_DDS_CDD/adaptation
+-I$(PROJECT)/MCU_DDS_CDD/dds_impl
+-I$(PROJECT)/MCU_EXAMPLE_ASR_APP
+</pre></div>
+</div>
+<p>Do not include <code class="docutils literal notranslate"><span class="pre">MCU_DDS_CDD/dds_cdd/DdsCdd</span></code>; these are the Contract
+Phase Headers and are already included via RTE generated code.</p>
+</li>
+<li><p>Configure the following preprocessor definitions:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define __autosar__                      </span><span class="c1">// AUTOSAR platform</span>
+<span class="cp">#define RTI_ENDIAN_LITTLE               </span><span class="c1">// Or RTI_ENDIAN_BIG (based on target)</span>
+<span class="cp">#define NETIO_CONFIG_ENABLE_MULTICAST 1  </span><span class="c1">// Multicast configured in dds_system.xml</span>
+<span class="cp">#define OSAPI_ENABLE_LOG 0              </span><span class="c1">// Disable logging</span>
+<span class="cp">#define OSAPI_ENABLE_TRACE 0            </span><span class="c1">// Disable logging</span>
+</pre></div>
+</div>
+</li>
+<li><p>Configure memory. The DDS CDD requires static memory allocation; the default
+heap size is 240KB (the baseline for 2 topics with small samples).</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define DDSCDD_HEAP_AREA_1_SIZE (240 * 1024)  </span><span class="c1">// 240KB</span>
+</pre></div>
+</div>
+<p>Memory is used for DDS entities (participant, topics, readers,
+writers), discovery protocol data, send/receive buffers, QoS policy
+storage.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default 240KB is for a baseline system (2 topics with small
+samples). See <a class="reference internal" href="#section-customizing-for-your-application"><span class="std std-ref">Customizing for your application</span></a> for
+sizing guidelines.</p>
+</div>
+</li>
+<li><p>Configure DDS entities using APPGEN. DDS entities (<em>DomainParticipants</em>,
+<em>Topics</em>, <em>DataWriters</em>, and <em>DataReaders</em>)
+are defined in <code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code> and loaded at runtime by Layer 3
+(<code class="docutils literal notranslate"><span class="pre">dds_impl.c</span></code>) using the Application Generation (APPGEN) plugin. APPGEN is
+the standard <em>Connext Micro</em> mechanism for XML-driven entity creation.</p>
+<p>During <code class="docutils literal notranslate"><span class="pre">DdsImpl_CreateEntities()</span></code>, the APPGEN plugin is registered with the
+DDS factory and the participant is created from the XML profile:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Register the APPGEN plugin to enable XML-based entity creation */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">APPGEN_FactoryProperty</span><span class="w"> </span><span class="n">model_xml</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">APPGEN_FactoryProperty_INITIALIZER</span><span class="p">;</span>
+<span class="n">model_xml</span><span class="p">.</span><span class="n">_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">APPGEN_get_library_seq</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">APPGEN_Factory_register</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">model_xml</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="cm">/* handle error */</span>
+<span class="p">}</span>
+
+<span class="cm">/* Create participant from the profile defined in dds_system.xml */</span>
+<span class="n">application</span><span class="o">-&gt;</span><span class="n">participant</span><span class="w"> </span><span class="o">=</span>
+<span class="w">   </span><span class="n">DDS_DomainParticipantFactory_create_participant_from_config</span><span class="p">(</span>
+<span class="w">            </span><span class="n">factory</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;AppLibrary::MCU_DDS_CDD&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The participant name (<code class="docutils literal notranslate"><span class="pre">&quot;AppLibrary::MCU_DDS_CDD&quot;</span></code>) must match the
+<code class="docutils literal notranslate"><span class="pre">&lt;domain_participant_library</span> <span class="pre">name=&quot;AppLibrary&quot;&gt;</span></code> and
+<code class="docutils literal notranslate"><span class="pre">&lt;domain_participant</span> <span class="pre">name=&quot;MCU_DDS_CDD&quot;&gt;</span></code> entries in your
+<code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code>. All child entities (publishers, subscribers, writers,
+readers) are created automatically from the XML.</p>
+<p>The participant is created in <strong>disabled</strong> state. It is enabled separately in
+<code class="docutils literal notranslate"><span class="pre">DdsImpl_EnableEntities()</span></code> once the initialization state machine reaches
+<code class="docutils literal notranslate"><span class="pre">EntitiesCreated</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>APPGEN requires the following additional includes in <code class="docutils literal notranslate"><span class="pre">dds_impl.c</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;app_gen/app_gen.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;app_gen/app_gen_plugin.h&quot;</span>
+</pre></div>
+</div>
+<p>These headers are provided by <em>Connext Micro</em> and should not be modified.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="building-and-flashing">
+<h3><span class="section-number">14.1.2.5. </span>Building and flashing<a class="headerlink" href="#building-and-flashing" title="Permalink to this headline">¶</a></h3>
+<p>We recommend a full rebuild for your first integration; the build should
+complete without errors. Verify that no linker errors occur related to
+memory size.</p>
+<p>Use your standard flashing procedure and verify that sufficient flash
+space is available.</p>
+</div>
+<div class="section" id="validating-integration">
+<h3><span class="section-number">14.1.2.6. </span>Validating integration<a class="headerlink" href="#validating-integration" title="Permalink to this headline">¶</a></h3>
+<p>Check the following:</p>
+<ul class="simple">
+<li><p>The ECU boots without errors;</p></li>
+<li><p>The TcpIp stack initializes and assigns IP;</p></li>
+<li><p>The DDS CDD state machine reaches ENTITIES_ENABLED;</p></li>
+<li><p>There are no hardfaults or exceptions.</p></li>
+</ul>
+<p>For debugging, we recommend the following:</p>
+<ul class="simple">
+<li><p>Check the DDS CDD state via the debugger with the <code class="docutils literal notranslate"><span class="pre">DdsCdd_State</span></code>
+variable.</p></li>
+<li><p>Verify the IP assignment with the <code class="docutils literal notranslate"><span class="pre">DdsCdd_IpAddressAssigned</span></code> flag.</p></li>
+<li><p>Monitor initialization sequence timing.</p></li>
+</ul>
+<p>To test network connectivity, run the following from the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ping<span class="w"> </span><span class="m">192</span>.168.1.100<span class="w">  </span><span class="c1"># ECU IP address</span>
+</pre></div>
+</div>
+<p>The ping response should succeed.</p>
+<p>To validate DDS discovery, set up <em>Admin Console</em>:</p>
+<ol class="arabic simple">
+<li><p>Launch <em>Admin Console</em> on your PC.</p></li>
+<li><p>Set the PC IP address to 192.168.1.10 (same subnet as the ECU).</p></li>
+<li><p>Load the QoS profile <code class="docutils literal notranslate"><span class="pre">admin_console_qos.xml</span></code>.</p></li>
+<li><p>Set the Domain ID to <code class="docutils literal notranslate"><span class="pre">0</span></code> (configured in <code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code> under
+<code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name=&quot;myDomain&quot;</span> <span class="pre">domain_id=&quot;0&quot;&gt;</span></code>).</p></li>
+</ol>
+<p>For detailed instructions on how to set up <em>Admin Console</em>, see the
+<a class="reference external" href="https://community.rti.com/static/documentation/connext-dds/current/doc/manuals/connext_dds_professional/tools/admin_console/index.html">Admin Console User’s Manual</a>.</p>
+<p>Verify that discovery has succeeded by confirming the following:</p>
+<ul class="simple">
+<li><p>The ECU <em>DomainParticipant</em> appears in <em>Participants</em> view;</p></li>
+<li><p>The <em>DataWriter</em> “MCUtoPC” is visible;</p></li>
+<li><p>The <em>DataReader</em> “PCtoMCU” is visible.</p></li>
+</ul>
+<p>To test PC-to-ECU communication:</p>
+<ol class="arabic simple">
+<li><p>In <em>Admin Console</em>, publish a sample to the “PCtoMCU” topic;</p></li>
+<li><p>Verify that the ECU receives data (e.g., check via the debugger or
+application behavior).</p></li>
+</ol>
+<p>Test ECU-to-PC communication:</p>
+<ol class="arabic simple">
+<li><p>Trigger a sample publication from the ECU to the application;</p></li>
+<li><p>In <em>Admin Console</em>, subscribe to the “MCUtoPC” topic;</p></li>
+<li><p>Verify that samples appear with the correct data values.</p></li>
+</ol>
+<p>At this point, you should have verified that:</p>
+<ul class="simple">
+<li><p>The ECU boots and initializes DDS successfully;</p></li>
+<li><p>Network connectivity functions;</p></li>
+<li><p>DDS discovery succeeded;</p></li>
+<li><p>PC-to-ECU communication succeeded;</p></li>
+<li><p>ECU-to-PC communication succeeded;</p></li>
+<li><p>Data integrity was confirmed.</p></li>
+</ul>
+<p>Congratulations! You have successfully integrated DDS into your
+AUTOSAR workspace.</p>
+</div>
+</div>
+<div class="section" id="understanding-the-architecture">
+<span id="section-understanding-the-architecture"></span><h2><span class="section-number">14.1.3. </span>Understanding the architecture<a class="headerlink" href="#understanding-the-architecture" title="Permalink to this headline">¶</a></h2>
+<p>Now that you have DDS working, let’s review what you’ve integrated.</p>
+<p>The DDS CDD uses a three-layer design that separates AUTOSAR concerns
+from DDS logic:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────────────────────────────────┐
+│  Layer 1: RTE Template (DdsCdd.c)                       │
+│  • AUTOSAR runnables called by RTE                      │
+│  • Generated from ARXML                                 │
+│  • Minimal logic - delegates to adapter                 │
+└───────────────────────┬─────────────────────────────────┘
+                        │
+┌───────────────────────▼─────────────────────────────────┐
+│  Layer 2: Adapter (dds_cdd_adapter.c/h)                 │
+│  • Type conversion (AUTOSAR ↔ DDS)                      │
+│  • TcpIp integration and callbacks                      │
+│  • Initialization state machine                         │
+│  • AUTOSAR resource management                          │
+└───────────────────────┬─────────────────────────────────┘
+                        │
+┌───────────────────────▼─────────────────────────────────┐
+│  Layer 3: DDS Implementation (dds_impl.c/h)             │
+│  • Pure DDS operations                                  │
+│  • Entity creation and management                       │
+│  • Read/write operations                                │
+│  • No AUTOSAR dependencies                              │
+└─────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+<p>This approach ensures that Layer 1 changes only when ARXML changes, Layer 2
+bridges AUTOSAR and DDS, and Layer 3 is portable and independently
+testable.</p>
+<p>DDS initialization proceeds through the following states to ensure correct
+sequencing:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>TcpIpNotReady → TcpIpReady → SystemPropertiesSet → EntitiesCreated → EntitiesEnabled
+</pre></div>
+</div>
+<p>When publishing, the application writes to the RTE, which triggers a runnable
+in the DDS CDD. The adapter then converts the data types and the DDS layer
+writes the data to the network.</p>
+<p>When subscribing, network data is first received by the TcpIp stack. The DDS
+middleware stores the data in a queue and a periodic runnable polls the
+<em>DataReader</em> for new data. The adapter converts the data types and the RTE
+delivers the data to the application SW-C.</p>
+<p>For more detailed architecture information, see
+<a class="reference internal" href="autosar_architecture.html#section-autosar-architecture"><span class="std std-ref">Appendix B: AUTOSAR Architecture Example</span></a>. We recommend reading the Architecture
+section now, or returning to it after finishing with this guide.</p>
+</div>
+<div class="section" id="customizing-for-your-application">
+<span id="section-customizing-for-your-application"></span><h2><span class="section-number">14.1.4. </span>Customizing for your application<a class="headerlink" href="#customizing-for-your-application" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-a-new-data-type-and-topic">
+<h3><span class="section-number">14.1.4.1. </span>Add a new data type and Topic<a class="headerlink" href="#add-a-new-data-type-and-topic" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>Define a type in DDS-XML:</p>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code> as shown below:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;types&gt;</span>
+<span class="w">    </span><span class="nt">&lt;struct</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;VehicleSpeed&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;timestamp&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;ulonglong&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;speed_kph&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;float&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;vehicle_id&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;long&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/struct&gt;</span>
+<span class="nt">&lt;/types&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Generate type support code. See <a class="reference internal" href="../programmersguide/appgen.html#section-appgen"><span class="std std-ref">Application Generation Using XML</span></a> for more information.</p></li>
+<li><p>Add a topic and endpoints to DDS-XML, as shown below:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;topic</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;VehicleSpeedTopic&quot;</span><span class="w"> </span><span class="na">register_type_ref=</span><span class="s">&quot;VehicleSpeed&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;topic_qos</span><span class="w"> </span><span class="na">base_name=</span><span class="s">&quot;QosLibrary::DefaultProfile&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/topic&gt;</span>
+...
+<span class="nt">&lt;data_writer</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;VehicleSpeedWriter&quot;</span><span class="w"> </span><span class="na">topic_ref=</span><span class="s">&quot;VehicleSpeedTopic&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Update ARXML.</p>
+<p>Manually create (or use arcgen/MAG generated arxml) the ARXML elements to integrate the new DDS topic into
+your application, as follows:</p>
+<ul class="simple">
+<li><p>Create a data type compatible with the DDS type (e.g., <code class="docutils literal notranslate"><span class="pre">VehicleSpeed_t</span></code>).</p></li>
+<li><p>Create a sender-receiver port interface using the new data type.</p></li>
+<li><p>Create port prototypes in DdsCdd SW-C. For publishing topics, create a
+receive port (<code class="docutils literal notranslate"><span class="pre">R_VehicleSpeed</span></code>). For subscribing topics, create a send
+port (<code class="docutils literal notranslate"><span class="pre">S_VehicleSpeed</span></code>).</p></li>
+<li><p>Create one runnable per new port prototype (e.g., <code class="docutils literal notranslate"><span class="pre">Write_VehicleSpeed()</span></code>
+for publishing).</p></li>
+<li><p>Map each runnable to its corresponding port prototype.</p></li>
+<li><p>Set trigger conditions for runnables. Publishing runnables should be
+triggered by <code class="docutils literal notranslate"><span class="pre">DataReceivedEvent</span></code> on input port. Subscribing runnables
+should be triggered by <code class="docutils literal notranslate"><span class="pre">TimingEvent</span></code> (periodic polling).</p></li>
+<li><p>Repeat the steps above for your application SW-C. Create send port
+prototypes for topics your application publishes, create receive port
+prototypes for topics your application subscribes to, and create runnables
+to handle data exchange.</p></li>
+<li><p>Wire your application’s SW-C output ports to DdsCdd input ports
+(publishing path). Wire DdsCdd output ports to your application’s SW-C
+input ports (subscribing path).</p></li>
+<li><p>Assign all new runnables to the appropriate OS task (e.g., Task_DdsCdd).</p></li>
+</ul>
+</li>
+<li><p>Adjust static heap memory.</p>
+<p>Memory per topic depends on the sample size (user data payload),
+<a class="reference external" href="../../../doc/api_c/html/group__DDSHistoryQosModule.html">History</a>
+depth (<code class="docutils literal notranslate"><span class="pre">KEEP_LAST</span></code> depth, <code class="docutils literal notranslate"><span class="pre">KEEP_ALL</span></code> not recommended), the number of
+remote <em>DomainParticipants</em>/<em>DataReaders</em>/<em>DataWriters</em>, etc. For more
+details, refer to <a class="reference internal" href="../programmersguide/memory.html#section-memory-management"><span class="std std-ref">Memory Management</span></a>.</p>
+<p>For example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define DDSCDD_HEAP_AREA_1_SIZE  (400 * 1024)  </span><span class="c1">// 400KB</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add adapter functions. In <code class="docutils literal notranslate"><span class="pre">dds_cdd_adapter.c</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">DdsCdd_Adapter_Write_VehicleSpeed</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">VehicleSpeed_t</span><span class="w"> </span><span class="n">rteData</span><span class="p">;</span>
+<span class="w">    </span><span class="n">VehicleSpeed</span><span class="w"> </span><span class="n">ddsData</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Rte_Read_R_VehicleSpeed</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rteData</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Type conversion</span>
+<span class="w">    </span><span class="n">ddsData</span><span class="p">.</span><span class="n">timestamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rteData</span><span class="p">.</span><span class="n">timestamp</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ddsData</span><span class="p">.</span><span class="n">speed_kph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rteData</span><span class="p">.</span><span class="n">speed_kph</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ddsData</span><span class="p">.</span><span class="n">vehicle_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rteData</span><span class="p">.</span><span class="n">vehicle_id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">DdsImpl_Write_VehicleSpeed</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ddsData</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add implementation functions. In <code class="docutils literal notranslate"><span class="pre">dds_impl.c</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">DDS_ReturnCode_t</span><span class="w"> </span><span class="nf">DdsImpl_Write_VehicleSpeed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">VehicleSpeed</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">VehicleSpeed_DataWriter_write</span><span class="p">(</span><span class="n">g_VehicleSpeedWriter</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DDS_HANDLE_NIL</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Generate OS code from your OS ARXML configuration.</p></li>
+<li><p>Generate RTE code from your RTE/SWC ARXML configuration.</p></li>
+<li><p>Generate SWC template code for DdsCdd SW-C and all application SW-Cs.</p></li>
+<li><p>Implement DdsCdd template runnables. Fill in the generated DdsCdd runnable
+stubs and call the corresponding adapter functions (e.g.,
+<code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Write_VehicleSpeed()</span></code>). For example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">DdsCdd_Write_VehicleSpeed</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">      </span><span class="n">DdsCdd_Adapter_Write_VehicleSpeed</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Compile all generated code and implementation files. Verify there are no
+compilation or linker errors.</p></li>
+<li><p>Validate the following:</p>
+<ul class="simple">
+<li><p>Check <em>Connext Micro</em> static heap usage;</p></li>
+<li><p>Use <em>Admin Console</em> to verify the new topic;</p></li>
+<li><p>Test bidirectional communication;</p></li>
+<li><p>Verify data integrity.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="change-qos-from-reliable-to-best-effort">
+<h3><span class="section-number">14.1.4.2. </span>Change QoS from Reliable to Best-Effort<a class="headerlink" href="#change-qos-from-reliable-to-best-effort" title="Permalink to this headline">¶</a></h3>
+<p>This is a possible use case for high-frequency sensor data where
+occasional loss is acceptable.</p>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code> as follows:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;qos_profile</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;BestEffortProfile&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;datawriter_qos&gt;</span>
+<span class="w">        </span><span class="nt">&lt;reliability&gt;</span>
+<span class="w">            </span><span class="nt">&lt;kind&gt;</span>BEST_EFFORT_RELIABILITY_QOS<span class="nt">&lt;/kind&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/reliability&gt;</span>
+<span class="w">        </span><span class="nt">&lt;history&gt;</span>
+<span class="w">            </span><span class="nt">&lt;kind&gt;</span>KEEP_LAST_HISTORY_QOS<span class="nt">&lt;/kind&gt;</span>
+<span class="w">            </span><span class="nt">&lt;depth&gt;</span>1<span class="nt">&lt;/depth&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/history&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/datawriter_qos&gt;</span>
+<span class="w">    </span><span class="nt">&lt;datareader_qos&gt;</span>
+<span class="w">        </span><span class="nt">&lt;reliability&gt;</span>
+<span class="w">            </span><span class="nt">&lt;kind&gt;</span>BEST_EFFORT_RELIABILITY_QOS<span class="nt">&lt;/kind&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/reliability&gt;</span>
+<span class="w">        </span><span class="nt">&lt;history&gt;</span>
+<span class="w">            </span><span class="nt">&lt;kind&gt;</span>KEEP_LAST_HISTORY_QOS<span class="nt">&lt;/kind&gt;</span>
+<span class="w">            </span><span class="nt">&lt;depth&gt;</span>1<span class="nt">&lt;/depth&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/history&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/datareader_qos&gt;</span>
+<span class="nt">&lt;/qos_profile&gt;</span>
+
+<span class="nt">&lt;topic</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;SensorData&quot;</span><span class="w"> </span><span class="na">register_type_ref=</span><span class="s">&quot;SensorType&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;topic_qos</span><span class="w"> </span><span class="na">base_name=</span><span class="s">&quot;QosLibrary::BestEffortProfile&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/topic&gt;</span>
+</pre></div>
+</div>
+<p>This configuration benefits from lower latency, reduced network overhead, and no
+reliability protocol overhead. However, packets may be lost and delivery
+is not guaranteed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>QoS changes in <code class="docutils literal notranslate"><span class="pre">dds_system.xml</span></code> only require regenerating
+DDS type support code. No changes are needed in the adapter layer
+(<code class="docutils literal notranslate"><span class="pre">dds_cdd_adapter.c/h</span></code>), AUTOSAR template layer (<code class="docutils literal notranslate"><span class="pre">DdsCdd.c</span></code>), or
+the application SW-Cs.</p>
+</div>
+</div>
+<div class="section" id="tune-timing-for-your-application">
+<h3><span class="section-number">14.1.4.3. </span>Tune timing for your application<a class="headerlink" href="#tune-timing-for-your-application" title="Permalink to this headline">¶</a></h3>
+<p>To adjust runnable periods, use the following guidelines:</p>
+<p>DdsCddRun (DDS maintenance):</p>
+<ul class="simple">
+<li><p>Default: 10ms</p></li>
+<li><p>Faster (5ms): Lower discovery time, higher CPU usage.</p></li>
+<li><p>Slower (20ms): Higher latency for QoS protocols.</p></li>
+</ul>
+<p>DdsCddRead (polling for data):</p>
+<ul>
+<li><p>Default: 100ms</p>
+<p>Adjust based on expected data rate, such as 50ms for higher update rate.</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Timing adjustments only require runnable configuration
+changes in DdsCdd ARXML. No modifications are needed in the adapter layer
+(<code class="docutils literal notranslate"><span class="pre">dds_cdd_adapter.c/h</span></code>) or DDS implementation layer (<code class="docutils literal notranslate"><span class="pre">dds_impl.c/h</span></code>).</p>
+</div>
+</div>
+</div>
+<div class="section" id="troubleshooting">
+<span id="section-troubleshooting-guide"></span><h2><span class="section-number">14.1.5. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how to troubleshoot some common integration issues.</p>
+<div class="section" id="dds-entities-not-created">
+<h3><span class="section-number">14.1.5.1. </span>DDS entities not created<a class="headerlink" href="#dds-entities-not-created" title="Permalink to this headline">¶</a></h3>
+<p>Check the following:</p>
+<ul class="simple">
+<li><p>The IP address is assigned (was the TcpIp callback triggered?);</p></li>
+<li><p>The heap size is sufficient;</p></li>
+<li><p>1 OS resource is configured as a STANDARD resource;</p></li>
+<li><p>The socket owner name matches the configuration;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rte_Start()</span></code> is called from <code class="docutils literal notranslate"><span class="pre">DDS_CDD_LocalIpAddrAssignmentChg</span></code> only after
+the IP address is assigned (not from a BswM action list).</p></li>
+</ul>
+<p>Debug:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check state machine</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;DdsCdd_State: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_State</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;IP assigned: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DdsCdd_IpAddressAssigned</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="no-dds-discovery">
+<h3><span class="section-number">14.1.5.2. </span>No DDS discovery<a class="headerlink" href="#no-dds-discovery" title="Permalink to this headline">¶</a></h3>
+<p>Check the following:</p>
+<ul class="simple">
+<li><p>Network connectivity (does the ping test pass?);</p></li>
+<li><p>The domain ID matches between the ECU and PC;</p></li>
+<li><p>The firewall is not blocking UDP ports;</p></li>
+<li><p>Communicating on the same subnet (or routing configured).</p></li>
+</ul>
+<p>Debug:</p>
+<ul class="simple">
+<li><p>Use <em>Wireshark</em> to capture RTPS packets</p></li>
+<li><p>Use <em>Admin Console</em> to check for discovery issues, QoS policy mismatch, etc.</p></li>
+</ul>
+</div>
+<div class="section" id="data-not-received">
+<h3><span class="section-number">14.1.5.3. </span>Data not received<a class="headerlink" href="#data-not-received" title="Permalink to this headline">¶</a></h3>
+<p>Check the following:</p>
+<ul class="simple">
+<li><p>Is the <code class="docutils literal notranslate"><span class="pre">DdsCddRead</span></code> runnable executing?</p></li>
+<li><p>QoS policies are compatible between the <em>DataWriter</em> and <em>DataReader</em>;</p></li>
+<li><p>Topic names match exactly;</p></li>
+<li><p>RTE ports are connected.</p></li>
+</ul>
+<p>Debug:</p>
+<ul class="simple">
+<li><p>Use <em>Wireshark</em> to capture RTPS packets.</p></li>
+<li><p>Use <em>Admin Console</em> to check for topic data.</p></li>
+</ul>
+</div>
+<div class="section" id="high-cpu-usage">
+<h3><span class="section-number">14.1.5.4. </span>High CPU usage<a class="headerlink" href="#high-cpu-usage" title="Permalink to this headline">¶</a></h3>
+<p>Check the following:</p>
+<ul class="simple">
+<li><p>Is the <code class="docutils literal notranslate"><span class="pre">DdsCddRun</span></code> period too fast?</p></li>
+<li><p>Is network congestion causing retransmissions?</p></li>
+<li><p>Is the task priority too high?</p></li>
+</ul>
+<p>Possible solutions:</p>
+<ul class="simple">
+<li><p>Increase <code class="docutils literal notranslate"><span class="pre">DdsCddRun</span></code> period to 20ms.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">BEST_EFFORT</span></code> Reliability where appropriate.</p></li>
+<li><p>Reduce unnecessary data traffic.</p></li>
+</ul>
+</div>
+<div class="section" id="out-of-memory">
+<h3><span class="section-number">14.1.5.5. </span>Out of memory<a class="headerlink" href="#out-of-memory" title="Permalink to this headline">¶</a></h3>
+<p>Checkthe following:</p>
+<ul class="simple">
+<li><p>Is the heap size sufficient for your configuration?</p></li>
+<li><p>Are there too many topics?</p></li>
+<li><p>Is the <a class="reference external" href="../../../doc/api_c/html/group__DDSHistoryQosModule.html">History</a>
+QoS policy depth too large?</p></li>
+</ul>
+<p>Possible solutions:</p>
+<ul class="simple">
+<li><p>Increase <code class="docutils literal notranslate"><span class="pre">DDSCDD_HEAP_AREA_1_SIZE</span></code>.</p></li>
+<li><p>Reduce <a class="reference external" href="../../../doc/api_c/html/group__DDSHistoryQosModule.html">History</a>
+depth.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">KEEP_LAST</span></code> <a class="reference external" href="../../../doc/api_c/html/group__DDSHistoryQosModule.html">History</a>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="api-quick-reference">
+<h2><span class="section-number">14.1.6. </span>API quick reference<a class="headerlink" href="#api-quick-reference" title="Permalink to this headline">¶</a></h2>
+<p>AUTOSAR Layer (<code class="docutils literal notranslate"><span class="pre">Rte_DdsCdd_Type.h)</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Rte_Write_P_&lt;DDS_topic&gt;_&lt;Type&gt;()</span></code>: Write data to RTE port.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rte_Read_R_&lt;DDS_topic&gt;_&lt;Type&gt;()</span></code>: Read data from RTE port.</p></li>
+</ul>
+<p>Adapter Layer (<code class="docutils literal notranslate"><span class="pre">dds_cdd_adapter.h</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Init()</span></code>: Initialize adapter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Run()</span></code>: Cyclic execution (10ms).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Read_&lt;DDS_topic&gt;()</span></code>: Read from DDS.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DdsCdd_Adapter_Write_&lt;DDS_topic&gt;()</span></code>: Write to DDS.</p></li>
+</ul>
+<p>DDS Implementation Layer (<code class="docutils literal notranslate"><span class="pre">dds_impl.h</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DdsImpl_Init()</span></code>: Create DDS entities.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DdsImpl_Enable()</span></code>: Enable entities.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DdsImpl_Write_&lt;DDS_topic&gt;()</span></code>: Publish data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DdsImpl_Read_&lt;DDS_topic&gt;()</span></code>: Read data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DdsImpl_Run()</span></code>: Maintain DDS system.</p></li>
+</ul>
+</div>
+<div class="section" id="memory-sizing">
+<span id="section-memory-sizing-guidelines"></span><h2><span class="section-number">14.1.7. </span>Memory sizing<a class="headerlink" href="#memory-sizing" title="Permalink to this headline">¶</a></h2>
+<p>The baseline memory sizing comprises 240KB, which includes 2 topics, small
+samples (&lt;100 bytes), <code class="docutils literal notranslate"><span class="pre">KEEP_LAST</span></code>
+<a class="reference external" href="../../../doc/api_c/html/group__DDSHistoryQosModule.html">History</a>
+(depth 10), and 1 <em>DomainParticipant</em>.</p>
+<p>When adjusting from this baseline, use the following rules of thumb:</p>
+<ul class="simple">
+<li><p>For each additional topic, add 40-60KB;</p></li>
+<li><p>For large samples (&gt;1KB), add <code class="docutils literal notranslate"><span class="pre">sample_size</span> <span class="pre">*</span> <span class="pre">history_depth</span></code>;</p></li>
+<li><p>For discovery, add 10KB per remote <em>DomainParticipant</em>;</p></li>
+</ul>
+<p>For a more conservative approach, start with the default 240KB, profile your
+actual memory usage on the target platform, add a 20-30% margin, and test
+the worst-case scenarios.</p>
+</div>
+<div class="section" id="related-documentation">
+<h2><span class="section-number">14.1.8. </span>Related documentation<a class="headerlink" href="#related-documentation" title="Permalink to this headline">¶</a></h2>
+<p>Refer to <a class="reference internal" href="autosar_architecture.html#section-autosar-architecture"><span class="std std-ref">Appendix B: AUTOSAR Architecture Example</span></a> for a comprehensive technical
+architecture of <em>Connext Micro</em> and AUTOSAR.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="autosar_architecture.html" class="btn btn-neutral float-right" title="14.2. Appendix B: AUTOSAR Architecture Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="14. Appendices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2017-2026, Real-Time Innovations, Inc
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

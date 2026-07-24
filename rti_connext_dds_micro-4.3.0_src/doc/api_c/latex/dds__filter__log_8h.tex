@@ -1,0 +1,173 @@
+\doxysubsection{dds\+\_\+filter\+\_\+log.\+h File Reference}
+\hypertarget{dds__filter__log_8h}{}\label{dds__filter__log_8h}\index{dds\_filter\_log.h@{dds\_filter\_log.h}}
+
+
+DDS Filter module log codes.  
+
+
+{\ttfamily \#include "{}osapi/osapi\+\_\+log.\+h"{}}\newline
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gae20257279a7c90cc8d54ad4325b429ab}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+CLASS\+\_\+\+RECORD}}~1
+\begin{DoxyCompactList}\small\item\em Database record for a Filter class. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga751b91bf6d22b3058a58f31bb9687f52}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+COMPILED\+\_\+\+FILTER\+\_\+\+RECORD}}~2
+\begin{DoxyCompactList}\small\item\em Database record for a compiled filter. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga7540feed9318b96fb8e41a21aff175a6}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+READER\+\_\+\+RECORD}}~3
+\begin{DoxyCompactList}\small\item\em Database record for a reader entry. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gaa871f892f03a6a35ec8755cd4915d7d3}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+ROUTE\+\_\+\+RECORD}}~4
+\begin{DoxyCompactList}\small\item\em Database record for a route entry. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga4660d2da36ea4ee4409aaf78765f5395}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+RECORD\+\_\+\+SELECT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 1)
+\begin{DoxyCompactList}\small\item\em A database select on the specified record kind failed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga2a46b8b93bb1b9279a1c2826000c30e8}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+RECORD\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 2)
+\begin{DoxyCompactList}\small\item\em Failed to create a database record of the specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga26f7ba56acf40774b1a4df64da7baf37}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+RECORD\+\_\+\+DELETE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 3)
+\begin{DoxyCompactList}\small\item\em Failed to delete a database record of the specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga98b03b5b29184d984b0950a1151742ee}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+RECORD\+\_\+\+INSERT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 4)
+\begin{DoxyCompactList}\small\item\em Failed to insert a database record of the specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga3949f50c66d1d8c59bd6d11d8327556a}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+RECORD\+\_\+\+REMOVE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 5)
+\begin{DoxyCompactList}\small\item\em Failed to remove a database record of the specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga92f0017ba43b7d35e4a9b87da753bf0d}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+TABLE\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 6)
+\begin{DoxyCompactList}\small\item\em Failed to create a database table of the specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga88c36ae256f8ce4a7e8dd203171e556c}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+TABLE\+\_\+\+DELETE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 7)
+\begin{DoxyCompactList}\small\item\em Failed to delete a database table of the specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gab1d3f7000e7510dbd64e2bba61ed57cd}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+CREATE\+\_\+\+INSTANCE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 10)
+\begin{DoxyCompactList}\small\item\em Failed to create an instance of the specified filter class. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gac706643545317039976e22bd21924bf9}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+DELETE\+\_\+\+INSTANCE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 11)
+\begin{DoxyCompactList}\small\item\em Failed to delete an instance of the specified filter class. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gad3dac037e09f7c4fdff4d95e9a9b68ce}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+COMPILE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 12)
+\begin{DoxyCompactList}\small\item\em Failed to compile a filter of the specified class. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga137e1d7b09e5b1e2b5d861ff1686240e}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+EVALUATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 13)
+\begin{DoxyCompactList}\small\item\em Failed to evaluate a filter of the specified class. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga220fb1393ab0ea5257069debb5a36e7a}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+WRITER\+\_\+\+DETACH\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 14)
+\begin{DoxyCompactList}\small\item\em Failed to detach a writer because it still has remote readers attached. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gac18f7fe552fd04ffd9c72ee5c5cbf734}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+EXPRESSION\+\_\+\+MAX\+\_\+\+COUNT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 15)
+\begin{DoxyCompactList}\small\item\em No more filters can be compiled because the configured maximum number of filter expressions has been reached. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga042c6d83292accd17cc65265dbf31c6e}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+CLASS\+\_\+\+REGISTER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 20)
+\begin{DoxyCompactList}\small\item\em Failed to register a filter class because one with the same name has already been registered or because the provided interface did not contain the required function pointers. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga1f37daf57af111b180ff8524272731af}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+CLASS\+\_\+\+NOT\+\_\+\+FOUND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 21)
+\begin{DoxyCompactList}\small\item\em Failed to find a filter class registered with the specified name. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga72678d83b1d7bc734c4103c94d47c68c}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+CLASS\+\_\+\+UNREGISTER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 22)
+\begin{DoxyCompactList}\small\item\em Failed to unregister a filter class because it is still in use. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gae77168e5ac13fdb06fecbea4791e30fb}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+CONTENT\+\_\+\+FILTERED\+\_\+\+TOPIC\+\_\+\+NAME\+\_\+\+STRING}}~1
+\begin{DoxyCompactList}\small\item\em Content filter topic name string. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gafae0287c20a3f6c511f72f14be3c0389}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+RELATED\+\_\+\+TOPIC\+\_\+\+NAME\+\_\+\+STRING}}~2
+\begin{DoxyCompactList}\small\item\em Content filter related topic name string. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga4651985fa622a22f7e7f4d0d4033a78a}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+CLASS\+\_\+\+NAME\+\_\+\+STRING}}~3
+\begin{DoxyCompactList}\small\item\em Filter class name string. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga1b9d187040c524b2cb753a2b12e4ff45}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+EXPRESSION\+\_\+\+STRING}}~4
+\begin{DoxyCompactList}\small\item\em Filter expression string. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga416c166a35f2df604dbd63d51b8c98ad}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+EXPRESSION\+\_\+\+PARAMETER\+\_\+\+STRING}}~5
+\begin{DoxyCompactList}\small\item\em Filter expression parameter string. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gab29a254fc2d61d5ee1c8d3d5bec3c18d}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+CONTENT\+\_\+\+FILTER\+\_\+\+NAME\+\_\+\+STRING}}~6
+\begin{DoxyCompactList}\small\item\em Content filter QoS expression name string. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga52a837339ff2f93b756d1e765f36fa28}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+STRING\+\_\+\+ASSERT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 30)
+\begin{DoxyCompactList}\small\item\em Failed to assert a string in the string manager of a specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga24140263c9e283ea981a232f5c8e1b68}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+STRING\+\_\+\+DELETE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 31)
+\begin{DoxyCompactList}\small\item\em Failed to delete a string in the string manager of a specified kind. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gaf81cb3c34f35a40769e2647ac87e609e}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+CONTENT\+\_\+\+FILTER\+\_\+\+NAME\+\_\+\+TOO\+\_\+\+LONG\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 32)
+\begin{DoxyCompactList}\small\item\em Failed to construct a content filter topic name from the combination of the related topic name and the filter name because it exceeded the maximum topic name length. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gaef705a722e958380d8bca93e6506adfd}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+STRING\+\_\+\+MANAGER\+\_\+\+CREATE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 33)
+\begin{DoxyCompactList}\small\item\em Failed to create a string manager for a specified string kind, max\+\_\+string\+\_\+size, and memory\+\_\+allocation. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga988b3660e5c37ed241f33c1b63d0de84}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+PARAMETER\+\_\+\+COUNT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 34)
+\begin{DoxyCompactList}\small\item\em Failed to deserialize a content filter property because it contained too many expression parameters. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga1ee45afd312234acfeda6d2ac46c47a8}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+TYPE\+\_\+\+CODE\+\_\+\+NOT\+\_\+\+FOUND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 40)
+\begin{DoxyCompactList}\small\item\em Content filtering is not supported on this data type because its type support does not include a type code. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__filter__log_8h_aaa6f94ed29165035c2daf5d656971248}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+PLUGIN\+\_\+\+FACTORY\+\_\+\+BUFFER}}~1
+\begin{DoxyCompactList}\small\item\em Heap memory for a filter plugin factory instance. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__filter__log_8h_a9d68febac7a5d77097c666452e91c670}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+PLUGIN\+\_\+\+BUFFER}}~2
+\begin{DoxyCompactList}\small\item\em Heap memory for a filter plugin instance. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__filter__log_8h_aa6905762f3ce97e4488a2528b2fde8e0}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+WRITER\+\_\+\+FILTER\+\_\+\+BUFFER}}~3
+\begin{DoxyCompactList}\small\item\em Heap memory for a writer filter instance. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dds__filter__log_8h_acc002580fd16028f07466afff60cfb94}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+INLINE\+\_\+\+QOS\+\_\+\+BUFFER}}~4
+\begin{DoxyCompactList}\small\item\em Heap memory for a writer to serialize a sample\textquotesingle{}s in-\/line QoS. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga0c9c39e4abd767a3676641894b68a45d}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+HEAP\+\_\+\+ALLOC\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 50)
+\begin{DoxyCompactList}\small\item\em Failed to allocate heap memory for a buffer of a given type. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga3f72d789b4d77e3dda2c3475971ba824}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+PLUGIN\+\_\+\+INIT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 51)
+\begin{DoxyCompactList}\small\item\em Failed to initialize a filter plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gac2a8c89459e6e9cd3fba50148684b6ae}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+PLUGIN\+\_\+\+FINALIZE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 52)
+\begin{DoxyCompactList}\small\item\em Failed to finalize a filter plugin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga111c41befd44736804e21eeeb04dd802}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+PLUGIN\+\_\+\+FACTORY\+\_\+\+IN\+\_\+\+USE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 53)
+\begin{DoxyCompactList}\small\item\em Failed to finalize a filter plugin factory because it is still in use. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga5ea5d24dc51a08d7c6f7978d84e544cc}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+WRITER\+\_\+\+FILTER\+\_\+\+COMPILE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 61)
+\begin{DoxyCompactList}\small\item\em A writer filter failed to compile a filter for a discovered reader. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gaff4f7570b52ebed8135182094d78d96a}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+WRITER\+\_\+\+FILTER\+\_\+\+REMOVE\+\_\+\+READER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 62)
+\begin{DoxyCompactList}\small\item\em Failed to remove a reader from a writer filter because it still has active routes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga07335a123c8a53c5b6d3f68c1fdcc49a}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+WRITER\+\_\+\+FILTER\+\_\+\+SEND\+\_\+\+GAP\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 63)
+\begin{DoxyCompactList}\small\item\em Writer failed to send a reader a GAP to indicate filtered data. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gae193d216e1db44a82c879134801d97e9}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+WRITER\+\_\+\+SERIALIZE\+\_\+\+INLINE\+\_\+\+QOS\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 64)
+\begin{DoxyCompactList}\small\item\em Writer failed to serialize the content filter info into the in-\/line QoS. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gaad6218043e67445d3979dbb8823909a3}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+WRITER\+\_\+\+FILTER\+\_\+\+EVALUATE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+ORDER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 65)
+\begin{DoxyCompactList}\small\item\em Writer filter was evaluated out of order which requires invalidating previous results. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga7854eea0316df4c3f4a2633c2f448726}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+WRITER\+\_\+\+FILTER\+\_\+\+STORE\+\_\+\+RESULT\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 66)
+\begin{DoxyCompactList}\small\item\em Writer filter unexpectedly failed to store the result of a filter evaluation. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga50e3fff5c5b59e624a40422b8ff1bc25}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+SQL\+\_\+\+UNSUPPORTED\+\_\+\+TYPE\+\_\+\+CODE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 100)
+\begin{DoxyCompactList}\small\item\em Unsupported type code for SQL filtering. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gada082f6872273e0e5e6cfe02c42bc706}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+SQL\+\_\+\+UNEXPECTED\+\_\+\+TOKEN\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 101)
+\begin{DoxyCompactList}\small\item\em Found an unexpected token while parsing an SQL filter expression. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga8c1a1361cbfbec2c78401da6c1ba0902}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+SQL\+\_\+\+MAX\+\_\+\+PREDICATES\+\_\+\+EXCEEDED\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 102)
+\begin{DoxyCompactList}\small\item\em Failed to parse an SQL filter expression because the number of predicates in the expression exceeded the configured maximum. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga4dd362e37112b20fa9943d8dde224c83}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+SQL\+\_\+\+INVALID\+\_\+\+TOKEN\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 103)
+\begin{DoxyCompactList}\small\item\em Found an invalid token while parsing an SQL filter expression. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga8112199ceb295ca9124ae127db6028d9}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+SQL\+\_\+\+PARSE\+\_\+\+PARAMETER\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 104)
+\begin{DoxyCompactList}\small\item\em Failed to parse a parameter in an SQL filter expression. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga9dfbcad64acfd3804486483fce1a6a71}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+SQL\+\_\+\+FIELD\+\_\+\+NOT\+\_\+\+FOUND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 105)
+\begin{DoxyCompactList}\small\item\em Failed to parse an SQL filter expression because a given field name did not match any field in the type code of the data being filtered. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gaee624cb88c77a6b272cd71d8083b3fa8}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+SQL\+\_\+\+UNSUPPORTED\+\_\+\+FIELD\+\_\+\+TYPE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 106)
+\begin{DoxyCompactList}\small\item\em A field specified in an SQL filter expression is not a supported type for use in an SQL filter. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga0dac33ce615754a18345330dbf563abd}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+SQL\+\_\+\+ENUM\+\_\+\+LABEL\+\_\+\+NOT\+\_\+\+FOUND\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 107)
+\begin{DoxyCompactList}\small\item\em Failed to find a given enum label in an SQL filter expression. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga6fde2752724a7967c361d84bce3dee01}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+SQL\+\_\+\+INCOMPATIBLE\+\_\+\+TYPES\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 108)
+\begin{DoxyCompactList}\small\item\em Comparison between two incompatible types in an SQL filter expression. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_gabbee9d0b71ee7a3dc27b7593395ae3c7}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+SQL\+\_\+\+INTEGER\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 109)
+\begin{DoxyCompactList}\small\item\em Integer constant in an SQL expression is out of range for the type. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DDSFilterLogCodesClass_ga7fac7d4ac46f4d8d6ef94ce5dadecb99}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+SQL\+\_\+\+INVALID\+\_\+\+PROPERTY\+\_\+\+EC}}~(\mbox{\hyperlink{osapi__log_8h_a542abcdf352c6c9497863297919ea78b}{DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+BASE}} + 110)
+\begin{DoxyCompactList}\small\item\em The builtin DDS SQL filter was registered with an invalid property. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+DDS Filter module log codes. 
+
+
+
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{dds__filter__log_8h_aaa6f94ed29165035c2daf5d656971248}\index{dds\_filter\_log.h@{dds\_filter\_log.h}!DDS\_FILTER\_LOG\_FILTER\_PLUGIN\_FACTORY\_BUFFER@{DDS\_FILTER\_LOG\_FILTER\_PLUGIN\_FACTORY\_BUFFER}}
+\index{DDS\_FILTER\_LOG\_FILTER\_PLUGIN\_FACTORY\_BUFFER@{DDS\_FILTER\_LOG\_FILTER\_PLUGIN\_FACTORY\_BUFFER}!dds\_filter\_log.h@{dds\_filter\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_FILTER\_LOG\_FILTER\_PLUGIN\_FACTORY\_BUFFER}{DDS\_FILTER\_LOG\_FILTER\_PLUGIN\_FACTORY\_BUFFER}}
+{\footnotesize\ttfamily \label{dds__filter__log_8h_aaa6f94ed29165035c2daf5d656971248} 
+\#define DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+PLUGIN\+\_\+\+FACTORY\+\_\+\+BUFFER~1}
+
+
+
+Heap memory for a filter plugin factory instance. 
+
+\Hypertarget{dds__filter__log_8h_a9d68febac7a5d77097c666452e91c670}\index{dds\_filter\_log.h@{dds\_filter\_log.h}!DDS\_FILTER\_LOG\_FILTER\_PLUGIN\_BUFFER@{DDS\_FILTER\_LOG\_FILTER\_PLUGIN\_BUFFER}}
+\index{DDS\_FILTER\_LOG\_FILTER\_PLUGIN\_BUFFER@{DDS\_FILTER\_LOG\_FILTER\_PLUGIN\_BUFFER}!dds\_filter\_log.h@{dds\_filter\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_FILTER\_LOG\_FILTER\_PLUGIN\_BUFFER}{DDS\_FILTER\_LOG\_FILTER\_PLUGIN\_BUFFER}}
+{\footnotesize\ttfamily \label{dds__filter__log_8h_a9d68febac7a5d77097c666452e91c670} 
+\#define DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+FILTER\+\_\+\+PLUGIN\+\_\+\+BUFFER~2}
+
+
+
+Heap memory for a filter plugin instance. 
+
+\Hypertarget{dds__filter__log_8h_aa6905762f3ce97e4488a2528b2fde8e0}\index{dds\_filter\_log.h@{dds\_filter\_log.h}!DDS\_FILTER\_LOG\_WRITER\_FILTER\_BUFFER@{DDS\_FILTER\_LOG\_WRITER\_FILTER\_BUFFER}}
+\index{DDS\_FILTER\_LOG\_WRITER\_FILTER\_BUFFER@{DDS\_FILTER\_LOG\_WRITER\_FILTER\_BUFFER}!dds\_filter\_log.h@{dds\_filter\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_FILTER\_LOG\_WRITER\_FILTER\_BUFFER}{DDS\_FILTER\_LOG\_WRITER\_FILTER\_BUFFER}}
+{\footnotesize\ttfamily \label{dds__filter__log_8h_aa6905762f3ce97e4488a2528b2fde8e0} 
+\#define DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+WRITER\+\_\+\+FILTER\+\_\+\+BUFFER~3}
+
+
+
+Heap memory for a writer filter instance. 
+
+\Hypertarget{dds__filter__log_8h_acc002580fd16028f07466afff60cfb94}\index{dds\_filter\_log.h@{dds\_filter\_log.h}!DDS\_FILTER\_LOG\_INLINE\_QOS\_BUFFER@{DDS\_FILTER\_LOG\_INLINE\_QOS\_BUFFER}}
+\index{DDS\_FILTER\_LOG\_INLINE\_QOS\_BUFFER@{DDS\_FILTER\_LOG\_INLINE\_QOS\_BUFFER}!dds\_filter\_log.h@{dds\_filter\_log.h}}
+\doxyparagraph{\texorpdfstring{DDS\_FILTER\_LOG\_INLINE\_QOS\_BUFFER}{DDS\_FILTER\_LOG\_INLINE\_QOS\_BUFFER}}
+{\footnotesize\ttfamily \label{dds__filter__log_8h_acc002580fd16028f07466afff60cfb94} 
+\#define DDS\+\_\+\+FILTER\+\_\+\+LOG\+\_\+\+INLINE\+\_\+\+QOS\+\_\+\+BUFFER~4}
+
+
+
+Heap memory for a writer to serialize a sample\textquotesingle{}s in-\/line QoS. 
+

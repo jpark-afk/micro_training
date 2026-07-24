@@ -1,0 +1,52 @@
+\doxysubsection{DDS\+\_\+\+Liveliness\+Lost\+Status Struct Reference}
+\hypertarget{structDDS__LivelinessLostStatus}{}\label{structDDS__LivelinessLostStatus}\index{DDS\_LivelinessLostStatus@{DDS\_LivelinessLostStatus}}
+
+
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS}  
+
+
+
+
+{\ttfamily \#include $<$dds\+\_\+c\+\_\+publication.\+h$>$}
+
+\doxysubsubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__LivelinessLostStatus_a6476fa4f784212625c98f08587b25c79}{total\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em Total cumulative number of times that a previously-\/alive \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} became not alive due to a failure to to actively signal its liveliness within the offered liveliness period. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} \mbox{\hyperlink{structDDS__LivelinessLostStatus_a84e853a0e6a2f5c403b65047b3a43d60}{total\+\_\+count\+\_\+change}}
+\begin{DoxyCompactList}\small\item\em The incremental changes in total\+\_\+count since the last time the listener was called or the status was read. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+{\itshape \doxylink{group__DDSDocGuideModule_a_st_cert}{\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}cert\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}}  \doxylink{group__DDSStatusTypesModule_ggaa99b5585ecdf8c5f93ac3108439ad26fabb958f0f7fe005d227e808949509961c}{DDS\+\_\+\+LIVELINESS\+\_\+\+LOST\+\_\+\+STATUS} 
+
+\begin{DoxyParagraph}{Entity\+:}
+\doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Listener\+:}
+\doxylink{structDDS__DataWriterListener}{DDS\+\_\+\+Data\+Writer\+Listener} 
+\end{DoxyParagraph}
+The liveliness that the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} has committed through its \doxylink{structDDS__LivelinessQosPolicy}{DDS\+\_\+\+Liveliness\+Qos\+Policy} was not respected; thus \doxylink{group__DDSReaderModule_ga49ce0cab2c1b60ddee4784a1432577a4}{DDS\+\_\+\+Data\+Reader} entities will consider the \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} as no longer "{}alive/active"{}. 
+
+\doxysubsubsection{Field Documentation}
+\Hypertarget{structDDS__LivelinessLostStatus_a6476fa4f784212625c98f08587b25c79}\index{DDS\_LivelinessLostStatus@{DDS\_LivelinessLostStatus}!total\_count@{total\_count}}
+\index{total\_count@{total\_count}!DDS\_LivelinessLostStatus@{DDS\_LivelinessLostStatus}}
+\doxyparagraph{\texorpdfstring{total\_count}{total\_count}}
+{\footnotesize\ttfamily \label{structDDS__LivelinessLostStatus_a6476fa4f784212625c98f08587b25c79} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Liveliness\+Lost\+Status\+::total\+\_\+count}
+
+
+
+Total cumulative number of times that a previously-\/alive \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} became not alive due to a failure to to actively signal its liveliness within the offered liveliness period. 
+
+This count does not change when an already not alive \doxylink{group__DDSWriterModule_gafb74fa54675abe1bfb2090265bf4d116}{DDS\+\_\+\+Data\+Writer} simply remains not alive for another liveliness period. \Hypertarget{structDDS__LivelinessLostStatus_a84e853a0e6a2f5c403b65047b3a43d60}\index{DDS\_LivelinessLostStatus@{DDS\_LivelinessLostStatus}!total\_count\_change@{total\_count\_change}}
+\index{total\_count\_change@{total\_count\_change}!DDS\_LivelinessLostStatus@{DDS\_LivelinessLostStatus}}
+\doxyparagraph{\texorpdfstring{total\_count\_change}{total\_count\_change}}
+{\footnotesize\ttfamily \label{structDDS__LivelinessLostStatus_a84e853a0e6a2f5c403b65047b3a43d60} 
+\mbox{\hyperlink{group__DDSCdrTypesModule_gafdb4033c1f3f81cfe8c9592532461b17}{DDS\+\_\+\+Long}} DDS\+\_\+\+Liveliness\+Lost\+Status\+::total\+\_\+count\+\_\+change}
+
+
+
+The incremental changes in total\+\_\+count since the last time the listener was called or the status was read. 
+

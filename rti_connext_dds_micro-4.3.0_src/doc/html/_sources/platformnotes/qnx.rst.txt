@@ -1,0 +1,269 @@
+.. raw:: latex
+
+  \newpage
+  \begin{landscape}
+
+QNX Platforms
+=============
+
+The following table shows the currently supported QNX platforms.
+
+.. list-table:: Supported QNX Platforms
+   :widths: 10 8 9 10 13 20 30
+   :header-rows: 1
+   :class: longtable
+
+   * - OS
+     - Version
+     - CPU
+     - Network Stack
+     - Toolchain
+     - Architecture PIL
+     - Architecture PSL
+   * - QNX
+     - 7.1
+     - ARMv8 (64-bit)
+     - OS Default: io-pkt
+     - qcc_gpp8.3.0
+     - armv8leElfqnx_qcc8.3.0
+
+       armv8leElfqnx_qcc8.3.0CERT
+     - armv8leElfqnx_qcc8.3.0-QNX7.1
+
+       armv8leElfqnx_qcc8.3.0CERT-QNX7.1
+   * - QNX
+     - 8.0
+     - ARMv8 (64-bit)
+     - OS Default: io-sock
+     - qcc_cxx12.2.0
+     - armv8leElfqnx_qcc12.2.0
+
+       armv8leElfqnx_qcc12.2.0CERT
+     - armv8leElfqnx_qcc12.2.0-QNX8.0
+
+       armv8leElfqnx_qcc12.2.0CERT-QNX8.0
+   * - QOS (QNX OS for Safety)
+     - 2.2.1
+     - ARMv8 (64-bit)
+     - OS Default: io-pkt
+     - qcc_gpp8.3.0
+     - armv8leElfqcc8.3.0
+
+       armv8leElfqcc8.3.0CERT
+     - armv8leElfqcc8.3.0-QOS2.2.1
+
+       armv8leElfqcc8.3.0CERT-QOS2.2.1
+
+How the PIL was built for QNX platforms
+---------------------------------------
+
+This section describes how RTI built the Platform Independent Library (PIL)
+for QNX platforms.
+
+The following table shows the compiler flags RTI used to create
+the PIL for QNX platforms:
+
+.. list-table:: PIL Compiler Flags for QNX Platforms
+   :name: QnxRequiredFlags
+   :widths: 30 20 50
+   :header-rows: 1
+   :class: longtable
+
+   * - Architecture PIL
+     - Library Format
+     - Compiler Flags Used by RTI
+
+   * - armv8leElfqnx_qcc8.3.0
+     - Static Release
+     - **C Flags:**-nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -O2 -fPIC -DNDEBUG |br|
+       **C++ Flags:**-nostdinc -fsigned-char -O2 -Vgcc/8.3.0,gcc_ntoaarch64le -fPIC -lang-c++ -DNDEBUG
+   * -
+     - Shared Release
+     - **C Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -O2 -fPIC -DNDEBUG |br|
+       **C++ Flags:** -nostdinc -fsigned-char -O2 -Vgcc/8.3.0,gcc_ntoaarch64le -fPIC -lang-c++ -DNDEBUG
+   * -
+     - Static Debug
+     - **C Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -g -fPIC |br|
+       **C++ Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -g -fPIC -lang-c++
+   * -
+     - Shared Debug
+     - **C Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -g  -fPIC |br|
+       **C++ Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -g  -fPIC -lang-c++
+   * - armv8leElfqnx_qcc8.3.0CERT
+     - Static Release
+     - **C Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -O2 -fPIC -DNDEBUG
+   * -
+     - Static Debug
+     - **C Flags:**-nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -g  -fPIC
+   * - armv8leElfqnx_qcc12.2.0
+     - Static Release
+     - **C Flags:** -nostdinc -DNDEBUG -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char  -O2 -fPIC |br|
+       **C++ Flags:** -lang-c++ -nostdinc -DNDEBUG -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char  -O2 -fPIC
+   * -
+     - Shared Release
+     - **C Flags:** -nostdinc -DNDEBUG -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char  -O2 -fPIC |br|
+       **C++ Flags:** -lang-c++ -nostdinc -DNDEBUG -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char  -O2 -fPIC
+   * -
+     - Static Debug
+     - **C Flags:** -nostdinc -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char -g -fPIC |br|
+       **C++ Flags:** -lang-c++ -nostdinc -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char -g -fPIC
+   * -
+     - Shared Debug
+     - **C Flags:** -nostdinc -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char -g -fPIC |br|
+       **C++ Flags:** -lang-c++ -nostdinc -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char -g -fPIC
+   * - armv8leElfqnx_qcc12.2.0CERT
+     - Static Release
+     - **C Flags:** -nostdinc -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char -O2 -fPIC
+   * -
+     - Static Debug
+     - **C Flags:** -nostdinc -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char -g -fPIC
+   * - armv8leElfqcc8.3.0
+     - Static Release
+     - **C Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -O2 -fPIC -DNDEBUG |br|
+       **C++ Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -O2 -fPIC -lang-c++ -DNDEBUG
+   * -
+     - Shared Release
+     - **C Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -O2 -fPIC -DNDEBUG |br|
+       **C++ Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -O2 -fPIC -lang-c++ -DNDEBUG
+   * -
+     - Static Debug
+     - **C Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -g  -fPIC |br|
+       **C++ Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -g -fPIC -lang-c++
+   * -
+     - Shared Debug
+     - **C Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -g  -fPIC |br|
+       **C++ Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -g -fPIC -lang-c++
+   * - armv8leElfqcc8.3.0CERT
+     - Static Release
+     - **C Flags:** -nostdinc -fsigned-char -O2 -Vgcc/8.3.0,gcc_ntoaarch64le -O2 -fPIC -DNDEBUG
+   * -
+     - Static Debug
+     - **C Flags:** -nostdinc -fsigned-char -Vgcc/8.3.0,gcc_ntoaarch64le -g -fPIC
+
+.. warning::
+
+  The |rti_me| platform independent libraries are built without the standard C
+  header-files. However, |me| makes one direct call to
+  the C library API ``qsort``. In addition, QCC may insert direct calls
+  to GLIBC functions and other required functions, such as default C++
+  constructors and destructors. For this reason, it is necessary to use a
+  QCC version that is compatible with the QCC version used to build the
+  platform independent libraries, or provide a C library with an implementation
+  of the required functions. Future versions of |rti_me| will remove these
+  dependencies.
+
+Building the PSL from source for QNX platforms
+----------------------------------------------
+
+Refer to :ref:`psl_compiling` for instructions on how to build your own
+Platform Support Library (PSL) for QNX platforms.
+
+The following table shows the compiler flags and required options that RTI
+used to build the PSL for QNX platforms. When you build the PSL with
+``rtime-make``, the ``--target`` argument automatically adds all the necessary
+flags for the specified architecture.
+
+.. list-table:: PSL Compiler Flags for QNX Platforms
+   :widths: 30 20 50
+   :header-rows: 1
+   :class: longtable
+
+   * - Architecture PSL
+     - Library Format
+     - Compiler Flags Used by RTI
+
+   * - armv8leElfqnx_qcc8.3.0-QNX7.1
+     - Static Release
+     - **C Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -fsigned-char -O2 -Y_gpp -DNDEBUG
+
+       **C++ Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -Y_gpp -fsigned-char -O2 -lang-c++ -DNDEBUG
+   * -
+     - Static Debug
+     - **C Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -fsigned-char -O2 -Y_gpp -DNDEBUG
+
+       **C++ Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -Y_gpp -fsigned-char -O2 -lang-c++ -DNDEBUG
+
+   * -
+     - Shared Release
+     - **C Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -fsigned-char -O2 -Y_gpp -DNDEBUG
+
+       **C++ Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -Y_gpp -fsigned-char -O2 -lang-c++ -DNDEBUG
+
+   * -
+     - Shared Debug
+     - **C Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -fsigned-char -O2 -Y_gpp -DNDEBUG
+
+       **C++ Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -Y_gpp -fsigned-char -O2 -lang-c++ -DNDEBUG
+
+   * - armv8leElfqnx_qcc8.3.0CERT-QNX7.1
+     - Static Release
+     - **C Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -fsigned-char -Y_gpp -O2 -DNDEBUG
+   * -
+     - Static Debug
+     - **C Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -fsigned-char -Y_gpp -g
+
+   * - armv8leElfqnx_qcc12.2.0-QNX8.0
+     - Static Release
+     - **C Flags:** -DNDEBUG -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char  -O2 -fPIC
+
+       **C++ Flags:** -lang-c++ -DNDEBUG -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char  -O2 -fPIC
+   * -
+     - Static Debug
+     - **C Flags:** -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char -g -fPIC
+
+       **C++ Flags:** -lang-c++ -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char -g -fPIC
+
+   * -
+     - Shared Release
+     - **C Flags:** -DNDEBUG -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char  -O2 -fPIC
+
+       **C++ Flags:** -lang-c++ -DNDEBUG -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char  -O2 -fPIC
+
+   * -
+     - Shared Debug
+     - **C Flags:** -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char -g -fPIC
+
+       **C++ Flags:** -lang-c++ -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char -g -fPIC
+
+   * - armv8leElfqnx_qcc12.2.0CERT-QNX8.0
+     - Static Release
+     - **C Flags:** -DNDEBUG -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char -O2 -fPIC
+   * -
+     - Static Debug
+     - **C Flags:** -DNDEBUG -Vgcc/12.2.0,gcc_ntoaarch64le -fsigned-char -g -fPIC
+
+   * - armv8leElfqcc8.3.0-QOS2.2.1
+     - Static Release
+     - **C Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -fsigned-char -Y_gpp -O2 -DNDEBUG
+
+       **C++ Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -Y_gpp -fsigned-char -O2 -lang-c++ -DNDEBUG
+
+   * -
+     - Static Debug
+     - **C Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -fsigned-char -Y_gpp -g
+
+       **C++ Flags:**-Vgcc/8.3.0,gcc_ntoaarch64le -Y_gpp -fsigned-char -g -lang-c++
+
+   * -
+     - Shared Release
+     - **C Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -fsigned-char -Y_gpp -O2 -DNDEBUG
+
+       **C++ Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -Y_gpp -fsigned-char -O2 -lang-c++ -DNDEBUG
+
+   * -
+     - Shared Debug
+     - **C Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -fsigned-char -Y_gpp -g
+
+       **C++ Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -Y_gpp -fsigned-char -g -lang-c++
+
+   * - armv8leElfqcc8.3.0CERT-QOS2.2.1
+     - Static Release
+     - **C Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -fsigned-char -O2 -Y_gpp -DNDEBUG
+   * -
+     - Static Debug
+     - **C Flags:** -Vgcc/8.3.0,gcc_ntoaarch64le -fsigned-char -Y_gpp -g
+
+.. raw:: latex
+
+  \end{landscape}
+  \newpage

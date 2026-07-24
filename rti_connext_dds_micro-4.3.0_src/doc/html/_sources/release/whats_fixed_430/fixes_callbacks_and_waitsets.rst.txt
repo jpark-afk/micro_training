@@ -1,0 +1,21 @@
+Callbacks and Waitsets
+======================
+
+.. Release Notes from this point.
+
+:major:`[Major]` on_before callbacks could cause DataReader to stop receiving data
+----------------------------------------------------------------------------------
+Filtering samples with ``on_before`` callbacks could filter out samples
+from batched *DataWriters,* which could eventually cause *DataReaders*
+to stop receiving data.
+
+[RTI Issue ID MICRO-1981]
+
+:minor:`[Minor]` DataWriter did not invoke on_offered_incompatible_qos listener when data representations were incompatible
+---------------------------------------------------------------------------------------------------------------------------
+When a *DataWriter* and a *DataReader* had incompatible ``DATA_REPRESENTATION``
+QoS policies (for example, CDR v1 vs. CDR v2), the *DataWriter*
+did not invoke its ``on_offered_incompatible_qos`` listener. The endpoints did
+not match, but the writer-side notification was silently skipped.
+
+[RTI Issue ID MICRO-12033]

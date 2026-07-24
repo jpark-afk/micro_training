@@ -1,0 +1,83 @@
+\doxysubsubsubsection{Content Filter Interface}
+\hypertarget{group__DDSContentFilterInterfaceModule}{}\label{group__DDSContentFilterInterfaceModule}\index{Content Filter Interface@{Content Filter Interface}}
+
+
+Content Filter Interface.  
+
+
+\doxysubsubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDDS__ContentFilterI}{DDS\+\_\+\+Content\+FilterI}}
+\begin{DoxyCompactList}\small\item\em Interface for implementing custom content filters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSContentFilterInterfaceModule_ga21d5bf2bea8e8e9817f476e55f783198}{DDS\+\_\+\+Content\+Filter\+\_\+create\+\_\+instance\+Func}}) (const struct \mbox{\hyperlink{structDDS__FilterResourceLimits}{DDS\+\_\+\+Filter\+Resource\+Limits}} \texorpdfstring{$\ast$}{*}resource\+\_\+limits, const void \texorpdfstring{$\ast$}{*}property)
+\begin{DoxyCompactList}\small\item\em The content filter create instance function required by \doxylink{structDDS__ContentFilterI}{DDS\+\_\+\+Content\+FilterI}. \end{DoxyCompactList}\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSContentFilterInterfaceModule_ga9b11442de28b095ec14ab969c7df3c12}{DDS\+\_\+\+Content\+Filter\+\_\+delete\+\_\+instance\+Func}}) (void \texorpdfstring{$\ast$}{*}filter\+\_\+instance)
+\begin{DoxyCompactList}\small\item\em The content filter delete instance function required by \doxylink{structDDS__ContentFilterI}{DDS\+\_\+\+Content\+FilterI}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSContentFilterInterfaceModule_gafa7012fd27ef1166c1192ab645192c40}{DDS\+\_\+\+Content\+Filter\+\_\+compile\+Func}}) (void \texorpdfstring{$\ast$}{*}filter\+\_\+instance, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}compiled\+\_\+expression\+\_\+out, const char \texorpdfstring{$\ast$}{*}expression, const struct DDS\+\_\+\+String\+Seq \texorpdfstring{$\ast$}{*}parameters, const struct DDS\+\_\+\+Type\+Code \texorpdfstring{$\ast$}{*}type\+\_\+code, const char \texorpdfstring{$\ast$}{*}type\+\_\+class\+\_\+name)
+\begin{DoxyCompactList}\small\item\em The content filter compile function required by \doxylink{structDDS__ContentFilterI}{DDS\+\_\+\+Content\+FilterI}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSContentFilterInterfaceModule_ga1b38a9dcfbca2c7c425618f61385b90f}{DDS\+\_\+\+Content\+Filter\+\_\+evaluate\+Func}}) (void \texorpdfstring{$\ast$}{*}filter\+\_\+instance, void \texorpdfstring{$\ast$}{*}compiled\+\_\+expression, const void \texorpdfstring{$\ast$}{*}sample, \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \texorpdfstring{$\ast$}{*}result\+\_\+out)
+\begin{DoxyCompactList}\small\item\em The content filter evaluate function required by \doxylink{structDDS__ContentFilterI}{DDS\+\_\+\+Content\+FilterI}. \end{DoxyCompactList}\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__DDSContentFilterInterfaceModule_ga1ccb18cb3206a6aa8a0288fe628d32a6}{DDS\+\_\+\+Content\+Filter\+\_\+finalize\+Func}}) (void \texorpdfstring{$\ast$}{*}filter\+\_\+instance, void \texorpdfstring{$\ast$}{*}compiled\+\_\+expression)
+\begin{DoxyCompactList}\small\item\em The content filter finalize function required by \doxylink{structDDS__ContentFilterI}{DDS\+\_\+\+Content\+FilterI}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsection{Detailed Description}
+Content Filter Interface. 
+
+The content filter interface defines the callbacks that must be implemented by a custom content filter class. When a content filter is registered with a \doxylink{classDDSDomainParticipant}{DDSDomain\+Participant} using \+::\+DDSDomain\+Participant\+::register\+\_\+contentfilter, the filter implementation must provide this interface. 
+
+\doxysubsubsubsubsection{Typedef Documentation}
+\Hypertarget{group__DDSContentFilterInterfaceModule_ga21d5bf2bea8e8e9817f476e55f783198}\index{Content Filter Interface@{Content Filter Interface}!DDS\_ContentFilter\_create\_instanceFunc@{DDS\_ContentFilter\_create\_instanceFunc}}
+\index{DDS\_ContentFilter\_create\_instanceFunc@{DDS\_ContentFilter\_create\_instanceFunc}!Content Filter Interface@{Content Filter Interface}}
+\doxyparagraph{\texorpdfstring{DDS\_ContentFilter\_create\_instanceFunc}{DDS\_ContentFilter\_create\_instanceFunc}}
+{\footnotesize\ttfamily \label{group__DDSContentFilterInterfaceModule_ga21d5bf2bea8e8e9817f476e55f783198} 
+typedef void \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Content\+Filter\+\_\+create\+\_\+instance\+Func) (const struct \mbox{\hyperlink{structDDS__FilterResourceLimits}{DDS\+\_\+\+Filter\+Resource\+Limits}} \texorpdfstring{$\ast$}{*}resource\+\_\+limits, const void \texorpdfstring{$\ast$}{*}property)}
+
+
+
+The content filter create instance function required by \doxylink{structDDS__ContentFilterI}{DDS\+\_\+\+Content\+FilterI}. 
+
+\Hypertarget{group__DDSContentFilterInterfaceModule_ga9b11442de28b095ec14ab969c7df3c12}\index{Content Filter Interface@{Content Filter Interface}!DDS\_ContentFilter\_delete\_instanceFunc@{DDS\_ContentFilter\_delete\_instanceFunc}}
+\index{DDS\_ContentFilter\_delete\_instanceFunc@{DDS\_ContentFilter\_delete\_instanceFunc}!Content Filter Interface@{Content Filter Interface}}
+\doxyparagraph{\texorpdfstring{DDS\_ContentFilter\_delete\_instanceFunc}{DDS\_ContentFilter\_delete\_instanceFunc}}
+{\footnotesize\ttfamily \label{group__DDSContentFilterInterfaceModule_ga9b11442de28b095ec14ab969c7df3c12} 
+typedef void(\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Content\+Filter\+\_\+delete\+\_\+instance\+Func) (void \texorpdfstring{$\ast$}{*}filter\+\_\+instance)}
+
+
+
+The content filter delete instance function required by \doxylink{structDDS__ContentFilterI}{DDS\+\_\+\+Content\+FilterI}. 
+
+\Hypertarget{group__DDSContentFilterInterfaceModule_gafa7012fd27ef1166c1192ab645192c40}\index{Content Filter Interface@{Content Filter Interface}!DDS\_ContentFilter\_compileFunc@{DDS\_ContentFilter\_compileFunc}}
+\index{DDS\_ContentFilter\_compileFunc@{DDS\_ContentFilter\_compileFunc}!Content Filter Interface@{Content Filter Interface}}
+\doxyparagraph{\texorpdfstring{DDS\_ContentFilter\_compileFunc}{DDS\_ContentFilter\_compileFunc}}
+{\footnotesize\ttfamily \label{group__DDSContentFilterInterfaceModule_gafa7012fd27ef1166c1192ab645192c40} 
+typedef \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}}(\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Content\+Filter\+\_\+compile\+Func) (void \texorpdfstring{$\ast$}{*}filter\+\_\+instance, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}compiled\+\_\+expression\+\_\+out, const char \texorpdfstring{$\ast$}{*}expression, const struct DDS\+\_\+\+String\+Seq \texorpdfstring{$\ast$}{*}parameters, const struct DDS\+\_\+\+Type\+Code \texorpdfstring{$\ast$}{*}type\+\_\+code, const char \texorpdfstring{$\ast$}{*}type\+\_\+class\+\_\+name)}
+
+
+
+The content filter compile function required by \doxylink{structDDS__ContentFilterI}{DDS\+\_\+\+Content\+FilterI}. 
+
+\Hypertarget{group__DDSContentFilterInterfaceModule_ga1b38a9dcfbca2c7c425618f61385b90f}\index{Content Filter Interface@{Content Filter Interface}!DDS\_ContentFilter\_evaluateFunc@{DDS\_ContentFilter\_evaluateFunc}}
+\index{DDS\_ContentFilter\_evaluateFunc@{DDS\_ContentFilter\_evaluateFunc}!Content Filter Interface@{Content Filter Interface}}
+\doxyparagraph{\texorpdfstring{DDS\_ContentFilter\_evaluateFunc}{DDS\_ContentFilter\_evaluateFunc}}
+{\footnotesize\ttfamily \label{group__DDSContentFilterInterfaceModule_ga1b38a9dcfbca2c7c425618f61385b90f} 
+typedef \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}}(\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Content\+Filter\+\_\+evaluate\+Func) (void \texorpdfstring{$\ast$}{*}filter\+\_\+instance, void \texorpdfstring{$\ast$}{*}compiled\+\_\+expression, const void \texorpdfstring{$\ast$}{*}sample, \mbox{\hyperlink{group__DDSCdrTypesModule_ga81ec244668d0d0e440a155af0ce294e9}{DDS\+\_\+\+Boolean}} \texorpdfstring{$\ast$}{*}result\+\_\+out)}
+
+
+
+The content filter evaluate function required by \doxylink{structDDS__ContentFilterI}{DDS\+\_\+\+Content\+FilterI}. 
+
+\Hypertarget{group__DDSContentFilterInterfaceModule_ga1ccb18cb3206a6aa8a0288fe628d32a6}\index{Content Filter Interface@{Content Filter Interface}!DDS\_ContentFilter\_finalizeFunc@{DDS\_ContentFilter\_finalizeFunc}}
+\index{DDS\_ContentFilter\_finalizeFunc@{DDS\_ContentFilter\_finalizeFunc}!Content Filter Interface@{Content Filter Interface}}
+\doxyparagraph{\texorpdfstring{DDS\_ContentFilter\_finalizeFunc}{DDS\_ContentFilter\_finalizeFunc}}
+{\footnotesize\ttfamily \label{group__DDSContentFilterInterfaceModule_ga1ccb18cb3206a6aa8a0288fe628d32a6} 
+typedef void(\texorpdfstring{$\ast$}{*} DDS\+\_\+\+Content\+Filter\+\_\+finalize\+Func) (void \texorpdfstring{$\ast$}{*}filter\+\_\+instance, void \texorpdfstring{$\ast$}{*}compiled\+\_\+expression)}
+
+
+
+The content filter finalize function required by \doxylink{structDDS__ContentFilterI}{DDS\+\_\+\+Content\+FilterI}. 
+

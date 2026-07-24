@@ -1,0 +1,31 @@
+Hangs
+=====
+
+.. Release Notes from this point.
+
+:critical:`[Critical]` Potential deadlock when deleting a DomainParticipant that used the Flow Controller 
+---------------------------------------------------------------------------------------------------------
+When deleting a *DomainParticipant* that used the Flow Controller, a deadlock
+could occur; this was an unintended result of compiler optimization.
+
+[RTI Issue ID MICRO-12547]
+
+:critical:`[Critical]` Asynchronous DataWriter could silently stop sending samples and hang on deletion
+-------------------------------------------------------------------------------------------------------
+When a *DataWriter* published large fragmented samples asynchronously through a
+:link_connextmicro_dds_api_c_up_two:`DDS_FlowController <group__DDSFlowControllerModule.html>`,
+it could stop sending samples even though ``write()`` operations continued to
+succeed and heartbeats were still sent. Deleting the affected *DataWriter* or
+its *DomainParticipant* could then hang indefinitely.
+
+[RTI Issue ID MICRO-13552]
+
+:major:`[Major]` DataWriters stalled indefinitely when sharing flow controller
+------------------------------------------------------------------------------
+When multiple *DataWriters* used the same :link_connextmicro_dds_api_c_up_two:`DDS_FlowController <group__DDSFlowControllerModule.html>`
+with the same priority, only the first sample was sent successfully. After
+that sample was sent, the flow controller entered a state from which no
+further progress could be made, and all remaining *DataWriters* stalled
+indefinitely without sending any data.
+
+[RTI Issue ID MICRO-2959]

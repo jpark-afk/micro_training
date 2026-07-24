@@ -18,12 +18,9 @@ if (-not (Test-Path $libPath)) {
 
 Write-Host "[check] archive exists: $libPath"
 
-$libList = & lib.exe /LIST $libPath 2>&1
-if ($LASTEXITCODE -ne 0) {
-    Fail "lib.exe /LIST failed for $libPath`n$libList"
-}
+$archiveText = [System.Text.Encoding]::ASCII.GetString([System.IO.File]::ReadAllBytes($libPath))
 
-if (-not ($libList -match "autosarSocket\.obj")) {
+if (-not ($archiveText -match "autosarSocket\.obj")) {
     Fail "autosarSocket.obj not found in archive $libPath"
 }
 
@@ -36,10 +33,7 @@ if (-not $objPath) {
 
 Write-Host "[check] object located: $objPath"
 
-$symbols = & dumpbin.exe /symbols $objPath 2>&1
-if ($LASTEXITCODE -ne 0) {
-    Fail "dumpbin /symbols failed for $objPath`n$symbols"
-}
+$symbols = [System.Text.Encoding]::ASCII.GetString([System.IO.File]::ReadAllBytes($objPath))
 
 $required = @(
     "_NETIO_Autosar_TcpIp_udp_rx_indication",

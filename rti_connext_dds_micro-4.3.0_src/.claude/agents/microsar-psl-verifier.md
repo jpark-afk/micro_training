@@ -8,6 +8,7 @@ model: opus
 You verify only correctness and requirement coverage.
 
 Checklist
+- Confirm `build_micro4_vtt.bat` is targeting `resource\scripts\rtime-make.bat`
 - Confirm PSL archive exists in build output
 - Confirm autosarSocket object is packaged in netiopsl archive
 - Confirm required callback symbols exist:

@@ -1,120 +1,185 @@
-## Prompt
+# Reusable Workflow Entry
 
-## Reusable Workflow Entry
+This file is the self-contained entrypoint for Visual Studio 2017 x86 MICROSAR VTT builds.
+The required generated artifacts are now part of the repo and can be maintained directly without relying on `.cheat`.
 
-This file is the unified entrypoint for Visual Studio 2017 x86 MICROSAR VTT builds.
-For repeatable execution and verification, use:
+## New Context Quick Start
 
-- [build_pil.md](build_pil.md)
-- [build_psl.md](build_psl.md)
+1. Confirm `OSEK_PATH` is already defined in the user environment.
+2. From the repo root, run `build_micro4_vtt.bat all Debug verify`.
+3. If the build needs investigation, read this file first, then inspect `build_micro4_vtt.bat`, `resource/cmake/architectures/i86lePEvs2017*.tc`, and `playbooks/microsar-pil-psl/verify_psl_symbols.ps1`.
+
+Environment assumption for this workflow:
+
+- `OSEK_PATH` is already defined as a user environment variable.
+- `build_micro4_vtt.bat` prepares the repo-local build environment from the current directory before invoking the build.
+- No separate `setenv_micro_32bit.bat` step is required for the supported workflow.
+
+Primary workflow assets:
+
+- [build_micro4_vtt.bat](build_micro4_vtt.bat)
+- [rtimemake.bat](rtimemake.bat)
+- [CMakeLists.txt](CMakeLists.txt)
+- [resource/cmake/architectures/i86lePEvs2017.tc](resource/cmake/architectures/i86lePEvs2017.tc)
+- [resource/cmake/architectures/i86lePEvs2017-MICROSAR4.tc](resource/cmake/architectures/i86lePEvs2017-MICROSAR4.tc)
+- [src/rti_me_psl/CMakeLists.txt](src/rti_me_psl/CMakeLists.txt)
 - [playbooks/microsar-pil-psl/README.md](playbooks/microsar-pil-psl/README.md)
 - [playbooks/microsar-pil-psl/PROMPT_TEMPLATE.md](playbooks/microsar-pil-psl/PROMPT_TEMPLATE.md)
 - [playbooks/microsar-pil-psl/CHECKLIST.md](playbooks/microsar-pil-psl/CHECKLIST.md)
 - [playbooks/microsar-pil-psl/COMMANDS.md](playbooks/microsar-pil-psl/COMMANDS.md)
 - [playbooks/microsar-pil-psl/verify_psl_symbols.ps1](playbooks/microsar-pil-psl/verify_psl_symbols.ps1)
 
-Claude-style automation assets (optional):
+Optional Claude automation assets:
 
 - [/.claude/skills/microsar-pil-psl-build/SKILL.md](.claude/skills/microsar-pil-psl-build/SKILL.md)
 - [/.claude/agents/microsar-psl-verifier.md](.claude/agents/microsar-psl-verifier.md)
 
-### Goal
-Create or update a unified batch entrypoint `build_micro4_vtt.bat` that can execute PIL-only, PSL-only, or combined PIL+PSL flows using the same verified logic captured by build_pil.md and build_psl.md.
+## Goal
 
-Additionally, this prompt activity must:
+Use [build_micro4_vtt.bat](build_micro4_vtt.bat) to run PIL-only, PSL-only, or combined PIL+PSL flows with the checked-in CMake and architecture changes required for VS2017 x86 MICROSAR4 builds.
 
-- Generate `i86lePEvs2017.tc` and `i86lePEvs2017-MICROSAR4.tc` as new output files (existing files are not assumed).
-- Update an existing root `CMakeLists.txt` as part of the prompt-driven changes.
+The workflow is considered reproducible only when a fresh shell can execute the wrapper directly from the repo root and complete build plus verification without any extra manual environment setup.
 
-### Baseline Source of Truth
-The authoritative baseline input is:
+## Managed Artifacts
 
-- `C:\Users\jpark\Documents\rti_workspace\CMakeLists.txt`
+These files define the workflow and should be edited directly when the build logic changes:
 
-Prompt execution must start from this baseline and derive final content changes for all output artifacts listed below.
+- `build_micro4_vtt.bat`
+- `rtimemake.bat`
+- `resource/cmake/architectures/i86lePEvs2017.tc`
+- `resource/cmake/architectures/i86lePEvs2017-MICROSAR4.tc`
+- `src/rti_me_psl/CMakeLists.txt`
+- `CMakeLists.txt`
+- `playbooks/microsar-pil-psl/verify_psl_symbols.ps1`
 
-### Unified Mode Matrix
-The unified batch must support:
+Back up an existing file to a sibling `.bak` file before changing it.
+Changed CMake blocks should keep explicit `AI-MOD-BEGIN` and `AI-MOD-END` comments.
+
+## Mode Matrix
 
 - `MODE=all`: build PIL then PSL
 - `MODE=pil`: build PIL only
 - `MODE=psl`: build PSL only
 
-### Expected AI Output Artifacts
-The following files must be produced as prompt-execution outputs, not treated as fixed inputs:
+## Script Contract
 
-- `build_micro4_vtt.bat` (create or update)
-- `i86lePEvs2017.tc` (generate as a new file from prompt/reference input)
-- `i86lePEvs2017-MICROSAR4.tc` (generate as a new file from prompt/reference input)
-- `CMakeLists.txt` (update existing file)
+[build_micro4_vtt.bat](build_micro4_vtt.bat) supports:
 
-For `CMakeLists.txt` specifically:
+- `MODE=all|pil|psl` default `all`
+- `CONFIG=Debug|Release` default `Debug`
+- `VERIFY=verify|noverify` default `verify`
 
-- Keep existing content as baseline and apply minimal required changes.
-- Create a backup file before modification: `CMakeLists.txt.bak`
-- Mark newly added or changed blocks with explicit comments (for example, `AI-MOD-BEGIN` / `AI-MOD-END`)
+Validation requirements:
 
-### Expected Library Output Location
-- PIL artifacts: `lib\i86lePEvs2017`
-- PSL artifacts: `lib\i86lePEvs2017-MICROSAR4`
+- `OSEK_PATH` must be defined
+- `build_micro4_vtt.bat` must populate the repo-local build environment
+- `resource\scripts\rtime-make.bat` must exist
+- `rtimemake.bat` must resolve from the repo root after wrapper setup
 
-### Unified build_micro4_vtt.bat Contract
-When generating `build_micro4_vtt.bat`, the script must implement:
+Wrapper responsibilities:
 
-- Accepted arguments:
-  - `MODE`: `all | pil | psl` (default `all`)
-  - `CONFIG`: `Debug | Release` (default `Debug`)
-  - `VERIFY`: `verify | noverify` (default `verify`)
-- Validate environment:
-  - `OSEK_PATH` must be defined for MICROSAR include discovery
-  - Visual Studio 2017 x86 toolchain must be available
-- Build commands:
-  - PIL target: `i86lePEvs2017`
-  - PSL target: `i86lePEvs2017-MICROSAR4`
-  - Generator: `Visual Studio 15 2017`
-  - C-only flags:
-    - `-DRTIME_EXCLUDE_CPP_eq_TRUE`
-    - `-DRTI_BUILD_UNITTESTS_eq_FALSE`
-- Build sequencing:
-  - `MODE=all`: PIL then PSL
-  - `MODE=pil`: PIL only
-  - `MODE=psl`: PSL only
-- Verification behavior:
-  - `MODE=pil`: confirm PIL archives exist in `lib\i86lePEvs2017`
-  - `MODE=psl`: run PSL verification and confirm PSL archives in `lib\i86lePEvs2017-MICROSAR4`
-  - `MODE=all`: run both checks
-  - if `VERIFY=noverify`, skip verification stage
-- Exit code rules:
-  - return non-zero on argument errors, environment errors, build failures, or verification failures
+- prepend repo root, `resource\scripts`, and `bin` to `PATH`
+- set `RTIMEHOME`, `NDDSHOME`, `RTIME_DIST`, and target-specific `RTIMEARCH`
+- call `rtimemake` with the correct target and C-only flags
+- synchronize built archives from `build\cmake\<Config>\<Target>\<Config>` into `lib\<Target>`
+- run PSL symbol verification without requiring `lib.exe` or `dumpbin.exe`
 
-### Required Changes From build_pil.md
-- Preserve MICROSAR-compatible PIL behavior for VS2017 x86.
-- Keep PIL scope focused on PIL target/toolchain artifact generation.
-- Route unresolved AUTOSAR callback symbol issues to PSL workflow.
+## Wrapper Regeneration Checklist
 
-### Required Changes From build_psl.md
-- Ensure PSL routing does not fall back to stub path when target PSL is required.
-- Ensure `RTIME_PIL_USE_TARGET_PSL` and `RTIME_TARGET_PSL` pathing are applied where needed.
-- Ensure AUTOSAR transitive include discovery from `OSEK_PATH` is present for PSL compile chain.
+If `build_micro4_vtt.bat` is missing or must be rewritten in a new context, the regenerated script must preserve all of the following behavior:
 
-### Recommended Build Commands (Reference)
+- support `all`, `pil`, and `psl` modes
+- support `Debug` and `Release` config selection
+- support `verify` and `noverify` verification modes
+- accept positional arguments and named forms split by `cmd`, including:
+  - `build_micro4_vtt.bat pil Debug verify`
+  - `build_micro4_vtt.bat MODE pil CONFIG Debug VERIFY verify`
+  - `build_micro4_vtt.bat MODE=pil CONFIG=Debug VERIFY=verify`
+- validate that `OSEK_PATH` is defined and exists
+- set repo-local environment directly in the wrapper instead of requiring `setenv_micro_32bit.bat`
+- ensure `rtimemake` resolves from the repo root by preparing `PATH`
+- call `rtimemake` with:
+  - generator `Visual Studio 15 2017`
+  - `-DRTIME_EXCLUDE_CPP_eq_TRUE`
+  - `-DRTI_BUILD_UNITTESTS_eq_FALSE`
+- update `RTIMEARCH` per target, especially during `MODE=all`
+- copy resulting `.a` or `.lib` files from `build\cmake\<Config>\<Target>\<Config>` to `lib\<Target>` after each target build
+- fail with non-zero exit code on invalid args, environment errors, build failures, sync failures, or verification failures
+- invoke [playbooks/microsar-pil-psl/verify_psl_symbols.ps1](playbooks/microsar-pil-psl/verify_psl_symbols.ps1) for PSL verification
+
+If a regenerated wrapper does not satisfy every item above, it is not equivalent to the validated workflow.
+
+## Build Commands
+
 ```bat
-rtime-make.bat --config Debug --build --target i86lePEvs2017 --name i86lePEvs2017 -G "Visual Studio 15 2017" -DRTIME_EXCLUDE_CPP_eq_TRUE -DRTI_BUILD_UNITTESTS_eq_FALSE
-
-rtime-make.bat --config Debug --build --target i86lePEvs2017-MICROSAR4 --name i86lePEvs2017-MICROSAR4 -G "Visual Studio 15 2017" -DRTIME_EXCLUDE_CPP_eq_TRUE -DRTI_BUILD_UNITTESTS_eq_FALSE
+build_micro4_vtt.bat
+build_micro4_vtt.bat pil Debug verify
+build_micro4_vtt.bat psl Debug verify
+build_micro4_vtt.bat psl Release noverify
+build_micro4_vtt.bat all Debug noverify
 ```
 
-### Verification
-- PIL archive directory check:
-  - `Get-ChildItem .\lib\i86lePEvs2017`
-- PSL archive directory check:
-  - `Get-ChildItem .\lib\i86lePEvs2017-MICROSAR4`
-- PSL symbol verification:
-  - run [playbooks/microsar-pil-psl/verify_psl_symbols.ps1](playbooks/microsar-pil-psl/verify_psl_symbols.ps1)
+Recommended reproduction order:
 
-### Success Criteria
-- Unified batch `build_micro4_vtt.bat` can run all/pil/psl modes with stable exit codes.
+```bat
+build_micro4_vtt.bat pil Debug verify
+build_micro4_vtt.bat psl Debug verify
+build_micro4_vtt.bat all Debug verify
+```
+
+Internal low-level commands used by the wrapper:
+
+```bat
+rtimemake --config Debug --build --target i86lePEvs2017 --name i86lePEvs2017 -G "Visual Studio 15 2017" -DRTIME_EXCLUDE_CPP_eq_TRUE -DRTI_BUILD_UNITTESTS_eq_FALSE
+
+rtimemake --config Debug --build --target i86lePEvs2017-MICROSAR4 --name i86lePEvs2017-MICROSAR4 -G "Visual Studio 15 2017" -DRTIME_EXCLUDE_CPP_eq_TRUE -DRTI_BUILD_UNITTESTS_eq_FALSE
+```
+
+Accepted invocation styles:
+
+```bat
+build_micro4_vtt.bat pil Debug verify
+build_micro4_vtt.bat MODE pil CONFIG Debug VERIFY verify
+build_micro4_vtt.bat MODE=pil CONFIG=Debug VERIFY=verify
+```
+
+The positional form is the simplest and is the recommended form for repeatable use.
+
+## Verification
+
+- PIL archives: `lib\i86lePEvs2017`
+- PSL archives: `lib\i86lePEvs2017-MICROSAR4`
+- PSL symbol verification: [playbooks/microsar-pil-psl/verify_psl_symbols.ps1](playbooks/microsar-pil-psl/verify_psl_symbols.ps1)
+
+Verification details:
+
+- PIL verification counts synchronized `.a` or `.lib` archives in `lib\i86lePEvs2017`
+- PSL verification counts synchronized `.a` or `.lib` archives in `lib\i86lePEvs2017-MICROSAR4`
+- PSL symbol verification reads the built archive and `autosarSocket.obj` directly in PowerShell and checks these symbols:
+  - `_NETIO_Autosar_TcpIp_udp_rx_indication`
+  - `_NETIO_Autosar_on_ip_assigned`
+  - `_NETIO_Autosar_on_socket_event`
+
+Known failure modes and fixes captured during implementation:
+
+- Do not rely on `setenv_micro_32bit.bat` for the primary workflow. The wrapper must be sufficient on its own.
+- Do not rely on `lib.exe` or `dumpbin.exe` being present in `PATH`. The checked-in verifier avoids those tools.
+- Do not assume PSL archives are copied to `lib\i86lePEvs2017-MICROSAR4` automatically by the build system. The wrapper performs explicit synchronization after each target build.
+- Batch parsing must tolerate positional arguments and named tokens split by `cmd` parsing behavior.
+- For `MODE=all`, `RTIMEARCH` must be updated per target rather than fixed once at startup.
+
+Evidence from the validated workflow in this repo:
+
+- `build_micro4_vtt.bat pil Debug noverify` completed successfully
+- `build_micro4_vtt.bat MODE pil CONFIG Debug VERIFY noverify` completed successfully
+- `build_micro4_vtt.bat psl Debug verify` completed successfully
+- `build_micro4_vtt.bat all Debug verify` completed successfully
+- PIL archives were synchronized into `lib\i86lePEvs2017`
+- PSL archives were synchronized into `lib\i86lePEvs2017-MICROSAR4`
+
+## Success Criteria
+
+- The batch exits non-zero on invalid args, missing environment, build failure, or verification failure.
 - PIL mode produces archives under `lib\i86lePEvs2017`.
 - PSL mode produces archives under `lib\i86lePEvs2017-MICROSAR4`.
-- PSL verification confirms callback symbol provider path.
-- Output artifacts and modification evidence are reported.
+- PSL verification confirms the AUTOSAR callback symbol provider path.

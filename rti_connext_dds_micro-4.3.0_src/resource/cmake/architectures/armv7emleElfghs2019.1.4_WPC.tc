@@ -1,0 +1,40 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2026-2026
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+SET(CMAKE_SYSTEM_NAME RTIME_FreeRTOS_PI)
+
+IF (${TARGET_HELP})
+    MESSAGE("TARGET\n\n armv7emleElfghs2019.1.4_WPC/armv7emleElfghs2019.1.4_WPCCERT PIL\n")
+    MESSAGE("DESCRIPTION\n")
+    MESSAGE(" GHS ARM Cortex-M7 PIL for the WPC port (Infineon/Cypress")
+    MESSAGE(" CYT3BB / Traveo II Body, tviibh4m). Shipped to the customer")
+    MESSAGE(" for use on their CYT3BB-based boards.")
+    MESSAGE("\nAvailable PSLs for this PIL\n")
+    MESSAGE(" --name armv7emleElfghs2019.1.4_WPC-FreeRTOS10.0\n")
+    MESSAGE(" --name armv7emleElfghs2019.1.4_WPCCERT-FreeRTOS10.0\n")
+ENDIF()
+
+#ADD_DEFINITIONS(-D__freertos__)
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/ghs_arm_pi.tc)
+
+INCLUDE_GHS_ARM_COMPILER_PIL("2019.1.4")
+
+SET(WPC_PIL_FLAGS
+    --gnu_asm
+    -Osize
+    -DCYT3BBBCES
+    -Dcyt3bb
+    -Dtviibh4m
+)
+FOREACH(flag ${WPC_PIL_FLAGS})
+    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${flag}")
+ENDFOREACH()

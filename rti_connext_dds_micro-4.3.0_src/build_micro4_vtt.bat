@@ -151,6 +151,10 @@ popd >nul 2>&1
 exit /b 0
 
 :build_target
+
+set "RTIMEHOME=%~dp0"
+set "OSEK_PATH=C:\Users\jpark\Documents\rti_workspace\CBD1500710_D12"
+
 set "TARGET=%~1"
 if "%TARGET%"=="" (
     echo [ERROR] Internal: empty target passed to build_target.
@@ -161,7 +165,7 @@ if /I "%TARGET%"=="i86lePEvs2017" set "RTIMEARCH=i86lePEvs2017"
 if /I "%TARGET%"=="i86lePEvs2017-MICROSAR4" set "RTIMEARCH=i86lePEvs2017-MICROSAR4"
 
 echo [INFO] Building target: %TARGET% (CONFIG=%CONFIG%)
-call rtimemake --config %CONFIG% --build --target %TARGET% --name %TARGET% -G "Visual Studio 15 2017" -DRTIME_EXCLUDE_CPP_eq_TRUE -DRTI_BUILD_UNITTESTS_eq_FALSE
+call "%RTIMEHOME%\resource\scripts\rtime-make.bat" --config %CONFIG% --build --target %TARGET% --name %TARGET% -G "Visual Studio 15 2017" -DRTIME_EXCLUDE_CPP_eq_TRUE -DRTI_BUILD_UNITTESTS_eq_FALSE
 if errorlevel 1 (
     echo [ERROR] Build failed for target: %TARGET%
     exit /b 72

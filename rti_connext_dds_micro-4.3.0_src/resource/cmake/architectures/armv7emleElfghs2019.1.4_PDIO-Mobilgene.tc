@@ -1,0 +1,59 @@
+###############################################################################
+# Mobilgene PSL for the customer ARMv7E-M / GHS 2019.1.4 PIL
+###############################################################################
+
+SET(CMAKE_SYSTEM_NAME MICROSAR)
+
+IF (${TARGET_HELP})
+    MESSAGE("TARGET\n\n")
+    MESSAGE("armv7emleElfghs2019.1.4_PDIO-Mobilgene\n")
+    MESSAGE("DESCRIPTION\n")
+    MESSAGE(" Mobilgene/AUTOSAR PSL for ARMv7E-M using Green Hills 2019.1.4.\n")
+    MESSAGE(" The PSL is built against the customer-provided PIL:\n")
+    MESSAGE(" armv7emleElfghs2019.1.4_PDIO\n")
+    MESSAGE("\nRequired environment variable:\n")
+    MESSAGE(" OSEK_PATH: Path to the Mobilgene SIP/static-code directory.\n")
+ENDIF()
+
+FOREACH(language C CXX)
+    SET(CMAKE_${language}_COMPILER_WORKS 1)
+    SET(CMAKE_${language}_ABI_COMPILED 1)
+ENDFOREACH()
+
+# Keep this only if this target is genuinely intended for Forge unit tests.
+# Otherwise, omit it and let the normal build decide.
+# SET(RTI_BUILD_FORGE_UNITTESTS TRUE)
+
+# Select the same compiler family and ABI basis as the shipped PIL.
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/ghs_arm_pi.tc)
+INCLUDE_GHS_ARM_COMPILER_PSL("2019.1.4")
+
+# MicroSAR/AUTOSAR-specific selection.
+ADD_DEFINITIONS(-D__autosar__=1)
+ADD_DEFINITIONS(-DRTIME_AUTOSAR_MICROSAR=1)
+ADD_DEFINITIONS(-DRTI_AUTOSAR=1)
+ADD_DEFINITIONS(-DRTI_ENDIAN_LITTLE=1)
+ADD_DEFINITIONS(-DMCAL_SUPPORT_MOBILGENE_1_0=1)
+ADD_DEFINITIONS(-DMCAL_SUPPORT_MOBILGENE_2_0=1)
+
+# Zero-copy network I/O is not used by the MicroSAR PSL.
+SET(RTIME_EXCLUDE_NETIO_ZCOPY TRUE)
+
+# Add only the CPU/device macros required by the customer's MicroSAR SIP.
+# Keep these aligned with the macros used when the customer builds its
+# MicroSAR application and with the ABI of armv7emleElfghs2019.1.4_PDIO.
+SET(PDIO_MICROSAR_PSL_FLAGS
+    --gnu_asm
+    -OI
+    -Ospeed
+
+    # Replace these only if the customer's SIP/compiler configuration
+    # requires different device macros:
+    -DCYT4BFBCHS
+    -Dtviibh8m
+    -Dcyt4bf
+)
+
+FOREACH(flag ${PDIO_MICROSAR_PSL_FLAGS})
+    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${flag}")
+ENDFOREACH()

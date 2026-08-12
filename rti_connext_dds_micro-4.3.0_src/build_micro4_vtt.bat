@@ -192,9 +192,9 @@ call :prepend_path "%RTIMEHOME%\bin"
 if exist "%ProgramFiles%\CMake\bin\cmake.exe" call :prepend_path "%ProgramFiles%\CMake\bin"
 if exist "%ProgramFiles(x86)%\CMake\bin\cmake.exe" call :prepend_path "%ProgramFiles(x86)%\CMake\bin"
 
-where rtimemake >nul 2>&1
+where rtime-make.bat >nul 2>&1
 if errorlevel 1 (
-    echo [ERROR] rtimemake is not available after environment setup.
+    echo [ERROR] rtime-make.bat is not available after environment setup.
     exit /b 1
 )
 

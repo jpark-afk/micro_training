@@ -1,0 +1,95 @@
+###############################################################################
+# (c) Copyright, Real-Time Innovations 2026
+#
+# All rights reserved.
+# No duplications, whole or partial, manual or electronic, may be made
+# without express written permission.  Any such copies, or
+# revisions thereof, must display this notice unaltered.
+# This code contains trade secrets of Real-Time Innovations, Inc.
+#
+################################################################################
+
+SET(CMAKE_SYSTEM_NAME MICROSAR)
+
+IF (${TARGET_HELP})
+    MESSAGE("TARGET\n\n")
+    MESSAGE("i86lePEvs2017-MICROSAR4\n")
+    MESSAGE("DESCRIPTION\n")
+    MESSAGE(" This Microsar PSL target can be used for building against the")
+    MESSAGE(" MICROSAR virtual platform on Win32 with Visual Studio 2017.")
+    MESSAGE("\nThis PSL is based on the following PIL:\n")
+    MESSAGE(" i86lePEvs2017\n")
+ENDIF()
+
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/Compiler/vscc_pi.tc)
+
+FOREACH(language C CXX)
+    SET(CMAKE_${language}_COMPILER_WORKS 1)
+    SET(CMAKE_${language}_ABI_COMPILED 1)
+ENDFOREACH()
+
+IF(NOT DEFINED RTI_BUILD_FORGE_UNITTESTS)
+    SET(RTI_BUILD_FORGE_UNITTESTS 1)
+ENDIF()
+
+SET(RTIME_EXCLUDE_NETIO_ZCOPY TRUE)
+SET(RTIME_NO_SHARED_LIB TRUE CACHE BOOL "" FORCE)
+SET(RTIME_INCLUDE_AUTOSAR TRUE CACHE BOOL "" FORCE)
+SET(RTIME_UDP_EXCLUDE_BUILTIN FALSE CACHE BOOL "" FORCE)
+SET(RTIME_PIL_USE_TARGET_PSL TRUE CACHE BOOL "" FORCE)
+SET(RTIME_PIL_ARCH i86lePEvs2017)
+SET(RTIME_TARGET_PSL "netiopsl::udp;ospsl::autosar" CACHE STRING "" FORCE)
+
+SET(RTIME_PSL TRUE)
+ADD_DEFINITIONS(-DRTI_PSL=1)
+ADD_DEFINITIONS(-DRTIME_AUTOSAR_WINCORE)
+ADD_DEFINITIONS(-DRTIME_AUTOSAR_MICROSAR)
+ADD_DEFINITIONS(-DOSAPI_DONT_HAVE_REALLOC=1)
+
+SET(RTIME_OSAPI_COMPILER osapi_cc_msvsc.h)
+ADD_DEFINITIONS(-DOSAPI_CC_DEF_H=osapi/${RTIME_OSAPI_COMPILER})
+SET(OSAPI_CC_DEF_H_SET TRUE)
+
+# Avoid inherited Windows define in this MICROSAR flavor to prevent D9025.
+foreach(_lang C CXX)
+    if(DEFINED CMAKE_${_lang}_FLAGS)
+        string(REPLACE "-DRTI_WIN32" "" CMAKE_${_lang}_FLAGS "${CMAKE_${_lang}_FLAGS}")
+    endif()
+    foreach(_cfg DEBUG RELEASE RELWITHDEBINFO MINSIZEREL)
+        if(DEFINED CMAKE_${_lang}_FLAGS_${_cfg})
+            string(REPLACE "-DRTI_WIN32" "" CMAKE_${_lang}_FLAGS_${_cfg} "${CMAKE_${_lang}_FLAGS_${_cfg}}")
+        endif()
+    endforeach()
+endforeach()
+
+ADD_DEFINITIONS(-DRTI_ENDIAN_LITTLE=1)
+
+IF (DEFINED ENV{OSEK_PATH})
+    STRING(REPLACE "\\" "/" USAR_PATH $ENV{OSEK_PATH})
+    INCLUDE_DIRECTORIES("${USAR_PATH}/BSW/VttOs")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/BSW/TcpIp")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/BSW/Det")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/BSW/Dem")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/BSW/IpBase")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/BSW/VStdLib")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/BSW/SoAd")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/BSW/EthIf")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/BSW/VttEth")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/BSW/Vtt_Common")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/BSW/VttCntrl")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/BSW/VttEthTrcv_30_Vtt")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/Demo/Appl/Include")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/Demo/Appl/GenDataVtt")
+    INCLUDE_DIRECTORIES("${USAR_PATH}/Demo/Appl/GenDataVtt/Components")
+ELSE()
+    MESSAGE(FATAL_ERROR "Please set OSEK_PATH to your MICROSAR SIP root")
+ENDIF()
+
+# Pull in all BSW module headers (Det, Dem, NvM, etc.) required by MICROSAR
+# generated TcpIp/SoAd include chains.
+FILE(GLOB _AUTOSAR_BSW_DIRS "${USAR_PATH}/BSW/*")
+FOREACH(_bsw_dir ${_AUTOSAR_BSW_DIRS})
+    IF (IS_DIRECTORY "${_bsw_dir}")
+        INCLUDE_DIRECTORIES("${_bsw_dir}")
+    ENDIF()
+ENDFOREACH()

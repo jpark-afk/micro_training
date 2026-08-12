@@ -1,6 +1,6 @@
 param(
-    [string]$BuildRoot = "build/cmake/Debug/i86lePEvs2017-MICROSAR4",
-    [string]$Config = "Debug",
+    [string]$ArchiveRoot = "lib/i86lePEvs2017-MICROSAR4",
+    [string]$ObjectRoot = "build/cmake/Debug/i86lePEvs2017-MICROSAR4",
     [string]$LibraryName = "librti_me_netiopslzd.a"
 )
 
@@ -11,7 +11,7 @@ function Fail($msg) {
     exit 1
 }
 
-$libPath = Join-Path $BuildRoot (Join-Path $Config $LibraryName)
+$libPath = Join-Path $ArchiveRoot $LibraryName
 if (-not (Test-Path $libPath)) {
     Fail "Missing PSL archive: $libPath"
 }
@@ -26,9 +26,9 @@ if (-not ($archiveText -match "autosarSocket\.obj")) {
 
 Write-Host "[check] archive contains autosarSocket.obj"
 
-$objPath = Get-ChildItem -Path $BuildRoot -Recurse -Filter autosarSocket.obj -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
+$objPath = Get-ChildItem -Path $ObjectRoot -Recurse -Filter autosarSocket.obj -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
 if (-not $objPath) {
-    Fail "autosarSocket.obj not found under build root: $BuildRoot"
+    Fail "autosarSocket.obj not found under object root: $ObjectRoot"
 }
 
 Write-Host "[check] object located: $objPath"
